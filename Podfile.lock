@@ -1,0 +1,16 @@
+PODS:
+  - Pelias (1.0.0-beta1):
+    - Pelias/Core (= 1.0.0-beta1)
+  - Pelias/Core (1.0.0-beta1)
+
+DEPENDENCIES:
+  - Pelias (from `~/coding/git_projects/pelias-ios-sdk`)
+
+EXTERNAL SOURCES:
+  Pelias:
+    :path: ~/coding/git_projects/pelias-ios-sdk
+
+SPEC CHECKSUMS:
+  Pelias: 12e934f0f2993a2558a9c31e1877370f9d3143f1
+
+COCOAPODS: 0.39.0
