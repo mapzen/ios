@@ -7,7 +7,6 @@
 //
 
 import XCTest
-@testable import ios_sdk
 
 class ios_sdkTests: XCTestCase {
     

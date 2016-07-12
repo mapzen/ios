@@ -14,6 +14,20 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
+               BlueprintIdentifier = "DB5BD5EE1D071B71004CE752"
+               BuildableName = "libtangram-ios.a"
+               BlueprintName = "tangram-ios"
+               ReferencedContainer = "container:tangram/build/ios/tangram.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
                BlueprintIdentifier = "DB7A33D31C8F8E8B009CC743"
                BuildableName = "ios-sdk.app"
                BlueprintName = "ios-sdk"

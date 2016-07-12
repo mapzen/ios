@@ -7,13 +7,53 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AC586709D7E7D4C22AA9474D /* Pods_ios_sdk.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 99B3EC60450343448FA4E699 /* Pods_ios_sdk.framework */; };
+		DB09D3051D37C27E0062A150 /* building-grid.gif in CopyFiles */ = {isa = PBXBuildFile; fileRef = DBC869A11D3666B300DDC4FE /* building-grid.gif */; };
+		DB09D3061D37C27E0062A150 /* poi_icons_18@2x.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = DBC869A21D3666B300DDC4FE /* poi_icons_18@2x.png */; };
+		DB22E59A1DA45D73004264E0 /* RoutingSearchVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB22E5991DA45D73004264E0 /* RoutingSearchVC.swift */; };
+		DB22E59C1DA46640004264E0 /* RoutingResultTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB22E59B1DA46640004264E0 /* RoutingResultTableVC.swift */; };
+		DB22E59E1DA473CA004264E0 /* RouteDirectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB22E59D1DA473CA004264E0 /* RouteDirectionCell.swift */; };
+		DB31932E1D35221000272990 /* DroidSansFallback.ttf in CopyFiles */ = {isa = PBXBuildFile; fileRef = DB3192691D351E4200272990 /* DroidSansFallback.ttf */; };
+		DB31932F1D35221000272990 /* DroidSansJapanese.ttf in CopyFiles */ = {isa = PBXBuildFile; fileRef = DB31926A1D351E4200272990 /* DroidSansJapanese.ttf */; };
+		DB3193301D35221000272990 /* firasans-medium.ttf in CopyFiles */ = {isa = PBXBuildFile; fileRef = DB31926B1D351E4200272990 /* firasans-medium.ttf */; };
+		DB3193311D35221000272990 /* NotoNaskh-Regular.ttf in CopyFiles */ = {isa = PBXBuildFile; fileRef = DB31926C1D351E4200272990 /* NotoNaskh-Regular.ttf */; };
+		DB3193321D35221000272990 /* NotoSans-Regular.ttf in CopyFiles */ = {isa = PBXBuildFile; fileRef = DB31926D1D351E4200272990 /* NotoSans-Regular.ttf */; };
+		DB3193331D35221000272990 /* NotoSansHebrew-Regular.ttf in CopyFiles */ = {isa = PBXBuildFile; fileRef = DB31926E1D351E4200272990 /* NotoSansHebrew-Regular.ttf */; };
+		DB3193341D35221000272990 /* roboto-regular.ttf in CopyFiles */ = {isa = PBXBuildFile; fileRef = DB31926F1D351E4200272990 /* roboto-regular.ttf */; };
 		DB7A33D81C8F8E8B009CC743 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB7A33D71C8F8E8B009CC743 /* AppDelegate.swift */; };
-		DB7A33DA1C8F8E8B009CC743 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB7A33D91C8F8E8B009CC743 /* ViewController.swift */; };
 		DB7A33DD1C8F8E8B009CC743 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DB7A33DB1C8F8E8B009CC743 /* Main.storyboard */; };
 		DB7A33DF1C8F8E8B009CC743 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DB7A33DE1C8F8E8B009CC743 /* Assets.xcassets */; };
 		DB7A33E21C8F8E8B009CC743 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DB7A33E01C8F8E8B009CC743 /* LaunchScreen.storyboard */; };
 		DB7A33ED1C8F8E8B009CC743 /* ios_sdkTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB7A33EC1C8F8E8B009CC743 /* ios_sdkTests.swift */; };
-		DF296F1D39A4230257889944 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92C35E8790FB3255237B1E77 /* Pods.framework */; };
+		DBBF368B1D64DA6A0069D769 /* RoutingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBBF368A1D64DA6A0069D769 /* RoutingViewController.swift */; };
+		DBC869901D3662DD00DDC4FE /* AutocompleteTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBC8698F1D3662DD00DDC4FE /* AutocompleteTableVC.swift */; };
+		DBC869921D3663C700DDC4FE /* PeliasMapkitExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBC869911D3663C700DDC4FE /* PeliasMapkitExtensions.swift */; };
+		DBC869A41D3666B300DDC4FE /* Apache License.txt in Resources */ = {isa = PBXBuildFile; fileRef = DBC869951D3666B300DDC4FE /* Apache License.txt */; };
+		DBC869A51D3666B300DDC4FE /* open sans-300italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DBC869961D3666B300DDC4FE /* open sans-300italic.ttf */; };
+		DBC869A61D3666B300DDC4FE /* open sans-300normal.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DBC869971D3666B300DDC4FE /* open sans-300normal.ttf */; };
+		DBC869A71D3666B300DDC4FE /* open sans-400italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DBC869981D3666B300DDC4FE /* open sans-400italic.ttf */; };
+		DBC869A81D3666B300DDC4FE /* open sans-400normal.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DBC869991D3666B300DDC4FE /* open sans-400normal.ttf */; };
+		DBC869A91D3666B300DDC4FE /* open sans-600italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DBC8699A1D3666B300DDC4FE /* open sans-600italic.ttf */; };
+		DBC869AA1D3666B300DDC4FE /* open sans-600normal.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DBC8699B1D3666B300DDC4FE /* open sans-600normal.ttf */; };
+		DBC869AB1D3666B300DDC4FE /* open sans-700italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DBC8699C1D3666B300DDC4FE /* open sans-700italic.ttf */; };
+		DBC869AC1D3666B300DDC4FE /* open sans-700normal.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DBC8699D1D3666B300DDC4FE /* open sans-700normal.ttf */; };
+		DBC869AD1D3666B300DDC4FE /* open sans-800italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DBC8699E1D3666B300DDC4FE /* open sans-800italic.ttf */; };
+		DBC869AE1D3666B300DDC4FE /* open sans-800normal.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DBC8699F1D3666B300DDC4FE /* open sans-800normal.ttf */; };
+		DBC869AF1D3666B300DDC4FE /* building-grid.gif in Resources */ = {isa = PBXBuildFile; fileRef = DBC869A11D3666B300DDC4FE /* building-grid.gif */; };
+		DBC869B01D3666B300DDC4FE /* poi_icons_18@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DBC869A21D3666B300DDC4FE /* poi_icons_18@2x.png */; };
+		DBC869B11D3666B300DDC4FE /* scene.yaml in Resources */ = {isa = PBXBuildFile; fileRef = DBC869A31D3666B300DDC4FE /* scene.yaml */; };
+		DBC869BC1D36679100DDC4FE /* open sans-300italic.ttf in CopyFiles */ = {isa = PBXBuildFile; fileRef = DBC869B21D36673200DDC4FE /* open sans-300italic.ttf */; };
+		DBC869BD1D36679100DDC4FE /* open sans-300normal.ttf in CopyFiles */ = {isa = PBXBuildFile; fileRef = DBC869B31D36673200DDC4FE /* open sans-300normal.ttf */; };
+		DBC869BE1D36679100DDC4FE /* open sans-400italic.ttf in CopyFiles */ = {isa = PBXBuildFile; fileRef = DBC869B41D36673200DDC4FE /* open sans-400italic.ttf */; };
+		DBC869BF1D36679100DDC4FE /* open sans-400normal.ttf in CopyFiles */ = {isa = PBXBuildFile; fileRef = DBC869B51D36673200DDC4FE /* open sans-400normal.ttf */; };
+		DBC869C01D36679100DDC4FE /* open sans-600italic.ttf in CopyFiles */ = {isa = PBXBuildFile; fileRef = DBC869B61D36673200DDC4FE /* open sans-600italic.ttf */; };
+		DBC869C11D36679100DDC4FE /* open sans-600normal.ttf in CopyFiles */ = {isa = PBXBuildFile; fileRef = DBC869B71D36673200DDC4FE /* open sans-600normal.ttf */; };
+		DBC869C21D36679100DDC4FE /* open sans-700italic.ttf in CopyFiles */ = {isa = PBXBuildFile; fileRef = DBC869B81D36673200DDC4FE /* open sans-700italic.ttf */; };
+		DBC869C31D36679100DDC4FE /* open sans-700normal.ttf in CopyFiles */ = {isa = PBXBuildFile; fileRef = DBC869B91D36673200DDC4FE /* open sans-700normal.ttf */; };
+		DBC869C41D36679100DDC4FE /* open sans-800italic.ttf in CopyFiles */ = {isa = PBXBuildFile; fileRef = DBC869BA1D36673200DDC4FE /* open sans-800italic.ttf */; };
+		DBC869C51D36679100DDC4FE /* open sans-800normal.ttf in CopyFiles */ = {isa = PBXBuildFile; fileRef = DBC869BB1D36673200DDC4FE /* open sans-800normal.ttf */; };
+		DBF441AE1D351B0A007DEE95 /* TangramVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBF441AD1D351B0A007DEE95 /* TangramVC.swift */; };
+		DBF441B01D351C90007DEE95 /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DBF441AF1D351C90007DEE95 /* GLKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -26,12 +66,63 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		DB09D3041D37C2640062A150 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = images;
+			dstSubfolderSpec = 6;
+			files = (
+				DB09D3051D37C27E0062A150 /* building-grid.gif in CopyFiles */,
+				DB09D3061D37C27E0062A150 /* poi_icons_18@2x.png in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DB31932D1D3521FD00272990 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = fonts;
+			dstSubfolderSpec = 6;
+			files = (
+				DBC869BC1D36679100DDC4FE /* open sans-300italic.ttf in CopyFiles */,
+				DBC869BD1D36679100DDC4FE /* open sans-300normal.ttf in CopyFiles */,
+				DBC869BE1D36679100DDC4FE /* open sans-400italic.ttf in CopyFiles */,
+				DBC869BF1D36679100DDC4FE /* open sans-400normal.ttf in CopyFiles */,
+				DBC869C01D36679100DDC4FE /* open sans-600italic.ttf in CopyFiles */,
+				DBC869C11D36679100DDC4FE /* open sans-600normal.ttf in CopyFiles */,
+				DBC869C21D36679100DDC4FE /* open sans-700italic.ttf in CopyFiles */,
+				DBC869C31D36679100DDC4FE /* open sans-700normal.ttf in CopyFiles */,
+				DBC869C41D36679100DDC4FE /* open sans-800italic.ttf in CopyFiles */,
+				DBC869C51D36679100DDC4FE /* open sans-800normal.ttf in CopyFiles */,
+				DB31932E1D35221000272990 /* DroidSansFallback.ttf in CopyFiles */,
+				DB31932F1D35221000272990 /* DroidSansJapanese.ttf in CopyFiles */,
+				DB3193301D35221000272990 /* firasans-medium.ttf in CopyFiles */,
+				DB3193311D35221000272990 /* NotoNaskh-Regular.ttf in CopyFiles */,
+				DB3193321D35221000272990 /* NotoSans-Regular.ttf in CopyFiles */,
+				DB3193331D35221000272990 /* NotoSansHebrew-Regular.ttf in CopyFiles */,
+				DB3193341D35221000272990 /* roboto-regular.ttf in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		0A9FDCBA6C81C063BED6CDFF /* Pods-ios-sdk.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ios-sdk.release.xcconfig"; path = "Pods/Target Support Files/Pods-ios-sdk/Pods-ios-sdk.release.xcconfig"; sourceTree = "<group>"; };
 		92C35E8790FB3255237B1E77 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		A6867A3C7E4941C042B75910 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		99B3EC60450343448FA4E699 /* Pods_ios_sdk.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ios_sdk.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B96DEBA552AA3AAEA9CDF6F4 /* Pods-ios-sdk.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ios-sdk.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ios-sdk/Pods-ios-sdk.debug.xcconfig"; sourceTree = "<group>"; };
+		DB22E5991DA45D73004264E0 /* RoutingSearchVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoutingSearchVC.swift; sourceTree = "<group>"; };
+		DB22E59B1DA46640004264E0 /* RoutingResultTableVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoutingResultTableVC.swift; sourceTree = "<group>"; };
+		DB22E59D1DA473CA004264E0 /* RouteDirectionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RouteDirectionCell.swift; sourceTree = "<group>"; };
+		DB3192691D351E4200272990 /* DroidSansFallback.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = DroidSansFallback.ttf; sourceTree = "<group>"; };
+		DB31926A1D351E4200272990 /* DroidSansJapanese.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = DroidSansJapanese.ttf; sourceTree = "<group>"; };
+		DB31926B1D351E4200272990 /* firasans-medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "firasans-medium.ttf"; sourceTree = "<group>"; };
+		DB31926C1D351E4200272990 /* NotoNaskh-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoNaskh-Regular.ttf"; sourceTree = "<group>"; };
+		DB31926D1D351E4200272990 /* NotoSans-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSans-Regular.ttf"; sourceTree = "<group>"; };
+		DB31926E1D351E4200272990 /* NotoSansHebrew-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansHebrew-Regular.ttf"; sourceTree = "<group>"; };
+		DB31926F1D351E4200272990 /* roboto-regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "roboto-regular.ttf"; sourceTree = "<group>"; };
 		DB7A33D41C8F8E8B009CC743 /* ios-sdk.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ios-sdk.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DB7A33D71C8F8E8B009CC743 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		DB7A33D91C8F8E8B009CC743 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		DB7A33DC1C8F8E8B009CC743 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		DB7A33DE1C8F8E8B009CC743 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DB7A33E11C8F8E8B009CC743 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -39,7 +130,35 @@
 		DB7A33E81C8F8E8B009CC743 /* ios-sdkTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "ios-sdkTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DB7A33EC1C8F8E8B009CC743 /* ios_sdkTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ios_sdkTests.swift; sourceTree = "<group>"; };
 		DB7A33EE1C8F8E8B009CC743 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		F48818E5161A9E383CA1C689 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		DBBF368A1D64DA6A0069D769 /* RoutingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoutingViewController.swift; sourceTree = "<group>"; };
+		DBC8698F1D3662DD00DDC4FE /* AutocompleteTableVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AutocompleteTableVC.swift; sourceTree = "<group>"; };
+		DBC869911D3663C700DDC4FE /* PeliasMapkitExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PeliasMapkitExtensions.swift; sourceTree = "<group>"; };
+		DBC869951D3666B300DDC4FE /* Apache License.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "Apache License.txt"; sourceTree = "<group>"; };
+		DBC869961D3666B300DDC4FE /* open sans-300italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "open sans-300italic.ttf"; sourceTree = "<group>"; };
+		DBC869971D3666B300DDC4FE /* open sans-300normal.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "open sans-300normal.ttf"; sourceTree = "<group>"; };
+		DBC869981D3666B300DDC4FE /* open sans-400italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "open sans-400italic.ttf"; sourceTree = "<group>"; };
+		DBC869991D3666B300DDC4FE /* open sans-400normal.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "open sans-400normal.ttf"; sourceTree = "<group>"; };
+		DBC8699A1D3666B300DDC4FE /* open sans-600italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "open sans-600italic.ttf"; sourceTree = "<group>"; };
+		DBC8699B1D3666B300DDC4FE /* open sans-600normal.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "open sans-600normal.ttf"; sourceTree = "<group>"; };
+		DBC8699C1D3666B300DDC4FE /* open sans-700italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "open sans-700italic.ttf"; sourceTree = "<group>"; };
+		DBC8699D1D3666B300DDC4FE /* open sans-700normal.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "open sans-700normal.ttf"; sourceTree = "<group>"; };
+		DBC8699E1D3666B300DDC4FE /* open sans-800italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "open sans-800italic.ttf"; sourceTree = "<group>"; };
+		DBC8699F1D3666B300DDC4FE /* open sans-800normal.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "open sans-800normal.ttf"; sourceTree = "<group>"; };
+		DBC869A11D3666B300DDC4FE /* building-grid.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "building-grid.gif"; sourceTree = "<group>"; };
+		DBC869A21D3666B300DDC4FE /* poi_icons_18@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "poi_icons_18@2x.png"; sourceTree = "<group>"; };
+		DBC869A31D3666B300DDC4FE /* scene.yaml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = scene.yaml; sourceTree = "<group>"; };
+		DBC869B21D36673200DDC4FE /* open sans-300italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "open sans-300italic.ttf"; sourceTree = "<group>"; };
+		DBC869B31D36673200DDC4FE /* open sans-300normal.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "open sans-300normal.ttf"; sourceTree = "<group>"; };
+		DBC869B41D36673200DDC4FE /* open sans-400italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "open sans-400italic.ttf"; sourceTree = "<group>"; };
+		DBC869B51D36673200DDC4FE /* open sans-400normal.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "open sans-400normal.ttf"; sourceTree = "<group>"; };
+		DBC869B61D36673200DDC4FE /* open sans-600italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "open sans-600italic.ttf"; sourceTree = "<group>"; };
+		DBC869B71D36673200DDC4FE /* open sans-600normal.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "open sans-600normal.ttf"; sourceTree = "<group>"; };
+		DBC869B81D36673200DDC4FE /* open sans-700italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "open sans-700italic.ttf"; sourceTree = "<group>"; };
+		DBC869B91D36673200DDC4FE /* open sans-700normal.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "open sans-700normal.ttf"; sourceTree = "<group>"; };
+		DBC869BA1D36673200DDC4FE /* open sans-800italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "open sans-800italic.ttf"; sourceTree = "<group>"; };
+		DBC869BB1D36673200DDC4FE /* open sans-800normal.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "open sans-800normal.ttf"; sourceTree = "<group>"; };
+		DBF441AD1D351B0A007DEE95 /* TangramVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TangramVC.swift; sourceTree = "<group>"; };
+		DBF441AF1D351C90007DEE95 /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -47,7 +166,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DF296F1D39A4230257889944 /* Pods.framework in Frameworks */,
+				DBF441B01D351C90007DEE95 /* GLKit.framework in Frameworks */,
+				AC586709D7E7D4C22AA9474D /* Pods_ios_sdk.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -61,11 +181,11 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		B855820EE9BE8CD09A44D7CB /* Pods */ = {
+		8E4E4B43C1B764470EBBDBBA /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				A6867A3C7E4941C042B75910 /* Pods.debug.xcconfig */,
-				F48818E5161A9E383CA1C689 /* Pods.release.xcconfig */,
+				B96DEBA552AA3AAEA9CDF6F4 /* Pods-ios-sdk.debug.xcconfig */,
+				0A9FDCBA6C81C063BED6CDFF /* Pods-ios-sdk.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -73,19 +193,56 @@
 		CF541C01B2D071D0FF55D939 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				DBF441AF1D351C90007DEE95 /* GLKit.framework */,
 				92C35E8790FB3255237B1E77 /* Pods.framework */,
+				99B3EC60450343448FA4E699 /* Pods_ios_sdk.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		DB3192671D351E4200272990 /* tangram */ = {
+			isa = PBXGroup;
+			children = (
+				DBC869931D3666B300DDC4FE /* scenes */,
+				DB3192681D351E4200272990 /* fonts */,
+			);
+			path = tangram;
+			sourceTree = "<group>";
+		};
+		DB3192681D351E4200272990 /* fonts */ = {
+			isa = PBXGroup;
+			children = (
+				DBC869B21D36673200DDC4FE /* open sans-300italic.ttf */,
+				DBC869B31D36673200DDC4FE /* open sans-300normal.ttf */,
+				DBC869B41D36673200DDC4FE /* open sans-400italic.ttf */,
+				DBC869B51D36673200DDC4FE /* open sans-400normal.ttf */,
+				DBC869B61D36673200DDC4FE /* open sans-600italic.ttf */,
+				DBC869B71D36673200DDC4FE /* open sans-600normal.ttf */,
+				DBC869B81D36673200DDC4FE /* open sans-700italic.ttf */,
+				DBC869B91D36673200DDC4FE /* open sans-700normal.ttf */,
+				DBC869BA1D36673200DDC4FE /* open sans-800italic.ttf */,
+				DBC869BB1D36673200DDC4FE /* open sans-800normal.ttf */,
+				DB3192691D351E4200272990 /* DroidSansFallback.ttf */,
+				DB31926A1D351E4200272990 /* DroidSansJapanese.ttf */,
+				DB31926B1D351E4200272990 /* firasans-medium.ttf */,
+				DB31926C1D351E4200272990 /* NotoNaskh-Regular.ttf */,
+				DB31926D1D351E4200272990 /* NotoSans-Regular.ttf */,
+				DB31926E1D351E4200272990 /* NotoSansHebrew-Regular.ttf */,
+				DB31926F1D351E4200272990 /* roboto-regular.ttf */,
+			);
+			path = fonts;
 			sourceTree = "<group>";
 		};
 		DB7A33CB1C8F8E8B009CC743 = {
 			isa = PBXGroup;
 			children = (
+				DB3192671D351E4200272990 /* tangram */,
+				DBC84EA51C985B6D00EE80D8 /* src */,
 				DB7A33D61C8F8E8B009CC743 /* ios-sdk */,
 				DB7A33EB1C8F8E8B009CC743 /* ios-sdkTests */,
 				DB7A33D51C8F8E8B009CC743 /* Products */,
-				B855820EE9BE8CD09A44D7CB /* Pods */,
 				CF541C01B2D071D0FF55D939 /* Frameworks */,
+				8E4E4B43C1B764470EBBDBBA /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -102,11 +259,16 @@
 			isa = PBXGroup;
 			children = (
 				DB7A33D71C8F8E8B009CC743 /* AppDelegate.swift */,
-				DB7A33D91C8F8E8B009CC743 /* ViewController.swift */,
 				DB7A33DB1C8F8E8B009CC743 /* Main.storyboard */,
 				DB7A33DE1C8F8E8B009CC743 /* Assets.xcassets */,
 				DB7A33E01C8F8E8B009CC743 /* LaunchScreen.storyboard */,
 				DB7A33E31C8F8E8B009CC743 /* Info.plist */,
+				DBF441AD1D351B0A007DEE95 /* TangramVC.swift */,
+				DBC8698F1D3662DD00DDC4FE /* AutocompleteTableVC.swift */,
+				DBBF368A1D64DA6A0069D769 /* RoutingViewController.swift */,
+				DB22E5991DA45D73004264E0 /* RoutingSearchVC.swift */,
+				DB22E59B1DA46640004264E0 /* RoutingResultTableVC.swift */,
+				DB22E59D1DA473CA004264E0 /* RouteDirectionCell.swift */,
 			);
 			path = "ios-sdk";
 			sourceTree = "<group>";
@@ -120,6 +282,52 @@
 			path = "ios-sdkTests";
 			sourceTree = "<group>";
 		};
+		DBC84EA51C985B6D00EE80D8 /* src */ = {
+			isa = PBXGroup;
+			children = (
+				DBC869911D3663C700DDC4FE /* PeliasMapkitExtensions.swift */,
+			);
+			name = src;
+			path = "ios-sdk/src";
+			sourceTree = "<group>";
+		};
+		DBC869931D3666B300DDC4FE /* scenes */ = {
+			isa = PBXGroup;
+			children = (
+				DBC869941D3666B300DDC4FE /* fonts */,
+				DBC869A01D3666B300DDC4FE /* images */,
+				DBC869A31D3666B300DDC4FE /* scene.yaml */,
+			);
+			path = scenes;
+			sourceTree = "<group>";
+		};
+		DBC869941D3666B300DDC4FE /* fonts */ = {
+			isa = PBXGroup;
+			children = (
+				DBC869951D3666B300DDC4FE /* Apache License.txt */,
+				DBC869961D3666B300DDC4FE /* open sans-300italic.ttf */,
+				DBC869971D3666B300DDC4FE /* open sans-300normal.ttf */,
+				DBC869981D3666B300DDC4FE /* open sans-400italic.ttf */,
+				DBC869991D3666B300DDC4FE /* open sans-400normal.ttf */,
+				DBC8699A1D3666B300DDC4FE /* open sans-600italic.ttf */,
+				DBC8699B1D3666B300DDC4FE /* open sans-600normal.ttf */,
+				DBC8699C1D3666B300DDC4FE /* open sans-700italic.ttf */,
+				DBC8699D1D3666B300DDC4FE /* open sans-700normal.ttf */,
+				DBC8699E1D3666B300DDC4FE /* open sans-800italic.ttf */,
+				DBC8699F1D3666B300DDC4FE /* open sans-800normal.ttf */,
+			);
+			path = fonts;
+			sourceTree = "<group>";
+		};
+		DBC869A01D3666B300DDC4FE /* images */ = {
+			isa = PBXGroup;
+			children = (
+				DBC869A11D3666B300DDC4FE /* building-grid.gif */,
+				DBC869A21D3666B300DDC4FE /* poi_icons_18@2x.png */,
+			);
+			path = images;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -127,12 +335,14 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = DB7A33F11C8F8E8B009CC743 /* Build configuration list for PBXNativeTarget "ios-sdk" */;
 			buildPhases = (
-				6A13B9A2EA49C3158C1436EC /* Check Pods Manifest.lock */,
+				AC3A5700437670DDDF710855 /* [CP] Check Pods Manifest.lock */,
 				DB7A33D01C8F8E8B009CC743 /* Sources */,
 				DB7A33D11C8F8E8B009CC743 /* Frameworks */,
 				DB7A33D21C8F8E8B009CC743 /* Resources */,
-				03695D2FDDF492938D1DE947 /* Embed Pods Frameworks */,
-				A73759240A9387771080318A /* Copy Pods Resources */,
+				DB31932D1D3521FD00272990 /* CopyFiles */,
+				191580EBEEB1CBE8776858D7 /* [CP] Embed Pods Frameworks */,
+				DB09D3041D37C2640062A150 /* CopyFiles */,
+				9ED767F151C3E563270C40FC /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -167,15 +377,19 @@
 		DB7A33CC1C8F8E8B009CC743 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0720;
+				LastSwiftUpdateCheck = 0730;
 				LastUpgradeCheck = 0720;
 				ORGANIZATIONNAME = Mapzen;
 				TargetAttributes = {
 					DB7A33D31C8F8E8B009CC743 = {
 						CreatedOnToolsVersion = 7.2.1;
+						DevelopmentTeam = LTQC954SPQ;
+						LastSwiftMigration = 0800;
 					};
 					DB7A33E71C8F8E8B009CC743 = {
 						CreatedOnToolsVersion = 7.2.1;
+						DevelopmentTeam = LTQC954SPQ;
+						LastSwiftMigration = 0800;
 						TestTargetID = DB7A33D31C8F8E8B009CC743;
 					};
 				};
@@ -204,9 +418,23 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DBC869AA1D3666B300DDC4FE /* open sans-600normal.ttf in Resources */,
+				DBC869B11D3666B300DDC4FE /* scene.yaml in Resources */,
+				DBC869A51D3666B300DDC4FE /* open sans-300italic.ttf in Resources */,
+				DBC869AD1D3666B300DDC4FE /* open sans-800italic.ttf in Resources */,
 				DB7A33E21C8F8E8B009CC743 /* LaunchScreen.storyboard in Resources */,
+				DBC869AE1D3666B300DDC4FE /* open sans-800normal.ttf in Resources */,
+				DBC869AB1D3666B300DDC4FE /* open sans-700italic.ttf in Resources */,
+				DBC869A91D3666B300DDC4FE /* open sans-600italic.ttf in Resources */,
+				DBC869A71D3666B300DDC4FE /* open sans-400italic.ttf in Resources */,
+				DBC869A41D3666B300DDC4FE /* Apache License.txt in Resources */,
+				DBC869AC1D3666B300DDC4FE /* open sans-700normal.ttf in Resources */,
+				DBC869A81D3666B300DDC4FE /* open sans-400normal.ttf in Resources */,
+				DBC869B01D3666B300DDC4FE /* poi_icons_18@2x.png in Resources */,
 				DB7A33DF1C8F8E8B009CC743 /* Assets.xcassets in Resources */,
 				DB7A33DD1C8F8E8B009CC743 /* Main.storyboard in Resources */,
+				DBC869AF1D3666B300DDC4FE /* building-grid.gif in Resources */,
+				DBC869A61D3666B300DDC4FE /* open sans-300normal.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -220,49 +448,49 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		03695D2FDDF492938D1DE947 /* Embed Pods Frameworks */ = {
+		191580EBEEB1CBE8776858D7 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Embed Pods Frameworks";
+			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ios-sdk/Pods-ios-sdk-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		6A13B9A2EA49C3158C1436EC /* Check Pods Manifest.lock */ = {
+		9ED767F151C3E563270C40FC /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Check Pods Manifest.lock";
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ios-sdk/Pods-ios-sdk-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		AC3A5700437670DDDF710855 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
-		};
-		A73759240A9387771080318A /* Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -272,7 +500,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DB7A33DA1C8F8E8B009CC743 /* ViewController.swift in Sources */,
+				DBF441AE1D351B0A007DEE95 /* TangramVC.swift in Sources */,
+				DB22E59E1DA473CA004264E0 /* RouteDirectionCell.swift in Sources */,
+				DBC869921D3663C700DDC4FE /* PeliasMapkitExtensions.swift in Sources */,
+				DB22E59A1DA45D73004264E0 /* RoutingSearchVC.swift in Sources */,
+				DBBF368B1D64DA6A0069D769 /* RoutingViewController.swift in Sources */,
+				DB22E59C1DA46640004264E0 /* RoutingResultTableVC.swift in Sources */,
+				DBC869901D3662DD00DDC4FE /* AutocompleteTableVC.swift in Sources */,
 				DB7A33D81C8F8E8B009CC743 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -319,6 +553,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -351,7 +586,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -364,6 +599,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -390,7 +626,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -400,27 +636,62 @@
 		};
 		DB7A33F21C8F8E8B009CC743 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = A6867A3C7E4941C042B75910 /* Pods.debug.xcconfig */;
+			baseConfigurationReference = B96DEBA552AA3AAEA9CDF6F4 /* Pods-ios-sdk.debug.xcconfig */;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				DEVELOPMENT_TEAM = LTQC954SPQ;
+				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/ios-sdk/src",
+					"$(PROJECT_DIR)/tangram",
+				);
 				INFOPLIST_FILE = "ios-sdk/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-framework",
+					"\"Pelias\"",
+					"-ObjC",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.mapzen.ios-sdk";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 2.3;
 			};
 			name = Debug;
 		};
 		DB7A33F31C8F8E8B009CC743 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = F48818E5161A9E383CA1C689 /* Pods.release.xcconfig */;
+			baseConfigurationReference = 0A9FDCBA6C81C063BED6CDFF /* Pods-ios-sdk.release.xcconfig */;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				DEVELOPMENT_TEAM = LTQC954SPQ;
+				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/ios-sdk/src",
+					"$(PROJECT_DIR)/tangram",
+				);
 				INFOPLIST_FILE = "ios-sdk/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-framework",
+					"\"Pelias\"",
+					"-ObjC",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.mapzen.ios-sdk";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_VERSION = 2.3;
 			};
 			name = Release;
 		};
@@ -428,10 +699,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = LTQC954SPQ;
 				INFOPLIST_FILE = "ios-sdkTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.mapzen.ios-sdkTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 2.3;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ios-sdk.app/ios-sdk";
 			};
 			name = Debug;
@@ -440,10 +713,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = LTQC954SPQ;
 				INFOPLIST_FILE = "ios-sdkTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.mapzen.ios-sdkTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 2.3;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ios-sdk.app/ios-sdk";
 			};
 			name = Release;
