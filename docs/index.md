@@ -12,7 +12,7 @@ Our iOS SDK is being built using the following standalone libraries and services
 * **[Pelias iOS SDK](https://github.com/pelias/pelias-ios-sdk)** Mapzen Search client for iOS
 * **[On the Road iOS](https://github.com/mapzen/on-the-road_ios)** Mapzen Turn-by-Turn client and routing utilities
 
-##Can't wait?
+## Can't wait?
 
 *Neither can we.*
 
