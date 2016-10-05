@@ -6,7 +6,7 @@ We are hard at work on our iOS SDK to bring you open source maps, geographic sea
 
 ## Components
 
-Our iOS SDK is being built using the following standalone libraries and services:
+Our iOS SDK is being built using the following standalone libraries and services from Mapzen:
 
 * **[Tangram ES](https://github.com/tangrams/tangram-es)** 2D and 3D map renderer using OpenGL ES
 * **[Pelias iOS SDK](https://github.com/pelias/pelias-ios-sdk)** Mapzen Search client for iOS
