@@ -16,4 +16,4 @@ Our iOS SDK is being built using the following standalone libraries and services
 
 *Neither can we.*
 
-While we are working on assembling all the pieces you can [track our progress on GitHub](https://github.com/mapzen/ios).
+While we are working on assembling all the pieces you can [follow our progress on GitHub](https://github.com/mapzen/ios).
