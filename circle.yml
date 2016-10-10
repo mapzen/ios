@@ -1,0 +1,16 @@
+machine:
+  xcode:
+    version: "8.0"
+test:
+  override:
+    - set -o pipefail &&
+      xcodebuild
+        CODE_SIGNING_REQUIRED=NO
+        CODE_SIGN_IDENTITY=
+        PROVISIONING_PROFILE=
+        -sdk iphoneos
+        -workspace ios-sdk.xcworkspace
+        -scheme "ios-sdk"
+        clean build |
+      tee $CIRCLE_ARTIFACTS/xcode_raw.log |
+      xcpretty --color --report junit --output $CIRCLE_TEST_REPORTS/xcode/results.xml
