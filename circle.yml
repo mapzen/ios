@@ -1,6 +1,16 @@
 machine:
   xcode:
     version: "8.0"
+  environment:
+    GYM_CODE_SIGNING_IDENTITY: "iPhone Distribution: Michael Cunningham (LTQC954SPQ)"
+
+dependencies:
+  override:
+    - pod install:
+        timeout: 1800
+  cache_directories:
+    - "~/.cocoapods"
+
 test:
   override:
     - set -o pipefail &&
@@ -14,3 +24,8 @@ test:
         clean build |
       tee $CIRCLE_ARTIFACTS/xcode_raw.log |
       xcpretty --color --report junit --output $CIRCLE_TEST_REPORTS/xcode/results.xml
+deployment:
+  alpha_distribution:
+    branch: master
+    commands: 
+      - gym --scheme "ios-sdk" --workspace "ios-sdk.xcworkspace"
