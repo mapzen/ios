@@ -6,12 +6,10 @@ machine:
 
 dependencies:
   override:
-    - sudo gem install bundler
-    - bundle install
-    - bundle exec pod install:
-        timeout: 300
+    - pod install:
+        timeout: 1800
   cache_directories:
-    - "Pods/"
+    - "~/cocoapods"
 
 test:
   override:
