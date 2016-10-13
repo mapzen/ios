@@ -9,7 +9,7 @@ dependencies:
     - pod install:
         timeout: 1800
   cache_directories:
-    - "~/cocoapods"
+    - "~/.cocoapods"
 
 test:
   override:
