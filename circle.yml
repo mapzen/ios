@@ -19,5 +19,5 @@ test:
 deployment:
   alpha_distribution:
     branch: master
-     commands:
-       - gym --scheme "ios-sdk" --workspace "ios-sdk.xcworkspace" --export_method ad-hoc
+    commands: 
+      - gym --scheme "ios-sdk" --workspace "ios-sdk.xcworkspace" 
