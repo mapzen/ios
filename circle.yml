@@ -28,4 +28,4 @@ deployment:
   alpha_distribution:
     branch: master
     commands: 
-      - gym --scheme "ios-sdk" --workspace "ios-sdk.xcworkspace"
+      - gym --scheme "ios-sdk" --workspace "ios-sdk.xcworkspace" --output_directory $CIRCLE_ARTIFACTS
