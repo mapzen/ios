@@ -6,7 +6,12 @@ machine:
 
 dependencies:
   override:
-    - pod install
+    - sudo gem install bundler
+    - bundle install
+    - bundle exec pod install
+       timeout: 300
+  cache_directories:
+    - "Pods/"
 
 test:
   override:
