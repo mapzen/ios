@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import tangram_framework
+import TangramMap
 class TangramVC:  TGMapViewController{
 
     override func viewDidLoad() {
