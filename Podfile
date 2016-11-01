@@ -4,7 +4,7 @@ use_frameworks!
 target "ios-sdk" do
   pod 'Pelias', :git => 'https://github.com/pelias/pelias-ios-sdk.git', :branch => 'master'
   pod 'OnTheRoad', :git => 'https://github.com/mapzen/on-the-road_ios.git', :branch => 'master'
-  pod 'Tangram-es', :git => 'https://github.com/tangrams/ios-framework.git', :branch => 'bitcodeUpdate'
+  pod 'Tangram-es', :git => 'https://github.com/tangrams/ios-framework.git', :branch => 'master'
 end
 
 post_install do |installer|
