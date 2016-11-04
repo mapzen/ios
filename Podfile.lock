@@ -1,13 +1,37 @@
 PODS:
+  - ISO8601DateFormatterValueTransformer (0.6.1):
+    - RKValueTransformers (~> 1.1.0)
   - OnTheRoad (0.1)
   - Pelias (1.0.0-beta2):
     - Pelias/Core (= 1.0.0-beta2)
   - Pelias/Core (1.0.0-beta2)
+  - RestKit (0.27.0):
+    - RestKit/Core (= 0.27.0)
+  - RestKit/Core (0.27.0):
+    - RestKit/CoreData
+    - RestKit/Network
+    - RestKit/ObjectMapping
+  - RestKit/CoreData (0.27.0):
+    - RestKit/ObjectMapping
+  - RestKit/Network (0.27.0):
+    - RestKit/ObjectMapping
+    - RestKit/Support
+    - SOCKit
+  - RestKit/ObjectMapping (0.27.0):
+    - ISO8601DateFormatterValueTransformer (~> 0.6.1)
+    - RestKit/Support
+    - RKValueTransformers (~> 1.1.0)
+  - RestKit/Support (0.27.0):
+    - TransitionKit (~> 2.2)
+  - RKValueTransformers (1.1.3)
+  - SOCKit (1.1)
   - Tangram-es (0.1.0)
+  - TransitionKit (2.2.1)
 
 DEPENDENCIES:
   - OnTheRoad (from `https://github.com/mapzen/on-the-road_ios.git`, branch `master`)
   - Pelias (from `https://github.com/pelias/pelias-ios-sdk.git`, branch `master`)
+  - RestKit
   - Tangram-es (from `https://github.com/tangrams/ios-framework.git`, branch `master`)
 
 EXTERNAL SOURCES:
@@ -33,10 +57,15 @@ CHECKOUT OPTIONS:
     :git: https://github.com/tangrams/ios-framework.git
 
 SPEC CHECKSUMS:
+  ISO8601DateFormatterValueTransformer: 52da467d6ec899d6aedda8e48280ac92e8ee97e6
   OnTheRoad: ddcde45571f312512f2e52e46db48986af37cdbb
   Pelias: 0aa202b03b50cc19dc09550d7b6fd01451a78a6d
+  RestKit: a0244db34e14ed9cf059fcee2be6733cc162c34a
+  RKValueTransformers: e5ed67e3811229b616fe01bddeeafe3bb337b1b9
+  SOCKit: c7376ac262bea9115b8f749358f762522a47d392
   Tangram-es: 0b836ead54f672545dc5bfcf0ae46e6f4b97c1ff
+  TransitionKit: 9ceccda4cd0cdc0a05ef85eb235e5a3292c3c250
 
-PODFILE CHECKSUM: 6c190434975dafb55e6c3263098f5be3eaf2e412
+PODFILE CHECKSUM: 43511a487c19ec36bac7241d31cb30120a597c34
 
-COCOAPODS: 1.0.1
+COCOAPODS: 1.1.1
