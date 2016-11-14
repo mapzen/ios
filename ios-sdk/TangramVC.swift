@@ -12,7 +12,9 @@ class TangramVC:  TGMapViewController{
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.queueSceneUpdate("sources.mapzen.url_params.api_key", withValue: "vector-tiles-7bfyfz8")
+        self.loadSceneFile("scene.yaml")
+        self.queueSceneUpdate("sources.mapzen.url_params", withValue: "{ api_key: vector-tiles-7bfyfz8 }")
+        self.applySceneUpdates()
 
         // Do any additional setup after loading the view.
     }
