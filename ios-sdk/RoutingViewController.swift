@@ -43,7 +43,7 @@ class RoutingViewController: UIViewController, RoutingSearchDelegate {
 
   func routeTo(point: PeliasMapkitAnnotation) {
     let routingController = OTRRoutingController();
-    routingController.urlQueryComponents.addObject(NSURLQueryItem(name: "apiKey", value: "valhalla-5RdUuGy"))
+    routingController.urlQueryComponents.addObject(NSURLQueryItem(name: "apiKey", value: "mapzen-2qQR7SX"))
 
     let startingPoint = OTRRoutingPoint(coordinate: OTRGeoPointMake(40.7444892, -73.9900082), type: .Break)
 

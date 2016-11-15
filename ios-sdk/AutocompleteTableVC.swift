@@ -27,7 +27,7 @@ class AutocompleteTableVC: UITableViewController, UISearchResultsUpdating, UISea
     self.definesPresentationContext = true
     searchController.searchBar.sizeToFit()
     manager.delegate = self
-    PeliasSearchManager.sharedInstance.urlQueryItems?.append(NSURLQueryItem(name: "apiKey", value: "search-tZu4e8k"))
+    PeliasSearchManager.sharedInstance.urlQueryItems = [NSURLQueryItem(name: "apiKey", value: "mapzen-2qQR7SX")]
 
   }
   
