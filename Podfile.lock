@@ -26,10 +26,10 @@ CHECKOUT OPTIONS:
     :commit: 65871d9f1d8e92987730f42c24114c4b6458c582
     :git: https://github.com/mapzen/on-the-road_ios.git
   Pelias:
-    :commit: d706be40d55f59c8f7bcb6bd4a6f4348a94b24fa
+    :commit: a8d8b0fe8800304b31694a179dd45428d5de75b8
     :git: https://github.com/pelias/pelias-ios-sdk.git
   Tangram-es:
-    :commit: f8dd472839e835962c2524f1073f6a7b44f36c70
+    :commit: 0ccd06a61e6f25d283f4d0a3c3c1cb00657ee678
     :git: https://github.com/tangrams/ios-framework.git
 
 SPEC CHECKSUMS:

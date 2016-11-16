@@ -43,17 +43,11 @@ class RoutingViewController: UIViewController, RoutingSearchDelegate {
 
   func routeTo(point: PeliasMapkitAnnotation) {
     let routingController = OTRRoutingController();
-    routingController.urlQueryComponents.addObject(NSURLQueryItem(name: "apiKey", value: "valhalla-5RdUuGy"))
-//    var geoPoint = GeoPoint(latitude: 40.7312973034393, longitude: -73.99896644276561)
+    routingController.urlQueryComponents.addObject(NSURLQueryItem(name: "apiKey", value: "mapzen-2qQR7SX"))
 
-    //    let startingPoint = TBMapzenRoutingPoint(coordinate: CLLocationCoordinate2DMake(40.3049381, -75.312982), type: .Break)
     let startingPoint = OTRRoutingPoint(coordinate: OTRGeoPointMake(40.7444892, -73.9900082), type: .Break)
 
-    //    let endingPoint = TBMapzenRoutingPoint(coordinate: CLLocationCoordinate2DMake(40.2553735, -74.7062307), type: .Break)
     let endingPoint = OTRRoutingPoint(coordinate: OTRGeoPointMake(point.coordinate.latitude, point.coordinate.longitude), type: .Break)
-
-    //    let midPoint = TBMapzenRoutingPoint(coordinate: CLLocationCoordinate2DMake(40.2553735, -75.7062307), type: .Break)
-//    let midPoint = OTRRoutingPoint(coordinate: OTRGeoPointMake(40.2553735, -75.7062307), type: .Break)
 
     routingController.requestRouteWithLocations([startingPoint, endingPoint],
                                                 costingModel: .Auto,
