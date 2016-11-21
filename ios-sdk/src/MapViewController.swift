@@ -11,18 +11,31 @@ import TangramMap
 
 public class MapViewController: TGMapViewController {
 
+    var currentLocationGem: TGMapMarkerId?
+
     public var showCurrentLocation: Bool = false {
         didSet {
             if showCurrentLocation == true {
+                if currentLocationGem != nil {
+                    //Already showing the current location gem
+                    return;
+                }
                 print("Queuing scene update for current location")
-                self.queueSceneUpdate("layers.mz_current_location_gem.data", withValue: "{ type: FeatureCollection, features: { type: Feature, properties: {}, geometry: { type: Point, coordinates: { -122.44880676269531, 37.76155490343394 } } } }")
-                self.applySceneUpdates()
                 let point = TGGeoPoint(longitude: -122.44880676269531, latitude: 37.76155490343394)
-                self.animateToPosition(point, withDuration: 2.0)
-                self.animateToZoomLevel(15, withDuration: 2.0)
+                let marker = markerAdd()
+                markerSetStyling(marker, styling: "{ style: ux-location-gem-overlay, interactive: true, sprite: ux-current-location, size: 36px, collide: false }")
+                markerSetPoint(marker, coordinates: point)
+                markerSetVisible(marker, visible: true)
+                animateToPosition(point, withDuration: 2.0)
+                animateToZoomLevel(15, withDuration: 2.0)
+                currentLocationGem = marker
             } else {
-                self.queueSceneUpdate("layers.mz_current_location_gem.data", withValue: "")
-                self.applySceneUpdates()
+                guard let marker = currentLocationGem else {
+                    // Not showing current location
+                    return;
+                }
+                markerRemove(marker)
+                currentLocationGem = nil
             }
         }
     }
