@@ -16,29 +16,26 @@ public class MapViewController: TGMapViewController {
 
     public var showCurrentLocation: Bool = false {
         didSet {
-            if showCurrentLocation == true {
-                if currentLocationGem != nil {
-                    //Already showing the current location gem
-                    return;
-                }
-                print("Queuing scene update for current location")
+            if showCurrentLocation {
                 let point = TGGeoPoint(longitude: -122.44880676269531, latitude: 37.76155490343394)
-                let marker = markerAdd()
-                //TODO: Update once scene updates are properly synchronous - { style: ux-location-gem-overlay, interactive: true, sprite: ux-current-location, size: 36px, collide: false }
-
-                markerSetStyling(marker, styling: "{ style: 'points', color: 'white', size: [25px, 25px], order:500, collide: false }")
-                markerSetPoint(marker, coordinates: point)
+                guard let marker = currentLocationGem else {
+                    let marker = markerAdd()
+                    if marker == 0 { return } // Didn't initialize correctly.
+                    currentLocationGem = marker;
+                    markerSetPoint(marker, coordinates: point)
+                    //TODO: Update once scene updates are properly synchronous - { style: ux-location-gem-overlay, interactive: true, sprite: ux-current-location, size: 36px, collide: false }
+                    markerSetStyling(marker, styling: "{ style: 'points', color: 'white', size: [25px, 25px], order:500, collide: false }")
+                    animateToPosition(point, withDuration: 2.0)
+                    animateToZoomLevel(15, withDuration: 2.0)
+                    currentLocationGem = marker
+                    return
+                }
                 markerSetVisible(marker, visible: true)
-                animateToPosition(point, withDuration: 2.0)
-                animateToZoomLevel(15, withDuration: 2.0)
-                currentLocationGem = marker
             } else {
                 guard let marker = currentLocationGem else {
-                    // Not showing current location
                     return;
                 }
-                markerRemove(marker)
-                currentLocationGem = nil
+                markerSetVisible(marker, visible: false)
             }
         }
     }
