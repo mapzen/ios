@@ -27,7 +27,6 @@ public class MapViewController: TGMapViewController {
                     markerSetStyling(marker, styling: "{ style: 'points', color: 'white', size: [25px, 25px], order:500, collide: false }")
                     animateToPosition(point, withDuration: 2.0)
                     animateToZoomLevel(15, withDuration: 2.0)
-                    currentLocationGem = marker
                     return
                 }
                 markerSetVisible(marker, visible: true)
