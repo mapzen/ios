@@ -26,7 +26,7 @@ class TangramVC:  MapViewController{
 
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-        showCurrentLocation = true
+        showCurrentLocation(true)
     }
 
     /*
