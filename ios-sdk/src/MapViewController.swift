@@ -28,7 +28,6 @@ public class MapViewController: TGMapViewController {
     //! Returns whether or not current location was shown
     public func showCurrentLocation(shouldShow: Bool) -> Bool {
         if (shouldShow){
-
             guard let marker = currentLocationGem else {
                 let marker = markerAdd()
                 if marker == 0 { return false } // Didn't initialize correctly.
@@ -45,7 +44,6 @@ public class MapViewController: TGMapViewController {
             }
             markerSetVisible(marker, visible: false)
         }
-
         return true
     }
 }
