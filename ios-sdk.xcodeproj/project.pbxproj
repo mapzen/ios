@@ -20,6 +20,7 @@
 		DB3193321D35221000272990 /* NotoSans-Regular.ttf in CopyFiles */ = {isa = PBXBuildFile; fileRef = DB31926D1D351E4200272990 /* NotoSans-Regular.ttf */; };
 		DB3193331D35221000272990 /* NotoSansHebrew-Regular.ttf in CopyFiles */ = {isa = PBXBuildFile; fileRef = DB31926E1D351E4200272990 /* NotoSansHebrew-Regular.ttf */; };
 		DB3193341D35221000272990 /* roboto-regular.ttf in CopyFiles */ = {isa = PBXBuildFile; fileRef = DB31926F1D351E4200272990 /* roboto-regular.ttf */; };
+		DB70FEA91DE3425800249509 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB70FEA81DE3425800249509 /* MapViewController.swift */; };
 		DB7A33D81C8F8E8B009CC743 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB7A33D71C8F8E8B009CC743 /* AppDelegate.swift */; };
 		DB7A33DD1C8F8E8B009CC743 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DB7A33DB1C8F8E8B009CC743 /* Main.storyboard */; };
 		DB7A33DF1C8F8E8B009CC743 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DB7A33DE1C8F8E8B009CC743 /* Assets.xcassets */; };
@@ -121,6 +122,7 @@
 		DB31926D1D351E4200272990 /* NotoSans-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSans-Regular.ttf"; sourceTree = "<group>"; };
 		DB31926E1D351E4200272990 /* NotoSansHebrew-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansHebrew-Regular.ttf"; sourceTree = "<group>"; };
 		DB31926F1D351E4200272990 /* roboto-regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "roboto-regular.ttf"; sourceTree = "<group>"; };
+		DB70FEA81DE3425800249509 /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		DB7A33D41C8F8E8B009CC743 /* ios-sdk.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ios-sdk.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DB7A33D71C8F8E8B009CC743 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DB7A33DC1C8F8E8B009CC743 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -286,6 +288,7 @@
 			isa = PBXGroup;
 			children = (
 				DBC869911D3663C700DDC4FE /* PeliasMapkitExtensions.swift */,
+				DB70FEA81DE3425800249509 /* MapViewController.swift */,
 			);
 			name = src;
 			path = "ios-sdk/src";
@@ -378,7 +381,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0730;
-				LastUpgradeCheck = 0720;
+				LastUpgradeCheck = 0810;
 				ORGANIZATIONNAME = Mapzen;
 				TargetAttributes = {
 					DB7A33D31C8F8E8B009CC743 = {
@@ -504,6 +507,7 @@
 				DBF441AE1D351B0A007DEE95 /* TangramVC.swift in Sources */,
 				DB22E59E1DA473CA004264E0 /* RouteDirectionCell.swift in Sources */,
 				DBC869921D3663C700DDC4FE /* PeliasMapkitExtensions.swift in Sources */,
+				DB70FEA91DE3425800249509 /* MapViewController.swift in Sources */,
 				DB22E59A1DA45D73004264E0 /* RoutingSearchVC.swift in Sources */,
 				DBBF368B1D64DA6A0069D769 /* RoutingViewController.swift in Sources */,
 				DB22E59C1DA46640004264E0 /* RoutingResultTableVC.swift in Sources */,
@@ -554,7 +558,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -564,8 +567,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -600,7 +605,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -610,8 +614,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
@@ -630,6 +636,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
@@ -639,7 +646,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = B96DEBA552AA3AAEA9CDF6F4 /* Pods-ios-sdk.debug.xcconfig */;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD)";
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
@@ -673,7 +680,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 0A9FDCBA6C81C063BED6CDFF /* Pods-ios-sdk.release.xcconfig */;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD)";
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";

@@ -8,7 +8,7 @@
 
 import UIKit
 import TangramMap
-class TangramVC:  TGMapViewController{
+class TangramVC:  MapViewController{
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,7 +23,11 @@ class TangramVC:  TGMapViewController{
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
+
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        showCurrentLocation(true)
+    }
 
     /*
     // MARK: - Navigation
