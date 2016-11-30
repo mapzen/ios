@@ -17,7 +17,7 @@ public class MapViewController: TGMapViewController {
     let tempPoint = TGGeoPoint(longitude: -122.44880676269531, latitude: 37.76155490343394)
 
     //! Returns whether or not the map was centered on the device's current location
-    public func centerOnCurrentLocation(shouldCenter: Bool) -> Bool {
+    public func centerOnCurrentLocation() -> Bool {
         guard let marker = currentLocationGem else { return false }
         if marker == 0 { return false } // Invalid Marker
         animateToPosition(tempPoint, withDuration: 2.0)
