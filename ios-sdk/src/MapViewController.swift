@@ -9,18 +9,20 @@
 
 import UIKit
 import TangramMap
+import CoreLocation
 
-public class MapViewController: TGMapViewController {
+public class MapViewController: TGMapViewController, LocationManagerDelegate {
 
     var currentLocationGem: TGMapMarkerId?
     //TODO: This will eventually get refactored out to be whatever the current location is from CoreLocation
-    let tempPoint = TGGeoPoint(longitude: -122.44880676269531, latitude: 37.76155490343394)
+    var lastSetPoint: TGGeoPoint?
 
     //! Returns whether or not the map was centered on the device's current location
     public func centerOnCurrentLocation() -> Bool {
         guard let marker = currentLocationGem else { return false }
+        guard let point = lastSetPoint else { return false }
         if marker == 0 { return false } // Invalid Marker
-        animateToPosition(tempPoint, withDuration: 2.0)
+        animateToPosition(point, withDuration: 2.0)
         animateToZoomLevel(15, withDuration: 2.0)
         return true
     }
@@ -32,7 +34,7 @@ public class MapViewController: TGMapViewController {
                 let marker = markerAdd()
                 if marker == 0 { return false } // Didn't initialize correctly.
                 currentLocationGem = marker;
-                markerSetPoint(marker, coordinates: tempPoint)
+                LocationManager.sharedManager.requestWhenInUseAuthorization()
                 //TODO: Update once scene updates are properly synchronous - { style: ux-location-gem-overlay, interactive: true, sprite: ux-current-location, size: 36px, collide: false }
                 markerSetStyling(marker, styling: "{ style: 'points', color: 'white', size: [25px, 25px], order:500, collide: false }")
                 return true
@@ -45,5 +47,24 @@ public class MapViewController: TGMapViewController {
             markerSetVisible(marker, visible: false)
         }
         return true
+    }
+
+    override public func viewDidLoad() {
+        super.viewDidLoad()
+        LocationManager.sharedManager.delegate = self
+    }
+
+    //MARK: - LocationManagerDelegate
+
+    public func locationDidUpdate(location: CLLocation) {
+        guard let marker = currentLocationGem else {
+            return
+        }
+        lastSetPoint = TGGeoPoint(longitude: location.coordinate.longitude, latitude: location.coordinate.latitude)
+        markerSetPoint(marker, coordinates: TGGeoPoint(longitude: location.coordinate.longitude, latitude: location.coordinate.latitude))
+    }
+
+    public func authorizationDidSucceed() {
+        LocationManager.sharedManager.startUpdatingLocation()
     }
 }

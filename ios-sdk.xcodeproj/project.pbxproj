@@ -20,6 +20,7 @@
 		DB3193321D35221000272990 /* NotoSans-Regular.ttf in CopyFiles */ = {isa = PBXBuildFile; fileRef = DB31926D1D351E4200272990 /* NotoSans-Regular.ttf */; };
 		DB3193331D35221000272990 /* NotoSansHebrew-Regular.ttf in CopyFiles */ = {isa = PBXBuildFile; fileRef = DB31926E1D351E4200272990 /* NotoSansHebrew-Regular.ttf */; };
 		DB3193341D35221000272990 /* roboto-regular.ttf in CopyFiles */ = {isa = PBXBuildFile; fileRef = DB31926F1D351E4200272990 /* roboto-regular.ttf */; };
+		DB5B31511DE4A173005EB816 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB5B31501DE4A173005EB816 /* LocationManager.swift */; };
 		DB70FEA91DE3425800249509 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB70FEA81DE3425800249509 /* MapViewController.swift */; };
 		DB7A33D81C8F8E8B009CC743 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB7A33D71C8F8E8B009CC743 /* AppDelegate.swift */; };
 		DB7A33DD1C8F8E8B009CC743 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DB7A33DB1C8F8E8B009CC743 /* Main.storyboard */; };
@@ -122,6 +123,7 @@
 		DB31926D1D351E4200272990 /* NotoSans-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSans-Regular.ttf"; sourceTree = "<group>"; };
 		DB31926E1D351E4200272990 /* NotoSansHebrew-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansHebrew-Regular.ttf"; sourceTree = "<group>"; };
 		DB31926F1D351E4200272990 /* roboto-regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "roboto-regular.ttf"; sourceTree = "<group>"; };
+		DB5B31501DE4A173005EB816 /* LocationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		DB70FEA81DE3425800249509 /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		DB7A33D41C8F8E8B009CC743 /* ios-sdk.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ios-sdk.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DB7A33D71C8F8E8B009CC743 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -289,6 +291,7 @@
 			children = (
 				DBC869911D3663C700DDC4FE /* PeliasMapkitExtensions.swift */,
 				DB70FEA81DE3425800249509 /* MapViewController.swift */,
+				DB5B31501DE4A173005EB816 /* LocationManager.swift */,
 			);
 			name = src;
 			path = "ios-sdk/src";
@@ -506,6 +509,7 @@
 			files = (
 				DBF441AE1D351B0A007DEE95 /* TangramVC.swift in Sources */,
 				DB22E59E1DA473CA004264E0 /* RouteDirectionCell.swift in Sources */,
+				DB5B31511DE4A173005EB816 /* LocationManager.swift in Sources */,
 				DBC869921D3663C700DDC4FE /* PeliasMapkitExtensions.swift in Sources */,
 				DB70FEA91DE3425800249509 /* MapViewController.swift in Sources */,
 				DB22E59A1DA45D73004264E0 /* RoutingSearchVC.swift in Sources */,
@@ -649,7 +653,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = LTQC954SPQ;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -668,8 +672,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.mapzen.ios-sdk";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "9c158360-ab70-47cd-9875-b2cd748cf75a";
-				PROVISIONING_PROFILE_SPECIFIER = "iOS SDK Demo Adhoc";
+				PROVISIONING_PROFILE = "bc407523-ce0f-4016-b774-3b8f545e2b71";
+				PROVISIONING_PROFILE_SPECIFIER = "Mapzen Wildcard - Dev";
 				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 2.3;
