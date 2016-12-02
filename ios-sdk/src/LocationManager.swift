@@ -74,7 +74,7 @@ public class LocationManager: NSObject, CLLocationManagerDelegate {
     }
 
     public func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        if let location = locations.first {
+        if let location = locations.last {
             delegate?.locationDidUpdate?(location)
         }
     }

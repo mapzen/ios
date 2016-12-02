@@ -14,16 +14,15 @@ import CoreLocation
 public class MapViewController: TGMapViewController, LocationManagerDelegate {
 
     var currentLocationGem: TGMapMarkerId?
-    //TODO: This will eventually get refactored out to be whatever the current location is from CoreLocation
     var lastSetPoint: TGGeoPoint?
 
     //! Returns whether or not the map was centered on the device's current location
-    public func centerOnCurrentLocation() -> Bool {
+    public func centerOnCurrentLocation(zoomLevel: Float, animationDuration: Float) -> Bool {
         guard let marker = currentLocationGem else { return false }
         guard let point = lastSetPoint else { return false }
         if marker == 0 { return false } // Invalid Marker
-        animateToPosition(point, withDuration: 2.0)
-        animateToZoomLevel(15, withDuration: 2.0)
+        animateToPosition(point, withDuration: animationDuration)
+        animateToZoomLevel(zoomLevel, withDuration: animationDuration)
         return true
     }
 
