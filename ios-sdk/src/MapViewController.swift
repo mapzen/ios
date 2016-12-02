@@ -15,6 +15,7 @@ public class MapViewController: TGMapViewController, LocationManagerDelegate {
 
     var currentLocationGem: TGMapMarkerId?
     var lastSetPoint: TGGeoPoint?
+    var shouldShowCurrentLocation = false
 
     //! Returns whether or not the map was centered on the device's current location
     public func centerOnCurrentLocation(zoomLevel: Float, animationDuration: Float) -> Bool {
@@ -28,23 +29,19 @@ public class MapViewController: TGMapViewController, LocationManagerDelegate {
 
     //! Returns whether or not current location was shown
     public func showCurrentLocation(shouldShow: Bool) -> Bool {
-        if (shouldShow){
-            guard let marker = currentLocationGem else {
-                let marker = markerAdd()
-                if marker == 0 { return false } // Didn't initialize correctly.
-                currentLocationGem = marker;
-                LocationManager.sharedManager.requestWhenInUseAuthorization()
-                //TODO: Update once scene updates are properly synchronous - { style: ux-location-gem-overlay, interactive: true, sprite: ux-current-location, size: 36px, collide: false }
-                markerSetStyling(marker, styling: "{ style: 'points', color: 'white', size: [25px, 25px], order:500, collide: false }")
-                return true
-            }
-            markerSetVisible(marker, visible: true)
-        } else {
-            guard let marker = currentLocationGem else {
-                return false
-            }
+        shouldShowCurrentLocation = shouldShow
+        guard let marker = currentLocationGem else {
+            let marker = markerAdd()
+            if marker == 0 { return false } // Didn't initialize correctly.
+            currentLocationGem = marker;
+            LocationManager.sharedManager.requestWhenInUseAuthorization()
+            //TODO: Update once scene updates are properly synchronous - { style: ux-location-gem-overlay, interactive: true, sprite: ux-current-location, size: 36px, collide: false }
+            markerSetStyling(marker, styling: "{ style: 'points', color: 'white', size: [25px, 25px], order:500, collide: false }")
+            //Set visibility to false since we have to wait until we have an accurate location
             markerSetVisible(marker, visible: false)
+            return true
         }
+        markerSetVisible(marker, visible: shouldShowCurrentLocation)
         return true
     }
 
@@ -61,6 +58,9 @@ public class MapViewController: TGMapViewController, LocationManagerDelegate {
         }
         lastSetPoint = TGGeoPoint(longitude: location.coordinate.longitude, latitude: location.coordinate.latitude)
         markerSetPoint(marker, coordinates: TGGeoPoint(longitude: location.coordinate.longitude, latitude: location.coordinate.latitude))
+        if (shouldShowCurrentLocation){
+            markerSetVisible(marker, visible: true)
+        }
     }
 
     public func authorizationDidSucceed() {
