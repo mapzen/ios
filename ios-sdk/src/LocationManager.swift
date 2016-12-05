@@ -40,7 +40,7 @@ public class LocationManager: NSObject, CLLocationManagerDelegate {
 
     public func refreshCurrentLocation() -> CLLocation? {
         if CLLocationManager.locationServicesEnabled() &&
-           ( CLLocationManager.authorizationStatus() == .AuthorizedAlways || CLLocationManager.authorizationStatus() == .AuthorizedWhenInUse ) {
+           (CLLocationManager.authorizationStatus() == .AuthorizedAlways || CLLocationManager.authorizationStatus() == .AuthorizedWhenInUse) {
             currentLocation = coreLocationManager.location
             return coreLocationManager.location
         }

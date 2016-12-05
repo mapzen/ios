@@ -58,12 +58,28 @@ public class MapViewController: TGMapViewController, LocationManagerDelegate {
         }
         lastSetPoint = TGGeoPoint(longitude: location.coordinate.longitude, latitude: location.coordinate.latitude)
         markerSetPoint(marker, coordinates: TGGeoPoint(longitude: location.coordinate.longitude, latitude: location.coordinate.latitude))
-        if (shouldShowCurrentLocation){
+        if (shouldShowCurrentLocation) {
             markerSetVisible(marker, visible: true)
         }
     }
 
     public func authorizationDidSucceed() {
         LocationManager.sharedManager.startUpdatingLocation()
+    }
+
+    public func authorizationDenied() {
+        failedLocationAuthorization()
+    }
+
+    public func authorizationRestricted() {
+        //For our uses, this is effectively the same handling as denied location authorization
+        failedLocationAuthorization()
+    }
+
+    func failedLocationAuthorization() {
+        shouldShowCurrentLocation = false
+        guard let marker = currentLocationGem else { return }
+        markerRemove(marker)
+        return
     }
 }
