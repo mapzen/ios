@@ -19,12 +19,13 @@ public class MapViewController: TGMapViewController, LocationManagerDelegate {
     public var findMeButton = UIButton(type: UIButtonType.RoundedRect)
 
     //! Returns whether or not the map was centered on the device's current location
-    public func centerOnCurrentLocation(zoomLevel: Float, animationDuration: Float) -> Bool {
+    public func centerOnCurrentLocation(tilt: Float, zoomLevel: Float, animationDuration: Float) -> Bool {
         guard let marker = currentLocationGem else { return false }
         guard let point = lastSetPoint else { return false }
         if marker == 0 { return false } // Invalid Marker
         animateToZoomLevel(zoomLevel, withDuration: animationDuration)
         animateToPosition(point, withDuration: animationDuration)
+        animateToTilt(tilt, withDuration: animationDuration)
         return true
     }
 
@@ -53,7 +54,7 @@ public class MapViewController: TGMapViewController, LocationManagerDelegate {
     }
 
     @objc func defaultFindMeAction() {
-        centerOnCurrentLocation(13, animationDuration: 1.0)
+        centerOnCurrentLocation(0.0, zoomLevel: 13.0, animationDuration: 1.0)
     }
 
     override public func viewDidLoad() {
