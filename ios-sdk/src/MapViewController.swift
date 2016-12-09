@@ -11,15 +11,16 @@ import UIKit
 import TangramMap
 import CoreLocation
 
-public class MapViewController: TGMapViewController, LocationManagerDelegate {
+public class MapViewController: TGMapViewController, LocationManagerDelegate, TGRecognizerDelegate {
 
     var currentLocationGem: TGMapMarkerId?
     var lastSetPoint: TGGeoPoint?
     var shouldShowCurrentLocation = false
-    public var findMeButton = UIButton(type: UIButtonType.RoundedRect)
+    var shouldFollowCurrentLocation = false
+    public var findMeButton = UIButton(type: UIButtonType.Custom)
 
     //! Returns whether or not the map was centered on the device's current location
-    public func centerOnCurrentLocation(tilt: Float, zoomLevel: Float, animationDuration: Float) -> Bool {
+    public func centerOnCurrentLocation(tilt: Float = 0.0, zoomLevel: Float = 16.0, animationDuration: Float = 1.0) -> Bool {
         guard let marker = currentLocationGem else { return false }
         guard let point = lastSetPoint else { return false }
         if marker == 0 { return false } // Invalid Marker
@@ -53,13 +54,16 @@ public class MapViewController: TGMapViewController, LocationManagerDelegate {
         return true
     }
 
-    @objc func defaultFindMeAction() {
-        centerOnCurrentLocation(0.0, zoomLevel: 13.0, animationDuration: 1.0)
+    @objc func defaultFindMeAction(button: UIButton, touchEvent: UIEvent) {
+        centerOnCurrentLocation()
+        button.selected = !button.selected
+        shouldFollowCurrentLocation = button.selected
     }
 
     override public func viewDidLoad() {
         super.viewDidLoad()
         LocationManager.sharedManager.delegate = self
+        gestureDelegate = self
     }
 
     override public func viewWillAppear(animated: Bool) {
@@ -69,7 +73,10 @@ public class MapViewController: TGMapViewController, LocationManagerDelegate {
         findMeButton.addTarget(self, action: #selector(defaultFindMeAction), forControlEvents: .TouchUpInside)
         findMeButton.enabled = false
         findMeButton.hidden = true
+        findMeButton.adjustsImageWhenHighlighted = false
         findMeButton.setBackgroundImage(UIImage(named: "ic_find_me_normal"), forState: UIControlState.Normal)
+        findMeButton.setBackgroundImage(UIImage(named: "ic_find_me_pressed"), forState: UIControlState.Selected)
+        findMeButton.setBackgroundImage(UIImage(named: "ic_find_me_pressed"), forState: UIControlState.Highlighted) // Need to set this to avoid the button appearing laggy / sticky
         findMeButton.backgroundColor = UIColor.whiteColor()
         findMeButton.autoresizingMask = [.FlexibleTopMargin, .FlexibleLeftMargin]
         view.addSubview(findMeButton)
@@ -86,6 +93,11 @@ public class MapViewController: TGMapViewController, LocationManagerDelegate {
         markerSetPoint(marker, coordinates: TGGeoPoint(longitude: location.coordinate.longitude, latitude: location.coordinate.latitude))
         if (shouldShowCurrentLocation) {
             markerSetVisible(marker, visible: true)
+        }
+
+        if (shouldFollowCurrentLocation) {
+            print("Updating for current lat: \(location.coordinate.latitude) & long: \(location.coordinate.longitude)")
+            centerOnCurrentLocation()
         }
     }
 
@@ -108,4 +120,13 @@ public class MapViewController: TGMapViewController, LocationManagerDelegate {
         markerRemove(marker)
         return
     }
+
+    //MARK: - TGRecognizerDelegate
+
+    //TODO: Uncomment this once https://github.com/tangrams/tangram-es/pull/1160 is merged
+//    public func mapView(view: TGMapViewController, recognizer: UIGestureRecognizer, didRecognizePanGesture location: CGPoint) {
+//        shouldFollowCurrentLocation = false
+//        findMeButton.selected = false
+//        return true;
+//    }
 }
