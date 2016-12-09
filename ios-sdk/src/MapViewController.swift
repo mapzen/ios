@@ -74,9 +74,8 @@ public class MapViewController: TGMapViewController, LocationManagerDelegate, TG
         findMeButton.enabled = false
         findMeButton.hidden = true
         findMeButton.adjustsImageWhenHighlighted = false
-        findMeButton.setBackgroundImage(UIImage(named: "ic_find_me_normal"), forState: UIControlState.Normal)
-        findMeButton.setBackgroundImage(UIImage(named: "ic_find_me_pressed"), forState: UIControlState.Selected)
-        findMeButton.setBackgroundImage(UIImage(named: "ic_find_me_pressed"), forState: UIControlState.Highlighted) // Need to set this to avoid the button appearing laggy / sticky
+        findMeButton.setBackgroundImage(UIImage(named: "ic_find_me_normal"), forState: .Normal)
+        findMeButton.setBackgroundImage(UIImage(named: "ic_find_me_pressed"), forState: [.Selected, .Highlighted])
         findMeButton.backgroundColor = UIColor.whiteColor()
         findMeButton.autoresizingMask = [.FlexibleTopMargin, .FlexibleLeftMargin]
         view.addSubview(findMeButton)
