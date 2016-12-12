@@ -20,7 +20,12 @@
 		DB3193321D35221000272990 /* NotoSans-Regular.ttf in CopyFiles */ = {isa = PBXBuildFile; fileRef = DB31926D1D351E4200272990 /* NotoSans-Regular.ttf */; };
 		DB3193331D35221000272990 /* NotoSansHebrew-Regular.ttf in CopyFiles */ = {isa = PBXBuildFile; fileRef = DB31926E1D351E4200272990 /* NotoSansHebrew-Regular.ttf */; };
 		DB3193341D35221000272990 /* roboto-regular.ttf in CopyFiles */ = {isa = PBXBuildFile; fileRef = DB31926F1D351E4200272990 /* roboto-regular.ttf */; };
+		DB366BDF1DF8BE090045C15F /* ic_find_me_normal@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DB366BDD1DF8BE090045C15F /* ic_find_me_normal@2x.png */; };
 		DB5B31511DE4A173005EB816 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB5B31501DE4A173005EB816 /* LocationManager.swift */; };
+		DB6A3F7C1DFF4EA300FBE6B6 /* ic_find_me_normal.png in Resources */ = {isa = PBXBuildFile; fileRef = DB6A3F781DFF4EA300FBE6B6 /* ic_find_me_normal.png */; };
+		DB6A3F7D1DFF4EA300FBE6B6 /* ic_find_me_normal@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = DB6A3F791DFF4EA300FBE6B6 /* ic_find_me_normal@3x.png */; };
+		DB6A3F7E1DFF4EA300FBE6B6 /* ic_find_me_pressed.png in Resources */ = {isa = PBXBuildFile; fileRef = DB6A3F7A1DFF4EA300FBE6B6 /* ic_find_me_pressed.png */; };
+		DB6A3F7F1DFF4EA300FBE6B6 /* ic_find_me_pressed@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = DB6A3F7B1DFF4EA300FBE6B6 /* ic_find_me_pressed@3x.png */; };
 		DB70FEA91DE3425800249509 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB70FEA81DE3425800249509 /* MapViewController.swift */; };
 		DB7A33D81C8F8E8B009CC743 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB7A33D71C8F8E8B009CC743 /* AppDelegate.swift */; };
 		DB7A33DD1C8F8E8B009CC743 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DB7A33DB1C8F8E8B009CC743 /* Main.storyboard */; };
@@ -56,6 +61,7 @@
 		DBC869C51D36679100DDC4FE /* open sans-800normal.ttf in CopyFiles */ = {isa = PBXBuildFile; fileRef = DBC869BB1D36673200DDC4FE /* open sans-800normal.ttf */; };
 		DBF441AE1D351B0A007DEE95 /* TangramVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBF441AD1D351B0A007DEE95 /* TangramVC.swift */; };
 		DBF441B01D351C90007DEE95 /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DBF441AF1D351C90007DEE95 /* GLKit.framework */; };
+		DBF5221D1DFB4752009D8F1E /* ic_find_me_pressed@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DBF5221C1DFB4752009D8F1E /* ic_find_me_pressed@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -123,7 +129,12 @@
 		DB31926D1D351E4200272990 /* NotoSans-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSans-Regular.ttf"; sourceTree = "<group>"; };
 		DB31926E1D351E4200272990 /* NotoSansHebrew-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansHebrew-Regular.ttf"; sourceTree = "<group>"; };
 		DB31926F1D351E4200272990 /* roboto-regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "roboto-regular.ttf"; sourceTree = "<group>"; };
+		DB366BDD1DF8BE090045C15F /* ic_find_me_normal@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ic_find_me_normal@2x.png"; sourceTree = "<group>"; };
 		DB5B31501DE4A173005EB816 /* LocationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
+		DB6A3F781DFF4EA300FBE6B6 /* ic_find_me_normal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_find_me_normal.png; sourceTree = "<group>"; };
+		DB6A3F791DFF4EA300FBE6B6 /* ic_find_me_normal@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ic_find_me_normal@3x.png"; sourceTree = "<group>"; };
+		DB6A3F7A1DFF4EA300FBE6B6 /* ic_find_me_pressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_find_me_pressed.png; sourceTree = "<group>"; };
+		DB6A3F7B1DFF4EA300FBE6B6 /* ic_find_me_pressed@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ic_find_me_pressed@3x.png"; sourceTree = "<group>"; };
 		DB70FEA81DE3425800249509 /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		DB7A33D41C8F8E8B009CC743 /* ios-sdk.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ios-sdk.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DB7A33D71C8F8E8B009CC743 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -163,6 +174,7 @@
 		DBC869BB1D36673200DDC4FE /* open sans-800normal.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "open sans-800normal.ttf"; sourceTree = "<group>"; };
 		DBF441AD1D351B0A007DEE95 /* TangramVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TangramVC.swift; sourceTree = "<group>"; };
 		DBF441AF1D351C90007DEE95 /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
+		DBF5221C1DFB4752009D8F1E /* ic_find_me_pressed@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ic_find_me_pressed@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -237,9 +249,24 @@
 			path = fonts;
 			sourceTree = "<group>";
 		};
+		DB366BDC1DF8BE090045C15F /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				DB6A3F781DFF4EA300FBE6B6 /* ic_find_me_normal.png */,
+				DB366BDD1DF8BE090045C15F /* ic_find_me_normal@2x.png */,
+				DB6A3F791DFF4EA300FBE6B6 /* ic_find_me_normal@3x.png */,
+				DB6A3F7A1DFF4EA300FBE6B6 /* ic_find_me_pressed.png */,
+				DBF5221C1DFB4752009D8F1E /* ic_find_me_pressed@2x.png */,
+				DB6A3F7B1DFF4EA300FBE6B6 /* ic_find_me_pressed@3x.png */,
+			);
+			name = Images;
+			path = "ios-sdk/Images";
+			sourceTree = "<group>";
+		};
 		DB7A33CB1C8F8E8B009CC743 = {
 			isa = PBXGroup;
 			children = (
+				DB366BDC1DF8BE090045C15F /* Images */,
 				DB3192671D351E4200272990 /* tangram */,
 				DBC84EA51C985B6D00EE80D8 /* src */,
 				DB7A33D61C8F8E8B009CC743 /* ios-sdk */,
@@ -430,6 +457,7 @@
 				DBC869A51D3666B300DDC4FE /* open sans-300italic.ttf in Resources */,
 				DBC869AD1D3666B300DDC4FE /* open sans-800italic.ttf in Resources */,
 				DB7A33E21C8F8E8B009CC743 /* LaunchScreen.storyboard in Resources */,
+				DB6A3F7C1DFF4EA300FBE6B6 /* ic_find_me_normal.png in Resources */,
 				DBC869AE1D3666B300DDC4FE /* open sans-800normal.ttf in Resources */,
 				DBC869AB1D3666B300DDC4FE /* open sans-700italic.ttf in Resources */,
 				DBC869A91D3666B300DDC4FE /* open sans-600italic.ttf in Resources */,
@@ -437,11 +465,16 @@
 				DBC869A41D3666B300DDC4FE /* Apache License.txt in Resources */,
 				DBC869AC1D3666B300DDC4FE /* open sans-700normal.ttf in Resources */,
 				DBC869A81D3666B300DDC4FE /* open sans-400normal.ttf in Resources */,
+				DB6A3F7F1DFF4EA300FBE6B6 /* ic_find_me_pressed@3x.png in Resources */,
 				DBC869B01D3666B300DDC4FE /* poi_icons_18@2x.png in Resources */,
 				DB7A33DF1C8F8E8B009CC743 /* Assets.xcassets in Resources */,
+				DB366BDF1DF8BE090045C15F /* ic_find_me_normal@2x.png in Resources */,
 				DB7A33DD1C8F8E8B009CC743 /* Main.storyboard in Resources */,
+				DB6A3F7D1DFF4EA300FBE6B6 /* ic_find_me_normal@3x.png in Resources */,
 				DBC869AF1D3666B300DDC4FE /* building-grid.gif in Resources */,
+				DB6A3F7E1DFF4EA300FBE6B6 /* ic_find_me_pressed.png in Resources */,
 				DBC869A61D3666B300DDC4FE /* open sans-300normal.ttf in Resources */,
+				DBF5221D1DFB4752009D8F1E /* ic_find_me_pressed@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
