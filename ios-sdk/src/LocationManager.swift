@@ -47,6 +47,11 @@ public class LocationManager: NSObject, CLLocationManagerDelegate {
         return nil
     }
 
+    //The difference between this function and the one above is requestLocation() immediately returns and will serve the location via the delegate
+    public func requestLocation() {
+        coreLocationManager.requestLocation()
+    }
+
     public func startUpdatingLocation() {
         coreLocationManager.startUpdatingLocation()
     }

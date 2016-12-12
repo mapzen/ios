@@ -75,7 +75,8 @@ public class MapViewController: TGMapViewController, LocationManagerDelegate, TG
         findMeButton.hidden = true
         findMeButton.adjustsImageWhenHighlighted = false
         findMeButton.setBackgroundImage(UIImage(named: "ic_find_me_normal"), forState: .Normal)
-        findMeButton.setBackgroundImage(UIImage(named: "ic_find_me_pressed"), forState: [.Selected, .Highlighted])
+        //TODO: This should also have .Highlighted as well .Selected , but something about the @3x assets and UIButton is misbehaving; might need bug opened with Apple.
+        findMeButton.setBackgroundImage(UIImage(named: "ic_find_me_pressed"), forState: [.Selected])
         findMeButton.backgroundColor = UIColor.whiteColor()
         findMeButton.autoresizingMask = [.FlexibleTopMargin, .FlexibleLeftMargin]
         view.addSubview(findMeButton)
@@ -102,6 +103,7 @@ public class MapViewController: TGMapViewController, LocationManagerDelegate, TG
 
     public func authorizationDidSucceed() {
         LocationManager.sharedManager.startUpdatingLocation()
+        LocationManager.sharedManager.requestLocation()
     }
 
     public func authorizationDenied() {
