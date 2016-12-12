@@ -1,4 +1,5 @@
 # The Mapzen iOS SDK
+[![Circle CI](https://circleci.com/gh/mapzen/ios.svg?style=shield&circle-token=158f79f566b88fb913ad153ee8b00681112eb5a2)](https://circleci.com/gh/mapzen/ios)
 
 The Mapzen iOS SDK is a thin wrapper that packages up everything you need to use Mapzen services in your iOS applications.
 
