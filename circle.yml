@@ -28,6 +28,6 @@ deployment:
   alpha_distribution:
     branch: master
     commands: 
-      - gym --scheme "ios-sdk" --workspace "ios-sdk.xcworkspace" --output_directory $CIRCLE_ARTIFACTS
+      - gym --use_legacy_build_api --scheme "ios-sdk" --workspace "ios-sdk.xcworkspace" --output_directory $CIRCLE_ARTIFACTS
       - sudo pip install 'Circle-Tickler == 1.0.1'
       - tickle-circle mapzen mapzen-docs-generator master $CIRCLE_TOKEN
