@@ -84,4 +84,8 @@ public class LocationManager: NSObject, CLLocationManagerDelegate {
         }
     }
 
+    public func locationManager(manager: CLLocationManager, didFailWithError error: NSError) {
+        print("Error from location manager: \(error)")
+    }
+
 }
