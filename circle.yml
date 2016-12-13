@@ -1,6 +1,6 @@
 machine:
   xcode:
-    version: "8.0"
+    version: "8.1"
   environment:
     GYM_CODE_SIGNING_IDENTITY: "iPhone Distribution: Michael Cunningham (LTQC954SPQ)"
 
@@ -29,5 +29,6 @@ deployment:
     branch: master
     commands: 
       - gym --use_legacy_build_api --scheme "ios-sdk" --workspace "ios-sdk.xcworkspace" --output_directory $CIRCLE_ARTIFACTS
+      - scripts/deploy.sh
       - sudo pip install 'Circle-Tickler == 1.0.1'
       - tickle-circle mapzen mapzen-docs-generator master $CIRCLE_TOKEN
