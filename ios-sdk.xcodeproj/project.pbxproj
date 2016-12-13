@@ -8,18 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		AC586709D7E7D4C22AA9474D /* Pods_ios_sdk.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 99B3EC60450343448FA4E699 /* Pods_ios_sdk.framework */; };
-		DB09D3051D37C27E0062A150 /* building-grid.gif in CopyFiles */ = {isa = PBXBuildFile; fileRef = DBC869A11D3666B300DDC4FE /* building-grid.gif */; };
-		DB09D3061D37C27E0062A150 /* poi_icons_18@2x.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = DBC869A21D3666B300DDC4FE /* poi_icons_18@2x.png */; };
 		DB22E59A1DA45D73004264E0 /* RoutingSearchVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB22E5991DA45D73004264E0 /* RoutingSearchVC.swift */; };
 		DB22E59C1DA46640004264E0 /* RoutingResultTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB22E59B1DA46640004264E0 /* RoutingResultTableVC.swift */; };
 		DB22E59E1DA473CA004264E0 /* RouteDirectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB22E59D1DA473CA004264E0 /* RouteDirectionCell.swift */; };
-		DB31932E1D35221000272990 /* DroidSansFallback.ttf in CopyFiles */ = {isa = PBXBuildFile; fileRef = DB3192691D351E4200272990 /* DroidSansFallback.ttf */; };
-		DB31932F1D35221000272990 /* DroidSansJapanese.ttf in CopyFiles */ = {isa = PBXBuildFile; fileRef = DB31926A1D351E4200272990 /* DroidSansJapanese.ttf */; };
-		DB3193301D35221000272990 /* firasans-medium.ttf in CopyFiles */ = {isa = PBXBuildFile; fileRef = DB31926B1D351E4200272990 /* firasans-medium.ttf */; };
-		DB3193311D35221000272990 /* NotoNaskh-Regular.ttf in CopyFiles */ = {isa = PBXBuildFile; fileRef = DB31926C1D351E4200272990 /* NotoNaskh-Regular.ttf */; };
-		DB3193321D35221000272990 /* NotoSans-Regular.ttf in CopyFiles */ = {isa = PBXBuildFile; fileRef = DB31926D1D351E4200272990 /* NotoSans-Regular.ttf */; };
-		DB3193331D35221000272990 /* NotoSansHebrew-Regular.ttf in CopyFiles */ = {isa = PBXBuildFile; fileRef = DB31926E1D351E4200272990 /* NotoSansHebrew-Regular.ttf */; };
-		DB3193341D35221000272990 /* roboto-regular.ttf in CopyFiles */ = {isa = PBXBuildFile; fileRef = DB31926F1D351E4200272990 /* roboto-regular.ttf */; };
 		DB366BDF1DF8BE090045C15F /* ic_find_me_normal@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DB366BDD1DF8BE090045C15F /* ic_find_me_normal@2x.png */; };
 		DB5B31511DE4A173005EB816 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB5B31501DE4A173005EB816 /* LocationManager.swift */; };
 		DB6A3F7C1DFF4EA300FBE6B6 /* ic_find_me_normal.png in Resources */ = {isa = PBXBuildFile; fileRef = DB6A3F781DFF4EA300FBE6B6 /* ic_find_me_normal.png */; };
@@ -35,30 +26,9 @@
 		DBBF368B1D64DA6A0069D769 /* RoutingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBBF368A1D64DA6A0069D769 /* RoutingViewController.swift */; };
 		DBC869901D3662DD00DDC4FE /* AutocompleteTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBC8698F1D3662DD00DDC4FE /* AutocompleteTableVC.swift */; };
 		DBC869921D3663C700DDC4FE /* PeliasMapkitExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBC869911D3663C700DDC4FE /* PeliasMapkitExtensions.swift */; };
-		DBC869A41D3666B300DDC4FE /* Apache License.txt in Resources */ = {isa = PBXBuildFile; fileRef = DBC869951D3666B300DDC4FE /* Apache License.txt */; };
-		DBC869A51D3666B300DDC4FE /* open sans-300italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DBC869961D3666B300DDC4FE /* open sans-300italic.ttf */; };
-		DBC869A61D3666B300DDC4FE /* open sans-300normal.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DBC869971D3666B300DDC4FE /* open sans-300normal.ttf */; };
-		DBC869A71D3666B300DDC4FE /* open sans-400italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DBC869981D3666B300DDC4FE /* open sans-400italic.ttf */; };
-		DBC869A81D3666B300DDC4FE /* open sans-400normal.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DBC869991D3666B300DDC4FE /* open sans-400normal.ttf */; };
-		DBC869A91D3666B300DDC4FE /* open sans-600italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DBC8699A1D3666B300DDC4FE /* open sans-600italic.ttf */; };
-		DBC869AA1D3666B300DDC4FE /* open sans-600normal.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DBC8699B1D3666B300DDC4FE /* open sans-600normal.ttf */; };
-		DBC869AB1D3666B300DDC4FE /* open sans-700italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DBC8699C1D3666B300DDC4FE /* open sans-700italic.ttf */; };
-		DBC869AC1D3666B300DDC4FE /* open sans-700normal.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DBC8699D1D3666B300DDC4FE /* open sans-700normal.ttf */; };
-		DBC869AD1D3666B300DDC4FE /* open sans-800italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DBC8699E1D3666B300DDC4FE /* open sans-800italic.ttf */; };
-		DBC869AE1D3666B300DDC4FE /* open sans-800normal.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DBC8699F1D3666B300DDC4FE /* open sans-800normal.ttf */; };
 		DBC869AF1D3666B300DDC4FE /* building-grid.gif in Resources */ = {isa = PBXBuildFile; fileRef = DBC869A11D3666B300DDC4FE /* building-grid.gif */; };
 		DBC869B01D3666B300DDC4FE /* poi_icons_18@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DBC869A21D3666B300DDC4FE /* poi_icons_18@2x.png */; };
 		DBC869B11D3666B300DDC4FE /* scene.yaml in Resources */ = {isa = PBXBuildFile; fileRef = DBC869A31D3666B300DDC4FE /* scene.yaml */; };
-		DBC869BC1D36679100DDC4FE /* open sans-300italic.ttf in CopyFiles */ = {isa = PBXBuildFile; fileRef = DBC869B21D36673200DDC4FE /* open sans-300italic.ttf */; };
-		DBC869BD1D36679100DDC4FE /* open sans-300normal.ttf in CopyFiles */ = {isa = PBXBuildFile; fileRef = DBC869B31D36673200DDC4FE /* open sans-300normal.ttf */; };
-		DBC869BE1D36679100DDC4FE /* open sans-400italic.ttf in CopyFiles */ = {isa = PBXBuildFile; fileRef = DBC869B41D36673200DDC4FE /* open sans-400italic.ttf */; };
-		DBC869BF1D36679100DDC4FE /* open sans-400normal.ttf in CopyFiles */ = {isa = PBXBuildFile; fileRef = DBC869B51D36673200DDC4FE /* open sans-400normal.ttf */; };
-		DBC869C01D36679100DDC4FE /* open sans-600italic.ttf in CopyFiles */ = {isa = PBXBuildFile; fileRef = DBC869B61D36673200DDC4FE /* open sans-600italic.ttf */; };
-		DBC869C11D36679100DDC4FE /* open sans-600normal.ttf in CopyFiles */ = {isa = PBXBuildFile; fileRef = DBC869B71D36673200DDC4FE /* open sans-600normal.ttf */; };
-		DBC869C21D36679100DDC4FE /* open sans-700italic.ttf in CopyFiles */ = {isa = PBXBuildFile; fileRef = DBC869B81D36673200DDC4FE /* open sans-700italic.ttf */; };
-		DBC869C31D36679100DDC4FE /* open sans-700normal.ttf in CopyFiles */ = {isa = PBXBuildFile; fileRef = DBC869B91D36673200DDC4FE /* open sans-700normal.ttf */; };
-		DBC869C41D36679100DDC4FE /* open sans-800italic.ttf in CopyFiles */ = {isa = PBXBuildFile; fileRef = DBC869BA1D36673200DDC4FE /* open sans-800italic.ttf */; };
-		DBC869C51D36679100DDC4FE /* open sans-800normal.ttf in CopyFiles */ = {isa = PBXBuildFile; fileRef = DBC869BB1D36673200DDC4FE /* open sans-800normal.ttf */; };
 		DBF441AE1D351B0A007DEE95 /* TangramVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBF441AD1D351B0A007DEE95 /* TangramVC.swift */; };
 		DBF441B01D351C90007DEE95 /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DBF441AF1D351C90007DEE95 /* GLKit.framework */; };
 		DBF5221D1DFB4752009D8F1E /* ic_find_me_pressed@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DBF5221C1DFB4752009D8F1E /* ic_find_me_pressed@2x.png */; };
@@ -74,46 +44,6 @@
 		};
 /* End PBXContainerItemProxy section */
 
-/* Begin PBXCopyFilesBuildPhase section */
-		DB09D3041D37C2640062A150 /* CopyFiles */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = images;
-			dstSubfolderSpec = 6;
-			files = (
-				DB09D3051D37C27E0062A150 /* building-grid.gif in CopyFiles */,
-				DB09D3061D37C27E0062A150 /* poi_icons_18@2x.png in CopyFiles */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		DB31932D1D3521FD00272990 /* CopyFiles */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = fonts;
-			dstSubfolderSpec = 6;
-			files = (
-				DBC869BC1D36679100DDC4FE /* open sans-300italic.ttf in CopyFiles */,
-				DBC869BD1D36679100DDC4FE /* open sans-300normal.ttf in CopyFiles */,
-				DBC869BE1D36679100DDC4FE /* open sans-400italic.ttf in CopyFiles */,
-				DBC869BF1D36679100DDC4FE /* open sans-400normal.ttf in CopyFiles */,
-				DBC869C01D36679100DDC4FE /* open sans-600italic.ttf in CopyFiles */,
-				DBC869C11D36679100DDC4FE /* open sans-600normal.ttf in CopyFiles */,
-				DBC869C21D36679100DDC4FE /* open sans-700italic.ttf in CopyFiles */,
-				DBC869C31D36679100DDC4FE /* open sans-700normal.ttf in CopyFiles */,
-				DBC869C41D36679100DDC4FE /* open sans-800italic.ttf in CopyFiles */,
-				DBC869C51D36679100DDC4FE /* open sans-800normal.ttf in CopyFiles */,
-				DB31932E1D35221000272990 /* DroidSansFallback.ttf in CopyFiles */,
-				DB31932F1D35221000272990 /* DroidSansJapanese.ttf in CopyFiles */,
-				DB3193301D35221000272990 /* firasans-medium.ttf in CopyFiles */,
-				DB3193311D35221000272990 /* NotoNaskh-Regular.ttf in CopyFiles */,
-				DB3193321D35221000272990 /* NotoSans-Regular.ttf in CopyFiles */,
-				DB3193331D35221000272990 /* NotoSansHebrew-Regular.ttf in CopyFiles */,
-				DB3193341D35221000272990 /* roboto-regular.ttf in CopyFiles */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
-
 /* Begin PBXFileReference section */
 		0A9FDCBA6C81C063BED6CDFF /* Pods-ios-sdk.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ios-sdk.release.xcconfig"; path = "Pods/Target Support Files/Pods-ios-sdk/Pods-ios-sdk.release.xcconfig"; sourceTree = "<group>"; };
 		92C35E8790FB3255237B1E77 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -122,13 +52,6 @@
 		DB22E5991DA45D73004264E0 /* RoutingSearchVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoutingSearchVC.swift; sourceTree = "<group>"; };
 		DB22E59B1DA46640004264E0 /* RoutingResultTableVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoutingResultTableVC.swift; sourceTree = "<group>"; };
 		DB22E59D1DA473CA004264E0 /* RouteDirectionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RouteDirectionCell.swift; sourceTree = "<group>"; };
-		DB3192691D351E4200272990 /* DroidSansFallback.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = DroidSansFallback.ttf; sourceTree = "<group>"; };
-		DB31926A1D351E4200272990 /* DroidSansJapanese.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = DroidSansJapanese.ttf; sourceTree = "<group>"; };
-		DB31926B1D351E4200272990 /* firasans-medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "firasans-medium.ttf"; sourceTree = "<group>"; };
-		DB31926C1D351E4200272990 /* NotoNaskh-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoNaskh-Regular.ttf"; sourceTree = "<group>"; };
-		DB31926D1D351E4200272990 /* NotoSans-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSans-Regular.ttf"; sourceTree = "<group>"; };
-		DB31926E1D351E4200272990 /* NotoSansHebrew-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansHebrew-Regular.ttf"; sourceTree = "<group>"; };
-		DB31926F1D351E4200272990 /* roboto-regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "roboto-regular.ttf"; sourceTree = "<group>"; };
 		DB366BDD1DF8BE090045C15F /* ic_find_me_normal@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ic_find_me_normal@2x.png"; sourceTree = "<group>"; };
 		DB5B31501DE4A173005EB816 /* LocationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		DB6A3F781DFF4EA300FBE6B6 /* ic_find_me_normal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_find_me_normal.png; sourceTree = "<group>"; };
@@ -148,30 +71,9 @@
 		DBBF368A1D64DA6A0069D769 /* RoutingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoutingViewController.swift; sourceTree = "<group>"; };
 		DBC8698F1D3662DD00DDC4FE /* AutocompleteTableVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AutocompleteTableVC.swift; sourceTree = "<group>"; };
 		DBC869911D3663C700DDC4FE /* PeliasMapkitExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PeliasMapkitExtensions.swift; sourceTree = "<group>"; };
-		DBC869951D3666B300DDC4FE /* Apache License.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "Apache License.txt"; sourceTree = "<group>"; };
-		DBC869961D3666B300DDC4FE /* open sans-300italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "open sans-300italic.ttf"; sourceTree = "<group>"; };
-		DBC869971D3666B300DDC4FE /* open sans-300normal.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "open sans-300normal.ttf"; sourceTree = "<group>"; };
-		DBC869981D3666B300DDC4FE /* open sans-400italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "open sans-400italic.ttf"; sourceTree = "<group>"; };
-		DBC869991D3666B300DDC4FE /* open sans-400normal.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "open sans-400normal.ttf"; sourceTree = "<group>"; };
-		DBC8699A1D3666B300DDC4FE /* open sans-600italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "open sans-600italic.ttf"; sourceTree = "<group>"; };
-		DBC8699B1D3666B300DDC4FE /* open sans-600normal.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "open sans-600normal.ttf"; sourceTree = "<group>"; };
-		DBC8699C1D3666B300DDC4FE /* open sans-700italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "open sans-700italic.ttf"; sourceTree = "<group>"; };
-		DBC8699D1D3666B300DDC4FE /* open sans-700normal.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "open sans-700normal.ttf"; sourceTree = "<group>"; };
-		DBC8699E1D3666B300DDC4FE /* open sans-800italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "open sans-800italic.ttf"; sourceTree = "<group>"; };
-		DBC8699F1D3666B300DDC4FE /* open sans-800normal.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "open sans-800normal.ttf"; sourceTree = "<group>"; };
 		DBC869A11D3666B300DDC4FE /* building-grid.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "building-grid.gif"; sourceTree = "<group>"; };
 		DBC869A21D3666B300DDC4FE /* poi_icons_18@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "poi_icons_18@2x.png"; sourceTree = "<group>"; };
 		DBC869A31D3666B300DDC4FE /* scene.yaml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = scene.yaml; sourceTree = "<group>"; };
-		DBC869B21D36673200DDC4FE /* open sans-300italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "open sans-300italic.ttf"; sourceTree = "<group>"; };
-		DBC869B31D36673200DDC4FE /* open sans-300normal.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "open sans-300normal.ttf"; sourceTree = "<group>"; };
-		DBC869B41D36673200DDC4FE /* open sans-400italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "open sans-400italic.ttf"; sourceTree = "<group>"; };
-		DBC869B51D36673200DDC4FE /* open sans-400normal.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "open sans-400normal.ttf"; sourceTree = "<group>"; };
-		DBC869B61D36673200DDC4FE /* open sans-600italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "open sans-600italic.ttf"; sourceTree = "<group>"; };
-		DBC869B71D36673200DDC4FE /* open sans-600normal.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "open sans-600normal.ttf"; sourceTree = "<group>"; };
-		DBC869B81D36673200DDC4FE /* open sans-700italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "open sans-700italic.ttf"; sourceTree = "<group>"; };
-		DBC869B91D36673200DDC4FE /* open sans-700normal.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "open sans-700normal.ttf"; sourceTree = "<group>"; };
-		DBC869BA1D36673200DDC4FE /* open sans-800italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "open sans-800italic.ttf"; sourceTree = "<group>"; };
-		DBC869BB1D36673200DDC4FE /* open sans-800normal.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "open sans-800normal.ttf"; sourceTree = "<group>"; };
 		DBF441AD1D351B0A007DEE95 /* TangramVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TangramVC.swift; sourceTree = "<group>"; };
 		DBF441AF1D351C90007DEE95 /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
 		DBF5221C1DFB4752009D8F1E /* ic_find_me_pressed@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ic_find_me_pressed@2x.png"; sourceTree = "<group>"; };
@@ -220,36 +122,11 @@
 			isa = PBXGroup;
 			children = (
 				DBC869931D3666B300DDC4FE /* scenes */,
-				DB3192681D351E4200272990 /* fonts */,
 			);
 			path = tangram;
 			sourceTree = "<group>";
 		};
-		DB3192681D351E4200272990 /* fonts */ = {
-			isa = PBXGroup;
-			children = (
-				DBC869B21D36673200DDC4FE /* open sans-300italic.ttf */,
-				DBC869B31D36673200DDC4FE /* open sans-300normal.ttf */,
-				DBC869B41D36673200DDC4FE /* open sans-400italic.ttf */,
-				DBC869B51D36673200DDC4FE /* open sans-400normal.ttf */,
-				DBC869B61D36673200DDC4FE /* open sans-600italic.ttf */,
-				DBC869B71D36673200DDC4FE /* open sans-600normal.ttf */,
-				DBC869B81D36673200DDC4FE /* open sans-700italic.ttf */,
-				DBC869B91D36673200DDC4FE /* open sans-700normal.ttf */,
-				DBC869BA1D36673200DDC4FE /* open sans-800italic.ttf */,
-				DBC869BB1D36673200DDC4FE /* open sans-800normal.ttf */,
-				DB3192691D351E4200272990 /* DroidSansFallback.ttf */,
-				DB31926A1D351E4200272990 /* DroidSansJapanese.ttf */,
-				DB31926B1D351E4200272990 /* firasans-medium.ttf */,
-				DB31926C1D351E4200272990 /* NotoNaskh-Regular.ttf */,
-				DB31926D1D351E4200272990 /* NotoSans-Regular.ttf */,
-				DB31926E1D351E4200272990 /* NotoSansHebrew-Regular.ttf */,
-				DB31926F1D351E4200272990 /* roboto-regular.ttf */,
-			);
-			path = fonts;
-			sourceTree = "<group>";
-		};
-		DB366BDC1DF8BE090045C15F /* Images */ = {
+		DB366BDC1DF8BE090045C15F /* images */ = {
 			isa = PBXGroup;
 			children = (
 				DB6A3F781DFF4EA300FBE6B6 /* ic_find_me_normal.png */,
@@ -259,17 +136,16 @@
 				DBF5221C1DFB4752009D8F1E /* ic_find_me_pressed@2x.png */,
 				DB6A3F7B1DFF4EA300FBE6B6 /* ic_find_me_pressed@3x.png */,
 			);
-			name = Images;
-			path = "ios-sdk/Images";
+			path = images;
 			sourceTree = "<group>";
 		};
 		DB7A33CB1C8F8E8B009CC743 = {
 			isa = PBXGroup;
 			children = (
-				DB366BDC1DF8BE090045C15F /* Images */,
+				DB366BDC1DF8BE090045C15F /* images */,
 				DB3192671D351E4200272990 /* tangram */,
 				DBC84EA51C985B6D00EE80D8 /* src */,
-				DB7A33D61C8F8E8B009CC743 /* ios-sdk */,
+				DB7A33D61C8F8E8B009CC743 /* SampleApp */,
 				DB7A33EB1C8F8E8B009CC743 /* ios-sdkTests */,
 				DB7A33D51C8F8E8B009CC743 /* Products */,
 				CF541C01B2D071D0FF55D939 /* Frameworks */,
@@ -286,7 +162,7 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		DB7A33D61C8F8E8B009CC743 /* ios-sdk */ = {
+		DB7A33D61C8F8E8B009CC743 /* SampleApp */ = {
 			isa = PBXGroup;
 			children = (
 				DB7A33D71C8F8E8B009CC743 /* AppDelegate.swift */,
@@ -301,7 +177,7 @@
 				DB22E59B1DA46640004264E0 /* RoutingResultTableVC.swift */,
 				DB22E59D1DA473CA004264E0 /* RouteDirectionCell.swift */,
 			);
-			path = "ios-sdk";
+			path = SampleApp;
 			sourceTree = "<group>";
 		};
 		DB7A33EB1C8F8E8B009CC743 /* ios-sdkTests */ = {
@@ -320,36 +196,16 @@
 				DB70FEA81DE3425800249509 /* MapViewController.swift */,
 				DB5B31501DE4A173005EB816 /* LocationManager.swift */,
 			);
-			name = src;
-			path = "ios-sdk/src";
+			path = src;
 			sourceTree = "<group>";
 		};
 		DBC869931D3666B300DDC4FE /* scenes */ = {
 			isa = PBXGroup;
 			children = (
-				DBC869941D3666B300DDC4FE /* fonts */,
 				DBC869A01D3666B300DDC4FE /* images */,
 				DBC869A31D3666B300DDC4FE /* scene.yaml */,
 			);
 			path = scenes;
-			sourceTree = "<group>";
-		};
-		DBC869941D3666B300DDC4FE /* fonts */ = {
-			isa = PBXGroup;
-			children = (
-				DBC869951D3666B300DDC4FE /* Apache License.txt */,
-				DBC869961D3666B300DDC4FE /* open sans-300italic.ttf */,
-				DBC869971D3666B300DDC4FE /* open sans-300normal.ttf */,
-				DBC869981D3666B300DDC4FE /* open sans-400italic.ttf */,
-				DBC869991D3666B300DDC4FE /* open sans-400normal.ttf */,
-				DBC8699A1D3666B300DDC4FE /* open sans-600italic.ttf */,
-				DBC8699B1D3666B300DDC4FE /* open sans-600normal.ttf */,
-				DBC8699C1D3666B300DDC4FE /* open sans-700italic.ttf */,
-				DBC8699D1D3666B300DDC4FE /* open sans-700normal.ttf */,
-				DBC8699E1D3666B300DDC4FE /* open sans-800italic.ttf */,
-				DBC8699F1D3666B300DDC4FE /* open sans-800normal.ttf */,
-			);
-			path = fonts;
 			sourceTree = "<group>";
 		};
 		DBC869A01D3666B300DDC4FE /* images */ = {
@@ -372,9 +228,7 @@
 				DB7A33D01C8F8E8B009CC743 /* Sources */,
 				DB7A33D11C8F8E8B009CC743 /* Frameworks */,
 				DB7A33D21C8F8E8B009CC743 /* Resources */,
-				DB31932D1D3521FD00272990 /* CopyFiles */,
 				191580EBEEB1CBE8776858D7 /* [CP] Embed Pods Frameworks */,
-				DB09D3041D37C2640062A150 /* CopyFiles */,
 				9ED767F151C3E563270C40FC /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
@@ -452,19 +306,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DBC869AA1D3666B300DDC4FE /* open sans-600normal.ttf in Resources */,
 				DBC869B11D3666B300DDC4FE /* scene.yaml in Resources */,
-				DBC869A51D3666B300DDC4FE /* open sans-300italic.ttf in Resources */,
-				DBC869AD1D3666B300DDC4FE /* open sans-800italic.ttf in Resources */,
 				DB7A33E21C8F8E8B009CC743 /* LaunchScreen.storyboard in Resources */,
 				DB6A3F7C1DFF4EA300FBE6B6 /* ic_find_me_normal.png in Resources */,
-				DBC869AE1D3666B300DDC4FE /* open sans-800normal.ttf in Resources */,
-				DBC869AB1D3666B300DDC4FE /* open sans-700italic.ttf in Resources */,
-				DBC869A91D3666B300DDC4FE /* open sans-600italic.ttf in Resources */,
-				DBC869A71D3666B300DDC4FE /* open sans-400italic.ttf in Resources */,
-				DBC869A41D3666B300DDC4FE /* Apache License.txt in Resources */,
-				DBC869AC1D3666B300DDC4FE /* open sans-700normal.ttf in Resources */,
-				DBC869A81D3666B300DDC4FE /* open sans-400normal.ttf in Resources */,
 				DB6A3F7F1DFF4EA300FBE6B6 /* ic_find_me_pressed@3x.png in Resources */,
 				DBC869B01D3666B300DDC4FE /* poi_icons_18@2x.png in Resources */,
 				DB7A33DF1C8F8E8B009CC743 /* Assets.xcassets in Resources */,
@@ -473,7 +317,6 @@
 				DB6A3F7D1DFF4EA300FBE6B6 /* ic_find_me_normal@3x.png in Resources */,
 				DBC869AF1D3666B300DDC4FE /* building-grid.gif in Resources */,
 				DB6A3F7E1DFF4EA300FBE6B6 /* ic_find_me_pressed.png in Resources */,
-				DBC869A61D3666B300DDC4FE /* open sans-300normal.ttf in Resources */,
 				DBF5221D1DFB4752009D8F1E /* ic_find_me_pressed@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -691,10 +534,10 @@
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/ios-sdk/src",
+					"$(PROJECT_DIR)/src",
 					"$(PROJECT_DIR)/tangram",
 				);
-				INFOPLIST_FILE = "ios-sdk/Info.plist";
+				INFOPLIST_FILE = SampleApp/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
@@ -708,7 +551,6 @@
 				PROVISIONING_PROFILE = "bc407523-ce0f-4016-b774-3b8f545e2b71";
 				PROVISIONING_PROFILE_SPECIFIER = "Mapzen Wildcard - Dev";
 				SWIFT_OBJC_BRIDGING_HEADER = "";
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 2.3;
 			};
 			name = Debug;
@@ -728,7 +570,7 @@
 					"$(PROJECT_DIR)/ios-sdk/src",
 					"$(PROJECT_DIR)/tangram",
 				);
-				INFOPLIST_FILE = "ios-sdk/Info.plist";
+				INFOPLIST_FILE = SampleApp/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
