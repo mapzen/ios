@@ -45,7 +45,7 @@ public class MapViewController: TGMapViewController, LocationManagerDelegate, TG
             currentLocationGem = marker;
             LocationManager.sharedManager.requestWhenInUseAuthorization()
             //TODO: Update once scene updates are properly synchronous - { style: ux-location-gem-overlay, interactive: true, sprite: ux-current-location, size: 36px, collide: false }
-            markerSetStyling(marker, styling: "{ style: 'ux-location-gem-overlay', color: 'white', size: [25px, 25px], order:500, collide: false }")
+            markerSetStyling(marker, styling: "{ style: ux-location-gem-overlay, sprite: ux-current-location, size: 36px, collide: false }")
             //Set visibility to false since we have to wait until we have an accurate location
             markerSetVisible(marker, visible: false)
             return true
@@ -124,10 +124,8 @@ public class MapViewController: TGMapViewController, LocationManagerDelegate, TG
 
     //MARK: - TGRecognizerDelegate
 
-    //TODO: Uncomment this once https://github.com/tangrams/tangram-es/pull/1160 is merged
-//    public func mapView(view: TGMapViewController, recognizer: UIGestureRecognizer, didRecognizePanGesture location: CGPoint) {
-//        shouldFollowCurrentLocation = false
-//        findMeButton.selected = false
-//        return true;
-//    }
+    public func mapView(view: TGMapViewController, recognizer: UIGestureRecognizer, didRecognizePanGesture location: CGPoint) {
+        shouldFollowCurrentLocation = false
+        findMeButton.selected = false
+    }
 }

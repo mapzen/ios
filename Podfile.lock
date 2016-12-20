@@ -29,7 +29,7 @@ CHECKOUT OPTIONS:
     :commit: a8d8b0fe8800304b31694a179dd45428d5de75b8
     :git: https://github.com/pelias/pelias-ios-sdk.git
   Tangram-es:
-    :commit: cb00bbdb860ee2d84831dd71acfcf910e7e1a4c8
+    :commit: c09e4d07980b6178f7f9f11d10a3061f08450228
     :git: https://github.com/tangrams/ios-framework.git
 
 SPEC CHECKSUMS:

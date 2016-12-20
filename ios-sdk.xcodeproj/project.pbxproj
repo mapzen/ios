@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		AC586709D7E7D4C22AA9474D /* Pods_ios_sdk.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 99B3EC60450343448FA4E699 /* Pods_ios_sdk.framework */; };
+		DB217BF21E00EAED00D3116E /* building-grid.gif in CopyFiles */ = {isa = PBXBuildFile; fileRef = DBC869A11D3666B300DDC4FE /* building-grid.gif */; };
+		DB217BF31E00EAF000D3116E /* poi_icons_18@2x.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = DBC869A21D3666B300DDC4FE /* poi_icons_18@2x.png */; };
 		DB22E59A1DA45D73004264E0 /* RoutingSearchVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB22E5991DA45D73004264E0 /* RoutingSearchVC.swift */; };
 		DB22E59C1DA46640004264E0 /* RoutingResultTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB22E59B1DA46640004264E0 /* RoutingResultTableVC.swift */; };
 		DB22E59E1DA473CA004264E0 /* RouteDirectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB22E59D1DA473CA004264E0 /* RouteDirectionCell.swift */; };
@@ -43,6 +45,20 @@
 			remoteInfo = "ios-sdk";
 		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		DB217BF11E00EADA00D3116E /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = images;
+			dstSubfolderSpec = 6;
+			files = (
+				DB217BF21E00EAED00D3116E /* building-grid.gif in CopyFiles */,
+				DB217BF31E00EAF000D3116E /* poi_icons_18@2x.png in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		0A9FDCBA6C81C063BED6CDFF /* Pods-ios-sdk.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ios-sdk.release.xcconfig"; path = "Pods/Target Support Files/Pods-ios-sdk/Pods-ios-sdk.release.xcconfig"; sourceTree = "<group>"; };
@@ -230,6 +246,7 @@
 				DB7A33D21C8F8E8B009CC743 /* Resources */,
 				191580EBEEB1CBE8776858D7 /* [CP] Embed Pods Frameworks */,
 				9ED767F151C3E563270C40FC /* [CP] Copy Pods Resources */,
+				DB217BF11E00EADA00D3116E /* CopyFiles */,
 			);
 			buildRules = (
 			);
