@@ -17,7 +17,21 @@ public class MapViewController: TGMapViewController, LocationManagerDelegate, TG
     var lastSetPoint: TGGeoPoint?
     var shouldShowCurrentLocation = false
     public var shouldFollowCurrentLocation = false
-    public var findMeButton = MapViewController.createFindMeButton()
+    public var findMeButton = UIButton(type: .Custom)
+
+    init(){
+        super.init(nibName: nil, bundle: nil)
+        defer {
+            findMeButton = createFindMeButton()
+        }
+    }
+    
+    required public init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        defer {
+            findMeButton = createFindMeButton()
+        }
+    }
 
     //! Returns whether or not the map was centered on the device's current location
     public func resetCameraOnCurrentLocation(tilt: Float = 0.0, zoomLevel: Float = 16.0, animationDuration: Float = 1.0) -> Bool {
@@ -71,6 +85,7 @@ public class MapViewController: TGMapViewController, LocationManagerDelegate, TG
         super.viewDidLoad()
         LocationManager.sharedManager.delegate = self
         gestureDelegate = self
+        findMeButton = createFindMeButton()
     }
 
     override public func viewWillAppear(animated: Bool) {
@@ -81,9 +96,9 @@ public class MapViewController: TGMapViewController, LocationManagerDelegate, TG
         findMeButton.sizeToFit()
     }
 
-    static func createFindMeButton() -> UIButton {
+    func createFindMeButton() -> UIButton {
         let findMeButton = UIButton(type: UIButtonType.Custom)
-        findMeButton.addTarget(self, action: #selector(defaultFindMeAction), forControlEvents: .TouchUpInside)
+        findMeButton.addTarget(self, action: #selector(MapViewController.defaultFindMeAction(_:touchEvent:)), forControlEvents: .TouchUpInside)
         findMeButton.enabled = false
         findMeButton.hidden = true
         findMeButton.adjustsImageWhenHighlighted = false
