@@ -9,23 +9,39 @@
 import XCTest
 @testable import ios_sdk
 import TangramMap
+import CoreLocation
+
+class MockMapViewController: MapViewController {
+    func lastSetPointValue() -> TGGeoPoint? {
+        return lastSetPoint
+    }
+    func currentLocationGemValue() -> TGMapMarkerId? {
+        return currentLocationGem
+    }
+    func shouldShowCurrentLocationValue() -> Bool {
+        return shouldShowCurrentLocation
+    }
+}
 
 class MapViewControllerTests: XCTestCase {
 
-    var controller = MapViewController()
+    var controller = MockMapViewController()
+    let mockLocation = CLLocation(latitude: 0.0, longitude: 0.0) // Null Island!
 
     override func setUp() {
-        controller = MapViewController()
+        controller = MockMapViewController()
     }
 
     func testInit() {
         XCTAssertNotNil(controller)
+        XCTAssertFalse(controller.shouldFollowCurrentLocation)
     }
 
     func testFindMeButtonInitialState() {
         //Test Initial State
-        XCTAssert(controller.findMeButton.hidden == true)
-        XCTAssert(controller.findMeButton.enabled == false)
+        XCTAssertTrue(controller.findMeButton.hidden)
+        XCTAssertFalse(controller.findMeButton.enabled)
+        XCTAssertFalse(controller.findMeButton.adjustsImageWhenHighlighted)
     }
 
     func testShowFindMeButton() {
@@ -33,25 +49,75 @@ class MapViewControllerTests: XCTestCase {
         controller.showFindMeButon(true)
 
         //Tests
-        XCTAssert(controller.findMeButton.hidden == false)
-        XCTAssert(controller.findMeButton.enabled == true)
+        XCTAssertFalse(controller.findMeButton.hidden)
+        XCTAssertTrue(controller.findMeButton.enabled)
 
         //Now for flipping it back to false
         controller.showFindMeButon(false)
 
         //Tests
-        XCTAssert(controller.findMeButton.hidden == true)
-        XCTAssert(controller.findMeButton.enabled == false)
+        XCTAssertTrue(controller.findMeButton.hidden)
+        XCTAssertFalse(controller.findMeButton.enabled)
+    }
+
+    func testInitialLocationState() {
+        XCTAssertFalse(controller.shouldFollowCurrentLocation)
+        XCTAssertFalse(controller.shouldShowCurrentLocationValue())
+        XCTAssertNil(controller.currentLocationGemValue())
+        XCTAssertNil(controller.lastSetPointValue())
+        XCTAssertNil(controller.currentLocationGemValue())
+    }
+
+    func testEnableLocation() {
+        controller.enableLocationLayer(true)
+
+        //Tests
+        XCTAssertFalse(controller.findMeButton.hidden)
+        XCTAssertTrue(controller.shouldFollowCurrentLocation)
+        XCTAssertTrue(controller.shouldShowCurrentLocationValue())
     }
 
     func testDisableLocation() {
         //Setup
-        controller.shouldFollowCurrentLocation = true
-        controller.showFindMeButon(true)
+        controller.enableLocationLayer(true)
+        controller.enableLocationLayer(false)
 
         //Tests
-        controller.enableLocationLayer(false)
-        XCTAssert(controller.shouldFollowCurrentLocation == false)
-        XCTAssert(controller.findMeButton.hidden == true)
+        XCTAssertTrue(controller.findMeButton.hidden)
+        XCTAssertFalse(controller.shouldFollowCurrentLocation)
+        XCTAssertFalse(controller.shouldShowCurrentLocationValue())
+    }
+
+    func testShowCurrentLocation() {
+        //Setup
+        controller.viewDidLoad()
+
+        //Tests
+        XCTAssertTrue(controller.showCurrentLocation(true))
+        XCTAssertNotNil(controller.currentLocationGemValue())
+        XCTAssertTrue(controller.shouldShowCurrentLocationValue())
+        XCTAssertTrue(controller.currentLocationGemValue() != 0)
+    }
+
+    //MARK: - LocationManagerDelegate Tests
+    func testLocationUpdateSansMarkerGeneration() {
+        //Setup
+        controller.locationDidUpdate(mockLocation)
+
+        //Tests
+        XCTAssertNil(controller.lastSetPointValue())
+        XCTAssertNil(controller.currentLocationGemValue())
+    }
+
+    func testLocationUpdateWithMarkerGeneration() {
+        //Setup
+        controller.viewDidLoad()
+        controller.showCurrentLocation(true)
+        controller.locationDidUpdate(mockLocation)
+
+        //Tests
+        XCTAssertNotNil(controller.lastSetPointValue())
+        XCTAssertTrue(controller.lastSetPointValue()?.latitude == mockLocation.coordinate.latitude)
+        XCTAssertTrue(controller.lastSetPointValue()?.longitude == mockLocation.coordinate.longitude)
     }
 }

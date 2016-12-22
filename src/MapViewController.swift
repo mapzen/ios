@@ -44,7 +44,6 @@ public class MapViewController: TGMapViewController, LocationManagerDelegate, TG
             if marker == 0 { return false } // Didn't initialize correctly.
             currentLocationGem = marker;
             LocationManager.sharedManager.requestWhenInUseAuthorization()
-            //TODO: Update once scene updates are properly synchronous - { style: ux-location-gem-overlay, interactive: true, sprite: ux-current-location, size: 36px, collide: false }
             markerSetStyling(marker, styling: "{ style: ux-location-gem-overlay, sprite: ux-current-location, size: 36px, collide: false }")
             //Set visibility to false since we have to wait until we have an accurate location
             markerSetVisible(marker, visible: false)
