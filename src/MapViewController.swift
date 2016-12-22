@@ -72,7 +72,6 @@ public class MapViewController: TGMapViewController, LocationManagerDelegate, TG
         showFindMeButon(enabled)
         enabled ? LocationManager.sharedManager.startUpdatingLocation() : LocationManager.sharedManager.stopUpdatingLocation()
         shouldFollowCurrentLocation = enabled
-
     }
 
     @objc func defaultFindMeAction(button: UIButton, touchEvent: UIEvent) {
@@ -85,7 +84,6 @@ public class MapViewController: TGMapViewController, LocationManagerDelegate, TG
         super.viewDidLoad()
         LocationManager.sharedManager.delegate = self
         gestureDelegate = self
-        findMeButton = createFindMeButton()
     }
 
     override public func viewWillAppear(animated: Bool) {
