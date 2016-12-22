@@ -16,11 +16,11 @@ public class MapViewController: TGMapViewController, LocationManagerDelegate, TG
     var currentLocationGem: TGMapMarkerId?
     var lastSetPoint: TGGeoPoint?
     var shouldShowCurrentLocation = false
-    var shouldFollowCurrentLocation = false
-    public var findMeButton = UIButton(type: UIButtonType.Custom)
+    public var shouldFollowCurrentLocation = false
+    public var findMeButton = MapViewController.createFindMeButton()
 
     //! Returns whether or not the map was centered on the device's current location
-    public func centerOnCurrentLocation(tilt: Float = 0.0, zoomLevel: Float = 16.0, animationDuration: Float = 1.0) -> Bool {
+    public func resetCameraOnCurrentLocation(tilt: Float = 0.0, zoomLevel: Float = 16.0, animationDuration: Float = 1.0) -> Bool {
         guard let marker = currentLocationGem else { return false }
         guard let point = lastSetPoint else { return false }
         if marker == 0 { return false } // Invalid Marker
@@ -30,10 +30,10 @@ public class MapViewController: TGMapViewController, LocationManagerDelegate, TG
         return true
     }
 
-    public func showFindMeButon(shouldShow: Bool) -> Bool {
+    //! Handles state for the find me button
+    public func showFindMeButon(shouldShow: Bool) {
         findMeButton.hidden = !shouldShow
         findMeButton.enabled = shouldShow
-        return true
     }
 
     //! Returns whether or not current location was shown
@@ -44,7 +44,6 @@ public class MapViewController: TGMapViewController, LocationManagerDelegate, TG
             if marker == 0 { return false } // Didn't initialize correctly.
             currentLocationGem = marker;
             LocationManager.sharedManager.requestWhenInUseAuthorization()
-            //TODO: Update once scene updates are properly synchronous - { style: ux-location-gem-overlay, interactive: true, sprite: ux-current-location, size: 36px, collide: false }
             markerSetStyling(marker, styling: "{ style: ux-location-gem-overlay, sprite: ux-current-location, size: 36px, collide: false }")
             //Set visibility to false since we have to wait until we have an accurate location
             markerSetVisible(marker, visible: false)
@@ -54,8 +53,16 @@ public class MapViewController: TGMapViewController, LocationManagerDelegate, TG
         return true
     }
 
+    public func enableLocationLayer(enabled: Bool) {
+        showCurrentLocation(enabled)
+        showFindMeButon(enabled)
+        enabled ? LocationManager.sharedManager.startUpdatingLocation() : LocationManager.sharedManager.stopUpdatingLocation()
+        shouldFollowCurrentLocation = enabled
+
+    }
+
     @objc func defaultFindMeAction(button: UIButton, touchEvent: UIEvent) {
-        centerOnCurrentLocation()
+        resetCameraOnCurrentLocation()
         button.selected = !button.selected
         shouldFollowCurrentLocation = button.selected
     }
@@ -70,6 +77,12 @@ public class MapViewController: TGMapViewController, LocationManagerDelegate, TG
         super.viewWillAppear(animated)
         let viewRect = view.bounds
         findMeButton.frame = CGRect(x: viewRect.width - 60.0, y: viewRect.height - 100.0, width: CGFloat(48), height: CGFloat(48))
+        view.addSubview(findMeButton)
+        findMeButton.sizeToFit()
+    }
+
+    static func createFindMeButton() -> UIButton {
+        let findMeButton = UIButton(type: UIButtonType.Custom)
         findMeButton.addTarget(self, action: #selector(defaultFindMeAction), forControlEvents: .TouchUpInside)
         findMeButton.enabled = false
         findMeButton.hidden = true
@@ -79,8 +92,7 @@ public class MapViewController: TGMapViewController, LocationManagerDelegate, TG
         findMeButton.setBackgroundImage(UIImage(named: "ic_find_me_pressed"), forState: [.Selected])
         findMeButton.backgroundColor = UIColor.whiteColor()
         findMeButton.autoresizingMask = [.FlexibleTopMargin, .FlexibleLeftMargin]
-        view.addSubview(findMeButton)
-        findMeButton.sizeToFit()
+        return findMeButton
     }
 
     //MARK: - LocationManagerDelegate
@@ -97,7 +109,7 @@ public class MapViewController: TGMapViewController, LocationManagerDelegate, TG
 
         if (shouldFollowCurrentLocation) {
             print("Updating for current lat: \(location.coordinate.latitude) & long: \(location.coordinate.longitude)")
-            centerOnCurrentLocation()
+            resetCameraOnCurrentLocation()
         }
     }
 
