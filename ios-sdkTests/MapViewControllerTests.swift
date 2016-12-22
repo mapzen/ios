@@ -21,6 +21,16 @@ class TestMapViewController: MapViewController {
     func shouldShowCurrentLocationValue() -> Bool {
         return shouldShowCurrentLocation
     }
+    override func markerAdd() -> TGMapMarkerId {
+        //Mocked out to always return a valid ID
+        return 1
+    }
+}
+
+class MockHTTPHandler: TGHttpHandler {
+    override func downloadRequestAsync(url: String!, completionHandler: DownloadCompletionHandler!) {
+        //We want Tangram to stay off the network in unit testing, so we no-op this to make certain
+    }
 }
 
 class MapViewControllerTests: XCTestCase {
@@ -30,6 +40,8 @@ class MapViewControllerTests: XCTestCase {
 
     override func setUp() {
         controller = TestMapViewController()
+        let mockHTTP = MockHTTPHandler()
+        controller.httpHandler = mockHTTP
     }
 
     func testInit() {
@@ -89,9 +101,6 @@ class MapViewControllerTests: XCTestCase {
     }
 
     func testShowCurrentLocation() {
-        //Setup
-        controller.viewDidLoad()
-
         //Tests
         XCTAssertTrue(controller.showCurrentLocation(true))
         XCTAssertNotNil(controller.currentLocationGemValue())
@@ -111,7 +120,6 @@ class MapViewControllerTests: XCTestCase {
 
     func testLocationUpdateWithMarkerGeneration() {
         //Setup
-        controller.viewDidLoad()
         controller.showCurrentLocation(true)
         controller.locationDidUpdate(mockLocation)
 
