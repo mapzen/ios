@@ -11,7 +11,7 @@ import XCTest
 import TangramMap
 import CoreLocation
 
-class MockMapViewController: MapViewController {
+class TestMapViewController: MapViewController {
     func lastSetPointValue() -> TGGeoPoint? {
         return lastSetPoint
     }
@@ -25,11 +25,11 @@ class MockMapViewController: MapViewController {
 
 class MapViewControllerTests: XCTestCase {
 
-    var controller = MockMapViewController()
+    var controller = TestMapViewController()
     let mockLocation = CLLocation(latitude: 0.0, longitude: 0.0) // Null Island!
 
     override func setUp() {
-        controller = MockMapViewController()
+        controller = TestMapViewController()
     }
 
     func testInit() {
