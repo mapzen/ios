@@ -11,10 +11,6 @@ Pod::Spec.new do |s|
   s.social_media_url  = 'https://twitter.com/mapzen'
   s.documentation_url = 'https://mapzen.com/documentation/ios/'
 
-  s.source = {
-    :path => "./src/*.swift"
-  }
-
   s.platform              = :ios
   s.ios.deployment_target = '9.0'
 
@@ -25,5 +21,6 @@ Pod::Spec.new do |s|
     cs.dependency "Pelias"
     cs.dependency "OnTheRoad"
     cs.dependency "Tangram-es"
+    cs.source_files => "src/*.swift"
   end
 end
