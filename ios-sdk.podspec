@@ -12,7 +12,7 @@ Pod::Spec.new do |s|
   s.documentation_url = 'https://mapzen.com/documentation/ios/'
 
   s.source = {
-    :path => "./ios-sdk/src/*.swift"
+    :path => "./src/*.swift"
   }
 
   s.platform              = :ios
