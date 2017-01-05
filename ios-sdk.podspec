@@ -5,15 +5,12 @@ Pod::Spec.new do |s|
 
   s.summary           = 'Mapzen iOS SDK'
   s.description       = 'Mapzen iOS SDK'
-  s.homepage          = 'https://mapzen.com/products/ios/'
+  s.homepage          = 'https://mapzen.com/projects/mobile/'
   s.license           = { :type => 'MIT', :file => 'LICENSE.md' }
   s.author            = { 'Mapzen' => 'ios-support@mapzen.com' }
   s.social_media_url  = 'https://twitter.com/mapzen'
   s.documentation_url = 'https://mapzen.com/documentation/ios/'
-
-  s.source = {
-    :path => "./ios-sdk/src/*.swift"
-  }
+  s.source           =  { :git => 'https://github.com/mapzen/ios.git', :branch => 'master' }
 
   s.platform              = :ios
   s.ios.deployment_target = '9.0'
@@ -25,5 +22,7 @@ Pod::Spec.new do |s|
     cs.dependency "Pelias"
     cs.dependency "OnTheRoad"
     cs.dependency "Tangram-es"
+    cs.source_files = "src/*.swift"
+    cs.resources = 'images/*.png'
   end
 end
