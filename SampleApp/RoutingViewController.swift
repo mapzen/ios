@@ -41,11 +41,23 @@ class RoutingViewController: UIViewController, RoutingSearchDelegate {
     }
   }
 
+  override func viewDidAppear(animated: Bool) {
+    super.viewDidAppear(animated)
+    if LocationManager.sharedManager.isAlwaysAuthorized() || LocationManager.sharedManager.isInUseAuthorized() {
+      LocationManager.sharedManager.startUpdatingLocation()
+      return
+    }
+    LocationManager.sharedManager.requestWhenInUseAuthorization()
+  }
+
   func routeTo(point: PeliasMapkitAnnotation) {
     let routingController = OTRRoutingController();
     routingController.urlQueryComponents.addObject(NSURLQueryItem(name: "apiKey", value: "mapzen-2qQR7SX"))
 
-    let startingPoint = OTRRoutingPoint(coordinate: OTRGeoPointMake(40.7444892, -73.9900082), type: .Break)
+    var startingPoint = OTRRoutingPoint(coordinate: OTRGeoPointMake(40.7444892, -73.9900082), type: .Break)
+    if let location = LocationManager.sharedManager.currentLocation {
+      startingPoint = OTRRoutingPoint(coordinate: OTRGeoPointMake(location.coordinate.latitude, location.coordinate.longitude), type: .Break)
+    }
 
     let endingPoint = OTRRoutingPoint(coordinate: OTRGeoPointMake(point.coordinate.latitude, point.coordinate.longitude), type: .Break)
 
@@ -61,25 +73,9 @@ class RoutingViewController: UIViewController, RoutingSearchDelegate {
 
   }
 
-  override func didReceiveMemoryWarning() {
-    super.didReceiveMemoryWarning()
-    // Dispose of any resources that can be recreated.
-  }
-
   func selected(location: PeliasMapkitAnnotation) {
     print("Selected \(location.title)")
     searchBar.text = location.title
     routeTo(location)
   }
-
-  /*
-   // MARK: - Navigation
-
-   // In a storyboard-based application, you will often want to do a little preparation before navigation
-   override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-   // Get the new view controller using segue.destinationViewController.
-   // Pass the selected object to the new view controller.
-   }
-   */
-
 }
