@@ -61,14 +61,14 @@ import Pelias
 public let PeliasIDKey: String = "PeliasOSMIDKey"
 public let PeliasDataSourceKey: String = "PeliasDataSourceKey"
 
-class PeliasMapkitAnnotation: NSObject, MKAnnotation {
+public class PeliasMapkitAnnotation: NSObject, MKAnnotation {
 
-  let coordinate: CLLocationCoordinate2D
-  let title: String?
-  let subtitle: String?
-  let data: [String: AnyObject]?
+  public let coordinate: CLLocationCoordinate2D
+  public let title: String?
+  public let subtitle: String?
+  public let data: [String: AnyObject]?
 
-  init(coordinate: CLLocationCoordinate2D, title: String?, subtitle: String?, data: [String:AnyObject]?) {
+  public init(coordinate: CLLocationCoordinate2D, title: String?, subtitle: String?, data: [String:AnyObject]?) {
     self.coordinate = coordinate
     self.title = title
     self.subtitle = subtitle
@@ -76,7 +76,7 @@ class PeliasMapkitAnnotation: NSObject, MKAnnotation {
   }
 }
 
-extension PeliasPlaceQueryItem {
+public extension PeliasPlaceQueryItem {
   init?(annotation: PeliasMapkitAnnotation, layer: LayerFilter) {
     guard let place = annotation.data?[PeliasIDKey] as? String else { return nil }
     guard let source = SearchSource(rawValue: annotation.data?[PeliasDataSourceKey] as? String ?? "") else { return nil }
@@ -84,8 +84,8 @@ extension PeliasPlaceQueryItem {
   }
 }
 
-extension PeliasResponse {
-  func parsedMapItems() -> [PeliasMapkitAnnotation]? {
+public extension PeliasResponse {
+  public func parsedMapItems() -> [PeliasMapkitAnnotation]? {
     //TODO: This should get refactored into eventually being a real GeoJSON decoder, and split out the MapItem creation
     var mapItems = [PeliasMapkitAnnotation]()
     if let jsonDictionary = parsedResponse?.parsedResponse {
@@ -127,8 +127,8 @@ extension MKMapItem: MKAnnotation {
   }
 }
 
-extension SearchBoundaryRect {
-  init(mapRect: MKMapRect){
+public extension SearchBoundaryRect {
+  public init(mapRect: MKMapRect){
     //Since we get a coordinate anda size, we need to convert this into the bounding box pelias expects.
     //First convert the origin point to the min lat/long
     let minCoordinate = MKCoordinateForMapPoint(mapRect.origin)
@@ -142,5 +142,12 @@ extension SearchBoundaryRect {
     //We use the origin point latitude for max, and subsequently the computed maxLat for pelias's minimum, because pelias wants lower left and upper right points of the rect.
     self.maxLatLong = GeoPoint(latitude: minCoordinate.latitude, longitude: maxCoordinate.longitude)
     self.minLatLong = GeoPoint(latitude: maxCoordinate.latitude, longitude: minCoordinate.longitude)
+  }
+}
+
+public extension GeoPoint {
+  public init? (location: CLLocation?) {
+    guard let unwrappedLocation = location else { return nil }
+    self.init(latitude: unwrappedLocation.coordinate.latitude, longitude: unwrappedLocation.coordinate.longitude)
   }
 }

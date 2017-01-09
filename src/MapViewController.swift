@@ -10,6 +10,7 @@
 import UIKit
 import TangramMap
 import CoreLocation
+import Pelias
 
 public class MapViewController: TGMapViewController, LocationManagerDelegate, TGRecognizerDelegate {
 
@@ -18,6 +19,7 @@ public class MapViewController: TGMapViewController, LocationManagerDelegate, TG
   var shouldShowCurrentLocation = false
   public var shouldFollowCurrentLocation = false
   public var findMeButton = UIButton(type: .Custom)
+  public var currentAnnotations: [PeliasMapkitAnnotation : TGMapMarkerId] = Dictionary()
 
   init(){
     super.init(nibName: nil, bundle: nil)
@@ -72,6 +74,35 @@ public class MapViewController: TGMapViewController, LocationManagerDelegate, TG
     showFindMeButon(enabled)
     enabled ? LocationManager.sharedManager.startUpdatingLocation() : LocationManager.sharedManager.stopUpdatingLocation()
     shouldFollowCurrentLocation = enabled
+  }
+
+  public func loadScene(named: String, apiKey: String) {
+    self.loadSceneFile(named)
+    self.queueSceneUpdate("sources.mapzen.url_params", withValue: "{ api_key: \(apiKey)}")
+    self.applySceneUpdates()
+  }
+
+  public func add(annotations: [PeliasMapkitAnnotation]){
+    for annotation in annotations {
+      let newMarker = self.markerAdd()
+      markerSetPoint(newMarker, coordinates: TGGeoPoint(coordinate: annotation.coordinate))
+      markerSetStyling(newMarker, styling: "{ style: sdk-point-overlay, sprite: ux-search-active, size: [24, 36px], collide: false }")
+      currentAnnotations[annotation] = newMarker
+
+    }
+  }
+
+  public func remove(annotation: PeliasMapkitAnnotation) {
+    guard let markerId = currentAnnotations[annotation] else { return }
+    markerRemove(markerId)
+    currentAnnotations.removeValueForKey(annotation)
+  }
+
+  public func removeAnnotations() {
+    for (annotation, markerId) in currentAnnotations {
+      markerRemove(markerId)
+      currentAnnotations.removeValueForKey(annotation)
+    }
   }
 
   @objc func defaultFindMeAction(button: UIButton, touchEvent: UIEvent) {
