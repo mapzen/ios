@@ -12,7 +12,15 @@ import TangramMap
 import CoreLocation
 import Pelias
 
+@objc public enum MZError: Int {
+  case GeneralError, AnnotationDoesNotExist
+}
+
 public class MapViewController: TGMapViewController, LocationManagerDelegate, TGRecognizerDelegate {
+
+  //Error Domains for NSError Appeasement
+  public static let MapzenGeneralErrorDomain = "MapzenGeneralErrorDomain"
+
 
   var currentLocationGem: TGMapMarkerId?
   var lastSetPoint: TGGeoPoint?
@@ -82,9 +90,16 @@ public class MapViewController: TGMapViewController, LocationManagerDelegate, TG
     self.applySceneUpdates()
   }
 
-  public func add(annotations: [PeliasMapkitAnnotation]){
+  public func add(annotations: [PeliasMapkitAnnotation]) throws {
     for annotation in annotations {
       let newMarker = self.markerAdd()
+      if newMarker == 0 {
+        //TODO: Once TG integrates better error codes, we need to integrate that here.
+        // https://github.com/tangrams/tangram-es/issues/1219
+        throw NSError(domain: MapViewController.MapzenGeneralErrorDomain,
+                      code: MZError.GeneralError.rawValue,
+                      userInfo: nil)
+      }
       markerSetPoint(newMarker, coordinates: TGGeoPoint(coordinate: annotation.coordinate))
       markerSetStyling(newMarker, styling: "{ style: sdk-point-overlay, sprite: ux-search-active, size: [24, 36px], collide: false }")
       currentAnnotations[annotation] = newMarker
@@ -92,15 +107,23 @@ public class MapViewController: TGMapViewController, LocationManagerDelegate, TG
     }
   }
 
-  public func remove(annotation: PeliasMapkitAnnotation) {
+  public func remove(annotation: PeliasMapkitAnnotation) throws {
     guard let markerId = currentAnnotations[annotation] else { return }
-    markerRemove(markerId)
+    if !markerRemove(markerId) {
+      throw NSError(domain: MapViewController.MapzenGeneralErrorDomain,
+                    code: MZError.AnnotationDoesNotExist.rawValue,
+                    userInfo: nil)
+    }
     currentAnnotations.removeValueForKey(annotation)
   }
 
-  public func removeAnnotations() {
+  public func removeAnnotations() throws {
     for (annotation, markerId) in currentAnnotations {
-      markerRemove(markerId)
+      if !markerRemove(markerId) {
+        throw NSError(domain: MapViewController.MapzenGeneralErrorDomain,
+                      code: MZError.AnnotationDoesNotExist.rawValue,
+                      userInfo: nil)
+      }
       currentAnnotations.removeValueForKey(annotation)
     }
   }

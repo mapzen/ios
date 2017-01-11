@@ -28,12 +28,14 @@ class SearchPinsViewController: MapViewController, UITextFieldDelegate {
 
   func textFieldDidEndEditing(textField: UITextField) {
     let geopoint = GeoPoint(location: LocationManager.sharedManager.currentLocation)
-    let weakSelf = self
-    var searchConfig = PeliasSearchConfig(searchText: textField.text!) { (response) in
+    var searchConfig = PeliasSearchConfig(searchText: textField.text!) { [weak self] (response) in
       guard let newAnnotations = response.parsedMapItems() else { return }
-      let strongSelf = weakSelf
-      strongSelf.removeAnnotations()
-      strongSelf.add(newAnnotations)
+      do {
+        try self?.removeAnnotations()
+        try self?.add(newAnnotations)
+      } catch {
+        //We theoretically would handle these with an error message to the user, but this can be left as an exercise to the reader, cuz sample app.
+      }
     }
 
     searchConfig.focusPoint = geopoint
