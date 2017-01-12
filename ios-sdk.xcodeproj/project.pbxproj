@@ -35,6 +35,8 @@
 		DBF441AE1D351B0A007DEE95 /* TangramVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBF441AD1D351B0A007DEE95 /* TangramVC.swift */; };
 		DBF441B01D351C90007DEE95 /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DBF441AF1D351C90007DEE95 /* GLKit.framework */; };
 		DBF5221D1DFB4752009D8F1E /* ic_find_me_pressed@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DBF5221C1DFB4752009D8F1E /* ic_find_me_pressed@2x.png */; };
+		DBFB759D1E20345500CF6173 /* SearchPinsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBFB759C1E20345500CF6173 /* SearchPinsViewController.swift */; };
+		DBFB759F1E2046D100CF6173 /* TangramExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBFB759E1E2046D100CF6173 /* TangramExtensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -96,6 +98,8 @@
 		DBF441AD1D351B0A007DEE95 /* TangramVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TangramVC.swift; sourceTree = "<group>"; };
 		DBF441AF1D351C90007DEE95 /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
 		DBF5221C1DFB4752009D8F1E /* ic_find_me_pressed@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ic_find_me_pressed@2x.png"; sourceTree = "<group>"; };
+		DBFB759C1E20345500CF6173 /* SearchPinsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchPinsViewController.swift; sourceTree = "<group>"; };
+		DBFB759E1E2046D100CF6173 /* TangramExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TangramExtensions.swift; sourceTree = "<group>"; };
 		EEFF8429A821CE3BB0733D53 /* Pods-ios-sdkTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ios-sdkTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ios-sdkTests/Pods-ios-sdkTests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -200,6 +204,7 @@
 				DB22E5991DA45D73004264E0 /* RoutingSearchVC.swift */,
 				DB22E59B1DA46640004264E0 /* RoutingResultTableVC.swift */,
 				DB22E59D1DA473CA004264E0 /* RouteDirectionCell.swift */,
+				DBFB759C1E20345500CF6173 /* SearchPinsViewController.swift */,
 			);
 			path = SampleApp;
 			sourceTree = "<group>";
@@ -219,6 +224,7 @@
 				DBC869911D3663C700DDC4FE /* PeliasMapkitExtensions.swift */,
 				DB70FEA81DE3425800249509 /* MapViewController.swift */,
 				DB5B31501DE4A173005EB816 /* LocationManager.swift */,
+				DBFB759E1E2046D100CF6173 /* TangramExtensions.swift */,
 			);
 			path = src;
 			sourceTree = "<group>";
@@ -401,7 +407,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		9ED767F151C3E563270C40FC /* [CP] Copy Pods Resources */ = {
@@ -431,7 +437,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		ECB4BF4821DF7CEE3474E821 /* [CP] Copy Pods Resources */ = {
@@ -456,6 +462,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DBFB759F1E2046D100CF6173 /* TangramExtensions.swift in Sources */,
+				DBFB759D1E20345500CF6173 /* SearchPinsViewController.swift in Sources */,
 				DBF441AE1D351B0A007DEE95 /* TangramVC.swift in Sources */,
 				DB22E59E1DA473CA004264E0 /* RouteDirectionCell.swift in Sources */,
 				DB5B31511DE4A173005EB816 /* LocationManager.swift in Sources */,
