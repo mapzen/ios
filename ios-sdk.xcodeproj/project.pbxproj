@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		AC586709D7E7D4C22AA9474D /* Pods_ios_sdk.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 99B3EC60450343448FA4E699 /* Pods_ios_sdk.framework */; };
 		C8F52AC1BCE46BB17E1CE0A5 /* Pods_ios_sdkTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A3EA87256F2EA6D0C43260A /* Pods_ios_sdkTests.framework */; };
+		DB188EEA1E2846600054DEFD /* MapzenManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB188EE91E2846600054DEFD /* MapzenManager.swift */; };
+		DB188EEC1E28492A0054DEFD /* MapzenManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB188EEB1E28492A0054DEFD /* MapzenManagerTests.swift */; };
+		DB188EEE1E290D310054DEFD /* MapzenRoutingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB188EED1E290D310054DEFD /* MapzenRoutingController.swift */; };
 		DB217BF21E00EAED00D3116E /* building-grid.gif in CopyFiles */ = {isa = PBXBuildFile; fileRef = DBC869A11D3666B300DDC4FE /* building-grid.gif */; };
 		DB217BF31E00EAF000D3116E /* poi_icons_18@2x.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = DBC869A21D3666B300DDC4FE /* poi_icons_18@2x.png */; };
 		DB22E59A1DA45D73004264E0 /* RoutingSearchVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB22E5991DA45D73004264E0 /* RoutingSearchVC.swift */; };
@@ -70,6 +73,9 @@
 		99B3EC60450343448FA4E699 /* Pods_ios_sdk.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ios_sdk.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A8BB69C349D7314906580508 /* Pods-ios-sdkTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ios-sdkTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ios-sdkTests/Pods-ios-sdkTests.release.xcconfig"; sourceTree = "<group>"; };
 		B96DEBA552AA3AAEA9CDF6F4 /* Pods-ios-sdk.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ios-sdk.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ios-sdk/Pods-ios-sdk.debug.xcconfig"; sourceTree = "<group>"; };
+		DB188EE91E2846600054DEFD /* MapzenManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapzenManager.swift; sourceTree = "<group>"; };
+		DB188EEB1E28492A0054DEFD /* MapzenManagerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapzenManagerTests.swift; sourceTree = "<group>"; };
+		DB188EED1E290D310054DEFD /* MapzenRoutingController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapzenRoutingController.swift; sourceTree = "<group>"; };
 		DB22E5991DA45D73004264E0 /* RoutingSearchVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoutingSearchVC.swift; sourceTree = "<group>"; };
 		DB22E59B1DA46640004264E0 /* RoutingResultTableVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoutingResultTableVC.swift; sourceTree = "<group>"; };
 		DB22E59D1DA473CA004264E0 /* RouteDirectionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RouteDirectionCell.swift; sourceTree = "<group>"; };
@@ -214,6 +220,7 @@
 			children = (
 				DB7A33EE1C8F8E8B009CC743 /* Info.plist */,
 				DBCBC5BE1E0AE1CF0045B345 /* MapViewControllerTests.swift */,
+				DB188EEB1E28492A0054DEFD /* MapzenManagerTests.swift */,
 			);
 			path = "ios-sdkTests";
 			sourceTree = "<group>";
@@ -225,6 +232,8 @@
 				DB70FEA81DE3425800249509 /* MapViewController.swift */,
 				DB5B31501DE4A173005EB816 /* LocationManager.swift */,
 				DBFB759E1E2046D100CF6173 /* TangramExtensions.swift */,
+				DB188EE91E2846600054DEFD /* MapzenManager.swift */,
+				DB188EED1E290D310054DEFD /* MapzenRoutingController.swift */,
 			);
 			path = src;
 			sourceTree = "<group>";
@@ -464,10 +473,12 @@
 			files = (
 				DBFB759F1E2046D100CF6173 /* TangramExtensions.swift in Sources */,
 				DBFB759D1E20345500CF6173 /* SearchPinsViewController.swift in Sources */,
+				DB188EEA1E2846600054DEFD /* MapzenManager.swift in Sources */,
 				DBF441AE1D351B0A007DEE95 /* TangramVC.swift in Sources */,
 				DB22E59E1DA473CA004264E0 /* RouteDirectionCell.swift in Sources */,
 				DB5B31511DE4A173005EB816 /* LocationManager.swift in Sources */,
 				DBC869921D3663C700DDC4FE /* PeliasMapkitExtensions.swift in Sources */,
+				DB188EEE1E290D310054DEFD /* MapzenRoutingController.swift in Sources */,
 				DB70FEA91DE3425800249509 /* MapViewController.swift in Sources */,
 				DB22E59A1DA45D73004264E0 /* RoutingSearchVC.swift in Sources */,
 				DBBF368B1D64DA6A0069D769 /* RoutingViewController.swift in Sources */,
@@ -481,6 +492,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DB188EEC1E28492A0054DEFD /* MapzenManagerTests.swift in Sources */,
 				DBCBC5BF1E0AE1CF0045B345 /* MapViewControllerTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

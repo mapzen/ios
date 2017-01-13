@@ -13,7 +13,7 @@ import CoreLocation
 import Pelias
 
 @objc public enum MZError: Int {
-  case GeneralError, AnnotationDoesNotExist
+  case GeneralError, AnnotationDoesNotExist, APIKeyNotSet
 }
 
 public class MapViewController: TGMapViewController, LocationManagerDelegate, TGRecognizerDelegate {
@@ -84,9 +84,20 @@ public class MapViewController: TGMapViewController, LocationManagerDelegate, TG
     shouldFollowCurrentLocation = enabled
   }
 
-  public func loadScene(named: String, apiKey: String) {
-    self.loadSceneFile(named)
-    self.queueSceneUpdate("sources.mapzen.url_params", withValue: "{ api_key: \(apiKey)}")
+  public func loadScene(named: String, apiKey: String?) throws {
+    loadSceneFile(named)
+    if let apiKey = apiKey {
+      queueSceneUpdate("sources.mapzen.url_params", withValue: "{ api_key: \(apiKey)}")
+    } else {
+      if let apiKey = MapzenManager.sharedManager.apiKey {
+        queueSceneUpdate("sources.mapzen.url_params", withValue: "{ api_key: \(apiKey)}")
+
+      } else {
+        throw NSError(domain: MapViewController.MapzenGeneralErrorDomain,
+                      code: MZError.APIKeyNotSet.rawValue,
+                      userInfo: nil)
+      }
+    }
     self.applySceneUpdates()
   }
 

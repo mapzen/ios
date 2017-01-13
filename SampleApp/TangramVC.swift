@@ -12,7 +12,7 @@ class TangramVC:  MapViewController{
 
   override func viewDidLoad() {
     super.viewDidLoad()
-    self.loadScene("scene.yaml", apiKey: "mapzen-2qQR7SX")
+    let _ = try? loadScene("scene.yaml", apiKey: "mapzen-2qQR7SX")
   }
 
   override func viewDidAppear(animated: Bool) {
