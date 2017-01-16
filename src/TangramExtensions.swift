@@ -9,9 +9,14 @@
 import Foundation
 import TangramMap
 import CoreLocation
+import OnTheRoad
 
 public extension TGGeoPoint {
   public init(coordinate: CLLocationCoordinate2D) {
+    self.init(longitude: coordinate.longitude, latitude: coordinate.latitude)
+  }
+
+  public init(coordinate: OTRGeoPoint) {
     self.init(longitude: coordinate.longitude, latitude: coordinate.latitude)
   }
 

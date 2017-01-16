@@ -12,6 +12,7 @@
 		DB188EEA1E2846600054DEFD /* MapzenManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB188EE91E2846600054DEFD /* MapzenManager.swift */; };
 		DB188EEC1E28492A0054DEFD /* MapzenManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB188EEB1E28492A0054DEFD /* MapzenManagerTests.swift */; };
 		DB188EEE1E290D310054DEFD /* MapzenRoutingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB188EED1E290D310054DEFD /* MapzenRoutingController.swift */; };
+		DB188EF01E2C44F40054DEFD /* RouteDisplayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB188EEF1E2C44F40054DEFD /* RouteDisplayViewController.swift */; };
 		DB217BF21E00EAED00D3116E /* building-grid.gif in CopyFiles */ = {isa = PBXBuildFile; fileRef = DBC869A11D3666B300DDC4FE /* building-grid.gif */; };
 		DB217BF31E00EAF000D3116E /* poi_icons_18@2x.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = DBC869A21D3666B300DDC4FE /* poi_icons_18@2x.png */; };
 		DB22E59A1DA45D73004264E0 /* RoutingSearchVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB22E5991DA45D73004264E0 /* RoutingSearchVC.swift */; };
@@ -76,6 +77,7 @@
 		DB188EE91E2846600054DEFD /* MapzenManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapzenManager.swift; sourceTree = "<group>"; };
 		DB188EEB1E28492A0054DEFD /* MapzenManagerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapzenManagerTests.swift; sourceTree = "<group>"; };
 		DB188EED1E290D310054DEFD /* MapzenRoutingController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapzenRoutingController.swift; sourceTree = "<group>"; };
+		DB188EEF1E2C44F40054DEFD /* RouteDisplayViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RouteDisplayViewController.swift; sourceTree = "<group>"; };
 		DB22E5991DA45D73004264E0 /* RoutingSearchVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoutingSearchVC.swift; sourceTree = "<group>"; };
 		DB22E59B1DA46640004264E0 /* RoutingResultTableVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoutingResultTableVC.swift; sourceTree = "<group>"; };
 		DB22E59D1DA473CA004264E0 /* RouteDirectionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RouteDirectionCell.swift; sourceTree = "<group>"; };
@@ -211,6 +213,7 @@
 				DB22E59B1DA46640004264E0 /* RoutingResultTableVC.swift */,
 				DB22E59D1DA473CA004264E0 /* RouteDirectionCell.swift */,
 				DBFB759C1E20345500CF6173 /* SearchPinsViewController.swift */,
+				DB188EEF1E2C44F40054DEFD /* RouteDisplayViewController.swift */,
 			);
 			path = SampleApp;
 			sourceTree = "<group>";
@@ -482,6 +485,7 @@
 				DB70FEA91DE3425800249509 /* MapViewController.swift in Sources */,
 				DB22E59A1DA45D73004264E0 /* RoutingSearchVC.swift in Sources */,
 				DBBF368B1D64DA6A0069D769 /* RoutingViewController.swift in Sources */,
+				DB188EF01E2C44F40054DEFD /* RouteDisplayViewController.swift in Sources */,
 				DB22E59C1DA46640004264E0 /* RoutingResultTableVC.swift in Sources */,
 				DBC869901D3662DD00DDC4FE /* AutocompleteTableVC.swift in Sources */,
 				DB7A33D81C8F8E8B009CC743 /* AppDelegate.swift in Sources */,

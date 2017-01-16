@@ -11,9 +11,10 @@ import UIKit
 import TangramMap
 import CoreLocation
 import Pelias
+import OnTheRoad
 
 @objc public enum MZError: Int {
-  case GeneralError, AnnotationDoesNotExist, APIKeyNotSet
+  case GeneralError, AnnotationDoesNotExist, APIKeyNotSet, RouteDoesNotExist
 }
 
 public class MapViewController: TGMapViewController, LocationManagerDelegate, TGRecognizerDelegate {
@@ -25,6 +26,7 @@ public class MapViewController: TGMapViewController, LocationManagerDelegate, TG
   var currentLocationGem: TGMapMarkerId?
   var lastSetPoint: TGGeoPoint?
   var shouldShowCurrentLocation = false
+  var currentRouteMarker: TGMapMarkerId?
   public var shouldFollowCurrentLocation = false
   public var findMeButton = UIButton(type: .Custom)
   public var currentAnnotations: [PeliasMapkitAnnotation : TGMapMarkerId] = Dictionary()
@@ -84,7 +86,7 @@ public class MapViewController: TGMapViewController, LocationManagerDelegate, TG
     shouldFollowCurrentLocation = enabled
   }
 
-  public func loadScene(named: String, apiKey: String?) throws {
+  public func loadScene(named: String, apiKey: String? = nil) throws {
     loadSceneFile(named)
     if let apiKey = apiKey {
       queueSceneUpdate("sources.mapzen.url_params", withValue: "{ api_key: \(apiKey)}")
@@ -137,6 +139,49 @@ public class MapViewController: TGMapViewController, LocationManagerDelegate, TG
       }
       currentAnnotations.removeValueForKey(annotation)
     }
+  }
+
+  public func display(route: OTRRoutingResult) throws {
+    //TODO: We eventually should support N number of routes.
+    if let routeMarker = currentRouteMarker {
+      //We don't throw if the remove fails here because we want to silently replace the route
+      currentRouteMarker = nil
+      markerRemove(routeMarker)
+    }
+    let routeLeg = route.legs[0]
+    let polyLine = TGGeoPolyline(size: UInt32(routeLeg.coordinateCount))
+
+    //TODO: Need to investigate more if this is a bug in OTR or if valhalla returns null island at the end of their requests?
+    for index in 0...routeLeg.coordinateCount-1 {
+      let point = routeLeg.coordinates[Int(index)]
+      print("Next Point: \(point)")
+      polyLine.addPoint(TGGeoPoint(coordinate: point))
+    }
+    let marker = markerAdd()
+    if marker == 0 {
+      throw NSError(domain: MapViewController.MapzenGeneralErrorDomain,
+                    code: MZError.GeneralError.rawValue,
+                    userInfo: nil)
+    }
+    markerSetStyling(marker, styling: "{ style: lines, color: blue, width: 10px, order: 5000 }")
+    markerSetPolyline(marker, polyline: polyLine)
+    currentRouteMarker = marker
+  }
+
+  public func removeRoute() throws {
+
+    guard let currentRouteMarker = currentRouteMarker else {
+      throw NSError(domain: MapViewController.MapzenGeneralErrorDomain,
+                    code: MZError.RouteDoesNotExist.rawValue,
+                    userInfo: nil)
+    }
+
+    if !markerRemove(currentRouteMarker) {
+      throw NSError(domain: MapViewController.MapzenGeneralErrorDomain,
+                    code: MZError.RouteDoesNotExist.rawValue,
+                    userInfo: nil)
+    }
+    self.currentRouteMarker = nil
   }
 
   @objc func defaultFindMeAction(button: UIButton, touchEvent: UIEvent) {
