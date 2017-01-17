@@ -19,7 +19,9 @@ class RoutingViewController: UIViewController, RoutingSearchDelegate {
   @IBOutlet weak var searchBar: UITextField!
   let routeSearchSegueID = "showRouteSearchSegue"
   let routeResultEmbedSegueID = "routeResultEmbedSegue"
+  let routeListSegueId = "routeListSegue"
   var routeResultTable : RouteDisplayViewController?
+  var currentRouteResult: OTRRoutingResult?
 
   override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
     guard let identifier = segue.identifier else {
@@ -36,6 +38,11 @@ class RoutingViewController: UIViewController, RoutingSearchDelegate {
         routeResultTable = resultVC
       }
       break
+    case routeListSegueId:
+      guard let routeResult = currentRouteResult else { return }
+      if let vc = segue.destinationViewController as? RoutingResultTableVC {
+        vc.routingResult = routeResult
+      }
     default:
       break
     }
@@ -67,6 +74,7 @@ class RoutingViewController: UIViewController, RoutingSearchDelegate {
                                                 directionsOptions: ["units" : "miles"]) { (routingResult, token, error) in
                                                   print(routingResult?.legs);
                                                   print("Error:\(error)")
+                                                  self.currentRouteResult = routingResult
                                                   self.routeResultTable?.show(routingResult!)
 
     }

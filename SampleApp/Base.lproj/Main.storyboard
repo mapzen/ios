@@ -60,7 +60,7 @@
                                 <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="xBp-gV-CnG" id="oj5-JH-T9N">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="2cf-ku-28x">
@@ -83,7 +83,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3Su-ks-AkJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1729" y="457"/>
+            <point key="canvasLocation" x="1305" y="457"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="y44-Ze-QWp">
@@ -158,13 +158,23 @@
                                     <segue destination="mHh-a7-7co" kind="show" identifier="showRouteSearchSegue" id="ZFg-Hq-SIh"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ao9-Bf-Lhy">
+                                <rect key="frame" x="271" y="580" width="88" height="30"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" title="View Results"/>
+                                <connections>
+                                    <segue destination="u5O-OL-dVh" kind="show" identifier="routeListSegue" id="CUu-hl-vj3"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="Ao9-Bf-Lhy" firstAttribute="leading" secondItem="bee-Yr-DhB" secondAttribute="trailing" constant="-104" id="1VT-JF-osq"/>
                             <constraint firstItem="5zL-5j-Qgk" firstAttribute="top" secondItem="HlV-N5-ODf" secondAttribute="bottom" id="4WT-jY-Atz"/>
                             <constraint firstItem="vJT-wr-8yd" firstAttribute="top" secondItem="HlV-N5-ODf" secondAttribute="bottom" constant="8" id="7Wu-yB-RLd"/>
                             <constraint firstItem="5zL-5j-Qgk" firstAttribute="leading" secondItem="rqs-Ck-q5k" secondAttribute="leadingMargin" constant="-16" id="99G-Kg-ymi"/>
                             <constraint firstAttribute="trailingMargin" secondItem="5zL-5j-Qgk" secondAttribute="trailing" constant="-16" id="Aun-pu-mDG"/>
+                            <constraint firstItem="Ao9-Bf-Lhy" firstAttribute="top" secondItem="bee-Yr-DhB" secondAttribute="bottom" constant="-38" id="DXW-a7-00S"/>
                             <constraint firstItem="bee-Yr-DhB" firstAttribute="top" secondItem="5zL-5j-Qgk" secondAttribute="bottom" constant="8" id="Emx-nB-2P4"/>
                             <constraint firstAttribute="leadingMargin" secondItem="vJT-wr-8yd" secondAttribute="leading" id="NCP-6q-GRz"/>
                             <constraint firstAttribute="trailingMargin" secondItem="bee-Yr-DhB" secondAttribute="trailing" constant="-16" id="Uot-Z6-yGf"/>
@@ -196,11 +206,11 @@
                                 <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Q8c-20-0CR" id="Tvs-Nl-C04">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="cqS-lB-G7E">
-                                            <rect key="frame" x="15" y="0.0" width="345" height="43.5"/>
+                                            <rect key="frame" x="15" y="0.0" width="345" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
@@ -218,7 +228,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iHt-Qg-omp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2049" y="1815"/>
+            <point key="canvasLocation" x="2063" y="1236"/>
         </scene>
         <!--Route-->
         <scene sceneID="HRj-0v-iQO">
@@ -255,7 +265,7 @@
                 </glkViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZlR-tZ-geG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2049" y="2439"/>
+            <point key="canvasLocation" x="1818" y="2816"/>
         </scene>
         <!--Routing Result TableVC-->
         <scene sceneID="rXB-in-08Y">
@@ -270,17 +280,17 @@
                                 <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="vhc-mT-svW" id="wGI-Z6-idP">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cqh-Nl-kb2">
-                                            <rect key="frame" x="17" y="11" width="276" height="21.5"/>
+                                            <rect key="frame" x="17" y="11" width="276" height="22"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jqy-T7-rV6">
-                                            <rect key="frame" x="301" y="11" width="66" height="21.5"/>
+                                            <rect key="frame" x="301" y="11" width="66" height="22"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="66" id="lmP-AU-dO7"/>
                                             </constraints>
@@ -313,7 +323,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4PT-xg-nH0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2713" y="2267"/>
+            <point key="canvasLocation" x="2145" y="2068"/>
         </scene>
     </scenes>
 </document>
