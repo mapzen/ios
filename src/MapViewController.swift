@@ -163,7 +163,7 @@ public class MapViewController: TGMapViewController, LocationManagerDelegate, TG
                     code: MZError.GeneralError.rawValue,
                     userInfo: nil)
     }
-    markerSetStyling(marker, styling: "{ style: lines, color: blue, width: 10px, order: 5000 }")
+    markerSetStyling(marker, styling: "{ style: ux-route-line-overlay, color: '#06a6d4',  width: [[0,3.5px],[5,5px],[9,7px],[10,6px],[11,6px],[13,8px],[14,9px],[15,10px],[16,11px],[17,12px],[18,10px]], order: 500 }")
     markerSetPolyline(marker, polyline: polyLine)
     currentRouteMarker = marker
   }

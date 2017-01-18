@@ -16,7 +16,6 @@ class SearchPinsViewController: MapViewController, UITextFieldDelegate {
   override func viewDidLoad() {
     super.viewDidLoad()
     let _ = try? loadScene("scene.yaml")
-    PeliasSearchManager.sharedInstance.urlQueryItems = [NSURLQueryItem(name: "api_key", value: "mapzen-2qQR7SX")]
 
     searchField.delegate = self
   }
