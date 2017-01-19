@@ -23,13 +23,13 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   OnTheRoad:
-    :commit: 65871d9f1d8e92987730f42c24114c4b6458c582
+    :commit: 28aec7e3a076e1e07c7b1d0bb59531673d88b415
     :git: https://github.com/mapzen/on-the-road_ios.git
   Pelias:
     :commit: a8d8b0fe8800304b31694a179dd45428d5de75b8
     :git: https://github.com/pelias/pelias-ios-sdk.git
   Tangram-es:
-    :commit: c09e4d07980b6178f7f9f11d10a3061f08450228
+    :commit: 9ee8a5d61cce2f0530f67004484435dbd589507e
     :git: https://github.com/tangrams/ios-framework.git
 
 SPEC CHECKSUMS:
