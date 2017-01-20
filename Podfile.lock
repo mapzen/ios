@@ -1,8 +1,8 @@
 PODS:
-  - OnTheRoad (0.1)
-  - Pelias (1.0.0-beta2):
-    - Pelias/Core (= 1.0.0-beta2)
-  - Pelias/Core (1.0.0-beta2)
+  - OnTheRoad (1.0.0-beta1)
+  - Pelias (1.0.0-beta3):
+    - Pelias/Core (= 1.0.0-beta3)
+  - Pelias/Core (1.0.0-beta3)
   - Tangram-es (0.1.0)
 
 DEPENDENCIES:
@@ -23,18 +23,18 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   OnTheRoad:
-    :commit: 28aec7e3a076e1e07c7b1d0bb59531673d88b415
+    :commit: 8b65272e369dfa07c1255eee6130a2df79b6da9e
     :git: https://github.com/mapzen/on-the-road_ios.git
   Pelias:
-    :commit: a8d8b0fe8800304b31694a179dd45428d5de75b8
+    :commit: ba13625b8445c5b7a8b8de08b702fcf2425ad9c9
     :git: https://github.com/pelias/pelias-ios-sdk.git
   Tangram-es:
-    :commit: 9ee8a5d61cce2f0530f67004484435dbd589507e
+    :commit: f7a96d812a27b012620cb5f63de4e770c01b85db
     :git: https://github.com/tangrams/ios-framework.git
 
 SPEC CHECKSUMS:
-  OnTheRoad: ddcde45571f312512f2e52e46db48986af37cdbb
-  Pelias: 0aa202b03b50cc19dc09550d7b6fd01451a78a6d
+  OnTheRoad: 994e273d08efcfb598195f6235bf48d1e525602e
+  Pelias: 73fe42b321402cfe5beaeeb2dd4625ce897ffffe
   Tangram-es: 0b836ead54f672545dc5bfcf0ae46e6f4b97c1ff
 
 PODFILE CHECKSUM: c5f76346e1f9ed6d4fb353437cbb5c798f8f9061
