@@ -1,19 +1,15 @@
 # Mapzen iOS SDK
 
-## Coming soon
-
-We are hard at work on our iOS SDK to bring you open source maps, geographic search, and turn-by-turn directions to your iOS apps. It will also simplify setup, installation, API key management and generally make your life better.
+The Mapzen iOS SDK is a thin wrapper that packages up everything you need to use Mapzen services in your iOS applications. It also simplifies setup, installation, API key management and generally makes your life better.
 
 ## Components
 
-Our iOS SDK is being built using the following standalone libraries and services from Mapzen:
+Our SDK includes map rendering, search/geocoding, routing client, and location tracking. It's built using the following standalone libraries and services from Mapzen:
 
 * **[Tangram ES](https://github.com/tangrams/tangram-es)** 2D and 3D map renderer using OpenGL ES
 * **[Pelias iOS SDK](https://github.com/pelias/pelias-ios-sdk)** Mapzen Search client for iOS
-* **[On the Road iOS](https://github.com/mapzen/on-the-road_ios)** Mapzen Turn-by-Turn client and routing utilities
+* **[On the Road iOS](https://github.com/mapzen/on-the-road_ios)** Mapzen Routing client and routing utilities
 
-## Can't wait?
+## Find out more
 
-*Neither can we.*
-
-While we are working on assembling all the pieces you can [follow our progress on GitHub](https://github.com/mapzen/ios).
+Check out the rest of the documentation for how to get started or you can cruise around the [source code on GitHub](https://github.com/mapzen/ios).
