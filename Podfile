@@ -1,10 +1,10 @@
-platform :ios, '9.0'
+platform :ios, '9.3'
 use_frameworks!
 
 def shared_pods
-  pod 'Pelias', :git => 'https://github.com/pelias/pelias-ios-sdk.git', :branch => 'master'
-  pod 'OnTheRoad', :git => 'https://github.com/mapzen/on-the-road_ios.git', :branch => 'master'
-  pod 'Tangram-es', :git => 'https://github.com/tangrams/ios-framework.git', :branch => 'master'
+  pod 'Pelias', '~> 1.0.0-beta'
+  pod 'OnTheRoad', '~> 1.0.0-beta'
+  pod 'Tangram-es', '~> 0.4'
 end
 
 target "ios-sdk" do
