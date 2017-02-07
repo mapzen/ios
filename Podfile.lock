@@ -3,18 +3,18 @@ PODS:
   - Pelias (1.0.0-beta3):
     - Pelias/Core (= 1.0.0-beta3)
   - Pelias/Core (1.0.0-beta3)
-  - Tangram-es (0.4.0)
+  - Tangram-es (0.4.1)
 
 DEPENDENCIES:
   - OnTheRoad (~> 1.0.0-beta)
   - Pelias (~> 1.0.0-beta)
-  - Tangram-es (~> 0.4)
+  - Tangram-es (~> 0.4.1)
 
 SPEC CHECKSUMS:
   OnTheRoad: 994e273d08efcfb598195f6235bf48d1e525602e
   Pelias: 79a3ca6332a7cb48945b5d044f564b95f13a516e
-  Tangram-es: 49354b4ba6bbd180c2db90f79b4ed957f68e7525
+  Tangram-es: 2519005cff500114b8a794be9a0e4c0a52f97fa7
 
-PODFILE CHECKSUM: d28cc38afbc26b27972877b46d3b976b73861b15
+PODFILE CHECKSUM: b1eed481cf7482f7bc5baf89246528a983b27e97
 
 COCOAPODS: 1.1.1
