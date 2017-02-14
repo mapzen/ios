@@ -15,45 +15,45 @@ extension OTRGeoPoint {
 }
 
 @objc public protocol LocationManagerDelegate {
-  optional func authorizationDidSucceed()
-  optional func authorizationDenied()
-  optional func authorizationRestricted()
-  optional func locationDidUpdate(location: CLLocation)
+  @objc optional func authorizationDidSucceed()
+  @objc optional func authorizationDenied()
+  @objc optional func authorizationRestricted()
+  @objc optional func locationDidUpdate(_ location: CLLocation)
 }
 
 
-public class LocationManager: NSObject, CLLocationManagerDelegate {
+open class LocationManager: NSObject, CLLocationManagerDelegate {
 
-  public static let sharedManager = LocationManager()
-  public var currentLocation: CLLocation?
-  public weak var delegate: LocationManagerDelegate?
+  open static let sharedManager = LocationManager()
+  open var currentLocation: CLLocation?
+  open weak var delegate: LocationManagerDelegate?
 
-  private let coreLocationManager = CLLocationManager()
-  private override init(){
+  fileprivate let coreLocationManager = CLLocationManager()
+  fileprivate override init(){
     super.init()
     coreLocationManager.delegate = self
   }
 
-  public func requestAlwaysAuthorization() {
+  open func requestAlwaysAuthorization() {
     coreLocationManager.requestAlwaysAuthorization()
 
   }
 
-  public func requestWhenInUseAuthorization() {
+  open func requestWhenInUseAuthorization() {
     coreLocationManager.requestWhenInUseAuthorization()
   }
 
-  public func isInUseAuthorized() -> Bool {
-    return CLLocationManager.authorizationStatus() == .AuthorizedWhenInUse ? true :  false
+  open func isInUseAuthorized() -> Bool {
+    return CLLocationManager.authorizationStatus() == .authorizedWhenInUse ? true :  false
   }
 
-  public func isAlwaysAuthorized() -> Bool {
-        return CLLocationManager.authorizationStatus() == .AuthorizedAlways ? true :  false
+  open func isAlwaysAuthorized() -> Bool {
+        return CLLocationManager.authorizationStatus() == .authorizedAlways ? true :  false
   }
 
-  public func refreshCurrentLocation() -> CLLocation? {
+  open func refreshCurrentLocation() -> CLLocation? {
     if CLLocationManager.locationServicesEnabled() &&
-      (CLLocationManager.authorizationStatus() == .AuthorizedAlways || CLLocationManager.authorizationStatus() == .AuthorizedWhenInUse) {
+      (CLLocationManager.authorizationStatus() == .authorizedAlways || CLLocationManager.authorizationStatus() == .authorizedWhenInUse) {
       currentLocation = coreLocationManager.location
       return coreLocationManager.location
     }
@@ -61,44 +61,44 @@ public class LocationManager: NSObject, CLLocationManagerDelegate {
   }
 
   //The difference between this function and the one above is requestLocation() immediately returns and will serve the location via the delegate
-  public func requestLocation() {
+  open func requestLocation() {
     coreLocationManager.requestLocation()
   }
 
-  public func startUpdatingLocation() {
+  open func startUpdatingLocation() {
     coreLocationManager.startUpdatingLocation()
   }
 
-  public func stopUpdatingLocation() {
+  open func stopUpdatingLocation() {
     coreLocationManager.stopUpdatingLocation()
   }
 
   //MARK: - CLLocationManagerDelegate
 
-  public func locationManager(manager: CLLocationManager, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
+  open func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
     switch status {
-    case .AuthorizedAlways:
+    case .authorizedAlways:
       delegate?.authorizationDidSucceed?()
-    case .AuthorizedWhenInUse:
+    case .authorizedWhenInUse:
       manager.startUpdatingLocation()
       delegate?.authorizationDidSucceed?()
-    case .Denied:
+    case .denied:
       delegate?.authorizationDenied?()
-    case .Restricted:
+    case .restricted:
       delegate?.authorizationRestricted?()
     default:
       print("Not Authorized")
     }
   }
 
-  public func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+  open func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
     if let location = locations.last {
       currentLocation = location
       delegate?.locationDidUpdate?(location)
     }
   }
 
-  public func locationManager(manager: CLLocationManager, didFailWithError error: NSError) {
+  open func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
     print("Error from location manager: \(error)")
   }
 

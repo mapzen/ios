@@ -320,13 +320,13 @@
 					DB7A33D31C8F8E8B009CC743 = {
 						CreatedOnToolsVersion = 7.2.1;
 						DevelopmentTeam = LTQC954SPQ;
-						LastSwiftMigration = 0800;
+						LastSwiftMigration = 0820;
 						ProvisioningStyle = Manual;
 					};
 					DB7A33E71C8F8E8B009CC743 = {
 						CreatedOnToolsVersion = 7.2.1;
 						DevelopmentTeam = LTQC954SPQ;
-						LastSwiftMigration = 0800;
+						LastSwiftMigration = 0820;
 						TestTargetID = DB7A33D31C8F8E8B009CC743;
 					};
 				};
@@ -651,7 +651,7 @@
 				PROVISIONING_PROFILE = "bc407523-ce0f-4016-b774-3b8f545e2b71";
 				PROVISIONING_PROFILE_SPECIFIER = "Mapzen Wildcard - Dev";
 				SWIFT_OBJC_BRIDGING_HEADER = "";
-				SWIFT_VERSION = 2.3;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -683,7 +683,7 @@
 				PROVISIONING_PROFILE = "5055cd38-de23-45b5-b368-354456b09bd2";
 				PROVISIONING_PROFILE_SPECIFIER = "Mapzen Wildcard";
 				SWIFT_OBJC_BRIDGING_HEADER = "";
-				SWIFT_VERSION = 2.3;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
@@ -697,7 +697,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.mapzen.ios-sdkTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 2.3;
+				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ios-sdk.app/ios-sdk";
 			};
 			name = Debug;
@@ -712,7 +712,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.mapzen.ios-sdkTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 2.3;
+				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ios-sdk.app/ios-sdk";
 			};
 			name = Release;

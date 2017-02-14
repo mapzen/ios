@@ -24,7 +24,7 @@ class TestMapViewController: MapViewController {
 }
 
 class MockHTTPHandler: TGHttpHandler {
-  override func downloadRequestAsync(url: String!, completionHandler: DownloadCompletionHandler!) {
+  override func downloadRequestAsync(_ url: String!, completionHandler: DownloadCompletionHandler!) {
     //We want Tangram to stay off the network in unit testing, so we no-op this to make certain
   }
 }
@@ -225,8 +225,8 @@ class MapViewControllerTests: XCTestCase {
   
   func testFindMeButtonInitialState() {
     //Test Initial State
-    XCTAssertTrue(controller.findMeButton.hidden)
-    XCTAssertFalse(controller.findMeButton.enabled)
+    XCTAssertTrue(controller.findMeButton.isHidden)
+    XCTAssertFalse(controller.findMeButton.isEnabled)
     XCTAssertFalse(controller.findMeButton.adjustsImageWhenHighlighted)
   }
 
@@ -235,15 +235,15 @@ class MapViewControllerTests: XCTestCase {
     controller.showFindMeButon(true)
 
     //Tests
-    XCTAssertFalse(controller.findMeButton.hidden)
-    XCTAssertTrue(controller.findMeButton.enabled)
+    XCTAssertFalse(controller.findMeButton.isHidden)
+    XCTAssertTrue(controller.findMeButton.isEnabled)
 
     //Now for flipping it back to false
     controller.showFindMeButon(false)
 
     //Tests
-    XCTAssertTrue(controller.findMeButton.hidden)
-    XCTAssertFalse(controller.findMeButton.enabled)
+    XCTAssertTrue(controller.findMeButton.isHidden)
+    XCTAssertFalse(controller.findMeButton.isEnabled)
   }
 
   func testInitialLocationState() {
@@ -258,7 +258,7 @@ class MapViewControllerTests: XCTestCase {
     controller.enableLocationLayer(true)
 
     //Tests
-    XCTAssertFalse(controller.findMeButton.hidden)
+    XCTAssertFalse(controller.findMeButton.isHidden)
     XCTAssertTrue(controller.shouldFollowCurrentLocation)
     XCTAssertTrue(controller.shouldShowCurrentLocationValue())
   }
@@ -269,7 +269,7 @@ class MapViewControllerTests: XCTestCase {
     controller.enableLocationLayer(false)
 
     //Tests
-    XCTAssertTrue(controller.findMeButton.hidden)
+    XCTAssertTrue(controller.findMeButton.isHidden)
     XCTAssertFalse(controller.shouldFollowCurrentLocation)
     XCTAssertFalse(controller.shouldShowCurrentLocationValue())
   }

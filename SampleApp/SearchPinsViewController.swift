@@ -20,12 +20,12 @@ class SearchPinsViewController: MapViewController, UITextFieldDelegate {
     searchField.delegate = self
   }
 
-  func textFieldShouldReturn(textField: UITextField) -> Bool {
+  func textFieldShouldReturn(_ textField: UITextField) -> Bool {
     textField.resignFirstResponder()
     return false
   }
 
-  func textFieldDidEndEditing(textField: UITextField) {
+  func textFieldDidEndEditing(_ textField: UITextField) {
     let geopoint = GeoPoint(location: LocationManager.sharedManager.currentLocation)
     var searchConfig = PeliasSearchConfig(searchText: textField.text!) { [weak self] (response) in
       guard let newAnnotations = response.parsedMapItems() else { return }

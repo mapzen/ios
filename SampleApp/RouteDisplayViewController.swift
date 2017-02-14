@@ -18,7 +18,7 @@ class RouteDisplayViewController: MapViewController {
     let _ = try? loadScene("scene.yaml")
   }
 
-  func show(route : OTRRoutingResult){
+  func show(_ route : OTRRoutingResult){
     routingResult = route
     let _ = try? display(route)
   }

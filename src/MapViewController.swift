@@ -14,22 +14,22 @@ import Pelias
 import OnTheRoad
 
 @objc public enum MZError: Int {
-  case GeneralError, AnnotationDoesNotExist, APIKeyNotSet, RouteDoesNotExist
+  case generalError, annotationDoesNotExist, apiKeyNotSet, routeDoesNotExist
 }
 
-public class MapViewController: UIViewController, LocationManagerDelegate, TGRecognizerDelegate {
+open class MapViewController: TGMapViewController, LocationManagerDelegate, TGRecognizerDelegate {
 
   //Error Domains for NSError Appeasement
-  public static let MapzenGeneralErrorDomain = "MapzenGeneralErrorDomain"
-  
-  public var tgViewController: TGMapViewController = TGMapViewController()
+  open static let MapzenGeneralErrorDomain = "MapzenGeneralErrorDomain"
+
+  open var tgViewController: TGMapViewController = TGMapViewController()
   var currentLocationGem: TGMapMarkerId?
   var lastSetPoint: TGGeoPoint?
   var shouldShowCurrentLocation = false
   var currentRouteMarker: TGMapMarkerId?
-  public var shouldFollowCurrentLocation = false
-  public var findMeButton = UIButton(type: .Custom)
-  public var currentAnnotations: [PeliasMapkitAnnotation : TGMapMarkerId] = Dictionary()
+  open var shouldFollowCurrentLocation = false
+  open var findMeButton = UIButton(type: .custom)
+  open var currentAnnotations: [PeliasMapkitAnnotation : TGMapMarkerId] = Dictionary()
 
   public var cameraType: TGCameraType {
     set {
@@ -199,7 +199,7 @@ public class MapViewController: UIViewController, LocationManagerDelegate, TGRec
   }
   
   //! Returns whether or not the map was centered on the device's current location
-  public func resetCameraOnCurrentLocation(tilt: Float = 0.0, zoomLevel: Float = 16.0, animationDuration: Float = 1.0) -> Bool {
+  open func resetCameraOnCurrentLocation(_ tilt: Float = 0.0, zoomLevel: Float = 16.0, animationDuration: Float = 1.0) -> Bool {
     guard let marker = currentLocationGem else { return false }
     guard let point = lastSetPoint else { return false }
     if marker == 0 { return false } // Invalid Marker
@@ -210,13 +210,13 @@ public class MapViewController: UIViewController, LocationManagerDelegate, TGRec
   }
 
   //! Handles state for the find me button
-  public func showFindMeButon(shouldShow: Bool) {
-    findMeButton.hidden = !shouldShow
-    findMeButton.enabled = shouldShow
+  open func showFindMeButon(_ shouldShow: Bool) {
+    findMeButton.isHidden = !shouldShow
+    findMeButton.isEnabled = shouldShow
   }
 
   //! Returns whether or not current location was shown
-  public func showCurrentLocation(shouldShow: Bool) -> Bool {
+  open func showCurrentLocation(_ shouldShow: Bool) -> Bool {
     shouldShowCurrentLocation = shouldShow
     guard let marker = currentLocationGem else {
       let marker = tgViewController.markerAdd()
@@ -232,14 +232,14 @@ public class MapViewController: UIViewController, LocationManagerDelegate, TGRec
     return true
   }
 
-  public func enableLocationLayer(enabled: Bool) {
+  open func enableLocationLayer(_ enabled: Bool) {
     showCurrentLocation(enabled)
     showFindMeButon(enabled)
     enabled ? LocationManager.sharedManager.startUpdatingLocation() : LocationManager.sharedManager.stopUpdatingLocation()
     shouldFollowCurrentLocation = enabled
   }
 
-  public func loadScene(named: String, apiKey: String? = nil) throws {
+  open func loadScene(named: String, apiKey: String? = nil) throws {
     tgViewController.loadSceneFile(named)
     if let apiKey = apiKey {
       tgViewController.queueSceneUpdate("sources.mapzen.url_params", withValue: "{ api_key: \(apiKey)}")
@@ -249,21 +249,21 @@ public class MapViewController: UIViewController, LocationManagerDelegate, TGRec
 
       } else {
         throw NSError(domain: MapViewController.MapzenGeneralErrorDomain,
-                      code: MZError.APIKeyNotSet.rawValue,
+                      code: MZError.apiKeyNotSet.rawValue,
                       userInfo: nil)
       }
     }
     tgViewController.applySceneUpdates()
   }
 
-  public func add(annotations: [PeliasMapkitAnnotation]) throws {
+  open func add(_ annotations: [PeliasMapkitAnnotation]) throws {
     for annotation in annotations {
       let newMarker = tgViewController.markerAdd()
       if newMarker == 0 {
         //TODO: Once TG integrates better error codes, we need to integrate that here.
         // https://github.com/tangrams/tangram-es/issues/1219
         throw NSError(domain: MapViewController.MapzenGeneralErrorDomain,
-                      code: MZError.GeneralError.rawValue,
+                      code: MZError.generalError.rawValue,
                       userInfo: nil)
       }
       tgViewController.markerSetPoint(newMarker, coordinates: TGGeoPoint(coordinate: annotation.coordinate))
@@ -273,28 +273,28 @@ public class MapViewController: UIViewController, LocationManagerDelegate, TGRec
     }
   }
 
-  public func remove(annotation: PeliasMapkitAnnotation) throws {
+  open func remove(_ annotation: PeliasMapkitAnnotation) throws {
     guard let markerId = currentAnnotations[annotation] else { return }
     if !tgViewController.markerRemove(markerId) {
       throw NSError(domain: MapViewController.MapzenGeneralErrorDomain,
-                    code: MZError.AnnotationDoesNotExist.rawValue,
+                    code: MZError.annotationDoesNotExist.rawValue,
                     userInfo: nil)
     }
-    currentAnnotations.removeValueForKey(annotation)
+    currentAnnotations.removeValue(forKey: annotation)
   }
 
-  public func removeAnnotations() throws {
+  open func removeAnnotations() throws {
     for (annotation, markerId) in currentAnnotations {
       if !tgViewController.markerRemove(markerId) {
         throw NSError(domain: MapViewController.MapzenGeneralErrorDomain,
-                      code: MZError.AnnotationDoesNotExist.rawValue,
+                      code: MZError.annotationDoesNotExist.rawValue,
                       userInfo: nil)
       }
-      currentAnnotations.removeValueForKey(annotation)
+      currentAnnotations.removeValue(forKey: annotation)
     }
   }
 
-  public func display(route: OTRRoutingResult) throws {
+  open func display(_ route: OTRRoutingResult) throws {
     //TODO: We eventually should support N number of routes.
     if let routeMarker = currentRouteMarker {
       //We don't throw if the remove fails here because we want to silently replace the route
@@ -306,14 +306,14 @@ public class MapViewController: UIViewController, LocationManagerDelegate, TGRec
 
     //TODO: Need to investigate more if this is a bug in OTR or if valhalla returns null island at the end of their requests?
     for index in 0...routeLeg.coordinateCount-1 {
-      let point = routeLeg.coordinates[Int(index)]
+      let point = routeLeg.coordinates?[Int(index)]
       print("Next Point: \(point)")
-      polyLine.addPoint(TGGeoPoint(coordinate: point))
+      polyLine?.add(TGGeoPoint(coordinate: point!))
     }
     let marker = tgViewController.markerAdd()
     if marker == 0 {
       throw NSError(domain: MapViewController.MapzenGeneralErrorDomain,
-                    code: MZError.GeneralError.rawValue,
+                    code: MZError.generalError.rawValue,
                     userInfo: nil)
     }
     tgViewController.markerSetStyling(marker, styling: "{ style: ux-route-line-overlay, color: '#06a6d4',  width: [[0,3.5px],[5,5px],[9,7px],[10,6px],[11,6px],[13,8px],[14,9px],[15,10px],[16,11px],[17,12px],[18,10px]], order: 500 }")
@@ -321,29 +321,29 @@ public class MapViewController: UIViewController, LocationManagerDelegate, TGRec
     currentRouteMarker = marker
   }
 
-  public func removeRoute() throws {
+  open func removeRoute() throws {
 
     guard let currentRouteMarker = currentRouteMarker else {
       throw NSError(domain: MapViewController.MapzenGeneralErrorDomain,
-                    code: MZError.RouteDoesNotExist.rawValue,
+                    code: MZError.routeDoesNotExist.rawValue,
                     userInfo: nil)
     }
 
     if !tgViewController.markerRemove(currentRouteMarker) {
       throw NSError(domain: MapViewController.MapzenGeneralErrorDomain,
-                    code: MZError.RouteDoesNotExist.rawValue,
+                    code: MZError.routeDoesNotExist.rawValue,
                     userInfo: nil)
     }
     self.currentRouteMarker = nil
   }
 
-  @objc func defaultFindMeAction(button: UIButton, touchEvent: UIEvent) {
+  @objc func defaultFindMeAction(_ button: UIButton, touchEvent: UIEvent) {
     resetCameraOnCurrentLocation()
-    button.selected = !button.selected
-    shouldFollowCurrentLocation = button.selected
+    button.isSelected = !button.isSelected
+    shouldFollowCurrentLocation = button.isSelected
   }
 
-  override public func viewDidLoad() {
+  override open func viewDidLoad() {
     super.viewDidLoad()
     LocationManager.sharedManager.delegate = self
     
@@ -352,12 +352,12 @@ public class MapViewController: UIViewController, LocationManagerDelegate, TGRec
     tgViewController.gestureDelegate = self
   }
 
-  override public func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {
+  override open func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {
     super.viewWillTransitionToSize(size, withTransitionCoordinator: coordinator)
     tgViewController.viewWillTransitionToSize(size, withTransitionCoordinator:coordinator)
   }
     
-  override public func viewWillAppear(animated: Bool) {
+  override open func viewWillAppear(animated: Bool) {
     super.viewWillAppear(animated)
     let viewRect = view.bounds
     findMeButton.frame = CGRect(x: viewRect.width - 60.0, y: viewRect.height - 100.0, width: CGFloat(48), height: CGFloat(48))
@@ -366,22 +366,22 @@ public class MapViewController: UIViewController, LocationManagerDelegate, TGRec
   }
 
   func createFindMeButton() -> UIButton {
-    let findMeButton = UIButton(type: UIButtonType.Custom)
-    findMeButton.addTarget(self, action: #selector(MapViewController.defaultFindMeAction(_:touchEvent:)), forControlEvents: .TouchUpInside)
-    findMeButton.enabled = false
-    findMeButton.hidden = true
+    let findMeButton = UIButton(type: UIButtonType.custom)
+    findMeButton.addTarget(self, action: #selector(MapViewController.defaultFindMeAction(_:touchEvent:)), for: .touchUpInside)
+    findMeButton.isEnabled = false
+    findMeButton.isHidden = true
     findMeButton.adjustsImageWhenHighlighted = false
-    findMeButton.setBackgroundImage(UIImage(named: "ic_find_me_normal"), forState: .Normal)
+    findMeButton.setBackgroundImage(UIImage(named: "ic_find_me_normal"), for: UIControlState())
     //TODO: This should also have .Highlighted as well .Selected , but something about the @3x assets and UIButton is misbehaving; might need bug opened with Apple.
-    findMeButton.setBackgroundImage(UIImage(named: "ic_find_me_pressed"), forState: [.Selected])
-    findMeButton.backgroundColor = UIColor.whiteColor()
-    findMeButton.autoresizingMask = [.FlexibleTopMargin, .FlexibleLeftMargin]
+    findMeButton.setBackgroundImage(UIImage(named: "ic_find_me_pressed"), for: [.selected])
+    findMeButton.backgroundColor = UIColor.white
+    findMeButton.autoresizingMask = [.flexibleTopMargin, .flexibleLeftMargin]
     return findMeButton
   }
 
   //MARK: - LocationManagerDelegate
 
-  public func locationDidUpdate(location: CLLocation) {
+  open func locationDidUpdate(_ location: CLLocation) {
     guard let marker = currentLocationGem else {
       return
     }
@@ -397,16 +397,16 @@ public class MapViewController: UIViewController, LocationManagerDelegate, TGRec
     }
   }
 
-  public func authorizationDidSucceed() {
+  open func authorizationDidSucceed() {
     LocationManager.sharedManager.startUpdatingLocation()
     LocationManager.sharedManager.requestLocation()
   }
 
-  public func authorizationDenied() {
+  open func authorizationDenied() {
     failedLocationAuthorization()
   }
 
-  public func authorizationRestricted() {
+  open func authorizationRestricted() {
     //For our uses, this is effectively the same handling as denied location authorization
     failedLocationAuthorization()
   }
@@ -420,8 +420,8 @@ public class MapViewController: UIViewController, LocationManagerDelegate, TGRec
 
   //MARK: - TGRecognizerDelegate
 
-  public func mapView(view: TGMapViewController, recognizer: UIGestureRecognizer, didRecognizePanGesture location: CGPoint) {
+  open func mapView(_ view: TGMapViewController, recognizer: UIGestureRecognizer, didRecognizePanGesture location: CGPoint) {
     shouldFollowCurrentLocation = false
-    findMeButton.selected = false
+    findMeButton.isSelected = false
   }
 }

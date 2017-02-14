@@ -23,11 +23,11 @@ class RoutingSearchVC: AutocompleteTableVC {
     // Dispose of any resources that can be recreated.
   }
 
-  override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-    super.tableView(tableView, didSelectRowAtIndexPath: indexPath)
+  override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    super.tableView(tableView, didSelectRowAt: indexPath)
     if let delegate = delegate {
       delegate.selected((self.results?[indexPath.row])!)
-      self.navigationController?.popViewControllerAnimated(true)
+      self.navigationController?.popViewController(animated: true)
     }
   }
 

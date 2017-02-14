@@ -11,7 +11,7 @@ import OnTheRoad
 import Pelias
 
 protocol RoutingSearchDelegate {
-  func selected( location: PeliasMapkitAnnotation )
+  func selected( _ location: PeliasMapkitAnnotation )
 }
 
 class RoutingViewController: UIViewController, RoutingSearchDelegate {
@@ -23,24 +23,24 @@ class RoutingViewController: UIViewController, RoutingSearchDelegate {
   var routeResultTable : RouteDisplayViewController?
   var currentRouteResult: OTRRoutingResult?
 
-  override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     guard let identifier = segue.identifier else {
       return
     }
     switch identifier {
     case routeSearchSegueID:
-      if let searchVC = segue.destinationViewController as? RoutingSearchVC {
+      if let searchVC = segue.destination as? RoutingSearchVC {
         searchVC.delegate = self
       }
       break
     case routeResultEmbedSegueID:
-      if let resultVC = segue.destinationViewController as? RouteDisplayViewController {
+      if let resultVC = segue.destination as? RouteDisplayViewController {
         routeResultTable = resultVC
       }
       break
     case routeListSegueId:
       guard let routeResult = currentRouteResult else { return }
-      if let vc = segue.destinationViewController as? RoutingResultTableVC {
+      if let vc = segue.destination as? RoutingResultTableVC {
         vc.routingResult = routeResult
       }
     default:
@@ -48,7 +48,7 @@ class RoutingViewController: UIViewController, RoutingSearchDelegate {
     }
   }
 
-  override func viewDidAppear(animated: Bool) {
+  override func viewDidAppear(_ animated: Bool) {
     super.viewDidAppear(animated)
     if LocationManager.sharedManager.isAlwaysAuthorized() || LocationManager.sharedManager.isInUseAuthorized() {
       LocationManager.sharedManager.startUpdatingLocation()
@@ -57,21 +57,21 @@ class RoutingViewController: UIViewController, RoutingSearchDelegate {
     LocationManager.sharedManager.requestWhenInUseAuthorization()
   }
 
-  func routeTo(point: PeliasMapkitAnnotation) {
+  func routeTo(_ point: PeliasMapkitAnnotation) {
     let routingController = OTRRoutingController();
-    routingController.urlQueryComponents.addObject(NSURLQueryItem(name: "apiKey", value: "mapzen-2qQR7SX"))
+    routingController.urlQueryComponents.add(URLQueryItem(name: "apiKey", value: "mapzen-2qQR7SX"))
 
-    var startingPoint = OTRRoutingPoint(coordinate: OTRGeoPointMake(40.7444892, -73.9900082), type: .Break)
+    var startingPoint = OTRRoutingPoint(coordinate: OTRGeoPointMake(40.7444892, -73.9900082), type: .break)
     if let location = LocationManager.sharedManager.currentLocation {
-      startingPoint = OTRRoutingPoint(coordinate: OTRGeoPointMake(location.coordinate.latitude, location.coordinate.longitude), type: .Break)
+      startingPoint = OTRRoutingPoint(coordinate: OTRGeoPointMake(location.coordinate.latitude, location.coordinate.longitude), type: .break)
     }
 
-    let endingPoint = OTRRoutingPoint(coordinate: OTRGeoPointMake(point.coordinate.latitude, point.coordinate.longitude), type: .Break)
+    let endingPoint = OTRRoutingPoint(coordinate: OTRGeoPointMake(point.coordinate.latitude, point.coordinate.longitude), type: .break)
 
-    routingController.requestRouteWithLocations([startingPoint, endingPoint],
-                                                costingModel: .Auto,
+    routingController.requestRoute(withLocations: [startingPoint, endingPoint],
+                                                costingModel: .auto,
                                                 costingOption: nil,
-                                                directionsOptions: ["units" : "miles"]) { (routingResult, token, error) in
+                                                directionsOptions: ["units" : "miles" as NSObject]) { (routingResult, token, error) in
                                                   print(routingResult?.legs);
                                                   print("Error:\(error)")
                                                   self.currentRouteResult = routingResult
@@ -81,7 +81,7 @@ class RoutingViewController: UIViewController, RoutingSearchDelegate {
 
   }
 
-  func selected(location: PeliasMapkitAnnotation) {
+  func selected(_ location: PeliasMapkitAnnotation) {
     print("Selected \(location.title)")
     searchBar.text = location.title
     routeTo(location)

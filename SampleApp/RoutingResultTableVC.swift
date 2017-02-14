@@ -17,11 +17,11 @@ class RoutingResultTableVC: UITableViewController {
 
   // MARK: - Table view data source
 
-  func numberOfSections(in tableView: UITableView) -> Int {
+  override func numberOfSections(in tableView: UITableView) -> Int {
     return 1
   }
 
-  override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+  override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     guard let result = routingResult else {
       return 0
     }
@@ -29,13 +29,13 @@ class RoutingResultTableVC: UITableViewController {
     return result.legs[0].maneuvers.count
   }
 
-  func display(route : OTRRoutingResult){
+  func display(_ route : OTRRoutingResult){
     routingResult = route
     tableView.reloadData()
   }
 
-  override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-    let cell = tableView.dequeueReusableCellWithIdentifier(cellIdent, forIndexPath: indexPath) as! RouteDirectionCell
+  override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    let cell = tableView.dequeueReusableCell(withIdentifier: cellIdent, for: indexPath) as! RouteDirectionCell
 
     guard let result = routingResult else {
       return cell

@@ -9,20 +9,20 @@
 import UIKit
 import OnTheRoad
 
-public class MapzenRoutingController: OTRRoutingController {
+open class MapzenRoutingController: OTRRoutingController {
 
-  private override init() {
+  fileprivate override init() {
     super.init()
   }
 
-  public static func controller() throws -> MapzenRoutingController {
+  open static func controller() throws -> MapzenRoutingController {
     guard let apiKey = MapzenManager.sharedManager.apiKey else {
       throw NSError(domain: MapViewController.MapzenGeneralErrorDomain,
-                    code: MZError.APIKeyNotSet.rawValue,
+                    code: MZError.apiKeyNotSet.rawValue,
                     userInfo: nil)
     }
     let controller = MapzenRoutingController()
-    controller.urlQueryComponents.addObject(NSURLQueryItem(name: "api_key", value: apiKey))
+    controller.urlQueryComponents.add(URLQueryItem(name: "api_key", value: apiKey))
     return controller
   }
 }

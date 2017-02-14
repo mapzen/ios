@@ -15,7 +15,7 @@ class TangramVC:  MapViewController{
     let _ = try? loadScene("scene.yaml")
   }
 
-  override func viewDidAppear(animated: Bool) {
+  override func viewDidAppear(_ animated: Bool) {
     super.viewDidAppear(animated)
     showCurrentLocation(true)
     showFindMeButon(true)
