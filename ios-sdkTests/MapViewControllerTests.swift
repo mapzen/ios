@@ -129,41 +129,39 @@ class MapViewControllerTests: XCTestCase {
     XCTAssertTrue(controller.lastSetPointValue()?.longitude == mockLocation.coordinate.longitude)
   }
 
-  //TODO: Enable these once https://github.com/tangrams/tangram-es/issues/1220 gets resolved
+  func testAddAnnotations(){
+    let testAnno1 = PeliasMapkitAnnotation(coordinate: CLLocationCoordinate2DMake(0.0, 0.0), title: "Test1", subtitle: "SubTest1", data: nil)
+    let testAnno2 = PeliasMapkitAnnotation(coordinate: CLLocationCoordinate2DMake(1.0, 1.0), title: "Test2", subtitle: "SubTest2", data: nil)
+    let controller = MapViewController() // Grab local instance cuz we don't want to use mocks for these
+    let _ = try? controller.add([testAnno1, testAnno2])
 
-//  func testAddAnnotations(){
-//    let testAnno1 = PeliasMapkitAnnotation(coordinate: CLLocationCoordinate2DMake(0.0, 0.0), title: "Test1", subtitle: "SubTest1", data: nil)
-//    let testAnno2 = PeliasMapkitAnnotation(coordinate: CLLocationCoordinate2DMake(1.0, 1.0), title: "Test2", subtitle: "SubTest2", data: nil)
-//    let controller = MapViewController() // Grab local instance cuz we don't want to use mocks for these
-//    let _ = try? controller.add([testAnno1, testAnno2])
-//
-//    //Tests
-//    XCTAssertNotNil(controller.currentAnnotations[testAnno1])
-//    XCTAssertNotNil(controller.currentAnnotations[testAnno2])
-//
-//  }
-//
-//  func testRemoveSingleAnnotation(){
-//    let testAnno1 = PeliasMapkitAnnotation(coordinate: CLLocationCoordinate2DMake(0.0, 0.0), title: "Test1", subtitle: "SubTest1", data: nil)
-//    let controller = MapViewController() // Grab local instance cuz we don't want to use mocks for these
-//    let _ = try? controller.add([testAnno1])
-//
-//    //Tests
-//    let _ = try? controller.remove(testAnno1)
-//    XCTAssertNil(controller.currentAnnotations[testAnno1])
-//
-//  }
-//
-//  func testRemoveAllAnnotations(){
-//    let testAnno1 = PeliasMapkitAnnotation(coordinate: CLLocationCoordinate2DMake(0.0, 0.0), title: "Test1", subtitle: "SubTest1", data: nil)
-//    let testAnno2 = PeliasMapkitAnnotation(coordinate: CLLocationCoordinate2DMake(1.0, 1.0), title: "Test2", subtitle: "SubTest2", data: nil)
-//    let controller = MapViewController() // Grab local instance cuz we don't want to use mocks for these
-//    let _ = try? controller.add([testAnno1, testAnno2])
-//
-//    //Tests
-//    let _ = try? controller.removeAnnotations()
-//    XCTAssertNil(controller.currentAnnotations[testAnno1])
-//    XCTAssertNil(controller.currentAnnotations[testAnno2])
-//  }
+    //Tests
+    XCTAssertNotNil(controller.currentAnnotations[testAnno1])
+    XCTAssertNotNil(controller.currentAnnotations[testAnno2])
+
+  }
+
+  func testRemoveSingleAnnotation(){
+    let testAnno1 = PeliasMapkitAnnotation(coordinate: CLLocationCoordinate2DMake(0.0, 0.0), title: "Test1", subtitle: "SubTest1", data: nil)
+    let controller = MapViewController() // Grab local instance cuz we don't want to use mocks for these
+    let _ = try? controller.add([testAnno1])
+
+    //Tests
+    let _ = try? controller.remove(testAnno1)
+    XCTAssertNil(controller.currentAnnotations[testAnno1])
+
+  }
+
+  func testRemoveAllAnnotations(){
+    let testAnno1 = PeliasMapkitAnnotation(coordinate: CLLocationCoordinate2DMake(0.0, 0.0), title: "Test1", subtitle: "SubTest1", data: nil)
+    let testAnno2 = PeliasMapkitAnnotation(coordinate: CLLocationCoordinate2DMake(1.0, 1.0), title: "Test2", subtitle: "SubTest2", data: nil)
+    let controller = MapViewController() // Grab local instance cuz we don't want to use mocks for these
+    let _ = try? controller.add([testAnno1, testAnno2])
+
+    //Tests
+    let _ = try? controller.removeAnnotations()
+    XCTAssertNil(controller.currentAnnotations[testAnno1])
+    XCTAssertNil(controller.currentAnnotations[testAnno2])
+  }
 
 }
