@@ -193,10 +193,17 @@ public class MapViewController: UIViewController, LocationManagerDelegate, TGRec
   override public func viewDidLoad() {
     super.viewDidLoad()
     LocationManager.sharedManager.delegate = self
+    
     self.view.addSubview(tgViewController.view)
+    
     tgViewController.gestureDelegate = self
   }
 
+  override public func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {
+    super.viewWillTransitionToSize(size, withTransitionCoordinator: coordinator)
+    tgViewController.viewWillTransitionToSize(size, withTransitionCoordinator:coordinator)
+  }
+    
   override public func viewWillAppear(animated: Bool) {
     super.viewWillAppear(animated)
     let viewRect = view.bounds
