@@ -21,10 +21,6 @@ class TestMapViewController: MapViewController {
   func shouldShowCurrentLocationValue() -> Bool {
     return shouldShowCurrentLocation
   }
-  override func markerAdd() -> TGMapMarkerId {
-    //Mocked out to always return a valid ID
-    return 1
-  }
 }
 
 class MockHTTPHandler: TGHttpHandler {
@@ -36,19 +32,197 @@ class MockHTTPHandler: TGHttpHandler {
 class MapViewControllerTests: XCTestCase {
 
   var controller = TestMapViewController()
+  var tgViewController = TestTGMapViewController()
   let mockLocation = CLLocation(latitude: 0.0, longitude: 0.0) // Null Island!
 
   override func setUp() {
-    controller = TestMapViewController()
+    controller.tgViewController = tgViewController
     let mockHTTP = MockHTTPHandler()
-    controller.httpHandler = mockHTTP
+    controller.tgViewController.httpHandler = mockHTTP
   }
 
   func testInit() {
     XCTAssertNotNil(controller)
     XCTAssertFalse(controller.shouldFollowCurrentLocation)
   }
+  
+  func testAnimateToPosition() {
+    let point = TGGeoPoint(longitude: 70.0, latitude: 40.0)
+    controller.animateToPosition(point, withDuration: 3)
+    XCTAssertEqual(tgViewController.coordinate.longitude, 70.0)
+    XCTAssertEqual(tgViewController.coordinate.latitude, 40.0)
+    XCTAssertEqual(tgViewController.duration, 3)
+  }
+  
+  func testAnimateToPositionWithEase() {
+    let point = TGGeoPoint(longitude: 70.0, latitude: 40.0)
+    controller.animateToPosition(point, withDuration: 3, withEaseType: TGEaseType.Cubic)
+    XCTAssertEqual(tgViewController.coordinate.longitude, 70.0)
+    XCTAssertEqual(tgViewController.coordinate.latitude, 40.0)
+    XCTAssertEqual(tgViewController.duration, 3)
+    XCTAssertEqual(tgViewController.easeType, TGEaseType.Cubic)
+  }
 
+  func testAnimateToZoom() {
+    controller.animateToZoomLevel(1.0, withDuration: 2.0)
+    XCTAssertEqual(tgViewController.zoom, 1.0)
+    XCTAssertEqual(tgViewController.duration, 2.0)
+  }
+
+  func testAnimateToZoomWithEase() {
+    controller.animateToZoomLevel(1.0, withDuration: 2.0, withEaseType: TGEaseType.Cubic)
+    XCTAssertEqual(tgViewController.zoom, 1.0)
+    XCTAssertEqual(tgViewController.duration, 2.0)
+    XCTAssertEqual(tgViewController.easeType, TGEaseType.Cubic)
+  }
+  
+  func testAnimateToRotation() {
+    controller.animateToRotation(1.0, withDuration: 9.0)
+    XCTAssertEqual(tgViewController.rotation, 1.0)
+    XCTAssertEqual(tgViewController.duration, 9.0)
+  }
+  
+  func testAnimateToRotationWithEase() {
+    controller.animateToRotation(1.0, withDuration: 9.0, withEaseType: TGEaseType.Linear)
+    XCTAssertEqual(tgViewController.rotation, 1.0)
+    XCTAssertEqual(tgViewController.duration, 9.0)
+    XCTAssertEqual(tgViewController.easeType, TGEaseType.Linear)
+  }
+  
+  func testAnimateToTilt() {
+    controller.animateToTilt(3.0, withDuration: 4.0)
+    XCTAssertEqual(tgViewController.tilt, 3.0)
+    XCTAssertEqual(tgViewController.duration, 4.0)
+  }
+  
+  func testAnimateToTiltWithEase() {
+    controller.animateToTilt(3.0, withDuration: 4.0, withEaseType: TGEaseType.Sine)
+    XCTAssertEqual(tgViewController.tilt, 3.0)
+    XCTAssertEqual(tgViewController.duration, 4.0)
+    XCTAssertEqual(tgViewController.easeType, TGEaseType.Sine)
+  }
+  
+  func testMarkerRemoveAll() {
+    controller.markerRemoveAll()
+    XCTAssertTrue(tgViewController.removedAllMarkers)
+  }
+
+  func testMarkerAdd() {
+    controller.markerAdd()
+    XCTAssertTrue(tgViewController.addedMarker)
+  }
+  
+  func testMarkerSetStyling() {
+    controller.markerSetStyling(8, styling: "styling")
+    XCTAssertEqual(tgViewController.currMarkerId, 8)
+    XCTAssertEqual(tgViewController.styling, "styling")
+  }
+  
+  func testMarkerSetPoint() {
+    let point = TGGeoPoint(longitude: 70.0, latitude: 40.0)
+    controller.markerSetPoint(8, coordinates: point)
+    XCTAssertEqual(tgViewController.currMarkerId, 8)
+    XCTAssertEqual(tgViewController.coordinate.longitude, 70.0)
+    XCTAssertEqual(tgViewController.coordinate.latitude, 40.0)
+  }
+  
+  func testMarkerSetPointWithEase() {
+    let point = TGGeoPoint(longitude: 70.0, latitude: 40.0)
+    controller.markerSetPointEased(8, coordinates: point, duration: 7, easeType: TGEaseType.Cubic)
+    XCTAssertEqual(tgViewController.currMarkerId, 8)
+    XCTAssertEqual(tgViewController.coordinate.longitude, 70.0)
+    XCTAssertEqual(tgViewController.coordinate.latitude, 40.0)
+    XCTAssertEqual(tgViewController.duration, 7)
+    XCTAssertEqual(tgViewController.easeType, TGEaseType.Cubic)
+  }
+  
+  func testMarkerSetPolyline() {
+    let line = TGGeoPolyline()
+    controller.markerSetPolyline(1, polyline: line)
+    XCTAssertEqual(tgViewController.currMarkerId, 1)
+    XCTAssertEqual(tgViewController.polyline, line)
+  }
+  
+  func testMarkerSetPolygon() {
+    let polygon = TGGeoPolygon()
+    controller.markerSetPolygon(1, polygon: polygon)
+    XCTAssertEqual(tgViewController.currMarkerId, 1)
+    XCTAssertEqual(tgViewController.polygon, polygon)
+  }
+  
+  func testMarkerSetVisible() {
+    controller.markerSetVisible(2, visible: true)
+    XCTAssertEqual(tgViewController.currMarkerId, 2)
+    XCTAssertTrue(tgViewController.markerVisible)
+  }
+  
+  func testMarkerSetImage() {
+    let image = UIImage()
+    controller.markerSetImage(4, image: image)
+    XCTAssertEqual(tgViewController.currMarkerId, 4)
+    XCTAssertEqual(tgViewController.markerImage, image)
+  }
+  
+  func testMarkerRemove() {
+    controller.markerRemove(5)
+    XCTAssertEqual(tgViewController.currMarkerId, 5)
+  }
+  
+  func testLoadSceneFile() {
+    controller.loadSceneFile("path")
+    XCTAssertEqual(tgViewController.scenePath, "path")
+  }
+  
+  func testLoadSceneFileWithUpdates() {
+    let updates = [TGSceneUpdate]()
+    controller.loadSceneFile("path", sceneUpdates: updates)
+    XCTAssertEqual(tgViewController.scenePath, "path")
+    XCTAssertEqual(tgViewController.sceneUpdates, updates)
+  }
+  
+  func testLoadSceneFileAsync() {
+    controller.loadSceneFileAsync("path")
+    XCTAssertEqual(tgViewController.scenePath, "path")
+  }
+
+  func testLoadSceneFileAsyncWithUpdates() {
+    let updates = [TGSceneUpdate]()
+    controller.loadSceneFileAsync("path", sceneUpdates: updates)
+    XCTAssertEqual(tgViewController.scenePath, "path")
+    XCTAssertEqual(tgViewController.sceneUpdates, updates)
+  }
+
+  func testQueueSceneUpdate() {
+    controller.queueSceneUpdate("path", withValue: "value")
+    XCTAssertEqual(tgViewController.sceneUpdateComponentPath, "path")
+    XCTAssertEqual(tgViewController.sceneUpdateValue, "value")
+  }
+
+  func testQueueSceneUpdates() {
+    let updates = [TGSceneUpdate]()
+    controller.queueSceneUpdates(updates)
+    XCTAssertEqual(tgViewController.sceneUpdates, updates)
+    
+  }
+  
+  func testApplySceneUpdates() {
+    controller.applySceneUpdates()
+    XCTAssertTrue(tgViewController.appliedSceneUpdates)
+  }
+
+  func testLngLatToScreenPosition() {
+    let point = TGGeoPointMake(70.0, 40.0)
+    controller.lngLatToScreenPosition(point)
+    XCTAssertEqual(tgViewController.lngLatForScreenPosition.longitude, 70.0)
+    XCTAssertEqual(tgViewController.lngLatForScreenPosition.latitude, 40.0)
+  }
+
+  func testScreenPositionToLngLat() {
+    let point = CGPointMake(1, 2)
+    controller.screenPositionToLngLat(point)
+    XCTAssertEqual(tgViewController.screenPositionForLngLat, point)
+  }
+  
   func testFindMeButtonInitialState() {
     //Test Initial State
     XCTAssertTrue(controller.findMeButton.hidden)

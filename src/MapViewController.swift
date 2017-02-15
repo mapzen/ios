@@ -31,6 +31,51 @@ public class MapViewController: UIViewController, LocationManagerDelegate, TGRec
   public var findMeButton = UIButton(type: .Custom)
   public var currentAnnotations: [PeliasMapkitAnnotation : TGMapMarkerId] = Dictionary()
 
+  public var cameraType: TGCameraType {
+    set {
+      tgViewController.cameraType = cameraType
+    }
+    get {
+      return tgViewController.cameraType
+    }
+  }
+  
+  public var position: TGGeoPoint {
+    set {
+      tgViewController.position = position
+    }
+    get {
+      return tgViewController.position
+    }
+  }
+  
+  public var zoom: Float {
+    set {
+      tgViewController.zoom = zoom
+    }
+    get {
+      return tgViewController.zoom
+    }
+  }
+  
+  public var rotation: Float {
+    set {
+      tgViewController.rotation = rotation
+    }
+    get {
+      return tgViewController.rotation
+    }
+  }
+  
+  public var tilt: Float {
+    set {
+      tgViewController.tilt = tilt
+    }
+    get {
+      return tgViewController.tilt
+    }
+  }
+
   init(){
     super.init(nibName: nil, bundle: nil)
     defer {
@@ -45,6 +90,114 @@ public class MapViewController: UIViewController, LocationManagerDelegate, TGRec
     }
   }
 
+  public func animateToPosition(position: TGGeoPoint, withDuration seconds: Float) {
+    tgViewController.animateToPosition(position, withDuration: seconds)
+  }
+  
+  public func animateToPosition(position: TGGeoPoint, withDuration seconds: Float, withEaseType easeType: TGEaseType) {
+    tgViewController.animateToPosition(position, withDuration: seconds, withEaseType: easeType)
+  }
+  
+  public func animateToZoomLevel(zoomLevel: Float, withDuration seconds: Float) {
+    tgViewController.animateToZoomLevel(zoomLevel, withDuration: seconds)
+  }
+  
+  public func animateToZoomLevel(zoomLevel: Float, withDuration seconds: Float, withEaseType easeType: TGEaseType) {
+    tgViewController.animateToZoomLevel(zoomLevel, withDuration: seconds, withEaseType: easeType)
+  }
+  
+  public func animateToRotation(radians: Float, withDuration seconds: Float) {
+    tgViewController.animateToRotation(radians, withDuration: seconds)
+  }
+  
+  public func animateToRotation(radians: Float, withDuration seconds: Float, withEaseType easeType: TGEaseType) {
+    tgViewController.animateToRotation(radians, withDuration: seconds, withEaseType: easeType)
+  }
+  
+  public func animateToTilt(radians: Float, withDuration seconds: Float) {
+    tgViewController.animateToTilt(radians, withDuration: seconds)
+  }
+  
+  public func animateToTilt(radians: Float, withDuration seconds: Float, withEaseType easeType: TGEaseType) {
+    tgViewController.animateToTilt(radians, withDuration: seconds, withEaseType: easeType)
+  }
+  
+  public func markerRemoveAll() {
+    tgViewController.markerRemoveAll()
+  }
+  
+  public func markerAdd() -> TGMapMarkerId {
+    return tgViewController.markerAdd()
+  }
+  
+  public func markerSetStyling(identifier: TGMapMarkerId, styling: String) -> Bool {
+    return tgViewController.markerSetStyling(identifier, styling: styling)
+  }
+  
+  public func markerSetPoint(identifier: TGMapMarkerId, coordinates coordinate: TGGeoPoint) -> Bool {
+    return tgViewController.markerSetPoint(identifier, coordinates: coordinate)
+  }
+  
+  public func markerSetPointEased(identifier: TGMapMarkerId, coordinates coordinate: TGGeoPoint, duration: Float, easeType ease: TGEaseType) -> Bool {
+    return tgViewController.markerSetPointEased(identifier, coordinates: coordinate, duration: duration, easeType: ease)
+  }
+  
+  public func markerSetPolyline(identifier: TGMapMarkerId, polyline: TGGeoPolyline) -> Bool {
+    return tgViewController.markerSetPolyline(identifier, polyline: polyline)
+  }
+  
+  public func markerSetPolygon(identifier: TGMapMarkerId, polygon: TGGeoPolygon) -> Bool {
+    return tgViewController.markerSetPolygon(identifier, polygon: polygon)
+  }
+  
+  public func markerSetVisible(identifier: TGMapMarkerId, visible: Bool) -> Bool {
+    return tgViewController.markerSetVisible(identifier, visible: visible)
+  }
+  
+  public func markerSetImage(identifier: TGMapMarkerId, image: UIImage) -> Bool {
+    return tgViewController.markerSetImage(identifier, image: image)
+  }
+  
+  public func markerRemove(marker: TGMapMarkerId) -> Bool {
+    return tgViewController.markerRemove(marker)
+  }
+  
+  public func loadSceneFile(path: String) {
+    tgViewController.loadSceneFile(path)
+  }
+  
+  public func loadSceneFile(path: String, sceneUpdates: [TGSceneUpdate]) {
+    tgViewController.loadSceneFile(path, sceneUpdates: sceneUpdates)
+  }
+  
+  public func loadSceneFileAsync(path: String) {
+    tgViewController.loadSceneFileAsync(path)
+  }
+  
+  public func loadSceneFileAsync(path: String, sceneUpdates: [TGSceneUpdate]) {
+    tgViewController.loadSceneFileAsync(path, sceneUpdates: sceneUpdates)
+  }
+  
+  public func queueSceneUpdate(componentPath: String, withValue value: String) {
+    tgViewController.queueSceneUpdate(componentPath, withValue: value)
+  }
+  
+  public func queueSceneUpdates(sceneUpdates: [TGSceneUpdate]) {
+    tgViewController.queueSceneUpdates(sceneUpdates)
+  }
+  
+  public func applySceneUpdates() {
+    tgViewController.applySceneUpdates()
+  }
+  
+  public func lngLatToScreenPosition(lngLat: TGGeoPoint) -> CGPoint {
+    return tgViewController.lngLatToScreenPosition(lngLat)
+  }
+  
+  public func screenPositionToLngLat(screenPosition: CGPoint) -> TGGeoPoint {
+    return tgViewController.screenPositionToLngLat(screenPosition)
+  }
+  
   //! Returns whether or not the map was centered on the device's current location
   public func resetCameraOnCurrentLocation(tilt: Float = 0.0, zoomLevel: Float = 16.0, animationDuration: Float = 1.0) -> Bool {
     guard let marker = currentLocationGem else { return false }
