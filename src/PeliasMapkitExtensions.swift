@@ -61,12 +61,12 @@ import Pelias
 public let PeliasIDKey: String = "PeliasOSMIDKey"
 public let PeliasDataSourceKey: String = "PeliasDataSourceKey"
 
-public class PeliasMapkitAnnotation: NSObject, MKAnnotation {
+open class PeliasMapkitAnnotation: NSObject, MKAnnotation {
 
-  public let coordinate: CLLocationCoordinate2D
-  public let title: String?
-  public let subtitle: String?
-  public let data: [String: AnyObject]?
+  open let coordinate: CLLocationCoordinate2D
+  open let title: String?
+  open let subtitle: String?
+  open let data: [String: AnyObject]?
 
   public init(coordinate: CLLocationCoordinate2D, title: String?, subtitle: String?, data: [String:AnyObject]?) {
     self.coordinate = coordinate
@@ -104,7 +104,7 @@ public extension PeliasResponse {
 
         //MKPlacemark
         let name = featureProperties["label"] as? String
-        let mapAnnotation = PeliasMapkitAnnotation(coordinate: coordinate, title: name, subtitle: nil, data: addressDictionary)
+        let mapAnnotation = PeliasMapkitAnnotation(coordinate: coordinate, title: name, subtitle: nil, data: addressDictionary as [String : AnyObject]?)
 
         mapItems.append(mapAnnotation)
       }

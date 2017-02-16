@@ -29,7 +29,7 @@ class AutocompleteTableVC: UITableViewController, UISearchResultsUpdating, UISea
     manager.delegate = self
   }
   
-  override func viewDidAppear(animated: Bool) {
+  override func viewDidAppear(_ animated: Bool) {
     super.viewDidAppear(animated)
     if manager.isInUseAuthorized() || manager.isAlwaysAuthorized() {
       manager.requestLocation()
@@ -40,19 +40,19 @@ class AutocompleteTableVC: UITableViewController, UISearchResultsUpdating, UISea
 
   // MARK: - Table view data source
   
-  override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+  override func numberOfSections(in tableView: UITableView) -> Int {
     return 1
   }
   
-  override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+  override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     if let unwrappedResults = results {
       return unwrappedResults.count
     }
     return 0
   }
   
-  func updateSearchResultsForSearchController(searchController: UISearchController) {
-    if let searchText = searchController.searchBar.text where searchController.searchBar.text?.isEmpty == false {
+  func updateSearchResults(for searchController: UISearchController) {
+    if let searchText = searchController.searchBar.text, searchController.searchBar.text?.isEmpty == false {
       var geoPoint = GeoPoint(latitude: 40.7312973034393, longitude: -73.99896644276561)
       if let location = currentLocation {
         geoPoint = GeoPoint(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
@@ -65,15 +65,15 @@ class AutocompleteTableVC: UITableViewController, UISearchResultsUpdating, UISea
     }
   }
   
-  override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-    let cell = tableView.dequeueReusableCellWithIdentifier("basicCellIdent", forIndexPath: indexPath)
+  override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    let cell = tableView.dequeueReusableCell(withIdentifier: "basicCellIdent", for: indexPath)
     cell.textLabel?.text = results?[indexPath.row].title
     return cell
   }
 
-  override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+  override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     searchController.searchBar.resignFirstResponder()
-    tableView.deselectRowAtIndexPath(indexPath, animated: true)
+    tableView.deselectRow(at: indexPath, animated: true)
   }
 
   //MARK: - LocationManager Delegate
@@ -82,7 +82,7 @@ class AutocompleteTableVC: UITableViewController, UISearchResultsUpdating, UISea
     manager.startUpdatingLocation()
   }
 
-  func locationDidUpdate(location: CLLocation) {
+  func locationDidUpdate(_ location: CLLocation) {
     currentLocation = location
   }
 }
