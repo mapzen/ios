@@ -17,7 +17,7 @@ import OnTheRoad
   case generalError, annotationDoesNotExist, apiKeyNotSet, routeDoesNotExist
 }
 
-open class MapViewController: TGMapViewController, LocationManagerDelegate, TGRecognizerDelegate {
+open class MapViewController: UIViewController, LocationManagerDelegate, TGRecognizerDelegate {
 
   //Error Domains for NSError Appeasement
   open static let MapzenGeneralErrorDomain = "MapzenGeneralErrorDomain"
@@ -31,7 +31,7 @@ open class MapViewController: TGMapViewController, LocationManagerDelegate, TGRe
   open var findMeButton = UIButton(type: .custom)
   open var currentAnnotations: [PeliasMapkitAnnotation : TGMapMarkerId] = Dictionary()
 
-  public var cameraType: TGCameraType {
+  open var cameraType: TGCameraType {
     set {
       tgViewController.cameraType = cameraType
     }
@@ -40,7 +40,7 @@ open class MapViewController: TGMapViewController, LocationManagerDelegate, TGRe
     }
   }
   
-  public var position: TGGeoPoint {
+  open var position: TGGeoPoint {
     set {
       tgViewController.position = position
     }
@@ -49,7 +49,7 @@ open class MapViewController: TGMapViewController, LocationManagerDelegate, TGRe
     }
   }
   
-  public var zoom: Float {
+  open var zoom: Float {
     set {
       tgViewController.zoom = zoom
     }
@@ -58,7 +58,7 @@ open class MapViewController: TGMapViewController, LocationManagerDelegate, TGRe
     }
   }
   
-  public var rotation: Float {
+  open var rotation: Float {
     set {
       tgViewController.rotation = rotation
     }
@@ -67,7 +67,7 @@ open class MapViewController: TGMapViewController, LocationManagerDelegate, TGRe
     }
   }
   
-  public var tilt: Float {
+  open var tilt: Float {
     set {
       tgViewController.tilt = tilt
     }
@@ -90,112 +90,112 @@ open class MapViewController: TGMapViewController, LocationManagerDelegate, TGRe
     }
   }
 
-  public func animateToPosition(position: TGGeoPoint, withDuration seconds: Float) {
-    tgViewController.animateToPosition(position, withDuration: seconds)
+  open func animate(toPosition position: TGGeoPoint, withDuration seconds: Float) {
+    tgViewController.animate(toPosition: position, withDuration: seconds)
   }
   
-  public func animateToPosition(position: TGGeoPoint, withDuration seconds: Float, withEaseType easeType: TGEaseType) {
-    tgViewController.animateToPosition(position, withDuration: seconds, withEaseType: easeType)
+  open func animate(toPosition position: TGGeoPoint, withDuration seconds: Float, with easeType: TGEaseType) {
+    tgViewController.animate(toPosition: position, withDuration: seconds, with: easeType)
   }
   
-  public func animateToZoomLevel(zoomLevel: Float, withDuration seconds: Float) {
-    tgViewController.animateToZoomLevel(zoomLevel, withDuration: seconds)
+  open func animate(toZoomLevel zoomLevel: Float, withDuration seconds: Float) {
+    tgViewController.animate(toZoomLevel: zoomLevel, withDuration: seconds)
   }
   
-  public func animateToZoomLevel(zoomLevel: Float, withDuration seconds: Float, withEaseType easeType: TGEaseType) {
-    tgViewController.animateToZoomLevel(zoomLevel, withDuration: seconds, withEaseType: easeType)
+  open func animate(toZoomLevel zoomLevel: Float, withDuration seconds: Float, with easeType: TGEaseType) {
+    tgViewController.animate(toZoomLevel: zoomLevel, withDuration: seconds, with: easeType)
   }
   
-  public func animateToRotation(radians: Float, withDuration seconds: Float) {
-    tgViewController.animateToRotation(radians, withDuration: seconds)
+  open func animate(toRotation radians: Float, withDuration seconds: Float) {
+    tgViewController.animate(toRotation: radians, withDuration: seconds)
   }
   
-  public func animateToRotation(radians: Float, withDuration seconds: Float, withEaseType easeType: TGEaseType) {
-    tgViewController.animateToRotation(radians, withDuration: seconds, withEaseType: easeType)
+  open func animate(toRotation radians: Float, withDuration seconds: Float, with easeType: TGEaseType) {
+    tgViewController.animate(toRotation: radians, withDuration: seconds, with: easeType)
   }
   
-  public func animateToTilt(radians: Float, withDuration seconds: Float) {
-    tgViewController.animateToTilt(radians, withDuration: seconds)
+  open func animate(toTilt radians: Float, withDuration seconds: Float) {
+    tgViewController.animate(toTilt: radians, withDuration: seconds)
   }
   
-  public func animateToTilt(radians: Float, withDuration seconds: Float, withEaseType easeType: TGEaseType) {
-    tgViewController.animateToTilt(radians, withDuration: seconds, withEaseType: easeType)
+  open func animate(toTilt radians: Float, withDuration seconds: Float, with easeType: TGEaseType) {
+    tgViewController.animate(toTilt: radians, withDuration: seconds, with: easeType)
   }
   
-  public func markerRemoveAll() {
+  open func markerRemoveAll() {
     tgViewController.markerRemoveAll()
   }
   
-  public func markerAdd() -> TGMapMarkerId {
+  open func markerAdd() -> TGMapMarkerId {
     return tgViewController.markerAdd()
   }
   
-  public func markerSetStyling(identifier: TGMapMarkerId, styling: String) -> Bool {
+  open func markerSetStyling(_ identifier: TGMapMarkerId, styling: String) -> Bool {
     return tgViewController.markerSetStyling(identifier, styling: styling)
   }
   
-  public func markerSetPoint(identifier: TGMapMarkerId, coordinates coordinate: TGGeoPoint) -> Bool {
+  open func markerSetPoint(_ identifier: TGMapMarkerId, coordinates coordinate: TGGeoPoint) -> Bool {
     return tgViewController.markerSetPoint(identifier, coordinates: coordinate)
   }
   
-  public func markerSetPointEased(identifier: TGMapMarkerId, coordinates coordinate: TGGeoPoint, duration: Float, easeType ease: TGEaseType) -> Bool {
+  open func markerSetPointEased(_ identifier: TGMapMarkerId, coordinates coordinate: TGGeoPoint, duration: Float, easeType ease: TGEaseType) -> Bool {
     return tgViewController.markerSetPointEased(identifier, coordinates: coordinate, duration: duration, easeType: ease)
   }
   
-  public func markerSetPolyline(identifier: TGMapMarkerId, polyline: TGGeoPolyline) -> Bool {
+  open func markerSetPolyline(_ identifier: TGMapMarkerId, polyline: TGGeoPolyline) -> Bool {
     return tgViewController.markerSetPolyline(identifier, polyline: polyline)
   }
   
-  public func markerSetPolygon(identifier: TGMapMarkerId, polygon: TGGeoPolygon) -> Bool {
+  open func markerSetPolygon(_ identifier: TGMapMarkerId, polygon: TGGeoPolygon) -> Bool {
     return tgViewController.markerSetPolygon(identifier, polygon: polygon)
   }
   
-  public func markerSetVisible(identifier: TGMapMarkerId, visible: Bool) -> Bool {
+  open func markerSetVisible(_ identifier: TGMapMarkerId, visible: Bool) -> Bool {
     return tgViewController.markerSetVisible(identifier, visible: visible)
   }
   
-  public func markerSetImage(identifier: TGMapMarkerId, image: UIImage) -> Bool {
+  open func markerSetImage(_ identifier: TGMapMarkerId, image: UIImage) -> Bool {
     return tgViewController.markerSetImage(identifier, image: image)
   }
   
-  public func markerRemove(marker: TGMapMarkerId) -> Bool {
+  open func markerRemove(_ marker: TGMapMarkerId) -> Bool {
     return tgViewController.markerRemove(marker)
   }
   
-  public func loadSceneFile(path: String) {
+  open func loadSceneFile(_ path: String) {
     tgViewController.loadSceneFile(path)
   }
   
-  public func loadSceneFile(path: String, sceneUpdates: [TGSceneUpdate]) {
+  open func loadSceneFile(_ path: String, sceneUpdates: [TGSceneUpdate]) {
     tgViewController.loadSceneFile(path, sceneUpdates: sceneUpdates)
   }
   
-  public func loadSceneFileAsync(path: String) {
+  open func loadSceneFileAsync(_ path: String) {
     tgViewController.loadSceneFileAsync(path)
   }
   
-  public func loadSceneFileAsync(path: String, sceneUpdates: [TGSceneUpdate]) {
+  open func loadSceneFileAsync(_ path: String, sceneUpdates: [TGSceneUpdate]) {
     tgViewController.loadSceneFileAsync(path, sceneUpdates: sceneUpdates)
   }
   
-  public func queueSceneUpdate(componentPath: String, withValue value: String) {
+  open func queueSceneUpdate(_ componentPath: String, withValue value: String) {
     tgViewController.queueSceneUpdate(componentPath, withValue: value)
   }
   
-  public func queueSceneUpdates(sceneUpdates: [TGSceneUpdate]) {
-    tgViewController.queueSceneUpdates(sceneUpdates)
+  open func queue(_ sceneUpdates: [TGSceneUpdate]) {
+    tgViewController.queue(sceneUpdates)
   }
   
-  public func applySceneUpdates() {
+  open func applySceneUpdates() {
     tgViewController.applySceneUpdates()
   }
   
-  public func lngLatToScreenPosition(lngLat: TGGeoPoint) -> CGPoint {
-    return tgViewController.lngLatToScreenPosition(lngLat)
+  open func lngLat(toScreenPosition lngLat: TGGeoPoint) -> CGPoint {
+    return tgViewController.lngLat(toScreenPosition: lngLat)
   }
   
-  public func screenPositionToLngLat(screenPosition: CGPoint) -> TGGeoPoint {
-    return tgViewController.screenPositionToLngLat(screenPosition)
+  open func screenPosition(toLngLat screenPosition: CGPoint) -> TGGeoPoint {
+    return tgViewController.screenPosition(toLngLat: screenPosition)
   }
   
   //! Returns whether or not the map was centered on the device's current location
@@ -203,9 +203,9 @@ open class MapViewController: TGMapViewController, LocationManagerDelegate, TGRe
     guard let marker = currentLocationGem else { return false }
     guard let point = lastSetPoint else { return false }
     if marker == 0 { return false } // Invalid Marker
-    tgViewController.animateToZoomLevel(zoomLevel, withDuration: animationDuration)
-    tgViewController.animateToPosition(point, withDuration: animationDuration)
-    tgViewController.animateToTilt(tilt, withDuration: animationDuration)
+    tgViewController.animate(toZoomLevel: zoomLevel, withDuration: animationDuration)
+    tgViewController.animate(toPosition: point, withDuration: animationDuration)
+    tgViewController.animate(toTilt: tilt, withDuration: animationDuration)
     return true
   }
 
@@ -239,7 +239,7 @@ open class MapViewController: TGMapViewController, LocationManagerDelegate, TGRe
     shouldFollowCurrentLocation = enabled
   }
 
-  open func loadScene(named: String, apiKey: String? = nil) throws {
+  open func loadScene(_ named: String, apiKey: String? = nil) throws {
     tgViewController.loadSceneFile(named)
     if let apiKey = apiKey {
       tgViewController.queueSceneUpdate("sources.mapzen.url_params", withValue: "{ api_key: \(apiKey)}")
@@ -317,7 +317,7 @@ open class MapViewController: TGMapViewController, LocationManagerDelegate, TGRe
                     userInfo: nil)
     }
     tgViewController.markerSetStyling(marker, styling: "{ style: ux-route-line-overlay, color: '#06a6d4',  width: [[0,3.5px],[5,5px],[9,7px],[10,6px],[11,6px],[13,8px],[14,9px],[15,10px],[16,11px],[17,12px],[18,10px]], order: 500 }")
-    tgViewController.markerSetPolyline(marker, polyline: polyLine)
+    tgViewController.markerSetPolyline(marker, polyline: polyLine!)
     currentRouteMarker = marker
   }
 
@@ -352,12 +352,12 @@ open class MapViewController: TGMapViewController, LocationManagerDelegate, TGRe
     tgViewController.gestureDelegate = self
   }
 
-  override open func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {
-    super.viewWillTransitionToSize(size, withTransitionCoordinator: coordinator)
-    tgViewController.viewWillTransitionToSize(size, withTransitionCoordinator:coordinator)
+  override open func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+    super.viewWillTransition(to: size, with: coordinator)
+    tgViewController.viewWillTransition(to: size, with:coordinator)
   }
     
-  override open func viewWillAppear(animated: Bool) {
+  override open func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
     let viewRect = view.bounds
     findMeButton.frame = CGRect(x: viewRect.width - 60.0, y: viewRect.height - 100.0, width: CGFloat(48), height: CGFloat(48))

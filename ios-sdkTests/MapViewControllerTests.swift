@@ -38,7 +38,7 @@ class MapViewControllerTests: XCTestCase {
   override func setUp() {
     controller.tgViewController = tgViewController
     let mockHTTP = MockHTTPHandler()
-    controller.tgViewController.httpHandler = mockHTTP
+    controller.tgViewController.httpHandler = mockHTTP!
   }
 
   func testInit() {
@@ -48,7 +48,7 @@ class MapViewControllerTests: XCTestCase {
   
   func testAnimateToPosition() {
     let point = TGGeoPoint(longitude: 70.0, latitude: 40.0)
-    controller.animateToPosition(point, withDuration: 3)
+    controller.animate(toPosition: point, withDuration: 3)
     XCTAssertEqual(tgViewController.coordinate.longitude, 70.0)
     XCTAssertEqual(tgViewController.coordinate.latitude, 40.0)
     XCTAssertEqual(tgViewController.duration, 3)
@@ -56,50 +56,50 @@ class MapViewControllerTests: XCTestCase {
   
   func testAnimateToPositionWithEase() {
     let point = TGGeoPoint(longitude: 70.0, latitude: 40.0)
-    controller.animateToPosition(point, withDuration: 3, withEaseType: TGEaseType.Cubic)
+    controller.animate(toPosition: point, withDuration: 3, with: TGEaseType.cubic)
     XCTAssertEqual(tgViewController.coordinate.longitude, 70.0)
     XCTAssertEqual(tgViewController.coordinate.latitude, 40.0)
     XCTAssertEqual(tgViewController.duration, 3)
-    XCTAssertEqual(tgViewController.easeType, TGEaseType.Cubic)
+    XCTAssertEqual(tgViewController.easeType, TGEaseType.cubic)
   }
 
   func testAnimateToZoom() {
-    controller.animateToZoomLevel(1.0, withDuration: 2.0)
+    controller.animate(toZoomLevel: 1.0, withDuration: 2.0)
     XCTAssertEqual(tgViewController.zoom, 1.0)
     XCTAssertEqual(tgViewController.duration, 2.0)
   }
 
   func testAnimateToZoomWithEase() {
-    controller.animateToZoomLevel(1.0, withDuration: 2.0, withEaseType: TGEaseType.Cubic)
+    controller.animate(toZoomLevel: 1.0, withDuration: 2.0, with: TGEaseType.cubic)
     XCTAssertEqual(tgViewController.zoom, 1.0)
     XCTAssertEqual(tgViewController.duration, 2.0)
-    XCTAssertEqual(tgViewController.easeType, TGEaseType.Cubic)
+    XCTAssertEqual(tgViewController.easeType, TGEaseType.cubic)
   }
   
   func testAnimateToRotation() {
-    controller.animateToRotation(1.0, withDuration: 9.0)
+    controller.animate(toRotation: 1.0, withDuration: 9.0)
     XCTAssertEqual(tgViewController.rotation, 1.0)
     XCTAssertEqual(tgViewController.duration, 9.0)
   }
   
   func testAnimateToRotationWithEase() {
-    controller.animateToRotation(1.0, withDuration: 9.0, withEaseType: TGEaseType.Linear)
+    controller.animate(toRotation: 1.0, withDuration: 9.0, with: TGEaseType.linear)
     XCTAssertEqual(tgViewController.rotation, 1.0)
     XCTAssertEqual(tgViewController.duration, 9.0)
-    XCTAssertEqual(tgViewController.easeType, TGEaseType.Linear)
+    XCTAssertEqual(tgViewController.easeType, TGEaseType.linear)
   }
   
   func testAnimateToTilt() {
-    controller.animateToTilt(3.0, withDuration: 4.0)
+    controller.animate(toTilt: 3.0, withDuration: 4.0)
     XCTAssertEqual(tgViewController.tilt, 3.0)
     XCTAssertEqual(tgViewController.duration, 4.0)
   }
   
   func testAnimateToTiltWithEase() {
-    controller.animateToTilt(3.0, withDuration: 4.0, withEaseType: TGEaseType.Sine)
+    controller.animate(toTilt: 3.0, withDuration: 4.0, with: TGEaseType.sine)
     XCTAssertEqual(tgViewController.tilt, 3.0)
     XCTAssertEqual(tgViewController.duration, 4.0)
-    XCTAssertEqual(tgViewController.easeType, TGEaseType.Sine)
+    XCTAssertEqual(tgViewController.easeType, TGEaseType.sine)
   }
   
   func testMarkerRemoveAll() {
@@ -128,12 +128,12 @@ class MapViewControllerTests: XCTestCase {
   
   func testMarkerSetPointWithEase() {
     let point = TGGeoPoint(longitude: 70.0, latitude: 40.0)
-    controller.markerSetPointEased(8, coordinates: point, duration: 7, easeType: TGEaseType.Cubic)
+    controller.markerSetPointEased(8, coordinates: point, duration: 7, easeType: TGEaseType.cubic)
     XCTAssertEqual(tgViewController.currMarkerId, 8)
     XCTAssertEqual(tgViewController.coordinate.longitude, 70.0)
     XCTAssertEqual(tgViewController.coordinate.latitude, 40.0)
     XCTAssertEqual(tgViewController.duration, 7)
-    XCTAssertEqual(tgViewController.easeType, TGEaseType.Cubic)
+    XCTAssertEqual(tgViewController.easeType, TGEaseType.cubic)
   }
   
   func testMarkerSetPolyline() {
@@ -200,7 +200,7 @@ class MapViewControllerTests: XCTestCase {
 
   func testQueueSceneUpdates() {
     let updates = [TGSceneUpdate]()
-    controller.queueSceneUpdates(updates)
+    controller.queue(updates)
     XCTAssertEqual(tgViewController.sceneUpdates, updates)
     
   }
@@ -212,14 +212,14 @@ class MapViewControllerTests: XCTestCase {
 
   func testLngLatToScreenPosition() {
     let point = TGGeoPointMake(70.0, 40.0)
-    controller.lngLatToScreenPosition(point)
+    controller.lngLat(toScreenPosition: point)
     XCTAssertEqual(tgViewController.lngLatForScreenPosition.longitude, 70.0)
     XCTAssertEqual(tgViewController.lngLatForScreenPosition.latitude, 40.0)
   }
 
   func testScreenPositionToLngLat() {
-    let point = CGPointMake(1, 2)
-    controller.screenPositionToLngLat(point)
+    let point = CGPoint(x: 1, y: 2)
+    controller.screenPosition(toLngLat: point)
     XCTAssertEqual(tgViewController.screenPositionForLngLat, point)
   }
   

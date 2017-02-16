@@ -1,30 +1,20 @@
 PODS:
   - OnTheRoad (1.0.0-beta1)
-  - Pelias (1.0.0-beta3):
-    - Pelias/Core (= 1.0.0-beta3)
-  - Pelias/Core (1.0.0-beta3)
+  - Pelias (1.0.0-beta4):
+    - Pelias/Core (= 1.0.0-beta4)
+  - Pelias/Core (1.0.0-beta4)
   - Tangram-es (0.4.1)
 
 DEPENDENCIES:
   - OnTheRoad (~> 1.0.0-beta)
-  - Pelias (from `https://github.com/pelias/pelias-ios-sdk.git`, branch `swift3`)
+  - Pelias (~> 1.0.0-beta)
   - Tangram-es (~> 0.4.1)
-
-EXTERNAL SOURCES:
-  Pelias:
-    :branch: swift3
-    :git: https://github.com/pelias/pelias-ios-sdk.git
-
-CHECKOUT OPTIONS:
-  Pelias:
-    :commit: f6f9391766c6540a31012883020c5a2dfd5d6853
-    :git: https://github.com/pelias/pelias-ios-sdk.git
 
 SPEC CHECKSUMS:
   OnTheRoad: 994e273d08efcfb598195f6235bf48d1e525602e
-  Pelias: 73fe42b321402cfe5beaeeb2dd4625ce897ffffe
+  Pelias: 6bcff7e153cdad93faf07028b6eb124636afdfc7
   Tangram-es: 2519005cff500114b8a794be9a0e4c0a52f97fa7
 
-PODFILE CHECKSUM: 4d3eac430614160422fb143a0326004e49d2da89
+PODFILE CHECKSUM: ae3208679a9b5e8b8dcffd3468e03630e1b5fcac
 
 COCOAPODS: 1.1.1

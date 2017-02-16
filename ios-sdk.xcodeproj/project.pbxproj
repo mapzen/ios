@@ -314,7 +314,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0730;
-				LastUpgradeCheck = 0810;
+				LastUpgradeCheck = 0820;
 				ORGANIZATIONNAME = Mapzen;
 				TargetAttributes = {
 					DB7A33D31C8F8E8B009CC743 = {
@@ -691,6 +691,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = EEFF8429A821CE3BB0733D53 /* Pods-ios-sdkTests.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				DEVELOPMENT_TEAM = LTQC954SPQ;
 				INFOPLIST_FILE = "ios-sdkTests/Info.plist";
@@ -706,6 +707,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = A8BB69C349D7314906580508 /* Pods-ios-sdkTests.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				DEVELOPMENT_TEAM = LTQC954SPQ;
 				INFOPLIST_FILE = "ios-sdkTests/Info.plist";

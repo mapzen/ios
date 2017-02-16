@@ -11,7 +11,7 @@ import OnTheRoad
 import Pelias
 
 protocol RoutingSearchDelegate {
-  func selected( _ location: PeliasMapkitAnnotation )
+  func selected(_ location: PeliasMapkitAnnotation)
 }
 
 class RoutingViewController: UIViewController, RoutingSearchDelegate {
@@ -72,7 +72,6 @@ class RoutingViewController: UIViewController, RoutingSearchDelegate {
                                                 costingModel: .auto,
                                                 costingOption: nil,
                                                 directionsOptions: ["units" : "miles" as NSObject]) { (routingResult, token, error) in
-                                                  print(routingResult?.legs);
                                                   print("Error:\(error)")
                                                   self.currentRouteResult = routingResult
                                                   self.routeResultTable?.show(routingResult!)

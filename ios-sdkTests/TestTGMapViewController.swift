@@ -17,7 +17,7 @@ class TestTGMapViewController: TGMapViewController {
   var styling = ""
   var coordinate = TGGeoPoint()
   var duration: Float = 0.0
-  var easeType = TGEaseType.Cubic
+  var easeType = TGEaseType.cubic
   var polyline = TGGeoPolyline()
   var polygon = TGGeoPolygon()
   var markerVisible = false
@@ -39,19 +39,19 @@ class TestTGMapViewController: TGMapViewController {
     return 1
   }
   
-  override func markerSetStyling(identifier: TGMapMarkerId, styling: String) -> Bool {
+  override func markerSetStyling(_ identifier: TGMapMarkerId, styling: String) -> Bool {
     self.currMarkerId = identifier
     self.styling = styling
     return true
   }
   
-  override func markerSetPoint(identifier: TGMapMarkerId, coordinates coordinate: TGGeoPoint) -> Bool {
+  override func markerSetPoint(_ identifier: TGMapMarkerId, coordinates coordinate: TGGeoPoint) -> Bool {
     self.currMarkerId = identifier
     self.coordinate = coordinate
     return true
   }
   
-  override func markerSetPointEased(identifier: TGMapMarkerId, coordinates coordinate: TGGeoPoint, duration: Float, easeType ease: TGEaseType) -> Bool {
+  override func markerSetPointEased(_ identifier: TGMapMarkerId, coordinates coordinate: TGGeoPoint, duration: Float, easeType ease: TGEaseType) -> Bool {
     self.currMarkerId = identifier
     self.coordinate = coordinate
     self.duration = duration
@@ -59,59 +59,59 @@ class TestTGMapViewController: TGMapViewController {
     return true
   }
   
-  override func markerSetPolyline(identifier: TGMapMarkerId, polyline: TGGeoPolyline) -> Bool {
+  override func markerSetPolyline(_ identifier: TGMapMarkerId, polyline: TGGeoPolyline) -> Bool {
     self.currMarkerId = identifier
     self.polyline = polyline
     return true
   }
   
-  override func markerSetPolygon(identifier: TGMapMarkerId, polygon: TGGeoPolygon) -> Bool {
+  override func markerSetPolygon(_ identifier: TGMapMarkerId, polygon: TGGeoPolygon) -> Bool {
     self.currMarkerId = identifier
     self.polygon = polygon
     return true
   }
   
-  override func markerSetVisible(identifier: TGMapMarkerId, visible: Bool) -> Bool {
+  override func markerSetVisible(_ identifier: TGMapMarkerId, visible: Bool) -> Bool {
     self.currMarkerId = identifier
     self.markerVisible = visible
     return true
   }
   
-  override func markerSetImage(identifier: TGMapMarkerId, image: UIImage) -> Bool {
+  override func markerSetImage(_ identifier: TGMapMarkerId, image: UIImage) -> Bool {
     self.currMarkerId = identifier
     self.markerImage = image
     return true
   }
   
-  override func markerRemove(marker: TGMapMarkerId) -> Bool {
+  override func markerRemove(_ marker: TGMapMarkerId) -> Bool {
     self.currMarkerId = marker
     return true
   }
   
-  override func loadSceneFile(path: String) {
+  override func loadSceneFile(_ path: String) {
     self.scenePath = path
   }
   
-  override func loadSceneFile(path: String, sceneUpdates: [TGSceneUpdate]) {
-    self.scenePath = path
-    self.sceneUpdates = sceneUpdates
-  }
-  
-  override func loadSceneFileAsync(path: String) {
-    self.scenePath = path
-  }
-  
-  override func loadSceneFileAsync(path: String, sceneUpdates: [TGSceneUpdate]) {
+  override func loadSceneFile(_ path: String, sceneUpdates: [TGSceneUpdate]) {
     self.scenePath = path
     self.sceneUpdates = sceneUpdates
   }
   
-  override func queueSceneUpdate(componentPath: String, withValue value: String) {
+  override func loadSceneFileAsync(_ path: String) {
+    self.scenePath = path
+  }
+  
+  override func loadSceneFileAsync(_ path: String, sceneUpdates: [TGSceneUpdate]) {
+    self.scenePath = path
+    self.sceneUpdates = sceneUpdates
+  }
+  
+  override func queueSceneUpdate(_ componentPath: String, withValue value: String) {
     self.sceneUpdateComponentPath = componentPath
     self.sceneUpdateValue = value
   }
   
-  override func queueSceneUpdates(sceneUpdates: [TGSceneUpdate]) {
+  override func queue(_ sceneUpdates: [TGSceneUpdate]) {
     self.sceneUpdates = sceneUpdates
   }
   
@@ -119,55 +119,55 @@ class TestTGMapViewController: TGMapViewController {
     self.appliedSceneUpdates = true
   }
   
-  override func lngLatToScreenPosition(lngLat: TGGeoPoint) -> CGPoint {
+  override func lngLat(toScreenPosition lngLat: TGGeoPoint) -> CGPoint {
     self.lngLatForScreenPosition = lngLat
     return CGPoint()
   }
   
-  override func screenPositionToLngLat(screenPosition: CGPoint) -> TGGeoPoint {
+  override func screenPosition(toLngLat screenPosition: CGPoint) -> TGGeoPoint {
     self.screenPositionForLngLat = screenPosition
     return TGGeoPoint()
   }
   
-  override func animateToPosition(position: TGGeoPoint, withDuration seconds: Float) {
+  override func animate(toPosition position: TGGeoPoint, withDuration seconds: Float) {
     self.coordinate = position
     self.duration = seconds
   }
   
-  override func animateToPosition(position: TGGeoPoint, withDuration seconds: Float, withEaseType easeType: TGEaseType) {
+  override func animate(toPosition position: TGGeoPoint, withDuration seconds: Float, with easeType: TGEaseType) {
     self.coordinate = position
     self.duration = seconds
     self.easeType = easeType
   }
   
-  override func animateToZoomLevel(zoomLevel: Float, withDuration seconds: Float) {
+  override func animate(toZoomLevel zoomLevel: Float, withDuration seconds: Float) {
     self.zoom = zoomLevel
     self.duration = seconds
   }
   
-  override func animateToZoomLevel(zoomLevel: Float, withDuration seconds: Float, withEaseType easeType: TGEaseType) {
+  override func animate(toZoomLevel zoomLevel: Float, withDuration seconds: Float, with easeType: TGEaseType) {
     self.zoom = zoomLevel
     self.duration = seconds
     self.easeType = easeType
   }
   
-  override func animateToRotation(radians: Float, withDuration seconds: Float) {
+  override func animate(toRotation radians: Float, withDuration seconds: Float) {
     self.rotation = radians
     self.duration = seconds
   }
   
-  override func animateToRotation(radians: Float, withDuration seconds: Float, withEaseType easeType: TGEaseType) {
+  override func animate(toRotation radians: Float, withDuration seconds: Float, with easeType: TGEaseType) {
     self.rotation = radians
     self.duration = seconds
     self.easeType = easeType
   }
   
-  override func animateToTilt(radians: Float, withDuration seconds: Float) {
+  override func animate(toTilt radians: Float, withDuration seconds: Float) {
     self.tilt = radians
     self.duration = seconds
   }
   
-  override func animateToTilt(radians: Float, withDuration seconds: Float, withEaseType easeType: TGEaseType) {
+  override func animate(toTilt radians: Float, withDuration seconds: Float, with easeType: TGEaseType) {
     self.tilt = radians
     self.duration = seconds
     self.easeType = easeType
