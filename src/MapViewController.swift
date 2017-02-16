@@ -22,7 +22,7 @@ public class MapViewController: UIViewController, LocationManagerDelegate, TGRec
   //Error Domains for NSError Appeasement
   public static let MapzenGeneralErrorDomain = "MapzenGeneralErrorDomain"
   
-  var tgViewController: TGMapViewController = TGMapViewController()
+  public var tgViewController: TGMapViewController = TGMapViewController()
   var currentLocationGem: TGMapMarkerId?
   var lastSetPoint: TGGeoPoint?
   var shouldShowCurrentLocation = false
