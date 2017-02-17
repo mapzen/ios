@@ -21,16 +21,17 @@ class TangramVC:  MapViewController, MapLoadDelegate, MapSelectDelegate, MapGest
   override func viewDidAppear(_ animated: Bool) {
     super.viewDidAppear(animated)
   }
+
   
   //MARK : MapLoadDelegate
-  open func mapView(_ controller: MapViewController, didLoadSceneAsync scene: String) {
+  open func mapController(_ controller: MapViewController, didLoadSceneAsync scene: String) {
     showCurrentLocation(true)
     showFindMeButon(true)
     showTestMarker()
   }
   
   //MARK : MapSelectDelegate
-  func mapView(_ mapView: MapViewController, didSelectMarker markerPickResult: TGMarkerPickResult?, atScreenPosition position: CGPoint) {
+  func mapController(_ mapView: MapViewController, didSelectMarker markerPickResult: TGMarkerPickResult?, atScreenPosition position: CGPoint) {
     print("markerPicked")
     let alert = UIAlertController(title: "Marker Selected", message: nil, preferredStyle: .alert)
     alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
@@ -38,12 +39,12 @@ class TangramVC:  MapViewController, MapLoadDelegate, MapSelectDelegate, MapGest
   }
   
   //MARK: MapGestureDelegate
-  func mapView(_ view: MapViewController, recognizer: UIGestureRecognizer, shouldRecognizeSingleTapGesture location: CGPoint) -> Bool {
+  func mapController(_ view: MapViewController, recognizer: UIGestureRecognizer, shouldRecognizeSingleTapGesture location: CGPoint) -> Bool {
     print("Don't Recognize Tap")
     return false
   }
   
-  func mapView(_ view: MapViewController, recognizer: UIGestureRecognizer, didRecognizeSingleTapGesture location: CGPoint) {
+  func mapController(_ view: MapViewController, recognizer: UIGestureRecognizer, didRecognizeSingleTapGesture location: CGPoint) {
     print("Map Tapped")
   }
   
