@@ -105,12 +105,13 @@ open class MapViewController: UIViewController, LocationManagerDelegate {
   }
 
   private lazy var mapViewDelegate : MapTGMapViewDelegate = MapTGMapViewDelegate(controller: self)
-  private lazy var mapGestureDelegate : MapTGRecognizerDelegate = MapTGRecognizerDelegate(controller: self)
+  private lazy var mapRecognizerDelegate : MapTGRecognizerDelegate = MapTGRecognizerDelegate(controller: self)
   
   weak open var gestureDelegate: MapGestureDelegate? {
     didSet {
-      mapGestureDelegate.gestureDelegate = gestureDelegate
-      tgViewController.gestureDelegate = mapGestureDelegate
+      mapRecognizerDelegate.gestureDelegate = gestureDelegate
+      //Dont need to set tgViewController.gestureDelegate bc its set in viewDidLoad
+      //tgViewController.gestureDelegate = mapRecognizerDelegate
     }
   }
   
@@ -401,7 +402,7 @@ open class MapViewController: UIViewController, LocationManagerDelegate {
     
     self.view.addSubview(tgViewController.view)
     
-    tgViewController.gestureDelegate = self
+    tgViewController.gestureDelegate = mapRecognizerDelegate
   }
 
   override open func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
