@@ -8,16 +8,22 @@
 
 import UIKit
 import TangramMap
-class TangramVC:  MapViewController{
+class TangramVC:  MapViewController, MapLoadDelegate {
 
   override func viewDidLoad() {
     super.viewDidLoad()
-    let _ = try? loadScene("scene.yaml")
+    self.loadDelegate = self
+    loadSceneFileAsync("scene.yaml")
   }
 
   override func viewDidAppear(_ animated: Bool) {
     super.viewDidAppear(animated)
+  }
+  
+  //MARK : MapLoadDelegate
+  open func mapView(_ controller: MapViewController, didLoadSceneAsync scene: String) {
     showCurrentLocation(true)
     showFindMeButon(true)
   }
+  
 }
