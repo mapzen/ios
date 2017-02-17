@@ -45,7 +45,7 @@ import OnTheRoad
   @objc optional func mapView(_ mapView: MapViewController, didSelectMarker markerPickResult: TGMarkerPickResult?, atScreenPosition position: CGPoint)
 }
 
-open class MapViewController: UIViewController, LocationManagerDelegate, TGRecognizerDelegate {
+open class MapViewController: UIViewController, LocationManagerDelegate {
 
   //Error Domains for NSError Appeasement
   open static let MapzenGeneralErrorDomain = "MapzenGeneralErrorDomain"
