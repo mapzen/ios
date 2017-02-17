@@ -8,11 +8,13 @@
 
 import UIKit
 import TangramMap
-class TangramVC:  MapViewController, MapLoadDelegate {
+class TangramVC:  MapViewController, MapLoadDelegate, MapSelectDelegate, MapGestureDelegate {
 
   override func viewDidLoad() {
     super.viewDidLoad()
     self.loadDelegate = self
+    self.selectDelegate = self
+    self.gestureDelegate = self
     loadSceneFileAsync("scene.yaml")
   }
 
@@ -24,6 +26,31 @@ class TangramVC:  MapViewController, MapLoadDelegate {
   open func mapView(_ controller: MapViewController, didLoadSceneAsync scene: String) {
     showCurrentLocation(true)
     showFindMeButon(true)
+    showTestMarker()
+  }
+  
+  //MARK : MapSelectDelegate
+  func mapView(_ mapView: MapViewController, didSelectMarker markerPickResult: TGMarkerPickResult?, atScreenPosition position: CGPoint) {
+    print("markerPicked")
+    let alert = UIAlertController(title: "Marker Selected", message: nil, preferredStyle: .alert)
+    alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+    self.present(alert, animated: true, completion: nil)
+  }
+  
+  //MARK: MapGestureDelegate
+  func mapView(_ view: MapViewController, recognizer: UIGestureRecognizer, shouldRecognizeSingleTapGesture location: CGPoint) -> Bool {
+    print("Don't Recognize Tap")
+    return false
+  }
+  
+  func mapView(_ view: MapViewController, recognizer: UIGestureRecognizer, didRecognizeSingleTapGesture location: CGPoint) {
+    print("Map Tapped")
+  }
+  
+  private func showTestMarker() {
+    let markerId = markerAdd()
+    markerSetStyling(markerId, styling: "{ style: 'points', color: 'white', size: [50px, 50px], order: 2000, collide: false }")
+    markerSetPoint(markerId, coordinates: TGGeoPoint())
   }
   
 }
