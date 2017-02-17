@@ -8,13 +8,12 @@
 
 import UIKit
 import TangramMap
-class TangramVC:  MapViewController, MapLoadDelegate, MapSelectDelegate, MapGestureDelegate {
+class TangramVC:  MapViewController, MapLoadDelegate, MapSelectDelegate {
 
   override func viewDidLoad() {
     super.viewDidLoad()
     self.loadDelegate = self
     self.selectDelegate = self
-    self.gestureDelegate = self
     loadSceneFileAsync("scene.yaml")
   }
 
@@ -36,16 +35,6 @@ class TangramVC:  MapViewController, MapLoadDelegate, MapSelectDelegate, MapGest
     let alert = UIAlertController(title: "Marker Selected", message: nil, preferredStyle: .alert)
     alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
     self.present(alert, animated: true, completion: nil)
-  }
-  
-  //MARK: MapGestureDelegate
-  func mapController(_ view: MapViewController, recognizer: UIGestureRecognizer, shouldRecognizeSingleTapGesture location: CGPoint) -> Bool {
-    print("Don't Recognize Tap")
-    return false
-  }
-  
-  func mapController(_ view: MapViewController, recognizer: UIGestureRecognizer, didRecognizeSingleTapGesture location: CGPoint) {
-    print("Map Tapped")
   }
   
   private func showTestMarker() {
