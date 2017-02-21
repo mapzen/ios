@@ -39,7 +39,7 @@ class TangramVC:  MapViewController, MapLoadDelegate, MapSelectDelegate {
   
   private func showTestMarker() {
     let markerId = markerAdd()
-    markerSetStyling(markerId, styling: "{ style: 'points', color: 'white', size: [50px, 50px], order: 2000, collide: false }")
+    markerSetStyling(markerId, styling: "{ style: 'points', color: 'white', size: [50px, 50px], order: 2000, collide: false, interactive: true }")
     markerSetPoint(markerId, coordinates: TGGeoPoint())
   }
   
