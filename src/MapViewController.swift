@@ -18,39 +18,39 @@ import OnTheRoad
 }
 
 @objc public protocol MapGestureDelegate : NSObjectProtocol {
-  @objc optional func mapController(_ view: MapViewController, recognizer: UIGestureRecognizer, shouldRecognizeSingleTapGesture location: CGPoint) -> Bool
-  @objc optional func mapController(_ view: MapViewController, recognizer: UIGestureRecognizer, didRecognizeSingleTapGesture location: CGPoint)
-  @objc optional func mapController(_ view: MapViewController, recognizer: UIGestureRecognizer, shouldRecognizeDoubleTapGesture location: CGPoint) -> Bool
-  @objc optional func mapController(_ view: MapViewController, recognizer: UIGestureRecognizer, didRecognizeDoubleTapGesture location: CGPoint)
-  @objc optional func mapController(_ view: MapViewController, recognizer: UIGestureRecognizer, shouldRecognizeLongPressGesture location: CGPoint) -> Bool
-  @objc optional func mapController(_ view: MapViewController, recognizer: UIGestureRecognizer, didRecognizeLongPressGesture location: CGPoint)
+  @objc optional func mapController(_ controller: MapViewController, recognizer: UIGestureRecognizer, shouldRecognizeSingleTapGesture location: CGPoint) -> Bool
+  @objc optional func mapController(_ controller: MapViewController, recognizer: UIGestureRecognizer, didRecognizeSingleTapGesture location: CGPoint)
+  @objc optional func mapController(_ controller: MapViewController, recognizer: UIGestureRecognizer, shouldRecognizeDoubleTapGesture location: CGPoint) -> Bool
+  @objc optional func mapController(_ controller: MapViewController, recognizer: UIGestureRecognizer, didRecognizeDoubleTapGesture location: CGPoint)
+  @objc optional func mapController(_ controller: MapViewController, recognizer: UIGestureRecognizer, shouldRecognizeLongPressGesture location: CGPoint) -> Bool
+  @objc optional func mapController(_ controller: MapViewController, recognizer: UIGestureRecognizer, didRecognizeLongPressGesture location: CGPoint)
 }
 
 public protocol MapPanGestureDelegate : NSObjectProtocol {
-  func mapController(_ view: MapViewController, didPanMap displacement: CGPoint)
+  func mapController(_ controller: MapViewController, didPanMap displacement: CGPoint)
 }
 
 public protocol MapPinchGestureDelegate : NSObjectProtocol {
-  func mapController(_ view: MapViewController, didPinchMap location: CGPoint)
+  func mapController(_ controller: MapViewController, didPinchMap location: CGPoint)
 }
 
 public protocol MapRotateGestureDelegate : NSObjectProtocol {
-  func mapController(_ view: MapViewController, didRotateMap location: CGPoint)
+  func mapController(_ controller: MapViewController, didRotateMap location: CGPoint)
 }
 
 public protocol MapShoveGestureDelegate : NSObjectProtocol {
-  func mapController(_ view: MapViewController, didShoveMap displacement: CGPoint)
+  func mapController(_ controller: MapViewController, didShoveMap displacement: CGPoint)
 }
 
 @objc public protocol MapLoadDelegate : NSObjectProtocol {
   @objc optional func mapController(_ controller: MapViewController, didLoadSceneAsync scene: String)
-  @objc optional func mapControllerDidCompleteLoading(_ mapView: MapViewController)
+  @objc optional func mapControllerDidCompleteLoading(_ controller: MapViewController)
 }
 
 @objc public protocol MapSelectDelegate : NSObjectProtocol {
-  @objc optional func mapController(_ mapView: MapViewController, didSelectFeature feature: [AnyHashable : Any]?, atScreenPosition position: CGPoint)
-  @objc optional func mapController(_ mapView: MapViewController, didSelectLabel labelPickResult: TGLabelPickResult?, atScreenPosition position: CGPoint)
-  @objc optional func mapController(_ mapView: MapViewController, didSelectMarker markerPickResult: TGMarkerPickResult?, atScreenPosition position: CGPoint)
+  @objc optional func mapController(_ controller: MapViewController, didSelectFeature feature: [AnyHashable : Any]?, atScreenPosition position: CGPoint)
+  @objc optional func mapController(_ controller: MapViewController, didSelectLabel labelPickResult: TGLabelPickResult?, atScreenPosition position: CGPoint)
+  @objc optional func mapController(_ controller: MapViewController, didSelectMarker markerPickResult: TGMarkerPickResult?, atScreenPosition position: CGPoint)
 }
 
 open class MapViewController: UIViewController, LocationManagerDelegate {
