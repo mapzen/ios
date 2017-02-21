@@ -14,7 +14,7 @@ class TangramVC:  MapViewController, MapMarkerSelectDelegate {
     super.viewDidLoad()
     markerSelectDelegate = self
     loadSceneFileAsync("scene.yaml") { (scene) in
-      self.showCurrentLocation(true)
+      let _ = self.showCurrentLocation(true)
       self.showFindMeButon(true)
       self.showTestMarker()
     }
@@ -30,8 +30,8 @@ class TangramVC:  MapViewController, MapMarkerSelectDelegate {
 
   private func showTestMarker() {
     let markerId = markerAdd()
-    markerSetStyling(markerId, styling: "{ style: 'points', color: 'white', size: [50px, 50px], collide: false, interactive: true }")
-    markerSetPoint(markerId, coordinates: TGGeoPoint())
+    let _ = markerSetStyling(markerId, styling: "{ style: 'points', color: 'white', size: [50px, 50px], collide: false, interactive: true }")
+    let _ = markerSetPoint(markerId, coordinates: TGGeoPoint())
   }
   
 }

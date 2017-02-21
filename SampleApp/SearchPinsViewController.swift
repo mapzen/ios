@@ -38,6 +38,6 @@ class SearchPinsViewController: MapViewController, UITextFieldDelegate {
     }
 
     searchConfig.focusPoint = geopoint
-    PeliasSearchManager.sharedInstance.performSearch(searchConfig)
+    let _ = PeliasSearchManager.sharedInstance.performSearch(searchConfig)
   }
 }

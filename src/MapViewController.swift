@@ -324,7 +324,7 @@ open class MapViewController: UIViewController, LocationManagerDelegate {
   }
 
   open func enableLocationLayer(_ enabled: Bool) {
-    showCurrentLocation(enabled)
+    let _ = showCurrentLocation(enabled)
     showFindMeButon(enabled)
     enabled ? LocationManager.sharedManager.startUpdatingLocation() : LocationManager.sharedManager.stopUpdatingLocation()
     shouldFollowCurrentLocation = enabled
@@ -429,7 +429,7 @@ open class MapViewController: UIViewController, LocationManagerDelegate {
   }
 
   @objc func defaultFindMeAction(_ button: UIButton, touchEvent: UIEvent) {
-    resetCameraOnCurrentLocation()
+    let _ = resetCameraOnCurrentLocation()
     button.isSelected = !button.isSelected
     shouldFollowCurrentLocation = button.isSelected
   }
@@ -484,7 +484,7 @@ open class MapViewController: UIViewController, LocationManagerDelegate {
 
     if (shouldFollowCurrentLocation) {
       print("Updating for current lat: \(location.coordinate.latitude) & long: \(location.coordinate.longitude)")
-      resetCameraOnCurrentLocation()
+      let _ = resetCameraOnCurrentLocation()
     }
   }
 

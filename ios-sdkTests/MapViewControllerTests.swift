@@ -109,19 +109,19 @@ class MapViewControllerTests: XCTestCase {
   }
 
   func testMarkerAdd() {
-    controller.markerAdd()
+    let _ = controller.markerAdd()
     XCTAssertTrue(tgViewController.addedMarker)
   }
   
   func testMarkerSetStyling() {
-    controller.markerSetStyling(8, styling: "styling")
+    let _ = controller.markerSetStyling(8, styling: "styling")
     XCTAssertEqual(tgViewController.currMarkerId, 8)
     XCTAssertEqual(tgViewController.styling, "styling")
   }
   
   func testMarkerSetPoint() {
     let point = TGGeoPoint(longitude: 70.0, latitude: 40.0)
-    controller.markerSetPoint(8, coordinates: point)
+    let _ = controller.markerSetPoint(8, coordinates: point)
     XCTAssertEqual(tgViewController.currMarkerId, 8)
     XCTAssertEqual(tgViewController.coordinate.longitude, 70.0)
     XCTAssertEqual(tgViewController.coordinate.latitude, 40.0)
@@ -129,7 +129,7 @@ class MapViewControllerTests: XCTestCase {
   
   func testMarkerSetPointWithEase() {
     let point = TGGeoPoint(longitude: 70.0, latitude: 40.0)
-    controller.markerSetPointEased(8, coordinates: point, duration: 7, easeType: TGEaseType.cubic)
+    let _ = controller.markerSetPointEased(8, coordinates: point, duration: 7, easeType: TGEaseType.cubic)
     XCTAssertEqual(tgViewController.currMarkerId, 8)
     XCTAssertEqual(tgViewController.coordinate.longitude, 70.0)
     XCTAssertEqual(tgViewController.coordinate.latitude, 40.0)
@@ -139,33 +139,33 @@ class MapViewControllerTests: XCTestCase {
   
   func testMarkerSetPolyline() {
     let line = TGGeoPolyline()
-    controller.markerSetPolyline(1, polyline: line)
+    let _ = controller.markerSetPolyline(1, polyline: line)
     XCTAssertEqual(tgViewController.currMarkerId, 1)
     XCTAssertEqual(tgViewController.polyline, line)
   }
   
   func testMarkerSetPolygon() {
     let polygon = TGGeoPolygon()
-    controller.markerSetPolygon(1, polygon: polygon)
+    let _ = controller.markerSetPolygon(1, polygon: polygon)
     XCTAssertEqual(tgViewController.currMarkerId, 1)
     XCTAssertEqual(tgViewController.polygon, polygon)
   }
   
   func testMarkerSetVisible() {
-    controller.markerSetVisible(2, visible: true)
+    let _ = controller.markerSetVisible(2, visible: true)
     XCTAssertEqual(tgViewController.currMarkerId, 2)
     XCTAssertTrue(tgViewController.markerVisible)
   }
   
   func testMarkerSetImage() {
     let image = UIImage()
-    controller.markerSetImage(4, image: image)
+    let _ = controller.markerSetImage(4, image: image)
     XCTAssertEqual(tgViewController.currMarkerId, 4)
     XCTAssertEqual(tgViewController.markerImage, image)
   }
   
   func testMarkerRemove() {
-    controller.markerRemove(5)
+    let _ = controller.markerRemove(5)
     XCTAssertEqual(tgViewController.currMarkerId, 5)
   }
   
@@ -213,14 +213,14 @@ class MapViewControllerTests: XCTestCase {
 
   func testLngLatToScreenPosition() {
     let point = TGGeoPointMake(70.0, 40.0)
-    controller.lngLat(toScreenPosition: point)
+    let _ = controller.lngLat(toScreenPosition: point)
     XCTAssertEqual(tgViewController.lngLatForScreenPosition.longitude, 70.0)
     XCTAssertEqual(tgViewController.lngLatForScreenPosition.latitude, 40.0)
   }
 
   func testScreenPositionToLngLat() {
     let point = CGPoint(x: 1, y: 2)
-    controller.screenPosition(toLngLat: point)
+    let _ = controller.screenPosition(toLngLat: point)
     XCTAssertEqual(tgViewController.screenPositionForLngLat, point)
   }
   
@@ -295,7 +295,7 @@ class MapViewControllerTests: XCTestCase {
 
   func testLocationUpdateWithMarkerGeneration() {
     //Setup
-    controller.showCurrentLocation(true)
+    let _ = controller.showCurrentLocation(true)
     controller.locationDidUpdate(mockLocation)
 
     //Tests
