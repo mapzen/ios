@@ -51,7 +51,7 @@ class TestTGMapViewController: TGMapViewController {
     return true
   }
   
-  override func markerSetPointEased(_ identifier: TGMapMarkerId, coordinates coordinate: TGGeoPoint, duration: Float, easeType ease: TGEaseType) -> Bool {
+  override func markerSetPointEased(_ identifier: TGMapMarkerId, coordinates coordinate: TGGeoPoint, seconds duration: Float, easeType ease: TGEaseType) -> Bool {
     self.currMarkerId = identifier
     self.coordinate = coordinate
     self.duration = duration
