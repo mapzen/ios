@@ -125,13 +125,13 @@ open class MapViewController: UIViewController, LocationManagerDelegate {
   
   weak open var loadDelegate: MapLoadDelegate? {
     didSet {
-      tgViewController.mapViewDelegate = self
+      tgViewController.mapViewDelegate = (loadDelegate != nil || selectDelegate != nil) ? self : nil
     }
   }
   
   weak open var selectDelegate: MapSelectDelegate? {
     didSet {
-      tgViewController.mapViewDelegate = self
+      tgViewController.mapViewDelegate = (loadDelegate != nil || selectDelegate != nil) ? self : nil
     }
   }
   
