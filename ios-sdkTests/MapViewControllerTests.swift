@@ -12,6 +12,7 @@ import TangramMap
 import CoreLocation
 
 class TestMapViewController: MapViewController {
+  
   func lastSetPointValue() -> TGGeoPoint? {
     return lastSetPoint
   }
@@ -485,6 +486,30 @@ class MapViewControllerTests: XCTestCase {
   
   func testSingleTapRecognizedPicksFeature() {
     controller.mapView(controller.tgViewController, recognizer: UIGestureRecognizer(), didRecognizeSingleTapGesture: CGPoint(x: 30, y: 40))
+    XCTAssertEqual(tgViewController.featurePickPosition.x, 30)
+    XCTAssertEqual(tgViewController.featurePickPosition.y, 40)
+  }
+  
+  func testShouldNotRecognizeSingleTapPicksLabel() {
+    let delegate = AllDisabledGestureDelegate()
+    controller.gestureDelegate = delegate
+    let _ = controller.mapView(controller.tgViewController, recognizer: UIGestureRecognizer(), shouldRecognizeSingleTapGesture: CGPoint(x: 30, y: 40))
+    XCTAssertEqual(tgViewController.labelPickPosition.x, 30)
+    XCTAssertEqual(tgViewController.labelPickPosition.y, 40)
+  }
+  
+  func testShouldNotRecognizePicksMarker() {
+    let delegate = AllDisabledGestureDelegate()
+    controller.gestureDelegate = delegate
+    let _ = controller.mapView(controller.tgViewController, recognizer: UIGestureRecognizer(), shouldRecognizeSingleTapGesture: CGPoint(x: 30, y: 40))
+    XCTAssertEqual(tgViewController.markerPickPosition.x, 30)
+    XCTAssertEqual(tgViewController.markerPickPosition.y, 40)
+  }
+  
+  func testShouldNotRecognizePicksFeature() {
+    let delegate = AllDisabledGestureDelegate()
+    controller.gestureDelegate = delegate
+    let _ = controller.mapView(controller.tgViewController, recognizer: UIGestureRecognizer(), shouldRecognizeSingleTapGesture: CGPoint(x: 30, y: 40))
     XCTAssertEqual(tgViewController.featurePickPosition.x, 30)
     XCTAssertEqual(tgViewController.featurePickPosition.y, 40)
   }

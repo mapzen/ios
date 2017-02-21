@@ -526,7 +526,13 @@ extension MapViewController : TGMapViewDelegate, TGRecognizerDelegate {
     guard (self.gestureDelegate?.responds(to: #selector(MapGestureDelegate.mapController(_:recognizer:shouldRecognizeSingleTapGesture:))))! else {
       return true
     }
-    return (self.gestureDelegate?.mapController!(self, recognizer: recognizer, shouldRecognizeSingleTapGesture: location))!
+    let recognize = (self.gestureDelegate?.mapController!(self, recognizer: recognizer, shouldRecognizeSingleTapGesture: location))!
+    if !recognize {
+      self.tgViewController.pickLabel(at: location)
+      self.tgViewController.pickMarker(at: location)
+      self.tgViewController.pickFeature(at: location)
+    }
+    return recognize
   }
   
   open func mapView(_ view: TGMapViewController, recognizer: UIGestureRecognizer, didRecognizeSingleTapGesture location: CGPoint) {
