@@ -66,7 +66,7 @@ open class MapViewController: UIViewController, LocationManagerDelegate {
   open var shouldFollowCurrentLocation = false
   open var findMeButton = UIButton(type: .custom)
   open var currentAnnotations: [PeliasMapkitAnnotation : TGMapMarkerId] = Dictionary()
-  
+
   open var cameraType: TGCameraType {
     set {
       tgViewController.cameraType = cameraType
