@@ -538,7 +538,7 @@ class MapViewControllerTests: XCTestCase {
   func testDidSelectFeatureCallsSelectDelegate() {
     let delegate = TestMapSelectDelegate()
     controller.selectDelegate = delegate
-    controller.mapView(tgViewController, didSelectFeature: [AnyHashable](), atScreenPosition: CGPoint())
+    controller.mapView(tgViewController, didSelectFeature: [AnyHashable : Any](), atScreenPosition: CGPoint())
     XCTAssertTrue(delegate.featurePicked)
   }
   
