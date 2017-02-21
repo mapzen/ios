@@ -139,7 +139,7 @@ open class MapViewController: UIViewController, LocationManagerDelegate, TGRecog
   }
   
   open func markerSetPointEased(_ identifier: TGMapMarkerId, coordinates coordinate: TGGeoPoint, duration: Float, easeType ease: TGEaseType) -> Bool {
-    return tgViewController.markerSetPointEased(identifier, coordinates: coordinate, duration: duration, easeType: ease)
+    return tgViewController.markerSetPointEased(identifier, coordinates: coordinate, seconds: duration, easeType: ease)
   }
   
   open func markerSetPolyline(_ identifier: TGMapMarkerId, polyline: TGGeoPolyline) -> Bool {
@@ -308,7 +308,7 @@ open class MapViewController: UIViewController, LocationManagerDelegate, TGRecog
     for index in 0...routeLeg.coordinateCount-1 {
       let point = routeLeg.coordinates?[Int(index)]
       print("Next Point: \(point)")
-      polyLine?.add(TGGeoPoint(coordinate: point!))
+      polyLine.add(TGGeoPoint(coordinate: point!))
     }
     let marker = tgViewController.markerAdd()
     if marker == 0 {
@@ -317,7 +317,7 @@ open class MapViewController: UIViewController, LocationManagerDelegate, TGRecog
                     userInfo: nil)
     }
     tgViewController.markerSetStyling(marker, styling: "{ style: ux-route-line-overlay, color: '#06a6d4',  width: [[0,3.5px],[5,5px],[9,7px],[10,6px],[11,6px],[13,8px],[14,9px],[15,10px],[16,11px],[17,12px],[18,10px]], order: 500 }")
-    tgViewController.markerSetPolyline(marker, polyline: polyLine!)
+    tgViewController.markerSetPolyline(marker, polyline: polyLine)
     currentRouteMarker = marker
   }
 

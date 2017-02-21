@@ -4,7 +4,7 @@ use_frameworks!
 def shared_pods
   pod 'Pelias', '~> 1.0.0-beta'
   pod 'OnTheRoad', '~> 1.0.0-beta'
-  pod 'Tangram-es', '~> 0.4.1'
+  pod 'Tangram-es', '~> 0.5.0'
 end
 
 target "ios-sdk" do
