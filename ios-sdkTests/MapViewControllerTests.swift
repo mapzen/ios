@@ -472,24 +472,6 @@ class MapViewControllerTests: XCTestCase {
     XCTAssertFalse(delegate.longPressTapReceived)
   }
   
-  func testSingleTapRecognizedPicksLabel() {
-    controller.mapView(controller.tgViewController, recognizer: UIGestureRecognizer(), didRecognizeSingleTapGesture: CGPoint(x: 30, y: 40))
-    XCTAssertEqual(tgViewController.labelPickPosition.x, 30)
-    XCTAssertEqual(tgViewController.labelPickPosition.y, 40)
-  }
-  
-  func testSingleTapRecognizedPicksMarker() {
-    controller.mapView(controller.tgViewController, recognizer: UIGestureRecognizer(), didRecognizeSingleTapGesture: CGPoint(x: 30, y: 40))
-    XCTAssertEqual(tgViewController.markerPickPosition.x, 30)
-    XCTAssertEqual(tgViewController.markerPickPosition.y, 40)
-  }
-  
-  func testSingleTapRecognizedPicksFeature() {
-    controller.mapView(controller.tgViewController, recognizer: UIGestureRecognizer(), didRecognizeSingleTapGesture: CGPoint(x: 30, y: 40))
-    XCTAssertEqual(tgViewController.featurePickPosition.x, 30)
-    XCTAssertEqual(tgViewController.featurePickPosition.y, 40)
-  }
-  
   func testShouldNotRecognizeSingleTapPicksLabel() {
     let delegate = AllDisabledGestureDelegate()
     controller.singleTapGestureDelegate = delegate
