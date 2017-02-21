@@ -617,9 +617,6 @@ extension MapViewController : TGMapViewDelegate, TGRecognizerDelegate {
   open func mapView(_ view: TGMapViewController, recognizer: UIGestureRecognizer, didRecognizePanGesture location: CGPoint) {
     shouldFollowCurrentLocation = false
     findMeButton.isSelected = false
-    guard (panDelegate != nil) else {
-      return
-    }
     panDelegate?.mapController(self, didPanMap: location)
   }
   
@@ -628,9 +625,6 @@ extension MapViewController : TGMapViewDelegate, TGRecognizerDelegate {
   }
   
   open func mapView(_ view: TGMapViewController, recognizer: UIGestureRecognizer, didRecognizePinchGesture location: CGPoint) {
-    guard (pinchDelegate != nil) else {
-      return
-    }
     pinchDelegate?.mapController(self, didPinchMap: location)
   }
   
@@ -639,9 +633,6 @@ extension MapViewController : TGMapViewDelegate, TGRecognizerDelegate {
   }
   
   open func mapView(_ view: TGMapViewController, recognizer: UIGestureRecognizer, didRecognizeRotationGesture location: CGPoint) {
-    guard (rotateDelegate != nil) else {
-      return
-    }
     rotateDelegate?.mapController(self, didRotateMap: location)
   }
   
@@ -650,9 +641,6 @@ extension MapViewController : TGMapViewDelegate, TGRecognizerDelegate {
   }
   
   open func mapView(_ view: TGMapViewController, recognizer: UIGestureRecognizer, didRecognizeShoveGesture displacement: CGPoint) {
-    guard (shoveDelegate != nil) else {
-      return
-    }
     shoveDelegate?.mapController(self, didShoveMap: displacement)
   }
 }
