@@ -531,22 +531,43 @@ class MapViewControllerTests: XCTestCase {
   func testDidSelectLabelCallsSelectDelegate() {
     let delegate = TestMapSelectDelegate()
     controller.selectDelegate = delegate
-    controller.mapView(tgViewController, didSelectLabel: nil, atScreenPosition: CGPoint())
+    controller.mapView(tgViewController, didSelectLabel: TGLabelPickResult(), atScreenPosition: CGPoint())
     XCTAssertTrue(delegate.labelPicked)
   }
   
   func testDidSelectFeatureCallsSelectDelegate() {
     let delegate = TestMapSelectDelegate()
     controller.selectDelegate = delegate
-    controller.mapView(tgViewController, didSelectFeature: nil, atScreenPosition: CGPoint())
+    controller.mapView(tgViewController, didSelectFeature: [AnyHashable](), atScreenPosition: CGPoint())
     XCTAssertTrue(delegate.featurePicked)
   }
   
   func testDidSelectMarkerCallsSelectDelegate() {
     let delegate = TestMapSelectDelegate()
     controller.selectDelegate = delegate
-    controller.mapView(tgViewController, didSelectMarker: nil, atScreenPosition: CGPoint())
+    controller.mapView(tgViewController, didSelectMarker: TGMarkerPickResult(), atScreenPosition: CGPoint())
     XCTAssertTrue(delegate.markerPicked)
+  }
+  
+  func testDidSelectLabelDoesNotCallSelectDelegate() {
+    let delegate = TestMapSelectDelegate()
+    controller.selectDelegate = delegate
+    controller.mapView(tgViewController, didSelectLabel: nil, atScreenPosition: CGPoint())
+    XCTAssertFalse(delegate.labelPicked)
+  }
+  
+  func testDidSelectFeatureDoesNotSelectDelegate() {
+    let delegate = TestMapSelectDelegate()
+    controller.selectDelegate = delegate
+    controller.mapView(tgViewController, didSelectFeature: nil, atScreenPosition: CGPoint())
+    XCTAssertFalse(delegate.featurePicked)
+  }
+  
+  func testDidSelectMarkerDoesNotSelectDelegate() {
+    let delegate = TestMapSelectDelegate()
+    controller.selectDelegate = delegate
+    controller.mapView(tgViewController, didSelectMarker: nil, atScreenPosition: CGPoint())
+    XCTAssertFalse(delegate.markerPicked)
   }
 }
 

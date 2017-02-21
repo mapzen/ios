@@ -497,21 +497,39 @@ extension MapViewController : TGMapViewDelegate, TGRecognizerDelegate {
   }
   
   open func mapView(_ mapView: TGMapViewController, didSelectFeature feature: [AnyHashable : Any]?, atScreenPosition position: CGPoint) {
-    guard (self.selectDelegate != nil) && (self.selectDelegate?.responds(to: #selector(MapSelectDelegate.mapController(_:didSelectFeature:atScreenPosition:))))! else {
+    guard (feature != nil) else {
+      return
+    }
+    guard (self.selectDelegate != nil) else {
+      return
+    }
+    guard (self.selectDelegate?.responds(to: #selector(MapSelectDelegate.mapController(_:didSelectFeature:atScreenPosition:))))! else {
       return
     }
     self.selectDelegate?.mapController!(self, didSelectFeature: feature, atScreenPosition: position)
   }
   
   open func mapView(_ mapView: TGMapViewController, didSelectLabel labelPickResult: TGLabelPickResult?, atScreenPosition position: CGPoint) {
-    guard (self.selectDelegate != nil) && (self.selectDelegate?.responds(to: #selector(MapSelectDelegate.mapController(_:didSelectLabel:atScreenPosition:))))! else {
+    guard (labelPickResult != nil) else {
+      return
+    }
+    guard (self.selectDelegate != nil) else {
+      return
+    }
+    guard (self.selectDelegate?.responds(to: #selector(MapSelectDelegate.mapController(_:didSelectLabel:atScreenPosition:))))! else {
       return
     }
     self.selectDelegate?.mapController!(self, didSelectLabel: labelPickResult, atScreenPosition: position)
   }
   
   open func mapView(_ mapView: TGMapViewController, didSelectMarker markerPickResult: TGMarkerPickResult?, atScreenPosition position: CGPoint) {
-    guard (self.selectDelegate != nil) && (self.selectDelegate?.responds(to: #selector(MapSelectDelegate.mapController(_:didSelectMarker:atScreenPosition:))))! else {
+    guard (markerPickResult != nil) else {
+      return
+    }
+    guard (self.selectDelegate != nil) else {
+      return
+    }
+    guard (self.selectDelegate?.responds(to: #selector(MapSelectDelegate.mapController(_:didSelectMarker:atScreenPosition:))))! else {
       return
     }
     self.selectDelegate?.mapController!(self, didSelectMarker: markerPickResult, atScreenPosition: position)
