@@ -12,8 +12,8 @@ class TangramVC:  MapViewController, MapLoadDelegate, MapSelectDelegate {
 
   override func viewDidLoad() {
     super.viewDidLoad()
-    self.loadDelegate = self
-    self.selectDelegate = self
+    loadDelegate = self
+    selectDelegate = self
     loadSceneFileAsync("scene.yaml")
   }
 
@@ -34,7 +34,7 @@ class TangramVC:  MapViewController, MapLoadDelegate, MapSelectDelegate {
     print("markerPicked")
     let alert = UIAlertController(title: "Marker Selected", message: nil, preferredStyle: .alert)
     alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
-    self.present(alert, animated: true, completion: nil)
+    present(alert, animated: true, completion: nil)
   }
   
   private func showTestMarker() {
