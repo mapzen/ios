@@ -8,25 +8,16 @@
 
 import UIKit
 import TangramMap
-class TangramVC:  MapViewController, MapLoadDelegate, MapSelectDelegate {
+class TangramVC:  MapViewController, MapMarkerSelectDelegate {
 
   override func viewDidLoad() {
     super.viewDidLoad()
-    loadDelegate = self
-    selectDelegate = self
-    loadSceneFileAsync("scene.yaml")
-  }
-
-  override func viewDidAppear(_ animated: Bool) {
-    super.viewDidAppear(animated)
-  }
-
-  
-  //MARK : MapLoadDelegate
-  open func mapController(_ controller: MapViewController, didLoadSceneAsync scene: String) {
-    showCurrentLocation(true)
-    showFindMeButon(true)
-    showTestMarker()
+    markerSelectDelegate = self
+    loadSceneFileAsync("scene.yaml") { (scene) in
+      self.showCurrentLocation(true)
+      self.showFindMeButon(true)
+      self.showTestMarker()
+    }
   }
   
   //MARK : MapSelectDelegate  
@@ -36,6 +27,7 @@ class TangramVC:  MapViewController, MapLoadDelegate, MapSelectDelegate {
     alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
     present(alert, animated: true, completion: nil)
   }
+
   private func showTestMarker() {
     let markerId = markerAdd()
     markerSetStyling(markerId, styling: "{ style: 'points', color: 'white', size: [50px, 50px], order: 2000, collide: false, interactive: true }")

@@ -17,40 +17,51 @@ import OnTheRoad
   case generalError, annotationDoesNotExist, apiKeyNotSet, routeDoesNotExist
 }
 
-@objc public protocol MapGestureDelegate : NSObjectProtocol {
-  @objc optional func mapController(_ controller: MapViewController, recognizer: UIGestureRecognizer, shouldRecognizeSingleTapGesture location: CGPoint) -> Bool
-  @objc optional func mapController(_ controller: MapViewController, recognizer: UIGestureRecognizer, didRecognizeSingleTapGesture location: CGPoint)
-  @objc optional func mapController(_ controller: MapViewController, recognizer: UIGestureRecognizer, shouldRecognizeDoubleTapGesture location: CGPoint) -> Bool
-  @objc optional func mapController(_ controller: MapViewController, recognizer: UIGestureRecognizer, didRecognizeDoubleTapGesture location: CGPoint)
-  @objc optional func mapController(_ controller: MapViewController, recognizer: UIGestureRecognizer, shouldRecognizeLongPressGesture location: CGPoint) -> Bool
-  @objc optional func mapController(_ controller: MapViewController, recognizer: UIGestureRecognizer, didRecognizeLongPressGesture location: CGPoint)
+public protocol MapSingleTapGestureDelegate : class {
+  func mapController(_ controller: MapViewController, recognizer: UIGestureRecognizer, shouldRecognizeSingleTapGesture location: CGPoint) -> Bool
+  func mapController(_ controller: MapViewController, recognizer: UIGestureRecognizer, didRecognizeSingleTapGesture location: CGPoint)
 }
 
-public protocol MapPanGestureDelegate : NSObjectProtocol {
+public protocol MapDoubleTapGestureDelegate : class {
+  func mapController(_ controller: MapViewController, recognizer: UIGestureRecognizer, shouldRecognizeDoubleTapGesture location: CGPoint) -> Bool
+  func mapController(_ controller: MapViewController, recognizer: UIGestureRecognizer, didRecognizeDoubleTapGesture location: CGPoint)
+}
+
+public protocol MapLongPressGestureDelegate : class {
+  func mapController(_ controller: MapViewController, recognizer: UIGestureRecognizer, shouldRecognizeLongPressGesture location: CGPoint) -> Bool
+  func mapController(_ controller: MapViewController, recognizer: UIGestureRecognizer, didRecognizeLongPressGesture location: CGPoint)
+}
+
+public protocol MapPanGestureDelegate : class {
   func mapController(_ controller: MapViewController, didPanMap displacement: CGPoint)
 }
 
-public protocol MapPinchGestureDelegate : NSObjectProtocol {
+public protocol MapPinchGestureDelegate : class {
   func mapController(_ controller: MapViewController, didPinchMap location: CGPoint)
 }
 
-public protocol MapRotateGestureDelegate : NSObjectProtocol {
+public protocol MapRotateGestureDelegate : class {
   func mapController(_ controller: MapViewController, didRotateMap location: CGPoint)
 }
 
-public protocol MapShoveGestureDelegate : NSObjectProtocol {
+public protocol MapShoveGestureDelegate : class {
   func mapController(_ controller: MapViewController, didShoveMap displacement: CGPoint)
 }
 
-@objc public protocol MapLoadDelegate : NSObjectProtocol {
-  @objc optional func mapController(_ controller: MapViewController, didLoadSceneAsync scene: String)
-  @objc optional func mapControllerDidCompleteLoading(_ controller: MapViewController)
+public protocol MapFeatureSelectDelegate : class {
+  func mapController(_ controller: MapViewController, didSelectFeature feature: [AnyHashable : Any]?, atScreenPosition position: CGPoint)
 }
 
-@objc public protocol MapSelectDelegate : NSObjectProtocol {
-  @objc optional func mapController(_ controller: MapViewController, didSelectFeature feature: [AnyHashable : Any]?, atScreenPosition position: CGPoint)
-  @objc optional func mapController(_ controller: MapViewController, didSelectLabel labelPickResult: TGLabelPickResult?, atScreenPosition position: CGPoint)
-  @objc optional func mapController(_ controller: MapViewController, didSelectMarker markerPickResult: TGMarkerPickResult?, atScreenPosition position: CGPoint)
+public protocol MapLabelSelectDelegate : class {
+  func mapController(_ controller: MapViewController, didSelectLabel labelPickResult: TGLabelPickResult?, atScreenPosition position: CGPoint)
+}
+
+public protocol MapMarkerSelectDelegate : class {
+  func mapController(_ controller: MapViewController, didSelectMarker markerPickResult: TGMarkerPickResult?, atScreenPosition position: CGPoint)
+}
+
+public protocol MapTileLoadDelegate : class {
+  func mapControllerDidCompleteLoading(_ controller: MapViewController)
 }
 
 open class MapViewController: UIViewController, LocationManagerDelegate {
@@ -117,24 +128,41 @@ open class MapViewController: UIViewController, LocationManagerDelegate {
   open var rotateEnabled = true
   open var shoveEnabled = true
   
-  weak open var gestureDelegate: MapGestureDelegate?
+  weak open var singleTapGestureDelegate: MapSingleTapGestureDelegate?
+  weak open var doubleTapGestureDelegate: MapDoubleTapGestureDelegate?
+  weak open var longPressGestureDelegate: MapLongPressGestureDelegate?
   weak open var panDelegate: MapPanGestureDelegate?
   weak open var pinchDelegate: MapPinchGestureDelegate?
   weak open var rotateDelegate: MapRotateGestureDelegate?
   weak open var shoveDelegate: MapShoveGestureDelegate?
-  
-  weak open var loadDelegate: MapLoadDelegate? {
+
+  weak open var featureSelectDelegate: MapFeatureSelectDelegate? {
     didSet {
-      tgViewController.mapViewDelegate = (loadDelegate != nil || selectDelegate != nil) ? self : nil
+      tgViewController.mapViewDelegate = mapViewDelegatesExist() ? self : nil
     }
   }
-  
-  weak open var selectDelegate: MapSelectDelegate? {
+
+  weak open var labelSelectDelegate: MapLabelSelectDelegate? {
     didSet {
-      tgViewController.mapViewDelegate = (loadDelegate != nil || selectDelegate != nil) ? self : nil
+      tgViewController.mapViewDelegate = mapViewDelegatesExist() ? self : nil
     }
   }
-  
+
+  weak open var markerSelectDelegate: MapMarkerSelectDelegate? {
+    didSet {
+      tgViewController.mapViewDelegate = mapViewDelegatesExist() ? self : nil
+    }
+  }
+
+  weak open var tileLoadDelegate: MapTileLoadDelegate? {
+    didSet {
+      tgViewController.mapViewDelegate = mapViewDelegatesExist() ? self : nil
+    }
+  }
+
+  public typealias OnSceneLoaded = (String) -> ()
+  fileprivate var onSceneLoaded : OnSceneLoaded? = nil
+
   init(){
     super.init(nibName: nil, bundle: nil)
     defer {
@@ -228,12 +256,16 @@ open class MapViewController: UIViewController, LocationManagerDelegate {
   open func loadSceneFile(_ path: String, sceneUpdates: [TGSceneUpdate]) {
     tgViewController.loadSceneFile(path, sceneUpdates: sceneUpdates)
   }
-  
-  open func loadSceneFileAsync(_ path: String) {
+
+  open func loadSceneFileAsync(_ path: String, onSceneLoaded: OnSceneLoaded?) {
+    self.onSceneLoaded = onSceneLoaded
+    tgViewController.mapViewDelegate = mapViewDelegatesExist() ? self : nil
     tgViewController.loadSceneFileAsync(path)
   }
   
-  open func loadSceneFileAsync(_ path: String, sceneUpdates: [TGSceneUpdate]) {
+  open func loadSceneFileAsync(_ path: String, sceneUpdates: [TGSceneUpdate], onSceneLoaded: OnSceneLoaded?) {
+    self.onSceneLoaded = onSceneLoaded
+    tgViewController.mapViewDelegate = mapViewDelegatesExist() ? self : nil
     tgViewController.loadSceneFileAsync(path, sceneUpdates: sceneUpdates)
   }
   
@@ -483,68 +515,32 @@ extension MapViewController : TGMapViewDelegate, TGRecognizerDelegate {
   //MARK : TGMapViewDelegate
   
   open func mapView(_ mapView: TGMapViewController, didLoadSceneAsync scene: String) {
-    guard (loadDelegate != nil) && (loadDelegate?.responds(to: #selector(MapLoadDelegate.mapController(_:didLoadSceneAsync:))))! else {
-      return
-    }
-    loadDelegate?.mapController!(self, didLoadSceneAsync: scene)
+    onSceneLoaded?(scene)
   }
   
   open func mapViewDidCompleteLoading(_ mapView: TGMapViewController) {
-    guard (loadDelegate != nil) && (loadDelegate?.responds(to: #selector(MapLoadDelegate.mapControllerDidCompleteLoading(_:))))! else {
-      return
-    }
-    loadDelegate?.mapControllerDidCompleteLoading!(self)
+    tileLoadDelegate?.mapControllerDidCompleteLoading(self)
   }
   
   open func mapView(_ mapView: TGMapViewController, didSelectFeature feature: [AnyHashable : Any]?, atScreenPosition position: CGPoint) {
-    guard (feature != nil) else {
-      return
-    }
-    guard (selectDelegate != nil) else {
-      return
-    }
-    guard (selectDelegate?.responds(to: #selector(MapSelectDelegate.mapController(_:didSelectFeature:atScreenPosition:))))! else {
-      return
-    }
-    selectDelegate?.mapController!(self, didSelectFeature: feature, atScreenPosition: position)
+    guard (feature != nil) else { return }
+    featureSelectDelegate?.mapController(self, didSelectFeature: feature, atScreenPosition: position)
   }
   
   open func mapView(_ mapView: TGMapViewController, didSelectLabel labelPickResult: TGLabelPickResult?, atScreenPosition position: CGPoint) {
-    guard (labelPickResult != nil) else {
-      return
-    }
-    guard (selectDelegate != nil) else {
-      return
-    }
-    guard (selectDelegate?.responds(to: #selector(MapSelectDelegate.mapController(_:didSelectLabel:atScreenPosition:))))! else {
-      return
-    }
-    selectDelegate?.mapController!(self, didSelectLabel: labelPickResult, atScreenPosition: position)
+    guard (labelPickResult != nil) else { return }
+    labelSelectDelegate?.mapController(self, didSelectLabel: labelPickResult, atScreenPosition: position)
   }
   
   open func mapView(_ mapView: TGMapViewController, didSelectMarker markerPickResult: TGMarkerPickResult?, atScreenPosition position: CGPoint) {
-    guard (markerPickResult != nil) else {
-      return
-    }
-    guard (selectDelegate != nil) else {
-      return
-    }
-    guard (selectDelegate?.responds(to: #selector(MapSelectDelegate.mapController(_:didSelectMarker:atScreenPosition:))))! else {
-      return
-    }
-    selectDelegate?.mapController!(self, didSelectMarker: markerPickResult, atScreenPosition: position)
+    guard (markerPickResult != nil) else { return }
+    markerSelectDelegate?.mapController(self, didSelectMarker: markerPickResult, atScreenPosition: position)
   }
   
   //MARK : TGRecognizerDelegate
   
   open func mapView(_ view: TGMapViewController, recognizer: UIGestureRecognizer, shouldRecognizeSingleTapGesture location: CGPoint) -> Bool {
-    guard (gestureDelegate != nil) else {
-      return true
-    }
-    guard (gestureDelegate?.responds(to: #selector(MapGestureDelegate.mapController(_:recognizer:shouldRecognizeSingleTapGesture:))))! else {
-      return true
-    }
-    let recognize = (gestureDelegate?.mapController!(self, recognizer: recognizer, shouldRecognizeSingleTapGesture: location))!
+    guard let recognize = singleTapGestureDelegate?.mapController(self, recognizer: recognizer, shouldRecognizeSingleTapGesture: location) else { return true }
     if !recognize {
       tgViewController.pickLabel(at: location)
       tgViewController.pickMarker(at: location)
@@ -557,53 +553,25 @@ extension MapViewController : TGMapViewDelegate, TGRecognizerDelegate {
     tgViewController.pickLabel(at: location)
     tgViewController.pickMarker(at: location)
     tgViewController.pickFeature(at: location)
-    guard (gestureDelegate != nil) else {
-      return
-    }
-    guard (gestureDelegate?.responds(to: #selector(MapGestureDelegate.mapController(_:recognizer:didRecognizeSingleTapGesture:))))! else {
-      return
-    }
-    gestureDelegate?.mapController!(self, recognizer: recognizer, didRecognizeSingleTapGesture: location)
+    singleTapGestureDelegate?.mapController(self, recognizer: recognizer, didRecognizeSingleTapGesture: location)
   }
   
   open func mapView(_ view: TGMapViewController, recognizer: UIGestureRecognizer, shouldRecognizeDoubleTapGesture location: CGPoint) -> Bool {
-    guard (gestureDelegate != nil) else {
-      return true
-    }
-    guard (gestureDelegate?.responds(to: #selector(MapGestureDelegate.mapController(_:recognizer:shouldRecognizeDoubleTapGesture:))))! else {
-      return true
-    }
-    return ((gestureDelegate?.mapController!(self, recognizer: recognizer, shouldRecognizeDoubleTapGesture: location))!)
+    guard let recognize = doubleTapGestureDelegate?.mapController(self, recognizer: recognizer, shouldRecognizeDoubleTapGesture: location)  else { return true }
+    return recognize
   }
   
   open func mapView(_ view: TGMapViewController, recognizer: UIGestureRecognizer, didRecognizeDoubleTapGesture location: CGPoint) {
-    guard (gestureDelegate != nil) else {
-      return
-    }
-    guard (gestureDelegate?.responds(to: #selector(MapGestureDelegate.mapController(_:recognizer:didRecognizeDoubleTapGesture:))))! else {
-      return
-    }
-    gestureDelegate?.mapController!(self, recognizer: recognizer, didRecognizeDoubleTapGesture: location)
+    doubleTapGestureDelegate?.mapController(self, recognizer: recognizer, didRecognizeDoubleTapGesture: location)
   }
   
   open func mapView(_ view: TGMapViewController, recognizer: UIGestureRecognizer, shouldRecognizeLongPressGesture location: CGPoint) -> Bool {
-    guard (gestureDelegate != nil) else {
-      return true
-    }
-    guard (gestureDelegate?.responds(to: #selector(MapGestureDelegate.mapController(_:recognizer:shouldRecognizeLongPressGesture:))))! else {
-      return true
-    }
-    return (gestureDelegate?.mapController!(self, recognizer: recognizer, shouldRecognizeLongPressGesture: location))!
+    guard let recognize = longPressGestureDelegate?.mapController(self, recognizer: recognizer, shouldRecognizeLongPressGesture: location) else { return true }
+    return recognize
   }
   
   open func mapView(_ view: TGMapViewController, recognizer: UIGestureRecognizer, didRecognizeLongPressGesture location: CGPoint) {
-    guard (gestureDelegate != nil) else {
-      return
-    }
-    guard (gestureDelegate?.responds(to: #selector(MapGestureDelegate.mapController(_:recognizer:didRecognizeLongPressGesture:))))! else {
-      return
-    }
-    gestureDelegate?.mapController!(self, recognizer: recognizer, didRecognizeLongPressGesture: location)
+    longPressGestureDelegate?.mapController(self, recognizer: recognizer, didRecognizeLongPressGesture: location)
   }
   
   open func mapView(_ view: TGMapViewController, recognizer: UIGestureRecognizer, shouldRecognizePanGesture displacement: CGPoint) -> Bool {
@@ -642,6 +610,10 @@ extension MapViewController : TGMapViewDelegate, TGRecognizerDelegate {
   
   open func mapView(_ view: TGMapViewController, recognizer: UIGestureRecognizer, didRecognizeShoveGesture displacement: CGPoint) {
     shoveDelegate?.mapController(self, didShoveMap: displacement)
+  }
+
+  fileprivate func mapViewDelegatesExist() -> Bool {
+    return (tileLoadDelegate != nil || featureSelectDelegate != nil || labelSelectDelegate != nil || markerSelectDelegate != nil || onSceneLoaded != nil)
   }
 }
 

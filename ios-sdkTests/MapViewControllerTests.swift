@@ -182,13 +182,13 @@ class MapViewControllerTests: XCTestCase {
   }
   
   func testLoadSceneFileAsync() {
-    controller.loadSceneFileAsync("path")
+    controller.loadSceneFileAsync("path" , onSceneLoaded: nil)
     XCTAssertEqual(tgViewController.scenePath, "path")
   }
 
   func testLoadSceneFileAsyncWithUpdates() {
     let updates = [TGSceneUpdate]()
-    controller.loadSceneFileAsync("path", sceneUpdates: updates)
+    controller.loadSceneFileAsync("path", sceneUpdates: updates, onSceneLoaded: nil)
     XCTAssertEqual(tgViewController.scenePath, "path")
     XCTAssertEqual(tgViewController.sceneUpdates, updates)
   }
@@ -435,21 +435,21 @@ class MapViewControllerTests: XCTestCase {
   
   func testSingleTapRecognizedShouldCallDelegate() {
     let delegate = AllEnabledGestureDelegate()
-    controller.gestureDelegate = delegate
+    controller.singleTapGestureDelegate = delegate
     controller.mapView(controller.tgViewController, recognizer: UIGestureRecognizer(), didRecognizeSingleTapGesture: CGPoint())
     XCTAssertTrue(delegate.singleTapReceived)
   }
   
   func testDoubleTapRecognizedShouldCallDelegate() {
     let delegate = AllEnabledGestureDelegate()
-    controller.gestureDelegate = delegate
+    controller.doubleTapGestureDelegate = delegate
     controller.mapView(controller.tgViewController, recognizer: UIGestureRecognizer(), didRecognizeDoubleTapGesture: CGPoint())
     XCTAssertTrue(delegate.doubleTapReceived)
   }
   
   func testLongPressRecognizedShouldCallDelegate() {
     let delegate = AllEnabledGestureDelegate()
-    controller.gestureDelegate = delegate
+    controller.longPressGestureDelegate = delegate
     controller.mapView(controller.tgViewController, recognizer: UIGestureRecognizer(), didRecognizeLongPressGesture: CGPoint())
     XCTAssertTrue(delegate.longPressTapReceived)
   }
@@ -492,7 +492,7 @@ class MapViewControllerTests: XCTestCase {
   
   func testShouldNotRecognizeSingleTapPicksLabel() {
     let delegate = AllDisabledGestureDelegate()
-    controller.gestureDelegate = delegate
+    controller.singleTapGestureDelegate = delegate
     let _ = controller.mapView(controller.tgViewController, recognizer: UIGestureRecognizer(), shouldRecognizeSingleTapGesture: CGPoint(x: 30, y: 40))
     XCTAssertEqual(tgViewController.labelPickPosition.x, 30)
     XCTAssertEqual(tgViewController.labelPickPosition.y, 40)
@@ -500,7 +500,7 @@ class MapViewControllerTests: XCTestCase {
   
   func testShouldNotRecognizePicksMarker() {
     let delegate = AllDisabledGestureDelegate()
-    controller.gestureDelegate = delegate
+    controller.singleTapGestureDelegate = delegate
     let _ = controller.mapView(controller.tgViewController, recognizer: UIGestureRecognizer(), shouldRecognizeSingleTapGesture: CGPoint(x: 30, y: 40))
     XCTAssertEqual(tgViewController.markerPickPosition.x, 30)
     XCTAssertEqual(tgViewController.markerPickPosition.y, 40)
@@ -508,70 +508,71 @@ class MapViewControllerTests: XCTestCase {
   
   func testShouldNotRecognizePicksFeature() {
     let delegate = AllDisabledGestureDelegate()
-    controller.gestureDelegate = delegate
+    controller.singleTapGestureDelegate = delegate
     let _ = controller.mapView(controller.tgViewController, recognizer: UIGestureRecognizer(), shouldRecognizeSingleTapGesture: CGPoint(x: 30, y: 40))
     XCTAssertEqual(tgViewController.featurePickPosition.x, 30)
     XCTAssertEqual(tgViewController.featurePickPosition.y, 40)
   }
   
   func testLoadSceneAsyncCallsLoadDelegate() {
-    let delegate = TestLoadDelegate()
-    controller.loadDelegate = delegate
+    var loaded = false
+    let sceneLoaded : MapViewController.OnSceneLoaded = { (scene) in loaded = true }
+    controller.loadSceneFileAsync("scene", onSceneLoaded: sceneLoaded)
     controller.mapView(controller.tgViewController, didLoadSceneAsync: "scene")
-    XCTAssertTrue(delegate.sceneLoaded)
+    XCTAssertTrue(loaded)
   }
   
   func testDidCompleteLoadingCallsLoadDelegate() {
     let delegate = TestLoadDelegate()
-    controller.loadDelegate = delegate
+    controller.tileLoadDelegate = delegate
     controller.mapViewDidCompleteLoading(controller.tgViewController)
     XCTAssertTrue(delegate.loadingComplete)
   }
   
   func testDidSelectLabelCallsSelectDelegate() {
     let delegate = TestMapSelectDelegate()
-    controller.selectDelegate = delegate
+    controller.labelSelectDelegate = delegate
     controller.mapView(tgViewController, didSelectLabel: TGLabelPickResult(), atScreenPosition: CGPoint())
     XCTAssertTrue(delegate.labelPicked)
   }
   
   func testDidSelectFeatureCallsSelectDelegate() {
     let delegate = TestMapSelectDelegate()
-    controller.selectDelegate = delegate
+    controller.featureSelectDelegate = delegate
     controller.mapView(tgViewController, didSelectFeature: [AnyHashable : Any](), atScreenPosition: CGPoint())
     XCTAssertTrue(delegate.featurePicked)
   }
   
   func testDidSelectMarkerCallsSelectDelegate() {
     let delegate = TestMapSelectDelegate()
-    controller.selectDelegate = delegate
+    controller.markerSelectDelegate = delegate
     controller.mapView(tgViewController, didSelectMarker: TGMarkerPickResult(), atScreenPosition: CGPoint())
     XCTAssertTrue(delegate.markerPicked)
   }
   
   func testDidSelectLabelDoesNotCallSelectDelegate() {
     let delegate = TestMapSelectDelegate()
-    controller.selectDelegate = delegate
+    controller.labelSelectDelegate = delegate
     controller.mapView(tgViewController, didSelectLabel: nil, atScreenPosition: CGPoint())
     XCTAssertFalse(delegate.labelPicked)
   }
   
   func testDidSelectFeatureDoesNotSelectDelegate() {
     let delegate = TestMapSelectDelegate()
-    controller.selectDelegate = delegate
+    controller.featureSelectDelegate = delegate
     controller.mapView(tgViewController, didSelectFeature: nil, atScreenPosition: CGPoint())
     XCTAssertFalse(delegate.featurePicked)
   }
   
   func testDidSelectMarkerDoesNotSelectDelegate() {
     let delegate = TestMapSelectDelegate()
-    controller.selectDelegate = delegate
+    controller.markerSelectDelegate = delegate
     controller.mapView(tgViewController, didSelectMarker: nil, atScreenPosition: CGPoint())
     XCTAssertFalse(delegate.markerPicked)
   }
 }
 
-class TestPanDelegate : NSObject, MapPanGestureDelegate {
+class TestPanDelegate : MapPanGestureDelegate {
   
   var didPanMap = false
   
@@ -580,7 +581,7 @@ class TestPanDelegate : NSObject, MapPanGestureDelegate {
   }
 }
 
-class TestPinchDelegate : NSObject, MapPinchGestureDelegate {
+class TestPinchDelegate : MapPinchGestureDelegate {
   
   var didPinchMap = false
   
@@ -589,7 +590,7 @@ class TestPinchDelegate : NSObject, MapPinchGestureDelegate {
   }
 }
 
-class TestRotateDelegate : NSObject, MapRotateGestureDelegate {
+class TestRotateDelegate : MapRotateGestureDelegate {
   
   var didRotateMap = false
   
@@ -598,7 +599,7 @@ class TestRotateDelegate : NSObject, MapRotateGestureDelegate {
   }
 }
 
-class TestShoveDelegate : NSObject, MapShoveGestureDelegate {
+class TestShoveDelegate : MapShoveGestureDelegate {
   
   var didShoveMap = false
   
@@ -607,7 +608,7 @@ class TestShoveDelegate : NSObject, MapShoveGestureDelegate {
   }
 }
 
-class AllEnabledGestureDelegate : NSObject, MapGestureDelegate {
+class AllEnabledGestureDelegate : MapSingleTapGestureDelegate, MapDoubleTapGestureDelegate, MapLongPressGestureDelegate {
   
   var singleTapReceived = false
   var doubleTapReceived = false
@@ -638,7 +639,7 @@ class AllEnabledGestureDelegate : NSObject, MapGestureDelegate {
   }
 }
 
-class AllDisabledGestureDelegate : NSObject, MapGestureDelegate {
+class AllDisabledGestureDelegate : MapSingleTapGestureDelegate, MapDoubleTapGestureDelegate, MapLongPressGestureDelegate {
   
   var singleTapReceived = false
   var doubleTapReceived = false
@@ -669,7 +670,7 @@ class AllDisabledGestureDelegate : NSObject, MapGestureDelegate {
   }
 }
 
-class TestLoadDelegate : NSObject, MapLoadDelegate {
+class TestLoadDelegate : MapTileLoadDelegate {
   
   var sceneLoaded = false
   var loadingComplete = false
@@ -683,7 +684,7 @@ class TestLoadDelegate : NSObject, MapLoadDelegate {
   }
 }
 
-class TestMapSelectDelegate : NSObject, MapSelectDelegate {
+class TestMapSelectDelegate : MapLabelSelectDelegate, MapMarkerSelectDelegate, MapFeatureSelectDelegate {
   
   var labelPicked = false
   var markerPicked = false
