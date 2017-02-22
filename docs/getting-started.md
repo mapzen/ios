@@ -1,10 +1,10 @@
 # Getting started
 
 ## 1. Sign up for an API key
-Sign up for an API key from the [Mapzen developer portal](https://mapzen.com/developers). Then, insert the API key in your App Delegate's `applicationDidFinishLaunching:` like so:
+Sign up for an API key from the [Mapzen developer portal](https://mapzen.com/developers). Then, replace `[YOUR_MAPZEN_API_KEY]` in the App Delegate's `applicationDidFinishLaunching:` with your api key:
 
 ```swift
-MapzenManager.sharedManager.apiKey = "API_KEY_HERE"
+MapzenManager.sharedManager.apiKey = "[YOUR_MAPZEN_API_KEY]"
 ```
 
 ## 2. Add a map to your storyboard
