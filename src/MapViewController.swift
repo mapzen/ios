@@ -135,30 +135,10 @@ open class MapViewController: UIViewController, LocationManagerDelegate {
   weak open var pinchDelegate: MapPinchGestureDelegate?
   weak open var rotateDelegate: MapRotateGestureDelegate?
   weak open var shoveDelegate: MapShoveGestureDelegate?
-
-  weak open var featureSelectDelegate: MapFeatureSelectDelegate? {
-    didSet {
-      tgViewController.mapViewDelegate = mapViewDelegatesExist() ? self : nil
-    }
-  }
-
-  weak open var labelSelectDelegate: MapLabelSelectDelegate? {
-    didSet {
-      tgViewController.mapViewDelegate = mapViewDelegatesExist() ? self : nil
-    }
-  }
-
-  weak open var markerSelectDelegate: MapMarkerSelectDelegate? {
-    didSet {
-      tgViewController.mapViewDelegate = mapViewDelegatesExist() ? self : nil
-    }
-  }
-
-  weak open var tileLoadDelegate: MapTileLoadDelegate? {
-    didSet {
-      tgViewController.mapViewDelegate = mapViewDelegatesExist() ? self : nil
-    }
-  }
+  weak open var featureSelectDelegate: MapFeatureSelectDelegate?
+  weak open var labelSelectDelegate: MapLabelSelectDelegate?
+  weak open var markerSelectDelegate: MapMarkerSelectDelegate?
+  weak open var tileLoadDelegate: MapTileLoadDelegate?
 
   public typealias OnSceneLoaded = (String) -> ()
   fileprivate var onSceneLoaded : OnSceneLoaded? = nil
@@ -259,13 +239,11 @@ open class MapViewController: UIViewController, LocationManagerDelegate {
 
   open func loadSceneFileAsync(_ path: String, onSceneLoaded: OnSceneLoaded?) {
     self.onSceneLoaded = onSceneLoaded
-    tgViewController.mapViewDelegate = mapViewDelegatesExist() ? self : nil
     tgViewController.loadSceneFileAsync(path)
   }
   
   open func loadSceneFileAsync(_ path: String, sceneUpdates: [TGSceneUpdate], onSceneLoaded: OnSceneLoaded?) {
     self.onSceneLoaded = onSceneLoaded
-    tgViewController.mapViewDelegate = mapViewDelegatesExist() ? self : nil
     tgViewController.loadSceneFileAsync(path, sceneUpdates: sceneUpdates)
   }
   
@@ -441,6 +419,7 @@ open class MapViewController: UIViewController, LocationManagerDelegate {
     self.view.addSubview(tgViewController.view)
     
     tgViewController.gestureDelegate = self
+    tgViewController.mapViewDelegate = self
   }
 
   override open func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
@@ -606,10 +585,6 @@ extension MapViewController : TGMapViewDelegate, TGRecognizerDelegate {
   
   open func mapView(_ view: TGMapViewController, recognizer: UIGestureRecognizer, didRecognizeShoveGesture displacement: CGPoint) {
     shoveDelegate?.mapController(self, didShoveMap: displacement)
-  }
-
-  fileprivate func mapViewDelegatesExist() -> Bool {
-    return (tileLoadDelegate != nil || featureSelectDelegate != nil || labelSelectDelegate != nil || markerSelectDelegate != nil || onSceneLoaded != nil)
   }
 }
 
