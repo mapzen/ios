@@ -141,7 +141,7 @@ open class MapViewController: UIViewController, LocationManagerDelegate {
   weak open var tileLoadDelegate: MapTileLoadDelegate?
 
   public typealias OnSceneLoaded = (String) -> ()
-  fileprivate var onSceneLoaded : OnSceneLoaded? = nil
+  fileprivate var onSceneLoadedClosure : OnSceneLoaded? = nil
 
   init(){
     super.init(nibName: nil, bundle: nil)
@@ -238,12 +238,12 @@ open class MapViewController: UIViewController, LocationManagerDelegate {
   }
 
   open func loadSceneFileAsync(_ path: String, onSceneLoaded: OnSceneLoaded?) {
-    self.onSceneLoaded = onSceneLoaded
+    onSceneLoadedClosure = onSceneLoaded
     tgViewController.loadSceneFileAsync(path)
   }
   
   open func loadSceneFileAsync(_ path: String, sceneUpdates: [TGSceneUpdate], onSceneLoaded: OnSceneLoaded?) {
-    self.onSceneLoaded = onSceneLoaded
+    onSceneLoadedClosure = onSceneLoaded
     tgViewController.loadSceneFileAsync(path, sceneUpdates: sceneUpdates)
   }
   
@@ -494,8 +494,8 @@ extension MapViewController : TGMapViewDelegate, TGRecognizerDelegate {
   //MARK : TGMapViewDelegate
   
   open func mapView(_ mapView: TGMapViewController, didLoadSceneAsync scene: String) {
-    onSceneLoaded?(scene)
-    onSceneLoaded = nil
+    onSceneLoadedClosure?(scene)
+    onSceneLoadedClosure = nil
   }
   
   open func mapViewDidCompleteLoading(_ mapView: TGMapViewController) {
