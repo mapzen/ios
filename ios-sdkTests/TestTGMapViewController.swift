@@ -29,6 +29,9 @@ class TestTGMapViewController: TGMapViewController {
   var appliedSceneUpdates = false
   var lngLatForScreenPosition = TGGeoPoint()
   var screenPositionForLngLat = CGPoint()
+  var labelPickPosition = CGPoint()
+  var markerPickPosition = CGPoint()
+  var featurePickPosition = CGPoint()
   
   override func markerRemoveAll() {
     removedAllMarkers = true
@@ -173,4 +176,15 @@ class TestTGMapViewController: TGMapViewController {
     self.easeType = easeType
   }
 
+  override func pickLabel(at screenPosition: CGPoint) {
+    self.labelPickPosition = screenPosition
+  }
+  
+  override func pickMarker(at screenPosition: CGPoint) {
+    self.markerPickPosition = screenPosition
+  }
+  
+  override func pickFeature(at screenPosition: CGPoint) {
+    self.featurePickPosition = screenPosition
+  }
 }

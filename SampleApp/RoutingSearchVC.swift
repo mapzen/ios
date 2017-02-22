@@ -27,7 +27,7 @@ class RoutingSearchVC: AutocompleteTableVC {
     super.tableView(tableView, didSelectRowAt: indexPath)
     if let delegate = delegate {
       delegate.selected((self.results?[indexPath.row])!)
-      self.navigationController?.popViewController(animated: true)
+      let _ = self.navigationController?.popViewController(animated: true)
     }
   }
 
