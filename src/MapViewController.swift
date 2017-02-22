@@ -516,6 +516,7 @@ extension MapViewController : TGMapViewDelegate, TGRecognizerDelegate {
   
   open func mapView(_ mapView: TGMapViewController, didLoadSceneAsync scene: String) {
     onSceneLoaded?(scene)
+    onSceneLoaded = nil
   }
   
   open func mapViewDidCompleteLoading(_ mapView: TGMapViewController) {
