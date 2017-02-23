@@ -68,6 +68,7 @@ open class MapViewController: UIViewController, LocationManagerDelegate {
 
   //Error Domains for NSError Appeasement
   open static let MapzenGeneralErrorDomain = "MapzenGeneralErrorDomain"
+  private static let mapzenRights = "https://mapzen.com/rights/"
 
   open var tgViewController: TGMapViewController = TGMapViewController()
   var currentLocationGem: TGMapMarkerId?
@@ -143,6 +144,14 @@ open class MapViewController: UIViewController, LocationManagerDelegate {
   public typealias OnSceneLoaded = (String) -> ()
   fileprivate var onSceneLoadedClosure : OnSceneLoaded? = nil
 
+  open var mapView : GLKView {
+    return tgViewController.view as! GLKView
+  }
+
+  open var tabBarHeight : CGFloat {
+    return self.tabBarController?.tabBar.frame.height ?? 0
+  }
+  
   init(){
     super.init(nibName: nil, bundle: nil)
     defer {
@@ -396,16 +405,18 @@ open class MapViewController: UIViewController, LocationManagerDelegate {
   override open func viewDidLoad() {
     super.viewDidLoad()
     LocationManager.sharedManager.delegate = self
-    
-    self.view.addSubview(tgViewController.view)
-    
+
+    setupTgControllerView()
+    setupAttribution()
+
     tgViewController.gestureDelegate = self
     tgViewController.mapViewDelegate = self
   }
 
   override open func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
     super.viewWillTransition(to: size, with: coordinator)
-    tgViewController.viewWillTransition(to: size, with:coordinator)
+    let adjustedSize = CGSize(width: size.width, height: size.height-tabBarHeight)
+    tgViewController.viewWillTransition(to: adjustedSize, with:coordinator)
   }
     
   override open func viewWillAppear(_ animated: Bool) {
@@ -479,6 +490,34 @@ open class MapViewController: UIViewController, LocationManagerDelegate {
     allSceneUpdates.append(contentsOf: sceneUpdates)
     allSceneUpdates.append(TGSceneUpdate(path: "global.sdk_mapzen_api_key", value: "'\(apiKey)'"))
     return allSceneUpdates
+  }
+
+  //MARK: - private
+
+  private func setupTgControllerView() {
+    tgViewController.view.frame = CGRect(x: 0, y: 0, width: self.view.bounds.width, height: self.view.bounds.height-tabBarHeight)
+    self.view.addSubview(tgViewController.view)
+  }
+
+  private func setupAttribution() {
+    let attributionBtn = UIButton()
+    attributionBtn.setTitle(NSLocalizedString("attribution", comment: "Mapzen Attribution"), for: .normal)
+    attributionBtn.setTitleColor(.darkGray, for: .normal)
+    attributionBtn.titleLabel?.font = UIFont.systemFont(ofSize: 14)
+    attributionBtn.addTarget(self, action: #selector(openMapzenTerms), for: .touchUpInside)
+    attributionBtn.sizeToFit()
+    attributionBtn.translatesAutoresizingMaskIntoConstraints = false
+    self.view.addSubview(attributionBtn)
+
+    let horizontalConstraint = attributionBtn.leftAnchor.constraint(equalTo: mapView.leftAnchor, constant: Dimens.defaultPadding)
+    let verticalConstraint = attributionBtn.bottomAnchor.constraint(equalTo: mapView.bottomAnchor, constant: -Dimens.defaultPadding)
+    NSLayoutConstraint.activate([horizontalConstraint, verticalConstraint])
+  }
+
+  @objc private func openMapzenTerms() {
+    let url = URL(string: MapViewController.mapzenRights)
+    if url == nil { return }
+    UIApplication.shared.openURL(url!)
   }
 }
 
@@ -579,5 +618,6 @@ extension MapViewController : TGMapViewDelegate, TGRecognizerDelegate {
   open func mapView(_ view: TGMapViewController, recognizer: UIGestureRecognizer, didRecognizeShoveGesture displacement: CGPoint) {
     shoveDelegate?.mapController(self, didShoveMap: displacement)
   }
+
 }
 

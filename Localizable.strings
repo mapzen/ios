@@ -1,0 +1,9 @@
+/* 
+  Localizable.strings
+  ios-sdk
+
+  Created by Sarah Lensing on 2/24/17.
+  Copyright © 2017 Mapzen. All rights reserved.
+*/
+
+"attribution" = "Powered by Mapzen";
