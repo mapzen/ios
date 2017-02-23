@@ -49,15 +49,15 @@ public protocol MapShoveGestureDelegate : class {
 }
 
 public protocol MapFeatureSelectDelegate : class {
-  func mapController(_ controller: MapViewController, didSelectFeature feature: [AnyHashable : Any]?, atScreenPosition position: CGPoint)
+  func mapController(_ controller: MapViewController, didSelectFeature feature: [AnyHashable : Any], atScreenPosition position: CGPoint)
 }
 
 public protocol MapLabelSelectDelegate : class {
-  func mapController(_ controller: MapViewController, didSelectLabel labelPickResult: TGLabelPickResult?, atScreenPosition position: CGPoint)
+  func mapController(_ controller: MapViewController, didSelectLabel labelPickResult: TGLabelPickResult, atScreenPosition position: CGPoint)
 }
 
 public protocol MapMarkerSelectDelegate : class {
-  func mapController(_ controller: MapViewController, didSelectMarker markerPickResult: TGMarkerPickResult?, atScreenPosition position: CGPoint)
+  func mapController(_ controller: MapViewController, didSelectMarker markerPickResult: TGMarkerPickResult, atScreenPosition position: CGPoint)
 }
 
 public protocol MapTileLoadDelegate : class {
@@ -76,7 +76,8 @@ open class MapViewController: UIViewController, LocationManagerDelegate {
   var currentRouteMarker: TGMapMarkerId?
   open var shouldFollowCurrentLocation = false
   open var findMeButton = UIButton(type: .custom)
-  open var currentAnnotations: [PeliasMapkitAnnotation : TGMapMarkerId] = Dictionary()
+  open var annotationToMarkerId: [PeliasMapkitAnnotation : TGMapMarkerId] = Dictionary()
+  open var markerIdToAnnotation: [TGMapMarkerId : PeliasMapkitAnnotation] = Dictionary()
 
   open var cameraType: TGCameraType {
     set {
@@ -336,30 +337,32 @@ open class MapViewController: UIViewController, LocationManagerDelegate {
                       userInfo: nil)
       }
       tgViewController.markerSetPoint(newMarker, coordinates: TGGeoPoint(coordinate: annotation.coordinate))
-      tgViewController.markerSetStyling(newMarker, styling: "{ style: sdk-point-overlay, sprite: ux-search-active, size: [24, 36px], collide: false }")
-      currentAnnotations[annotation] = newMarker
-
+      tgViewController.markerSetStyling(newMarker, styling: "{ style: sdk-point-overlay, sprite: ux-search-active, size: [24, 36px], collide: false, interactive: true }")
+      annotationToMarkerId[annotation] = newMarker
+      markerIdToAnnotation[newMarker] = annotation
     }
   }
 
   open func remove(_ annotation: PeliasMapkitAnnotation) throws {
-    guard let markerId = currentAnnotations[annotation] else { return }
+    guard let markerId = annotationToMarkerId[annotation] else { return }
     if !tgViewController.markerRemove(markerId) {
       throw NSError(domain: MapViewController.MapzenGeneralErrorDomain,
                     code: MZError.annotationDoesNotExist.rawValue,
                     userInfo: nil)
     }
-    currentAnnotations.removeValue(forKey: annotation)
+    annotationToMarkerId.removeValue(forKey: annotation)
+    markerIdToAnnotation.removeValue(forKey: markerId)
   }
 
   open func removeAnnotations() throws {
-    for (annotation, markerId) in currentAnnotations {
+    for (annotation, markerId) in annotationToMarkerId {
       if !tgViewController.markerRemove(markerId) {
         throw NSError(domain: MapViewController.MapzenGeneralErrorDomain,
                       code: MZError.annotationDoesNotExist.rawValue,
                       userInfo: nil)
       }
-      currentAnnotations.removeValue(forKey: annotation)
+      annotationToMarkerId.removeValue(forKey: annotation)
+      markerIdToAnnotation.removeValue(forKey: markerId)
     }
   }
 
@@ -504,17 +507,17 @@ extension MapViewController : TGMapViewDelegate, TGRecognizerDelegate {
   
   open func mapView(_ mapView: TGMapViewController, didSelectFeature feature: [AnyHashable : Any]?, atScreenPosition position: CGPoint) {
     guard (feature != nil) else { return }
-    featureSelectDelegate?.mapController(self, didSelectFeature: feature, atScreenPosition: position)
+    featureSelectDelegate?.mapController(self, didSelectFeature: feature!, atScreenPosition: position)
   }
   
   open func mapView(_ mapView: TGMapViewController, didSelectLabel labelPickResult: TGLabelPickResult?, atScreenPosition position: CGPoint) {
     guard (labelPickResult != nil) else { return }
-    labelSelectDelegate?.mapController(self, didSelectLabel: labelPickResult, atScreenPosition: position)
+    labelSelectDelegate?.mapController(self, didSelectLabel: labelPickResult!, atScreenPosition: position)
   }
   
   open func mapView(_ mapView: TGMapViewController, didSelectMarker markerPickResult: TGMarkerPickResult?, atScreenPosition position: CGPoint) {
     guard (markerPickResult != nil) else { return }
-    markerSelectDelegate?.mapController(self, didSelectMarker: markerPickResult, atScreenPosition: position)
+    markerSelectDelegate?.mapController(self, didSelectMarker: markerPickResult!, atScreenPosition: position)
   }
   
   //MARK : TGRecognizerDelegate

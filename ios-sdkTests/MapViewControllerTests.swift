@@ -311,20 +311,24 @@ class MapViewControllerTests: XCTestCase {
     let _ = try? controller.add([testAnno1, testAnno2])
 
     //Tests
-    XCTAssertNotNil(controller.currentAnnotations[testAnno1])
-    XCTAssertNotNil(controller.currentAnnotations[testAnno2])
-
+    let marker1Id = controller.annotationToMarkerId[testAnno1]!
+    let marker2Id = controller.annotationToMarkerId[testAnno2]!
+    XCTAssertNotNil(marker1Id)
+    XCTAssertNotNil(marker2Id)
+    XCTAssertNotNil(controller.markerIdToAnnotation[marker1Id])
+    XCTAssertNotNil(controller.markerIdToAnnotation[marker2Id])
   }
 
   func testRemoveSingleAnnotation(){
     let testAnno1 = PeliasMapkitAnnotation(coordinate: CLLocationCoordinate2DMake(0.0, 0.0), title: "Test1", subtitle: "SubTest1", data: nil)
     let controller = MapViewController() // Grab local instance cuz we don't want to use mocks for these
     let _ = try? controller.add([testAnno1])
+    let marker1Id = controller.annotationToMarkerId[testAnno1]!
 
     //Tests
     let _ = try? controller.remove(testAnno1)
-    XCTAssertNil(controller.currentAnnotations[testAnno1])
-
+    XCTAssertNil(controller.annotationToMarkerId[testAnno1])
+    XCTAssertNil(controller.markerIdToAnnotation[marker1Id])
   }
 
   func testRemoveAllAnnotations(){
@@ -332,11 +336,15 @@ class MapViewControllerTests: XCTestCase {
     let testAnno2 = PeliasMapkitAnnotation(coordinate: CLLocationCoordinate2DMake(1.0, 1.0), title: "Test2", subtitle: "SubTest2", data: nil)
     let controller = MapViewController() // Grab local instance cuz we don't want to use mocks for these
     let _ = try? controller.add([testAnno1, testAnno2])
+    let marker1Id = controller.annotationToMarkerId[testAnno1]!
+    let marker2Id = controller.annotationToMarkerId[testAnno2]!
 
     //Tests
     let _ = try? controller.removeAnnotations()
-    XCTAssertNil(controller.currentAnnotations[testAnno1])
-    XCTAssertNil(controller.currentAnnotations[testAnno2])
+    XCTAssertNil(controller.annotationToMarkerId[testAnno1])
+    XCTAssertNil(controller.annotationToMarkerId[testAnno2])
+    XCTAssertNil(controller.markerIdToAnnotation[marker1Id])
+    XCTAssertNil(controller.markerIdToAnnotation[marker2Id])
   }
 
   func testPanEnabledByDefault() {
@@ -672,15 +680,15 @@ class TestMapSelectDelegate : MapLabelSelectDelegate, MapMarkerSelectDelegate, M
   var markerPicked = false
   var featurePicked = false
   
-  func mapController(_ mapView: MapViewController, didSelectLabel labelPickResult: TGLabelPickResult?, atScreenPosition position: CGPoint) {
+  func mapController(_ mapView: MapViewController, didSelectLabel labelPickResult: TGLabelPickResult, atScreenPosition position: CGPoint) {
     labelPicked = true
   }
   
-  func mapController(_ mapView: MapViewController, didSelectMarker markerPickResult: TGMarkerPickResult?, atScreenPosition position: CGPoint) {
+  func mapController(_ mapView: MapViewController, didSelectMarker markerPickResult: TGMarkerPickResult, atScreenPosition position: CGPoint) {
     markerPicked = true
   }
   
-  func mapController(_ mapView: MapViewController, didSelectFeature feature: [AnyHashable : Any]?, atScreenPosition position: CGPoint) {
+  func mapController(_ mapView: MapViewController, didSelectFeature feature: [AnyHashable : Any], atScreenPosition position: CGPoint) {
     featurePicked = true
   }
 }
