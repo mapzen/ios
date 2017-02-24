@@ -12,7 +12,6 @@ import TangramMap
 import CoreLocation
 
 class TestMapViewController: MapViewController {
-  
   func lastSetPointValue() -> TGGeoPoint? {
     return lastSetPoint
   }
@@ -559,6 +558,17 @@ class MapViewControllerTests: XCTestCase {
     controller.mapView(tgViewController, didSelectMarker: nil, atScreenPosition: CGPoint())
     XCTAssertFalse(delegate.markerPicked)
   }
+
+  func testAttributionOpensRights() {
+    let testApplication = TestApplication()
+    controller.application = testApplication
+    controller.viewDidLoad()
+    let actions = controller.attributionBtn.actions(forTarget: controller, forControlEvent: .touchUpInside)
+    let selectorStr = actions?.first
+    controller.perform(NSSelectorFromString(selectorStr!))
+    XCTAssertEqual(testApplication.urlToOpen?.absoluteString, "https://mapzen.com/rights/")
+  }
+  
 }
 
 class TestPanDelegate : MapPanGestureDelegate {

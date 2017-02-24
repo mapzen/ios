@@ -70,6 +70,7 @@ open class MapViewController: UIViewController, LocationManagerDelegate {
   open static let MapzenGeneralErrorDomain = "MapzenGeneralErrorDomain"
   private static let mapzenRights = "https://mapzen.com/rights/"
 
+  var application : ApplicationProtocol = UIApplication.shared
   open var tgViewController: TGMapViewController = TGMapViewController()
   var currentLocationGem: TGMapMarkerId?
   var lastSetPoint: TGGeoPoint?
@@ -78,6 +79,7 @@ open class MapViewController: UIViewController, LocationManagerDelegate {
   open var shouldFollowCurrentLocation = false
   open var findMeButton = UIButton(type: .custom)
   open var currentAnnotations: [PeliasMapkitAnnotation : TGMapMarkerId] = Dictionary()
+  open var attributionBtn = UIButton()
 
   open var cameraType: TGCameraType {
     set {
@@ -475,18 +477,6 @@ open class MapViewController: UIViewController, LocationManagerDelegate {
     return
   }
 
-  private func updatesWithApiKeyUpdate(_ sceneUpdates: [TGSceneUpdate]) throws -> [TGSceneUpdate] {
-    guard let apiKey = MapzenManager.sharedManager.apiKey else {
-      throw NSError(domain: MapViewController.MapzenGeneralErrorDomain,
-                    code: MZError.apiKeyNotSet.rawValue,
-                    userInfo: nil)
-    }
-    var allSceneUpdates = [TGSceneUpdate]()
-    allSceneUpdates.append(contentsOf: sceneUpdates)
-    allSceneUpdates.append(TGSceneUpdate(path: "global.sdk_mapzen_api_key", value: "'\(apiKey)'"))
-    return allSceneUpdates
-  }
-
   //MARK: - private
 
   private func setupTgControllerView() {
@@ -495,7 +485,7 @@ open class MapViewController: UIViewController, LocationManagerDelegate {
   }
 
   private func setupAttribution() {
-    let attributionBtn = UIButton()
+    attributionBtn = UIButton()
     attributionBtn.setTitle(NSLocalizedString("attribution", comment: "Mapzen Attribution"), for: .normal)
     attributionBtn.setTitleColor(.darkGray, for: .normal)
     attributionBtn.titleLabel?.font = UIFont.systemFont(ofSize: 14)
@@ -510,9 +500,20 @@ open class MapViewController: UIViewController, LocationManagerDelegate {
   }
 
   @objc private func openMapzenTerms() {
-    let url = URL(string: MapViewController.mapzenRights)
-    if url == nil { return }
-    UIApplication.shared.openURL(url!)
+    guard let url = URL(string: MapViewController.mapzenRights) else { return }
+    let _ = application.openURL(url)
+  }
+
+  private func updatesWithApiKeyUpdate(_ sceneUpdates: [TGSceneUpdate]) throws -> [TGSceneUpdate] {
+    guard let apiKey = MapzenManager.sharedManager.apiKey else {
+      throw NSError(domain: MapViewController.MapzenGeneralErrorDomain,
+                    code: MZError.apiKeyNotSet.rawValue,
+                    userInfo: nil)
+    }
+    var allSceneUpdates = [TGSceneUpdate]()
+    allSceneUpdates.append(contentsOf: sceneUpdates)
+    allSceneUpdates.append(TGSceneUpdate(path: "global.sdk_mapzen_api_key", value: "'\(apiKey)'"))
+    return allSceneUpdates
   }
 }
 

@@ -11,6 +11,8 @@
 		7D2FB7691E64E66B00CB82CF /* DictionaryExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D2FB7681E64E66B00CB82CF /* DictionaryExtensionsTests.swift */; };
 		7D7DAE161E60AF9400FFCA6F /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7D7DAE151E60AF9400FFCA6F /* Localizable.strings */; };
 		7D7DAE1B1E60B01800FFCA6F /* Dimens.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D7DAE1A1E60B01800FFCA6F /* Dimens.swift */; };
+		7D7DAE1D1E60C5C900FFCA6F /* TestApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D7DAE1C1E60C5C900FFCA6F /* TestApplication.swift */; };
+		7D7DAE211E60EEA300FFCA6F /* ApplicationExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D7DAE201E60EEA300FFCA6F /* ApplicationExtensions.swift */; };
 		7DF0AA2E1E5520ED00B0406E /* TestTGMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DF0AA2D1E5520ED00B0406E /* TestTGMapViewController.swift */; };
 		AC586709D7E7D4C22AA9474D /* Pods_ios_sdk.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 99B3EC60450343448FA4E699 /* Pods_ios_sdk.framework */; };
 		C8F52AC1BCE46BB17E1CE0A5 /* Pods_ios_sdkTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A3EA87256F2EA6D0C43260A /* Pods_ios_sdkTests.framework */; };
@@ -79,6 +81,8 @@
 		7D2FB7681E64E66B00CB82CF /* DictionaryExtensionsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DictionaryExtensionsTests.swift; sourceTree = "<group>"; };
 		7D7DAE151E60AF9400FFCA6F /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
 		7D7DAE1A1E60B01800FFCA6F /* Dimens.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Dimens.swift; sourceTree = "<group>"; };
+		7D7DAE1C1E60C5C900FFCA6F /* TestApplication.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestApplication.swift; sourceTree = "<group>"; };
+		7D7DAE201E60EEA300FFCA6F /* ApplicationExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApplicationExtensions.swift; sourceTree = "<group>"; };
 		7DF0AA2D1E5520ED00B0406E /* TestTGMapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestTGMapViewController.swift; sourceTree = "<group>"; };
 		92C35E8790FB3255237B1E77 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		99B3EC60450343448FA4E699 /* Pods_ios_sdk.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ios_sdk.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -262,6 +266,7 @@
 				DB188EEB1E28492A0054DEFD /* MapzenManagerTests.swift */,
 				7DF0AA2D1E5520ED00B0406E /* TestTGMapViewController.swift */,
 				7D2FB7681E64E66B00CB82CF /* DictionaryExtensionsTests.swift */,
+				7D7DAE1C1E60C5C900FFCA6F /* TestApplication.swift */,
 			);
 			path = "ios-sdkTests";
 			sourceTree = "<group>";
@@ -276,6 +281,7 @@
 				DB188EE91E2846600054DEFD /* MapzenManager.swift */,
 				DB188EED1E290D310054DEFD /* MapzenRoutingController.swift */,
 				7D2FB7661E6103D500CB82CF /* DictionaryExtensions.swift */,
+				7D7DAE201E60EEA300FFCA6F /* ApplicationExtensions.swift */,
 			);
 			path = src;
 			sourceTree = "<group>";
@@ -516,6 +522,7 @@
 			files = (
 				DBFB759F1E2046D100CF6173 /* TangramExtensions.swift in Sources */,
 				DBFB759D1E20345500CF6173 /* SearchPinsViewController.swift in Sources */,
+				7D7DAE211E60EEA300FFCA6F /* ApplicationExtensions.swift in Sources */,
 				DB188EEA1E2846600054DEFD /* MapzenManager.swift in Sources */,
 				DBF441AE1D351B0A007DEE95 /* TangramVC.swift in Sources */,
 				DB22E59E1DA473CA004264E0 /* RouteDirectionCell.swift in Sources */,
@@ -538,6 +545,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7D7DAE1D1E60C5C900FFCA6F /* TestApplication.swift in Sources */,
 				7DF0AA2E1E5520ED00B0406E /* TestTGMapViewController.swift in Sources */,
 				DB188EEC1E28492A0054DEFD /* MapzenManagerTests.swift in Sources */,
 				DBCBC5BF1E0AE1CF0045B345 /* MapViewControllerTests.swift in Sources */,
