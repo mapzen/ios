@@ -418,14 +418,6 @@ open class MapViewController: UIViewController, LocationManagerDelegate {
     let adjustedSize = CGSize(width: size.width, height: size.height-tabBarHeight)
     tgViewController.viewWillTransition(to: adjustedSize, with:coordinator)
   }
-    
-  override open func viewWillAppear(_ animated: Bool) {
-    super.viewWillAppear(animated)
-    let viewRect = view.bounds
-    findMeButton.frame = CGRect(x: viewRect.width - 60.0, y: viewRect.height - 100.0, width: CGFloat(48), height: CGFloat(48))
-    view.addSubview(findMeButton)
-    findMeButton.sizeToFit()
-  }
 
   func createFindMeButton() -> UIButton {
     let findMeButton = UIButton(type: UIButtonType.custom)
@@ -438,6 +430,9 @@ open class MapViewController: UIViewController, LocationManagerDelegate {
     findMeButton.setBackgroundImage(UIImage(named: "ic_find_me_pressed"), for: [.selected])
     findMeButton.backgroundColor = UIColor.white
     findMeButton.autoresizingMask = [.flexibleTopMargin, .flexibleLeftMargin]
+    let viewRect = mapView.bounds
+    findMeButton.frame = CGRect(x: viewRect.width - Dimens.squareMapBtnSize - Dimens.defaultPadding, y: viewRect.height - Dimens.squareMapBtnSize - Dimens.defaultPadding, width: Dimens.squareMapBtnSize, height: Dimens.squareMapBtnSize)
+    mapView.addSubview(findMeButton)
     return findMeButton
   }
 

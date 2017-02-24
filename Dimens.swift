@@ -10,4 +10,5 @@ import UIKit
 
 open class Dimens {
   open static let defaultPadding : CGFloat = 10.0
+  open static let squareMapBtnSize : CGFloat = 48.0
 }
