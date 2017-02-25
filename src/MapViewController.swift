@@ -77,7 +77,6 @@ open class MapViewController: UIViewController, LocationManagerDelegate {
   open var shouldFollowCurrentLocation = false
   open var findMeButton = UIButton(type: .custom)
   open var annotationToMarkerId: [PeliasMapkitAnnotation : TGMapMarkerId] = Dictionary()
-  open var markerIdToAnnotation: [TGMapMarkerId : PeliasMapkitAnnotation] = Dictionary()
 
   open var cameraType: TGCameraType {
     set {
@@ -339,7 +338,6 @@ open class MapViewController: UIViewController, LocationManagerDelegate {
       tgViewController.markerSetPoint(newMarker, coordinates: TGGeoPoint(coordinate: annotation.coordinate))
       tgViewController.markerSetStyling(newMarker, styling: "{ style: sdk-point-overlay, sprite: ux-search-active, size: [24, 36px], collide: false, interactive: true }")
       annotationToMarkerId[annotation] = newMarker
-      markerIdToAnnotation[newMarker] = annotation
     }
   }
 
@@ -351,7 +349,6 @@ open class MapViewController: UIViewController, LocationManagerDelegate {
                     userInfo: nil)
     }
     annotationToMarkerId.removeValue(forKey: annotation)
-    markerIdToAnnotation.removeValue(forKey: markerId)
   }
 
   open func removeAnnotations() throws {
@@ -362,7 +359,6 @@ open class MapViewController: UIViewController, LocationManagerDelegate {
                       userInfo: nil)
       }
       annotationToMarkerId.removeValue(forKey: annotation)
-      markerIdToAnnotation.removeValue(forKey: markerId)
     }
   }
 
