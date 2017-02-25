@@ -502,18 +502,18 @@ extension MapViewController : TGMapViewDelegate, TGRecognizerDelegate {
   }
   
   open func mapView(_ mapView: TGMapViewController, didSelectFeature feature: [AnyHashable : Any]?, atScreenPosition position: CGPoint) {
-    guard (feature != nil) else { return }
-    featureSelectDelegate?.mapController(self, didSelectFeature: feature!, atScreenPosition: position)
+    guard let feature = feature else { return }
+    featureSelectDelegate?.mapController(self, didSelectFeature: feature, atScreenPosition: position)
   }
   
   open func mapView(_ mapView: TGMapViewController, didSelectLabel labelPickResult: TGLabelPickResult?, atScreenPosition position: CGPoint) {
-    guard (labelPickResult != nil) else { return }
-    labelSelectDelegate?.mapController(self, didSelectLabel: labelPickResult!, atScreenPosition: position)
+    guard let labelPickResult = labelPickResult else { return }
+    labelSelectDelegate?.mapController(self, didSelectLabel: labelPickResult, atScreenPosition: position)
   }
   
   open func mapView(_ mapView: TGMapViewController, didSelectMarker markerPickResult: TGMarkerPickResult?, atScreenPosition position: CGPoint) {
-    guard (markerPickResult != nil) else { return }
-    markerSelectDelegate?.mapController(self, didSelectMarker: markerPickResult!, atScreenPosition: position)
+    guard let markerPickResult = markerPickResult else { return }
+    markerSelectDelegate?.mapController(self, didSelectMarker: markerPickResult, atScreenPosition: position)
   }
   
   //MARK : TGRecognizerDelegate
