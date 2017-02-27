@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		7D2FB7671E6103D500CB82CF /* DictionaryExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D2FB7661E6103D500CB82CF /* DictionaryExtensions.swift */; };
+		7D2FB7691E64E66B00CB82CF /* DictionaryExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D2FB7681E64E66B00CB82CF /* DictionaryExtensionsTests.swift */; };
 		7DF0AA2E1E5520ED00B0406E /* TestTGMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DF0AA2D1E5520ED00B0406E /* TestTGMapViewController.swift */; };
 		AC586709D7E7D4C22AA9474D /* Pods_ios_sdk.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 99B3EC60450343448FA4E699 /* Pods_ios_sdk.framework */; };
 		C8F52AC1BCE46BB17E1CE0A5 /* Pods_ios_sdkTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A3EA87256F2EA6D0C43260A /* Pods_ios_sdkTests.framework */; };
@@ -73,6 +74,7 @@
 		0A9FDCBA6C81C063BED6CDFF /* Pods-ios-sdk.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ios-sdk.release.xcconfig"; path = "Pods/Target Support Files/Pods-ios-sdk/Pods-ios-sdk.release.xcconfig"; sourceTree = "<group>"; };
 		5A3EA87256F2EA6D0C43260A /* Pods_ios_sdkTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ios_sdkTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7D2FB7661E6103D500CB82CF /* DictionaryExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DictionaryExtensions.swift; sourceTree = "<group>"; };
+		7D2FB7681E64E66B00CB82CF /* DictionaryExtensionsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DictionaryExtensionsTests.swift; sourceTree = "<group>"; };
 		7DF0AA2D1E5520ED00B0406E /* TestTGMapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestTGMapViewController.swift; sourceTree = "<group>"; };
 		92C35E8790FB3255237B1E77 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		99B3EC60450343448FA4E699 /* Pods_ios_sdk.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ios_sdk.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -229,6 +231,7 @@
 				DBCBC5BE1E0AE1CF0045B345 /* MapViewControllerTests.swift */,
 				DB188EEB1E28492A0054DEFD /* MapzenManagerTests.swift */,
 				7DF0AA2D1E5520ED00B0406E /* TestTGMapViewController.swift */,
+				7D2FB7681E64E66B00CB82CF /* DictionaryExtensionsTests.swift */,
 			);
 			path = "ios-sdkTests";
 			sourceTree = "<group>";
@@ -506,6 +509,7 @@
 				7DF0AA2E1E5520ED00B0406E /* TestTGMapViewController.swift in Sources */,
 				DB188EEC1E28492A0054DEFD /* MapzenManagerTests.swift in Sources */,
 				DBCBC5BF1E0AE1CF0045B345 /* MapViewControllerTests.swift in Sources */,
+				7D2FB7691E64E66B00CB82CF /* DictionaryExtensionsTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
