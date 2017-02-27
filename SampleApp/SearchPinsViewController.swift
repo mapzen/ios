@@ -48,7 +48,7 @@ class SearchPinsViewController: MapViewController, UITextFieldDelegate, MapMarke
   // MARK : MapMarkerSelectDelegate
   func mapController(_ controller: MapViewController, didSelectMarker markerPickResult: TGMarkerPickResult, atScreenPosition position: CGPoint) {
     let markerId = markerPickResult.identifier
-    guard let annotation = annotationToMarkerId.keyForValue(value: markerId) else { return }
+    guard let annotation = currentAnnotations.keyForValue(value: markerId) else { return }
     let coordinates = "lat: \(annotation.coordinate.latitude), lon:\(annotation.coordinate.longitude)"
     let alert = UIAlertController(title: annotation.title, message: coordinates, preferredStyle: .alert)
     alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))

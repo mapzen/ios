@@ -311,8 +311,8 @@ class MapViewControllerTests: XCTestCase {
     let _ = try? controller.add([testAnno1, testAnno2])
 
     //Tests
-    let marker1Id = controller.annotationToMarkerId[testAnno1]!
-    let marker2Id = controller.annotationToMarkerId[testAnno2]!
+    let marker1Id = controller.currentAnnotations[testAnno1]!
+    let marker2Id = controller.currentAnnotations[testAnno2]!
     XCTAssertNotNil(marker1Id)
     XCTAssertNotNil(marker2Id)
   }
@@ -323,7 +323,7 @@ class MapViewControllerTests: XCTestCase {
 
     //Tests
     let _ = try? controller.remove(testAnno1)
-    XCTAssertNil(controller.annotationToMarkerId[testAnno1])
+    XCTAssertNil(controller.currentAnnotations[testAnno1])
   }
 
   func testRemoveAllAnnotations(){
@@ -334,8 +334,8 @@ class MapViewControllerTests: XCTestCase {
 
     //Tests
     let _ = try? controller.removeAnnotations()
-    XCTAssertNil(controller.annotationToMarkerId[testAnno1])
-    XCTAssertNil(controller.annotationToMarkerId[testAnno2])
+    XCTAssertNil(controller.currentAnnotations[testAnno1])
+    XCTAssertNil(controller.currentAnnotations[testAnno2])
   }
 
   func testPanEnabledByDefault() {

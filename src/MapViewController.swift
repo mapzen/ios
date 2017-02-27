@@ -76,7 +76,7 @@ open class MapViewController: UIViewController, LocationManagerDelegate {
   var currentRouteMarker: TGMapMarkerId?
   open var shouldFollowCurrentLocation = false
   open var findMeButton = UIButton(type: .custom)
-  open var annotationToMarkerId: [PeliasMapkitAnnotation : TGMapMarkerId] = Dictionary()
+  open var currentAnnotations: [PeliasMapkitAnnotation : TGMapMarkerId] = Dictionary()
 
   open var cameraType: TGCameraType {
     set {
@@ -337,28 +337,28 @@ open class MapViewController: UIViewController, LocationManagerDelegate {
       }
       tgViewController.markerSetPoint(newMarker, coordinates: TGGeoPoint(coordinate: annotation.coordinate))
       tgViewController.markerSetStyling(newMarker, styling: "{ style: sdk-point-overlay, sprite: ux-search-active, size: [24, 36px], collide: false, interactive: true }")
-      annotationToMarkerId[annotation] = newMarker
+      currentAnnotations[annotation] = newMarker
     }
   }
 
   open func remove(_ annotation: PeliasMapkitAnnotation) throws {
-    guard let markerId = annotationToMarkerId[annotation] else { return }
+    guard let markerId = currentAnnotations[annotation] else { return }
     if !tgViewController.markerRemove(markerId) {
       throw NSError(domain: MapViewController.MapzenGeneralErrorDomain,
                     code: MZError.annotationDoesNotExist.rawValue,
                     userInfo: nil)
     }
-    annotationToMarkerId.removeValue(forKey: annotation)
+    currentAnnotations.removeValue(forKey: annotation)
   }
 
   open func removeAnnotations() throws {
-    for (annotation, markerId) in annotationToMarkerId {
+    for (annotation, markerId) in currentAnnotations {
       if !tgViewController.markerRemove(markerId) {
         throw NSError(domain: MapViewController.MapzenGeneralErrorDomain,
                       code: MZError.annotationDoesNotExist.rawValue,
                       userInfo: nil)
       }
-      annotationToMarkerId.removeValue(forKey: annotation)
+      currentAnnotations.removeValue(forKey: annotation)
     }
   }
 
