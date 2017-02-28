@@ -231,10 +231,12 @@ open class MapViewController: UIViewController, LocationManagerDelegate {
   
   open func loadSceneFile(_ path: String) {
     tgViewController.loadSceneFile(path)
+    setSceneApiKey()
   }
   
   open func loadSceneFile(_ path: String, sceneUpdates: [TGSceneUpdate]) {
     tgViewController.loadSceneFile(path, sceneUpdates: sceneUpdates)
+    setSceneApiKey()
   }
 
   open func loadSceneFileAsync(_ path: String, onSceneLoaded: OnSceneLoaded?) {
@@ -486,6 +488,12 @@ open class MapViewController: UIViewController, LocationManagerDelegate {
     tgViewController.markerRemove(marker)
     return
   }
+
+  fileprivate func setSceneApiKey() {
+    guard let apiKey = MapzenManager.sharedManager.apiKey else { return }
+    tgViewController.queueSceneUpdate("global.sdk_mapzen_api_key", withValue: apiKey)
+    tgViewController.applySceneUpdates()
+  }
 }
 
 extension MapViewController : TGMapViewDelegate, TGRecognizerDelegate {
@@ -493,6 +501,7 @@ extension MapViewController : TGMapViewDelegate, TGRecognizerDelegate {
   //MARK : TGMapViewDelegate
   
   open func mapView(_ mapView: TGMapViewController, didLoadSceneAsync scene: String) {
+    setSceneApiKey()
     onSceneLoadedClosure?(scene)
     onSceneLoadedClosure = nil
   }
