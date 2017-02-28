@@ -170,27 +170,35 @@ class MapViewControllerTests: XCTestCase {
   }
   
   func testLoadSceneFile() {
-    controller.loadSceneFile("path")
+    try? controller.loadSceneFile("path")
     XCTAssertEqual(tgViewController.scenePath, "path")
   }
   
   func testLoadSceneFileWithUpdates() {
-    let updates = [TGSceneUpdate]()
-    controller.loadSceneFile("path", sceneUpdates: updates)
+    let update = TGSceneUpdate(path: "path", value: "value")
+    var updates = [TGSceneUpdate]()
+    updates.append(update)
+    try? controller.loadSceneFile("path", sceneUpdates: updates)
     XCTAssertEqual(tgViewController.scenePath, "path")
-    XCTAssertEqual(tgViewController.sceneUpdates, updates)
+    XCTAssertEqual(tgViewController.sceneUpdates.count, 2)
+    XCTAssertTrue(tgViewController.sceneUpdates.contains(update))
+    XCTAssertEqual(tgViewController.sceneUpdates.last?.path, "global.sdk_mapzen_api_key")
   }
   
   func testLoadSceneFileAsync() {
-    controller.loadSceneFileAsync("path" , onSceneLoaded: nil)
+    try? controller.loadSceneFileAsync("path" , onSceneLoaded: nil)
     XCTAssertEqual(tgViewController.scenePath, "path")
   }
 
   func testLoadSceneFileAsyncWithUpdates() {
-    let updates = [TGSceneUpdate]()
-    controller.loadSceneFileAsync("path", sceneUpdates: updates, onSceneLoaded: nil)
+    let update = TGSceneUpdate(path: "path", value: "value")
+    var updates = [TGSceneUpdate]()
+    updates.append(update)
+    try? controller.loadSceneFileAsync("path", sceneUpdates: updates, onSceneLoaded: nil)
     XCTAssertEqual(tgViewController.scenePath, "path")
-    XCTAssertEqual(tgViewController.sceneUpdates, updates)
+    XCTAssertEqual(tgViewController.sceneUpdates.count, 2)
+    XCTAssertTrue(tgViewController.sceneUpdates.contains(update))
+    XCTAssertEqual(tgViewController.sceneUpdates.last?.path, "global.sdk_mapzen_api_key")
   }
 
   func testQueueSceneUpdate() {
@@ -498,7 +506,7 @@ class MapViewControllerTests: XCTestCase {
   func testLoadSceneAsyncCallsLoadDelegate() {
     var loaded = false
     let sceneLoaded : MapViewController.OnSceneLoaded = { (scene) in loaded = true }
-    controller.loadSceneFileAsync("scene", onSceneLoaded: sceneLoaded)
+    try? controller.loadSceneFileAsync("scene", onSceneLoaded: sceneLoaded)
     controller.mapView(controller.tgViewController, didLoadSceneAsync: "scene")
     XCTAssertTrue(loaded)
   }

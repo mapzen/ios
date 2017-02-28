@@ -15,7 +15,7 @@ class RouteDisplayViewController: MapViewController {
 
   override func viewDidLoad() {
     super.viewDidLoad()
-    let _ = try? loadScene("scene.yaml")
+    try? loadSceneFile("scene.yaml")
   }
 
   func show(_ route : OTRRoutingResult){

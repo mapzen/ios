@@ -17,8 +17,8 @@ class SearchPinsViewController: MapViewController, UITextFieldDelegate, MapMarke
   override func viewDidLoad() {
     super.viewDidLoad()
     self.view.bringSubview(toFront: searchField)
-    
-    let _ = try? loadScene("scene.yaml")
+
+    try? loadSceneFile("scene.yaml")
 
     searchField.delegate = self
     markerSelectDelegate = self

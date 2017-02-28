@@ -229,24 +229,21 @@ open class MapViewController: UIViewController, LocationManagerDelegate {
     return tgViewController.markerRemove(marker)
   }
   
-  open func loadSceneFile(_ path: String) {
-    tgViewController.loadSceneFile(path)
-    setSceneApiKey()
+  open func loadSceneFile(_ path: String) throws {
+    try loadSceneFile(path, sceneUpdates: [TGSceneUpdate]())
   }
   
-  open func loadSceneFile(_ path: String, sceneUpdates: [TGSceneUpdate]) {
-    tgViewController.loadSceneFile(path, sceneUpdates: sceneUpdates)
-    setSceneApiKey()
+  open func loadSceneFile(_ path: String, sceneUpdates: [TGSceneUpdate]) throws {
+    try tgViewController.loadSceneFile(path, sceneUpdates: updatesWithApiKeyUpdate(sceneUpdates))
   }
 
-  open func loadSceneFileAsync(_ path: String, onSceneLoaded: OnSceneLoaded?) {
-    onSceneLoadedClosure = onSceneLoaded
-    tgViewController.loadSceneFileAsync(path)
+  open func loadSceneFileAsync(_ path: String, onSceneLoaded: OnSceneLoaded?) throws {
+    try loadSceneFileAsync(path, sceneUpdates: [TGSceneUpdate](), onSceneLoaded: onSceneLoaded)
   }
   
-  open func loadSceneFileAsync(_ path: String, sceneUpdates: [TGSceneUpdate], onSceneLoaded: OnSceneLoaded?) {
+  open func loadSceneFileAsync(_ path: String, sceneUpdates: [TGSceneUpdate], onSceneLoaded: OnSceneLoaded?) throws {
     onSceneLoadedClosure = onSceneLoaded
-    tgViewController.loadSceneFileAsync(path, sceneUpdates: sceneUpdates)
+    try tgViewController.loadSceneFileAsync(path, sceneUpdates: updatesWithApiKeyUpdate(sceneUpdates))
   }
   
   open func queueSceneUpdate(_ componentPath: String, withValue value: String) {
@@ -308,23 +305,6 @@ open class MapViewController: UIViewController, LocationManagerDelegate {
     showFindMeButon(enabled)
     enabled ? LocationManager.sharedManager.startUpdatingLocation() : LocationManager.sharedManager.stopUpdatingLocation()
     shouldFollowCurrentLocation = enabled
-  }
-
-  open func loadScene(_ named: String, apiKey: String? = nil) throws {
-    tgViewController.loadSceneFile(named)
-    if let apiKey = apiKey {
-      tgViewController.queueSceneUpdate("sources.mapzen.url_params", withValue: "{ api_key: \(apiKey)}")
-    } else {
-      if let apiKey = MapzenManager.sharedManager.apiKey {
-        tgViewController.queueSceneUpdate("sources.mapzen.url_params", withValue: "{ api_key: \(apiKey)}")
-
-      } else {
-        throw NSError(domain: MapViewController.MapzenGeneralErrorDomain,
-                      code: MZError.apiKeyNotSet.rawValue,
-                      userInfo: nil)
-      }
-    }
-    tgViewController.applySceneUpdates()
   }
 
   open func add(_ annotations: [PeliasMapkitAnnotation]) throws {
@@ -489,10 +469,16 @@ open class MapViewController: UIViewController, LocationManagerDelegate {
     return
   }
 
-  fileprivate func setSceneApiKey() {
-    guard let apiKey = MapzenManager.sharedManager.apiKey else { return }
-    tgViewController.queueSceneUpdate("global.sdk_mapzen_api_key", withValue: apiKey)
-    tgViewController.applySceneUpdates()
+  private func updatesWithApiKeyUpdate(_ sceneUpdates: [TGSceneUpdate]) throws -> [TGSceneUpdate] {
+    guard let apiKey = MapzenManager.sharedManager.apiKey else {
+      throw NSError(domain: MapViewController.MapzenGeneralErrorDomain,
+                    code: MZError.apiKeyNotSet.rawValue,
+                    userInfo: nil)
+    }
+    var allSceneUpdates = [TGSceneUpdate]()
+    allSceneUpdates.append(contentsOf: sceneUpdates)
+    allSceneUpdates.append(TGSceneUpdate(path: "global.sdk_mapzen_api_key", value: "'\(apiKey)'"))
+    return allSceneUpdates
   }
 }
 
@@ -501,7 +487,6 @@ extension MapViewController : TGMapViewDelegate, TGRecognizerDelegate {
   //MARK : TGMapViewDelegate
   
   open func mapView(_ mapView: TGMapViewController, didLoadSceneAsync scene: String) {
-    setSceneApiKey()
     onSceneLoadedClosure?(scene)
     onSceneLoadedClosure = nil
   }
