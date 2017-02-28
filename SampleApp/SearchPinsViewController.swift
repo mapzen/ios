@@ -8,16 +8,20 @@
 
 import UIKit
 import Pelias
+import TangramMap
 
-class SearchPinsViewController: MapViewController, UITextFieldDelegate {
+class SearchPinsViewController: MapViewController, UITextFieldDelegate, MapMarkerSelectDelegate {
 
   @IBOutlet weak var searchField: UITextField!
 
   override func viewDidLoad() {
     super.viewDidLoad()
+    self.view.bringSubview(toFront: searchField)
+    
     let _ = try? loadScene("scene.yaml")
 
     searchField.delegate = self
+    markerSelectDelegate = self
   }
 
   func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -39,5 +43,15 @@ class SearchPinsViewController: MapViewController, UITextFieldDelegate {
 
     searchConfig.focusPoint = geopoint
     let _ = PeliasSearchManager.sharedInstance.performSearch(searchConfig)
+  }
+
+  // MARK : MapMarkerSelectDelegate
+  func mapController(_ controller: MapViewController, didSelectMarker markerPickResult: TGMarkerPickResult, atScreenPosition position: CGPoint) {
+    let markerId = markerPickResult.identifier
+    guard let annotation = currentAnnotations.keyForValue(value: markerId) else { return }
+    let coordinates = "lat: \(annotation.coordinate.latitude), lon:\(annotation.coordinate.longitude)"
+    let alert = UIAlertController(title: annotation.title, message: coordinates, preferredStyle: .alert)
+    alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+    present(alert, animated: true, completion: nil)
   }
 }

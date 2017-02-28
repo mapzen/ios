@@ -49,15 +49,15 @@ public protocol MapShoveGestureDelegate : class {
 }
 
 public protocol MapFeatureSelectDelegate : class {
-  func mapController(_ controller: MapViewController, didSelectFeature feature: [AnyHashable : Any]?, atScreenPosition position: CGPoint)
+  func mapController(_ controller: MapViewController, didSelectFeature feature: [AnyHashable : Any], atScreenPosition position: CGPoint)
 }
 
 public protocol MapLabelSelectDelegate : class {
-  func mapController(_ controller: MapViewController, didSelectLabel labelPickResult: TGLabelPickResult?, atScreenPosition position: CGPoint)
+  func mapController(_ controller: MapViewController, didSelectLabel labelPickResult: TGLabelPickResult, atScreenPosition position: CGPoint)
 }
 
 public protocol MapMarkerSelectDelegate : class {
-  func mapController(_ controller: MapViewController, didSelectMarker markerPickResult: TGMarkerPickResult?, atScreenPosition position: CGPoint)
+  func mapController(_ controller: MapViewController, didSelectMarker markerPickResult: TGMarkerPickResult, atScreenPosition position: CGPoint)
 }
 
 public protocol MapTileLoadDelegate : class {
@@ -336,9 +336,8 @@ open class MapViewController: UIViewController, LocationManagerDelegate {
                       userInfo: nil)
       }
       tgViewController.markerSetPoint(newMarker, coordinates: TGGeoPoint(coordinate: annotation.coordinate))
-      tgViewController.markerSetStyling(newMarker, styling: "{ style: sdk-point-overlay, sprite: ux-search-active, size: [24, 36px], collide: false }")
+      tgViewController.markerSetStyling(newMarker, styling: "{ style: sdk-point-overlay, sprite: ux-search-active, size: [24, 36px], collide: false, interactive: true }")
       currentAnnotations[annotation] = newMarker
-
     }
   }
 
@@ -503,17 +502,17 @@ extension MapViewController : TGMapViewDelegate, TGRecognizerDelegate {
   }
   
   open func mapView(_ mapView: TGMapViewController, didSelectFeature feature: [AnyHashable : Any]?, atScreenPosition position: CGPoint) {
-    guard (feature != nil) else { return }
+    guard let feature = feature else { return }
     featureSelectDelegate?.mapController(self, didSelectFeature: feature, atScreenPosition: position)
   }
   
   open func mapView(_ mapView: TGMapViewController, didSelectLabel labelPickResult: TGLabelPickResult?, atScreenPosition position: CGPoint) {
-    guard (labelPickResult != nil) else { return }
+    guard let labelPickResult = labelPickResult else { return }
     labelSelectDelegate?.mapController(self, didSelectLabel: labelPickResult, atScreenPosition: position)
   }
   
   open func mapView(_ mapView: TGMapViewController, didSelectMarker markerPickResult: TGMarkerPickResult?, atScreenPosition position: CGPoint) {
-    guard (markerPickResult != nil) else { return }
+    guard let markerPickResult = markerPickResult else { return }
     markerSelectDelegate?.mapController(self, didSelectMarker: markerPickResult, atScreenPosition: position)
   }
   
