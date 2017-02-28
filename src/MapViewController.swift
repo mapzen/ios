@@ -433,7 +433,7 @@ open class MapViewController: UIViewController, LocationManagerDelegate {
     findMeButton.backgroundColor = UIColor.white
     findMeButton.autoresizingMask = [.flexibleTopMargin, .flexibleLeftMargin]
     let viewRect = mapView.bounds
-    findMeButton.frame = CGRect(x: viewRect.width - Dimens.squareMapBtnSize - Dimens.defaultPadding, y: viewRect.height - Dimens.squareMapBtnSize - Dimens.defaultPadding, width: Dimens.squareMapBtnSize, height: Dimens.squareMapBtnSize)
+    findMeButton.frame = CGRect(x: viewRect.width - Dimensions.squareMapBtnSize - Dimensions.defaultPadding, y: viewRect.height - Dimensions.squareMapBtnSize - Dimensions.defaultPadding, width: Dimensions.squareMapBtnSize, height: Dimensions.squareMapBtnSize)
     mapView.addSubview(findMeButton)
     return findMeButton
   }
@@ -494,8 +494,8 @@ open class MapViewController: UIViewController, LocationManagerDelegate {
     attributionBtn.translatesAutoresizingMaskIntoConstraints = false
     mapView.addSubview(attributionBtn)
 
-    let horizontalConstraint = attributionBtn.leftAnchor.constraint(equalTo: mapView.leftAnchor, constant: Dimens.defaultPadding)
-    let verticalConstraint = attributionBtn.bottomAnchor.constraint(equalTo: mapView.bottomAnchor, constant: -Dimens.defaultPadding)
+    let horizontalConstraint = attributionBtn.leftAnchor.constraint(equalTo: mapView.leftAnchor, constant: Dimensions.defaultPadding)
+    let verticalConstraint = attributionBtn.bottomAnchor.constraint(equalTo: mapView.bottomAnchor, constant: -Dimensions.defaultPadding)
     NSLayoutConstraint.activate([horizontalConstraint, verticalConstraint])
   }
 
