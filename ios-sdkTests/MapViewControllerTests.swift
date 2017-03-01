@@ -31,11 +31,13 @@ class MockHTTPHandler: TGHttpHandler {
 
 class MapViewControllerTests: XCTestCase {
 
+  let testApplication = TestApplication()
   var controller = TestMapViewController()
   var tgViewController = TestTGMapViewController()
   let mockLocation = CLLocation(latitude: 0.0, longitude: 0.0) // Null Island!
 
   override func setUp() {
+    controller = TestMapViewController(applicationProtocol: testApplication)
     controller.tgViewController = tgViewController
     let mockHTTP = MockHTTPHandler()
     controller.tgViewController.httpHandler = mockHTTP
@@ -232,6 +234,7 @@ class MapViewControllerTests: XCTestCase {
   }
   
   func testFindMeButtonInitialState() {
+    controller.viewDidLoad()
     //Test Initial State
     XCTAssertTrue(controller.findMeButton.isHidden)
     XCTAssertFalse(controller.findMeButton.isEnabled)
@@ -560,8 +563,6 @@ class MapViewControllerTests: XCTestCase {
   }
 
   func testAttributionOpensRights() {
-    let testApplication = TestApplication()
-    controller.application = testApplication
     controller.viewDidLoad()
     let actions = controller.attributionBtn.actions(forTarget: controller, forControlEvent: .touchUpInside)
     let selectorStr = actions?.first
