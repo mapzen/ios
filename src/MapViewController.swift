@@ -495,7 +495,7 @@ open class MapViewController: UIViewController, LocationManagerDelegate {
     NSLayoutConstraint.activate([horizontalConstraint, verticalConstraint])
   }
 
-  private func setupFindMeButton() {
+  func setupFindMeButton() {
     findMeButton = UIButton(type: UIButtonType.custom)
     findMeButton.addTarget(self, action: #selector(MapViewController.defaultFindMeAction(_:touchEvent:)), for: .touchUpInside)
     findMeButton.isEnabled = false

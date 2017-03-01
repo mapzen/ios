@@ -234,7 +234,7 @@ class MapViewControllerTests: XCTestCase {
   }
   
   func testFindMeButtonInitialState() {
-    controller.viewDidLoad()
+    controller.setupFindMeButton()
     //Test Initial State
     XCTAssertTrue(controller.findMeButton.isHidden)
     XCTAssertFalse(controller.findMeButton.isEnabled)
