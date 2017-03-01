@@ -482,7 +482,7 @@ open class MapViewController: UIViewController, LocationManagerDelegate {
 
   private func setupAttribution() {
     attributionBtn = UIButton()
-    attributionBtn.setTitle(NSLocalizedString("attribution", comment: "Mapzen Attribution"), for: .normal)
+    attributionBtn.setTitle("Powered by Mapzen", for: .normal)
     attributionBtn.setTitleColor(.darkGray, for: .normal)
     attributionBtn.titleLabel?.font = UIFont.systemFont(ofSize: 14)
     attributionBtn.addTarget(self, action: #selector(openMapzenTerms), for: .touchUpInside)
