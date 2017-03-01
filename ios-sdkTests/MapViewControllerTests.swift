@@ -12,7 +12,6 @@ import TangramMap
 import CoreLocation
 
 class TestMapViewController: MapViewController {
-  
   func lastSetPointValue() -> TGGeoPoint? {
     return lastSetPoint
   }
@@ -32,11 +31,13 @@ class MockHTTPHandler: TGHttpHandler {
 
 class MapViewControllerTests: XCTestCase {
 
+  let testApplication = TestApplication()
   var controller = TestMapViewController()
   var tgViewController = TestTGMapViewController()
   let mockLocation = CLLocation(latitude: 0.0, longitude: 0.0) // Null Island!
 
   override func setUp() {
+    controller = TestMapViewController(applicationProtocol: testApplication)
     controller.tgViewController = tgViewController
     let mockHTTP = MockHTTPHandler()
     controller.tgViewController.httpHandler = mockHTTP
@@ -233,6 +234,7 @@ class MapViewControllerTests: XCTestCase {
   }
   
   func testFindMeButtonInitialState() {
+    controller.setupFindMeButton()
     //Test Initial State
     XCTAssertTrue(controller.findMeButton.isHidden)
     XCTAssertFalse(controller.findMeButton.isEnabled)
@@ -559,6 +561,15 @@ class MapViewControllerTests: XCTestCase {
     controller.mapView(tgViewController, didSelectMarker: nil, atScreenPosition: CGPoint())
     XCTAssertFalse(delegate.markerPicked)
   }
+
+  func testAttributionOpensRights() {
+    controller.viewDidLoad()
+    let actions = controller.attributionBtn.actions(forTarget: controller, forControlEvent: .touchUpInside)
+    let selectorStr = actions?.first
+    controller.perform(NSSelectorFromString(selectorStr!))
+    XCTAssertEqual(testApplication.urlToOpen?.absoluteString, "https://mapzen.com/rights/")
+  }
+  
 }
 
 class TestPanDelegate : MapPanGestureDelegate {

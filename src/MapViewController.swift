@@ -68,7 +68,9 @@ open class MapViewController: UIViewController, LocationManagerDelegate {
 
   //Error Domains for NSError Appeasement
   open static let MapzenGeneralErrorDomain = "MapzenGeneralErrorDomain"
+  private static let mapzenRights = "https://mapzen.com/rights/"
 
+  let application : ApplicationProtocol
   open var tgViewController: TGMapViewController = TGMapViewController()
   var currentLocationGem: TGMapMarkerId?
   var lastSetPoint: TGGeoPoint?
@@ -77,6 +79,7 @@ open class MapViewController: UIViewController, LocationManagerDelegate {
   open var shouldFollowCurrentLocation = false
   open var findMeButton = UIButton(type: .custom)
   open var currentAnnotations: [PeliasMapkitAnnotation : TGMapMarkerId] = Dictionary()
+  open var attributionBtn = UIButton()
 
   open var cameraType: TGCameraType {
     set {
@@ -143,18 +146,32 @@ open class MapViewController: UIViewController, LocationManagerDelegate {
   public typealias OnSceneLoaded = (String) -> ()
   fileprivate var onSceneLoadedClosure : OnSceneLoaded? = nil
 
-  init(){
+  init() {
+    application = UIApplication.shared
     super.init(nibName: nil, bundle: nil)
-    defer {
-      findMeButton = createFindMeButton()
-    }
   }
 
   required public init?(coder aDecoder: NSCoder) {
+    application = UIApplication.shared
     super.init(coder: aDecoder)
-    defer {
-      findMeButton = createFindMeButton()
-    }
+  }
+
+  public override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
+    application = UIApplication.shared
+    super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
+  }
+
+  init(applicationProtocol: ApplicationProtocol) {
+    application = applicationProtocol
+    super.init(nibName: nil, bundle: nil)
+  }
+
+  open var mapView : GLKView {
+    return tgViewController.view as! GLKView
+  }
+
+  open var tabBarHeight : CGFloat {
+    return self.tabBarController?.tabBar.frame.height ?? 0
   }
 
   open func animate(toPosition position: TGGeoPoint, withDuration seconds: Float) {
@@ -396,38 +413,19 @@ open class MapViewController: UIViewController, LocationManagerDelegate {
   override open func viewDidLoad() {
     super.viewDidLoad()
     LocationManager.sharedManager.delegate = self
-    
-    self.view.addSubview(tgViewController.view)
-    
+
+    setupTgControllerView()
+    setupAttribution()
+    setupFindMeButton()
+
     tgViewController.gestureDelegate = self
     tgViewController.mapViewDelegate = self
   }
 
   override open func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
     super.viewWillTransition(to: size, with: coordinator)
-    tgViewController.viewWillTransition(to: size, with:coordinator)
-  }
-    
-  override open func viewWillAppear(_ animated: Bool) {
-    super.viewWillAppear(animated)
-    let viewRect = view.bounds
-    findMeButton.frame = CGRect(x: viewRect.width - 60.0, y: viewRect.height - 100.0, width: CGFloat(48), height: CGFloat(48))
-    view.addSubview(findMeButton)
-    findMeButton.sizeToFit()
-  }
-
-  func createFindMeButton() -> UIButton {
-    let findMeButton = UIButton(type: UIButtonType.custom)
-    findMeButton.addTarget(self, action: #selector(MapViewController.defaultFindMeAction(_:touchEvent:)), for: .touchUpInside)
-    findMeButton.isEnabled = false
-    findMeButton.isHidden = true
-    findMeButton.adjustsImageWhenHighlighted = false
-    findMeButton.setBackgroundImage(UIImage(named: "ic_find_me_normal"), for: UIControlState())
-    //TODO: This should also have .Highlighted as well .Selected , but something about the @3x assets and UIButton is misbehaving; might need bug opened with Apple.
-    findMeButton.setBackgroundImage(UIImage(named: "ic_find_me_pressed"), for: [.selected])
-    findMeButton.backgroundColor = UIColor.white
-    findMeButton.autoresizingMask = [.flexibleTopMargin, .flexibleLeftMargin]
-    return findMeButton
+    let adjustedSize = CGSize(width: size.width, height: size.height-tabBarHeight)
+    tgViewController.viewWillTransition(to: adjustedSize, with:coordinator)
   }
 
   //MARK: - LocationManagerDelegate
@@ -467,6 +465,60 @@ open class MapViewController: UIViewController, LocationManagerDelegate {
     guard let marker = currentLocationGem else { return }
     tgViewController.markerRemove(marker)
     return
+  }
+
+  //MARK: - private
+
+  private func setupTgControllerView() {
+    tgViewController.view.translatesAutoresizingMaskIntoConstraints = false
+    self.view.addSubview(tgViewController.view)
+
+    let leftConstraint = tgViewController.view.leftAnchor.constraint(equalTo: view.leftAnchor)
+    let rightConstraint = tgViewController.view.rightAnchor.constraint(equalTo: view.rightAnchor)
+    let topConstraint = tgViewController.view.topAnchor.constraint(equalTo: view.topAnchor)
+    let bottomConstraint = tgViewController.view.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -tabBarHeight)
+    NSLayoutConstraint.activate([leftConstraint, rightConstraint, topConstraint, bottomConstraint])
+  }
+
+  private func setupAttribution() {
+    attributionBtn = UIButton()
+    attributionBtn.setTitle("Powered by Mapzen", for: .normal)
+    attributionBtn.setTitleColor(.darkGray, for: .normal)
+    attributionBtn.titleLabel?.font = UIFont.systemFont(ofSize: 14)
+    attributionBtn.addTarget(self, action: #selector(openMapzenTerms), for: .touchUpInside)
+    attributionBtn.sizeToFit()
+    attributionBtn.translatesAutoresizingMaskIntoConstraints = false
+    mapView.addSubview(attributionBtn)
+
+    let horizontalConstraint = attributionBtn.leftAnchor.constraint(equalTo: mapView.leftAnchor, constant: Dimensions.defaultPadding)
+    let verticalConstraint = attributionBtn.bottomAnchor.constraint(equalTo: mapView.bottomAnchor, constant: -Dimensions.defaultPadding)
+    NSLayoutConstraint.activate([horizontalConstraint, verticalConstraint])
+  }
+
+  func setupFindMeButton() {
+    findMeButton = UIButton(type: UIButtonType.custom)
+    findMeButton.addTarget(self, action: #selector(MapViewController.defaultFindMeAction(_:touchEvent:)), for: .touchUpInside)
+    findMeButton.isEnabled = false
+    findMeButton.isHidden = true
+    findMeButton.adjustsImageWhenHighlighted = false
+    findMeButton.setBackgroundImage(UIImage(named: "ic_find_me_normal"), for: UIControlState())
+    //TODO: This should also have .Highlighted as well .Selected , but something about the @3x assets and UIButton is misbehaving; might need bug opened with Apple.
+    findMeButton.setBackgroundImage(UIImage(named: "ic_find_me_pressed"), for: [.selected])
+    findMeButton.backgroundColor = UIColor.white
+    //findMeButton.autoresizingMask = [.flexibleTopMargin, .flexibleLeftMargin]
+    findMeButton.translatesAutoresizingMaskIntoConstraints = false
+    mapView.addSubview(findMeButton)
+
+    let horizontalConstraint = findMeButton.rightAnchor.constraint(equalTo: mapView.rightAnchor, constant: -Dimensions.defaultPadding)
+    let verticalConstraint = findMeButton.bottomAnchor.constraint(equalTo: mapView.bottomAnchor, constant: -Dimensions.defaultPadding)
+    let widthConstraint = findMeButton.widthAnchor.constraint(equalToConstant: Dimensions.squareMapBtnSize)
+    let heightConstraint = findMeButton.widthAnchor.constraint(equalToConstant: Dimensions.squareMapBtnSize)
+    NSLayoutConstraint.activate([horizontalConstraint, verticalConstraint, widthConstraint, heightConstraint])
+  }
+
+  @objc private func openMapzenTerms() {
+    guard let url = URL(string: MapViewController.mapzenRights) else { return }
+    let _ = application.openURL(url)
   }
 
   private func updatesWithApiKeyUpdate(_ sceneUpdates: [TGSceneUpdate]) throws -> [TGSceneUpdate] {
@@ -579,5 +631,6 @@ extension MapViewController : TGMapViewDelegate, TGRecognizerDelegate {
   open func mapView(_ view: TGMapViewController, recognizer: UIGestureRecognizer, didRecognizeShoveGesture displacement: CGPoint) {
     shoveDelegate?.mapController(self, didShoveMap: displacement)
   }
+
 }
 
