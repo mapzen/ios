@@ -31,7 +31,7 @@ public protocol MapSingleTapGestureDelegate : class {
 
    - parameter controller: The MapViewController that wants to recognize the tap.
    - parameter recognizer: The recognizer that initially recognized the tap.
-   - parameter location: The location on the screen that the tap occured in relative to the bounds of the map.
+   - parameter location: The screen coordinates that the tap occured in relative to the bounds of the map.
    
    - returns: Return true for default functionality, or false if don't want it recognized (or plan on handling it yourself).
   */
@@ -42,7 +42,7 @@ public protocol MapSingleTapGestureDelegate : class {
 
    - parameter controller: The MapViewController that recognized the tap.
    - parameter recognizer: The recognizer that recognized the tap.
-   - parameter location: The location on the screen that the tap occured in relative to the bounds of the map.
+   - parameter location: The screen coordinates that the tap occured in relative to the bounds of the map.
    */
   func mapController(_ controller: MapViewController, recognizer: UIGestureRecognizer, didRecognizeSingleTapGesture location: CGPoint)
 }
@@ -54,7 +54,7 @@ public protocol MapDoubleTapGestureDelegate : class {
 
    - parameter controller: The MapViewController that wants to recognize the tap.
    - parameter recognizer: The recognizer that initially recognized the tap.
-   - parameter location: The location on the screen that the tap occured in relative to the bounds of the map.
+   - parameter location: The screen coordinates that the tap occured in relative to the bounds of the map.
 
    - returns: Return true for default functionality, or false if don't want it recognized (or plan on handling it yourself).
    */
@@ -65,7 +65,7 @@ public protocol MapDoubleTapGestureDelegate : class {
 
    - parameter controller: The MapViewController that recognized the tap.
    - parameter recognizer: The recognizer that recognized the tap.
-   - parameter location: The location on the screen that the tap occured in relative to the bounds of the map.
+   - parameter location: The screen coordinates that the tap occured in relative to the bounds of the map.
    */
   func mapController(_ controller: MapViewController, recognizer: UIGestureRecognizer, didRecognizeDoubleTapGesture location: CGPoint)
 }
@@ -77,7 +77,7 @@ public protocol MapLongPressGestureDelegate : class {
 
    - parameter controller: The MapViewController that wants to recognize the press.
    - parameter recognizer: The recognizer that initially recognized the press.
-   - parameter location: The location on the screen that the press occured in relative to the bounds of the map.
+   - parameter location: The screen coordinates that the press occured in relative to the bounds of the map.
 
    - returns: Return true for default functionality, or false if don't want it recognized (or plan on handling it yourself).
    */
@@ -88,7 +88,7 @@ public protocol MapLongPressGestureDelegate : class {
 
    - parameter controller: The MapViewController that recognized the press.
    - parameter recognizer: The recognizer that recognized the press.
-   - parameter location: The location on the screen that the press occured in relative to the bounds of the map.
+   - parameter location: The screen coordinates that the press occured in relative to the bounds of the map.
    */
   func mapController(_ controller: MapViewController, recognizer: UIGestureRecognizer, didRecognizeLongPressGesture location: CGPoint)
 }
@@ -98,7 +98,7 @@ public protocol MapPanGestureDelegate : class {
   /**
    Informs the delegate the map just panned.
 
-   - parameter controller: The MapViewController that recognized the press.
+   - parameter controller: The MapViewController that recognized the pan.
    - parameter displacement: The distance in pixels that the screen was moved by the gesture.
    */
   func mapController(_ controller: MapViewController, didPanMap displacement: CGPoint)
@@ -109,7 +109,7 @@ public protocol MapPinchGestureDelegate : class {
   /**
    Informs the delegate the map just zoomed via a pinch gesture.
 
-   - parameter controller: The MapViewController that recognized the press.
+   - parameter controller: The MapViewController that recognized the pinch.
    - parameter location: The screen coordinate the map was pinched at.
    */
   func mapController(_ controller: MapViewController, didPinchMap location: CGPoint)
@@ -120,7 +120,7 @@ public protocol MapRotateGestureDelegate : class {
   /**
    Informs the delegate the map just rotated.
 
-   - parameter controller: The MapViewController that recognized the press.
+   - parameter controller: The MapViewController that recognized the rotation.
    - parameter location: The screen coordinate the map was rotated at.
    */
   func mapController(_ controller: MapViewController, didRotateMap location: CGPoint)
@@ -131,7 +131,7 @@ public protocol MapShoveGestureDelegate : class {
   /**
    Informs the delegate the map just shoved.
 
-   - parameter controller: The MapViewController that recognized the press.
+   - parameter controller: The MapViewController that recognized the shove.
    - parameter displacement: The distance in pixels that the screen was moved by the gesture.
    */
   func mapController(_ controller: MapViewController, didShoveMap displacement: CGPoint)
@@ -144,7 +144,7 @@ public protocol MapFeatureSelectDelegate : class {
 
    - parameter controller: The MapViewController that recognized the selection.
    - parameter feature: Feature dictionary. The keys available are determined by the provided data in the upstream data source.
-   - parameter atScreenPosition: The location on the screen of the picked feature.
+   - parameter atScreenPosition: The screen coordinates of the picked feature.
    */
   func mapController(_ controller: MapViewController, didSelectFeature feature: [AnyHashable : Any], atScreenPosition position: CGPoint)
 }
@@ -156,7 +156,7 @@ public protocol MapLabelSelectDelegate : class {
 
    - parameter controller: The MapViewController that recognized the selection.
    - parameter labelPickResult: A label returned as an instance of TGLabelPickResult.
-   - parameter atScreenPosition: The location on the screen of the picked label.
+   - parameter atScreenPosition: The screen coordinates of the picked label.
    */
   func mapController(_ controller: MapViewController, didSelectLabel labelPickResult: TGLabelPickResult, atScreenPosition position: CGPoint)
 }
@@ -164,11 +164,11 @@ public protocol MapLabelSelectDelegate : class {
 /// MapMarkerSelectDelegate
 public protocol MapMarkerSelectDelegate : class {
   /**
-   Informs the delegate a label of the map was just selected
+   Informs the delegate a marker of the map was just selected
 
    - parameter controller: The MapViewController that recognized the selection.
    - parameter markerPickResult: A marker selection returned as an instance of TGMarkerPickResult.
-   - parameter atScreenPosition: The location on the screen of the picked marker.
+   - parameter atScreenPosition: The screen coordinates of the picked marker.
    */
   func mapController(_ controller: MapViewController, didSelectMarker markerPickResult: TGMarkerPickResult, atScreenPosition position: CGPoint)
 }
@@ -176,7 +176,7 @@ public protocol MapMarkerSelectDelegate : class {
 /// MapTileLoadDelegate
 public protocol MapTileLoadDelegate : class {
   /**
-   Informs the delegate the map has been completed loading tile data and is displaying the map.
+   Informs the delegate the map has completed loading tile data and is displaying the map.
 
    - parameter controller: The MapViewController that just finished loading.
    */
@@ -256,7 +256,7 @@ open class MapViewController: UIViewController, LocationManagerDelegate {
     }
   }
 
-  /// Enables/Disables panning on the map
+  /// Enables / Disables panning on the map
   open var panEnabled = true
 
   /// Enables / Disables pinching on the map
@@ -477,7 +477,7 @@ open class MapViewController: UIViewController, LocationManagerDelegate {
   }
 
   /**
-   Sets the marker location on the map in an animated fasion using the provided easing type
+   Sets the marker location on the map in an animated fashion using the provided easing type
    
    - parameter identifier: The marker to locate on the map.
    - parameter coordinate: The lat/long to put the marker at.
@@ -544,7 +544,7 @@ open class MapViewController: UIViewController, LocationManagerDelegate {
   }
 
   /** 
-   Loads a scene file synchronously on the main thread. Use the async methods instead of these in production apps.
+   Loads a scene file synchronously on the main thread. Use the async methods instead of these in production apps. If you have scene updates to apply, either use one of the load scene methods that takes in updates at load time, or wait until onSceneLoaded is called to apply those updates.
    
    - parameter path: The path to the scene file to load.
    - throws: A MZError `apiKeyNotSet` error if an API Key has not been sent on the MapzenManager class.
@@ -554,7 +554,7 @@ open class MapViewController: UIViewController, LocationManagerDelegate {
   }
 
   /**
-   Loads a scene file synchronously on the main thread. Use the async methods instead of these in production apps.
+   Loads a scene file synchronously on the main thread. Use the async methods instead of these in production apps. If you have scene updates to apply, either use one of the load scene methods that takes in updates at load time, or wait until onSceneLoaded is called to apply those updates.
    
    - parameter path: The path to the scene file to load.
    - parameter sceneUpdates: The scene updates to make while loading the scene file.
@@ -565,7 +565,7 @@ open class MapViewController: UIViewController, LocationManagerDelegate {
   }
 
   /**
-   Loads the scene file asynchronously. Recommended for production apps.
+   Loads the scene file asynchronously. Recommended for production apps. If you have scene updates to apply, either use one of the load scene methods that takes in updates at load time, or wait until onSceneLoaded is called to apply those updates.
    
    - parameter path: The path to the scene file to load.
    - parameter onSceneLoaded: Closure called on scene loaded.
@@ -589,7 +589,7 @@ open class MapViewController: UIViewController, LocationManagerDelegate {
   }
 
   /**
-   Queue a scene update using a yaml string path. It's recommended to use the other version of this that uses the TGSceneUpdate objects.
+   Queue a scene update using a yaml string path. It's recommended to use the other version of this that uses the TGSceneUpdate objects. Try to queue as many scene updates as you can in one pass as each `applySceneUpdates()` call can require a re-parse of the yaml and a re-render of the map. It is required to call `applySceneUpdates()` to activate the updated that have been enqueued.
    
    - parameter componentPath: The yaml path to the component to change.
    - parameter value: The value to update the component to.
@@ -599,7 +599,7 @@ open class MapViewController: UIViewController, LocationManagerDelegate {
   }
 
   /**
-   Queue an array of scene updates. Try to do as much of the scene updating as you can in one pass as each `applySceneUpdates()` call can require a re-parse of the yaml and a re-render of the map.
+   Queue an array of scene updates. Try to queue as many scene updates as you can in one pass as each `applySceneUpdates()` call can require a re-parse of the yaml and a re-render of the map. It is required to call `applySceneUpdates()` to activate the updated that have been enqueued. 
    
    - parameter sceneUpdates: An array of TGSceneUpdate objects to update the map.
   */
