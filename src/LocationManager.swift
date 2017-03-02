@@ -22,7 +22,11 @@ import OnTheRoad
   /// The user is restricted from authorizing the application for location updates. This is normally due to parental control lockout.
   @objc optional func authorizationRestricted()
 
-  /// The device received a new location.
+  /** 
+   The device received a new location.
+   
+   - parameter location: The new location.
+   */
   @objc optional func locationDidUpdate(_ location: CLLocation)
 }
 
@@ -58,20 +62,29 @@ open class LocationManager: NSObject, CLLocationManagerDelegate {
     coreLocationManager.requestWhenInUseAuthorization()
   }
 
-  /// Asks the location subsystem if we're currently authorized for location access while in foreground.
-  /// - returns: Whether or not the application is authorized.
+  /** 
+   Asks the location subsystem if we're currently authorized for location access while in foreground.
+   
+   - returns: Whether or not the application is authorized.
+   */
   open func isInUseAuthorized() -> Bool {
     return CLLocationManager.authorizationStatus() == .authorizedWhenInUse ? true :  false
   }
 
-  /// Asks the location subsystem if we're currently authorized for location access at all times.
-  /// - returns: Whether or not the application is authorized.
+  /** 
+   Asks the location subsystem if we're currently authorized for location access at all times.
+   
+   - returns: Whether or not the application is authorized.
+   */
   open func isAlwaysAuthorized() -> Bool {
-        return CLLocationManager.authorizationStatus() == .authorizedAlways ? true :  false
+        return CLLocationManager.authorizationStatus() == .authorizedAlways
   }
 
-  /// Refreshes the stored current location and also returns it to the caller
-  /// -returns: The most current location the location system has, or nil if it has no current location.
+  /** 
+   Refreshes the stored current location and also returns it to the caller
+   
+   -returns: The most current location the location system has, or nil if it has no current location.
+   */
   open func refreshCurrentLocation() -> CLLocation? {
     if CLLocationManager.locationServicesEnabled() &&
       (CLLocationManager.authorizationStatus() == .authorizedAlways || CLLocationManager.authorizationStatus() == .authorizedWhenInUse) {
