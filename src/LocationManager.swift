@@ -10,22 +10,36 @@ import UIKit
 import CoreLocation
 import OnTheRoad
 
-extension OTRGeoPoint {
-  
-}
-
+/// LocationManagerDelegate Protocol
 @objc public protocol LocationManagerDelegate {
+
+  /// The user authorized the application to receive location updates
   @objc optional func authorizationDidSucceed()
+
+  /// The user denied the application from receiving location updates.
   @objc optional func authorizationDenied()
+
+  /// The user is restricted from authorizing the application for location updates. This is normally due to parental control lockout.
   @objc optional func authorizationRestricted()
+
+  /// The device received a new location.
   @objc optional func locationDidUpdate(_ location: CLLocation)
 }
 
-
+/**
+ The `LocationManager` class is a wrapper around iOS's built in location subsystem. It provides a simpler interface and customization options.
+ 
+ - Note: The class is expected to be used as a singleton. As such, access to the class is via the `sharedManager` object.
+ */
 open class LocationManager: NSObject, CLLocationManagerDelegate {
 
+  /// The singleton access object.
   open static let sharedManager = LocationManager()
+
+  /// The last received known good location
   open var currentLocation: CLLocation?
+
+  /// The delegate to receive the location authorization and status callbacks
   open weak var delegate: LocationManagerDelegate?
 
   fileprivate let coreLocationManager = CLLocationManager()
@@ -34,23 +48,30 @@ open class LocationManager: NSObject, CLLocationManagerDelegate {
     coreLocationManager.delegate = self
   }
 
+  /// Request the user give the application location access at all times.
   open func requestAlwaysAuthorization() {
     coreLocationManager.requestAlwaysAuthorization()
-
   }
 
+  /// Request the user give the application location access only when in the foreground.
   open func requestWhenInUseAuthorization() {
     coreLocationManager.requestWhenInUseAuthorization()
   }
 
+  /// Asks the location subsystem if we're currently authorized for location access while in foreground.
+  /// - returns: Whether or not the application is authorized.
   open func isInUseAuthorized() -> Bool {
     return CLLocationManager.authorizationStatus() == .authorizedWhenInUse ? true :  false
   }
 
+  /// Asks the location subsystem if we're currently authorized for location access at all times.
+  /// - returns: Whether or not the application is authorized.
   open func isAlwaysAuthorized() -> Bool {
         return CLLocationManager.authorizationStatus() == .authorizedAlways ? true :  false
   }
 
+  /// Refreshes the stored current location and also returns it to the caller
+  /// -returns: The most current location the location system has, or nil if it has no current location.
   open func refreshCurrentLocation() -> CLLocation? {
     if CLLocationManager.locationServicesEnabled() &&
       (CLLocationManager.authorizationStatus() == .authorizedAlways || CLLocationManager.authorizationStatus() == .authorizedWhenInUse) {
@@ -60,15 +81,17 @@ open class LocationManager: NSObject, CLLocationManagerDelegate {
     return nil
   }
 
-  //The difference between this function and the one above is requestLocation() immediately returns and will serve the location via the delegate
+  /// The difference between this function and `refreshCurrentLocation()` is `requestLocation()` immediately returns and will serve the location via the delegate
   open func requestLocation() {
     coreLocationManager.requestLocation()
   }
 
+  /// Starts the location manager callbacks for location updates
   open func startUpdatingLocation() {
     coreLocationManager.startUpdatingLocation()
   }
 
+  /// Stops the location manager callbacks
   open func stopUpdatingLocation() {
     coreLocationManager.stopUpdatingLocation()
   }
