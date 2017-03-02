@@ -544,7 +544,7 @@ open class MapViewController: UIViewController, LocationManagerDelegate {
   }
 
   /** 
-   Loads a scene file synchronously on the main thread. Use the async methods instead of these in production apps. If you have scene updates to apply, either use one of the load scene methods that takes in updates at load time, or wait until onSceneLoaded is called to apply those updates.
+   Loads a scene file synchronously on the main thread. Use the async methods instead of these in production apps.
    
    - parameter path: The path to the scene file to load.
    - throws: A MZError `apiKeyNotSet` error if an API Key has not been sent on the MapzenManager class.
@@ -554,7 +554,7 @@ open class MapViewController: UIViewController, LocationManagerDelegate {
   }
 
   /**
-   Loads a scene file synchronously on the main thread. Use the async methods instead of these in production apps. If you have scene updates to apply, either use one of the load scene methods that takes in updates at load time, or wait until onSceneLoaded is called to apply those updates.
+   Loads a scene file synchronously on the main thread. Use the async methods instead of these in production apps.
    
    - parameter path: The path to the scene file to load.
    - parameter sceneUpdates: The scene updates to make while loading the scene file.
@@ -565,7 +565,7 @@ open class MapViewController: UIViewController, LocationManagerDelegate {
   }
 
   /**
-   Loads the scene file asynchronously. Recommended for production apps. If you have scene updates to apply, either use one of the load scene methods that takes in updates at load time, or wait until onSceneLoaded is called to apply those updates.
+   Loads the scene file asynchronously. Recommended for production apps. If you have scene updates to apply, either use the other version of this method that allows you to pass in scene updates during load, or wait until onSceneLoaded is called to apply those updates.
    
    - parameter path: The path to the scene file to load.
    - parameter onSceneLoaded: Closure called on scene loaded.
@@ -576,7 +576,7 @@ open class MapViewController: UIViewController, LocationManagerDelegate {
   }
 
   /**
-   Loads the scene file asynchronously. Recommended for production apps.
+   Loads the scene file asynchronously. Recommended for production apps. If you have scene updates to apply, either pass in the scene updates at the initial call, or wait until onSceneLoaded is called to apply those updates.
    
    - parameter path: The path to the scene file to load.
    - parameter sceneUpdates: The scene updates to make while loading the scene file.
@@ -599,7 +599,7 @@ open class MapViewController: UIViewController, LocationManagerDelegate {
   }
 
   /**
-   Queue an array of scene updates. Try to queue as many scene updates as you can in one pass as each `applySceneUpdates()` call can require a re-parse of the yaml and a re-render of the map. It is required to call `applySceneUpdates()` to activate the updated that have been enqueued. 
+   Queue an array of scene updates. Try to queue as many scene updates as you can in one pass as each `applySceneUpdates()` call can require a re-parse of the yaml and a re-render of the map. It is required to call `applySceneUpdates()` to activate the updated that have been enqueued.
    
    - parameter sceneUpdates: An array of TGSceneUpdate objects to update the map.
   */
