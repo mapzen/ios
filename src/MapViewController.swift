@@ -13,57 +13,182 @@ import CoreLocation
 import Pelias
 import OnTheRoad
 
+/** 
+  Mapzen Error Enumeration
+  - generalError: The general case for things we're not quite sure what happened.
+  - annotationDoesNotExist: The requested annotation does not exist on the map.
+  - apiKeyNotSet: Your Mapzen API key is not set. Set this using the `MapzenManager` class.
+  - routeDoesNotExist: The requested route does not exist.
+ */
 @objc public enum MZError: Int {
   case generalError, annotationDoesNotExist, apiKeyNotSet, routeDoesNotExist
 }
 
+/// Single Tap Gesture Delegate
 public protocol MapSingleTapGestureDelegate : class {
+  /**
+   Asks the delegate if the map should recognize this single tap and perform default functionality.
+
+   - parameter controller: The MapViewController that wants to recognize the tap.
+   - parameter recognizer: The recognizer that initially recognized the tap.
+   - parameter location: The screen coordinates that the tap occured in relative to the bounds of the map.
+   
+   - returns: Return true for default functionality, or false if don't want it recognized (or plan on handling it yourself).
+  */
   func mapController(_ controller: MapViewController, recognizer: UIGestureRecognizer, shouldRecognizeSingleTapGesture location: CGPoint) -> Bool
+
+  /**
+   Informs the delegate the map recognized a single tap gesture.
+
+   - parameter controller: The MapViewController that recognized the tap.
+   - parameter recognizer: The recognizer that recognized the tap.
+   - parameter location: The screen coordinates that the tap occured in relative to the bounds of the map.
+   */
   func mapController(_ controller: MapViewController, recognizer: UIGestureRecognizer, didRecognizeSingleTapGesture location: CGPoint)
 }
 
+/// Double Tap Gesture Delegate
 public protocol MapDoubleTapGestureDelegate : class {
+  /**
+   Asks the delegate if the map should recognize this double tap and perform default functionality.
+
+   - parameter controller: The MapViewController that wants to recognize the tap.
+   - parameter recognizer: The recognizer that initially recognized the tap.
+   - parameter location: The screen coordinates that the tap occured in relative to the bounds of the map.
+
+   - returns: Return true for default functionality, or false if don't want it recognized (or plan on handling it yourself).
+   */
   func mapController(_ controller: MapViewController, recognizer: UIGestureRecognizer, shouldRecognizeDoubleTapGesture location: CGPoint) -> Bool
+
+  /**
+   Informs the delegate the map recognized a double tap gesture.
+
+   - parameter controller: The MapViewController that recognized the tap.
+   - parameter recognizer: The recognizer that recognized the tap.
+   - parameter location: The screen coordinates that the tap occured in relative to the bounds of the map.
+   */
   func mapController(_ controller: MapViewController, recognizer: UIGestureRecognizer, didRecognizeDoubleTapGesture location: CGPoint)
 }
 
+/// Long Press Gesture Delegate
 public protocol MapLongPressGestureDelegate : class {
+  /**
+   Asks the delegate if the map should recognize this long press gesture and perform default functionality.
+
+   - parameter controller: The MapViewController that wants to recognize the press.
+   - parameter recognizer: The recognizer that initially recognized the press.
+   - parameter location: The screen coordinates that the press occured in relative to the bounds of the map.
+
+   - returns: Return true for default functionality, or false if don't want it recognized (or plan on handling it yourself).
+   */
   func mapController(_ controller: MapViewController, recognizer: UIGestureRecognizer, shouldRecognizeLongPressGesture location: CGPoint) -> Bool
+
+  /**
+   Informs the delegate the map recognized a long press gesture.
+
+   - parameter controller: The MapViewController that recognized the press.
+   - parameter recognizer: The recognizer that recognized the press.
+   - parameter location: The screen coordinates that the press occured in relative to the bounds of the map.
+   */
   func mapController(_ controller: MapViewController, recognizer: UIGestureRecognizer, didRecognizeLongPressGesture location: CGPoint)
 }
 
+/// Map Pan Gesture Delegate
 public protocol MapPanGestureDelegate : class {
+  /**
+   Informs the delegate the map just panned.
+
+   - parameter controller: The MapViewController that recognized the pan.
+   - parameter displacement: The distance in pixels that the screen was moved by the gesture.
+   */
   func mapController(_ controller: MapViewController, didPanMap displacement: CGPoint)
 }
 
+/// MapPinchGestureDelegate
 public protocol MapPinchGestureDelegate : class {
+  /**
+   Informs the delegate the map just zoomed via a pinch gesture.
+
+   - parameter controller: The MapViewController that recognized the pinch.
+   - parameter location: The screen coordinate the map was pinched at.
+   */
   func mapController(_ controller: MapViewController, didPinchMap location: CGPoint)
 }
 
+/// MapRotateGestureDelegate
 public protocol MapRotateGestureDelegate : class {
+  /**
+   Informs the delegate the map just rotated.
+
+   - parameter controller: The MapViewController that recognized the rotation.
+   - parameter location: The screen coordinate the map was rotated at.
+   */
   func mapController(_ controller: MapViewController, didRotateMap location: CGPoint)
 }
 
+/// MapShoveGestureDelegate
 public protocol MapShoveGestureDelegate : class {
+  /**
+   Informs the delegate the map just shoved.
+
+   - parameter controller: The MapViewController that recognized the shove.
+   - parameter displacement: The distance in pixels that the screen was moved by the gesture.
+   */
   func mapController(_ controller: MapViewController, didShoveMap displacement: CGPoint)
 }
 
+/// MapFeatureSelectDelegate
 public protocol MapFeatureSelectDelegate : class {
+  /**
+   Informs the delegate a feature of the map was just selected.
+
+   - parameter controller: The MapViewController that recognized the selection.
+   - parameter feature: Feature dictionary. The keys available are determined by the provided data in the upstream data source.
+   - parameter atScreenPosition: The screen coordinates of the picked feature.
+   */
   func mapController(_ controller: MapViewController, didSelectFeature feature: [AnyHashable : Any], atScreenPosition position: CGPoint)
 }
 
+/// MapLabelSelectDelegate
 public protocol MapLabelSelectDelegate : class {
+  /**
+   Informs the delegate a label of the map was just selected
+
+   - parameter controller: The MapViewController that recognized the selection.
+   - parameter labelPickResult: A label returned as an instance of TGLabelPickResult.
+   - parameter atScreenPosition: The screen coordinates of the picked label.
+   */
   func mapController(_ controller: MapViewController, didSelectLabel labelPickResult: TGLabelPickResult, atScreenPosition position: CGPoint)
 }
 
+/// MapMarkerSelectDelegate
 public protocol MapMarkerSelectDelegate : class {
+  /**
+   Informs the delegate a marker of the map was just selected
+
+   - parameter controller: The MapViewController that recognized the selection.
+   - parameter markerPickResult: A marker selection returned as an instance of TGMarkerPickResult.
+   - parameter atScreenPosition: The screen coordinates of the picked marker.
+   */
   func mapController(_ controller: MapViewController, didSelectMarker markerPickResult: TGMarkerPickResult, atScreenPosition position: CGPoint)
 }
 
+/// MapTileLoadDelegate
 public protocol MapTileLoadDelegate : class {
+  /**
+   Informs the delegate the map has completed loading tile data and is displaying the map.
+
+   - parameter controller: The MapViewController that just finished loading.
+   */
   func mapControllerDidCompleteLoading(_ controller: MapViewController)
 }
 
+
+/**
+ MapViewController is the main class utilized for displaying Mapzen maps on iOS. It aims to provide the full set of features a developer would want for mapping-related tasks, such as displaying routes, results of a search, or the device's current location (and any combination therein.)
+ 
+ MapViewController wraps the underlying `TGMapViewController` from Tangram-es and handles adding it to the view hierarchy. It exposes this 
+ */
 open class MapViewController: UIViewController, LocationManagerDelegate {
 
   //Error Domains for NSError Appeasement
@@ -81,6 +206,7 @@ open class MapViewController: UIViewController, LocationManagerDelegate {
   open var currentAnnotations: [PeliasMapkitAnnotation : TGMapMarkerId] = Dictionary()
   open var attributionBtn = UIButton()
 
+  /// The camera type we want to use. Defaults to standard top-down (flat) camera.
   open var cameraType: TGCameraType {
     set {
       tgViewController.cameraType = cameraType
@@ -89,7 +215,8 @@ open class MapViewController: UIViewController, LocationManagerDelegate {
       return tgViewController.cameraType
     }
   }
-  
+
+  /// The current position of the map in latitude / longitude.
   open var position: TGGeoPoint {
     set {
       tgViewController.position = position
@@ -98,7 +225,8 @@ open class MapViewController: UIViewController, LocationManagerDelegate {
       return tgViewController.position
     }
   }
-  
+
+  /// The current zoom level.
   open var zoom: Float {
     set {
       tgViewController.zoom = zoom
@@ -107,7 +235,8 @@ open class MapViewController: UIViewController, LocationManagerDelegate {
       return tgViewController.zoom
     }
   }
-  
+
+  /// The current rotation, in radians from north.
   open var rotation: Float {
     set {
       tgViewController.rotation = rotation
@@ -116,7 +245,8 @@ open class MapViewController: UIViewController, LocationManagerDelegate {
       return tgViewController.rotation
     }
   }
-  
+
+  /// The current tilt in radians.
   open var tilt: Float {
     set {
       tgViewController.tilt = tilt
@@ -125,165 +255,391 @@ open class MapViewController: UIViewController, LocationManagerDelegate {
       return tgViewController.tilt
     }
   }
-  
+
+  /// Enables / Disables panning on the map
   open var panEnabled = true
+
+  /// Enables / Disables pinching on the map
   open var pinchEnabled = true
+
+  /// Enables / Disables rotation on the map
   open var rotateEnabled = true
+
+  /// Enables / Disables shove gestures on the map.
   open var shoveEnabled = true
-  
+
+  /// Receiver for single tap callbacks
   weak open var singleTapGestureDelegate: MapSingleTapGestureDelegate?
+
+  /// Receiver for double tap callbacks
   weak open var doubleTapGestureDelegate: MapDoubleTapGestureDelegate?
+
+  /// Receiver for single tap callbacks
   weak open var longPressGestureDelegate: MapLongPressGestureDelegate?
+
+  /// Receiver for pan gesture callbacks
   weak open var panDelegate: MapPanGestureDelegate?
+
+  /// Receiver for pinch gesture callbacks
   weak open var pinchDelegate: MapPinchGestureDelegate?
+
+  /// Receiver for rotation gesture callbacks
   weak open var rotateDelegate: MapRotateGestureDelegate?
+
+  /// Receiver for shove gesture callbacks
   weak open var shoveDelegate: MapShoveGestureDelegate?
+
+  /// Receiver for feature selection callbacks
   weak open var featureSelectDelegate: MapFeatureSelectDelegate?
+
+  /// Receiver for label selection callbacks
   weak open var labelSelectDelegate: MapLabelSelectDelegate?
+
+  /// Receiver for marker selection callbacks
   weak open var markerSelectDelegate: MapMarkerSelectDelegate?
+
+  /// Receiver for tile load completion callbacks
   weak open var tileLoadDelegate: MapTileLoadDelegate?
 
   public typealias OnSceneLoaded = (String) -> ()
   fileprivate var onSceneLoadedClosure : OnSceneLoaded? = nil
 
-  init() {
+
+  /**
+   Default initializer. Sets up the find me button and initializes the TGMapViewController as part of startup.
+   
+   - returns: A fully formed MapViewController.
+  */
+  init(){
     application = UIApplication.shared
     super.init(nibName: nil, bundle: nil)
   }
 
+  /**
+   Default required initializer for storyboard creation.
+   
+   - returns: A fully formed MapViewController.
+  */
   required public init?(coder aDecoder: NSCoder) {
     application = UIApplication.shared
     super.init(coder: aDecoder)
   }
 
+  /**
+   Default required initializer for nib-based creation.
+
+   - returns: A fully formed MapViewController.
+   */
   public override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
     application = UIApplication.shared
     super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
   }
 
+  /**
+   Initializer that accepts a custom application protocol useful for testing.
+
+   - parameter applicationProtocol: An object conforming to our Application Protocol.
+   - returns: A fully formed MapViewController.
+   */
   init(applicationProtocol: ApplicationProtocol) {
     application = applicationProtocol
     super.init(nibName: nil, bundle: nil)
   }
 
+  /// Direct access to the underlying TGMapViewController's view.
   open var mapView : GLKView {
     return tgViewController.view as! GLKView
   }
 
+  /// The height of our enclosing tab bar controller's tab bar.
   open var tabBarHeight : CGFloat {
     return self.tabBarController?.tabBar.frame.height ?? 0
   }
 
+  /**
+   Animates the map to a particular position using the default easing type (Cubic).
+   
+   - parameter position: The position to animate to.
+   - parameter seconds: How long the animation should last.
+  */
   open func animate(toPosition position: TGGeoPoint, withDuration seconds: Float) {
     tgViewController.animate(toPosition: position, withDuration: seconds)
   }
-  
+
+  /**
+   Animates the map to a particular position using the provided easing type.
+   
+   - parameter position: The position to animate to.
+   - parameter seconds: How long the animation should last.
+   - parameter easeType: The animation easing style to use.
+   */
   open func animate(toPosition position: TGGeoPoint, withDuration seconds: Float, with easeType: TGEaseType) {
     tgViewController.animate(toPosition: position, withDuration: seconds, with: easeType)
   }
-  
+
+  /**
+   Animates the map to a particular zoom level using the default easing type (Cubic).
+   
+   - parameter zoomLevel: The zoom level to animate to.
+   - parameter seconds: How long the animation should last.
+   */
   open func animate(toZoomLevel zoomLevel: Float, withDuration seconds: Float) {
     tgViewController.animate(toZoomLevel: zoomLevel, withDuration: seconds)
   }
-  
+
+  /**
+   Animates the map to a particular zoom level using the provided easing type.
+   
+   - parameter zoomLevel: The zoom level to animate to.
+   - parameter seconds: How long the animation should last.
+   - parameter easeType: The animation easing style to use.
+   */
   open func animate(toZoomLevel zoomLevel: Float, withDuration seconds: Float, with easeType: TGEaseType) {
     tgViewController.animate(toZoomLevel: zoomLevel, withDuration: seconds, with: easeType)
   }
-  
+
+  /**
+   Animates the map to rotate using the default easing type (Cubic).
+   
+   - parameter radians: How far the map should rotate in radians.
+   - parameter seconds: How long the animation should last.
+   */
   open func animate(toRotation radians: Float, withDuration seconds: Float) {
     tgViewController.animate(toRotation: radians, withDuration: seconds)
   }
-  
+
+  /**
+   Animates the map to rotate using the provided easing type.
+   
+   - parameter radians: How far the map should rotate in radians.
+   - parameter seconds: How long the animation should last.
+   - parameter easeType: The animation easing style to use.
+   */
   open func animate(toRotation radians: Float, withDuration seconds: Float, with easeType: TGEaseType) {
     tgViewController.animate(toRotation: radians, withDuration: seconds, with: easeType)
   }
   
+  /**
+   Animates the map to tilt using the default easing type (Cubic).
+   
+   - parameter radians: How far the map should tilt in radians.
+   - parameter seconds: How long the animation should last.
+   */
   open func animate(toTilt radians: Float, withDuration seconds: Float) {
     tgViewController.animate(toTilt: radians, withDuration: seconds)
   }
-  
+
+  /**
+   Animates the map to tile using the provided easing type.
+   
+   - parameter radians: How far the map should tilt in radians.
+   - parameter seconds: How long the animation should last.
+   - parameter easeType: The animation easing style to use.
+   */
   open func animate(toTilt radians: Float, withDuration seconds: Float, with easeType: TGEaseType) {
     tgViewController.animate(toTilt: radians, withDuration: seconds, with: easeType)
   }
-  
+
+  /// Removes all existing markers on the map.
   open func markerRemoveAll() {
     tgViewController.markerRemoveAll()
   }
-  
+
+  /** 
+   Adds an individual marker to the map.
+   
+   - returns: A marker id from Tangram.
+   */
   open func markerAdd() -> TGMapMarkerId {
     return tgViewController.markerAdd()
   }
-  
+
+  /**
+   Sets the styling of a particular marker.
+   
+   - parameter identifier: The marker to style.
+   - parameter styling: The styling string to use.
+   - returns: A boolean that represents if the style update succeeded.
+  */
   open func markerSetStyling(_ identifier: TGMapMarkerId, styling: String) -> Bool {
     return tgViewController.markerSetStyling(identifier, styling: styling)
   }
-  
+
+  /**
+   Sets the marker location on the map.
+   
+   - parameter identifier: The marker to locate on the map.
+   - parameter coordinate: The lat/long to put the marker at.
+   - returns: A boolean if the location set succeeded.
+  */
   open func markerSetPoint(_ identifier: TGMapMarkerId, coordinates coordinate: TGGeoPoint) -> Bool {
     return tgViewController.markerSetPoint(identifier, coordinates: coordinate)
   }
-  
+
+  /**
+   Sets the marker location on the map in an animated fashion using the provided easing type
+   
+   - parameter identifier: The marker to locate on the map.
+   - parameter coordinate: The lat/long to put the marker at.
+   - parameter duration: How long the animation should last.
+   - parameter easeType: The animation easing style to use.
+   - returns: A boolean if the location set succeeded.
+   */
   open func markerSetPointEased(_ identifier: TGMapMarkerId, coordinates coordinate: TGGeoPoint, duration: Float, easeType ease: TGEaseType) -> Bool {
     return tgViewController.markerSetPointEased(identifier, coordinates: coordinate, seconds: duration, easeType: ease)
   }
-  
+
+  /**
+   Sets the marker to represent a particular polyline.
+   
+   - parameter identifier: The marker to set.
+   - pameter polyline: The polyline to represent the marker.
+   - returns: A boolean if the marker set succeeded.
+   */
   open func markerSetPolyline(_ identifier: TGMapMarkerId, polyline: TGGeoPolyline) -> Bool {
     return tgViewController.markerSetPolyline(identifier, polyline: polyline)
   }
-  
+
+  /**
+   Sets the marker to represent a particular polygon.
+   
+   - parameter identifier: The marker to set.
+   - pameter polygon: The polygon to represent the marker.
+   - returns: A boolean if the marker set succeeded.
+   */
   open func markerSetPolygon(_ identifier: TGMapMarkerId, polygon: TGGeoPolygon) -> Bool {
     return tgViewController.markerSetPolygon(identifier, polygon: polygon)
   }
-  
+
+  /**
+   Sets the marker if it should be visible or not.
+   
+   - parameter identifier: The marker to alter visibility on.
+   - parameter visible: True means visible. False mean not visible.
+   - returns: A boolean indiciation whether or not the update succeeded.
+  */
   open func markerSetVisible(_ identifier: TGMapMarkerId, visible: Bool) -> Bool {
     return tgViewController.markerSetVisible(identifier, visible: visible)
   }
-  
+
+  /**
+   Sets the marker bitmap image.
+   
+   - parameter identifier: The marker to set the image for.
+   - parameter image: A UIImage to represent the marker.
+   - returns: A boolean indiciation whether or not the update succeeded.
+   */
   open func markerSetImage(_ identifier: TGMapMarkerId, image: UIImage) -> Bool {
     return tgViewController.markerSetImage(identifier, image: image)
   }
-  
+
+  /**
+   Removes an individual marker from the map.
+   
+   - parameter marker: The marker to remove.
+   - returns: A boolean indicating if the removal succeeded.
+  */
   open func markerRemove(_ marker: TGMapMarkerId) -> Bool {
     return tgViewController.markerRemove(marker)
   }
-  
+
+  /** 
+   Loads a scene file synchronously on the main thread. Use the async methods instead of these in production apps.
+   
+   - parameter path: The path to the scene file to load.
+   - throws: A MZError `apiKeyNotSet` error if an API Key has not been sent on the MapzenManager class.
+ */
   open func loadSceneFile(_ path: String) throws {
     try loadSceneFile(path, sceneUpdates: [TGSceneUpdate]())
   }
-  
+
+  /**
+   Loads a scene file synchronously on the main thread. Use the async methods instead of these in production apps.
+   
+   - parameter path: The path to the scene file to load.
+   - parameter sceneUpdates: The scene updates to make while loading the scene file.
+   - throws: A MZError `apiKeyNotSet` error if an API Key has not been sent on the MapzenManager class.
+  */
   open func loadSceneFile(_ path: String, sceneUpdates: [TGSceneUpdate]) throws {
     try tgViewController.loadSceneFile(path, sceneUpdates: updatesWithApiKeyUpdate(sceneUpdates))
   }
 
+  /**
+   Loads the scene file asynchronously. Recommended for production apps. If you have scene updates to apply, either use the other version of this method that allows you to pass in scene updates during load, or wait until onSceneLoaded is called to apply those updates.
+   
+   - parameter path: The path to the scene file to load.
+   - parameter onSceneLoaded: Closure called on scene loaded.
+   - throws: A MZError `apiKeyNotSet` error if an API Key has not been sent on the MapzenManager class.
+  */
   open func loadSceneFileAsync(_ path: String, onSceneLoaded: OnSceneLoaded?) throws {
     try loadSceneFileAsync(path, sceneUpdates: [TGSceneUpdate](), onSceneLoaded: onSceneLoaded)
   }
-  
+
+  /**
+   Loads the scene file asynchronously. Recommended for production apps. If you have scene updates to apply, either pass in the scene updates at the initial call, or wait until onSceneLoaded is called to apply those updates.
+   
+   - parameter path: The path to the scene file to load.
+   - parameter sceneUpdates: The scene updates to make while loading the scene file.
+   - parameter onSceneLoaded: Closure called on scene loaded.
+   - throws: A MZError `apiKeyNotSet` error if an API Key has not been sent on the MapzenManager class.
+   */
   open func loadSceneFileAsync(_ path: String, sceneUpdates: [TGSceneUpdate], onSceneLoaded: OnSceneLoaded?) throws {
     onSceneLoadedClosure = onSceneLoaded
     try tgViewController.loadSceneFileAsync(path, sceneUpdates: updatesWithApiKeyUpdate(sceneUpdates))
   }
-  
+
+  /**
+   Queue a scene update using a yaml string path. It's recommended to use the other version of this that uses the TGSceneUpdate objects. Try to queue as many scene updates as you can in one pass as each `applySceneUpdates()` call can require a re-parse of the yaml and a re-render of the map. It is required to call `applySceneUpdates()` to activate the updated that have been enqueued.
+   
+   - parameter componentPath: The yaml path to the component to change.
+   - parameter value: The value to update the component to.
+  */
   open func queueSceneUpdate(_ componentPath: String, withValue value: String) {
     tgViewController.queueSceneUpdate(componentPath, withValue: value)
   }
-  
+
+  /**
+   Queue an array of scene updates. Try to queue as many scene updates as you can in one pass as each `applySceneUpdates()` call can require a re-parse of the yaml and a re-render of the map. It is required to call `applySceneUpdates()` to activate the updated that have been enqueued.
+   
+   - parameter sceneUpdates: An array of TGSceneUpdate objects to update the map.
+  */
   open func queue(_ sceneUpdates: [TGSceneUpdate]) {
     tgViewController.queue(sceneUpdates)
   }
-  
+
+  //Applies all queued scene updates.
   open func applySceneUpdates() {
     tgViewController.applySceneUpdates()
   }
-  
+
+  /**
+   Convenience function that converts TGGeopPoints to UIKit screen coordinates.
+   
+   - parameter lngLat: TGGeoPoint to convert
+   - returns: The CGPoint in screen space.
+  */
   open func lngLat(toScreenPosition lngLat: TGGeoPoint) -> CGPoint {
     return tgViewController.lngLat(toScreenPosition: lngLat)
   }
-  
+
+  /**
+   Convenience function that converts UIKit screen coordinates to a lat/long pair.
+   
+   - parameter screenPosition: The screen coordinate to convert.
+   - returns: A TGGeoPoint in lat/long for the screen coordinate.
+  */
   open func screenPosition(toLngLat screenPosition: CGPoint) -> TGGeoPoint {
     return tgViewController.screenPosition(toLngLat: screenPosition)
   }
   
-  //! Returns whether or not the map was centered on the device's current location
+  /**
+   Resets the camera on the current location, as well as the zoom and tilt.
+   
+   - parameter tilt: The tilt to reset to. Defaults to 0.
+   - parameter zoomLevel: The zoom to reset to. Defaults to 0.
+   - parameter animationDuration: The length to animate the reset to. Passing in 0 makes the change happen immediately.
+   - returns: Whether or not the map was centered on the device's current location
+   */
   open func resetCameraOnCurrentLocation(_ tilt: Float = 0.0, zoomLevel: Float = 16.0, animationDuration: Float = 1.0) -> Bool {
     guard let marker = currentLocationGem else { return false }
     guard let point = lastSetPoint else { return false }
@@ -294,13 +650,22 @@ open class MapViewController: UIViewController, LocationManagerDelegate {
     return true
   }
 
-  //! Handles state for the find me button
+  /** 
+   Handles state for the find me button.
+   
+   - parameter shouldShow: Shows or hides the button
+   */
   open func showFindMeButon(_ shouldShow: Bool) {
     findMeButton.isHidden = !shouldShow
     findMeButton.isEnabled = shouldShow
   }
 
-  //! Returns whether or not current location was shown
+  /**
+   Shows or hides the current location of the device. This starts the location request process and will prompt the user the first time its called.
+   
+   - parameter shouldShow: Whether or not we should show the current location.
+   - returns: Whether or not current location was shown
+   */
   open func showCurrentLocation(_ shouldShow: Bool) -> Bool {
     shouldShowCurrentLocation = shouldShow
     guard let marker = currentLocationGem else {
@@ -317,6 +682,11 @@ open class MapViewController: UIViewController, LocationManagerDelegate {
     return true
   }
 
+  /** 
+   Enables / Disables the entire current location layer.
+    
+   - parameter enabled: True if we should enable the location layer. False disables it.
+   */
   open func enableLocationLayer(_ enabled: Bool) {
     let _ = showCurrentLocation(enabled)
     showFindMeButon(enabled)
@@ -324,6 +694,13 @@ open class MapViewController: UIViewController, LocationManagerDelegate {
     shouldFollowCurrentLocation = enabled
   }
 
+
+  /** 
+   Adds an array of annotations to the map.
+   
+   - parameter annotations: An array of annotations to add.
+   - throws: A MZError `generalError` if the underlying map fails to add any of the annotations.
+   */
   open func add(_ annotations: [PeliasMapkitAnnotation]) throws {
     for annotation in annotations {
       let newMarker = tgViewController.markerAdd()
@@ -340,6 +717,12 @@ open class MapViewController: UIViewController, LocationManagerDelegate {
     }
   }
 
+  /** 
+   Removes a single annotation
+   
+   - parameter annotation: The annotation to remove
+   - throws: A MZError `annotationDoesNotExist` error.
+   */
   open func remove(_ annotation: PeliasMapkitAnnotation) throws {
     guard let markerId = currentAnnotations[annotation] else { return }
     if !tgViewController.markerRemove(markerId) {
@@ -350,6 +733,11 @@ open class MapViewController: UIViewController, LocationManagerDelegate {
     currentAnnotations.removeValue(forKey: annotation)
   }
 
+  /** 
+   Removes all currents annotations.
+
+   - throws: A MZError `annotationDoesNotExist` error if it encounters an annotation that no longer exists.
+   */
   open func removeAnnotations() throws {
     for (annotation, markerId) in currentAnnotations {
       if !tgViewController.markerRemove(markerId) {
@@ -361,6 +749,12 @@ open class MapViewController: UIViewController, LocationManagerDelegate {
     }
   }
 
+  /** 
+   Displays a routing result on the map. This currently only supports single start and endpoint routes. If there's an existing route it will be silently replaced.
+   
+   - parameter route: The route to display.
+   - throws: A MZError `generalError` if the map can't add the route.
+   */
   open func display(_ route: OTRRoutingResult) throws {
     //TODO: We eventually should support N number of routes.
     if let routeMarker = currentRouteMarker {
@@ -388,6 +782,11 @@ open class MapViewController: UIViewController, LocationManagerDelegate {
     currentRouteMarker = marker
   }
 
+  /**
+   Removes the route from the map
+   
+   - throws: A MZError `routeDoesNotExist` error if there isn't a current route or the map can't find one to remove.
+   */
   open func removeRoute() throws {
 
     guard let currentRouteMarker = currentRouteMarker else {

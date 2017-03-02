@@ -61,6 +61,9 @@ import Pelias
 public let PeliasIDKey: String = "PeliasOSMIDKey"
 public let PeliasDataSourceKey: String = "PeliasDataSourceKey"
 
+/**
+ `PeliasMapkitAnnotation` is a data object class that provides MapKit compatible annotation objects. It conforms to `MKAnnotation` protocol and is also used by the Mapzen iOS SDK for annotations (markers in Tangram-es).
+ */
 open class PeliasMapkitAnnotation: NSObject, MKAnnotation {
 
   open let coordinate: CLLocationCoordinate2D
@@ -68,6 +71,16 @@ open class PeliasMapkitAnnotation: NSObject, MKAnnotation {
   open let subtitle: String?
   open let data: [String: AnyObject]?
 
+  /**
+   Create a fully formed `PeliasMapkitAnnotation`
+
+   - parameter coordinate: A CLLocationCoordinate2D object for lat/long placement
+   - parameter title: An optional title for the annotation
+   - parameter subtitle: An optional subtitle for the annotation
+   - parameter data: An optional data dictionary useful for communicating additional metadata about an annotation
+
+   - returns: A fully formed `PeliasMapkitAnnotation`
+   */
   public init(coordinate: CLLocationCoordinate2D, title: String?, subtitle: String?, data: [String:AnyObject]?) {
     self.coordinate = coordinate
     self.title = title
@@ -77,6 +90,14 @@ open class PeliasMapkitAnnotation: NSObject, MKAnnotation {
 }
 
 public extension PeliasPlaceQueryItem {
+  /**
+   Convenience initializer for creation a place query item from a PeliasMapkitAnnotation
+   
+   - Parameter annotation: A PeliasMapkitAnnotation that contains some metadata for the particular place
+   - Parameter layer: The layer for the main place query filter
+   
+   - Returns: An optional place query item
+   */
   init?(annotation: PeliasMapkitAnnotation, layer: LayerFilter) {
     guard let place = annotation.data?[PeliasIDKey] as? String else { return nil }
     guard let source = SearchSource(rawValue: annotation.data?[PeliasDataSourceKey] as? String ?? "") else { return nil }
@@ -85,6 +106,11 @@ public extension PeliasPlaceQueryItem {
 }
 
 public extension PeliasResponse {
+  /**
+   Produces an array of PeliasMapkitAnnotations based off the response from Pelias servers. 
+   
+   This is currently the only method for producing fully formed native objects. In the future there will be additional functions and data types for this class to produce additional / more detailed objects.
+  */
   public func parsedMapItems() -> [PeliasMapkitAnnotation]? {
     //TODO: This should get refactored into eventually being a real GeoJSON decoder, and split out the MapItem creation
     var mapItems = [PeliasMapkitAnnotation]()
@@ -112,7 +138,7 @@ public extension PeliasResponse {
     return mapItems;
   }
 }
-
+/// Extension that applies conformance to MKMapItem for older iOS versions (conformance was added it seems in iOS 10)
 extension MKMapItem: MKAnnotation {
   public var coordinate: CLLocationCoordinate2D{
     get {
@@ -128,8 +154,15 @@ extension MKMapItem: MKAnnotation {
 }
 
 public extension SearchBoundaryRect {
+  /**
+   Initializer for creating a boundary rect based off a Mapkit view's rectangle. It does a bit of math to determine the bounding box based off of map kit's available data.
+   
+   - parameter mapRect: An MKMapRect representing the rectangle we wish to bind to (usually whatever the map is displaying currently full screen on the device)
+   
+   - returns: A SearchBoundaryRect structure useful for limiting Pelias searches to a particular area
+  */
   public init(mapRect: MKMapRect){
-    //Since we get a coordinate anda size, we need to convert this into the bounding box pelias expects.
+    //Since we get a coordinate and a size, we need to convert this into the bounding box pelias expects.
     //First convert the origin point to the min lat/long
     let minCoordinate = MKCoordinateForMapPoint(mapRect.origin)
 
@@ -146,6 +179,13 @@ public extension SearchBoundaryRect {
 }
 
 public extension GeoPoint {
+  /**
+   Creates a GeoPoint based of CoreLocation data
+   
+   - parameter location: A CLLocation object for lat/long data
+   
+   - returns: a full formed GeoPoint
+  */
   public init? (location: CLLocation?) {
     guard let unwrappedLocation = location else { return nil }
     self.init(latitude: unwrappedLocation.coordinate.latitude, longitude: unwrappedLocation.coordinate.longitude)
