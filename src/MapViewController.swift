@@ -27,7 +27,7 @@ import OnTheRoad
 /// Single Tap Gesture Delegate
 public protocol MapSingleTapGestureDelegate : class {
   /**
-   Asks the delegate if the map should recognize this single tap and perform default functionality.
+   Asks the delegate if the map should recognize this single tap and perform default functionality (which is nothing, currently).
 
    - parameter controller: The MapViewController that wants to recognize the tap.
    - parameter recognizer: The recognizer that initially recognized the tap.
@@ -50,7 +50,7 @@ public protocol MapSingleTapGestureDelegate : class {
 /// Double Tap Gesture Delegate
 public protocol MapDoubleTapGestureDelegate : class {
   /**
-   Asks the delegate if the map should recognize this double tap and perform default functionality.
+   Asks the delegate if the map should recognize this double tap and perform default functionality (which is nothing, currently).
 
    - parameter controller: The MapViewController that wants to recognize the tap.
    - parameter recognizer: The recognizer that initially recognized the tap.
@@ -73,7 +73,7 @@ public protocol MapDoubleTapGestureDelegate : class {
 /// Long Press Gesture Delegate
 public protocol MapLongPressGestureDelegate : class {
   /**
-   Asks the delegate if the map should recognize this long press gesture and perform default functionality.
+   Asks the delegate if the map should recognize this long press gesture and perform default functionality (which is nothing, currently).
 
    - parameter controller: The MapViewController that wants to recognize the press.
    - parameter recognizer: The recognizer that initially recognized the press.
@@ -187,7 +187,7 @@ public protocol MapTileLoadDelegate : class {
 /**
  MapViewController is the main class utilized for displaying Mapzen maps on iOS. It aims to provide the full set of features a developer would want for mapping-related tasks, such as displaying routes, results of a search, or the device's current location (and any combination therein.)
  
- MapViewController wraps the underlying `TGMapViewController` from Tangram-es and handles adding it to the view hierarchy. It exposes this 
+ MapViewController wraps the underlying `TGMapViewController` from Tangram-es and handles adding it to the view hierarchy. It exposes this in the `tgViewController` property and allows for additional customization there using the Tangram-es iOS framework. Documentation on that is available [here](https://mapzen.com/documentation/tangram/iOS-API/).
  */
 open class MapViewController: UIViewController, LocationManagerDelegate {
 
@@ -206,7 +206,7 @@ open class MapViewController: UIViewController, LocationManagerDelegate {
   open var currentAnnotations: [PeliasMapkitAnnotation : TGMapMarkerId] = Dictionary()
   open var attributionBtn = UIButton()
 
-  /// The camera type we want to use. Defaults to standard top-down (flat) camera.
+  /// The camera type we want to use. Defaults to whatever is set in the style sheet.
   open var cameraType: TGCameraType {
     set {
       tgViewController.cameraType = cameraType
@@ -216,7 +216,7 @@ open class MapViewController: UIViewController, LocationManagerDelegate {
     }
   }
 
-  /// The current position of the map in latitude / longitude.
+  /// The current position of the map in longitude / latitude.
   open var position: TGGeoPoint {
     set {
       tgViewController.position = position
@@ -310,7 +310,7 @@ open class MapViewController: UIViewController, LocationManagerDelegate {
    
    - returns: A fully formed MapViewController.
   */
-  init(){
+  init() {
     application = UIApplication.shared
     super.init(nibName: nil, bundle: nil)
   }
@@ -613,7 +613,7 @@ open class MapViewController: UIViewController, LocationManagerDelegate {
   }
 
   /**
-   Convenience function that converts TGGeopPoints to UIKit screen coordinates.
+   Convenience function that converts TGGeoPoints to UIKit screen coordinates.
    
    - parameter lngLat: TGGeoPoint to convert
    - returns: The CGPoint in screen space.
