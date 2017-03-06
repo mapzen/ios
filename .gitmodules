@@ -10,3 +10,6 @@
 [submodule "styles/walkabout"]
 	path = styles/walkabout
 	url = https://github.com/tangrams/walkabout-style-more-labels.git
+[submodule "styles/zinc"]
+	path = styles/zinc
+	url = https://github.com/tangrams/zinc-style-more-labels.git
