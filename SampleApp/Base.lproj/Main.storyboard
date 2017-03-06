@@ -60,11 +60,11 @@
                                 <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="xBp-gV-CnG" id="oj5-JH-T9N">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="2cf-ku-28x">
-                                            <rect key="frame" x="15" y="0.0" width="345" height="43.5"/>
+                                            <rect key="frame" x="15" y="0.0" width="345" height="43"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -95,7 +95,7 @@
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                     </tabBar>
                     <connections>
-                        <segue destination="LSW-zd-mQs" kind="relationship" relationship="viewControllers" id="C0t-mt-SGf"/>
+                        <segue destination="Zeh-6l-8tZ" kind="relationship" relationship="viewControllers" id="C0t-mt-SGf"/>
                         <segue destination="yhw-YI-dla" kind="relationship" relationship="viewControllers" id="0E6-8P-o2a"/>
                         <segue destination="7uT-WV-7cl" kind="relationship" relationship="viewControllers" id="5tp-wo-Wfd"/>
                     </connections>
@@ -104,7 +104,7 @@
             </objects>
             <point key="canvasLocation" x="-320" y="951"/>
         </scene>
-        <!--Maps-->
+        <!--GLKit View Controller-->
         <scene sceneID="2Zp-33-GhH">
             <objects>
                 <glkViewController preferredFramesPerSecond="30" id="LSW-zd-mQs" customClass="TangramVC" customModule="ios_sdk" customModuleProvider="target" sceneMemberID="viewController">
@@ -119,11 +119,11 @@
                             <outlet property="delegate" destination="LSW-zd-mQs" id="r8I-ur-WGk"/>
                         </connections>
                     </glkView>
-                    <tabBarItem key="tabBarItem" title="Maps" id="vc2-GY-NP0"/>
+                    <navigationItem key="navigationItem" id="2m1-yb-cLA"/>
                 </glkViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="E9C-DL-qHx" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="487" y="1166"/>
+            <point key="canvasLocation" x="1424.8" y="1165.3673163418291"/>
         </scene>
         <!--Route-->
         <scene sceneID="zDT-R4-I3P">
@@ -228,7 +228,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iHt-Qg-omp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2063" y="1236"/>
+            <point key="canvasLocation" x="3000.8000000000002" y="1235.5322338830586"/>
         </scene>
         <!--Route-->
         <scene sceneID="HRj-0v-iQO">
@@ -280,7 +280,7 @@
                                 <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="vhc-mT-svW" id="wGI-Z6-idP">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cqh-Nl-kb2">
@@ -324,6 +324,25 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4PT-xg-nH0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2145" y="2068"/>
+        </scene>
+        <!--Maps-->
+        <scene sceneID="Hke-Vi-KHE">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Zeh-6l-8tZ" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Maps" id="vc2-GY-NP0"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="fbY-F6-amO">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="LSW-zd-mQs" kind="relationship" relationship="rootViewController" id="Csk-kR-w8M"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ht7-Uo-t7n" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="485.60000000000002" y="1165.3673163418291"/>
         </scene>
     </scenes>
 </document>
