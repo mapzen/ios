@@ -13,19 +13,9 @@
 		7D7DAE1D1E60C5C900FFCA6F /* TestApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D7DAE1C1E60C5C900FFCA6F /* TestApplication.swift */; };
 		7D7DAE211E60EEA300FFCA6F /* ApplicationExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D7DAE201E60EEA300FFCA6F /* ApplicationExtensions.swift */; };
 		7D9EBC5E1E6DFBAF00303E1B /* bubble-wrap-style-more-labels.yaml in Resources */ = {isa = PBXBuildFile; fileRef = 7D9EBBD01E6DFBAF00303E1B /* bubble-wrap-style-more-labels.yaml */; };
-		7D9EBC5F1E6DFBAF00303E1B /* bubble-wrap-style-no-labels.yaml in Resources */ = {isa = PBXBuildFile; fileRef = 7D9EBBD11E6DFBAF00303E1B /* bubble-wrap-style-no-labels.yaml */; };
-		7D9EBC601E6DFBAF00303E1B /* bubble-wrap-style.yaml in Resources */ = {isa = PBXBuildFile; fileRef = 7D9EBBD21E6DFBAF00303E1B /* bubble-wrap-style.yaml */; };
-		7D9EBC6C1E6DFBAF00303E1B /* bubble-wrap@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7D9EBBE11E6DFBAF00303E1B /* bubble-wrap@2x.png */; };
-		7D9EBC6D1E6DFBAF00303E1B /* building-grid.gif in Resources */ = {isa = PBXBuildFile; fileRef = 7D9EBBE21E6DFBAF00303E1B /* building-grid.gif */; };
 		7D9EBC781E6DFBAF00303E1B /* cinnabar-style-more-labels.yaml in Resources */ = {isa = PBXBuildFile; fileRef = 7D9EBBEF1E6DFBAF00303E1B /* cinnabar-style-more-labels.yaml */; };
-		7D9EBC821E6DFBAF00303E1B /* refill@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7D9EBBFC1E6DFBAF00303E1B /* refill@2x.png */; };
-		7D9EBC971E6DFBAF00303E1B /* building-grid.gif in Resources */ = {isa = PBXBuildFile; fileRef = 7D9EBC161E6DFBAF00303E1B /* building-grid.gif */; };
-		7D9EBC981E6DFBAF00303E1B /* refill@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7D9EBC171E6DFBAF00303E1B /* refill@2x.png */; };
 		7D9EBCA11E6DFBAF00303E1B /* refill-style-more-labels.yaml in Resources */ = {isa = PBXBuildFile; fileRef = 7D9EBC211E6DFBAF00303E1B /* refill-style-more-labels.yaml */; };
-		7D9EBCAD1E6DFBAF00303E1B /* building-grid.gif in Resources */ = {isa = PBXBuildFile; fileRef = 7D9EBC311E6DFBAF00303E1B /* building-grid.gif */; };
-		7D9EBCB11E6DFBAF00303E1B /* walkabout@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7D9EBC351E6DFBAF00303E1B /* walkabout@2x.png */; };
 		7D9EBCBD1E6DFBAF00303E1B /* walkabout-style-more-labels.yaml in Resources */ = {isa = PBXBuildFile; fileRef = 7D9EBC421E6DFBAF00303E1B /* walkabout-style-more-labels.yaml */; };
-		7D9EBCC81E6DFBAF00303E1B /* refill@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7D9EBC511E6DFBAF00303E1B /* refill@2x.png */; };
 		7D9EBCD21E6DFBAF00303E1B /* zinc-style-more-labels.yaml in Resources */ = {isa = PBXBuildFile; fileRef = 7D9EBC5C1E6DFBAF00303E1B /* zinc-style-more-labels.yaml */; };
 		7D9EBCD41E6E0CA200303E1B /* bubble-wrap@2x.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7D9EBBE11E6DFBAF00303E1B /* bubble-wrap@2x.png */; };
 		7D9EBCD51E6E0CA200303E1B /* building-grid.gif in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7D9EBBE21E6DFBAF00303E1B /* building-grid.gif */; };
@@ -816,24 +806,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7D9EBC981E6DFBAF00303E1B /* refill@2x.png in Resources */,
 				DB7A33E21C8F8E8B009CC743 /* LaunchScreen.storyboard in Resources */,
-				7D9EBCB11E6DFBAF00303E1B /* walkabout@2x.png in Resources */,
-				7D9EBC6C1E6DFBAF00303E1B /* bubble-wrap@2x.png in Resources */,
 				DB6A3F7C1DFF4EA300FBE6B6 /* ic_find_me_normal.png in Resources */,
 				DB6A3F7F1DFF4EA300FBE6B6 /* ic_find_me_pressed@3x.png in Resources */,
 				DB7A33DF1C8F8E8B009CC743 /* Assets.xcassets in Resources */,
-				7D9EBCAD1E6DFBAF00303E1B /* building-grid.gif in Resources */,
 				7D9EBCBD1E6DFBAF00303E1B /* walkabout-style-more-labels.yaml in Resources */,
 				7D9EBCA11E6DFBAF00303E1B /* refill-style-more-labels.yaml in Resources */,
 				DB366BDF1DF8BE090045C15F /* ic_find_me_normal@2x.png in Resources */,
 				DB7A33DD1C8F8E8B009CC743 /* Main.storyboard in Resources */,
-				7D9EBCC81E6DFBAF00303E1B /* refill@2x.png in Resources */,
-				7D9EBC601E6DFBAF00303E1B /* bubble-wrap-style.yaml in Resources */,
-				7D9EBC821E6DFBAF00303E1B /* refill@2x.png in Resources */,
-				7D9EBC5F1E6DFBAF00303E1B /* bubble-wrap-style-no-labels.yaml in Resources */,
-				7D9EBC971E6DFBAF00303E1B /* building-grid.gif in Resources */,
-				7D9EBC6D1E6DFBAF00303E1B /* building-grid.gif in Resources */,
 				DB6A3F7D1DFF4EA300FBE6B6 /* ic_find_me_normal@3x.png in Resources */,
 				7D9EBC781E6DFBAF00303E1B /* cinnabar-style-more-labels.yaml in Resources */,
 				7D9EBCD21E6DFBAF00303E1B /* zinc-style-more-labels.yaml in Resources */,
