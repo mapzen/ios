@@ -19,12 +19,8 @@
 		7D9EBCD21E6DFBAF00303E1B /* zinc-style-more-labels.yaml in Resources */ = {isa = PBXBuildFile; fileRef = 7D9EBC5C1E6DFBAF00303E1B /* zinc-style-more-labels.yaml */; };
 		7D9EBCD41E6E0CA200303E1B /* bubble-wrap@2x.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7D9EBBE11E6DFBAF00303E1B /* bubble-wrap@2x.png */; };
 		7D9EBCD51E6E0CA200303E1B /* building-grid.gif in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7D9EBBE21E6DFBAF00303E1B /* building-grid.gif */; };
-		7D9EBCD61E6E0D9B00303E1B /* refill@2x.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7D9EBBFC1E6DFBAF00303E1B /* refill@2x.png */; };
-		7D9EBCD71E6E0D9B00303E1B /* building-grid.gif in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7D9EBC161E6DFBAF00303E1B /* building-grid.gif */; };
 		7D9EBCD81E6E0D9B00303E1B /* refill@2x.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7D9EBC171E6DFBAF00303E1B /* refill@2x.png */; };
-		7D9EBCD91E6E0D9B00303E1B /* building-grid.gif in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7D9EBC311E6DFBAF00303E1B /* building-grid.gif */; };
 		7D9EBCDA1E6E0D9B00303E1B /* walkabout@2x.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7D9EBC351E6DFBAF00303E1B /* walkabout@2x.png */; };
-		7D9EBCDB1E6E0D9B00303E1B /* refill@2x.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7D9EBC511E6DFBAF00303E1B /* refill@2x.png */; };
 		7DF0AA2E1E5520ED00B0406E /* TestTGMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DF0AA2D1E5520ED00B0406E /* TestTGMapViewController.swift */; };
 		AC586709D7E7D4C22AA9474D /* Pods_ios_sdk.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 99B3EC60450343448FA4E699 /* Pods_ios_sdk.framework */; };
 		C8F52AC1BCE46BB17E1CE0A5 /* Pods_ios_sdkTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A3EA87256F2EA6D0C43260A /* Pods_ios_sdkTests.framework */; };
@@ -74,12 +70,8 @@
 			dstPath = images;
 			dstSubfolderSpec = 6;
 			files = (
-				7D9EBCD61E6E0D9B00303E1B /* refill@2x.png in CopyFiles */,
-				7D9EBCD71E6E0D9B00303E1B /* building-grid.gif in CopyFiles */,
 				7D9EBCD81E6E0D9B00303E1B /* refill@2x.png in CopyFiles */,
-				7D9EBCD91E6E0D9B00303E1B /* building-grid.gif in CopyFiles */,
 				7D9EBCDA1E6E0D9B00303E1B /* walkabout@2x.png in CopyFiles */,
-				7D9EBCDB1E6E0D9B00303E1B /* refill@2x.png in CopyFiles */,
 				7D9EBCD41E6E0CA200303E1B /* bubble-wrap@2x.png in CopyFiles */,
 				7D9EBCD51E6E0CA200303E1B /* building-grid.gif in CopyFiles */,
 			);
