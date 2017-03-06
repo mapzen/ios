@@ -21,7 +21,7 @@ class MapzenManagerTests: XCTestCase {
     MapzenManager.sharedManager.apiKey = nil
     let map = MapViewController()
 
-    XCTAssertThrowsError(try map.loadSceneFile("someYamlThing.yaml")) { (error) -> Void in
+    XCTAssertThrowsError(try map.loadStyle(.bubbleWrap)) { (error) -> Void in
       let error = error as NSError
       XCTAssertTrue(error.code == MZError.apiKeyNotSet.rawValue)
     }
@@ -34,7 +34,7 @@ class MapzenManagerTests: XCTestCase {
 
     //Tests
     do {
-      try map.loadSceneFile("someYamlThing.yaml")
+      try map.loadStyle(.bubbleWrap)
     } catch {
       XCTFail()
     }

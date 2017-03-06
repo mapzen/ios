@@ -18,7 +18,7 @@ class SearchPinsViewController: MapViewController, UITextFieldDelegate, MapMarke
     super.viewDidLoad()
     self.view.bringSubview(toFront: searchField)
 
-    try? loadSceneFile("scene.yaml")
+    try? loadStyle(.bubbleWrap)
 
     searchField.delegate = self
     markerSelectDelegate = self

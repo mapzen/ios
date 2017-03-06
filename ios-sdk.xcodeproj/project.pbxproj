@@ -9,10 +9,135 @@
 /* Begin PBXBuildFile section */
 		7D2FB7671E6103D500CB82CF /* DictionaryExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D2FB7661E6103D500CB82CF /* DictionaryExtensions.swift */; };
 		7D2FB7691E64E66B00CB82CF /* DictionaryExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D2FB7681E64E66B00CB82CF /* DictionaryExtensionsTests.swift */; };
-		7D7DAE161E60AF9400FFCA6F /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7D7DAE151E60AF9400FFCA6F /* Localizable.strings */; };
 		7D7847251E6775EA000D56CA /* Dimensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D7847241E6775EA000D56CA /* Dimensions.swift */; };
 		7D7DAE1D1E60C5C900FFCA6F /* TestApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D7DAE1C1E60C5C900FFCA6F /* TestApplication.swift */; };
 		7D7DAE211E60EEA300FFCA6F /* ApplicationExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D7DAE201E60EEA300FFCA6F /* ApplicationExtensions.swift */; };
+		7D9EBC5D1E6DFBAF00303E1B /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 7D9EBBCF1E6DFBAF00303E1B /* .gitignore */; };
+		7D9EBC5E1E6DFBAF00303E1B /* bubble-wrap-style-more-labels.yaml in Resources */ = {isa = PBXBuildFile; fileRef = 7D9EBBD01E6DFBAF00303E1B /* bubble-wrap-style-more-labels.yaml */; };
+		7D9EBC5F1E6DFBAF00303E1B /* bubble-wrap-style-no-labels.yaml in Resources */ = {isa = PBXBuildFile; fileRef = 7D9EBBD11E6DFBAF00303E1B /* bubble-wrap-style-no-labels.yaml */; };
+		7D9EBC601E6DFBAF00303E1B /* bubble-wrap-style.yaml in Resources */ = {isa = PBXBuildFile; fileRef = 7D9EBBD21E6DFBAF00303E1B /* bubble-wrap-style.yaml */; };
+		7D9EBC611E6DFBAF00303E1B /* .gitkeep in Resources */ = {isa = PBXBuildFile; fileRef = 7D9EBBD41E6DFBAF00303E1B /* .gitkeep */; };
+		7D9EBC621E6DFBAF00303E1B /* Apache License.txt in Resources */ = {isa = PBXBuildFile; fileRef = 7D9EBBD61E6DFBAF00303E1B /* Apache License.txt */; };
+		7D9EBC631E6DFBAF00303E1B /* Montserrat-Regular.woff in Resources */ = {isa = PBXBuildFile; fileRef = 7D9EBBD71E6DFBAF00303E1B /* Montserrat-Regular.woff */; };
+		7D9EBC641E6DFBAF00303E1B /* OpenSans-Bold.woff in Resources */ = {isa = PBXBuildFile; fileRef = 7D9EBBD81E6DFBAF00303E1B /* OpenSans-Bold.woff */; };
+		7D9EBC651E6DFBAF00303E1B /* OpenSans-Italic.woff in Resources */ = {isa = PBXBuildFile; fileRef = 7D9EBBD91E6DFBAF00303E1B /* OpenSans-Italic.woff */; };
+		7D9EBC661E6DFBAF00303E1B /* OpenSans-Light.woff in Resources */ = {isa = PBXBuildFile; fileRef = 7D9EBBDA1E6DFBAF00303E1B /* OpenSans-Light.woff */; };
+		7D9EBC671E6DFBAF00303E1B /* OpenSans-Regular.woff in Resources */ = {isa = PBXBuildFile; fileRef = 7D9EBBDB1E6DFBAF00303E1B /* OpenSans-Regular.woff */; };
+		7D9EBC681E6DFBAF00303E1B /* OpenSans-Semibold.woff in Resources */ = {isa = PBXBuildFile; fileRef = 7D9EBBDC1E6DFBAF00303E1B /* OpenSans-Semibold.woff */; };
+		7D9EBC691E6DFBAF00303E1B /* OpenSans-SemiboldItalic.woff in Resources */ = {isa = PBXBuildFile; fileRef = 7D9EBBDD1E6DFBAF00303E1B /* OpenSans-SemiboldItalic.woff */; };
+		7D9EBC6A1E6DFBAF00303E1B /* Quicksand-Regular.woff in Resources */ = {isa = PBXBuildFile; fileRef = 7D9EBBDE1E6DFBAF00303E1B /* Quicksand-Regular.woff */; };
+		7D9EBC6B1E6DFBAF00303E1B /* Varela-Regular.woff in Resources */ = {isa = PBXBuildFile; fileRef = 7D9EBBDF1E6DFBAF00303E1B /* Varela-Regular.woff */; };
+		7D9EBC6C1E6DFBAF00303E1B /* bubble-wrap@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7D9EBBE11E6DFBAF00303E1B /* bubble-wrap@2x.png */; };
+		7D9EBC6D1E6DFBAF00303E1B /* building-grid.gif in Resources */ = {isa = PBXBuildFile; fileRef = 7D9EBBE21E6DFBAF00303E1B /* building-grid.gif */; };
+		7D9EBC6E1E6DFBAF00303E1B /* index.html in Resources */ = {isa = PBXBuildFile; fileRef = 7D9EBBE31E6DFBAF00303E1B /* index.html */; };
+		7D9EBC6F1E6DFBAF00303E1B /* dat.gui.min.js in Resources */ = {isa = PBXBuildFile; fileRef = 7D9EBBE51E6DFBAF00303E1B /* dat.gui.min.js */; };
+		7D9EBC701E6DFBAF00303E1B /* FileSaver.js in Resources */ = {isa = PBXBuildFile; fileRef = 7D9EBBE61E6DFBAF00303E1B /* FileSaver.js */; };
+		7D9EBC711E6DFBAF00303E1B /* keymaster.js in Resources */ = {isa = PBXBuildFile; fileRef = 7D9EBBE71E6DFBAF00303E1B /* keymaster.js */; };
+		7D9EBC721E6DFBAF00303E1B /* leaflet-hash.js in Resources */ = {isa = PBXBuildFile; fileRef = 7D9EBBE81E6DFBAF00303E1B /* leaflet-hash.js */; };
+		7D9EBC731E6DFBAF00303E1B /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 7D9EBBE91E6DFBAF00303E1B /* LICENSE */; };
+		7D9EBC741E6DFBAF00303E1B /* Makefile in Sources */ = {isa = PBXBuildFile; fileRef = 7D9EBBEA1E6DFBAF00303E1B /* Makefile */; };
+		7D9EBC751E6DFBAF00303E1B /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 7D9EBBEB1E6DFBAF00303E1B /* README.md */; };
+		7D9EBC761E6DFBAF00303E1B /* VERSION in Resources */ = {isa = PBXBuildFile; fileRef = 7D9EBBEC1E6DFBAF00303E1B /* VERSION */; };
+		7D9EBC771E6DFBAF00303E1B /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 7D9EBBEE1E6DFBAF00303E1B /* .gitignore */; };
+		7D9EBC781E6DFBAF00303E1B /* cinnabar-style-more-labels.yaml in Resources */ = {isa = PBXBuildFile; fileRef = 7D9EBBEF1E6DFBAF00303E1B /* cinnabar-style-more-labels.yaml */; };
+		7D9EBC791E6DFBAF00303E1B /* .gitkeep in Resources */ = {isa = PBXBuildFile; fileRef = 7D9EBBF11E6DFBAF00303E1B /* .gitkeep */; };
+		7D9EBC7A1E6DFBAF00303E1B /* Apache License.txt in Resources */ = {isa = PBXBuildFile; fileRef = 7D9EBBF31E6DFBAF00303E1B /* Apache License.txt */; };
+		7D9EBC7B1E6DFBAF00303E1B /* Montserrat-Regular.woff in Resources */ = {isa = PBXBuildFile; fileRef = 7D9EBBF41E6DFBAF00303E1B /* Montserrat-Regular.woff */; };
+		7D9EBC7C1E6DFBAF00303E1B /* OpenSans-Bold.woff in Resources */ = {isa = PBXBuildFile; fileRef = 7D9EBBF51E6DFBAF00303E1B /* OpenSans-Bold.woff */; };
+		7D9EBC7D1E6DFBAF00303E1B /* OpenSans-Italic.woff in Resources */ = {isa = PBXBuildFile; fileRef = 7D9EBBF61E6DFBAF00303E1B /* OpenSans-Italic.woff */; };
+		7D9EBC7E1E6DFBAF00303E1B /* OpenSans-Light.woff in Resources */ = {isa = PBXBuildFile; fileRef = 7D9EBBF71E6DFBAF00303E1B /* OpenSans-Light.woff */; };
+		7D9EBC7F1E6DFBAF00303E1B /* OpenSans-Regular.woff in Resources */ = {isa = PBXBuildFile; fileRef = 7D9EBBF81E6DFBAF00303E1B /* OpenSans-Regular.woff */; };
+		7D9EBC801E6DFBAF00303E1B /* OpenSans-Semibold.woff in Resources */ = {isa = PBXBuildFile; fileRef = 7D9EBBF91E6DFBAF00303E1B /* OpenSans-Semibold.woff */; };
+		7D9EBC811E6DFBAF00303E1B /* OpenSans-SemiboldItalic.woff in Resources */ = {isa = PBXBuildFile; fileRef = 7D9EBBFA1E6DFBAF00303E1B /* OpenSans-SemiboldItalic.woff */; };
+		7D9EBC821E6DFBAF00303E1B /* refill@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7D9EBBFC1E6DFBAF00303E1B /* refill@2x.png */; };
+		7D9EBC831E6DFBAF00303E1B /* index.html in Resources */ = {isa = PBXBuildFile; fileRef = 7D9EBBFD1E6DFBAF00303E1B /* index.html */; };
+		7D9EBC841E6DFBAF00303E1B /* ISSUE_TEMPLATE.md in Sources */ = {isa = PBXBuildFile; fileRef = 7D9EBBFE1E6DFBAF00303E1B /* ISSUE_TEMPLATE.md */; };
+		7D9EBC851E6DFBAF00303E1B /* dat.gui.min.js in Resources */ = {isa = PBXBuildFile; fileRef = 7D9EBC001E6DFBAF00303E1B /* dat.gui.min.js */; };
+		7D9EBC861E6DFBAF00303E1B /* FileSaver.js in Resources */ = {isa = PBXBuildFile; fileRef = 7D9EBC011E6DFBAF00303E1B /* FileSaver.js */; };
+		7D9EBC871E6DFBAF00303E1B /* keymaster.js in Resources */ = {isa = PBXBuildFile; fileRef = 7D9EBC021E6DFBAF00303E1B /* keymaster.js */; };
+		7D9EBC881E6DFBAF00303E1B /* leaflet-hash.js in Resources */ = {isa = PBXBuildFile; fileRef = 7D9EBC031E6DFBAF00303E1B /* leaflet-hash.js */; };
+		7D9EBC891E6DFBAF00303E1B /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 7D9EBC041E6DFBAF00303E1B /* LICENSE */; };
+		7D9EBC8A1E6DFBAF00303E1B /* Makefile in Sources */ = {isa = PBXBuildFile; fileRef = 7D9EBC051E6DFBAF00303E1B /* Makefile */; };
+		7D9EBC8B1E6DFBAF00303E1B /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 7D9EBC061E6DFBAF00303E1B /* README.md */; };
+		7D9EBC8C1E6DFBAF00303E1B /* VERSION in Resources */ = {isa = PBXBuildFile; fileRef = 7D9EBC071E6DFBAF00303E1B /* VERSION */; };
+		7D9EBC8D1E6DFBAF00303E1B /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 7D9EBC091E6DFBAF00303E1B /* .gitignore */; };
+		7D9EBC8E1E6DFBAF00303E1B /* .gitkeep in Resources */ = {isa = PBXBuildFile; fileRef = 7D9EBC0B1E6DFBAF00303E1B /* .gitkeep */; };
+		7D9EBC8F1E6DFBAF00303E1B /* Apache License.txt in Resources */ = {isa = PBXBuildFile; fileRef = 7D9EBC0D1E6DFBAF00303E1B /* Apache License.txt */; };
+		7D9EBC901E6DFBAF00303E1B /* Montserrat-Regular.woff in Resources */ = {isa = PBXBuildFile; fileRef = 7D9EBC0E1E6DFBAF00303E1B /* Montserrat-Regular.woff */; };
+		7D9EBC911E6DFBAF00303E1B /* OpenSans-Bold.woff in Resources */ = {isa = PBXBuildFile; fileRef = 7D9EBC0F1E6DFBAF00303E1B /* OpenSans-Bold.woff */; };
+		7D9EBC921E6DFBAF00303E1B /* OpenSans-Italic.woff in Resources */ = {isa = PBXBuildFile; fileRef = 7D9EBC101E6DFBAF00303E1B /* OpenSans-Italic.woff */; };
+		7D9EBC931E6DFBAF00303E1B /* OpenSans-Light.woff in Resources */ = {isa = PBXBuildFile; fileRef = 7D9EBC111E6DFBAF00303E1B /* OpenSans-Light.woff */; };
+		7D9EBC941E6DFBAF00303E1B /* OpenSans-Regular.woff in Resources */ = {isa = PBXBuildFile; fileRef = 7D9EBC121E6DFBAF00303E1B /* OpenSans-Regular.woff */; };
+		7D9EBC951E6DFBAF00303E1B /* OpenSans-Semibold.woff in Resources */ = {isa = PBXBuildFile; fileRef = 7D9EBC131E6DFBAF00303E1B /* OpenSans-Semibold.woff */; };
+		7D9EBC961E6DFBAF00303E1B /* OpenSans-SemiboldItalic.woff in Resources */ = {isa = PBXBuildFile; fileRef = 7D9EBC141E6DFBAF00303E1B /* OpenSans-SemiboldItalic.woff */; };
+		7D9EBC971E6DFBAF00303E1B /* building-grid.gif in Resources */ = {isa = PBXBuildFile; fileRef = 7D9EBC161E6DFBAF00303E1B /* building-grid.gif */; };
+		7D9EBC981E6DFBAF00303E1B /* refill@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7D9EBC171E6DFBAF00303E1B /* refill@2x.png */; };
+		7D9EBC991E6DFBAF00303E1B /* index.html in Resources */ = {isa = PBXBuildFile; fileRef = 7D9EBC181E6DFBAF00303E1B /* index.html */; };
+		7D9EBC9A1E6DFBAF00303E1B /* ISSUE_TEMPLATE.md in Sources */ = {isa = PBXBuildFile; fileRef = 7D9EBC191E6DFBAF00303E1B /* ISSUE_TEMPLATE.md */; };
+		7D9EBC9B1E6DFBAF00303E1B /* dat.gui.min.js in Resources */ = {isa = PBXBuildFile; fileRef = 7D9EBC1B1E6DFBAF00303E1B /* dat.gui.min.js */; };
+		7D9EBC9C1E6DFBAF00303E1B /* FileSaver.js in Resources */ = {isa = PBXBuildFile; fileRef = 7D9EBC1C1E6DFBAF00303E1B /* FileSaver.js */; };
+		7D9EBC9D1E6DFBAF00303E1B /* keymaster.js in Resources */ = {isa = PBXBuildFile; fileRef = 7D9EBC1D1E6DFBAF00303E1B /* keymaster.js */; };
+		7D9EBC9E1E6DFBAF00303E1B /* leaflet-hash.js in Resources */ = {isa = PBXBuildFile; fileRef = 7D9EBC1E1E6DFBAF00303E1B /* leaflet-hash.js */; };
+		7D9EBC9F1E6DFBAF00303E1B /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 7D9EBC1F1E6DFBAF00303E1B /* LICENSE */; };
+		7D9EBCA01E6DFBAF00303E1B /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 7D9EBC201E6DFBAF00303E1B /* README.md */; };
+		7D9EBCA11E6DFBAF00303E1B /* refill-style-more-labels.yaml in Resources */ = {isa = PBXBuildFile; fileRef = 7D9EBC211E6DFBAF00303E1B /* refill-style-more-labels.yaml */; };
+		7D9EBCA21E6DFBAF00303E1B /* VERSION in Resources */ = {isa = PBXBuildFile; fileRef = 7D9EBC221E6DFBAF00303E1B /* VERSION */; };
+		7D9EBCA31E6DFBAF00303E1B /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 7D9EBC241E6DFBAF00303E1B /* .gitignore */; };
+		7D9EBCA41E6DFBAF00303E1B /* .gitkeep in Resources */ = {isa = PBXBuildFile; fileRef = 7D9EBC261E6DFBAF00303E1B /* .gitkeep */; };
+		7D9EBCA51E6DFBAF00303E1B /* Apache License.txt in Resources */ = {isa = PBXBuildFile; fileRef = 7D9EBC281E6DFBAF00303E1B /* Apache License.txt */; };
+		7D9EBCA61E6DFBAF00303E1B /* Montserrat-Regular.woff in Resources */ = {isa = PBXBuildFile; fileRef = 7D9EBC291E6DFBAF00303E1B /* Montserrat-Regular.woff */; };
+		7D9EBCA71E6DFBAF00303E1B /* OpenSans-Bold.woff in Resources */ = {isa = PBXBuildFile; fileRef = 7D9EBC2A1E6DFBAF00303E1B /* OpenSans-Bold.woff */; };
+		7D9EBCA81E6DFBAF00303E1B /* OpenSans-Italic.woff in Resources */ = {isa = PBXBuildFile; fileRef = 7D9EBC2B1E6DFBAF00303E1B /* OpenSans-Italic.woff */; };
+		7D9EBCA91E6DFBAF00303E1B /* OpenSans-Light.woff in Resources */ = {isa = PBXBuildFile; fileRef = 7D9EBC2C1E6DFBAF00303E1B /* OpenSans-Light.woff */; };
+		7D9EBCAA1E6DFBAF00303E1B /* OpenSans-Regular.woff in Resources */ = {isa = PBXBuildFile; fileRef = 7D9EBC2D1E6DFBAF00303E1B /* OpenSans-Regular.woff */; };
+		7D9EBCAB1E6DFBAF00303E1B /* OpenSans-Semibold.woff in Resources */ = {isa = PBXBuildFile; fileRef = 7D9EBC2E1E6DFBAF00303E1B /* OpenSans-Semibold.woff */; };
+		7D9EBCAC1E6DFBAF00303E1B /* OpenSans-SemiboldItalic.woff in Resources */ = {isa = PBXBuildFile; fileRef = 7D9EBC2F1E6DFBAF00303E1B /* OpenSans-SemiboldItalic.woff */; };
+		7D9EBCAD1E6DFBAF00303E1B /* building-grid.gif in Resources */ = {isa = PBXBuildFile; fileRef = 7D9EBC311E6DFBAF00303E1B /* building-grid.gif */; };
+		7D9EBCAE1E6DFBAF00303E1B /* draw-test8.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 7D9EBC321E6DFBAF00303E1B /* draw-test8.jpg */; };
+		7D9EBCAF1E6DFBAF00303E1B /* draw-test9.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 7D9EBC331E6DFBAF00303E1B /* draw-test9.jpg */; };
+		7D9EBCB01E6DFBAF00303E1B /* relief-shading-environment-map.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 7D9EBC341E6DFBAF00303E1B /* relief-shading-environment-map.jpg */; };
+		7D9EBCB11E6DFBAF00303E1B /* walkabout@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7D9EBC351E6DFBAF00303E1B /* walkabout@2x.png */; };
+		7D9EBCB21E6DFBAF00303E1B /* index.html in Resources */ = {isa = PBXBuildFile; fileRef = 7D9EBC361E6DFBAF00303E1B /* index.html */; };
+		7D9EBCB31E6DFBAF00303E1B /* ISSUE_TEMPLATE.md in Sources */ = {isa = PBXBuildFile; fileRef = 7D9EBC371E6DFBAF00303E1B /* ISSUE_TEMPLATE.md */; };
+		7D9EBCB41E6DFBAF00303E1B /* dat.gui.min.js in Resources */ = {isa = PBXBuildFile; fileRef = 7D9EBC391E6DFBAF00303E1B /* dat.gui.min.js */; };
+		7D9EBCB51E6DFBAF00303E1B /* FileSaver.js in Resources */ = {isa = PBXBuildFile; fileRef = 7D9EBC3A1E6DFBAF00303E1B /* FileSaver.js */; };
+		7D9EBCB61E6DFBAF00303E1B /* fontfaceobserver.js in Resources */ = {isa = PBXBuildFile; fileRef = 7D9EBC3B1E6DFBAF00303E1B /* fontfaceobserver.js */; };
+		7D9EBCB71E6DFBAF00303E1B /* keymaster.js in Resources */ = {isa = PBXBuildFile; fileRef = 7D9EBC3C1E6DFBAF00303E1B /* keymaster.js */; };
+		7D9EBCB81E6DFBAF00303E1B /* leaflet-hash.js in Resources */ = {isa = PBXBuildFile; fileRef = 7D9EBC3D1E6DFBAF00303E1B /* leaflet-hash.js */; };
+		7D9EBCB91E6DFBAF00303E1B /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 7D9EBC3E1E6DFBAF00303E1B /* LICENSE */; };
+		7D9EBCBA1E6DFBAF00303E1B /* Makefile in Sources */ = {isa = PBXBuildFile; fileRef = 7D9EBC3F1E6DFBAF00303E1B /* Makefile */; };
+		7D9EBCBB1E6DFBAF00303E1B /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 7D9EBC401E6DFBAF00303E1B /* README.md */; };
+		7D9EBCBC1E6DFBAF00303E1B /* VERSION in Resources */ = {isa = PBXBuildFile; fileRef = 7D9EBC411E6DFBAF00303E1B /* VERSION */; };
+		7D9EBCBD1E6DFBAF00303E1B /* walkabout-style-more-labels.yaml in Resources */ = {isa = PBXBuildFile; fileRef = 7D9EBC421E6DFBAF00303E1B /* walkabout-style-more-labels.yaml */; };
+		7D9EBCBE1E6DFBAF00303E1B /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 7D9EBC441E6DFBAF00303E1B /* .gitignore */; };
+		7D9EBCBF1E6DFBAF00303E1B /* .gitkeep in Resources */ = {isa = PBXBuildFile; fileRef = 7D9EBC461E6DFBAF00303E1B /* .gitkeep */; };
+		7D9EBCC01E6DFBAF00303E1B /* Apache License.txt in Resources */ = {isa = PBXBuildFile; fileRef = 7D9EBC481E6DFBAF00303E1B /* Apache License.txt */; };
+		7D9EBCC11E6DFBAF00303E1B /* Montserrat-Regular.woff in Resources */ = {isa = PBXBuildFile; fileRef = 7D9EBC491E6DFBAF00303E1B /* Montserrat-Regular.woff */; };
+		7D9EBCC21E6DFBAF00303E1B /* OpenSans-Bold.woff in Resources */ = {isa = PBXBuildFile; fileRef = 7D9EBC4A1E6DFBAF00303E1B /* OpenSans-Bold.woff */; };
+		7D9EBCC31E6DFBAF00303E1B /* OpenSans-Italic.woff in Resources */ = {isa = PBXBuildFile; fileRef = 7D9EBC4B1E6DFBAF00303E1B /* OpenSans-Italic.woff */; };
+		7D9EBCC41E6DFBAF00303E1B /* OpenSans-Light.woff in Resources */ = {isa = PBXBuildFile; fileRef = 7D9EBC4C1E6DFBAF00303E1B /* OpenSans-Light.woff */; };
+		7D9EBCC51E6DFBAF00303E1B /* OpenSans-Regular.woff in Resources */ = {isa = PBXBuildFile; fileRef = 7D9EBC4D1E6DFBAF00303E1B /* OpenSans-Regular.woff */; };
+		7D9EBCC61E6DFBAF00303E1B /* OpenSans-Semibold.woff in Resources */ = {isa = PBXBuildFile; fileRef = 7D9EBC4E1E6DFBAF00303E1B /* OpenSans-Semibold.woff */; };
+		7D9EBCC71E6DFBAF00303E1B /* OpenSans-SemiboldItalic.woff in Resources */ = {isa = PBXBuildFile; fileRef = 7D9EBC4F1E6DFBAF00303E1B /* OpenSans-SemiboldItalic.woff */; };
+		7D9EBCC81E6DFBAF00303E1B /* refill@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7D9EBC511E6DFBAF00303E1B /* refill@2x.png */; };
+		7D9EBCC91E6DFBAF00303E1B /* index.html in Resources */ = {isa = PBXBuildFile; fileRef = 7D9EBC521E6DFBAF00303E1B /* index.html */; };
+		7D9EBCCA1E6DFBAF00303E1B /* ISSUE_TEMPLATE.md in Sources */ = {isa = PBXBuildFile; fileRef = 7D9EBC531E6DFBAF00303E1B /* ISSUE_TEMPLATE.md */; };
+		7D9EBCCB1E6DFBAF00303E1B /* dat.gui.min.js in Resources */ = {isa = PBXBuildFile; fileRef = 7D9EBC551E6DFBAF00303E1B /* dat.gui.min.js */; };
+		7D9EBCCC1E6DFBAF00303E1B /* FileSaver.js in Resources */ = {isa = PBXBuildFile; fileRef = 7D9EBC561E6DFBAF00303E1B /* FileSaver.js */; };
+		7D9EBCCD1E6DFBAF00303E1B /* keymaster.js in Resources */ = {isa = PBXBuildFile; fileRef = 7D9EBC571E6DFBAF00303E1B /* keymaster.js */; };
+		7D9EBCCE1E6DFBAF00303E1B /* leaflet-hash.js in Resources */ = {isa = PBXBuildFile; fileRef = 7D9EBC581E6DFBAF00303E1B /* leaflet-hash.js */; };
+		7D9EBCCF1E6DFBAF00303E1B /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 7D9EBC591E6DFBAF00303E1B /* LICENSE */; };
+		7D9EBCD01E6DFBAF00303E1B /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 7D9EBC5A1E6DFBAF00303E1B /* README.md */; };
+		7D9EBCD11E6DFBAF00303E1B /* VERSION in Resources */ = {isa = PBXBuildFile; fileRef = 7D9EBC5B1E6DFBAF00303E1B /* VERSION */; };
+		7D9EBCD21E6DFBAF00303E1B /* zinc-style-more-labels.yaml in Resources */ = {isa = PBXBuildFile; fileRef = 7D9EBC5C1E6DFBAF00303E1B /* zinc-style-more-labels.yaml */; };
+		7D9EBCD41E6E0CA200303E1B /* bubble-wrap@2x.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7D9EBBE11E6DFBAF00303E1B /* bubble-wrap@2x.png */; };
+		7D9EBCD51E6E0CA200303E1B /* building-grid.gif in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7D9EBBE21E6DFBAF00303E1B /* building-grid.gif */; };
+		7D9EBCD61E6E0D9B00303E1B /* refill@2x.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7D9EBBFC1E6DFBAF00303E1B /* refill@2x.png */; };
+		7D9EBCD71E6E0D9B00303E1B /* building-grid.gif in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7D9EBC161E6DFBAF00303E1B /* building-grid.gif */; };
+		7D9EBCD81E6E0D9B00303E1B /* refill@2x.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7D9EBC171E6DFBAF00303E1B /* refill@2x.png */; };
+		7D9EBCD91E6E0D9B00303E1B /* building-grid.gif in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7D9EBC311E6DFBAF00303E1B /* building-grid.gif */; };
+		7D9EBCDA1E6E0D9B00303E1B /* walkabout@2x.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7D9EBC351E6DFBAF00303E1B /* walkabout@2x.png */; };
+		7D9EBCDB1E6E0D9B00303E1B /* refill@2x.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7D9EBC511E6DFBAF00303E1B /* refill@2x.png */; };
 		7DF0AA2E1E5520ED00B0406E /* TestTGMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DF0AA2D1E5520ED00B0406E /* TestTGMapViewController.swift */; };
 		AC586709D7E7D4C22AA9474D /* Pods_ios_sdk.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 99B3EC60450343448FA4E699 /* Pods_ios_sdk.framework */; };
 		C8F52AC1BCE46BB17E1CE0A5 /* Pods_ios_sdkTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A3EA87256F2EA6D0C43260A /* Pods_ios_sdkTests.framework */; };
@@ -61,6 +186,23 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
+		7D9EBCD31E6E0BA500303E1B /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = images;
+			dstSubfolderSpec = 6;
+			files = (
+				7D9EBCD61E6E0D9B00303E1B /* refill@2x.png in CopyFiles */,
+				7D9EBCD71E6E0D9B00303E1B /* building-grid.gif in CopyFiles */,
+				7D9EBCD81E6E0D9B00303E1B /* refill@2x.png in CopyFiles */,
+				7D9EBCD91E6E0D9B00303E1B /* building-grid.gif in CopyFiles */,
+				7D9EBCDA1E6E0D9B00303E1B /* walkabout@2x.png in CopyFiles */,
+				7D9EBCDB1E6E0D9B00303E1B /* refill@2x.png in CopyFiles */,
+				7D9EBCD41E6E0CA200303E1B /* bubble-wrap@2x.png in CopyFiles */,
+				7D9EBCD51E6E0CA200303E1B /* building-grid.gif in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		DB217BF11E00EADA00D3116E /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -79,10 +221,127 @@
 		5A3EA87256F2EA6D0C43260A /* Pods_ios_sdkTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ios_sdkTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7D2FB7661E6103D500CB82CF /* DictionaryExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DictionaryExtensions.swift; sourceTree = "<group>"; };
 		7D2FB7681E64E66B00CB82CF /* DictionaryExtensionsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DictionaryExtensionsTests.swift; sourceTree = "<group>"; };
-		7D7DAE151E60AF9400FFCA6F /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
 		7D7847241E6775EA000D56CA /* Dimensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Dimensions.swift; sourceTree = "<group>"; };
 		7D7DAE1C1E60C5C900FFCA6F /* TestApplication.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestApplication.swift; sourceTree = "<group>"; };
 		7D7DAE201E60EEA300FFCA6F /* ApplicationExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApplicationExtensions.swift; sourceTree = "<group>"; };
+		7D9EBBCF1E6DFBAF00303E1B /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
+		7D9EBBD01E6DFBAF00303E1B /* bubble-wrap-style-more-labels.yaml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "bubble-wrap-style-more-labels.yaml"; sourceTree = "<group>"; };
+		7D9EBBD11E6DFBAF00303E1B /* bubble-wrap-style-no-labels.yaml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "bubble-wrap-style-no-labels.yaml"; sourceTree = "<group>"; };
+		7D9EBBD21E6DFBAF00303E1B /* bubble-wrap-style.yaml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "bubble-wrap-style.yaml"; sourceTree = "<group>"; };
+		7D9EBBD41E6DFBAF00303E1B /* .gitkeep */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitkeep; sourceTree = "<group>"; };
+		7D9EBBD61E6DFBAF00303E1B /* Apache License.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "Apache License.txt"; sourceTree = "<group>"; };
+		7D9EBBD71E6DFBAF00303E1B /* Montserrat-Regular.woff */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Regular.woff"; sourceTree = "<group>"; };
+		7D9EBBD81E6DFBAF00303E1B /* OpenSans-Bold.woff */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Bold.woff"; sourceTree = "<group>"; };
+		7D9EBBD91E6DFBAF00303E1B /* OpenSans-Italic.woff */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Italic.woff"; sourceTree = "<group>"; };
+		7D9EBBDA1E6DFBAF00303E1B /* OpenSans-Light.woff */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Light.woff"; sourceTree = "<group>"; };
+		7D9EBBDB1E6DFBAF00303E1B /* OpenSans-Regular.woff */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Regular.woff"; sourceTree = "<group>"; };
+		7D9EBBDC1E6DFBAF00303E1B /* OpenSans-Semibold.woff */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Semibold.woff"; sourceTree = "<group>"; };
+		7D9EBBDD1E6DFBAF00303E1B /* OpenSans-SemiboldItalic.woff */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-SemiboldItalic.woff"; sourceTree = "<group>"; };
+		7D9EBBDE1E6DFBAF00303E1B /* Quicksand-Regular.woff */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Quicksand-Regular.woff"; sourceTree = "<group>"; };
+		7D9EBBDF1E6DFBAF00303E1B /* Varela-Regular.woff */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Varela-Regular.woff"; sourceTree = "<group>"; };
+		7D9EBBE11E6DFBAF00303E1B /* bubble-wrap@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bubble-wrap@2x.png"; sourceTree = "<group>"; };
+		7D9EBBE21E6DFBAF00303E1B /* building-grid.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "building-grid.gif"; sourceTree = "<group>"; };
+		7D9EBBE31E6DFBAF00303E1B /* index.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = index.html; sourceTree = "<group>"; };
+		7D9EBBE51E6DFBAF00303E1B /* dat.gui.min.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = dat.gui.min.js; sourceTree = "<group>"; };
+		7D9EBBE61E6DFBAF00303E1B /* FileSaver.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = FileSaver.js; sourceTree = "<group>"; };
+		7D9EBBE71E6DFBAF00303E1B /* keymaster.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = keymaster.js; sourceTree = "<group>"; };
+		7D9EBBE81E6DFBAF00303E1B /* leaflet-hash.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = "leaflet-hash.js"; sourceTree = "<group>"; };
+		7D9EBBE91E6DFBAF00303E1B /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		7D9EBBEA1E6DFBAF00303E1B /* Makefile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.make; path = Makefile; sourceTree = "<group>"; };
+		7D9EBBEB1E6DFBAF00303E1B /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		7D9EBBEC1E6DFBAF00303E1B /* VERSION */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = VERSION; sourceTree = "<group>"; };
+		7D9EBBEE1E6DFBAF00303E1B /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
+		7D9EBBEF1E6DFBAF00303E1B /* cinnabar-style-more-labels.yaml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "cinnabar-style-more-labels.yaml"; sourceTree = "<group>"; };
+		7D9EBBF11E6DFBAF00303E1B /* .gitkeep */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitkeep; sourceTree = "<group>"; };
+		7D9EBBF31E6DFBAF00303E1B /* Apache License.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "Apache License.txt"; sourceTree = "<group>"; };
+		7D9EBBF41E6DFBAF00303E1B /* Montserrat-Regular.woff */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Regular.woff"; sourceTree = "<group>"; };
+		7D9EBBF51E6DFBAF00303E1B /* OpenSans-Bold.woff */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Bold.woff"; sourceTree = "<group>"; };
+		7D9EBBF61E6DFBAF00303E1B /* OpenSans-Italic.woff */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Italic.woff"; sourceTree = "<group>"; };
+		7D9EBBF71E6DFBAF00303E1B /* OpenSans-Light.woff */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Light.woff"; sourceTree = "<group>"; };
+		7D9EBBF81E6DFBAF00303E1B /* OpenSans-Regular.woff */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Regular.woff"; sourceTree = "<group>"; };
+		7D9EBBF91E6DFBAF00303E1B /* OpenSans-Semibold.woff */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Semibold.woff"; sourceTree = "<group>"; };
+		7D9EBBFA1E6DFBAF00303E1B /* OpenSans-SemiboldItalic.woff */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-SemiboldItalic.woff"; sourceTree = "<group>"; };
+		7D9EBBFC1E6DFBAF00303E1B /* refill@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "refill@2x.png"; sourceTree = "<group>"; };
+		7D9EBBFD1E6DFBAF00303E1B /* index.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = index.html; sourceTree = "<group>"; };
+		7D9EBBFE1E6DFBAF00303E1B /* ISSUE_TEMPLATE.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = ISSUE_TEMPLATE.md; sourceTree = "<group>"; };
+		7D9EBC001E6DFBAF00303E1B /* dat.gui.min.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = dat.gui.min.js; sourceTree = "<group>"; };
+		7D9EBC011E6DFBAF00303E1B /* FileSaver.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = FileSaver.js; sourceTree = "<group>"; };
+		7D9EBC021E6DFBAF00303E1B /* keymaster.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = keymaster.js; sourceTree = "<group>"; };
+		7D9EBC031E6DFBAF00303E1B /* leaflet-hash.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = "leaflet-hash.js"; sourceTree = "<group>"; };
+		7D9EBC041E6DFBAF00303E1B /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		7D9EBC051E6DFBAF00303E1B /* Makefile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.make; path = Makefile; sourceTree = "<group>"; };
+		7D9EBC061E6DFBAF00303E1B /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		7D9EBC071E6DFBAF00303E1B /* VERSION */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = VERSION; sourceTree = "<group>"; };
+		7D9EBC091E6DFBAF00303E1B /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
+		7D9EBC0B1E6DFBAF00303E1B /* .gitkeep */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitkeep; sourceTree = "<group>"; };
+		7D9EBC0D1E6DFBAF00303E1B /* Apache License.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "Apache License.txt"; sourceTree = "<group>"; };
+		7D9EBC0E1E6DFBAF00303E1B /* Montserrat-Regular.woff */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Regular.woff"; sourceTree = "<group>"; };
+		7D9EBC0F1E6DFBAF00303E1B /* OpenSans-Bold.woff */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Bold.woff"; sourceTree = "<group>"; };
+		7D9EBC101E6DFBAF00303E1B /* OpenSans-Italic.woff */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Italic.woff"; sourceTree = "<group>"; };
+		7D9EBC111E6DFBAF00303E1B /* OpenSans-Light.woff */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Light.woff"; sourceTree = "<group>"; };
+		7D9EBC121E6DFBAF00303E1B /* OpenSans-Regular.woff */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Regular.woff"; sourceTree = "<group>"; };
+		7D9EBC131E6DFBAF00303E1B /* OpenSans-Semibold.woff */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Semibold.woff"; sourceTree = "<group>"; };
+		7D9EBC141E6DFBAF00303E1B /* OpenSans-SemiboldItalic.woff */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-SemiboldItalic.woff"; sourceTree = "<group>"; };
+		7D9EBC161E6DFBAF00303E1B /* building-grid.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "building-grid.gif"; sourceTree = "<group>"; };
+		7D9EBC171E6DFBAF00303E1B /* refill@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "refill@2x.png"; sourceTree = "<group>"; };
+		7D9EBC181E6DFBAF00303E1B /* index.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = index.html; sourceTree = "<group>"; };
+		7D9EBC191E6DFBAF00303E1B /* ISSUE_TEMPLATE.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = ISSUE_TEMPLATE.md; sourceTree = "<group>"; };
+		7D9EBC1B1E6DFBAF00303E1B /* dat.gui.min.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = dat.gui.min.js; sourceTree = "<group>"; };
+		7D9EBC1C1E6DFBAF00303E1B /* FileSaver.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = FileSaver.js; sourceTree = "<group>"; };
+		7D9EBC1D1E6DFBAF00303E1B /* keymaster.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = keymaster.js; sourceTree = "<group>"; };
+		7D9EBC1E1E6DFBAF00303E1B /* leaflet-hash.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = "leaflet-hash.js"; sourceTree = "<group>"; };
+		7D9EBC1F1E6DFBAF00303E1B /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		7D9EBC201E6DFBAF00303E1B /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		7D9EBC211E6DFBAF00303E1B /* refill-style-more-labels.yaml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "refill-style-more-labels.yaml"; sourceTree = "<group>"; };
+		7D9EBC221E6DFBAF00303E1B /* VERSION */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = VERSION; sourceTree = "<group>"; };
+		7D9EBC241E6DFBAF00303E1B /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
+		7D9EBC261E6DFBAF00303E1B /* .gitkeep */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitkeep; sourceTree = "<group>"; };
+		7D9EBC281E6DFBAF00303E1B /* Apache License.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "Apache License.txt"; sourceTree = "<group>"; };
+		7D9EBC291E6DFBAF00303E1B /* Montserrat-Regular.woff */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Regular.woff"; sourceTree = "<group>"; };
+		7D9EBC2A1E6DFBAF00303E1B /* OpenSans-Bold.woff */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Bold.woff"; sourceTree = "<group>"; };
+		7D9EBC2B1E6DFBAF00303E1B /* OpenSans-Italic.woff */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Italic.woff"; sourceTree = "<group>"; };
+		7D9EBC2C1E6DFBAF00303E1B /* OpenSans-Light.woff */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Light.woff"; sourceTree = "<group>"; };
+		7D9EBC2D1E6DFBAF00303E1B /* OpenSans-Regular.woff */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Regular.woff"; sourceTree = "<group>"; };
+		7D9EBC2E1E6DFBAF00303E1B /* OpenSans-Semibold.woff */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Semibold.woff"; sourceTree = "<group>"; };
+		7D9EBC2F1E6DFBAF00303E1B /* OpenSans-SemiboldItalic.woff */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-SemiboldItalic.woff"; sourceTree = "<group>"; };
+		7D9EBC311E6DFBAF00303E1B /* building-grid.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "building-grid.gif"; sourceTree = "<group>"; };
+		7D9EBC321E6DFBAF00303E1B /* draw-test8.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "draw-test8.jpg"; sourceTree = "<group>"; };
+		7D9EBC331E6DFBAF00303E1B /* draw-test9.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "draw-test9.jpg"; sourceTree = "<group>"; };
+		7D9EBC341E6DFBAF00303E1B /* relief-shading-environment-map.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "relief-shading-environment-map.jpg"; sourceTree = "<group>"; };
+		7D9EBC351E6DFBAF00303E1B /* walkabout@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "walkabout@2x.png"; sourceTree = "<group>"; };
+		7D9EBC361E6DFBAF00303E1B /* index.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = index.html; sourceTree = "<group>"; };
+		7D9EBC371E6DFBAF00303E1B /* ISSUE_TEMPLATE.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = ISSUE_TEMPLATE.md; sourceTree = "<group>"; };
+		7D9EBC391E6DFBAF00303E1B /* dat.gui.min.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = dat.gui.min.js; sourceTree = "<group>"; };
+		7D9EBC3A1E6DFBAF00303E1B /* FileSaver.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = FileSaver.js; sourceTree = "<group>"; };
+		7D9EBC3B1E6DFBAF00303E1B /* fontfaceobserver.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = fontfaceobserver.js; sourceTree = "<group>"; };
+		7D9EBC3C1E6DFBAF00303E1B /* keymaster.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = keymaster.js; sourceTree = "<group>"; };
+		7D9EBC3D1E6DFBAF00303E1B /* leaflet-hash.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = "leaflet-hash.js"; sourceTree = "<group>"; };
+		7D9EBC3E1E6DFBAF00303E1B /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		7D9EBC3F1E6DFBAF00303E1B /* Makefile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.make; path = Makefile; sourceTree = "<group>"; };
+		7D9EBC401E6DFBAF00303E1B /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		7D9EBC411E6DFBAF00303E1B /* VERSION */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = VERSION; sourceTree = "<group>"; };
+		7D9EBC421E6DFBAF00303E1B /* walkabout-style-more-labels.yaml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "walkabout-style-more-labels.yaml"; sourceTree = "<group>"; };
+		7D9EBC441E6DFBAF00303E1B /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
+		7D9EBC461E6DFBAF00303E1B /* .gitkeep */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitkeep; sourceTree = "<group>"; };
+		7D9EBC481E6DFBAF00303E1B /* Apache License.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "Apache License.txt"; sourceTree = "<group>"; };
+		7D9EBC491E6DFBAF00303E1B /* Montserrat-Regular.woff */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Regular.woff"; sourceTree = "<group>"; };
+		7D9EBC4A1E6DFBAF00303E1B /* OpenSans-Bold.woff */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Bold.woff"; sourceTree = "<group>"; };
+		7D9EBC4B1E6DFBAF00303E1B /* OpenSans-Italic.woff */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Italic.woff"; sourceTree = "<group>"; };
+		7D9EBC4C1E6DFBAF00303E1B /* OpenSans-Light.woff */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Light.woff"; sourceTree = "<group>"; };
+		7D9EBC4D1E6DFBAF00303E1B /* OpenSans-Regular.woff */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Regular.woff"; sourceTree = "<group>"; };
+		7D9EBC4E1E6DFBAF00303E1B /* OpenSans-Semibold.woff */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Semibold.woff"; sourceTree = "<group>"; };
+		7D9EBC4F1E6DFBAF00303E1B /* OpenSans-SemiboldItalic.woff */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-SemiboldItalic.woff"; sourceTree = "<group>"; };
+		7D9EBC511E6DFBAF00303E1B /* refill@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "refill@2x.png"; sourceTree = "<group>"; };
+		7D9EBC521E6DFBAF00303E1B /* index.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = index.html; sourceTree = "<group>"; };
+		7D9EBC531E6DFBAF00303E1B /* ISSUE_TEMPLATE.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = ISSUE_TEMPLATE.md; sourceTree = "<group>"; };
+		7D9EBC551E6DFBAF00303E1B /* dat.gui.min.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = dat.gui.min.js; sourceTree = "<group>"; };
+		7D9EBC561E6DFBAF00303E1B /* FileSaver.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = FileSaver.js; sourceTree = "<group>"; };
+		7D9EBC571E6DFBAF00303E1B /* keymaster.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = keymaster.js; sourceTree = "<group>"; };
+		7D9EBC581E6DFBAF00303E1B /* leaflet-hash.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = "leaflet-hash.js"; sourceTree = "<group>"; };
+		7D9EBC591E6DFBAF00303E1B /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		7D9EBC5A1E6DFBAF00303E1B /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		7D9EBC5B1E6DFBAF00303E1B /* VERSION */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = VERSION; sourceTree = "<group>"; };
+		7D9EBC5C1E6DFBAF00303E1B /* zinc-style-more-labels.yaml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "zinc-style-more-labels.yaml"; sourceTree = "<group>"; };
 		7DF0AA2D1E5520ED00B0406E /* TestTGMapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestTGMapViewController.swift; sourceTree = "<group>"; };
 		92C35E8790FB3255237B1E77 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		99B3EC60450343448FA4E699 /* Pods_ios_sdk.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ios_sdk.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -154,6 +413,331 @@
 			path = dimensions;
 			sourceTree = "<group>";
 		};
+		7D9EBBCD1E6DFBAF00303E1B /* styles */ = {
+			isa = PBXGroup;
+			children = (
+				7D9EBBCE1E6DFBAF00303E1B /* bubble-wrap */,
+				7D9EBBED1E6DFBAF00303E1B /* cinnabar */,
+				7D9EBC081E6DFBAF00303E1B /* refill */,
+				7D9EBC231E6DFBAF00303E1B /* walkabout */,
+				7D9EBC431E6DFBAF00303E1B /* zinc */,
+			);
+			path = styles;
+			sourceTree = "<group>";
+		};
+		7D9EBBCE1E6DFBAF00303E1B /* bubble-wrap */ = {
+			isa = PBXGroup;
+			children = (
+				7D9EBBCF1E6DFBAF00303E1B /* .gitignore */,
+				7D9EBBD01E6DFBAF00303E1B /* bubble-wrap-style-more-labels.yaml */,
+				7D9EBBD11E6DFBAF00303E1B /* bubble-wrap-style-no-labels.yaml */,
+				7D9EBBD21E6DFBAF00303E1B /* bubble-wrap-style.yaml */,
+				7D9EBBD31E6DFBAF00303E1B /* dist */,
+				7D9EBBD51E6DFBAF00303E1B /* fonts */,
+				7D9EBBE01E6DFBAF00303E1B /* images */,
+				7D9EBBE31E6DFBAF00303E1B /* index.html */,
+				7D9EBBE41E6DFBAF00303E1B /* lib */,
+				7D9EBBE91E6DFBAF00303E1B /* LICENSE */,
+				7D9EBBEA1E6DFBAF00303E1B /* Makefile */,
+				7D9EBBEB1E6DFBAF00303E1B /* README.md */,
+				7D9EBBEC1E6DFBAF00303E1B /* VERSION */,
+			);
+			path = "bubble-wrap";
+			sourceTree = "<group>";
+		};
+		7D9EBBD31E6DFBAF00303E1B /* dist */ = {
+			isa = PBXGroup;
+			children = (
+				7D9EBBD41E6DFBAF00303E1B /* .gitkeep */,
+			);
+			path = dist;
+			sourceTree = "<group>";
+		};
+		7D9EBBD51E6DFBAF00303E1B /* fonts */ = {
+			isa = PBXGroup;
+			children = (
+				7D9EBBD61E6DFBAF00303E1B /* Apache License.txt */,
+				7D9EBBD71E6DFBAF00303E1B /* Montserrat-Regular.woff */,
+				7D9EBBD81E6DFBAF00303E1B /* OpenSans-Bold.woff */,
+				7D9EBBD91E6DFBAF00303E1B /* OpenSans-Italic.woff */,
+				7D9EBBDA1E6DFBAF00303E1B /* OpenSans-Light.woff */,
+				7D9EBBDB1E6DFBAF00303E1B /* OpenSans-Regular.woff */,
+				7D9EBBDC1E6DFBAF00303E1B /* OpenSans-Semibold.woff */,
+				7D9EBBDD1E6DFBAF00303E1B /* OpenSans-SemiboldItalic.woff */,
+				7D9EBBDE1E6DFBAF00303E1B /* Quicksand-Regular.woff */,
+				7D9EBBDF1E6DFBAF00303E1B /* Varela-Regular.woff */,
+			);
+			path = fonts;
+			sourceTree = "<group>";
+		};
+		7D9EBBE01E6DFBAF00303E1B /* images */ = {
+			isa = PBXGroup;
+			children = (
+				7D9EBBE11E6DFBAF00303E1B /* bubble-wrap@2x.png */,
+				7D9EBBE21E6DFBAF00303E1B /* building-grid.gif */,
+			);
+			path = images;
+			sourceTree = "<group>";
+		};
+		7D9EBBE41E6DFBAF00303E1B /* lib */ = {
+			isa = PBXGroup;
+			children = (
+				7D9EBBE51E6DFBAF00303E1B /* dat.gui.min.js */,
+				7D9EBBE61E6DFBAF00303E1B /* FileSaver.js */,
+				7D9EBBE71E6DFBAF00303E1B /* keymaster.js */,
+				7D9EBBE81E6DFBAF00303E1B /* leaflet-hash.js */,
+			);
+			path = lib;
+			sourceTree = "<group>";
+		};
+		7D9EBBED1E6DFBAF00303E1B /* cinnabar */ = {
+			isa = PBXGroup;
+			children = (
+				7D9EBBEE1E6DFBAF00303E1B /* .gitignore */,
+				7D9EBBEF1E6DFBAF00303E1B /* cinnabar-style-more-labels.yaml */,
+				7D9EBBF01E6DFBAF00303E1B /* dist */,
+				7D9EBBF21E6DFBAF00303E1B /* fonts */,
+				7D9EBBFB1E6DFBAF00303E1B /* images */,
+				7D9EBBFD1E6DFBAF00303E1B /* index.html */,
+				7D9EBBFE1E6DFBAF00303E1B /* ISSUE_TEMPLATE.md */,
+				7D9EBBFF1E6DFBAF00303E1B /* lib */,
+				7D9EBC041E6DFBAF00303E1B /* LICENSE */,
+				7D9EBC051E6DFBAF00303E1B /* Makefile */,
+				7D9EBC061E6DFBAF00303E1B /* README.md */,
+				7D9EBC071E6DFBAF00303E1B /* VERSION */,
+			);
+			path = cinnabar;
+			sourceTree = "<group>";
+		};
+		7D9EBBF01E6DFBAF00303E1B /* dist */ = {
+			isa = PBXGroup;
+			children = (
+				7D9EBBF11E6DFBAF00303E1B /* .gitkeep */,
+			);
+			path = dist;
+			sourceTree = "<group>";
+		};
+		7D9EBBF21E6DFBAF00303E1B /* fonts */ = {
+			isa = PBXGroup;
+			children = (
+				7D9EBBF31E6DFBAF00303E1B /* Apache License.txt */,
+				7D9EBBF41E6DFBAF00303E1B /* Montserrat-Regular.woff */,
+				7D9EBBF51E6DFBAF00303E1B /* OpenSans-Bold.woff */,
+				7D9EBBF61E6DFBAF00303E1B /* OpenSans-Italic.woff */,
+				7D9EBBF71E6DFBAF00303E1B /* OpenSans-Light.woff */,
+				7D9EBBF81E6DFBAF00303E1B /* OpenSans-Regular.woff */,
+				7D9EBBF91E6DFBAF00303E1B /* OpenSans-Semibold.woff */,
+				7D9EBBFA1E6DFBAF00303E1B /* OpenSans-SemiboldItalic.woff */,
+			);
+			path = fonts;
+			sourceTree = "<group>";
+		};
+		7D9EBBFB1E6DFBAF00303E1B /* images */ = {
+			isa = PBXGroup;
+			children = (
+				7D9EBBFC1E6DFBAF00303E1B /* refill@2x.png */,
+			);
+			path = images;
+			sourceTree = "<group>";
+		};
+		7D9EBBFF1E6DFBAF00303E1B /* lib */ = {
+			isa = PBXGroup;
+			children = (
+				7D9EBC001E6DFBAF00303E1B /* dat.gui.min.js */,
+				7D9EBC011E6DFBAF00303E1B /* FileSaver.js */,
+				7D9EBC021E6DFBAF00303E1B /* keymaster.js */,
+				7D9EBC031E6DFBAF00303E1B /* leaflet-hash.js */,
+			);
+			path = lib;
+			sourceTree = "<group>";
+		};
+		7D9EBC081E6DFBAF00303E1B /* refill */ = {
+			isa = PBXGroup;
+			children = (
+				7D9EBC091E6DFBAF00303E1B /* .gitignore */,
+				7D9EBC0A1E6DFBAF00303E1B /* dist */,
+				7D9EBC0C1E6DFBAF00303E1B /* fonts */,
+				7D9EBC151E6DFBAF00303E1B /* images */,
+				7D9EBC181E6DFBAF00303E1B /* index.html */,
+				7D9EBC191E6DFBAF00303E1B /* ISSUE_TEMPLATE.md */,
+				7D9EBC1A1E6DFBAF00303E1B /* lib */,
+				7D9EBC1F1E6DFBAF00303E1B /* LICENSE */,
+				7D9EBC201E6DFBAF00303E1B /* README.md */,
+				7D9EBC211E6DFBAF00303E1B /* refill-style-more-labels.yaml */,
+				7D9EBC221E6DFBAF00303E1B /* VERSION */,
+			);
+			path = refill;
+			sourceTree = "<group>";
+		};
+		7D9EBC0A1E6DFBAF00303E1B /* dist */ = {
+			isa = PBXGroup;
+			children = (
+				7D9EBC0B1E6DFBAF00303E1B /* .gitkeep */,
+			);
+			path = dist;
+			sourceTree = "<group>";
+		};
+		7D9EBC0C1E6DFBAF00303E1B /* fonts */ = {
+			isa = PBXGroup;
+			children = (
+				7D9EBC0D1E6DFBAF00303E1B /* Apache License.txt */,
+				7D9EBC0E1E6DFBAF00303E1B /* Montserrat-Regular.woff */,
+				7D9EBC0F1E6DFBAF00303E1B /* OpenSans-Bold.woff */,
+				7D9EBC101E6DFBAF00303E1B /* OpenSans-Italic.woff */,
+				7D9EBC111E6DFBAF00303E1B /* OpenSans-Light.woff */,
+				7D9EBC121E6DFBAF00303E1B /* OpenSans-Regular.woff */,
+				7D9EBC131E6DFBAF00303E1B /* OpenSans-Semibold.woff */,
+				7D9EBC141E6DFBAF00303E1B /* OpenSans-SemiboldItalic.woff */,
+			);
+			path = fonts;
+			sourceTree = "<group>";
+		};
+		7D9EBC151E6DFBAF00303E1B /* images */ = {
+			isa = PBXGroup;
+			children = (
+				7D9EBC161E6DFBAF00303E1B /* building-grid.gif */,
+				7D9EBC171E6DFBAF00303E1B /* refill@2x.png */,
+			);
+			path = images;
+			sourceTree = "<group>";
+		};
+		7D9EBC1A1E6DFBAF00303E1B /* lib */ = {
+			isa = PBXGroup;
+			children = (
+				7D9EBC1B1E6DFBAF00303E1B /* dat.gui.min.js */,
+				7D9EBC1C1E6DFBAF00303E1B /* FileSaver.js */,
+				7D9EBC1D1E6DFBAF00303E1B /* keymaster.js */,
+				7D9EBC1E1E6DFBAF00303E1B /* leaflet-hash.js */,
+			);
+			path = lib;
+			sourceTree = "<group>";
+		};
+		7D9EBC231E6DFBAF00303E1B /* walkabout */ = {
+			isa = PBXGroup;
+			children = (
+				7D9EBC241E6DFBAF00303E1B /* .gitignore */,
+				7D9EBC251E6DFBAF00303E1B /* dist */,
+				7D9EBC271E6DFBAF00303E1B /* fonts */,
+				7D9EBC301E6DFBAF00303E1B /* images */,
+				7D9EBC361E6DFBAF00303E1B /* index.html */,
+				7D9EBC371E6DFBAF00303E1B /* ISSUE_TEMPLATE.md */,
+				7D9EBC381E6DFBAF00303E1B /* lib */,
+				7D9EBC3E1E6DFBAF00303E1B /* LICENSE */,
+				7D9EBC3F1E6DFBAF00303E1B /* Makefile */,
+				7D9EBC401E6DFBAF00303E1B /* README.md */,
+				7D9EBC411E6DFBAF00303E1B /* VERSION */,
+				7D9EBC421E6DFBAF00303E1B /* walkabout-style-more-labels.yaml */,
+			);
+			path = walkabout;
+			sourceTree = "<group>";
+		};
+		7D9EBC251E6DFBAF00303E1B /* dist */ = {
+			isa = PBXGroup;
+			children = (
+				7D9EBC261E6DFBAF00303E1B /* .gitkeep */,
+			);
+			path = dist;
+			sourceTree = "<group>";
+		};
+		7D9EBC271E6DFBAF00303E1B /* fonts */ = {
+			isa = PBXGroup;
+			children = (
+				7D9EBC281E6DFBAF00303E1B /* Apache License.txt */,
+				7D9EBC291E6DFBAF00303E1B /* Montserrat-Regular.woff */,
+				7D9EBC2A1E6DFBAF00303E1B /* OpenSans-Bold.woff */,
+				7D9EBC2B1E6DFBAF00303E1B /* OpenSans-Italic.woff */,
+				7D9EBC2C1E6DFBAF00303E1B /* OpenSans-Light.woff */,
+				7D9EBC2D1E6DFBAF00303E1B /* OpenSans-Regular.woff */,
+				7D9EBC2E1E6DFBAF00303E1B /* OpenSans-Semibold.woff */,
+				7D9EBC2F1E6DFBAF00303E1B /* OpenSans-SemiboldItalic.woff */,
+			);
+			path = fonts;
+			sourceTree = "<group>";
+		};
+		7D9EBC301E6DFBAF00303E1B /* images */ = {
+			isa = PBXGroup;
+			children = (
+				7D9EBC311E6DFBAF00303E1B /* building-grid.gif */,
+				7D9EBC321E6DFBAF00303E1B /* draw-test8.jpg */,
+				7D9EBC331E6DFBAF00303E1B /* draw-test9.jpg */,
+				7D9EBC341E6DFBAF00303E1B /* relief-shading-environment-map.jpg */,
+				7D9EBC351E6DFBAF00303E1B /* walkabout@2x.png */,
+			);
+			path = images;
+			sourceTree = "<group>";
+		};
+		7D9EBC381E6DFBAF00303E1B /* lib */ = {
+			isa = PBXGroup;
+			children = (
+				7D9EBC391E6DFBAF00303E1B /* dat.gui.min.js */,
+				7D9EBC3A1E6DFBAF00303E1B /* FileSaver.js */,
+				7D9EBC3B1E6DFBAF00303E1B /* fontfaceobserver.js */,
+				7D9EBC3C1E6DFBAF00303E1B /* keymaster.js */,
+				7D9EBC3D1E6DFBAF00303E1B /* leaflet-hash.js */,
+			);
+			path = lib;
+			sourceTree = "<group>";
+		};
+		7D9EBC431E6DFBAF00303E1B /* zinc */ = {
+			isa = PBXGroup;
+			children = (
+				7D9EBC441E6DFBAF00303E1B /* .gitignore */,
+				7D9EBC451E6DFBAF00303E1B /* dist */,
+				7D9EBC471E6DFBAF00303E1B /* fonts */,
+				7D9EBC501E6DFBAF00303E1B /* images */,
+				7D9EBC521E6DFBAF00303E1B /* index.html */,
+				7D9EBC531E6DFBAF00303E1B /* ISSUE_TEMPLATE.md */,
+				7D9EBC541E6DFBAF00303E1B /* lib */,
+				7D9EBC591E6DFBAF00303E1B /* LICENSE */,
+				7D9EBC5A1E6DFBAF00303E1B /* README.md */,
+				7D9EBC5B1E6DFBAF00303E1B /* VERSION */,
+				7D9EBC5C1E6DFBAF00303E1B /* zinc-style-more-labels.yaml */,
+			);
+			path = zinc;
+			sourceTree = "<group>";
+		};
+		7D9EBC451E6DFBAF00303E1B /* dist */ = {
+			isa = PBXGroup;
+			children = (
+				7D9EBC461E6DFBAF00303E1B /* .gitkeep */,
+			);
+			path = dist;
+			sourceTree = "<group>";
+		};
+		7D9EBC471E6DFBAF00303E1B /* fonts */ = {
+			isa = PBXGroup;
+			children = (
+				7D9EBC481E6DFBAF00303E1B /* Apache License.txt */,
+				7D9EBC491E6DFBAF00303E1B /* Montserrat-Regular.woff */,
+				7D9EBC4A1E6DFBAF00303E1B /* OpenSans-Bold.woff */,
+				7D9EBC4B1E6DFBAF00303E1B /* OpenSans-Italic.woff */,
+				7D9EBC4C1E6DFBAF00303E1B /* OpenSans-Light.woff */,
+				7D9EBC4D1E6DFBAF00303E1B /* OpenSans-Regular.woff */,
+				7D9EBC4E1E6DFBAF00303E1B /* OpenSans-Semibold.woff */,
+				7D9EBC4F1E6DFBAF00303E1B /* OpenSans-SemiboldItalic.woff */,
+			);
+			path = fonts;
+			sourceTree = "<group>";
+		};
+		7D9EBC501E6DFBAF00303E1B /* images */ = {
+			isa = PBXGroup;
+			children = (
+				7D9EBC511E6DFBAF00303E1B /* refill@2x.png */,
+			);
+			path = images;
+			sourceTree = "<group>";
+		};
+		7D9EBC541E6DFBAF00303E1B /* lib */ = {
+			isa = PBXGroup;
+			children = (
+				7D9EBC551E6DFBAF00303E1B /* dat.gui.min.js */,
+				7D9EBC561E6DFBAF00303E1B /* FileSaver.js */,
+				7D9EBC571E6DFBAF00303E1B /* keymaster.js */,
+				7D9EBC581E6DFBAF00303E1B /* leaflet-hash.js */,
+			);
+			path = lib;
+			sourceTree = "<group>";
+		};
 		8E4E4B43C1B764470EBBDBBA /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -200,6 +784,7 @@
 		DB7A33CB1C8F8E8B009CC743 = {
 			isa = PBXGroup;
 			children = (
+				7D9EBBCD1E6DFBAF00303E1B /* styles */,
 				DB366BDC1DF8BE090045C15F /* images */,
 				DB3192671D351E4200272990 /* tangram */,
 				DBC84EA51C985B6D00EE80D8 /* src */,
@@ -301,6 +886,7 @@
 				191580EBEEB1CBE8776858D7 /* [CP] Embed Pods Frameworks */,
 				9ED767F151C3E563270C40FC /* [CP] Copy Pods Resources */,
 				DB217BF11E00EADA00D3116E /* CopyFiles */,
+				7D9EBCD31E6E0BA500303E1B /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -380,18 +966,124 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7D9EBC6A1E6DFBAF00303E1B /* Quicksand-Regular.woff in Resources */,
+				7D9EBCAF1E6DFBAF00303E1B /* draw-test9.jpg in Resources */,
+				7D9EBCA51E6DFBAF00303E1B /* Apache License.txt in Resources */,
+				7D9EBC8F1E6DFBAF00303E1B /* Apache License.txt in Resources */,
+				7D9EBC981E6DFBAF00303E1B /* refill@2x.png in Resources */,
+				7D9EBC6F1E6DFBAF00303E1B /* dat.gui.min.js in Resources */,
+				7D9EBC861E6DFBAF00303E1B /* FileSaver.js in Resources */,
+				7D9EBCB01E6DFBAF00303E1B /* relief-shading-environment-map.jpg in Resources */,
+				7D9EBCB81E6DFBAF00303E1B /* leaflet-hash.js in Resources */,
 				DBC869B11D3666B300DDC4FE /* scene.yaml in Resources */,
+				7D9EBC691E6DFBAF00303E1B /* OpenSans-SemiboldItalic.woff in Resources */,
+				7D9EBC621E6DFBAF00303E1B /* Apache License.txt in Resources */,
+				7D9EBC801E6DFBAF00303E1B /* OpenSans-Semibold.woff in Resources */,
 				DB7A33E21C8F8E8B009CC743 /* LaunchScreen.storyboard in Resources */,
+				7D9EBC8D1E6DFBAF00303E1B /* .gitignore in Resources */,
+				7D9EBC721E6DFBAF00303E1B /* leaflet-hash.js in Resources */,
+				7D9EBC7F1E6DFBAF00303E1B /* OpenSans-Regular.woff in Resources */,
+				7D9EBCA41E6DFBAF00303E1B /* .gitkeep in Resources */,
+				7D9EBCB11E6DFBAF00303E1B /* walkabout@2x.png in Resources */,
+				7D9EBC811E6DFBAF00303E1B /* OpenSans-SemiboldItalic.woff in Resources */,
+				7D9EBCB71E6DFBAF00303E1B /* keymaster.js in Resources */,
+				7D9EBCB91E6DFBAF00303E1B /* LICENSE in Resources */,
+				7D9EBC631E6DFBAF00303E1B /* Montserrat-Regular.woff in Resources */,
+				7D9EBC6C1E6DFBAF00303E1B /* bubble-wrap@2x.png in Resources */,
 				DB6A3F7C1DFF4EA300FBE6B6 /* ic_find_me_normal.png in Resources */,
+				7D9EBCC11E6DFBAF00303E1B /* Montserrat-Regular.woff in Resources */,
+				7D9EBCAA1E6DFBAF00303E1B /* OpenSans-Regular.woff in Resources */,
 				DB6A3F7F1DFF4EA300FBE6B6 /* ic_find_me_pressed@3x.png in Resources */,
+				7D9EBC831E6DFBAF00303E1B /* index.html in Resources */,
+				7D9EBCC31E6DFBAF00303E1B /* OpenSans-Italic.woff in Resources */,
 				DBC869B01D3666B300DDC4FE /* poi_icons_18@2x.png in Resources */,
+				7D9EBC9D1E6DFBAF00303E1B /* keymaster.js in Resources */,
+				7D9EBC911E6DFBAF00303E1B /* OpenSans-Bold.woff in Resources */,
 				DB7A33DF1C8F8E8B009CC743 /* Assets.xcassets in Resources */,
+				7D9EBCAD1E6DFBAF00303E1B /* building-grid.gif in Resources */,
+				7D9EBC961E6DFBAF00303E1B /* OpenSans-SemiboldItalic.woff in Resources */,
+				7D9EBC651E6DFBAF00303E1B /* OpenSans-Italic.woff in Resources */,
+				7D9EBCBD1E6DFBAF00303E1B /* walkabout-style-more-labels.yaml in Resources */,
+				7D9EBCCD1E6DFBAF00303E1B /* keymaster.js in Resources */,
+				7D9EBC8C1E6DFBAF00303E1B /* VERSION in Resources */,
+				7D9EBCA11E6DFBAF00303E1B /* refill-style-more-labels.yaml in Resources */,
 				DB366BDF1DF8BE090045C15F /* ic_find_me_normal@2x.png in Resources */,
+				7D9EBCB41E6DFBAF00303E1B /* dat.gui.min.js in Resources */,
+				7D9EBCC91E6DFBAF00303E1B /* index.html in Resources */,
+				7D9EBC671E6DFBAF00303E1B /* OpenSans-Regular.woff in Resources */,
 				DB7A33DD1C8F8E8B009CC743 /* Main.storyboard in Resources */,
+				7D9EBCC81E6DFBAF00303E1B /* refill@2x.png in Resources */,
+				7D9EBCC71E6DFBAF00303E1B /* OpenSans-SemiboldItalic.woff in Resources */,
+				7D9EBC771E6DFBAF00303E1B /* .gitignore in Resources */,
+				7D9EBC6E1E6DFBAF00303E1B /* index.html in Resources */,
+				7D9EBC871E6DFBAF00303E1B /* keymaster.js in Resources */,
+				7D9EBC7E1E6DFBAF00303E1B /* OpenSans-Light.woff in Resources */,
+				7D9EBC601E6DFBAF00303E1B /* bubble-wrap-style.yaml in Resources */,
+				7D9EBCB21E6DFBAF00303E1B /* index.html in Resources */,
+				7D9EBC991E6DFBAF00303E1B /* index.html in Resources */,
+				7D9EBC821E6DFBAF00303E1B /* refill@2x.png in Resources */,
+				7D9EBCB61E6DFBAF00303E1B /* fontfaceobserver.js in Resources */,
+				7D9EBCA91E6DFBAF00303E1B /* OpenSans-Light.woff in Resources */,
+				7D9EBCAC1E6DFBAF00303E1B /* OpenSans-SemiboldItalic.woff in Resources */,
+				7D9EBCAB1E6DFBAF00303E1B /* OpenSans-Semibold.woff in Resources */,
+				7D9EBCA71E6DFBAF00303E1B /* OpenSans-Bold.woff in Resources */,
+				7D9EBC5F1E6DFBAF00303E1B /* bubble-wrap-style-no-labels.yaml in Resources */,
+				7D9EBCCF1E6DFBAF00303E1B /* LICENSE in Resources */,
+				7D9EBC971E6DFBAF00303E1B /* building-grid.gif in Resources */,
+				7D9EBCC41E6DFBAF00303E1B /* OpenSans-Light.woff in Resources */,
+				7D9EBC791E6DFBAF00303E1B /* .gitkeep in Resources */,
+				7D9EBCD11E6DFBAF00303E1B /* VERSION in Resources */,
+				7D9EBCBF1E6DFBAF00303E1B /* .gitkeep in Resources */,
+				7D9EBCCC1E6DFBAF00303E1B /* FileSaver.js in Resources */,
+				7D9EBC6D1E6DFBAF00303E1B /* building-grid.gif in Resources */,
+				7D9EBC761E6DFBAF00303E1B /* VERSION in Resources */,
+				7D9EBCBE1E6DFBAF00303E1B /* .gitignore in Resources */,
+				7D9EBCC61E6DFBAF00303E1B /* OpenSans-Semibold.woff in Resources */,
+				7D9EBCC21E6DFBAF00303E1B /* OpenSans-Bold.woff in Resources */,
 				DB6A3F7D1DFF4EA300FBE6B6 /* ic_find_me_normal@3x.png in Resources */,
+				7D9EBC7C1E6DFBAF00303E1B /* OpenSans-Bold.woff in Resources */,
+				7D9EBC881E6DFBAF00303E1B /* leaflet-hash.js in Resources */,
+				7D9EBC611E6DFBAF00303E1B /* .gitkeep in Resources */,
+				7D9EBC9F1E6DFBAF00303E1B /* LICENSE in Resources */,
 				DBC869AF1D3666B300DDC4FE /* building-grid.gif in Resources */,
+				7D9EBC7B1E6DFBAF00303E1B /* Montserrat-Regular.woff in Resources */,
+				7D9EBC731E6DFBAF00303E1B /* LICENSE in Resources */,
+				7D9EBCA61E6DFBAF00303E1B /* Montserrat-Regular.woff in Resources */,
+				7D9EBC941E6DFBAF00303E1B /* OpenSans-Regular.woff in Resources */,
+				7D9EBC9C1E6DFBAF00303E1B /* FileSaver.js in Resources */,
+				7D9EBC7D1E6DFBAF00303E1B /* OpenSans-Italic.woff in Resources */,
+				7D9EBCBC1E6DFBAF00303E1B /* VERSION in Resources */,
+				7D9EBC8E1E6DFBAF00303E1B /* .gitkeep in Resources */,
+				7D9EBC711E6DFBAF00303E1B /* keymaster.js in Resources */,
+				7D9EBC921E6DFBAF00303E1B /* OpenSans-Italic.woff in Resources */,
+				7D9EBC781E6DFBAF00303E1B /* cinnabar-style-more-labels.yaml in Resources */,
+				7D9EBCCB1E6DFBAF00303E1B /* dat.gui.min.js in Resources */,
+				7D9EBCB51E6DFBAF00303E1B /* FileSaver.js in Resources */,
+				7D9EBC891E6DFBAF00303E1B /* LICENSE in Resources */,
+				7D9EBCD21E6DFBAF00303E1B /* zinc-style-more-labels.yaml in Resources */,
+				7D9EBC9E1E6DFBAF00303E1B /* leaflet-hash.js in Resources */,
+				7D9EBC931E6DFBAF00303E1B /* OpenSans-Light.woff in Resources */,
+				7D9EBC681E6DFBAF00303E1B /* OpenSans-Semibold.woff in Resources */,
+				7D9EBCCE1E6DFBAF00303E1B /* leaflet-hash.js in Resources */,
+				7D9EBC701E6DFBAF00303E1B /* FileSaver.js in Resources */,
+				7D9EBCC51E6DFBAF00303E1B /* OpenSans-Regular.woff in Resources */,
+				7D9EBCC01E6DFBAF00303E1B /* Apache License.txt in Resources */,
+				7D9EBC851E6DFBAF00303E1B /* dat.gui.min.js in Resources */,
+				7D9EBC9B1E6DFBAF00303E1B /* dat.gui.min.js in Resources */,
+				7D9EBCA81E6DFBAF00303E1B /* OpenSans-Italic.woff in Resources */,
+				7D9EBC5E1E6DFBAF00303E1B /* bubble-wrap-style-more-labels.yaml in Resources */,
+				7D9EBC901E6DFBAF00303E1B /* Montserrat-Regular.woff in Resources */,
 				DB6A3F7E1DFF4EA300FBE6B6 /* ic_find_me_pressed.png in Resources */,
+				7D9EBC951E6DFBAF00303E1B /* OpenSans-Semibold.woff in Resources */,
+				7D9EBCA31E6DFBAF00303E1B /* .gitignore in Resources */,
+				7D9EBC5D1E6DFBAF00303E1B /* .gitignore in Resources */,
+				7D9EBCA21E6DFBAF00303E1B /* VERSION in Resources */,
+				7D9EBC661E6DFBAF00303E1B /* OpenSans-Light.woff in Resources */,
 				DBF5221D1DFB4752009D8F1E /* ic_find_me_pressed@2x.png in Resources */,
+				7D9EBC7A1E6DFBAF00303E1B /* Apache License.txt in Resources */,
+				7D9EBC641E6DFBAF00303E1B /* OpenSans-Bold.woff in Resources */,
+				7D9EBC6B1E6DFBAF00303E1B /* Varela-Regular.woff in Resources */,
+				7D9EBCAE1E6DFBAF00303E1B /* draw-test8.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -504,19 +1196,31 @@
 			files = (
 				DBFB759F1E2046D100CF6173 /* TangramExtensions.swift in Sources */,
 				DBFB759D1E20345500CF6173 /* SearchPinsViewController.swift in Sources */,
+				7D9EBC751E6DFBAF00303E1B /* README.md in Sources */,
 				7D7DAE211E60EEA300FFCA6F /* ApplicationExtensions.swift in Sources */,
 				7D7847251E6775EA000D56CA /* Dimensions.swift in Sources */,
+				7D9EBC741E6DFBAF00303E1B /* Makefile in Sources */,
 				DB188EEA1E2846600054DEFD /* MapzenManager.swift in Sources */,
 				DBF441AE1D351B0A007DEE95 /* TangramVC.swift in Sources */,
+				7D9EBC8B1E6DFBAF00303E1B /* README.md in Sources */,
 				DB22E59E1DA473CA004264E0 /* RouteDirectionCell.swift in Sources */,
+				7D9EBCBB1E6DFBAF00303E1B /* README.md in Sources */,
+				7D9EBCB31E6DFBAF00303E1B /* ISSUE_TEMPLATE.md in Sources */,
+				7D9EBCD01E6DFBAF00303E1B /* README.md in Sources */,
 				DB5B31511DE4A173005EB816 /* LocationManager.swift in Sources */,
 				DBC869921D3663C700DDC4FE /* PeliasMapkitExtensions.swift in Sources */,
+				7D9EBCCA1E6DFBAF00303E1B /* ISSUE_TEMPLATE.md in Sources */,
+				7D9EBCA01E6DFBAF00303E1B /* README.md in Sources */,
 				DB188EEE1E290D310054DEFD /* MapzenRoutingController.swift in Sources */,
 				DB70FEA91DE3425800249509 /* MapViewController.swift in Sources */,
 				DB22E59A1DA45D73004264E0 /* RoutingSearchVC.swift in Sources */,
+				7D9EBC8A1E6DFBAF00303E1B /* Makefile in Sources */,
+				7D9EBCBA1E6DFBAF00303E1B /* Makefile in Sources */,
+				7D9EBC841E6DFBAF00303E1B /* ISSUE_TEMPLATE.md in Sources */,
 				DBBF368B1D64DA6A0069D769 /* RoutingViewController.swift in Sources */,
 				7D2FB7671E6103D500CB82CF /* DictionaryExtensions.swift in Sources */,
 				DB188EF01E2C44F40054DEFD /* RouteDisplayViewController.swift in Sources */,
+				7D9EBC9A1E6DFBAF00303E1B /* ISSUE_TEMPLATE.md in Sources */,
 				DB22E59C1DA46640004264E0 /* RoutingResultTableVC.swift in Sources */,
 				DBC869901D3662DD00DDC4FE /* AutocompleteTableVC.swift in Sources */,
 				DB7A33D81C8F8E8B009CC743 /* AppDelegate.swift in Sources */,

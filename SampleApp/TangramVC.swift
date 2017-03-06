@@ -13,7 +13,7 @@ class TangramVC:  MapViewController, MapMarkerSelectDelegate {
   override func viewDidLoad() {
     super.viewDidLoad()
     markerSelectDelegate = self
-    try? loadSceneFileAsync("scene.yaml") { [unowned self] (scene) in
+    try? loadStyleAsync(.bubbleWrap) { [unowned self] (scene) in
       let _ = self.showCurrentLocation(true)
       self.showFindMeButon(true)
       self.showTestMarker()

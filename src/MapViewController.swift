@@ -24,6 +24,25 @@ import OnTheRoad
   case generalError, annotationDoesNotExist, apiKeyNotSet, routeDoesNotExist
 }
 
+@objc public enum MapStyle: Int {
+  case bubbleWrap, cinnabar, refill, walkabout, zinc
+
+  func filename() -> String {
+    switch self {
+    case .bubbleWrap:
+      return "bubble-wrap-style-more-labels.yaml"
+    case .cinnabar:
+      return "cinnabar-style-more-labels.yaml"
+    case .refill:
+      return "refill-style-more-labels.yaml"
+    case .walkabout:
+      return "walkabout-style-more-labels.yaml"
+    case .zinc:
+      return "zinc-style-more-labels.yaml"
+    }
+  }
+}
+
 /// Single Tap Gesture Delegate
 public protocol MapSingleTapGestureDelegate : class {
   /**
@@ -544,48 +563,48 @@ open class MapViewController: UIViewController, LocationManagerDelegate {
   }
 
   /** 
-   Loads a scene file synchronously on the main thread. Use the async methods instead of these in production apps.
+   Loads a map style synchronously on the main thread. Use the async methods instead of these in production apps.
    
-   - parameter path: The path to the scene file to load.
+   - parameter style: The map style to load.
    - throws: A MZError `apiKeyNotSet` error if an API Key has not been sent on the MapzenManager class.
  */
-  open func loadSceneFile(_ path: String) throws {
-    try loadSceneFile(path, sceneUpdates: [TGSceneUpdate]())
+  open func loadStyle(_ style: MapStyle) throws {
+    try loadStyle(style, sceneUpdates: [TGSceneUpdate]())
   }
 
   /**
-   Loads a scene file synchronously on the main thread. Use the async methods instead of these in production apps.
+   Loads a map style synchronously on the main thread. Use the async methods instead of these in production apps.
    
-   - parameter path: The path to the scene file to load.
-   - parameter sceneUpdates: The scene updates to make while loading the scene file.
+   - parameter style: The map style to load.
+   - parameter sceneUpdates: The scene updates to make while loading the map style.
    - throws: A MZError `apiKeyNotSet` error if an API Key has not been sent on the MapzenManager class.
   */
-  open func loadSceneFile(_ path: String, sceneUpdates: [TGSceneUpdate]) throws {
-    try tgViewController.loadSceneFile(path, sceneUpdates: updatesWithApiKeyUpdate(sceneUpdates))
+  open func loadStyle(_ style: MapStyle, sceneUpdates: [TGSceneUpdate]) throws {
+    try tgViewController.loadSceneFile(style.filename(), sceneUpdates: updatesWithApiKeyUpdate(sceneUpdates))
   }
 
   /**
-   Loads the scene file asynchronously. Recommended for production apps. If you have scene updates to apply, either use the other version of this method that allows you to pass in scene updates during load, or wait until onSceneLoaded is called to apply those updates.
+   Loads the map style asynchronously. Recommended for production apps. If you have scene updates to apply, either use the other version of this method that allows you to pass in scene updates during load, or wait until onSceneLoaded is called to apply those updates.
    
-   - parameter path: The path to the scene file to load.
+   - parameter style: The map style to load.
    - parameter onSceneLoaded: Closure called on scene loaded.
    - throws: A MZError `apiKeyNotSet` error if an API Key has not been sent on the MapzenManager class.
   */
-  open func loadSceneFileAsync(_ path: String, onSceneLoaded: OnSceneLoaded?) throws {
-    try loadSceneFileAsync(path, sceneUpdates: [TGSceneUpdate](), onSceneLoaded: onSceneLoaded)
+  open func loadStyleAsync(_ style: MapStyle, onSceneLoaded: OnSceneLoaded?) throws {
+    try loadStyleAsync(style, sceneUpdates: [TGSceneUpdate](), onSceneLoaded: onSceneLoaded)
   }
 
   /**
-   Loads the scene file asynchronously. Recommended for production apps. If you have scene updates to apply, either pass in the scene updates at the initial call, or wait until onSceneLoaded is called to apply those updates.
+   Loads the map style asynchronously. Recommended for production apps. If you have scene updates to apply, either pass in the scene updates at the initial call, or wait until onSceneLoaded is called to apply those updates.
    
-   - parameter path: The path to the scene file to load.
-   - parameter sceneUpdates: The scene updates to make while loading the scene file.
+   - parameter style: The map style to load.
+   - parameter sceneUpdates: The scene updates to make while loading the map style.
    - parameter onSceneLoaded: Closure called on scene loaded.
    - throws: A MZError `apiKeyNotSet` error if an API Key has not been sent on the MapzenManager class.
    */
-  open func loadSceneFileAsync(_ path: String, sceneUpdates: [TGSceneUpdate], onSceneLoaded: OnSceneLoaded?) throws {
+  open func loadStyleAsync(_ style: MapStyle, sceneUpdates: [TGSceneUpdate], onSceneLoaded: OnSceneLoaded?) throws {
     onSceneLoadedClosure = onSceneLoaded
-    try tgViewController.loadSceneFileAsync(path, sceneUpdates: updatesWithApiKeyUpdate(sceneUpdates))
+    try tgViewController.loadSceneFileAsync(style.filename(), sceneUpdates: updatesWithApiKeyUpdate(sceneUpdates))
   }
 
   /**
