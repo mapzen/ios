@@ -7,3 +7,6 @@
 [submodule "styles/refill"]
 	path = styles/refill
 	url = https://github.com/tangrams/refill-style-more-labels.git
+[submodule "styles/walkabout"]
+	path = styles/walkabout
+	url = https://github.com/tangrams/walkabout-style-more-labels.git
