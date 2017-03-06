@@ -145,8 +145,6 @@
 		DB188EEC1E28492A0054DEFD /* MapzenManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB188EEB1E28492A0054DEFD /* MapzenManagerTests.swift */; };
 		DB188EEE1E290D310054DEFD /* MapzenRoutingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB188EED1E290D310054DEFD /* MapzenRoutingController.swift */; };
 		DB188EF01E2C44F40054DEFD /* RouteDisplayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB188EEF1E2C44F40054DEFD /* RouteDisplayViewController.swift */; };
-		DB217BF21E00EAED00D3116E /* building-grid.gif in CopyFiles */ = {isa = PBXBuildFile; fileRef = DBC869A11D3666B300DDC4FE /* building-grid.gif */; };
-		DB217BF31E00EAF000D3116E /* poi_icons_18@2x.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = DBC869A21D3666B300DDC4FE /* poi_icons_18@2x.png */; };
 		DB22E59A1DA45D73004264E0 /* RoutingSearchVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB22E5991DA45D73004264E0 /* RoutingSearchVC.swift */; };
 		DB22E59C1DA46640004264E0 /* RoutingResultTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB22E59B1DA46640004264E0 /* RoutingResultTableVC.swift */; };
 		DB22E59E1DA473CA004264E0 /* RouteDirectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB22E59D1DA473CA004264E0 /* RouteDirectionCell.swift */; };
@@ -164,9 +162,6 @@
 		DBBF368B1D64DA6A0069D769 /* RoutingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBBF368A1D64DA6A0069D769 /* RoutingViewController.swift */; };
 		DBC869901D3662DD00DDC4FE /* AutocompleteTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBC8698F1D3662DD00DDC4FE /* AutocompleteTableVC.swift */; };
 		DBC869921D3663C700DDC4FE /* PeliasMapkitExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBC869911D3663C700DDC4FE /* PeliasMapkitExtensions.swift */; };
-		DBC869AF1D3666B300DDC4FE /* building-grid.gif in Resources */ = {isa = PBXBuildFile; fileRef = DBC869A11D3666B300DDC4FE /* building-grid.gif */; };
-		DBC869B01D3666B300DDC4FE /* poi_icons_18@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DBC869A21D3666B300DDC4FE /* poi_icons_18@2x.png */; };
-		DBC869B11D3666B300DDC4FE /* scene.yaml in Resources */ = {isa = PBXBuildFile; fileRef = DBC869A31D3666B300DDC4FE /* scene.yaml */; };
 		DBCBC5BF1E0AE1CF0045B345 /* MapViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBCBC5BE1E0AE1CF0045B345 /* MapViewControllerTests.swift */; };
 		DBF441AE1D351B0A007DEE95 /* TangramVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBF441AD1D351B0A007DEE95 /* TangramVC.swift */; };
 		DBF441B01D351C90007DEE95 /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DBF441AF1D351C90007DEE95 /* GLKit.framework */; };
@@ -200,17 +195,6 @@
 				7D9EBCDB1E6E0D9B00303E1B /* refill@2x.png in CopyFiles */,
 				7D9EBCD41E6E0CA200303E1B /* bubble-wrap@2x.png in CopyFiles */,
 				7D9EBCD51E6E0CA200303E1B /* building-grid.gif in CopyFiles */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		DB217BF11E00EADA00D3116E /* CopyFiles */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = images;
-			dstSubfolderSpec = 6;
-			files = (
-				DB217BF21E00EAED00D3116E /* building-grid.gif in CopyFiles */,
-				DB217BF31E00EAF000D3116E /* poi_icons_18@2x.png in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -372,9 +356,6 @@
 		DBBF368A1D64DA6A0069D769 /* RoutingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoutingViewController.swift; sourceTree = "<group>"; };
 		DBC8698F1D3662DD00DDC4FE /* AutocompleteTableVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AutocompleteTableVC.swift; sourceTree = "<group>"; };
 		DBC869911D3663C700DDC4FE /* PeliasMapkitExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PeliasMapkitExtensions.swift; sourceTree = "<group>"; };
-		DBC869A11D3666B300DDC4FE /* building-grid.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "building-grid.gif"; sourceTree = "<group>"; };
-		DBC869A21D3666B300DDC4FE /* poi_icons_18@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "poi_icons_18@2x.png"; sourceTree = "<group>"; };
-		DBC869A31D3666B300DDC4FE /* scene.yaml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = scene.yaml; sourceTree = "<group>"; };
 		DBCBC5BE1E0AE1CF0045B345 /* MapViewControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewControllerTests.swift; sourceTree = "<group>"; };
 		DBF441AD1D351B0A007DEE95 /* TangramVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TangramVC.swift; sourceTree = "<group>"; };
 		DBF441AF1D351C90007DEE95 /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
@@ -760,14 +741,6 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		DB3192671D351E4200272990 /* tangram */ = {
-			isa = PBXGroup;
-			children = (
-				DBC869931D3666B300DDC4FE /* scenes */,
-			);
-			path = tangram;
-			sourceTree = "<group>";
-		};
 		DB366BDC1DF8BE090045C15F /* images */ = {
 			isa = PBXGroup;
 			children = (
@@ -786,7 +759,6 @@
 			children = (
 				7D9EBBCD1E6DFBAF00303E1B /* styles */,
 				DB366BDC1DF8BE090045C15F /* images */,
-				DB3192671D351E4200272990 /* tangram */,
 				DBC84EA51C985B6D00EE80D8 /* src */,
 				DB7A33D61C8F8E8B009CC743 /* SampleApp */,
 				DB7A33EB1C8F8E8B009CC743 /* ios-sdkTests */,
@@ -854,24 +826,6 @@
 			path = src;
 			sourceTree = "<group>";
 		};
-		DBC869931D3666B300DDC4FE /* scenes */ = {
-			isa = PBXGroup;
-			children = (
-				DBC869A01D3666B300DDC4FE /* images */,
-				DBC869A31D3666B300DDC4FE /* scene.yaml */,
-			);
-			path = scenes;
-			sourceTree = "<group>";
-		};
-		DBC869A01D3666B300DDC4FE /* images */ = {
-			isa = PBXGroup;
-			children = (
-				DBC869A11D3666B300DDC4FE /* building-grid.gif */,
-				DBC869A21D3666B300DDC4FE /* poi_icons_18@2x.png */,
-			);
-			path = images;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -885,7 +839,6 @@
 				DB7A33D21C8F8E8B009CC743 /* Resources */,
 				191580EBEEB1CBE8776858D7 /* [CP] Embed Pods Frameworks */,
 				9ED767F151C3E563270C40FC /* [CP] Copy Pods Resources */,
-				DB217BF11E00EADA00D3116E /* CopyFiles */,
 				7D9EBCD31E6E0BA500303E1B /* CopyFiles */,
 			);
 			buildRules = (
@@ -975,7 +928,6 @@
 				7D9EBC861E6DFBAF00303E1B /* FileSaver.js in Resources */,
 				7D9EBCB01E6DFBAF00303E1B /* relief-shading-environment-map.jpg in Resources */,
 				7D9EBCB81E6DFBAF00303E1B /* leaflet-hash.js in Resources */,
-				DBC869B11D3666B300DDC4FE /* scene.yaml in Resources */,
 				7D9EBC691E6DFBAF00303E1B /* OpenSans-SemiboldItalic.woff in Resources */,
 				7D9EBC621E6DFBAF00303E1B /* Apache License.txt in Resources */,
 				7D9EBC801E6DFBAF00303E1B /* OpenSans-Semibold.woff in Resources */,
@@ -996,7 +948,6 @@
 				DB6A3F7F1DFF4EA300FBE6B6 /* ic_find_me_pressed@3x.png in Resources */,
 				7D9EBC831E6DFBAF00303E1B /* index.html in Resources */,
 				7D9EBCC31E6DFBAF00303E1B /* OpenSans-Italic.woff in Resources */,
-				DBC869B01D3666B300DDC4FE /* poi_icons_18@2x.png in Resources */,
 				7D9EBC9D1E6DFBAF00303E1B /* keymaster.js in Resources */,
 				7D9EBC911E6DFBAF00303E1B /* OpenSans-Bold.woff in Resources */,
 				DB7A33DF1C8F8E8B009CC743 /* Assets.xcassets in Resources */,
@@ -1045,7 +996,6 @@
 				7D9EBC881E6DFBAF00303E1B /* leaflet-hash.js in Resources */,
 				7D9EBC611E6DFBAF00303E1B /* .gitkeep in Resources */,
 				7D9EBC9F1E6DFBAF00303E1B /* LICENSE in Resources */,
-				DBC869AF1D3666B300DDC4FE /* building-grid.gif in Resources */,
 				7D9EBC7B1E6DFBAF00303E1B /* Montserrat-Regular.woff in Resources */,
 				7D9EBC731E6DFBAF00303E1B /* LICENSE in Resources */,
 				7D9EBCA61E6DFBAF00303E1B /* Montserrat-Regular.woff in Resources */,
