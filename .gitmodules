@@ -1,3 +1,6 @@
 [submodule "styles/bubble-wrap"]
 	path = styles/bubble-wrap
 	url = https://github.com/tangrams/bubble-wrap.git
+[submodule "styles/cinnabar"]
+	path = styles/cinnabar
+	url = https://github.com/tangrams/cinnabar-style-more-labels.git
