@@ -26,21 +26,6 @@ import OnTheRoad
 
 @objc public enum MapStyle: Int {
   case bubbleWrap, cinnabar, refill, walkabout, zinc
-
-  func filename() -> String {
-    switch self {
-    case .bubbleWrap:
-      return "bubble-wrap-style-more-labels.yaml"
-    case .cinnabar:
-      return "cinnabar-style-more-labels.yaml"
-    case .refill:
-      return "refill-style-more-labels.yaml"
-    case .walkabout:
-      return "walkabout-style-more-labels.yaml"
-    case .zinc:
-      return "zinc-style-more-labels.yaml"
-    }
-  }
 }
 
 /// Single Tap Gesture Delegate
@@ -323,11 +308,11 @@ open class MapViewController: UIViewController, LocationManagerDelegate {
   public typealias OnStyleLoaded = (MapStyle) -> ()
   fileprivate var onStyleLoadedClosure : OnStyleLoaded? = nil
 
-  fileprivate let styles = [MapStyle.bubbleWrap.filename() : MapStyle.bubbleWrap,
-                            MapStyle.cinnabar.filename() : MapStyle.cinnabar,
-                            MapStyle.refill.filename() : MapStyle.refill,
-                            MapStyle.walkabout.filename() : MapStyle.walkabout,
-                            MapStyle.zinc.filename() : MapStyle.zinc]
+  fileprivate let styles = ["bubble-wrap-style-more-labels.yaml" : MapStyle.bubbleWrap,
+                            "cinnabar-style-more-labels.yaml" : MapStyle.cinnabar,
+                            "refill-style-more-labels.yaml" : MapStyle.refill,
+                            "walkabout-style-more-labels.yaml" : MapStyle.walkabout,
+                            "zinc-style-more-labels.yaml" : MapStyle.zinc]
 
   /**
    Default initializer. Sets up the find me button and initializes the TGMapViewController as part of startup.
@@ -585,7 +570,8 @@ open class MapViewController: UIViewController, LocationManagerDelegate {
    - throws: A MZError `apiKeyNotSet` error if an API Key has not been sent on the MapzenManager class.
   */
   open func loadStyle(_ style: MapStyle, sceneUpdates: [TGSceneUpdate]) throws {
-    try tgViewController.loadSceneFile(style.filename(), sceneUpdates: updatesWithApiKeyUpdate(sceneUpdates))
+    guard let sceneFile = styles.keyForValue(value: style) else { return }
+    try tgViewController.loadSceneFile(sceneFile, sceneUpdates: updatesWithApiKeyUpdate(sceneUpdates))
   }
 
   /**
@@ -609,7 +595,8 @@ open class MapViewController: UIViewController, LocationManagerDelegate {
    */
   open func loadStyleAsync(_ style: MapStyle, sceneUpdates: [TGSceneUpdate], onStyleLoaded: OnStyleLoaded?) throws {
     onStyleLoadedClosure = onStyleLoaded
-    try tgViewController.loadSceneFileAsync(style.filename(), sceneUpdates: updatesWithApiKeyUpdate(sceneUpdates))
+    guard let sceneFile = styles.keyForValue(value: style) else { return }
+    try tgViewController.loadSceneFileAsync(sceneFile, sceneUpdates: updatesWithApiKeyUpdate(sceneUpdates))
   }
 
   /**

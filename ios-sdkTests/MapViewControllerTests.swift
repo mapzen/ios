@@ -529,7 +529,7 @@ class MapViewControllerTests: XCTestCase {
     var loaded = false
     let styleLoaded : MapViewController.OnStyleLoaded = { (style) in loaded = true }
     try? controller.loadStyleAsync(.bubbleWrap, onStyleLoaded: styleLoaded)
-    controller.mapView(controller.tgViewController, didLoadSceneAsync: MapStyle.bubbleWrap.filename())
+    controller.mapView(controller.tgViewController, didLoadSceneAsync: "bubble-wrap-style-more-labels.yaml")
     XCTAssertTrue(loaded)
   }
   
