@@ -15,7 +15,7 @@ class RouteDisplayViewController: MapViewController {
 
   override func viewDidLoad() {
     super.viewDidLoad()
-    try? loadSceneFile("scene.yaml")
+    try? loadStyle(.bubbleWrap)
   }
 
   func show(_ route : OTRRoutingResult){

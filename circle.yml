@@ -4,6 +4,11 @@ machine:
   environment:
     GYM_CODE_SIGNING_IDENTITY: "iPhone Distribution: Michael Cunningham (LTQC954SPQ)"
 
+checkout:
+  post:
+    - git submodule sync
+    - git submodule update --init --recursive
+
 dependencies:
   override:
     - pod install:

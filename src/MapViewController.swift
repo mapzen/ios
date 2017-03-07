@@ -24,6 +24,10 @@ import OnTheRoad
   case generalError, annotationDoesNotExist, apiKeyNotSet, routeDoesNotExist
 }
 
+@objc public enum MapStyle: Int {
+  case bubbleWrap, cinnabar, refill, walkabout, zinc
+}
+
 /// Single Tap Gesture Delegate
 public protocol MapSingleTapGestureDelegate : class {
   /**
@@ -301,9 +305,14 @@ open class MapViewController: UIViewController, LocationManagerDelegate {
   /// Receiver for tile load completion callbacks
   weak open var tileLoadDelegate: MapTileLoadDelegate?
 
-  public typealias OnSceneLoaded = (String) -> ()
-  fileprivate var onSceneLoadedClosure : OnSceneLoaded? = nil
+  public typealias OnStyleLoaded = (MapStyle) -> ()
+  fileprivate var onStyleLoadedClosure : OnStyleLoaded? = nil
 
+  fileprivate let styles = ["bubble-wrap-style-more-labels.yaml" : MapStyle.bubbleWrap,
+                            "cinnabar-style-more-labels.yaml" : MapStyle.cinnabar,
+                            "refill-style-more-labels.yaml" : MapStyle.refill,
+                            "walkabout-style-more-labels.yaml" : MapStyle.walkabout,
+                            "zinc-style-more-labels.yaml" : MapStyle.zinc]
 
   /**
    Default initializer. Sets up the find me button and initializes the TGMapViewController as part of startup.
@@ -544,48 +553,50 @@ open class MapViewController: UIViewController, LocationManagerDelegate {
   }
 
   /** 
-   Loads a scene file synchronously on the main thread. Use the async methods instead of these in production apps.
+   Loads a map style synchronously on the main thread. Use the async methods instead of these in production apps.
    
-   - parameter path: The path to the scene file to load.
+   - parameter style: The map style to load.
    - throws: A MZError `apiKeyNotSet` error if an API Key has not been sent on the MapzenManager class.
  */
-  open func loadSceneFile(_ path: String) throws {
-    try loadSceneFile(path, sceneUpdates: [TGSceneUpdate]())
+  open func loadStyle(_ style: MapStyle) throws {
+    try loadStyle(style, sceneUpdates: [TGSceneUpdate]())
   }
 
   /**
-   Loads a scene file synchronously on the main thread. Use the async methods instead of these in production apps.
+   Loads a map style synchronously on the main thread. Use the async methods instead of these in production apps.
    
-   - parameter path: The path to the scene file to load.
-   - parameter sceneUpdates: The scene updates to make while loading the scene file.
+   - parameter style: The map style to load.
+   - parameter sceneUpdates: The scene updates to make while loading the map style.
    - throws: A MZError `apiKeyNotSet` error if an API Key has not been sent on the MapzenManager class.
   */
-  open func loadSceneFile(_ path: String, sceneUpdates: [TGSceneUpdate]) throws {
-    try tgViewController.loadSceneFile(path, sceneUpdates: updatesWithApiKeyUpdate(sceneUpdates))
+  open func loadStyle(_ style: MapStyle, sceneUpdates: [TGSceneUpdate]) throws {
+    guard let sceneFile = styles.keyForValue(value: style) else { return }
+    try tgViewController.loadSceneFile(sceneFile, sceneUpdates: updatesWithApiKeyUpdate(sceneUpdates))
   }
 
   /**
-   Loads the scene file asynchronously. Recommended for production apps. If you have scene updates to apply, either use the other version of this method that allows you to pass in scene updates during load, or wait until onSceneLoaded is called to apply those updates.
+   Loads the map style asynchronously. Recommended for production apps. If you have scene updates to apply, either use the other version of this method that allows you to pass in scene updates during load, or wait until onSceneLoaded is called to apply those updates.
    
-   - parameter path: The path to the scene file to load.
+   - parameter style: The map style to load.
    - parameter onSceneLoaded: Closure called on scene loaded.
    - throws: A MZError `apiKeyNotSet` error if an API Key has not been sent on the MapzenManager class.
   */
-  open func loadSceneFileAsync(_ path: String, onSceneLoaded: OnSceneLoaded?) throws {
-    try loadSceneFileAsync(path, sceneUpdates: [TGSceneUpdate](), onSceneLoaded: onSceneLoaded)
+  open func loadStyleAsync(_ style: MapStyle, onStyleLoaded: OnStyleLoaded?) throws {
+    try loadStyleAsync(style, sceneUpdates: [TGSceneUpdate](), onStyleLoaded: onStyleLoaded)
   }
 
   /**
-   Loads the scene file asynchronously. Recommended for production apps. If you have scene updates to apply, either pass in the scene updates at the initial call, or wait until onSceneLoaded is called to apply those updates.
+   Loads the map style asynchronously. Recommended for production apps. If you have scene updates to apply, either pass in the scene updates at the initial call, or wait until onSceneLoaded is called to apply those updates.
    
-   - parameter path: The path to the scene file to load.
-   - parameter sceneUpdates: The scene updates to make while loading the scene file.
+   - parameter style: The map style to load.
+   - parameter sceneUpdates: The scene updates to make while loading the map style.
    - parameter onSceneLoaded: Closure called on scene loaded.
    - throws: A MZError `apiKeyNotSet` error if an API Key has not been sent on the MapzenManager class.
    */
-  open func loadSceneFileAsync(_ path: String, sceneUpdates: [TGSceneUpdate], onSceneLoaded: OnSceneLoaded?) throws {
-    onSceneLoadedClosure = onSceneLoaded
-    try tgViewController.loadSceneFileAsync(path, sceneUpdates: updatesWithApiKeyUpdate(sceneUpdates))
+  open func loadStyleAsync(_ style: MapStyle, sceneUpdates: [TGSceneUpdate], onStyleLoaded: OnStyleLoaded?) throws {
+    onStyleLoadedClosure = onStyleLoaded
+    guard let sceneFile = styles.keyForValue(value: style) else { return }
+    try tgViewController.loadSceneFileAsync(sceneFile, sceneUpdates: updatesWithApiKeyUpdate(sceneUpdates))
   }
 
   /**
@@ -938,8 +949,12 @@ extension MapViewController : TGMapViewDelegate, TGRecognizerDelegate {
   //MARK : TGMapViewDelegate
   
   open func mapView(_ mapView: TGMapViewController, didLoadSceneAsync scene: String) {
-    onSceneLoadedClosure?(scene)
-    onSceneLoadedClosure = nil
+    guard let style = styles[scene] else {
+      onStyleLoadedClosure = nil
+      return
+    }
+    onStyleLoadedClosure?(style)
+    onStyleLoadedClosure = nil
   }
   
   open func mapViewDidCompleteLoading(_ mapView: TGMapViewController) {
