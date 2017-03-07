@@ -38,7 +38,7 @@
                             <outlet property="delegate" destination="7uT-WV-7cl" id="5dX-rv-eQK"/>
                         </connections>
                     </glkView>
-                    <tabBarItem key="tabBarItem" title="Search" image="tabbar_search" selectedImage="tabbar_search" id="d2i-Ej-IHV"/>
+                    <tabBarItem key="tabBarItem" title="Search" image="tabbar_search" selectedImage="tabbar_search_active" id="d2i-Ej-IHV"/>
                     <connections>
                         <outlet property="searchField" destination="RdI-7G-qKE" id="dT8-Gb-Ifn"/>
                     </connections>
@@ -234,7 +234,7 @@
         <scene sceneID="HRj-0v-iQO">
             <objects>
                 <navigationController id="yhw-YI-dla" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Route" image="tabbar_nav" selectedImage="tabbar_nav" id="8wW-bU-X0t"/>
+                    <tabBarItem key="tabBarItem" title="Route" image="tabbar_nav" selectedImage="tabbar_nav_active" id="8wW-bU-X0t"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="dDJ-43-MZU">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -329,7 +329,7 @@
         <scene sceneID="Hke-Vi-KHE">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Zeh-6l-8tZ" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Maps" image="tabbar_map" selectedImage="tabbar_map" id="vc2-GY-NP0"/>
+                    <tabBarItem key="tabBarItem" title="Maps" image="tabbar_map" selectedImage="tabbar_map_active" id="vc2-GY-NP0"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="fbY-F6-amO">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -347,7 +347,10 @@
     </scenes>
     <resources>
         <image name="tabbar_map" width="25" height="25"/>
+        <image name="tabbar_map_active" width="25" height="25"/>
         <image name="tabbar_nav" width="25" height="25"/>
+        <image name="tabbar_nav_active" width="25" height="25"/>
         <image name="tabbar_search" width="25" height="25"/>
+        <image name="tabbar_search_active" width="25" height="25"/>
     </resources>
 </document>
