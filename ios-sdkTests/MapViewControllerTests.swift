@@ -42,7 +42,7 @@ class MapViewControllerTests: XCTestCase {
     let mockHTTP = MockHTTPHandler()
     controller.tgViewController.httpHandler = mockHTTP
 
-    let _ = controller.view
+    _ = controller.view
   }
 
   func testInit() {
