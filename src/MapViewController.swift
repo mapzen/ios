@@ -320,9 +320,14 @@ open class MapViewController: UIViewController, LocationManagerDelegate {
   /// Receiver for tile load completion callbacks
   weak open var tileLoadDelegate: MapTileLoadDelegate?
 
-  public typealias OnSceneLoaded = (String) -> ()
-  fileprivate var onSceneLoadedClosure : OnSceneLoaded? = nil
+  public typealias OnStyleLoaded = (MapStyle) -> ()
+  fileprivate var onStyleLoadedClosure : OnStyleLoaded? = nil
 
+  fileprivate let styles = [MapStyle.bubbleWrap.filename() : MapStyle.bubbleWrap,
+                            MapStyle.cinnabar.filename() : MapStyle.cinnabar,
+                            MapStyle.refill.filename() : MapStyle.refill,
+                            MapStyle.walkabout.filename() : MapStyle.walkabout,
+                            MapStyle.zinc.filename() : MapStyle.zinc]
 
   /**
    Default initializer. Sets up the find me button and initializes the TGMapViewController as part of startup.
@@ -590,8 +595,8 @@ open class MapViewController: UIViewController, LocationManagerDelegate {
    - parameter onSceneLoaded: Closure called on scene loaded.
    - throws: A MZError `apiKeyNotSet` error if an API Key has not been sent on the MapzenManager class.
   */
-  open func loadStyleAsync(_ style: MapStyle, onSceneLoaded: OnSceneLoaded?) throws {
-    try loadStyleAsync(style, sceneUpdates: [TGSceneUpdate](), onSceneLoaded: onSceneLoaded)
+  open func loadStyleAsync(_ style: MapStyle, onStyleLoaded: OnStyleLoaded?) throws {
+    try loadStyleAsync(style, sceneUpdates: [TGSceneUpdate](), onStyleLoaded: onStyleLoaded)
   }
 
   /**
@@ -602,8 +607,8 @@ open class MapViewController: UIViewController, LocationManagerDelegate {
    - parameter onSceneLoaded: Closure called on scene loaded.
    - throws: A MZError `apiKeyNotSet` error if an API Key has not been sent on the MapzenManager class.
    */
-  open func loadStyleAsync(_ style: MapStyle, sceneUpdates: [TGSceneUpdate], onSceneLoaded: OnSceneLoaded?) throws {
-    onSceneLoadedClosure = onSceneLoaded
+  open func loadStyleAsync(_ style: MapStyle, sceneUpdates: [TGSceneUpdate], onStyleLoaded: OnStyleLoaded?) throws {
+    onStyleLoadedClosure = onStyleLoaded
     try tgViewController.loadSceneFileAsync(style.filename(), sceneUpdates: updatesWithApiKeyUpdate(sceneUpdates))
   }
 
@@ -957,8 +962,12 @@ extension MapViewController : TGMapViewDelegate, TGRecognizerDelegate {
   //MARK : TGMapViewDelegate
   
   open func mapView(_ mapView: TGMapViewController, didLoadSceneAsync scene: String) {
-    onSceneLoadedClosure?(scene)
-    onSceneLoadedClosure = nil
+    guard let style = styles[scene] else {
+      onStyleLoadedClosure = nil
+      return
+    }
+    onStyleLoadedClosure?(style)
+    onStyleLoadedClosure = nil
   }
   
   open func mapViewDidCompleteLoading(_ mapView: TGMapViewController) {

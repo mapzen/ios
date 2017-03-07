@@ -78,7 +78,7 @@ class TangramVC:  MapViewController, MapMarkerSelectDelegate {
 
   private func indicateLoadStyle(style: MapStyle) {
     activityIndicator.startAnimating()
-    try? loadStyleAsync(style, onSceneLoaded: { [unowned self] (scene) in
+    try? loadStyleAsync(style, onStyleLoaded: { [unowned self] (style) in
       self.activityIndicator.stopAnimating()
     })
   }
