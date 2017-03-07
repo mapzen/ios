@@ -41,6 +41,8 @@ class MapViewControllerTests: XCTestCase {
     controller.tgViewController = tgViewController
     let mockHTTP = MockHTTPHandler()
     controller.tgViewController.httpHandler = mockHTTP
+
+    let _ = controller.view
   }
 
   func testInit() {
@@ -49,7 +51,6 @@ class MapViewControllerTests: XCTestCase {
   }
 
   func testChildVc() {
-    controller.viewDidLoad()
     XCTAssertTrue(controller.childViewControllers.contains(tgViewController))
   }
   
