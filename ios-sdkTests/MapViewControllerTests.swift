@@ -47,6 +47,11 @@ class MapViewControllerTests: XCTestCase {
     XCTAssertNotNil(controller)
     XCTAssertFalse(controller.shouldFollowCurrentLocation)
   }
+
+  func testChildVc() {
+    controller.viewDidLoad()
+    XCTAssertTrue(controller.childViewControllers.contains(tgViewController))
+  }
   
   func testAnimateToPosition() {
     let point = TGGeoPoint(longitude: 70.0, latitude: 40.0)
