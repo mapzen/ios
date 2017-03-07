@@ -87,123 +87,21 @@
 		7D7847241E6775EA000D56CA /* Dimensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Dimensions.swift; sourceTree = "<group>"; };
 		7D7DAE1C1E60C5C900FFCA6F /* TestApplication.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestApplication.swift; sourceTree = "<group>"; };
 		7D7DAE201E60EEA300FFCA6F /* ApplicationExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApplicationExtensions.swift; sourceTree = "<group>"; };
-		7D9EBBCF1E6DFBAF00303E1B /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		7D9EBBD01E6DFBAF00303E1B /* bubble-wrap-style-more-labels.yaml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "bubble-wrap-style-more-labels.yaml"; sourceTree = "<group>"; };
-		7D9EBBD11E6DFBAF00303E1B /* bubble-wrap-style-no-labels.yaml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "bubble-wrap-style-no-labels.yaml"; sourceTree = "<group>"; };
-		7D9EBBD21E6DFBAF00303E1B /* bubble-wrap-style.yaml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "bubble-wrap-style.yaml"; sourceTree = "<group>"; };
-		7D9EBBD41E6DFBAF00303E1B /* .gitkeep */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitkeep; sourceTree = "<group>"; };
-		7D9EBBD61E6DFBAF00303E1B /* Apache License.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "Apache License.txt"; sourceTree = "<group>"; };
-		7D9EBBD71E6DFBAF00303E1B /* Montserrat-Regular.woff */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Regular.woff"; sourceTree = "<group>"; };
-		7D9EBBD81E6DFBAF00303E1B /* OpenSans-Bold.woff */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Bold.woff"; sourceTree = "<group>"; };
-		7D9EBBD91E6DFBAF00303E1B /* OpenSans-Italic.woff */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Italic.woff"; sourceTree = "<group>"; };
-		7D9EBBDA1E6DFBAF00303E1B /* OpenSans-Light.woff */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Light.woff"; sourceTree = "<group>"; };
-		7D9EBBDB1E6DFBAF00303E1B /* OpenSans-Regular.woff */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Regular.woff"; sourceTree = "<group>"; };
-		7D9EBBDC1E6DFBAF00303E1B /* OpenSans-Semibold.woff */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Semibold.woff"; sourceTree = "<group>"; };
-		7D9EBBDD1E6DFBAF00303E1B /* OpenSans-SemiboldItalic.woff */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-SemiboldItalic.woff"; sourceTree = "<group>"; };
-		7D9EBBDE1E6DFBAF00303E1B /* Quicksand-Regular.woff */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Quicksand-Regular.woff"; sourceTree = "<group>"; };
-		7D9EBBDF1E6DFBAF00303E1B /* Varela-Regular.woff */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Varela-Regular.woff"; sourceTree = "<group>"; };
 		7D9EBBE11E6DFBAF00303E1B /* bubble-wrap@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bubble-wrap@2x.png"; sourceTree = "<group>"; };
 		7D9EBBE21E6DFBAF00303E1B /* building-grid.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "building-grid.gif"; sourceTree = "<group>"; };
-		7D9EBBE31E6DFBAF00303E1B /* index.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = index.html; sourceTree = "<group>"; };
-		7D9EBBE51E6DFBAF00303E1B /* dat.gui.min.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = dat.gui.min.js; sourceTree = "<group>"; };
-		7D9EBBE61E6DFBAF00303E1B /* FileSaver.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = FileSaver.js; sourceTree = "<group>"; };
-		7D9EBBE71E6DFBAF00303E1B /* keymaster.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = keymaster.js; sourceTree = "<group>"; };
-		7D9EBBE81E6DFBAF00303E1B /* leaflet-hash.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = "leaflet-hash.js"; sourceTree = "<group>"; };
-		7D9EBBE91E6DFBAF00303E1B /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
-		7D9EBBEA1E6DFBAF00303E1B /* Makefile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.make; path = Makefile; sourceTree = "<group>"; };
-		7D9EBBEB1E6DFBAF00303E1B /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
-		7D9EBBEC1E6DFBAF00303E1B /* VERSION */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = VERSION; sourceTree = "<group>"; };
-		7D9EBBEE1E6DFBAF00303E1B /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		7D9EBBEF1E6DFBAF00303E1B /* cinnabar-style-more-labels.yaml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "cinnabar-style-more-labels.yaml"; sourceTree = "<group>"; };
-		7D9EBBF11E6DFBAF00303E1B /* .gitkeep */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitkeep; sourceTree = "<group>"; };
-		7D9EBBF31E6DFBAF00303E1B /* Apache License.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "Apache License.txt"; sourceTree = "<group>"; };
-		7D9EBBF41E6DFBAF00303E1B /* Montserrat-Regular.woff */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Regular.woff"; sourceTree = "<group>"; };
-		7D9EBBF51E6DFBAF00303E1B /* OpenSans-Bold.woff */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Bold.woff"; sourceTree = "<group>"; };
-		7D9EBBF61E6DFBAF00303E1B /* OpenSans-Italic.woff */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Italic.woff"; sourceTree = "<group>"; };
-		7D9EBBF71E6DFBAF00303E1B /* OpenSans-Light.woff */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Light.woff"; sourceTree = "<group>"; };
-		7D9EBBF81E6DFBAF00303E1B /* OpenSans-Regular.woff */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Regular.woff"; sourceTree = "<group>"; };
-		7D9EBBF91E6DFBAF00303E1B /* OpenSans-Semibold.woff */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Semibold.woff"; sourceTree = "<group>"; };
-		7D9EBBFA1E6DFBAF00303E1B /* OpenSans-SemiboldItalic.woff */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-SemiboldItalic.woff"; sourceTree = "<group>"; };
 		7D9EBBFC1E6DFBAF00303E1B /* refill@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "refill@2x.png"; sourceTree = "<group>"; };
-		7D9EBBFD1E6DFBAF00303E1B /* index.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = index.html; sourceTree = "<group>"; };
-		7D9EBBFE1E6DFBAF00303E1B /* ISSUE_TEMPLATE.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = ISSUE_TEMPLATE.md; sourceTree = "<group>"; };
-		7D9EBC001E6DFBAF00303E1B /* dat.gui.min.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = dat.gui.min.js; sourceTree = "<group>"; };
-		7D9EBC011E6DFBAF00303E1B /* FileSaver.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = FileSaver.js; sourceTree = "<group>"; };
-		7D9EBC021E6DFBAF00303E1B /* keymaster.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = keymaster.js; sourceTree = "<group>"; };
-		7D9EBC031E6DFBAF00303E1B /* leaflet-hash.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = "leaflet-hash.js"; sourceTree = "<group>"; };
-		7D9EBC041E6DFBAF00303E1B /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
-		7D9EBC051E6DFBAF00303E1B /* Makefile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.make; path = Makefile; sourceTree = "<group>"; };
-		7D9EBC061E6DFBAF00303E1B /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
-		7D9EBC071E6DFBAF00303E1B /* VERSION */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = VERSION; sourceTree = "<group>"; };
-		7D9EBC091E6DFBAF00303E1B /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
-		7D9EBC0B1E6DFBAF00303E1B /* .gitkeep */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitkeep; sourceTree = "<group>"; };
-		7D9EBC0D1E6DFBAF00303E1B /* Apache License.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "Apache License.txt"; sourceTree = "<group>"; };
-		7D9EBC0E1E6DFBAF00303E1B /* Montserrat-Regular.woff */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Regular.woff"; sourceTree = "<group>"; };
-		7D9EBC0F1E6DFBAF00303E1B /* OpenSans-Bold.woff */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Bold.woff"; sourceTree = "<group>"; };
-		7D9EBC101E6DFBAF00303E1B /* OpenSans-Italic.woff */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Italic.woff"; sourceTree = "<group>"; };
-		7D9EBC111E6DFBAF00303E1B /* OpenSans-Light.woff */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Light.woff"; sourceTree = "<group>"; };
-		7D9EBC121E6DFBAF00303E1B /* OpenSans-Regular.woff */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Regular.woff"; sourceTree = "<group>"; };
-		7D9EBC131E6DFBAF00303E1B /* OpenSans-Semibold.woff */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Semibold.woff"; sourceTree = "<group>"; };
-		7D9EBC141E6DFBAF00303E1B /* OpenSans-SemiboldItalic.woff */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-SemiboldItalic.woff"; sourceTree = "<group>"; };
 		7D9EBC161E6DFBAF00303E1B /* building-grid.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "building-grid.gif"; sourceTree = "<group>"; };
 		7D9EBC171E6DFBAF00303E1B /* refill@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "refill@2x.png"; sourceTree = "<group>"; };
-		7D9EBC181E6DFBAF00303E1B /* index.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = index.html; sourceTree = "<group>"; };
-		7D9EBC191E6DFBAF00303E1B /* ISSUE_TEMPLATE.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = ISSUE_TEMPLATE.md; sourceTree = "<group>"; };
-		7D9EBC1B1E6DFBAF00303E1B /* dat.gui.min.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = dat.gui.min.js; sourceTree = "<group>"; };
-		7D9EBC1C1E6DFBAF00303E1B /* FileSaver.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = FileSaver.js; sourceTree = "<group>"; };
-		7D9EBC1D1E6DFBAF00303E1B /* keymaster.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = keymaster.js; sourceTree = "<group>"; };
-		7D9EBC1E1E6DFBAF00303E1B /* leaflet-hash.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = "leaflet-hash.js"; sourceTree = "<group>"; };
-		7D9EBC1F1E6DFBAF00303E1B /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
-		7D9EBC201E6DFBAF00303E1B /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		7D9EBC211E6DFBAF00303E1B /* refill-style-more-labels.yaml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "refill-style-more-labels.yaml"; sourceTree = "<group>"; };
-		7D9EBC221E6DFBAF00303E1B /* VERSION */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = VERSION; sourceTree = "<group>"; };
-		7D9EBC241E6DFBAF00303E1B /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
-		7D9EBC261E6DFBAF00303E1B /* .gitkeep */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitkeep; sourceTree = "<group>"; };
-		7D9EBC281E6DFBAF00303E1B /* Apache License.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "Apache License.txt"; sourceTree = "<group>"; };
-		7D9EBC291E6DFBAF00303E1B /* Montserrat-Regular.woff */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Regular.woff"; sourceTree = "<group>"; };
-		7D9EBC2A1E6DFBAF00303E1B /* OpenSans-Bold.woff */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Bold.woff"; sourceTree = "<group>"; };
-		7D9EBC2B1E6DFBAF00303E1B /* OpenSans-Italic.woff */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Italic.woff"; sourceTree = "<group>"; };
-		7D9EBC2C1E6DFBAF00303E1B /* OpenSans-Light.woff */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Light.woff"; sourceTree = "<group>"; };
-		7D9EBC2D1E6DFBAF00303E1B /* OpenSans-Regular.woff */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Regular.woff"; sourceTree = "<group>"; };
-		7D9EBC2E1E6DFBAF00303E1B /* OpenSans-Semibold.woff */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Semibold.woff"; sourceTree = "<group>"; };
-		7D9EBC2F1E6DFBAF00303E1B /* OpenSans-SemiboldItalic.woff */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-SemiboldItalic.woff"; sourceTree = "<group>"; };
 		7D9EBC311E6DFBAF00303E1B /* building-grid.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "building-grid.gif"; sourceTree = "<group>"; };
 		7D9EBC321E6DFBAF00303E1B /* draw-test8.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "draw-test8.jpg"; sourceTree = "<group>"; };
 		7D9EBC331E6DFBAF00303E1B /* draw-test9.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "draw-test9.jpg"; sourceTree = "<group>"; };
 		7D9EBC341E6DFBAF00303E1B /* relief-shading-environment-map.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "relief-shading-environment-map.jpg"; sourceTree = "<group>"; };
 		7D9EBC351E6DFBAF00303E1B /* walkabout@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "walkabout@2x.png"; sourceTree = "<group>"; };
-		7D9EBC361E6DFBAF00303E1B /* index.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = index.html; sourceTree = "<group>"; };
-		7D9EBC371E6DFBAF00303E1B /* ISSUE_TEMPLATE.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = ISSUE_TEMPLATE.md; sourceTree = "<group>"; };
-		7D9EBC391E6DFBAF00303E1B /* dat.gui.min.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = dat.gui.min.js; sourceTree = "<group>"; };
-		7D9EBC3A1E6DFBAF00303E1B /* FileSaver.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = FileSaver.js; sourceTree = "<group>"; };
-		7D9EBC3B1E6DFBAF00303E1B /* fontfaceobserver.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = fontfaceobserver.js; sourceTree = "<group>"; };
-		7D9EBC3C1E6DFBAF00303E1B /* keymaster.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = keymaster.js; sourceTree = "<group>"; };
-		7D9EBC3D1E6DFBAF00303E1B /* leaflet-hash.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = "leaflet-hash.js"; sourceTree = "<group>"; };
-		7D9EBC3E1E6DFBAF00303E1B /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
-		7D9EBC3F1E6DFBAF00303E1B /* Makefile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.make; path = Makefile; sourceTree = "<group>"; };
-		7D9EBC401E6DFBAF00303E1B /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
-		7D9EBC411E6DFBAF00303E1B /* VERSION */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = VERSION; sourceTree = "<group>"; };
 		7D9EBC421E6DFBAF00303E1B /* walkabout-style-more-labels.yaml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "walkabout-style-more-labels.yaml"; sourceTree = "<group>"; };
-		7D9EBC441E6DFBAF00303E1B /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
-		7D9EBC461E6DFBAF00303E1B /* .gitkeep */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitkeep; sourceTree = "<group>"; };
-		7D9EBC481E6DFBAF00303E1B /* Apache License.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "Apache License.txt"; sourceTree = "<group>"; };
-		7D9EBC491E6DFBAF00303E1B /* Montserrat-Regular.woff */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Regular.woff"; sourceTree = "<group>"; };
-		7D9EBC4A1E6DFBAF00303E1B /* OpenSans-Bold.woff */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Bold.woff"; sourceTree = "<group>"; };
-		7D9EBC4B1E6DFBAF00303E1B /* OpenSans-Italic.woff */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Italic.woff"; sourceTree = "<group>"; };
-		7D9EBC4C1E6DFBAF00303E1B /* OpenSans-Light.woff */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Light.woff"; sourceTree = "<group>"; };
-		7D9EBC4D1E6DFBAF00303E1B /* OpenSans-Regular.woff */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Regular.woff"; sourceTree = "<group>"; };
-		7D9EBC4E1E6DFBAF00303E1B /* OpenSans-Semibold.woff */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Semibold.woff"; sourceTree = "<group>"; };
-		7D9EBC4F1E6DFBAF00303E1B /* OpenSans-SemiboldItalic.woff */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-SemiboldItalic.woff"; sourceTree = "<group>"; };
 		7D9EBC511E6DFBAF00303E1B /* refill@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "refill@2x.png"; sourceTree = "<group>"; };
-		7D9EBC521E6DFBAF00303E1B /* index.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = index.html; sourceTree = "<group>"; };
-		7D9EBC531E6DFBAF00303E1B /* ISSUE_TEMPLATE.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = ISSUE_TEMPLATE.md; sourceTree = "<group>"; };
-		7D9EBC551E6DFBAF00303E1B /* dat.gui.min.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = dat.gui.min.js; sourceTree = "<group>"; };
-		7D9EBC561E6DFBAF00303E1B /* FileSaver.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = FileSaver.js; sourceTree = "<group>"; };
-		7D9EBC571E6DFBAF00303E1B /* keymaster.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = keymaster.js; sourceTree = "<group>"; };
-		7D9EBC581E6DFBAF00303E1B /* leaflet-hash.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = "leaflet-hash.js"; sourceTree = "<group>"; };
-		7D9EBC591E6DFBAF00303E1B /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
-		7D9EBC5A1E6DFBAF00303E1B /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
-		7D9EBC5B1E6DFBAF00303E1B /* VERSION */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = VERSION; sourceTree = "<group>"; };
 		7D9EBC5C1E6DFBAF00303E1B /* zinc-style-more-labels.yaml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "zinc-style-more-labels.yaml"; sourceTree = "<group>"; };
 		7DF0AA2D1E5520ED00B0406E /* TestTGMapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestTGMapViewController.swift; sourceTree = "<group>"; };
 		92C35E8790FB3255237B1E77 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -288,46 +186,10 @@
 		7D9EBBCE1E6DFBAF00303E1B /* bubble-wrap */ = {
 			isa = PBXGroup;
 			children = (
-				7D9EBBCF1E6DFBAF00303E1B /* .gitignore */,
 				7D9EBBD01E6DFBAF00303E1B /* bubble-wrap-style-more-labels.yaml */,
-				7D9EBBD11E6DFBAF00303E1B /* bubble-wrap-style-no-labels.yaml */,
-				7D9EBBD21E6DFBAF00303E1B /* bubble-wrap-style.yaml */,
-				7D9EBBD31E6DFBAF00303E1B /* dist */,
-				7D9EBBD51E6DFBAF00303E1B /* fonts */,
 				7D9EBBE01E6DFBAF00303E1B /* images */,
-				7D9EBBE31E6DFBAF00303E1B /* index.html */,
-				7D9EBBE41E6DFBAF00303E1B /* lib */,
-				7D9EBBE91E6DFBAF00303E1B /* LICENSE */,
-				7D9EBBEA1E6DFBAF00303E1B /* Makefile */,
-				7D9EBBEB1E6DFBAF00303E1B /* README.md */,
-				7D9EBBEC1E6DFBAF00303E1B /* VERSION */,
 			);
 			path = "bubble-wrap";
-			sourceTree = "<group>";
-		};
-		7D9EBBD31E6DFBAF00303E1B /* dist */ = {
-			isa = PBXGroup;
-			children = (
-				7D9EBBD41E6DFBAF00303E1B /* .gitkeep */,
-			);
-			path = dist;
-			sourceTree = "<group>";
-		};
-		7D9EBBD51E6DFBAF00303E1B /* fonts */ = {
-			isa = PBXGroup;
-			children = (
-				7D9EBBD61E6DFBAF00303E1B /* Apache License.txt */,
-				7D9EBBD71E6DFBAF00303E1B /* Montserrat-Regular.woff */,
-				7D9EBBD81E6DFBAF00303E1B /* OpenSans-Bold.woff */,
-				7D9EBBD91E6DFBAF00303E1B /* OpenSans-Italic.woff */,
-				7D9EBBDA1E6DFBAF00303E1B /* OpenSans-Light.woff */,
-				7D9EBBDB1E6DFBAF00303E1B /* OpenSans-Regular.woff */,
-				7D9EBBDC1E6DFBAF00303E1B /* OpenSans-Semibold.woff */,
-				7D9EBBDD1E6DFBAF00303E1B /* OpenSans-SemiboldItalic.woff */,
-				7D9EBBDE1E6DFBAF00303E1B /* Quicksand-Regular.woff */,
-				7D9EBBDF1E6DFBAF00303E1B /* Varela-Regular.woff */,
-			);
-			path = fonts;
 			sourceTree = "<group>";
 		};
 		7D9EBBE01E6DFBAF00303E1B /* images */ = {
@@ -339,57 +201,13 @@
 			path = images;
 			sourceTree = "<group>";
 		};
-		7D9EBBE41E6DFBAF00303E1B /* lib */ = {
-			isa = PBXGroup;
-			children = (
-				7D9EBBE51E6DFBAF00303E1B /* dat.gui.min.js */,
-				7D9EBBE61E6DFBAF00303E1B /* FileSaver.js */,
-				7D9EBBE71E6DFBAF00303E1B /* keymaster.js */,
-				7D9EBBE81E6DFBAF00303E1B /* leaflet-hash.js */,
-			);
-			path = lib;
-			sourceTree = "<group>";
-		};
 		7D9EBBED1E6DFBAF00303E1B /* cinnabar */ = {
 			isa = PBXGroup;
 			children = (
-				7D9EBBEE1E6DFBAF00303E1B /* .gitignore */,
 				7D9EBBEF1E6DFBAF00303E1B /* cinnabar-style-more-labels.yaml */,
-				7D9EBBF01E6DFBAF00303E1B /* dist */,
-				7D9EBBF21E6DFBAF00303E1B /* fonts */,
 				7D9EBBFB1E6DFBAF00303E1B /* images */,
-				7D9EBBFD1E6DFBAF00303E1B /* index.html */,
-				7D9EBBFE1E6DFBAF00303E1B /* ISSUE_TEMPLATE.md */,
-				7D9EBBFF1E6DFBAF00303E1B /* lib */,
-				7D9EBC041E6DFBAF00303E1B /* LICENSE */,
-				7D9EBC051E6DFBAF00303E1B /* Makefile */,
-				7D9EBC061E6DFBAF00303E1B /* README.md */,
-				7D9EBC071E6DFBAF00303E1B /* VERSION */,
 			);
 			path = cinnabar;
-			sourceTree = "<group>";
-		};
-		7D9EBBF01E6DFBAF00303E1B /* dist */ = {
-			isa = PBXGroup;
-			children = (
-				7D9EBBF11E6DFBAF00303E1B /* .gitkeep */,
-			);
-			path = dist;
-			sourceTree = "<group>";
-		};
-		7D9EBBF21E6DFBAF00303E1B /* fonts */ = {
-			isa = PBXGroup;
-			children = (
-				7D9EBBF31E6DFBAF00303E1B /* Apache License.txt */,
-				7D9EBBF41E6DFBAF00303E1B /* Montserrat-Regular.woff */,
-				7D9EBBF51E6DFBAF00303E1B /* OpenSans-Bold.woff */,
-				7D9EBBF61E6DFBAF00303E1B /* OpenSans-Italic.woff */,
-				7D9EBBF71E6DFBAF00303E1B /* OpenSans-Light.woff */,
-				7D9EBBF81E6DFBAF00303E1B /* OpenSans-Regular.woff */,
-				7D9EBBF91E6DFBAF00303E1B /* OpenSans-Semibold.woff */,
-				7D9EBBFA1E6DFBAF00303E1B /* OpenSans-SemiboldItalic.woff */,
-			);
-			path = fonts;
 			sourceTree = "<group>";
 		};
 		7D9EBBFB1E6DFBAF00303E1B /* images */ = {
@@ -400,56 +218,13 @@
 			path = images;
 			sourceTree = "<group>";
 		};
-		7D9EBBFF1E6DFBAF00303E1B /* lib */ = {
-			isa = PBXGroup;
-			children = (
-				7D9EBC001E6DFBAF00303E1B /* dat.gui.min.js */,
-				7D9EBC011E6DFBAF00303E1B /* FileSaver.js */,
-				7D9EBC021E6DFBAF00303E1B /* keymaster.js */,
-				7D9EBC031E6DFBAF00303E1B /* leaflet-hash.js */,
-			);
-			path = lib;
-			sourceTree = "<group>";
-		};
 		7D9EBC081E6DFBAF00303E1B /* refill */ = {
 			isa = PBXGroup;
 			children = (
-				7D9EBC091E6DFBAF00303E1B /* .gitignore */,
-				7D9EBC0A1E6DFBAF00303E1B /* dist */,
-				7D9EBC0C1E6DFBAF00303E1B /* fonts */,
 				7D9EBC151E6DFBAF00303E1B /* images */,
-				7D9EBC181E6DFBAF00303E1B /* index.html */,
-				7D9EBC191E6DFBAF00303E1B /* ISSUE_TEMPLATE.md */,
-				7D9EBC1A1E6DFBAF00303E1B /* lib */,
-				7D9EBC1F1E6DFBAF00303E1B /* LICENSE */,
-				7D9EBC201E6DFBAF00303E1B /* README.md */,
 				7D9EBC211E6DFBAF00303E1B /* refill-style-more-labels.yaml */,
-				7D9EBC221E6DFBAF00303E1B /* VERSION */,
 			);
 			path = refill;
-			sourceTree = "<group>";
-		};
-		7D9EBC0A1E6DFBAF00303E1B /* dist */ = {
-			isa = PBXGroup;
-			children = (
-				7D9EBC0B1E6DFBAF00303E1B /* .gitkeep */,
-			);
-			path = dist;
-			sourceTree = "<group>";
-		};
-		7D9EBC0C1E6DFBAF00303E1B /* fonts */ = {
-			isa = PBXGroup;
-			children = (
-				7D9EBC0D1E6DFBAF00303E1B /* Apache License.txt */,
-				7D9EBC0E1E6DFBAF00303E1B /* Montserrat-Regular.woff */,
-				7D9EBC0F1E6DFBAF00303E1B /* OpenSans-Bold.woff */,
-				7D9EBC101E6DFBAF00303E1B /* OpenSans-Italic.woff */,
-				7D9EBC111E6DFBAF00303E1B /* OpenSans-Light.woff */,
-				7D9EBC121E6DFBAF00303E1B /* OpenSans-Regular.woff */,
-				7D9EBC131E6DFBAF00303E1B /* OpenSans-Semibold.woff */,
-				7D9EBC141E6DFBAF00303E1B /* OpenSans-SemiboldItalic.woff */,
-			);
-			path = fonts;
 			sourceTree = "<group>";
 		};
 		7D9EBC151E6DFBAF00303E1B /* images */ = {
@@ -461,57 +236,13 @@
 			path = images;
 			sourceTree = "<group>";
 		};
-		7D9EBC1A1E6DFBAF00303E1B /* lib */ = {
-			isa = PBXGroup;
-			children = (
-				7D9EBC1B1E6DFBAF00303E1B /* dat.gui.min.js */,
-				7D9EBC1C1E6DFBAF00303E1B /* FileSaver.js */,
-				7D9EBC1D1E6DFBAF00303E1B /* keymaster.js */,
-				7D9EBC1E1E6DFBAF00303E1B /* leaflet-hash.js */,
-			);
-			path = lib;
-			sourceTree = "<group>";
-		};
 		7D9EBC231E6DFBAF00303E1B /* walkabout */ = {
 			isa = PBXGroup;
 			children = (
-				7D9EBC241E6DFBAF00303E1B /* .gitignore */,
-				7D9EBC251E6DFBAF00303E1B /* dist */,
-				7D9EBC271E6DFBAF00303E1B /* fonts */,
 				7D9EBC301E6DFBAF00303E1B /* images */,
-				7D9EBC361E6DFBAF00303E1B /* index.html */,
-				7D9EBC371E6DFBAF00303E1B /* ISSUE_TEMPLATE.md */,
-				7D9EBC381E6DFBAF00303E1B /* lib */,
-				7D9EBC3E1E6DFBAF00303E1B /* LICENSE */,
-				7D9EBC3F1E6DFBAF00303E1B /* Makefile */,
-				7D9EBC401E6DFBAF00303E1B /* README.md */,
-				7D9EBC411E6DFBAF00303E1B /* VERSION */,
 				7D9EBC421E6DFBAF00303E1B /* walkabout-style-more-labels.yaml */,
 			);
 			path = walkabout;
-			sourceTree = "<group>";
-		};
-		7D9EBC251E6DFBAF00303E1B /* dist */ = {
-			isa = PBXGroup;
-			children = (
-				7D9EBC261E6DFBAF00303E1B /* .gitkeep */,
-			);
-			path = dist;
-			sourceTree = "<group>";
-		};
-		7D9EBC271E6DFBAF00303E1B /* fonts */ = {
-			isa = PBXGroup;
-			children = (
-				7D9EBC281E6DFBAF00303E1B /* Apache License.txt */,
-				7D9EBC291E6DFBAF00303E1B /* Montserrat-Regular.woff */,
-				7D9EBC2A1E6DFBAF00303E1B /* OpenSans-Bold.woff */,
-				7D9EBC2B1E6DFBAF00303E1B /* OpenSans-Italic.woff */,
-				7D9EBC2C1E6DFBAF00303E1B /* OpenSans-Light.woff */,
-				7D9EBC2D1E6DFBAF00303E1B /* OpenSans-Regular.woff */,
-				7D9EBC2E1E6DFBAF00303E1B /* OpenSans-Semibold.woff */,
-				7D9EBC2F1E6DFBAF00303E1B /* OpenSans-SemiboldItalic.woff */,
-			);
-			path = fonts;
 			sourceTree = "<group>";
 		};
 		7D9EBC301E6DFBAF00303E1B /* images */ = {
@@ -526,57 +257,13 @@
 			path = images;
 			sourceTree = "<group>";
 		};
-		7D9EBC381E6DFBAF00303E1B /* lib */ = {
-			isa = PBXGroup;
-			children = (
-				7D9EBC391E6DFBAF00303E1B /* dat.gui.min.js */,
-				7D9EBC3A1E6DFBAF00303E1B /* FileSaver.js */,
-				7D9EBC3B1E6DFBAF00303E1B /* fontfaceobserver.js */,
-				7D9EBC3C1E6DFBAF00303E1B /* keymaster.js */,
-				7D9EBC3D1E6DFBAF00303E1B /* leaflet-hash.js */,
-			);
-			path = lib;
-			sourceTree = "<group>";
-		};
 		7D9EBC431E6DFBAF00303E1B /* zinc */ = {
 			isa = PBXGroup;
 			children = (
-				7D9EBC441E6DFBAF00303E1B /* .gitignore */,
-				7D9EBC451E6DFBAF00303E1B /* dist */,
-				7D9EBC471E6DFBAF00303E1B /* fonts */,
 				7D9EBC501E6DFBAF00303E1B /* images */,
-				7D9EBC521E6DFBAF00303E1B /* index.html */,
-				7D9EBC531E6DFBAF00303E1B /* ISSUE_TEMPLATE.md */,
-				7D9EBC541E6DFBAF00303E1B /* lib */,
-				7D9EBC591E6DFBAF00303E1B /* LICENSE */,
-				7D9EBC5A1E6DFBAF00303E1B /* README.md */,
-				7D9EBC5B1E6DFBAF00303E1B /* VERSION */,
 				7D9EBC5C1E6DFBAF00303E1B /* zinc-style-more-labels.yaml */,
 			);
 			path = zinc;
-			sourceTree = "<group>";
-		};
-		7D9EBC451E6DFBAF00303E1B /* dist */ = {
-			isa = PBXGroup;
-			children = (
-				7D9EBC461E6DFBAF00303E1B /* .gitkeep */,
-			);
-			path = dist;
-			sourceTree = "<group>";
-		};
-		7D9EBC471E6DFBAF00303E1B /* fonts */ = {
-			isa = PBXGroup;
-			children = (
-				7D9EBC481E6DFBAF00303E1B /* Apache License.txt */,
-				7D9EBC491E6DFBAF00303E1B /* Montserrat-Regular.woff */,
-				7D9EBC4A1E6DFBAF00303E1B /* OpenSans-Bold.woff */,
-				7D9EBC4B1E6DFBAF00303E1B /* OpenSans-Italic.woff */,
-				7D9EBC4C1E6DFBAF00303E1B /* OpenSans-Light.woff */,
-				7D9EBC4D1E6DFBAF00303E1B /* OpenSans-Regular.woff */,
-				7D9EBC4E1E6DFBAF00303E1B /* OpenSans-Semibold.woff */,
-				7D9EBC4F1E6DFBAF00303E1B /* OpenSans-SemiboldItalic.woff */,
-			);
-			path = fonts;
 			sourceTree = "<group>";
 		};
 		7D9EBC501E6DFBAF00303E1B /* images */ = {
@@ -585,17 +272,6 @@
 				7D9EBC511E6DFBAF00303E1B /* refill@2x.png */,
 			);
 			path = images;
-			sourceTree = "<group>";
-		};
-		7D9EBC541E6DFBAF00303E1B /* lib */ = {
-			isa = PBXGroup;
-			children = (
-				7D9EBC551E6DFBAF00303E1B /* dat.gui.min.js */,
-				7D9EBC561E6DFBAF00303E1B /* FileSaver.js */,
-				7D9EBC571E6DFBAF00303E1B /* keymaster.js */,
-				7D9EBC581E6DFBAF00303E1B /* leaflet-hash.js */,
-			);
-			path = lib;
 			sourceTree = "<group>";
 		};
 		8E4E4B43C1B764470EBBDBBA /* Pods */ = {
