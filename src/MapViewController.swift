@@ -880,14 +880,19 @@ open class MapViewController: UIViewController, LocationManagerDelegate {
   //MARK: - private
 
   private func setupTgControllerView() {
-    tgViewController.view.translatesAutoresizingMaskIntoConstraints = false
+    addChildViewController(tgViewController)
+
     self.view.addSubview(tgViewController.view)
+
+    tgViewController.view.translatesAutoresizingMaskIntoConstraints = false
 
     let leftConstraint = tgViewController.view.leftAnchor.constraint(equalTo: view.leftAnchor)
     let rightConstraint = tgViewController.view.rightAnchor.constraint(equalTo: view.rightAnchor)
     let topConstraint = tgViewController.view.topAnchor.constraint(equalTo: view.topAnchor)
     let bottomConstraint = tgViewController.view.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -tabBarHeight)
     NSLayoutConstraint.activate([leftConstraint, rightConstraint, topConstraint, bottomConstraint])
+
+    tgViewController.didMove(toParentViewController: self)
   }
 
   private func setupAttribution() {

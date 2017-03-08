@@ -41,11 +41,17 @@ class MapViewControllerTests: XCTestCase {
     controller.tgViewController = tgViewController
     let mockHTTP = MockHTTPHandler()
     controller.tgViewController.httpHandler = mockHTTP
+
+    _ = controller.view
   }
 
   func testInit() {
     XCTAssertNotNil(controller)
     XCTAssertFalse(controller.shouldFollowCurrentLocation)
+  }
+
+  func testChildVc() {
+    XCTAssertTrue(controller.childViewControllers.contains(tgViewController))
   }
   
   func testAnimateToPosition() {
