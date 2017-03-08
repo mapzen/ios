@@ -291,6 +291,14 @@ class MapViewControllerTests: XCTestCase {
     XCTAssertNil(controller.currentLocationGemValue())
   }
 
+  func testDisabledLocation() {
+    controller.enableLocationLayer(false)
+    XCTAssertNil(controller.currentLocationGem)
+    XCTAssertTrue(controller.findMeButton.isHidden)
+    XCTAssertFalse(controller.shouldFollowCurrentLocation)
+    XCTAssertFalse(controller.shouldShowCurrentLocationValue())
+  }
+
   func testEnableLocation() {
     controller.enableLocationLayer(true)
 

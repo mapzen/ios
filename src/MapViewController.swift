@@ -681,6 +681,7 @@ open class MapViewController: UIViewController, LocationManagerDelegate {
   open func showCurrentLocation(_ shouldShow: Bool) -> Bool {
     shouldShowCurrentLocation = shouldShow
     guard let marker = currentLocationGem else {
+      if !shouldShowCurrentLocation { return false }
       let marker = tgViewController.markerAdd()
       if marker == 0 { return false } // Didn't initialize correctly.
       currentLocationGem = marker;
