@@ -595,7 +595,22 @@ class MapViewControllerTests: XCTestCase {
     controller.perform(NSSelectorFromString(selectorStr!))
     XCTAssertEqual(testApplication.urlToOpen?.absoluteString, "https://mapzen.com/rights/")
   }
-  
+
+  func testAttributionVisible() {
+    let tabVc = UITabBarController.init()
+    let vc = MapViewController.init()
+    tabVc.setViewControllers([vc], animated: false)
+    _ = vc.view
+    XCTAssertTrue(vc.attributionBtn.frame.origin.y + vc.attributionBtn.frame.size.height < tabVc.tabBar.frame.origin.y)
+  }
+
+  func testFindMeVisible() {
+    let tabVc = UITabBarController.init()
+    let vc = MapViewController.init()
+    tabVc.setViewControllers([vc], animated: false)
+    _ = vc.view
+    XCTAssertTrue(vc.findMeButton.frame.origin.y + vc.findMeButton.frame.size.height < tabVc.tabBar.frame.origin.y)
+  }
 }
 
 class TestPanDelegate : MapPanGestureDelegate {

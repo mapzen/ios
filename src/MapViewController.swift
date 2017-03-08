@@ -360,9 +360,10 @@ open class MapViewController: UIViewController, LocationManagerDelegate {
     return tgViewController.view as! GLKView
   }
 
-  /// The height of our enclosing tab bar controller's tab bar.
-  open var tabBarHeight : CGFloat {
-    return self.tabBarController?.tabBar.frame.height ?? 0
+  /// The height of our enclosing tab bar controller's tab bar if it is translucent.
+  open var tabBarOffset : CGFloat {
+    guard let tabBar = self.tabBarController?.tabBar else { return 0 }
+    return tabBar.isTranslucent ? tabBar.frame.height : 0
   }
 
   /**
@@ -832,12 +833,6 @@ open class MapViewController: UIViewController, LocationManagerDelegate {
     tgViewController.mapViewDelegate = self
   }
 
-  override open func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
-    super.viewWillTransition(to: size, with: coordinator)
-    let adjustedSize = CGSize(width: size.width, height: size.height-tabBarHeight)
-    tgViewController.viewWillTransition(to: adjustedSize, with:coordinator)
-  }
-
   //MARK: - LocationManagerDelegate
 
   open func locationDidUpdate(_ location: CLLocation) {
@@ -889,7 +884,7 @@ open class MapViewController: UIViewController, LocationManagerDelegate {
     let leftConstraint = tgViewController.view.leftAnchor.constraint(equalTo: view.leftAnchor)
     let rightConstraint = tgViewController.view.rightAnchor.constraint(equalTo: view.rightAnchor)
     let topConstraint = tgViewController.view.topAnchor.constraint(equalTo: view.topAnchor)
-    let bottomConstraint = tgViewController.view.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -tabBarHeight)
+    let bottomConstraint = tgViewController.view.bottomAnchor.constraint(equalTo: view.bottomAnchor)
     NSLayoutConstraint.activate([leftConstraint, rightConstraint, topConstraint, bottomConstraint])
 
     tgViewController.didMove(toParentViewController: self)
@@ -905,8 +900,9 @@ open class MapViewController: UIViewController, LocationManagerDelegate {
     attributionBtn.translatesAutoresizingMaskIntoConstraints = false
     mapView.addSubview(attributionBtn)
 
+    let bottomOffset = -Dimensions.defaultPadding - tabBarOffset
     let horizontalConstraint = attributionBtn.leftAnchor.constraint(equalTo: mapView.leftAnchor, constant: Dimensions.defaultPadding)
-    let verticalConstraint = attributionBtn.bottomAnchor.constraint(equalTo: mapView.bottomAnchor, constant: -Dimensions.defaultPadding)
+    let verticalConstraint = attributionBtn.bottomAnchor.constraint(equalTo: mapView.bottomAnchor, constant: bottomOffset)
     NSLayoutConstraint.activate([horizontalConstraint, verticalConstraint])
   }
 
@@ -924,8 +920,9 @@ open class MapViewController: UIViewController, LocationManagerDelegate {
     findMeButton.translatesAutoresizingMaskIntoConstraints = false
     mapView.addSubview(findMeButton)
 
+    let bottomOffset = -Dimensions.defaultPadding - tabBarOffset
     let horizontalConstraint = findMeButton.rightAnchor.constraint(equalTo: mapView.rightAnchor, constant: -Dimensions.defaultPadding)
-    let verticalConstraint = findMeButton.bottomAnchor.constraint(equalTo: mapView.bottomAnchor, constant: -Dimensions.defaultPadding)
+    let verticalConstraint = findMeButton.bottomAnchor.constraint(equalTo: mapView.bottomAnchor, constant: bottomOffset)
     let widthConstraint = findMeButton.widthAnchor.constraint(equalToConstant: Dimensions.squareMapBtnSize)
     let heightConstraint = findMeButton.widthAnchor.constraint(equalToConstant: Dimensions.squareMapBtnSize)
     NSLayoutConstraint.activate([horizontalConstraint, verticalConstraint, widthConstraint, heightConstraint])
