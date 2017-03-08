@@ -8,7 +8,6 @@ checkout:
   post:
     - git submodule sync
     - git submodule update --init --recursive
-    - ./scripts/setup.sh
 
 dependencies:
   override:
@@ -24,6 +23,7 @@ test:
         -workspace ios-sdk.xcworkspace
         -scheme "ios-sdk"
         -destination 'platform=iOS Simulator,name=iPhone 6,OS=latest'
+        MAPZEN_API_KEY=$MAPZEN_API_KEY
         clean build test |
       tee $CIRCLE_ARTIFACTS/xcode_raw.log |
       xcpretty --color --report junit --output $CIRCLE_TEST_REPORTS/xcode/results.xml
