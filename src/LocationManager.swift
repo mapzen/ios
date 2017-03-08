@@ -139,3 +139,21 @@ open class LocationManager: NSObject, CLLocationManagerDelegate {
   }
 
 }
+
+/// Protocol for LocationManager's api so that actual implementation can be switched out in testing contexts.
+protocol LocationManagerProtocol : class {
+  weak var delegate: LocationManagerDelegate? { get set }
+
+  func requestAlwaysAuthorization()
+  func requestWhenInUseAuthorization()
+  func isInUseAuthorized() -> Bool
+  func isAlwaysAuthorized() -> Bool
+  func refreshCurrentLocation() -> CLLocation?
+  func requestLocation()
+  func startUpdatingLocation()
+  func stopUpdatingLocation()
+}
+
+/// Make the LocationManager class conform to the LocationManagerProtocol
+extension LocationManager: LocationManagerProtocol {}
+

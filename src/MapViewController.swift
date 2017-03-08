@@ -314,6 +314,8 @@ open class MapViewController: UIViewController, LocationManagerDelegate {
                             "walkabout-style-more-labels.yaml" : MapStyle.walkabout,
                             "zinc-style-more-labels.yaml" : MapStyle.zinc]
 
+  let locationManager : LocationManagerProtocol
+
   /**
    Default initializer. Sets up the find me button and initializes the TGMapViewController as part of startup.
    
@@ -321,6 +323,7 @@ open class MapViewController: UIViewController, LocationManagerDelegate {
   */
   init() {
     application = UIApplication.shared
+    locationManager = LocationManager.sharedManager
     super.init(nibName: nil, bundle: nil)
   }
 
@@ -331,6 +334,7 @@ open class MapViewController: UIViewController, LocationManagerDelegate {
   */
   required public init?(coder aDecoder: NSCoder) {
     application = UIApplication.shared
+    locationManager = LocationManager.sharedManager
     super.init(coder: aDecoder)
   }
 
@@ -341,17 +345,20 @@ open class MapViewController: UIViewController, LocationManagerDelegate {
    */
   public override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
     application = UIApplication.shared
+    locationManager = LocationManager.sharedManager
     super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
   }
 
   /**
-   Initializer that accepts a custom application protocol useful for testing.
+   Initializer that accepts a custom application protocol and a location manager protocol useful for testing.
 
    - parameter applicationProtocol: An object conforming to our Application Protocol.
+   - parameter locationManager: An object conforming to our LocationManagerProtocol.
    - returns: A fully formed MapViewController.
    */
-  init(applicationProtocol: ApplicationProtocol) {
+  init(applicationProtocol: ApplicationProtocol, locationManagerProtocol: LocationManagerProtocol) {
     application = applicationProtocol
+    locationManager = locationManagerProtocol
     super.init(nibName: nil, bundle: nil)
   }
 
@@ -685,7 +692,7 @@ open class MapViewController: UIViewController, LocationManagerDelegate {
       let marker = tgViewController.markerAdd()
       if marker == 0 { return false } // Didn't initialize correctly.
       currentLocationGem = marker;
-      LocationManager.sharedManager.requestWhenInUseAuthorization()
+      locationManager.requestWhenInUseAuthorization()
       tgViewController.markerSetStyling(marker, styling: "{ style: ux-location-gem-overlay, sprite: ux-current-location, size: 36px, collide: false }")
       //Set visibility to false since we have to wait until we have an accurate location
       tgViewController.markerSetVisible(marker, visible: false)
@@ -703,7 +710,7 @@ open class MapViewController: UIViewController, LocationManagerDelegate {
   open func enableLocationLayer(_ enabled: Bool) {
     let _ = showCurrentLocation(enabled)
     showFindMeButon(enabled)
-    enabled ? LocationManager.sharedManager.startUpdatingLocation() : LocationManager.sharedManager.stopUpdatingLocation()
+    enabled ? locationManager.startUpdatingLocation() : locationManager.stopUpdatingLocation()
     shouldFollowCurrentLocation = enabled
   }
 
@@ -824,7 +831,7 @@ open class MapViewController: UIViewController, LocationManagerDelegate {
 
   override open func viewDidLoad() {
     super.viewDidLoad()
-    LocationManager.sharedManager.delegate = self
+    locationManager.delegate = self
 
     setupTgControllerView()
     setupAttribution()
@@ -853,8 +860,8 @@ open class MapViewController: UIViewController, LocationManagerDelegate {
   }
 
   open func authorizationDidSucceed() {
-    LocationManager.sharedManager.startUpdatingLocation()
-    LocationManager.sharedManager.requestLocation()
+    locationManager.startUpdatingLocation()
+    locationManager.requestLocation()
   }
 
   open func authorizationDenied() {

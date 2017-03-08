@@ -32,12 +32,13 @@ class MockHTTPHandler: TGHttpHandler {
 class MapViewControllerTests: XCTestCase {
 
   let testApplication = TestApplication()
+  let testLocationManager = TestLocationManager()
   var controller = TestMapViewController()
   var tgViewController = TestTGMapViewController()
   let mockLocation = CLLocation(latitude: 0.0, longitude: 0.0) // Null Island!
 
   override func setUp() {
-    controller = TestMapViewController(applicationProtocol: testApplication)
+    controller = TestMapViewController(applicationProtocol: testApplication, locationManagerProtocol: testLocationManager)
     controller.tgViewController = tgViewController
     let mockHTTP = MockHTTPHandler()
     controller.tgViewController.httpHandler = mockHTTP
@@ -293,6 +294,7 @@ class MapViewControllerTests: XCTestCase {
 
   func testDisabledLocation() {
     controller.enableLocationLayer(false)
+    XCTAssertFalse(testLocationManager.requestedInUse)
     XCTAssertNil(controller.currentLocationGem)
     XCTAssertTrue(controller.findMeButton.isHidden)
     XCTAssertFalse(controller.shouldFollowCurrentLocation)
@@ -303,6 +305,7 @@ class MapViewControllerTests: XCTestCase {
     controller.enableLocationLayer(true)
 
     //Tests
+    XCTAssertTrue(testLocationManager.requestedInUse)
     XCTAssertFalse(controller.findMeButton.isHidden)
     XCTAssertTrue(controller.shouldFollowCurrentLocation)
     XCTAssertTrue(controller.shouldShowCurrentLocationValue())
@@ -314,6 +317,7 @@ class MapViewControllerTests: XCTestCase {
     controller.enableLocationLayer(false)
 
     //Tests
+    XCTAssertTrue(testLocationManager.requestedInUse)
     XCTAssertTrue(controller.findMeButton.isHidden)
     XCTAssertFalse(controller.shouldFollowCurrentLocation)
     XCTAssertFalse(controller.shouldShowCurrentLocationValue())
