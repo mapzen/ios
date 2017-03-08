@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>ios_sdk  Reference</title>
+    <title>Extensions  Reference</title>
     <link rel="stylesheet" type="text/css" href="css/jazzy.css" />
     <link rel="stylesheet" type="text/css" href="css/highlight.css" />
     <meta charset='utf-8'>
@@ -11,7 +11,7 @@
 
   </head>
   <body>
-    <a title="ios_sdk  Reference"></a>
+    <a title="Extensions  Reference"></a>
     <header>
       <div class="content-wrapper">
         <p><a href="index.html">ios_sdk Docs</a> (72% documented)</p>
@@ -22,7 +22,7 @@
       <p id="breadcrumbs">
         <a href="index.html">ios_sdk Reference</a>
         <img id="carat" src="img/carat.png" />
-        ios_sdk  Reference
+        Extensions  Reference
       </p>
     </div>
     <div class="content-wrapper">
@@ -113,27 +113,72 @@
       <article class="main-content">
         <section>
           <section class="section">
-            
-            <a href='#the-mapzen-ios-sdk' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h1 id='the-mapzen-ios-sdk'>The Mapzen iOS SDK</h1>
+            <h1>Extensions</h1>
+            <p>The following extensions are available globally.</p>
 
-<p><a href="https://circleci.com/gh/mapzen/ios"><img src="https://circleci.com/gh/mapzen/ios.svg?style=shield&circle-token=158f79f566b88fb913ad153ee8b00681112eb5a2" alt="Circle CI"></a></p>
+          </section>
+          <section class="section task-group-section">
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@S@TGGeoPoint"></a>
+                    <a name="//apple_ref/swift/Extension/TGGeoPoint" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@S@TGGeoPoint">TGGeoPoint</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                        <a href="Extensions/TGGeoPoint.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">struct</span> <span class="kt">TGGeoPoint</span></code></pre>
 
-<p>The Mapzen iOS SDK is a thin wrapper that packages up everything you need to use Mapzen services in your iOS applications.</p>
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:Vs10Dictionary"></a>
+                    <a name="//apple_ref/swift/Extension/Dictionary" class="dashAnchor"></a>
+                    <a class="token" href="#/s:Vs10Dictionary">Dictionary</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">struct</span> <span class="kt">Dictionary</span><span class="o">&lt;</span><span class="kt">Key</span> <span class="p">:</span> <span class="kt">Hashable</span><span class="p">,</span> <span class="kt">Value</span><span class="o">&gt;</span> <span class="p">:</span> <span class="kt">Collection</span><span class="p">,</span> <span class="kt">ExpressibleByDictionaryLiteral</span></code></pre>
 
-<p>We&rsquo;re currently under heavy development with this SDK. We welcome feature requests by posting an issue and labeling it appropriately as an <a href="https://github.com/mapzen/ios/issues?q=is%3Aopen+is%3Aissue+label%3Aenhancement"><q>Enhancement</q></a>. Feel free to also reach out to us using any of the other channels we have available on <a href="https://mapzen.com/">https://mapzen.com/</a>.</p>
-<a href='#usage' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='usage'>Usage</h2>
-
-<p>At Mapzen we&rsquo;re developing our various SDKs using Xcode 8 and Swift 2.3. However, minor changes are needed to run in Xcode 7 / Swift 2.2. If you need Swift 2.2 support, or you run into any other issues, please open an issue ticket on Github and we&rsquo;ll figure it out together! </p>
-
-<p>The Mapzen iOS SDK uses Cocoapods to handle importing the various necessary dependencies that underpin our services. The full instructions for installing Cocoapods can be found on <a href="https://cocoapods.org/">https://cocoapods.org/</a>.</p>
-
-<p>When you have installed the appropriate version of Cocoapods for your current development environment, run <code>pod install</code> from the command line inside the directory where you cloned this repository. Once that process completes (it can take several minutes depending upon how busy the GitHub servers are that serve Cocoapods), go ahead and open the <code>ios-sdk.workspace</code> file to open the SDK &amp; demo application codebase.</p>
-<a href='#notes' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='notes'>Notes</h2>
-
-<p>As noted above, we&rsquo;re currently under heavy development of this SDK. There&rsquo;s a couple of things you should probably know about up front:
-* Full Objective-C support is coming soon, see this issue <a href="https://github.com/mapzen/ios/issues/68">https://github.com/mapzen/ios/issues/68</a>. If you run into issues in your obj-c project, feel free to comment on that issue.
-* If you wish to install the sample app to a device (recommended due to performance issues in the simulator), you will need to update the bundle identifier and the code signing in the Xcode project and go through the general code signing process necessary for installing to a device. This will require a free Apple Developer account.</p>
-
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
           </section>
         </section>
         <section id="footer">

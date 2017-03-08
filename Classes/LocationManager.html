@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>LocationManager Class Reference</title>
+    <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
+    <meta charset='utf-8'>
+    <script src="../js/jquery.min.js" defer></script>
+    <script src="../js/jazzy.js" defer></script>
+    <link rel='shortcut icon' href='https://mapzen.com/common/styleguide/images/favicon.ico' type='image/x-icon' />
+
+  </head>
+  <body>
+    <a name="//apple_ref/swift/Class/LocationManager" class="dashAnchor"></a>
+    <a title="LocationManager Class Reference"></a>
+    <header>
+      <div class="content-wrapper">
+        <p><a href="../index.html">ios_sdk Docs</a> (72% documented)</p>
+        <p class="header-right"><a href="https://github.com/mapzen/ios"><img src="../img/gh.png"/>View on GitHub</a></p>
+      </div>
+    </header>
+    <div class="content-wrapper">
+      <p id="breadcrumbs">
+        <a href="../index.html">ios_sdk Reference</a>
+        <img id="carat" src="../img/carat.png" />
+        LocationManager Class Reference
+      </p>
+    </div>
+    <div class="content-wrapper">
+      <nav class="sidebar">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+            <a href="../Classes.html">Classes</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Classes/LocationManager.html">LocationManager</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/MapViewController.html">MapViewController</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/MapzenManager.html">MapzenManager</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/MapzenRoutingController.html">MapzenRoutingController</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/PeliasMapkitAnnotation.html">PeliasMapkitAnnotation</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Enums.html">Enums</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Enums.html#/s:O7ios_sdk7MZError">MZError</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Extensions.html">Extensions</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Extensions.html#/s:Vs10Dictionary">Dictionary</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/TGGeoPoint.html">TGGeoPoint</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Protocols.html">Protocols</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Protocols/LocationManagerDelegate.html">LocationManagerDelegate</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/MapDoubleTapGestureDelegate.html">MapDoubleTapGestureDelegate</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/MapFeatureSelectDelegate.html">MapFeatureSelectDelegate</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/MapLabelSelectDelegate.html">MapLabelSelectDelegate</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/MapLongPressGestureDelegate.html">MapLongPressGestureDelegate</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/MapMarkerSelectDelegate.html">MapMarkerSelectDelegate</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/MapPanGestureDelegate.html">MapPanGestureDelegate</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/MapPinchGestureDelegate.html">MapPinchGestureDelegate</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/MapRotateGestureDelegate.html">MapRotateGestureDelegate</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/MapShoveGestureDelegate.html">MapShoveGestureDelegate</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/MapSingleTapGestureDelegate.html">MapSingleTapGestureDelegate</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/MapTileLoadDelegate.html">MapTileLoadDelegate</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+        <section>
+          <section class="section">
+            <h1>LocationManager</h1>
+              <div class="declaration">
+                <div class="language">
+                  <pre class="highlight"><code><span class="n">open</span> <span class="kd">class</span> <span class="kt">LocationManager</span><span class="p">:</span> <span class="kt">NSObject</span><span class="p">,</span> <span class="kt">CLLocationManagerDelegate</span></code></pre>
+
+                </div>
+              </div>
+            <p>The <code>LocationManager</code> class is a wrapper around iOS&rsquo;s built in location subsystem. It provides a simpler interface and customization options.</p>
+
+<div class="aside aside-note">
+    <p class="aside-title">Note</p>
+    The class is expected to be used as a singleton. As such, access to the class is via the <code>sharedManager</code> object.
+
+</div>
+
+          </section>
+          <section class="section task-group-section">
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:ZvC7ios_sdk15LocationManager13sharedManagerS0_"></a>
+                    <a name="//apple_ref/swift/Variable/sharedManager" class="dashAnchor"></a>
+                    <a class="token" href="#/s:ZvC7ios_sdk15LocationManager13sharedManagerS0_">sharedManager</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The singleton access object.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="n">open</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">sharedManager</span> <span class="o">=</span> <span class="kt">LocationManager</span><span class="p">()</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:vC7ios_sdk15LocationManager15currentLocationGSqCSo10CLLocation_"></a>
+                    <a name="//apple_ref/swift/Property/currentLocation" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vC7ios_sdk15LocationManager15currentLocationGSqCSo10CLLocation_">currentLocation</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The last received known good location</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="n">open</span> <span class="k">var</span> <span class="nv">currentLocation</span><span class="p">:</span> <span class="kt">CLLocation</span><span class="p">?</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:vC7ios_sdk15LocationManager8delegateXwGSqPS_23LocationManagerDelegate__"></a>
+                    <a name="//apple_ref/swift/Property/delegate" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vC7ios_sdk15LocationManager8delegateXwGSqPS_23LocationManagerDelegate__">delegate</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The delegate to receive the location authorization and status callbacks</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="n">open</span> <span class="k">weak</span> <span class="k">var</span> <span class="nv">delegate</span><span class="p">:</span> <span class="kt"><a href="../Protocols/LocationManagerDelegate.html">LocationManagerDelegate</a></span><span class="p">?</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC7ios_sdk15LocationManager26requestAlwaysAuthorizationFT_T_"></a>
+                    <a name="//apple_ref/swift/Method/requestAlwaysAuthorization()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC7ios_sdk15LocationManager26requestAlwaysAuthorizationFT_T_">requestAlwaysAuthorization()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Request the user give the application location access at all times.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="n">open</span> <span class="kd">func</span> <span class="nf">requestAlwaysAuthorization</span><span class="p">()</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC7ios_sdk15LocationManager29requestWhenInUseAuthorizationFT_T_"></a>
+                    <a name="//apple_ref/swift/Method/requestWhenInUseAuthorization()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC7ios_sdk15LocationManager29requestWhenInUseAuthorizationFT_T_">requestWhenInUseAuthorization()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Request the user give the application location access only when in the foreground.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="n">open</span> <span class="kd">func</span> <span class="nf">requestWhenInUseAuthorization</span><span class="p">()</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC7ios_sdk15LocationManager17isInUseAuthorizedFT_Sb"></a>
+                    <a name="//apple_ref/swift/Method/isInUseAuthorized()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC7ios_sdk15LocationManager17isInUseAuthorizedFT_Sb">isInUseAuthorized()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Asks the location subsystem if we&rsquo;re currently authorized for location access while in foreground.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="n">open</span> <span class="kd">func</span> <span class="nf">isInUseAuthorized</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>Whether or not the application is authorized.</p>
+
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC7ios_sdk15LocationManager18isAlwaysAuthorizedFT_Sb"></a>
+                    <a name="//apple_ref/swift/Method/isAlwaysAuthorized()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC7ios_sdk15LocationManager18isAlwaysAuthorizedFT_Sb">isAlwaysAuthorized()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Asks the location subsystem if we&rsquo;re currently authorized for location access at all times.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="n">open</span> <span class="kd">func</span> <span class="nf">isAlwaysAuthorized</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>Whether or not the application is authorized.</p>
+
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC7ios_sdk15LocationManager22refreshCurrentLocationFT_GSqCSo10CLLocation_"></a>
+                    <a name="//apple_ref/swift/Method/refreshCurrentLocation()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC7ios_sdk15LocationManager22refreshCurrentLocationFT_GSqCSo10CLLocation_">refreshCurrentLocation()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Refreshes the stored current location and also returns it to the caller</p>
+
+<p>-returns: The most current location the location system has, or nil if it has no current location.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="n">open</span> <span class="kd">func</span> <span class="nf">refreshCurrentLocation</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">CLLocation</span><span class="p">?</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC7ios_sdk15LocationManager15requestLocationFT_T_"></a>
+                    <a name="//apple_ref/swift/Method/requestLocation()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC7ios_sdk15LocationManager15requestLocationFT_T_">requestLocation()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The difference between this function and <code><a href="../Classes/LocationManager.html#/s:FC7ios_sdk15LocationManager22refreshCurrentLocationFT_GSqCSo10CLLocation_">refreshCurrentLocation()</a></code> is <code>requestLocation()</code> immediately returns and will serve the location via the delegate</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="n">open</span> <span class="kd">func</span> <span class="nf">requestLocation</span><span class="p">()</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC7ios_sdk15LocationManager21startUpdatingLocationFT_T_"></a>
+                    <a name="//apple_ref/swift/Method/startUpdatingLocation()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC7ios_sdk15LocationManager21startUpdatingLocationFT_T_">startUpdatingLocation()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Starts the location manager callbacks for location updates</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="n">open</span> <span class="kd">func</span> <span class="nf">startUpdatingLocation</span><span class="p">()</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC7ios_sdk15LocationManager20stopUpdatingLocationFT_T_"></a>
+                    <a name="//apple_ref/swift/Method/stopUpdatingLocation()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC7ios_sdk15LocationManager20stopUpdatingLocationFT_T_">stopUpdatingLocation()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Stops the location manager callbacks</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="n">open</span> <span class="kd">func</span> <span class="nf">stopUpdatingLocation</span><span class="p">()</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </section>
+        </section>
+        <section id="footer">
+          <p>© 2017 <a class="link" href="https://www.mapzen.com/" target="_blank" rel="external">Mapzen</a>.</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.7.4</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+        </section>
+      </article>
+    </div>
+  </body>
+</div>
+</html>
