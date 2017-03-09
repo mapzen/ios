@@ -388,6 +388,34 @@ class MapViewControllerTests: XCTestCase {
     XCTAssertNil(controller.currentAnnotations[testAnno2])
   }
 
+  func testAnnotationSelectorCallsSelector() {
+    let annotation = PeliasMapkitAnnotation(coordinate: CLLocationCoordinate2DMake(0.0, 0.0), title: "Title", subtitle: "Subtitle", data: nil)
+    let target = AnnotationTestTarget()
+    controller.markerSelectDelegate = target
+    annotation.setTarget(target: target, action: #selector(target.annotationClickedNoParams))
+
+    try? controller.add([annotation])
+    let markerPickResult = TGMarkerPickResult(coordinates: TGGeoPoint(), identifier: 1)
+    controller.mapView(tgViewController, didSelectMarker: markerPickResult, atScreenPosition: CGPoint())
+    XCTAssertTrue(target.annotationClickedNoParam)
+    XCTAssertFalse(target.annotationClicked)
+    XCTAssertFalse(target.markerSelected)
+  }
+
+  func testAnnotationSelectorCallsSelectorWithObject() {
+    let annotation = PeliasMapkitAnnotation(coordinate: CLLocationCoordinate2DMake(0.0, 0.0), title: "Title", subtitle: "Subtitle", data: nil)
+    let target = AnnotationTestTarget()
+    controller.markerSelectDelegate = target
+    annotation.setTarget(target: target, action: #selector(target.annotationClicked(annotation:)))
+
+    try? controller.add([annotation])
+    let markerPickResult = TGMarkerPickResult(coordinates: TGGeoPoint(), identifier: 1)
+    controller.mapView(tgViewController, didSelectMarker: markerPickResult, atScreenPosition: CGPoint())
+    XCTAssertTrue(target.annotationClicked)
+    XCTAssertFalse(target.annotationClickedNoParam)
+    XCTAssertFalse(target.markerSelected)
+  }
+
   func testPanEnabledByDefault() {
     XCTAssertTrue(controller.panEnabled)
   }

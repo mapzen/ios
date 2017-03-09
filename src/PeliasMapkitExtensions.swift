@@ -70,7 +70,7 @@ open class PeliasMapkitAnnotation: NSObject, MKAnnotation {
   open let title: String?
   open let subtitle: String?
   open let data: [String: AnyObject]?
-  open var target: AnyObject?
+  open var target: UIResponder?
   open var selector: Selector?
 
   /**
@@ -96,7 +96,7 @@ open class PeliasMapkitAnnotation: NSObject, MKAnnotation {
    - parameter target: A target to invoke the selector on when the annotation is clicked
    - parameter action: An selector to be invoked on the target when the annotation is clicked
    */
-  public func setTarget(target actionTarget: AnyObject, action: Selector) {
+  public func setTarget(target actionTarget: UIResponder, action: Selector) {
     target = actionTarget
     selector = action
   }
@@ -136,7 +136,7 @@ public extension PeliasResponse {
    - Parameter target: An optional target to invoke the selector on when the annotations are clicked.
    - Parameter action: An optional selector to be invoked when the created annotations are clicked.
    */
-  public func parsedMapItems(target: AnyObject?, action: Selector?) -> [PeliasMapkitAnnotation]? {
+  public func parsedMapItems(target: UIResponder?, action: Selector?) -> [PeliasMapkitAnnotation]? {
     //TODO: This should get refactored into eventually being a real GeoJSON decoder, and split out the MapItem creation
     var mapItems = [PeliasMapkitAnnotation]()
     if let jsonDictionary = parsedResponse?.parsedResponse {
