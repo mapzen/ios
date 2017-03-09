@@ -14,7 +14,7 @@
     <a title="ios_sdk  Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="index.html">ios_sdk Docs</a> (72% documented)</p>
+        <p><a href="index.html">ios_sdk Docs</a> (73% documented)</p>
         <p class="header-right"><a href="https://github.com/mapzen/ios"><img src="img/gh.png"/>View on GitHub</a></p>
       </div>
     </header>
@@ -118,21 +118,67 @@
 
 <p><a href="https://circleci.com/gh/mapzen/ios"><img src="https://circleci.com/gh/mapzen/ios.svg?style=shield&circle-token=158f79f566b88fb913ad153ee8b00681112eb5a2" alt="Circle CI"></a></p>
 
+<p align=center>
+<img width="311" height="552" src="https://mapzen-assets.s3.amazonaws.com/images/ios-sdk-beta/sdk-beta-map.png">
+</p>
+
 <p>The Mapzen iOS SDK is a thin wrapper that packages up everything you need to use Mapzen services in your iOS applications.</p>
 
-<p>We&rsquo;re currently under heavy development with this SDK. We welcome feature requests by posting an issue and labeling it appropriately as an <a href="https://github.com/mapzen/ios/issues?q=is%3Aopen+is%3Aissue+label%3Aenhancement"><q>Enhancement</q></a>. Feel free to also reach out to us using any of the other channels we have available on <a href="https://mapzen.com/">https://mapzen.com/</a>.</p>
-<a href='#usage' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='usage'>Usage</h2>
+<p>We recently released our beta version of the SDK, version 0.2.0. The API at this point is fairly stable and we&rsquo;d welcome feedback from the community on its usage. Feature requests are also welcome; label it appropriately as an <a href="https://github.com/mapzen/ios/issues?q=is%3Aopen+is%3Aissue+label%3Aenhancement"><q>Enhancement</q></a> and be aware we probably won&rsquo;t be able to implement it until after launch at this point. Feel free to also reach out to us using any of the other channels we have available on <a href="https://mapzen.com/">https://mapzen.com/</a>.</p>
+<a href='#what-39-s-included' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h1 id='what-39-s-included'>What&rsquo;s Included</h1>
 
-<p>At Mapzen we&rsquo;re developing our various SDKs using Xcode 8 and Swift 2.3. However, minor changes are needed to run in Xcode 7 / Swift 2.2. If you need Swift 2.2 support, or you run into any other issues, please open an issue ticket on Github and we&rsquo;ll figure it out together! </p>
+<p>Version 1.0 of our iOS SDK will be nearly at feature parity with our well established <a href="https://github.com/mapzen/android">Android SDK</a>.</p>
 
-<p>The Mapzen iOS SDK uses Cocoapods to handle importing the various necessary dependencies that underpin our services. The full instructions for installing Cocoapods can be found on <a href="https://cocoapods.org/">https://cocoapods.org/</a>.</p>
+<p>Major features include:
+* High performance and highly customizable map rendering using OpenGL ES provided by <a href="https://github.com/tangrams/tangram-es">Tangram-es</a>.
+* Driving directions and customizable route lines provided by <a href="https://mapzen.com/products/turn-by-turn/">Mapzen Turn-by-Turn</a>.
+* Geocoding and Point-of-Interest search provided by <a href="https://mapzen.com/products/search/">Mapzen Search</a>.
+* Several <a href="https://mapzen.com/products/maps/">base map styles</a> to suit most use cases.</p>
 
-<p>When you have installed the appropriate version of Cocoapods for your current development environment, run <code>pod install</code> from the command line inside the directory where you cloned this repository. Once that process completes (it can take several minutes depending upon how busy the GitHub servers are that serve Cocoapods), go ahead and open the <code>ios-sdk.workspace</code> file to open the SDK &amp; demo application codebase.</p>
+<p>And many more features than we can list here in a timely fashion.</p>
+<a href='#how-do-i-get-the-beta' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h1 id='how-do-i-get-the-beta'>How Do I Get The Beta?</h1>
+
+<p>Step 1: Get yourself a free <a href="https://mapzen.com/developers/sign_up">Mapzen API Key</a>.</p>
+
+<p>Step 2: Install the beta SDK through <a href="https://cocoapods.org/pods/Mapzen-ios-sdk">Cocoapods</a>.</p>
+
+<p>Step 3: Check out the sample app <a href="https://github.com/mapzen/ios/tree/master/SampleApp">source code</a> or <code>pod try Mapzen-ios-sdk</code> to load it immediately. You&rsquo;ll need that API key from step 1 in either case. See where to set it <a href="#configure-api-key">below</a>.</p>
+
+<p>Step 4: Let us know your thoughts! You can either open a <a href="https://github.com/mapzen/ios/issues">new issue on GitHub</a> or send us email at <a href="mailto:ios-support@mapzen.com">ios-support@mapzen.com</a>.</p>
+<a href='#non-cocoapods-usage' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='non-cocoapods-usage'>Non-Cocoapods Usage</h2>
+
+<p>Non-cocoapods usage at this point is not recommended, but can be accomplished. First, make sure to <code>git submodule update --init --recursive</code> to get all the style sheets after cloning this repository. Second. you will need to include the 3 other dependencies we require: <a href="https://github.com/tangrams/ios-framework">Tangram-es</a>, <a href="https://github.com/mapzen/on-the-road_ios">OnTheRoad for iOS</a>, and the <a href="https://github.com/pelias/pelias-ios-sdk">Pelias iOS SDK</a>. Note that your project will need to support Swift 3.</p>
 <a href='#notes' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='notes'>Notes</h2>
 
-<p>As noted above, we&rsquo;re currently under heavy development of this SDK. There&rsquo;s a couple of things you should probably know about up front:
+<p>There&rsquo;s a couple of things you should probably know about up front:
+* We only will be supporting Swift 3.0 moving forward. Older versions of the SDK were written in Swift 2, but it is not recommended to use that as the project has changed dramatically since then, and we&rsquo;re continuing to add features all the time.
 * Full Objective-C support is coming soon, see this issue <a href="https://github.com/mapzen/ios/issues/68">https://github.com/mapzen/ios/issues/68</a>. If you run into issues in your obj-c project, feel free to comment on that issue.
 * If you wish to install the sample app to a device (recommended due to performance issues in the simulator), you will need to update the bundle identifier and the code signing in the Xcode project and go through the general code signing process necessary for installing to a device. This will require a free Apple Developer account.</p>
+<a href='#configure-api-key' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='configure-api-key'>Configure Api Key</h2>
+
+<p>There are two ways to set your API key in the Sample App:</p>
+
+<ol>
+<li>Update SampleApp/Info.plist</li>
+</ol>
+
+<p>Replace <code>$(MAPZEN_API_KEY)</code> with your key:</p>
+
+<p align=center>
+<img width="765" height="291" src="https://mapzen-assets.s3.amazonaws.com/images/ios-sdk-beta/info_plist.png">
+</p>
+
+<p>&ndash; OR &ndash;</p>
+
+<ol>
+<li>Create a new scheme and add an environment variable</li>
+</ol>
+
+<p>Duplicate the <code>ios-sdk</code> scheme and then add your environment variable here:</p>
+
+<p align=center>
+<img width="571" height="325" src="https://mapzen-assets.s3.amazonaws.com/images/ios-sdk-beta/custom_scheme.png">
+</p>
 
           </section>
         </section>

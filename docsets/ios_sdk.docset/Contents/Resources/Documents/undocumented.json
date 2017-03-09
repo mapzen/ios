@@ -114,154 +114,147 @@
     },
     {
       "file": "/Users/ecgreb/ios/src/MapViewController.swift",
-      "line": 622,
+      "line": 623,
       "symbol": "MapViewController.applySceneUpdates()",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/ecgreb/ios/src/MapViewController.swift",
-      "line": 823,
+      "line": 824,
       "symbol": "MapViewController.viewDidLoad()",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/ecgreb/ios/src/MapViewController.swift",
-      "line": 835,
-      "symbol": "MapViewController.viewWillTransition(to:with:)",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/ecgreb/ios/src/MapViewController.swift",
-      "line": 956,
+      "line": 953,
       "symbol": "MapViewController.mapView(_:didLoadSceneAsync:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/ecgreb/ios/src/MapViewController.swift",
-      "line": 965,
+      "line": 962,
       "symbol": "MapViewController.mapViewDidCompleteLoading(_:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/ecgreb/ios/src/MapViewController.swift",
-      "line": 969,
+      "line": 966,
       "symbol": "MapViewController.mapView(_:didSelectFeature:atScreenPosition:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/ecgreb/ios/src/MapViewController.swift",
-      "line": 974,
+      "line": 971,
       "symbol": "MapViewController.mapView(_:didSelectLabel:atScreenPosition:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/ecgreb/ios/src/MapViewController.swift",
-      "line": 979,
+      "line": 976,
       "symbol": "MapViewController.mapView(_:didSelectMarker:atScreenPosition:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/ecgreb/ios/src/MapViewController.swift",
-      "line": 986,
+      "line": 983,
       "symbol": "MapViewController.mapView(_:recognizer:shouldRecognizeSingleTapGesture:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/ecgreb/ios/src/MapViewController.swift",
-      "line": 994,
+      "line": 991,
       "symbol": "MapViewController.mapView(_:recognizer:didRecognizeSingleTapGesture:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/ecgreb/ios/src/MapViewController.swift",
-      "line": 998,
+      "line": 995,
       "symbol": "MapViewController.mapView(_:recognizer:shouldRecognizeDoubleTapGesture:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/ecgreb/ios/src/MapViewController.swift",
-      "line": 1003,
+      "line": 1000,
       "symbol": "MapViewController.mapView(_:recognizer:didRecognizeDoubleTapGesture:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/ecgreb/ios/src/MapViewController.swift",
-      "line": 1007,
+      "line": 1004,
       "symbol": "MapViewController.mapView(_:recognizer:shouldRecognizeLongPressGesture:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/ecgreb/ios/src/MapViewController.swift",
-      "line": 1012,
+      "line": 1009,
       "symbol": "MapViewController.mapView(_:recognizer:didRecognizeLongPressGesture:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/ecgreb/ios/src/MapViewController.swift",
-      "line": 1016,
+      "line": 1013,
       "symbol": "MapViewController.mapView(_:recognizer:shouldRecognizePanGesture:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/ecgreb/ios/src/MapViewController.swift",
-      "line": 1024,
+      "line": 1021,
       "symbol": "MapViewController.mapView(_:recognizer:didRecognizePanGesture:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/ecgreb/ios/src/MapViewController.swift",
-      "line": 1030,
+      "line": 1027,
       "symbol": "MapViewController.mapView(_:recognizer:shouldRecognizePinchGesture:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/ecgreb/ios/src/MapViewController.swift",
-      "line": 1034,
+      "line": 1031,
       "symbol": "MapViewController.mapView(_:recognizer:didRecognizePinchGesture:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/ecgreb/ios/src/MapViewController.swift",
-      "line": 1038,
+      "line": 1035,
       "symbol": "MapViewController.mapView(_:recognizer:shouldRecognizeRotationGesture:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/ecgreb/ios/src/MapViewController.swift",
-      "line": 1042,
+      "line": 1039,
       "symbol": "MapViewController.mapView(_:recognizer:didRecognizeRotationGesture:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/ecgreb/ios/src/MapViewController.swift",
-      "line": 1046,
+      "line": 1043,
       "symbol": "MapViewController.mapView(_:recognizer:shouldRecognizeShoveGesture:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/ecgreb/ios/src/MapViewController.swift",
-      "line": 1050,
+      "line": 1047,
       "symbol": "MapViewController.mapView(_:recognizer:didRecognizeShoveGesture:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
