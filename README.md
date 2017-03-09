@@ -27,7 +27,7 @@ Step 1: Get yourself a free [Mapzen API Key](https://mapzen.com/developers/sign_
 
 Step 2: Install the beta SDK through [Cocoapods](https://cocoapods.org/pods/Mapzen-ios-sdk).
 
-Step 3: Check out the sample app [source code](https://github.com/mapzen/ios/tree/master/SampleApp) or `pod try Mapzen-ios-sdk` to load it immediately. You'll need that API key from step 1 in either case.
+Step 3: Check out the sample app [source code](https://github.com/mapzen/ios/tree/master/SampleApp) or `pod try Mapzen-ios-sdk` to load it immediately. You'll need that API key from step 1 in either case. See where to set it below.
 
 Step 4: Let us know your thoughts! You can either open a [new issue on GitHub](https://github.com/mapzen/ios/issues) or send us email at ios-support@mapzen.com.
 
@@ -40,3 +40,24 @@ There's a couple of things you should probably know about up front:
 * We only will be supporting Swift 3.0 moving forward. Older versions of the SDK were written in Swift 2, but it is not recommended to use that as the project has changed dramatically since then, and we're continuing to add features all the time.
 * Full Objective-C support is coming soon, see this issue https://github.com/mapzen/ios/issues/68. If you run into issues in your obj-c project, feel free to comment on that issue.
 * If you wish to install the sample app to a device (recommended due to performance issues in the simulator), you will need to update the bundle identifier and the code signing in the Xcode project and go through the general code signing process necessary for installing to a device. This will require a free Apple Developer account.
+
+## Configure Api Key
+There are two ways to set your API key in the Sample App:
+
+1. Update SampleApp/Info.plist
+
+Replace `$(MAPZEN_API_KEY)` with your key:
+
+<p align=center>
+<img width="765" height="291" src="https://mapzen-assets.s3.amazonaws.com/images/ios-sdk-beta/info_plist.png">
+</p>
+
+-- OR --
+ 
+2. Create a new scheme and add an environment variable
+
+Duplicate the `ios-sdk` scheme and then add your environment variable here:
+
+<p align=center>
+<img width="571" height="325" src="https://mapzen-assets.s3.amazonaws.com/images/ios-sdk-beta/custom_scheme.png">
+</p>
