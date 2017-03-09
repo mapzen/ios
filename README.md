@@ -21,7 +21,7 @@ And many, many more features than we can list here in a timely fashion.
 
 # How Do I Get The Beta?
 
-Step 1: Get yourself a free (Mapzen API Key)[https://mapzen.com/developers/sign_up].
+Step 1: Get yourself a free [Mapzen API Key](https://mapzen.com/developers/sign_up).
 
 Step 2: Install the beta SDK through the [Cocoapods](https://cocoapods.org/pods/Mapzen-ios-sdk).
 
