@@ -27,7 +27,7 @@ Step 1: Get yourself a free [Mapzen API Key](https://mapzen.com/developers/sign_
 
 Step 2: Install the beta SDK through [Cocoapods](https://cocoapods.org/pods/Mapzen-ios-sdk).
 
-Step 3: Check out the sample app [source code](https://github.com/mapzen/ios/tree/master/SampleApp) or `pod try Mapzen-ios-sdk` to load it immediately. You'll need that API key from step 1 in either case. See where to set it below.
+Step 3: Check out the sample app [source code](https://github.com/mapzen/ios/tree/master/SampleApp) or `pod try Mapzen-ios-sdk` to load it immediately. You'll need that API key from step 1 in either case. See where to set it [below](#configure-api-key).
 
 Step 4: Let us know your thoughts! You can either open a [new issue on GitHub](https://github.com/mapzen/ios/issues) or send us email at ios-support@mapzen.com.
 
