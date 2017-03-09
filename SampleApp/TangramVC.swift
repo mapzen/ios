@@ -10,6 +10,19 @@ import UIKit
 import TangramMap
 class TangramVC:  MapViewController, MapMarkerSelectDelegate {
 
+  private var styleLoaded = false
+  private var markerVisible = false
+
+  lazy var testMarkerId : TGMapMarkerId = { [unowned self] in
+    let markerId = self.markerAdd()
+    let _ = self.markerSetStyling(markerId, styling: "{ style: 'points', color: 'white', size: [50px, 50px], collide: false, interactive: true }")
+    if let logo = UIImage(named: "mapzen_logo") {
+      let _ = self.markerSetImage(markerId, image: logo)
+    }
+    let _ = self.markerSetVisible(markerId, visible: false)
+    return markerId
+  }()
+
   lazy var activityIndicator : UIActivityIndicatorView = {
     let indicator = UIActivityIndicatorView.init(activityIndicatorStyle: .whiteLarge)
     indicator.color = .black
@@ -26,31 +39,39 @@ class TangramVC:  MapViewController, MapMarkerSelectDelegate {
   override func viewDidLoad() {
     super.viewDidLoad()
     setupSwitchStyleBtn()
+    setupToggleMarkerBtn()
     markerSelectDelegate = self
-    try? loadStyleAsync(.bubbleWrap) { [unowned self] (scene) in
+    try? loadStyleAsync(.bubbleWrap) { [unowned self] (style) in
+      self.styleLoaded = true
       let _ = self.showCurrentLocation(true)
       self.showFindMeButon(true)
-      self.showTestMarker()
     }
   }
   
   //MARK : MapSelectDelegate  
   func mapController(_ controller: MapViewController, didSelectMarker markerPickResult: TGMarkerPickResult, atScreenPosition position: CGPoint) {
-    print("markerPicked")
     let alert = UIAlertController(title: "Marker Selected", message: nil, preferredStyle: .alert)
     alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
     present(alert, animated: true, completion: nil)
   }
 
-  private func showTestMarker() {
-    let markerId = markerAdd()
-    let _ = markerSetStyling(markerId, styling: "{ style: 'points', color: 'white', size: [50px, 50px], collide: false, interactive: true }")
-    let _ = markerSetPoint(markerId, coordinates: TGGeoPoint())
-  }
-
+  //MARK : Private
   private func setupSwitchStyleBtn() {
     let btn = UIBarButtonItem.init(title: "Switch Map Style", style: .plain, target: self, action: #selector(openSettings))
     self.navigationItem.rightBarButtonItem = btn
+  }
+
+  private func setupToggleMarkerBtn() {
+    let btn = UIBarButtonItem.init(title: "Toggle Marker", style: .plain, target: self, action: #selector(toggleTestMarkerVisible))
+    self.navigationItem.leftBarButtonItem = btn
+  }
+
+  @objc private func toggleTestMarkerVisible() {
+    guard styleLoaded else { return }
+    if self.markerSetVisible(testMarkerId, visible: !markerVisible) {
+      markerVisible = !markerVisible
+    }
+    let _ = markerSetPoint(testMarkerId, coordinates: position)
   }
 
   @objc private func openSettings() {
