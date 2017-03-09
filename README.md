@@ -11,23 +11,25 @@ We recently released our beta version of the SDK, version 0.2.0. The API at this
 
 # What's Included
 
-Version 1 of our iOS SDK will be nearly featurity parity with our well established [Android SDK](https://github.com/mapzen/android). Major features include:
-- High performance and highly customizable mapping provided by [Tangram-es](https://github.com/tangrams/tangram-es).
-- Driving directions and customizable route lines provided by [Mapzen Turn-by-Turn](https://mapzen.com/products/turn-by-turn/).
-- Geocoding and Point-of-Interest search provided by [Mapzen Search](https://mapzen.com/products/search/).
-- Several [base map styles](https://mapzen.com/products/maps/) to suit most use cases.
+Version 1.0 of our iOS SDK will be nearly at feature parity with our well established [Android SDK](https://github.com/mapzen/android).
 
-And many, many more features than we can list here in a timely fashion.
+Major features include:
+* High performance and highly customizable map rendering using OpenGL ES provided by [Tangram-es](https://github.com/tangrams/tangram-es).
+* Driving directions and customizable route lines provided by [Mapzen Turn-by-Turn](https://mapzen.com/products/turn-by-turn/).
+* Geocoding and Point-of-Interest search provided by [Mapzen Search](https://mapzen.com/products/search/).
+* Several [base map styles](https://mapzen.com/products/maps/) to suit most use cases.
+
+And many more features than we can list here in a timely fashion.
 
 # How Do I Get The Beta?
 
 Step 1: Get yourself a free [Mapzen API Key](https://mapzen.com/developers/sign_up).
 
-Step 2: Install the beta SDK through the [Cocoapods](https://cocoapods.org/pods/Mapzen-ios-sdk).
+Step 2: Install the beta SDK through [Cocoapods](https://cocoapods.org/pods/Mapzen-ios-sdk).
 
-Step 3: Check out the sample app [source code](https://github.com/mapzen/ios) or `pod try Mapzen-ios-sdk` to load it immediately. You'll need that API key from step 1 in either case.
+Step 3: Check out the sample app [source code](https://github.com/mapzen/ios/tree/master/SampleApp) or `pod try Mapzen-ios-sdk` to load it immediately. You'll need that API key from step 1 in either case.
 
-Step 4: Let us know your thoughts! You can either open a [ticket on github](https://github.com/mapzen/ios/issues) or send us email at ios-support@mapzen.com.
+Step 4: Let us know your thoughts! You can either open a [new issue on GitHub](https://github.com/mapzen/ios/issues) or send us email at ios-support@mapzen.com.
 
 ## Non-Cocoapods Usage
 
