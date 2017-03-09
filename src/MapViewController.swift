@@ -315,6 +315,7 @@ open class MapViewController: UIViewController, LocationManagerDelegate {
                             "zinc-style-more-labels.yaml" : MapStyle.zinc]
 
   let locationManager : LocationManagerProtocol
+  let mapzenManager : MapzenManagerProtocol
 
   /**
    Default initializer. Sets up the find me button and initializes the TGMapViewController as part of startup.
@@ -324,6 +325,7 @@ open class MapViewController: UIViewController, LocationManagerDelegate {
   init() {
     application = UIApplication.shared
     locationManager = LocationManager.sharedManager
+    mapzenManager = MapzenManager.sharedManager
     super.init(nibName: nil, bundle: nil)
   }
 
@@ -335,6 +337,7 @@ open class MapViewController: UIViewController, LocationManagerDelegate {
   required public init?(coder aDecoder: NSCoder) {
     application = UIApplication.shared
     locationManager = LocationManager.sharedManager
+    mapzenManager = MapzenManager.sharedManager
     super.init(coder: aDecoder)
   }
 
@@ -346,6 +349,7 @@ open class MapViewController: UIViewController, LocationManagerDelegate {
   public override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
     application = UIApplication.shared
     locationManager = LocationManager.sharedManager
+    mapzenManager = MapzenManager.sharedManager
     super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
   }
 
@@ -354,11 +358,13 @@ open class MapViewController: UIViewController, LocationManagerDelegate {
 
    - parameter applicationProtocol: An object conforming to our Application Protocol.
    - parameter locationManager: An object conforming to our LocationManagerProtocol.
+   - parameter mapzenManagerProtocol: An object conforming to our MapzenManagerProtocol.
    - returns: A fully formed MapViewController.
    */
-  init(applicationProtocol: ApplicationProtocol, locationManagerProtocol: LocationManagerProtocol) {
+  init(applicationProtocol: ApplicationProtocol, locationManagerProtocol: LocationManagerProtocol, mapzenManagerProtocol: MapzenManagerProtocol) {
     application = applicationProtocol
     locationManager = locationManagerProtocol
+    mapzenManager = mapzenManagerProtocol
     super.init(nibName: nil, bundle: nil)
   }
 
@@ -942,7 +948,7 @@ open class MapViewController: UIViewController, LocationManagerDelegate {
   }
 
   private func updatesWithApiKeyUpdate(_ sceneUpdates: [TGSceneUpdate]) throws -> [TGSceneUpdate] {
-    guard let apiKey = MapzenManager.sharedManager.apiKey else {
+    guard let apiKey = mapzenManager.apiKey else {
       throw NSError(domain: MapViewController.MapzenGeneralErrorDomain,
                     code: MZError.apiKeyNotSet.rawValue,
                     userInfo: nil)

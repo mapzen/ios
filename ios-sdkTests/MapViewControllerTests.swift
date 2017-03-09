@@ -33,12 +33,14 @@ class MapViewControllerTests: XCTestCase {
 
   let testApplication = TestApplication()
   let testLocationManager = TestLocationManager()
+  let testMapzenManager = TestMapzenManager()
   var controller = TestMapViewController()
   var tgViewController = TestTGMapViewController()
   let mockLocation = CLLocation(latitude: 0.0, longitude: 0.0) // Null Island!
 
   override func setUp() {
-    controller = TestMapViewController(applicationProtocol: testApplication, locationManagerProtocol: testLocationManager)
+    testMapzenManager.apiKey = "testKey"
+    controller = TestMapViewController(applicationProtocol: testApplication, locationManagerProtocol: testLocationManager, mapzenManagerProtocol: testMapzenManager)
     controller.tgViewController = tgViewController
     let mockHTTP = MockHTTPHandler()
     controller.tgViewController.httpHandler = mockHTTP
