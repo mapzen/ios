@@ -207,7 +207,7 @@ open class MapViewController: UIViewController, LocationManagerDelegate {
   var currentRouteMarker: TGMapMarkerId?
   open var shouldFollowCurrentLocation = false
   open var findMeButton = UIButton(type: .custom)
-  open var currentAnnotations: [PeliasMapkitAnnotation : TGMapMarkerId] = Dictionary()
+  var currentAnnotations: [PeliasMapkitAnnotation : TGMapMarkerId] = Dictionary()
   open var attributionBtn = UIButton()
 
   /// The camera type we want to use. Defaults to whatever is set in the style sheet.
@@ -989,7 +989,20 @@ extension MapViewController : TGMapViewDelegate, TGRecognizerDelegate {
   
   open func mapView(_ mapView: TGMapViewController, didSelectMarker markerPickResult: TGMarkerPickResult?, atScreenPosition position: CGPoint) {
     guard let markerPickResult = markerPickResult else { return }
-    markerSelectDelegate?.mapController(self, didSelectMarker: markerPickResult, atScreenPosition: position)
+    let markerId = markerPickResult.identifier
+    guard let annotation = currentAnnotations.keyForValue(value: markerId) else {
+      markerSelectDelegate?.mapController(self, didSelectMarker: markerPickResult, atScreenPosition: position)
+      return
+    }
+    if let target = annotation.target {
+      if let action = annotation.selector {
+        if target.canPerformAction(action, withSender: annotation) {
+          _ = target.perform(action, with: annotation)
+        } else {
+          _ = target.perform(action)
+        }
+      }
+    }
   }
   
   //MARK : TGRecognizerDelegate

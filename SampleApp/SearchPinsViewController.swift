@@ -10,7 +10,7 @@ import UIKit
 import Pelias
 import TangramMap
 
-class SearchPinsViewController: MapViewController, UITextFieldDelegate, MapMarkerSelectDelegate {
+class SearchPinsViewController: MapViewController, UITextFieldDelegate {
 
   @IBOutlet weak var searchField: UITextField!
 
@@ -21,7 +21,6 @@ class SearchPinsViewController: MapViewController, UITextFieldDelegate, MapMarke
     try? loadStyle(.bubbleWrap)
 
     searchField.delegate = self
-    markerSelectDelegate = self
   }
 
   func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -31,11 +30,11 @@ class SearchPinsViewController: MapViewController, UITextFieldDelegate, MapMarke
 
   func textFieldDidEndEditing(_ textField: UITextField) {
     let geopoint = GeoPoint(location: LocationManager.sharedManager.currentLocation)
-    var searchConfig = PeliasSearchConfig(searchText: textField.text!) { [weak self] (response) in
-      guard let newAnnotations = response.parsedMapItems() else { return }
+    var searchConfig = PeliasSearchConfig(searchText: textField.text!) { [unowned self] (response) in
+      guard let newAnnotations = response.parsedMapItems(target: self, action: #selector(self.annotationClicked(annotation:))) else { return }
       do {
-        try self?.removeAnnotations()
-        try self?.add(newAnnotations)
+        try self.removeAnnotations()
+        try self.add(newAnnotations)
       } catch {
         //We theoretically would handle these with an error message to the user, but this can be left as an exercise to the reader, cuz sample app.
       }
@@ -45,10 +44,7 @@ class SearchPinsViewController: MapViewController, UITextFieldDelegate, MapMarke
     let _ = PeliasSearchManager.sharedInstance.performSearch(searchConfig)
   }
 
-  // MARK : MapMarkerSelectDelegate
-  func mapController(_ controller: MapViewController, didSelectMarker markerPickResult: TGMarkerPickResult, atScreenPosition position: CGPoint) {
-    let markerId = markerPickResult.identifier
-    guard let annotation = currentAnnotations.keyForValue(value: markerId) else { return }
+  func annotationClicked(annotation: PeliasMapkitAnnotation) {
     let coordinates = "lat: \(annotation.coordinate.latitude), lon:\(annotation.coordinate.longitude)"
     let alert = UIAlertController(title: annotation.title, message: coordinates, preferredStyle: .alert)
     alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
