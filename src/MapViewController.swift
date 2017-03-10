@@ -198,6 +198,8 @@ open class MapViewController: UIViewController, LocationManagerDelegate {
   //Error Domains for NSError Appeasement
   open static let MapzenGeneralErrorDomain = "MapzenGeneralErrorDomain"
   private static let mapzenRights = "https://mapzen.com/rights/"
+  private static let kGlobalPathApiKey = "global.sdk_mapzen_api_key"
+  private static let kGlobalPathLanguage = "global.ux_language"
 
   let application : ApplicationProtocol
   open var tgViewController: TGMapViewController = TGMapViewController()
@@ -1019,7 +1021,7 @@ open class MapViewController: UIViewController, LocationManagerDelegate {
     }
     var allSceneUpdates = [TGSceneUpdate]()
     allSceneUpdates.append(contentsOf: sceneUpdates)
-    allSceneUpdates.append(TGSceneUpdate(path: "global.sdk_mapzen_api_key", value: "'\(apiKey)'"))
+    allSceneUpdates.append(TGSceneUpdate(path: MapViewController.kGlobalPathApiKey, value: "'\(apiKey)'"))
     if let language = locale.languageCode {
       allSceneUpdates.append(createLanguageUpdate(language))
     }
@@ -1027,7 +1029,7 @@ open class MapViewController: UIViewController, LocationManagerDelegate {
   }
 
   private func createLanguageUpdate(_ language: String) -> TGSceneUpdate {
-    return TGSceneUpdate(path: "global.ux_language", value: language)
+    return TGSceneUpdate(path: MapViewController.kGlobalPathLanguage, value: language)
   }
 }
 
