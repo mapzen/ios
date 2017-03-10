@@ -70,7 +70,7 @@ open class PeliasMapkitAnnotation: NSObject, MKAnnotation {
   open let title: String?
   open let subtitle: String?
   open let data: [String: AnyObject]?
-  open var target: UIResponder?
+  open weak var target: UIResponder?
   open var selector: Selector?
 
   /**
