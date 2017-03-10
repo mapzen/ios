@@ -37,9 +37,10 @@ class MapViewControllerTests: XCTestCase {
   var controller = TestMapViewController()
   var tgViewController = TestTGMapViewController()
   let mockLocation = CLLocation(latitude: 0.0, longitude: 0.0) // Null Island!
+  let apiKey = "testKey"
 
   override func setUp() {
-    testMapzenManager.apiKey = "testKey"
+    testMapzenManager.apiKey = apiKey
     controller = TestMapViewController(applicationProtocol: testApplication, locationManagerProtocol: testLocationManager, mapzenManagerProtocol: testMapzenManager)
     controller.tgViewController = tgViewController
     let mockHTTP = MockHTTPHandler()
@@ -210,9 +211,12 @@ class MapViewControllerTests: XCTestCase {
     updates.append(update)
     try? controller.loadStyle(.bubbleWrap, sceneUpdates: updates)
     XCTAssertEqual(tgViewController.scenePath, "bubble-wrap-style-more-labels.yaml")
-    XCTAssertEqual(tgViewController.sceneUpdates.count, 2)
+    XCTAssertEqual(tgViewController.sceneUpdates.count, 3)
     XCTAssertTrue(tgViewController.sceneUpdates.contains(update))
-    XCTAssertEqual(tgViewController.sceneUpdates.last?.path, "global.sdk_mapzen_api_key")
+    let apiKeyUpdate = tgViewController.sceneUpdates.filter { (update) -> Bool in
+      return update.path == "global.sdk_mapzen_api_key"
+    }.first
+    XCTAssertEqual(apiKeyUpdate?.value, "'\(apiKey)'")
   }
   
   func testLoadStyleAsync() {
@@ -226,9 +230,56 @@ class MapViewControllerTests: XCTestCase {
     updates.append(update)
     try? controller.loadStyleAsync(.bubbleWrap, sceneUpdates: updates, onStyleLoaded: nil)
     XCTAssertEqual(tgViewController.scenePath, "bubble-wrap-style-more-labels.yaml")
-    XCTAssertEqual(tgViewController.sceneUpdates.count, 2)
+    XCTAssertEqual(tgViewController.sceneUpdates.count, 3)
     XCTAssertTrue(tgViewController.sceneUpdates.contains(update))
-    XCTAssertEqual(tgViewController.sceneUpdates.last?.path, "global.sdk_mapzen_api_key")
+    let apiKeyUpdate = tgViewController.sceneUpdates.filter { (update) -> Bool in
+      return update.path == "global.sdk_mapzen_api_key"
+      }.first
+    XCTAssertEqual(apiKeyUpdate?.value, "'\(apiKey)'")
+  }
+
+  func testCurrentLocaleIsDefault() {
+    try? controller.loadStyleAsync(.bubbleWrap, onStyleLoaded: nil)
+    XCTAssertEqual(tgViewController.sceneUpdates.last?.path, "global.ux_language")
+    XCTAssertEqual(tgViewController.sceneUpdates.last?.value, Locale.current.languageCode)
+  }
+
+  func testLoadStyleLocaleIsSet() {
+    let locale = Locale.init(identifier: "ja-JP")
+    try? controller.loadStyle(.bubbleWrap, locale: locale)
+    XCTAssertEqual(tgViewController.sceneUpdates.last?.path, "global.ux_language")
+    XCTAssertEqual(tgViewController.sceneUpdates.last?.value, locale.languageCode)
+  }
+
+  func testLoadStyleWithSceneUpdatesLocaleIsSet() {
+    let locale = Locale.init(identifier: "ja-JP")
+    try? controller.loadStyle(.bubbleWrap, locale: locale, sceneUpdates: [])
+    XCTAssertEqual(tgViewController.sceneUpdates.last?.path, "global.ux_language")
+    XCTAssertEqual(tgViewController.sceneUpdates.last?.value, locale.languageCode)
+  }
+
+  func testLoadStyleAsyncLocaleIsSet() {
+    let locale = Locale.init(identifier: "ja-JP")
+    try? controller.loadStyleAsync(.bubbleWrap, locale: locale, onStyleLoaded: nil)
+    XCTAssertEqual(tgViewController.sceneUpdates.last?.path, "global.ux_language")
+    XCTAssertEqual(tgViewController.sceneUpdates.last?.value, locale.languageCode)
+  }
+
+  func testLoadStyleWithSceneUpdatesAsyncLocaleIsSet() {
+    let locale = Locale.init(identifier: "ja-JP")
+    try? controller.loadStyleAsync(.bubbleWrap, locale: locale, sceneUpdates: [], onStyleLoaded: nil)
+    XCTAssertEqual(tgViewController.sceneUpdates.last?.path, "global.ux_language")
+    XCTAssertEqual(tgViewController.sceneUpdates.last?.value, locale.languageCode)
+  }
+
+  func testUpdateLocaleSetsCorrectLangage() {
+    let locale = Locale.init(identifier: "hi-IN")
+    controller.updateLocale(locale)
+    XCTAssertEqual(tgViewController.sceneUpdates.last?.value, locale.languageCode)
+
+    let anotherLocale = Locale.init(identifier: "ja-JP")
+    controller.updateLocale(anotherLocale)
+    XCTAssertEqual(tgViewController.sceneUpdates.last?.value, anotherLocale.languageCode)
   }
 
   func testQueueSceneUpdate() {

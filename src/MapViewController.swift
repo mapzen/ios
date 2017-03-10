@@ -198,6 +198,8 @@ open class MapViewController: UIViewController, LocationManagerDelegate {
   //Error Domains for NSError Appeasement
   open static let MapzenGeneralErrorDomain = "MapzenGeneralErrorDomain"
   private static let mapzenRights = "https://mapzen.com/rights/"
+  private static let kGlobalPathApiKey = "global.sdk_mapzen_api_key"
+  private static let kGlobalPathLanguage = "global.ux_language"
 
   let application : ApplicationProtocol
   open var tgViewController: TGMapViewController = TGMapViewController()
@@ -209,6 +211,7 @@ open class MapViewController: UIViewController, LocationManagerDelegate {
   open var findMeButton = UIButton(type: .custom)
   var currentAnnotations: [PeliasMapkitAnnotation : TGMapMarkerId] = Dictionary()
   open var attributionBtn = UIButton()
+  private var locale = Locale.current
 
   /// The camera type we want to use. Defaults to whatever is set in the style sheet.
   open var cameraType: TGCameraType {
@@ -578,14 +581,38 @@ open class MapViewController: UIViewController, LocationManagerDelegate {
 
   /**
    Loads a map style synchronously on the main thread. Use the async methods instead of these in production apps.
+
+   - parameter style: The map style to load.
+   - parameter locale: The locale to use for the map's language.
+   - throws: A MZError `apiKeyNotSet` error if an API Key has not been sent on the MapzenManager class.
+   */
+  open func loadStyle(_ style: MapStyle, locale: Locale) throws {
+    try loadStyle(style, locale: locale, sceneUpdates: [TGSceneUpdate]())
+  }
+
+  /**
+   Loads a map style synchronously on the main thread. Use the async methods instead of these in production apps.
    
    - parameter style: The map style to load.
    - parameter sceneUpdates: The scene updates to make while loading the map style.
    - throws: A MZError `apiKeyNotSet` error if an API Key has not been sent on the MapzenManager class.
   */
   open func loadStyle(_ style: MapStyle, sceneUpdates: [TGSceneUpdate]) throws {
+    try loadStyle(style, locale: Locale.current, sceneUpdates: sceneUpdates)
+  }
+
+  /**
+   Loads a map style synchronously on the main thread. Use the async methods instead of these in production apps.
+
+   - parameter style: The map style to load.
+   - parameter locale: The locale to use for the map's language.
+   - parameter sceneUpdates: The scene updates to make while loading the map style.
+   - throws: A MZError `apiKeyNotSet` error if an API Key has not been sent on the MapzenManager class.
+   */
+  open func loadStyle(_ style: MapStyle, locale l: Locale, sceneUpdates: [TGSceneUpdate]) throws {
+    locale = l
     guard let sceneFile = styles.keyForValue(value: style) else { return }
-    try tgViewController.loadSceneFile(sceneFile, sceneUpdates: updatesWithApiKeyUpdate(sceneUpdates))
+    try tgViewController.loadSceneFile(sceneFile, sceneUpdates: allSceneUpdates(sceneUpdates))
   }
 
   /**
@@ -600,6 +627,18 @@ open class MapViewController: UIViewController, LocationManagerDelegate {
   }
 
   /**
+   Loads the map style asynchronously. Recommended for production apps. If you have scene updates to apply, either use the other version of this method that allows you to pass in scene updates during load, or wait until onSceneLoaded is called to apply those updates.
+
+   - parameter style: The map style to load.
+   - parameter locale: The locale to use for the map's language.
+   - parameter onSceneLoaded: Closure called on scene loaded.
+   - throws: A MZError `apiKeyNotSet` error if an API Key has not been sent on the MapzenManager class.
+   */
+  open func loadStyleAsync(_ style: MapStyle, locale: Locale, onStyleLoaded: OnStyleLoaded?) throws {
+    try loadStyleAsync(style, locale: locale, sceneUpdates: [], onStyleLoaded: onStyleLoaded)
+  }
+
+  /**
    Loads the map style asynchronously. Recommended for production apps. If you have scene updates to apply, either pass in the scene updates at the initial call, or wait until onSceneLoaded is called to apply those updates.
    
    - parameter style: The map style to load.
@@ -610,7 +649,34 @@ open class MapViewController: UIViewController, LocationManagerDelegate {
   open func loadStyleAsync(_ style: MapStyle, sceneUpdates: [TGSceneUpdate], onStyleLoaded: OnStyleLoaded?) throws {
     onStyleLoadedClosure = onStyleLoaded
     guard let sceneFile = styles.keyForValue(value: style) else { return }
-    try tgViewController.loadSceneFileAsync(sceneFile, sceneUpdates: updatesWithApiKeyUpdate(sceneUpdates))
+    try tgViewController.loadSceneFileAsync(sceneFile, sceneUpdates: allSceneUpdates(sceneUpdates))
+  }
+
+  /**
+   Loads the map style asynchronously. Recommended for production apps. If you have scene updates to apply, either pass in the scene updates at the initial call, or wait until onSceneLoaded is called to apply those updates.
+
+   - parameter style: The map style to load.
+   - parameter locale: The locale to use for the map's language.
+   - parameter sceneUpdates: The scene updates to make while loading the map style.
+   - parameter onSceneLoaded: Closure called on scene loaded.
+   - throws: A MZError `apiKeyNotSet` error if an API Key has not been sent on the MapzenManager class.
+   */
+  open func loadStyleAsync(_ style: MapStyle, locale l: Locale, sceneUpdates: [TGSceneUpdate], onStyleLoaded: OnStyleLoaded?) throws {
+    locale = l
+    onStyleLoadedClosure = onStyleLoaded
+    guard let sceneFile = styles.keyForValue(value: style) else { return }
+    try tgViewController.loadSceneFileAsync(sceneFile, sceneUpdates: allSceneUpdates(sceneUpdates))
+  }
+
+  /**
+   Sets the locale used to determine the map's language.
+   */
+  open func updateLocale(_ l: Locale) {
+    locale = l
+    guard let language = locale.languageCode else { return }
+    let update = createLanguageUpdate(language)
+    queue([update])
+    applySceneUpdates()
   }
 
   /**
@@ -947,7 +1013,7 @@ open class MapViewController: UIViewController, LocationManagerDelegate {
     let _ = application.openURL(url)
   }
 
-  private func updatesWithApiKeyUpdate(_ sceneUpdates: [TGSceneUpdate]) throws -> [TGSceneUpdate] {
+  private func allSceneUpdates(_ sceneUpdates: [TGSceneUpdate]) throws -> [TGSceneUpdate] {
     guard let apiKey = mapzenManager.apiKey else {
       throw NSError(domain: MapViewController.MapzenGeneralErrorDomain,
                     code: MZError.apiKeyNotSet.rawValue,
@@ -955,8 +1021,15 @@ open class MapViewController: UIViewController, LocationManagerDelegate {
     }
     var allSceneUpdates = [TGSceneUpdate]()
     allSceneUpdates.append(contentsOf: sceneUpdates)
-    allSceneUpdates.append(TGSceneUpdate(path: "global.sdk_mapzen_api_key", value: "'\(apiKey)'"))
+    allSceneUpdates.append(TGSceneUpdate(path: MapViewController.kGlobalPathApiKey, value: "'\(apiKey)'"))
+    if let language = locale.languageCode {
+      allSceneUpdates.append(createLanguageUpdate(language))
+    }
     return allSceneUpdates
+  }
+
+  private func createLanguageUpdate(_ language: String) -> TGSceneUpdate {
+    return TGSceneUpdate(path: MapViewController.kGlobalPathLanguage, value: language)
   }
 }
 

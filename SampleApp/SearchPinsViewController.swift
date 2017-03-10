@@ -16,10 +16,11 @@ class SearchPinsViewController: MapViewController, UITextFieldDelegate {
 
   override func viewDidLoad() {
     super.viewDidLoad()
-    self.view.bringSubview(toFront: searchField)
+    setupSwitchLocaleBtn()
 
     try? loadStyle(.bubbleWrap)
-
+    
+    self.view.bringSubview(toFront: searchField)
     searchField.delegate = self
   }
 
@@ -49,5 +50,41 @@ class SearchPinsViewController: MapViewController, UITextFieldDelegate {
     let alert = UIAlertController(title: annotation.title, message: coordinates, preferredStyle: .alert)
     alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
     present(alert, animated: true, completion: nil)
+  }
+
+  // MARK : private
+  private func setupSwitchLocaleBtn() {
+    let btn = UIBarButtonItem.init(title: "Change Map Language", style: .plain, target: self, action: #selector(changeMapLanguage))
+    self.navigationItem.rightBarButtonItem = btn
+  }
+
+  @objc private func changeMapLanguage() {
+    let actionSheet = UIAlertController.init(title: "Map Language", message: "Choose a language", preferredStyle: .actionSheet)
+    actionSheet.addAction(UIAlertAction.init(title: "English", style: .default, handler: { [unowned self] (action) in
+      self.updateLocale(Locale.init(identifier: "en_US"))
+    }))
+    actionSheet.addAction(UIAlertAction.init(title: "French", style: .default, handler: { [unowned self] (action) in
+      self.updateLocale(Locale.init(identifier: "fr_FR"))
+    }))
+    actionSheet.addAction(UIAlertAction.init(title: "Japanese", style: .default, handler: { [unowned self] (action) in
+      self.updateLocale(Locale.init(identifier: "ja_JP"))
+    }))
+    actionSheet.addAction(UIAlertAction.init(title: "Hindi", style: .default, handler: { [unowned self] (action) in
+      self.updateLocale(Locale.init(identifier: "hi-IN"))
+    }))
+    actionSheet.addAction(UIAlertAction.init(title: "Spanish", style: .default, handler: { [unowned self] (action) in
+      self.updateLocale(Locale.init(identifier: "es_ES"))
+    }))
+    actionSheet.addAction(UIAlertAction.init(title: "Korean", style: .default, handler: { [unowned self] (action) in
+      self.updateLocale(Locale.init(identifier: "ko_KR"))
+    }))
+    actionSheet.addAction(UIAlertAction.init(title: "Italian", style: .default, handler: { [unowned self] (action) in
+      self.updateLocale(Locale.init(identifier: "it_IT"))
+    }))
+    actionSheet.addAction(UIAlertAction.init(title: "Cancel", style: .cancel, handler: { [unowned self] (action) in
+      self.dismiss(animated: true, completion: nil)
+    }))
+    self.navigationController?.present(actionSheet, animated: true, completion: nil)
+
   }
 }
