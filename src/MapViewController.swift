@@ -209,6 +209,7 @@ open class MapViewController: UIViewController, LocationManagerDelegate {
   open var findMeButton = UIButton(type: .custom)
   var currentAnnotations: [PeliasMapkitAnnotation : TGMapMarkerId] = Dictionary()
   open var attributionBtn = UIButton()
+  private var locale = Locale.current
 
   /// The camera type we want to use. Defaults to whatever is set in the style sheet.
   open var cameraType: TGCameraType {
@@ -585,7 +586,7 @@ open class MapViewController: UIViewController, LocationManagerDelegate {
   */
   open func loadStyle(_ style: MapStyle, sceneUpdates: [TGSceneUpdate]) throws {
     guard let sceneFile = styles.keyForValue(value: style) else { return }
-    try tgViewController.loadSceneFile(sceneFile, sceneUpdates: updatesWithApiKeyUpdate(sceneUpdates))
+    try tgViewController.loadSceneFile(sceneFile, sceneUpdates: allSceneUpdates(sceneUpdates))
   }
 
   /**
@@ -610,7 +611,7 @@ open class MapViewController: UIViewController, LocationManagerDelegate {
   open func loadStyleAsync(_ style: MapStyle, sceneUpdates: [TGSceneUpdate], onStyleLoaded: OnStyleLoaded?) throws {
     onStyleLoadedClosure = onStyleLoaded
     guard let sceneFile = styles.keyForValue(value: style) else { return }
-    try tgViewController.loadSceneFileAsync(sceneFile, sceneUpdates: updatesWithApiKeyUpdate(sceneUpdates))
+    try tgViewController.loadSceneFileAsync(sceneFile, sceneUpdates: allSceneUpdates(sceneUpdates))
   }
 
   /**
@@ -947,7 +948,7 @@ open class MapViewController: UIViewController, LocationManagerDelegate {
     let _ = application.openURL(url)
   }
 
-  private func updatesWithApiKeyUpdate(_ sceneUpdates: [TGSceneUpdate]) throws -> [TGSceneUpdate] {
+  private func allSceneUpdates(_ sceneUpdates: [TGSceneUpdate]) throws -> [TGSceneUpdate] {
     guard let apiKey = mapzenManager.apiKey else {
       throw NSError(domain: MapViewController.MapzenGeneralErrorDomain,
                     code: MZError.apiKeyNotSet.rawValue,
@@ -956,6 +957,9 @@ open class MapViewController: UIViewController, LocationManagerDelegate {
     var allSceneUpdates = [TGSceneUpdate]()
     allSceneUpdates.append(contentsOf: sceneUpdates)
     allSceneUpdates.append(TGSceneUpdate(path: "global.sdk_mapzen_api_key", value: "'\(apiKey)'"))
+    if let language = locale.languageCode {
+      allSceneUpdates.append(TGSceneUpdate(path: "global.ux_language", value: language))
+    }
     return allSceneUpdates
   }
 }
