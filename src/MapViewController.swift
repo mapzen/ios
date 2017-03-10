@@ -667,6 +667,17 @@ open class MapViewController: UIViewController, LocationManagerDelegate {
   }
 
   /**
+   Sets the locale used to determine the map's language.
+   */
+  open func updateLocale(_ l: Locale) {
+    locale = l
+    guard let language = locale.languageCode else { return }
+    let update = createLanguageUpdate(language)
+    queue([update])
+    applySceneUpdates()
+  }
+
+  /**
    Queue a scene update using a yaml string path. It's recommended to use the other version of this that uses the TGSceneUpdate objects. Try to queue as many scene updates as you can in one pass as each `applySceneUpdates()` call can require a re-parse of the yaml and a re-render of the map. It is required to call `applySceneUpdates()` to activate the updated that have been enqueued.
    
    - parameter componentPath: The yaml path to the component to change.
@@ -1010,9 +1021,13 @@ open class MapViewController: UIViewController, LocationManagerDelegate {
     allSceneUpdates.append(contentsOf: sceneUpdates)
     allSceneUpdates.append(TGSceneUpdate(path: "global.sdk_mapzen_api_key", value: "'\(apiKey)'"))
     if let language = locale.languageCode {
-      allSceneUpdates.append(TGSceneUpdate(path: "global.ux_language", value: language))
+      allSceneUpdates.append(createLanguageUpdate(language))
     }
     return allSceneUpdates
+  }
+
+  private func createLanguageUpdate(_ language: String) -> TGSceneUpdate {
+    return TGSceneUpdate(path: "global.ux_language", value: language)
   }
 }
 

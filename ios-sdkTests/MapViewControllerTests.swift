@@ -272,6 +272,16 @@ class MapViewControllerTests: XCTestCase {
     XCTAssertEqual(tgViewController.sceneUpdates.last?.value, locale.languageCode)
   }
 
+  func testUpdateLocaleSetsCorrectLangage() {
+    let locale = Locale.init(identifier: "hi-IN")
+    controller.updateLocale(locale)
+    XCTAssertEqual(tgViewController.sceneUpdates.last?.value, locale.languageCode)
+
+    let anotherLocale = Locale.init(identifier: "ja-JP")
+    controller.updateLocale(anotherLocale)
+    XCTAssertEqual(tgViewController.sceneUpdates.last?.value, anotherLocale.languageCode)
+  }
+
   func testQueueSceneUpdate() {
     controller.queueSceneUpdate("path", withValue: "value")
     XCTAssertEqual(tgViewController.sceneUpdateComponentPath, "path")
