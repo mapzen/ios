@@ -994,13 +994,11 @@ extension MapViewController : TGMapViewDelegate, TGRecognizerDelegate {
       markerSelectDelegate?.mapController(self, didSelectMarker: markerPickResult, atScreenPosition: position)
       return
     }
-    if let target = annotation.target {
-      if let action = annotation.selector {
-        if target.canPerformAction(action, withSender: annotation) {
-          _ = target.perform(action, with: annotation)
-        } else {
-          _ = target.perform(action)
-        }
+    if let target = annotation.target, let action = annotation.selector {
+      if target.canPerformAction(action, withSender: annotation) {
+        _ = target.perform(action, with: annotation)
+      } else {
+        _ = target.perform(action)
       }
     }
   }
