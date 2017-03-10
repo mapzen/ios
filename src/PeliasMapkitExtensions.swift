@@ -70,6 +70,8 @@ open class PeliasMapkitAnnotation: NSObject, MKAnnotation {
   open let title: String?
   open let subtitle: String?
   open let data: [String: AnyObject]?
+  open var target: UIResponder?
+  open var selector: Selector?
 
   /**
    Create a fully formed `PeliasMapkitAnnotation`
@@ -86,6 +88,17 @@ open class PeliasMapkitAnnotation: NSObject, MKAnnotation {
     self.title = title
     self.subtitle = subtitle
     self.data = data
+  }
+
+  /**
+   Sets a target for the selector which will be invoked when the annotation is clicked.
+   
+   - parameter target: A target to invoke the selector on when the annotation is clicked
+   - parameter action: An selector to be invoked on the target when the annotation is clicked
+   */
+  public func setTarget(target actionTarget: UIResponder, action: Selector) {
+    target = actionTarget
+    selector = action
   }
 }
 
@@ -112,6 +125,18 @@ public extension PeliasResponse {
    This is currently the only method for producing fully formed native objects. In the future there will be additional functions and data types for this class to produce additional / more detailed objects.
   */
   public func parsedMapItems() -> [PeliasMapkitAnnotation]? {
+    return parsedMapItems(target: nil, action: nil)
+  }
+
+  /**
+   Produces an array of PeliasMapkitAnnotations based off the response from Pelias servers.
+
+   This is currently the only method for producing fully formed native objects. In the future there will be additional functions and data types for this class to produce additional / more detailed objects.
+
+   - Parameter target: An optional target to invoke the selector on when the annotations are clicked.
+   - Parameter action: An optional selector to be invoked when the created annotations are clicked.
+   */
+  public func parsedMapItems(target: UIResponder?, action: Selector?) -> [PeliasMapkitAnnotation]? {
     //TODO: This should get refactored into eventually being a real GeoJSON decoder, and split out the MapItem creation
     var mapItems = [PeliasMapkitAnnotation]()
     if let jsonDictionary = parsedResponse?.parsedResponse {
@@ -131,6 +156,9 @@ public extension PeliasResponse {
         //MKPlacemark
         let name = featureProperties["label"] as? String
         let mapAnnotation = PeliasMapkitAnnotation(coordinate: coordinate, title: name, subtitle: nil, data: addressDictionary as [String : AnyObject]?)
+        if let target = target, let action = action {
+          mapAnnotation.setTarget(target: target, action: action)
+        }
 
         mapItems.append(mapAnnotation)
       }
