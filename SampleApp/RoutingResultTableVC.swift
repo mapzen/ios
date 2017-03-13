@@ -6,10 +6,9 @@
 //  Copyright © 2016 Mapzen. All rights reserved.
 //
 
-import UIKit
 import OnTheRoad
 
-class RoutingResultTableVC: UITableViewController {
+class RoutingResultTableVC: SampleTableViewController {
 
   var routingResult: OTRRoutingResult?
 

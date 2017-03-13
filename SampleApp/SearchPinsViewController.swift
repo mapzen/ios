@@ -6,11 +6,10 @@
 //  Copyright © 2017 Mapzen. All rights reserved.
 //
 
-import UIKit
 import Pelias
 import TangramMap
 
-class SearchPinsViewController: MapViewController, UITextFieldDelegate {
+class SearchPinsViewController: SampleMapViewController, UITextFieldDelegate {
 
   @IBOutlet weak var searchField: UITextField!
 

@@ -68,6 +68,10 @@ class RoutingViewController: UIViewController, RoutingSearchDelegate {
     }
   }
 
+  override var prefersStatusBarHidden: Bool {
+    return false
+  }
+
   // MARK : RoutingSearchDelegate
   func selected(_ location: PeliasMapkitAnnotation) {
     print("Selected \(location.title)")
@@ -124,7 +128,6 @@ class RoutingViewController: UIViewController, RoutingSearchDelegate {
                                         self.routeResultTable?.show(routingResult!)
 
     }
-
   }
 
 }
