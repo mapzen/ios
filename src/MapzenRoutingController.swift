@@ -37,7 +37,7 @@ open class MapzenRoutingController: OTRRoutingController {
   /** Static function that vends a properly configured routing controller given a session manager. Useful for testing
    - parameter sessionManager : URLSession object to use for requests
   */
-  open static func controller(sessionManager : URLSession) throws -> MapzenRoutingController {
+  static func controller(sessionManager : URLSession) throws -> MapzenRoutingController {
     guard let apiKey = MapzenManager.sharedManager.apiKey else {
       throw NSError(domain: MapViewController.MapzenGeneralErrorDomain,
                     code: MZError.apiKeyNotSet.rawValue,
