@@ -22,6 +22,7 @@ class RoutingViewController: UIViewController, RoutingSearchDelegate {
   let routeListSegueId = "routeListSegue"
   var routeResultTable : RouteDisplayViewController?
   var currentRouteResult: OTRRoutingResult?
+  private var routingLocale = Locale.current
 
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     guard let identifier = segue.identifier else {
@@ -48,6 +49,11 @@ class RoutingViewController: UIViewController, RoutingSearchDelegate {
     }
   }
 
+  override func viewDidLoad() {
+    super.viewDidLoad()
+    setupSwitchLocaleBtn()
+  }
+
   override func viewDidAppear(_ animated: Bool) {
     super.viewDidAppear(animated)
     if LocationManager.sharedManager.isAlwaysAuthorized() || LocationManager.sharedManager.isInUseAuthorized() {
@@ -59,7 +65,8 @@ class RoutingViewController: UIViewController, RoutingSearchDelegate {
 
   func routeTo(_ point: PeliasMapkitAnnotation) {
     guard let routingController = try? MapzenRoutingController.controller() else { return }
-    
+    routingController.updateLocale(routingLocale)
+
     var startingPoint = OTRRoutingPoint(coordinate: OTRGeoPointMake(40.7444892, -73.9900082), type: .break)
     if let location = LocationManager.sharedManager.currentLocation {
       startingPoint = OTRRoutingPoint(coordinate: OTRGeoPointMake(location.coordinate.latitude, location.coordinate.longitude), type: .break)
@@ -67,7 +74,7 @@ class RoutingViewController: UIViewController, RoutingSearchDelegate {
 
     let endingPoint = OTRRoutingPoint(coordinate: OTRGeoPointMake(point.coordinate.latitude, point.coordinate.longitude), type: .break)
 
-    routingController.requestRoute(withLocations: [startingPoint, endingPoint],
+    _ = routingController.requestRoute(withLocations: [startingPoint, endingPoint],
                                                 costingModel: .auto,
                                                 costingOption: nil,
                                                 directionsOptions: ["units" : "miles" as NSObject]) { (routingResult, token, error) in
@@ -84,4 +91,50 @@ class RoutingViewController: UIViewController, RoutingSearchDelegate {
     searchBar.text = location.title
     routeTo(location)
   }
+
+  // MARK : private
+  private func setupSwitchLocaleBtn() {
+    let btn = UIBarButtonItem.init(title: "Change Router Language", style: .plain, target: self, action: #selector(changeRouterLanguage))
+    self.navigationItem.rightBarButtonItem = btn
+  }
+
+  @objc private func changeRouterLanguage() {
+    let actionSheet = UIAlertController.init(title: "Router Language", message: "Choose a language", preferredStyle: .actionSheet)
+    actionSheet.addAction(UIAlertAction.init(title: "English", style: .default, handler: { [unowned self] (action) in
+      self.routingLocale = Locale.init(identifier: "en_US")
+    }))
+    actionSheet.addAction(UIAlertAction.init(title: "French", style: .default, handler: { [unowned self] (action) in
+      self.routingLocale = Locale.init(identifier: "fr_FR")
+    }))
+    actionSheet.addAction(UIAlertAction.init(title: "Catalan", style: .default, handler: { [unowned self] (action) in
+      self.routingLocale = Locale.init(identifier: "ca-ES")
+    }))
+    actionSheet.addAction(UIAlertAction.init(title: "Hindi", style: .default, handler: { [unowned self] (action) in
+      self.routingLocale = Locale.init(identifier: "hi-IN")
+    }))
+    actionSheet.addAction(UIAlertAction.init(title: "Spanish", style: .default, handler: { [unowned self] (action) in
+      self.routingLocale = Locale.init(identifier: "es_ES")
+    }))
+    actionSheet.addAction(UIAlertAction.init(title: "Czech", style: .default, handler: { [unowned self] (action) in
+      self.routingLocale = Locale.init(identifier: "cs-CZ")
+    }))
+    actionSheet.addAction(UIAlertAction.init(title: "Italian", style: .default, handler: { [unowned self] (action) in
+      self.routingLocale = Locale.init(identifier: "it_IT")
+    }))
+    actionSheet.addAction(UIAlertAction.init(title: "German", style: .default, handler: { [unowned self] (action) in
+      self.routingLocale = Locale.init(identifier: "de-DE")
+    }))
+    actionSheet.addAction(UIAlertAction.init(title: "Slovenian", style: .default, handler: { [unowned self] (action) in
+      self.routingLocale = Locale.init(identifier: "sl-SI")
+    }))
+    actionSheet.addAction(UIAlertAction.init(title: "Pirate", style: .default, handler: { [unowned self] (action) in
+      self.routingLocale = Locale.init(identifier: "en-US-x-pirate")
+    }))
+    actionSheet.addAction(UIAlertAction.init(title: "Cancel", style: .cancel, handler: { [unowned self] (action) in
+      self.dismiss(animated: true, completion: nil)
+    }))
+    self.navigationController?.present(actionSheet, animated: true, completion: nil)
+
+  }
+
 }
