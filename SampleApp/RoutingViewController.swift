@@ -59,7 +59,7 @@ class RoutingViewController: UIViewController, RoutingSearchDelegate {
 
   func routeTo(_ point: PeliasMapkitAnnotation) {
     guard let routingController = try? MapzenRoutingController.controller() else { return }
-
+    
     var startingPoint = OTRRoutingPoint(coordinate: OTRGeoPointMake(40.7444892, -73.9900082), type: .break)
     if let location = LocationManager.sharedManager.currentLocation {
       startingPoint = OTRRoutingPoint(coordinate: OTRGeoPointMake(location.coordinate.latitude, location.coordinate.longitude), type: .break)
