@@ -72,7 +72,7 @@ class RoutingViewController: UIViewController, RoutingSearchDelegate {
   func selected(_ location: PeliasMapkitAnnotation) {
     print("Selected \(location.title)")
     searchBar.text = location.title
-    destination = OTRGeoPointMake(40.7444892, -73.9900082)
+    destination = OTRGeoPointMake(location.coordinate.latitude, location.coordinate.longitude)
     requestRoute()
   }
 
