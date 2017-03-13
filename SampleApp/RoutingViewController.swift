@@ -83,37 +83,24 @@ class RoutingViewController: UIViewController, RoutingSearchDelegate {
   }
 
   @objc private func changeRouterLanguage() {
+    let languageIdByActionSheetTitle = [
+      "English": "en-US",
+      "French": "fr-FR",
+      "Catalan": "ca-ES",
+      "Hindi": "hi-IN",
+      "Spanish": "es-ES",
+      "Czech": "cs-CZ",
+      "Italian": "it-IT",
+      "German": "de-DE",
+      "Slovenian": "sl-SI",
+      "Pirate": "pirate",
+    ]
     let actionSheet = UIAlertController.init(title: "Router Language", message: "Choose a language", preferredStyle: .actionSheet)
-    actionSheet.addAction(UIAlertAction.init(title: "English", style: .default, handler: { [unowned self] (action) in
-      self.routingLocale = Locale.init(identifier: "en_US")
-    }))
-    actionSheet.addAction(UIAlertAction.init(title: "French", style: .default, handler: { [unowned self] (action) in
-      self.routingLocale = Locale.init(identifier: "fr_FR")
-    }))
-    actionSheet.addAction(UIAlertAction.init(title: "Catalan", style: .default, handler: { [unowned self] (action) in
-      self.routingLocale = Locale.init(identifier: "ca-ES")
-    }))
-    actionSheet.addAction(UIAlertAction.init(title: "Hindi", style: .default, handler: { [unowned self] (action) in
-      self.routingLocale = Locale.init(identifier: "hi-IN")
-    }))
-    actionSheet.addAction(UIAlertAction.init(title: "Spanish", style: .default, handler: { [unowned self] (action) in
-      self.routingLocale = Locale.init(identifier: "es_ES")
-    }))
-    actionSheet.addAction(UIAlertAction.init(title: "Czech", style: .default, handler: { [unowned self] (action) in
-      self.routingLocale = Locale.init(identifier: "cs-CZ")
-    }))
-    actionSheet.addAction(UIAlertAction.init(title: "Italian", style: .default, handler: { [unowned self] (action) in
-      self.routingLocale = Locale.init(identifier: "it_IT")
-    }))
-    actionSheet.addAction(UIAlertAction.init(title: "German", style: .default, handler: { [unowned self] (action) in
-      self.routingLocale = Locale.init(identifier: "de-DE")
-    }))
-    actionSheet.addAction(UIAlertAction.init(title: "Slovenian", style: .default, handler: { [unowned self] (action) in
-      self.routingLocale = Locale.init(identifier: "sl-SI")
-    }))
-    actionSheet.addAction(UIAlertAction.init(title: "Pirate", style: .default, handler: { [unowned self] (action) in
-      self.routingLocale = Locale.init(identifier: "pirate")
-    }))
+    for (actionTitle, languageIdentifier) in languageIdByActionSheetTitle {
+      actionSheet.addAction(UIAlertAction.init(title: actionTitle, style: .default, handler: { [unowned self] (action) in
+        self.routingLocale = Locale.init(identifier: languageIdentifier)
+      }))
+    }
     actionSheet.addAction(UIAlertAction.init(title: "Cancel", style: .cancel, handler: { [unowned self] (action) in
       self.dismiss(animated: true, completion: nil)
     }))
