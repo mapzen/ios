@@ -112,7 +112,7 @@ class RoutingViewController: UIViewController, RoutingSearchDelegate {
       self.routingLocale = Locale.init(identifier: "sl-SI")
     }))
     actionSheet.addAction(UIAlertAction.init(title: "Pirate", style: .default, handler: { [unowned self] (action) in
-      self.routingLocale = Locale.init(identifier: "en-US-x-pirate")
+      self.routingLocale = Locale.init(identifier: "pirate")
     }))
     actionSheet.addAction(UIAlertAction.init(title: "Cancel", style: .cancel, handler: { [unowned self] (action) in
       self.dismiss(animated: true, completion: nil)
