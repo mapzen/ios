@@ -22,6 +22,26 @@ class RoutingViewController: UIViewController, RoutingSearchDelegate {
   let routeListSegueId = "routeListSegue"
   var routeResultTable : RouteDisplayViewController?
   var currentRouteResult: OTRRoutingResult?
+  private var routingLocale = Locale.current {
+    didSet {
+      requestRoute()
+    }
+  }
+  private var destination : OTRGeoPoint?
+
+  override func viewDidLoad() {
+    super.viewDidLoad()
+    setupSwitchLocaleBtn()
+  }
+
+  override func viewDidAppear(_ animated: Bool) {
+    super.viewDidAppear(animated)
+    if LocationManager.sharedManager.isAlwaysAuthorized() || LocationManager.sharedManager.isInUseAuthorized() {
+      LocationManager.sharedManager.startUpdatingLocation()
+      return
+    }
+    LocationManager.sharedManager.requestWhenInUseAuthorization()
+  }
 
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     guard let identifier = segue.identifier else {
@@ -48,41 +68,63 @@ class RoutingViewController: UIViewController, RoutingSearchDelegate {
     }
   }
 
-  override func viewDidAppear(_ animated: Bool) {
-    super.viewDidAppear(animated)
-    if LocationManager.sharedManager.isAlwaysAuthorized() || LocationManager.sharedManager.isInUseAuthorized() {
-      LocationManager.sharedManager.startUpdatingLocation()
-      return
-    }
-    LocationManager.sharedManager.requestWhenInUseAuthorization()
-  }
-
-  func routeTo(_ point: PeliasMapkitAnnotation) {
-    let routingController = OTRRoutingController();
-    routingController.urlQueryComponents.add(URLQueryItem(name: "apiKey", value: "mapzen-2qQR7SX"))
-
-    var startingPoint = OTRRoutingPoint(coordinate: OTRGeoPointMake(40.7444892, -73.9900082), type: .break)
-    if let location = LocationManager.sharedManager.currentLocation {
-      startingPoint = OTRRoutingPoint(coordinate: OTRGeoPointMake(location.coordinate.latitude, location.coordinate.longitude), type: .break)
-    }
-
-    let endingPoint = OTRRoutingPoint(coordinate: OTRGeoPointMake(point.coordinate.latitude, point.coordinate.longitude), type: .break)
-
-    routingController.requestRoute(withLocations: [startingPoint, endingPoint],
-                                                costingModel: .auto,
-                                                costingOption: nil,
-                                                directionsOptions: ["units" : "miles" as NSObject]) { (routingResult, token, error) in
-                                                  print("Error:\(error)")
-                                                  self.currentRouteResult = routingResult
-                                                  self.routeResultTable?.show(routingResult!)
-
-    }
-
-  }
-
+  // MARK : RoutingSearchDelegate
   func selected(_ location: PeliasMapkitAnnotation) {
     print("Selected \(location.title)")
     searchBar.text = location.title
-    routeTo(location)
+    destination = OTRGeoPointMake(location.coordinate.latitude, location.coordinate.longitude)
+    requestRoute()
   }
+
+  // MARK : private
+  private func setupSwitchLocaleBtn() {
+    let btn = UIBarButtonItem.init(title: "Change Router Language", style: .plain, target: self, action: #selector(changeRouterLanguage))
+    self.navigationItem.rightBarButtonItem = btn
+  }
+
+  @objc private func changeRouterLanguage() {
+    let languageIdByActionSheetTitle = [
+      "English": "en-US",
+      "French": "fr-FR",
+      "Catalan": "ca-ES",
+      "Hindi": "hi-IN",
+      "Spanish": "es-ES",
+      "Czech": "cs-CZ",
+      "Italian": "it-IT",
+      "German": "de-DE",
+      "Slovenian": "sl-SI",
+      "Pirate": "pirate",
+    ]
+    let actionSheet = UIAlertController.init(title: "Router Language", message: "Choose a language", preferredStyle: .actionSheet)
+    for (actionTitle, languageIdentifier) in languageIdByActionSheetTitle {
+      actionSheet.addAction(UIAlertAction.init(title: actionTitle, style: .default, handler: { [unowned self] (action) in
+        self.routingLocale = Locale.init(identifier: languageIdentifier)
+      }))
+    }
+    actionSheet.addAction(UIAlertAction.init(title: "Cancel", style: .cancel, handler: { [unowned self] (action) in
+      self.dismiss(animated: true, completion: nil)
+    }))
+    self.navigationController?.present(actionSheet, animated: true, completion: nil)
+  }
+
+  private func requestRoute() {
+    guard let routingController = try? MapzenRoutingController.controller() else { return }
+    routingController.updateLocale(routingLocale)
+
+    guard let currentLocation = LocationManager.sharedManager.currentLocation, let destination = destination else { return }
+    let startingPoint = OTRRoutingPoint(coordinate: OTRGeoPointMake(currentLocation.coordinate.latitude, currentLocation.coordinate.longitude), type: .break)
+    let endingPoint = OTRRoutingPoint(coordinate: destination, type: .break)
+
+    _ = routingController.requestRoute(withLocations: [startingPoint, endingPoint],
+                                       costingModel: .auto,
+                                       costingOption: nil,
+                                       directionsOptions: ["units" : "miles" as NSObject]) { (routingResult, token, error) in
+                                        print("Error:\(error)")
+                                        self.currentRouteResult = routingResult
+                                        self.routeResultTable?.show(routingResult!)
+
+    }
+
+  }
+
 }
