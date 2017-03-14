@@ -6,10 +6,9 @@
 //  Copyright © 2017 Mapzen. All rights reserved.
 //
 
-import UIKit
 import OnTheRoad
 
-class RouteDisplayViewController: MapViewController {
+class RouteDisplayViewController: SampleMapViewController {
 
   var routingResult: OTRRoutingResult?
 

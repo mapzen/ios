@@ -8,7 +8,7 @@
 
 import UIKit
 import TangramMap
-class TangramVC:  MapViewController, MapMarkerSelectDelegate {
+class TangramVC:  SampleMapViewController, MapMarkerSelectDelegate {
 
   private var styleLoaded = false
   private var markerVisible = false

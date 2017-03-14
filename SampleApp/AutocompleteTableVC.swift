@@ -6,12 +6,11 @@
 //  Copyright © 2016 Mapzen. All rights reserved.
 //
 
-import UIKit
 import MapKit
 import CoreLocation
 import Pelias
 
-class AutocompleteTableVC: UITableViewController, UISearchResultsUpdating, UISearchBarDelegate, LocationManagerDelegate {
+class AutocompleteTableVC: SampleTableViewController, UISearchResultsUpdating, UISearchBarDelegate, LocationManagerDelegate {
   
   let searchController = UISearchController(searchResultsController: nil)
   var results: [PeliasMapkitAnnotation]?
