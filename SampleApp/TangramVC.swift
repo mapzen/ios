@@ -13,14 +13,14 @@ class TangramVC:  SampleMapViewController, MapMarkerSelectDelegate {
   private var styleLoaded = false
   private var markerVisible = false
 
-  lazy var testMarkerId : TGMapMarkerId = { [unowned self] in
-    let markerId = self.markerAdd()
-    let _ = self.markerSetStyling(markerId, styling: "{ style: 'points', color: 'white', size: [50px, 50px], collide: false, interactive: true }")
+  lazy var testMarker : TGMarker = { [unowned self] in
+    let marker = TGMarker.init(mapView: self.tgViewController)
+    marker.styling = "{ style: 'points', color: 'white', size: [50px, 50px], collide: false, interactive: true }"
     if let logo = UIImage(named: "mapzen_logo") {
-      let _ = self.markerSetImage(markerId, image: logo)
+      marker.icon = logo
     }
-    let _ = self.markerSetVisible(markerId, visible: false)
-    return markerId
+    marker.visible = false
+    return marker
   }()
 
   lazy var activityIndicator : UIActivityIndicatorView = {
@@ -68,10 +68,9 @@ class TangramVC:  SampleMapViewController, MapMarkerSelectDelegate {
 
   @objc private func toggleTestMarkerVisible() {
     guard styleLoaded else { return }
-    if self.markerSetVisible(testMarkerId, visible: !markerVisible) {
-      markerVisible = !markerVisible
-    }
-    let _ = markerSetPoint(testMarkerId, coordinates: position)
+    testMarker.visible = !markerVisible
+    markerVisible = !markerVisible
+    testMarker.point = position
   }
 
   @objc private func openSettings() {

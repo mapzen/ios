@@ -15,7 +15,7 @@ class TestMapViewController: MapViewController {
   func lastSetPointValue() -> TGGeoPoint? {
     return lastSetPoint
   }
-  func currentLocationGemValue() -> TGMapMarkerId? {
+  func currentLocationGemValue() -> TGMarker? {
     return currentLocationGem
   }
   func shouldShowCurrentLocationValue() -> Bool {
@@ -119,67 +119,6 @@ class MapViewControllerTests: XCTestCase {
     XCTAssertTrue(tgViewController.removedAllMarkers)
   }
 
-  func testMarkerAdd() {
-    let _ = controller.markerAdd()
-    XCTAssertTrue(tgViewController.addedMarker)
-  }
-  
-  func testMarkerSetStyling() {
-    let _ = controller.markerSetStyling(8, styling: "styling")
-    XCTAssertEqual(tgViewController.currMarkerId, 8)
-    XCTAssertEqual(tgViewController.styling, "styling")
-  }
-  
-  func testMarkerSetPoint() {
-    let point = TGGeoPoint(longitude: 70.0, latitude: 40.0)
-    let _ = controller.markerSetPoint(8, coordinates: point)
-    XCTAssertEqual(tgViewController.currMarkerId, 8)
-    XCTAssertEqual(tgViewController.coordinate.longitude, 70.0)
-    XCTAssertEqual(tgViewController.coordinate.latitude, 40.0)
-  }
-  
-  func testMarkerSetPointWithEase() {
-    let point = TGGeoPoint(longitude: 70.0, latitude: 40.0)
-    let _ = controller.markerSetPointEased(8, coordinates: point, duration: 7, easeType: TGEaseType.cubic)
-    XCTAssertEqual(tgViewController.currMarkerId, 8)
-    XCTAssertEqual(tgViewController.coordinate.longitude, 70.0)
-    XCTAssertEqual(tgViewController.coordinate.latitude, 40.0)
-    XCTAssertEqual(tgViewController.duration, 7)
-    XCTAssertEqual(tgViewController.easeType, TGEaseType.cubic)
-  }
-  
-  func testMarkerSetPolyline() {
-    let line = TGGeoPolyline()
-    let _ = controller.markerSetPolyline(1, polyline: line)
-    XCTAssertEqual(tgViewController.currMarkerId, 1)
-    XCTAssertEqual(tgViewController.polyline, line)
-  }
-  
-  func testMarkerSetPolygon() {
-    let polygon = TGGeoPolygon()
-    let _ = controller.markerSetPolygon(1, polygon: polygon)
-    XCTAssertEqual(tgViewController.currMarkerId, 1)
-    XCTAssertEqual(tgViewController.polygon, polygon)
-  }
-  
-  func testMarkerSetVisible() {
-    let _ = controller.markerSetVisible(2, visible: true)
-    XCTAssertEqual(tgViewController.currMarkerId, 2)
-    XCTAssertTrue(tgViewController.markerVisible)
-  }
-  
-  func testMarkerSetImage() {
-    let image = UIImage()
-    let _ = controller.markerSetImage(4, image: image)
-    XCTAssertEqual(tgViewController.currMarkerId, 4)
-    XCTAssertEqual(tgViewController.markerImage, image)
-  }
-  
-  func testMarkerRemove() {
-    let _ = controller.markerRemove(5)
-    XCTAssertEqual(tgViewController.currMarkerId, 5)
-  }
-  
   func testLoadBubbleWrap() {
     try? controller.loadStyle(.bubbleWrap)
     XCTAssertEqual(tgViewController.scenePath, "bubble-wrap-style-more-labels.yaml")
@@ -381,7 +320,7 @@ class MapViewControllerTests: XCTestCase {
     XCTAssertTrue(controller.showCurrentLocation(true))
     XCTAssertNotNil(controller.currentLocationGemValue())
     XCTAssertTrue(controller.shouldShowCurrentLocationValue())
-    XCTAssertTrue(controller.currentLocationGemValue() != 0)
+    XCTAssertTrue(controller.currentLocationGemValue() != nil)
   }
 
   //MARK: - LocationManagerDelegate Tests
@@ -446,7 +385,7 @@ class MapViewControllerTests: XCTestCase {
     annotation.setTarget(target: target, action: #selector(target.annotationClickedNoParams))
 
     try? controller.add([annotation])
-    let markerPickResult = TGMarkerPickResult(coordinates: TGGeoPoint(), identifier: 1)
+    let markerPickResult = TestTGMarkerPickResult.init(marker: controller.currentAnnotations[annotation]!)
     controller.mapView(tgViewController, didSelectMarker: markerPickResult, atScreenPosition: CGPoint())
     XCTAssertTrue(target.annotationClickedNoParam)
     XCTAssertFalse(target.annotationClicked)
@@ -460,7 +399,7 @@ class MapViewControllerTests: XCTestCase {
     annotation.setTarget(target: target, action: #selector(target.annotationClicked(annotation:)))
 
     try? controller.add([annotation])
-    let markerPickResult = TGMarkerPickResult(coordinates: TGGeoPoint(), identifier: 1)
+    let markerPickResult = TestTGMarkerPickResult.init(marker: controller.currentAnnotations[annotation]!)
     controller.mapView(tgViewController, didSelectMarker: markerPickResult, atScreenPosition: CGPoint())
     XCTAssertTrue(target.annotationClicked)
     XCTAssertFalse(target.annotationClickedNoParam)
@@ -649,7 +588,7 @@ class MapViewControllerTests: XCTestCase {
   func testDidSelectFeatureCallsSelectDelegate() {
     let delegate = TestMapSelectDelegate()
     controller.featureSelectDelegate = delegate
-    controller.mapView(tgViewController, didSelectFeature: [AnyHashable : Any](), atScreenPosition: CGPoint())
+    controller.mapView(tgViewController, didSelectFeature: [String : String](), atScreenPosition: CGPoint())
     XCTAssertTrue(delegate.featurePicked)
   }
   
@@ -832,7 +771,7 @@ class TestMapSelectDelegate : MapLabelSelectDelegate, MapMarkerSelectDelegate, M
     markerPicked = true
   }
   
-  func mapController(_ mapView: MapViewController, didSelectFeature feature: [AnyHashable : Any], atScreenPosition position: CGPoint) {
+  func mapController(_ mapView: MapViewController, didSelectFeature feature: [String : String], atScreenPosition position: CGPoint) {
     featurePicked = true
   }
 }

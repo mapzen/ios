@@ -11,6 +11,7 @@
 		7D2FB7691E64E66B00CB82CF /* DictionaryExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D2FB7681E64E66B00CB82CF /* DictionaryExtensionsTests.swift */; };
 		7D503BCC1E77457A00FDDC4F /* SampleMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D503BCB1E77457A00FDDC4F /* SampleMapViewController.swift */; };
 		7D503BCE1E77468B00FDDC4F /* SampleTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D503BCD1E77468B00FDDC4F /* SampleTableViewController.swift */; };
+		7D503BD01E78944300FDDC4F /* TestTGMarkerPickResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D503BCF1E78944300FDDC4F /* TestTGMarkerPickResult.swift */; };
 		7D7847251E6775EA000D56CA /* Dimensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D7847241E6775EA000D56CA /* Dimensions.swift */; };
 		7D7D49931E7708E5006074EB /* TestSessionDataTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D7D49921E7708E5006074EB /* TestSessionDataTask.swift */; };
 		7D7D49951E7709A1006074EB /* TestUrlSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D7D49941E7709A1006074EB /* TestUrlSession.swift */; };
@@ -95,6 +96,7 @@
 		7D2FB7681E64E66B00CB82CF /* DictionaryExtensionsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DictionaryExtensionsTests.swift; sourceTree = "<group>"; };
 		7D503BCB1E77457A00FDDC4F /* SampleMapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SampleMapViewController.swift; sourceTree = "<group>"; };
 		7D503BCD1E77468B00FDDC4F /* SampleTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SampleTableViewController.swift; sourceTree = "<group>"; };
+		7D503BCF1E78944300FDDC4F /* TestTGMarkerPickResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestTGMarkerPickResult.swift; sourceTree = "<group>"; };
 		7D7847241E6775EA000D56CA /* Dimensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Dimensions.swift; sourceTree = "<group>"; };
 		7D7D49921E7708E5006074EB /* TestSessionDataTask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestSessionDataTask.swift; sourceTree = "<group>"; };
 		7D7D49941E7709A1006074EB /* TestUrlSession.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestUrlSession.swift; sourceTree = "<group>"; };
@@ -387,6 +389,7 @@
 				7DC7F0A11E770443009E722B /* MapzenRoutingControllerTests.swift */,
 				7D7D49941E7709A1006074EB /* TestUrlSession.swift */,
 				7D7D49921E7708E5006074EB /* TestSessionDataTask.swift */,
+				7D503BCF1E78944300FDDC4F /* TestTGMarkerPickResult.swift */,
 			);
 			path = "ios-sdkTests";
 			sourceTree = "<group>";
@@ -661,6 +664,7 @@
 				7DC7F09C1E72066B009E722B /* TestMapzenManager.swift in Sources */,
 				7D7D49951E7709A1006074EB /* TestUrlSession.swift in Sources */,
 				7DC7F0A21E770443009E722B /* MapzenRoutingControllerTests.swift in Sources */,
+				7D503BD01E78944300FDDC4F /* TestTGMarkerPickResult.swift in Sources */,
 				DBCBC5BF1E0AE1CF0045B345 /* MapViewControllerTests.swift in Sources */,
 				7D2FB7691E64E66B00CB82CF /* DictionaryExtensionsTests.swift in Sources */,
 				7D7D49931E7708E5006074EB /* TestSessionDataTask.swift in Sources */,
