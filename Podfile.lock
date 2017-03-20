@@ -3,34 +3,28 @@ PODS:
   - Pelias (1.0.0-beta4):
     - Pelias/Core (= 1.0.0-beta4)
   - Pelias/Core (1.0.0-beta4)
-  - Tangram-es (0.5.0)
+  - Tangram-es (0.5.1)
 
 DEPENDENCIES:
   - OnTheRoad (from `https://github.com/mapzen/on-the-road_ios.git`, commit `603fe7a`)
   - Pelias (~> 1.0.0-beta)
-  - Tangram-es (from `https://github.com/tangrams/ios-framework.git`, branch `universal-0.5.1-preview`)
+  - Tangram-es (~> 0.5.1)
 
 EXTERNAL SOURCES:
   OnTheRoad:
     :commit: 603fe7a
     :git: https://github.com/mapzen/on-the-road_ios.git
-  Tangram-es:
-    :branch: universal-0.5.1-preview
-    :git: https://github.com/tangrams/ios-framework.git
 
 CHECKOUT OPTIONS:
   OnTheRoad:
     :commit: 603fe7a
     :git: https://github.com/mapzen/on-the-road_ios.git
-  Tangram-es:
-    :commit: 6b59e0b8eb601cf63cf6abbbbfe1f3136cfc9d3c
-    :git: https://github.com/tangrams/ios-framework.git
 
 SPEC CHECKSUMS:
   OnTheRoad: d8027a9d9c5e4c3ec885ada373aa20d28fdcbe1b
   Pelias: 6bcff7e153cdad93faf07028b6eb124636afdfc7
-  Tangram-es: ee322f2d6f4d9bbf47815bcb9fe5799758db6d8f
+  Tangram-es: 5c558140e072edf59d113fa9d0580c61440a530b
 
-PODFILE CHECKSUM: ba15f2ed7d5e274ecf00decf412c502dba6c5462
+PODFILE CHECKSUM: 16f415eda2ff190a394c5a50e428dbe861ab6258
 
 COCOAPODS: 1.2.0
