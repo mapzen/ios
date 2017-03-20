@@ -15,7 +15,7 @@ class TangramVC:  SampleMapViewController, MapMarkerSelectDelegate {
 
   lazy var testMarker : TGMarker = { [unowned self] in
     let marker = TGMarker.init(mapView: self.tgViewController)
-    marker.styling = "{ style: 'points', color: 'white', size: [50px, 50px], collide: false, interactive: true }"
+    marker.stylingString = "{ style: 'points', color: 'white', size: [50px, 50px], collide: false, interactive: true }"
     if let logo = UIImage(named: "mapzen_logo") {
       marker.icon = logo
     }

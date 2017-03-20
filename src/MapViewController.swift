@@ -668,7 +668,7 @@ open class MapViewController: UIViewController, LocationManagerDelegate {
       let marker = TGMarker.init(mapView: tgViewController)
       currentLocationGem = marker;
       locationManager.requestWhenInUseAuthorization()
-      marker.styling = "{ style: ux-location-gem-overlay, sprite: ux-current-location, size: 36px, collide: false }"
+      marker.stylingString = "{ style: ux-location-gem-overlay, sprite: ux-current-location, size: 36px, collide: false }"
       //Set visibility to false since we have to wait until we have an accurate location
       marker.visible = false
       return true
@@ -708,7 +708,7 @@ open class MapViewController: UIViewController, LocationManagerDelegate {
 //                      userInfo: nil)
 //      }
       newMarker.point = TGGeoPoint(coordinate: annotation.coordinate)
-      newMarker.styling = "{ style: sdk-point-overlay, sprite: ux-search-active, size: [24, 36px], collide: false, interactive: true }"
+      newMarker.stylingString = "{ style: sdk-point-overlay, sprite: ux-search-active, size: [24, 36px], collide: false, interactive: true }"
       currentAnnotations[annotation] = newMarker
     }
   }
@@ -773,7 +773,7 @@ open class MapViewController: UIViewController, LocationManagerDelegate {
       polyLine.add(TGGeoPoint(coordinate: point!))
     }
     let marker = TGMarker.init(mapView: tgViewController)
-    marker.styling = "{ style: ux-route-line-overlay, color: '#06a6d4',  width: [[0,3.5px],[5,5px],[9,7px],[10,6px],[11,6px],[13,8px],[14,9px],[15,10px],[16,11px],[17,12px],[18,10px]], order: 500 }"
+    marker.stylingString = "{ style: ux-route-line-overlay, color: '#06a6d4',  width: [[0,3.5px],[5,5px],[9,7px],[10,6px],[11,6px],[13,8px],[14,9px],[15,10px],[16,11px],[17,12px],[18,10px]], order: 500 }"
     marker.polyline = polyLine
     currentRouteMarker = marker
   }
