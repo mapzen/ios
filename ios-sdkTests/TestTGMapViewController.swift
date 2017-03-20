@@ -12,16 +12,9 @@ import TangramMap
 class TestTGMapViewController: TGMapViewController {
   
   var removedAllMarkers = false
-  var addedMarker = false
-  var currMarkerId: TGMapMarkerId = 0
-  var styling = ""
   var coordinate = TGGeoPoint()
   var duration: Float = 0.0
   var easeType = TGEaseType.cubic
-  var polyline = TGGeoPolyline()
-  var polygon = TGGeoPolygon()
-  var markerVisible = false
-  var markerImage = UIImage()
   var scenePath = ""
   var sceneUpdates: [TGSceneUpdate] = []
   var sceneUpdateComponentPath = ""
@@ -35,60 +28,6 @@ class TestTGMapViewController: TGMapViewController {
   
   override func markerRemoveAll() {
     removedAllMarkers = true
-  }
-  
-  override func markerAdd() -> TGMapMarkerId {
-    addedMarker = true
-    return 1
-  }
-  
-  override func markerSetStyling(_ identifier: TGMapMarkerId, styling: String) -> Bool {
-    self.currMarkerId = identifier
-    self.styling = styling
-    return true
-  }
-  
-  override func markerSetPoint(_ identifier: TGMapMarkerId, coordinates coordinate: TGGeoPoint) -> Bool {
-    self.currMarkerId = identifier
-    self.coordinate = coordinate
-    return true
-  }
-  
-  override func markerSetPointEased(_ identifier: TGMapMarkerId, coordinates coordinate: TGGeoPoint, seconds duration: Float, easeType ease: TGEaseType) -> Bool {
-    self.currMarkerId = identifier
-    self.coordinate = coordinate
-    self.duration = duration
-    self.easeType = ease
-    return true
-  }
-  
-  override func markerSetPolyline(_ identifier: TGMapMarkerId, polyline: TGGeoPolyline) -> Bool {
-    self.currMarkerId = identifier
-    self.polyline = polyline
-    return true
-  }
-  
-  override func markerSetPolygon(_ identifier: TGMapMarkerId, polygon: TGGeoPolygon) -> Bool {
-    self.currMarkerId = identifier
-    self.polygon = polygon
-    return true
-  }
-  
-  override func markerSetVisible(_ identifier: TGMapMarkerId, visible: Bool) -> Bool {
-    self.currMarkerId = identifier
-    self.markerVisible = visible
-    return true
-  }
-  
-  override func markerSetImage(_ identifier: TGMapMarkerId, image: UIImage) -> Bool {
-    self.currMarkerId = identifier
-    self.markerImage = image
-    return true
-  }
-  
-  override func markerRemove(_ marker: TGMapMarkerId) -> Bool {
-    self.currMarkerId = marker
-    return true
   }
   
   override func loadSceneFile(_ path: String) {
