@@ -42,4 +42,11 @@ public class MapzenResponse : NSObject {
   init(_ response: PeliasResponse) {
     peliasResponse = response
   }
+
+  public override func isEqual(_ object: Any?) -> Bool {
+    guard let response = object as? MapzenResponse else { return false }
+    return response.peliasResponse.data == peliasResponse.data &&
+            response.peliasResponse.response == peliasResponse.response &&
+            response.peliasResponse.error == peliasResponse.error
+  }
 }

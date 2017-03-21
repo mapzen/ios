@@ -53,10 +53,6 @@ class MapzenSearchDataConverter {
     }
   }
 
-//  static func searchSourceDataString(_ sourceList: [MzSearchSource]) -> String? {
-//    return SearchSource.dataSourceString(unwrapSearchSource(sourceList))
-//  }
-
   static func unwrapLayerFilters(_ layers: [MzLayerFilter]) -> [LayerFilter] {
     var newLayers: [LayerFilter] = []
     for wrapper in layers {
@@ -118,10 +114,6 @@ class MapzenSearchDataConverter {
       return MzLayerFilter.venue
     }
   }
-
-//  static func layerFilterString(_ layers: [MzLayerFilter]) -> String? {
-//    return LayerFilter.layerString(unwrapLayerFilter(layers))
-//  }
 
   static func wrapPoint(_ point: GeoPoint) -> MzGeoPoint {
     return MzGeoPoint(geoPoint: point)
