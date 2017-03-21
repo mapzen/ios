@@ -12,15 +12,9 @@ import Pelias
 public class MapzenPlaceConfig : NSObject {
   let peliasConfig: PeliasPlaceConfig
 
-  public var urlEndpoint: URL {
+  public var places: [MzPlaceQueryItem] {
     get {
-      return peliasConfig.urlEndpoint
-    }
-  }
-
-  public var queryItems: [String:URLQueryItem] {
-    get {
-      return peliasConfig.queryItems
+      return MapzenSearchDataConverter.wrapQueryItems(peliasConfig.places)
     }
   }
 

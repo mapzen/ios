@@ -144,4 +144,18 @@ class MapzenSearchDataConverter {
     let unwrappedLayer = unwrapLayerFilter(item.layer)
     return PeliasPlaceQueryItem(placeId: item.placeId, dataSource: unwrappedSource, layer: unwrappedLayer)
   }
+
+  static func wrapQueryItems(_ items: [PlaceAPIQueryItem]) -> [MzPlaceQueryItem] {
+    var newItems: [MzPlaceQueryItem] = []
+    for wrapper in items {
+      newItems.append(wrapQueryItem(wrapper))
+    }
+    return newItems
+  }
+
+  static func wrapQueryItem(_ item: PlaceAPIQueryItem) -> MzPlaceQueryItem {
+    let wrappedSource = wrapSearchSource(item.dataSource)
+    let wrappedLayer = wrapLayerFilter(item.layer)
+    return MzPlaceQueryItem(placeId: item.placeId, dataSource: wrappedSource, layer: wrappedLayer)
+  }
 }

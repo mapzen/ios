@@ -18,6 +18,11 @@ public class MzSearchRect: NSObject {
   init(boundaryRect: SearchBoundaryRect) {
     rect = boundaryRect
   }
+
+  public override func isEqual(_ object: Any?) -> Bool {
+    guard let otherRect = object as? MzSearchRect else { return false }
+    return otherRect.rect == rect
+  }
 }
 
 public class MzSearchCircle: NSObject {
@@ -29,16 +34,27 @@ public class MzSearchCircle: NSObject {
   init(boundaryCircle: SearchBoundaryCircle) {
     circle = boundaryCircle
   }
+
+  public override func isEqual(_ object: Any?) -> Bool {
+    guard let otherCircle = object as? MzSearchCircle else { return false }
+    return otherCircle.circle == circle
+  }
 }
 
 public class MzGeoPoint: NSObject {
   let point: GeoPoint
+  
   public init(latitude: Double, longitude: Double) {
     point = GeoPoint(latitude: latitude, longitude: longitude)
   }
 
   init(geoPoint: GeoPoint) {
     point = geoPoint
+  }
+
+  public override func isEqual(_ object: Any?) -> Bool {
+    guard let otherPoint = object as? MzGeoPoint else { return false }
+    return otherPoint.point == point
   }
 }
 
@@ -76,5 +92,12 @@ public class MzPlaceQueryItem: NSObject {
     let unwrappedSource = MapzenSearchDataConverter.unwrapSearchSource(dataSource)
     let unwrappedLayer = MapzenSearchDataConverter.unwrapLayerFilter(layer)
     peliasItem = PeliasPlaceQueryItem(placeId: placeId, dataSource: unwrappedSource, layer: unwrappedLayer)
+  }
+
+  public override func isEqual(_ object: Any?) -> Bool {
+    guard let otherItem = object as? MzPlaceQueryItem else { return false }
+    return otherItem.peliasItem.dataSource == peliasItem.dataSource &&
+    otherItem.peliasItem.layer == peliasItem.layer &&
+    otherItem.placeId == peliasItem.placeId
   }
 }

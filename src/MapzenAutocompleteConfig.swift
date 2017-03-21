@@ -18,26 +18,15 @@ public class MapzenAutocompleteConfig : NSObject {
     }
   }
 
-  public var urlEndpoint: URL {
-    get {
-      return peliasConfig.urlEndpoint
-    }
-  }
-
   public var searchText: String {
     get {
       return peliasConfig.searchText
     }
   }
 
-  public var queryItems: [String:URLQueryItem] {
-    get {
-      return peliasConfig.queryItems
-    }
-  }
-
-  public init(searchText: String, focusPoint: GeoPoint, completionHandler: @escaping (MapzenResponse) -> Void) {
-    peliasConfig = PeliasAutocompleteConfig(searchText: searchText, focusPoint: focusPoint, completionHandler: { (response) in
+  public init(searchText: String, focusPoint: MzGeoPoint, completionHandler: @escaping (MapzenResponse) -> Void) {
+    let unwrappedPoint = MapzenSearchDataConverter.unwrapPoint(focusPoint)
+    peliasConfig = PeliasAutocompleteConfig(searchText: searchText, focusPoint: unwrappedPoint, completionHandler: { (response) in
       let mapzenResponse = MapzenResponse.init(response)
       completionHandler(mapzenResponse)
     })

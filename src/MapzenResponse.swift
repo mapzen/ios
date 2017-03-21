@@ -1,5 +1,5 @@
 //
-//  MapzenSearchOperation.swift
+//  MapzenResponse.swift
 //  ios-sdk
 //
 //  Created by Sarah Lensing on 3/21/17.

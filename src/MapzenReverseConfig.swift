@@ -11,19 +11,7 @@ import Pelias
 
 public class MapzenReverseConfig : NSObject {
 
-  let peliasConfig: PeliasReverseConfig
-
-  public var urlEndpoint: URL {
-    get {
-      return peliasConfig.urlEndpoint
-    }
-  }
-
-  public var queryItems: [String:URLQueryItem] {
-    get {
-      return peliasConfig.queryItems
-    }
-  }
+  var peliasConfig: PeliasReverseConfig
 
   public var point: MzGeoPoint {
     get {
@@ -35,11 +23,17 @@ public class MapzenReverseConfig : NSObject {
     get {
       return peliasConfig.numberOfResults
     }
+    set {
+      peliasConfig.numberOfResults = newValue
+    }
   }
 
   public var boundaryCountry: String? {
     get {
       return peliasConfig.boundaryCountry
+    }
+    set {
+      peliasConfig.boundaryCountry = newValue
     }
   }
 
@@ -48,12 +42,26 @@ public class MapzenReverseConfig : NSObject {
       guard let sources = peliasConfig.dataSources else { return nil }
       return MapzenSearchDataConverter.wrapSearchSources(sources)
     }
+    set {
+      guard let sources = newValue else {
+        peliasConfig.dataSources = nil
+        return
+      }
+      peliasConfig.dataSources =  MapzenSearchDataConverter.unwrapSearchSources(sources)
+    }
   }
 
   public var layers: [MzLayerFilter]? {
     get {
       guard let layers = peliasConfig.layers else { return nil }
       return MapzenSearchDataConverter.wrapLayerFilters(layers)
+    }
+    set {
+      guard let layers = newValue else {
+        peliasConfig.layers = nil
+        return
+      }
+      peliasConfig.layers = MapzenSearchDataConverter.unwrapLayerFilters(layers)
     }
   }
 

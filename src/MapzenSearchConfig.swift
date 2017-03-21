@@ -12,31 +12,12 @@ import Pelias
 open class MapzenSearchConfig: NSObject {
   var peliasConfig: PeliasSearchConfig
 
-  public var urlEndpoint: URL {
-    get {
-      return self.peliasConfig.urlEndpoint
-    }
-    set(url) {
-      self.peliasConfig.urlEndpoint = url
-    }
-  }
-
   public var searchText: String {
     get {
       return peliasConfig.searchText;
     }
     set(text) {
       peliasConfig.searchText = text
-    }
-  }
-
-  //Optional Query Params
-  public var queryItems: [String:URLQueryItem] {
-    get {
-      return peliasConfig.queryItems as [String : URLQueryItem]
-    }
-    set(array) {
-      peliasConfig.queryItems = array as [String : URLQueryItem]
     }
   }
 
@@ -102,7 +83,7 @@ open class MapzenSearchConfig: NSObject {
       return nil
     }
     set {
-      if let sources = dataSources {
+      if let sources = newValue {
         peliasConfig.dataSources = MapzenSearchDataConverter.unwrapSearchSources(sources)
       }
     }
@@ -116,7 +97,7 @@ open class MapzenSearchConfig: NSObject {
       return nil
     }
     set {
-      if let layerArray = layers {
+      if let layerArray = newValue {
         peliasConfig.layers = MapzenSearchDataConverter.unwrapLayerFilters(layerArray)
       }
     }
