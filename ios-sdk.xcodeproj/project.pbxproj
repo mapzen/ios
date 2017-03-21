@@ -26,6 +26,13 @@
 		7D9EBCD51E6E0CA200303E1B /* building-grid.gif in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7D9EBBE21E6DFBAF00303E1B /* building-grid.gif */; };
 		7D9EBCD81E6E0D9B00303E1B /* refill@2x.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7D9EBC171E6DFBAF00303E1B /* refill@2x.png */; };
 		7D9EBCDA1E6E0D9B00303E1B /* walkabout@2x.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7D9EBC351E6DFBAF00303E1B /* walkabout@2x.png */; };
+		7DB181401E81B472001F9B49 /* MapzenAutocompleteConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DB1813A1E81B472001F9B49 /* MapzenAutocompleteConfig.swift */; };
+		7DB181411E81B472001F9B49 /* MapzenPlaceConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DB1813B1E81B472001F9B49 /* MapzenPlaceConfig.swift */; };
+		7DB181421E81B472001F9B49 /* MapzenReverseConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DB1813C1E81B472001F9B49 /* MapzenReverseConfig.swift */; };
+		7DB181431E81B472001F9B49 /* MapzenSearchConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DB1813D1E81B472001F9B49 /* MapzenSearchConfig.swift */; };
+		7DB181441E81B472001F9B49 /* MapzenSearchDataConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DB1813E1E81B472001F9B49 /* MapzenSearchDataConverter.swift */; };
+		7DB181451E81B472001F9B49 /* MapzenSearchDataObjects.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DB1813F1E81B472001F9B49 /* MapzenSearchDataObjects.swift */; };
+		7DB181491E81B681001F9B49 /* MapzenSearchOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DB181481E81B681001F9B49 /* MapzenSearchOperation.swift */; };
 		7DC7F0941E70C26B009E722B /* TestLocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC7F0931E70C26B009E722B /* TestLocationManager.swift */; };
 		7DC7F0981E71E138009E722B /* TestAnnotationTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC7F0971E71E138009E722B /* TestAnnotationTarget.swift */; };
 		7DC7F09A1E7204BE009E722B /* MapzenManagerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC7F0991E7204BE009E722B /* MapzenManagerExtensions.swift */; };
@@ -118,6 +125,13 @@
 		7D9EBC421E6DFBAF00303E1B /* walkabout-style-more-labels.yaml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "walkabout-style-more-labels.yaml"; sourceTree = "<group>"; };
 		7D9EBC511E6DFBAF00303E1B /* refill@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "refill@2x.png"; sourceTree = "<group>"; };
 		7D9EBC5C1E6DFBAF00303E1B /* zinc-style-more-labels.yaml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "zinc-style-more-labels.yaml"; sourceTree = "<group>"; };
+		7DB1813A1E81B472001F9B49 /* MapzenAutocompleteConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapzenAutocompleteConfig.swift; sourceTree = "<group>"; };
+		7DB1813B1E81B472001F9B49 /* MapzenPlaceConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapzenPlaceConfig.swift; sourceTree = "<group>"; };
+		7DB1813C1E81B472001F9B49 /* MapzenReverseConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapzenReverseConfig.swift; sourceTree = "<group>"; };
+		7DB1813D1E81B472001F9B49 /* MapzenSearchConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapzenSearchConfig.swift; sourceTree = "<group>"; };
+		7DB1813E1E81B472001F9B49 /* MapzenSearchDataConverter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapzenSearchDataConverter.swift; sourceTree = "<group>"; };
+		7DB1813F1E81B472001F9B49 /* MapzenSearchDataObjects.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapzenSearchDataObjects.swift; sourceTree = "<group>"; };
+		7DB181481E81B681001F9B49 /* MapzenSearchOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapzenSearchOperation.swift; sourceTree = "<group>"; };
 		7DC7F0931E70C26B009E722B /* TestLocationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestLocationManager.swift; sourceTree = "<group>"; };
 		7DC7F0971E71E138009E722B /* TestAnnotationTarget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestAnnotationTarget.swift; sourceTree = "<group>"; };
 		7DC7F0991E7204BE009E722B /* MapzenManagerExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapzenManagerExtensions.swift; sourceTree = "<group>"; };
@@ -397,6 +411,12 @@
 		DBC84EA51C985B6D00EE80D8 /* src */ = {
 			isa = PBXGroup;
 			children = (
+				7DB1813A1E81B472001F9B49 /* MapzenAutocompleteConfig.swift */,
+				7DB1813B1E81B472001F9B49 /* MapzenPlaceConfig.swift */,
+				7DB1813C1E81B472001F9B49 /* MapzenReverseConfig.swift */,
+				7DB1813D1E81B472001F9B49 /* MapzenSearchConfig.swift */,
+				7DB1813E1E81B472001F9B49 /* MapzenSearchDataConverter.swift */,
+				7DB1813F1E81B472001F9B49 /* MapzenSearchDataObjects.swift */,
 				7D7847231E6775EA000D56CA /* dimensions */,
 				DBC869911D3663C700DDC4FE /* PeliasMapkitExtensions.swift */,
 				DB70FEA81DE3425800249509 /* MapViewController.swift */,
@@ -407,6 +427,7 @@
 				7D2FB7661E6103D500CB82CF /* DictionaryExtensions.swift */,
 				7D7DAE201E60EEA300FFCA6F /* ApplicationExtensions.swift */,
 				7DC7F0991E7204BE009E722B /* MapzenManagerExtensions.swift */,
+				7DB181481E81B681001F9B49 /* MapzenSearchOperation.swift */,
 			);
 			path = src;
 			sourceTree = "<group>";
@@ -629,26 +650,33 @@
 			buildActionMask = 2147483647;
 			files = (
 				DBFB759F1E2046D100CF6173 /* TangramExtensions.swift in Sources */,
+				7DB181421E81B472001F9B49 /* MapzenReverseConfig.swift in Sources */,
+				7DB181491E81B681001F9B49 /* MapzenSearchOperation.swift in Sources */,
 				DBFB759D1E20345500CF6173 /* SearchPinsViewController.swift in Sources */,
 				7D7DAE211E60EEA300FFCA6F /* ApplicationExtensions.swift in Sources */,
 				7D7847251E6775EA000D56CA /* Dimensions.swift in Sources */,
 				DB188EEA1E2846600054DEFD /* MapzenManager.swift in Sources */,
 				DBF441AE1D351B0A007DEE95 /* TangramVC.swift in Sources */,
+				7DB181431E81B472001F9B49 /* MapzenSearchConfig.swift in Sources */,
 				DB22E59E1DA473CA004264E0 /* RouteDirectionCell.swift in Sources */,
 				DB5B31511DE4A173005EB816 /* LocationManager.swift in Sources */,
 				DBC869921D3663C700DDC4FE /* PeliasMapkitExtensions.swift in Sources */,
 				DB188EEE1E290D310054DEFD /* MapzenRoutingController.swift in Sources */,
 				DB70FEA91DE3425800249509 /* MapViewController.swift in Sources */,
+				7DB181411E81B472001F9B49 /* MapzenPlaceConfig.swift in Sources */,
 				7D503BCC1E77457A00FDDC4F /* SampleMapViewController.swift in Sources */,
+				7DB181451E81B472001F9B49 /* MapzenSearchDataObjects.swift in Sources */,
 				DB22E59A1DA45D73004264E0 /* RoutingSearchVC.swift in Sources */,
 				DBBF368B1D64DA6A0069D769 /* RoutingViewController.swift in Sources */,
 				7DC7F09A1E7204BE009E722B /* MapzenManagerExtensions.swift in Sources */,
 				7D2FB7671E6103D500CB82CF /* DictionaryExtensions.swift in Sources */,
+				7DB181401E81B472001F9B49 /* MapzenAutocompleteConfig.swift in Sources */,
 				DB188EF01E2C44F40054DEFD /* RouteDisplayViewController.swift in Sources */,
 				7D503BCE1E77468B00FDDC4F /* SampleTableViewController.swift in Sources */,
 				DB22E59C1DA46640004264E0 /* RoutingResultTableVC.swift in Sources */,
 				DBC869901D3662DD00DDC4FE /* AutocompleteTableVC.swift in Sources */,
 				DB7A33D81C8F8E8B009CC743 /* AppDelegate.swift in Sources */,
+				7DB181441E81B472001F9B49 /* MapzenSearchDataConverter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
