@@ -33,5 +33,5 @@ deployment:
     commands: 
       - gym --use_legacy_build_api --scheme "ios-sdk" --workspace "ios-sdk.xcworkspace" --output_directory $CIRCLE_ARTIFACTS
       - scripts/deploy.sh
-      - pip install 'Circle-Beacon == 2.0.0'
-      - alert-circle mapzen documentation master $CIRCLE_TOKEN
+      - sudo pip install 'Circle-Tickler == 1.0.1'
+      - tickle-circle mapzen documentation master $CIRCLE_TOKEN
