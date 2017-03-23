@@ -1,5 +1,5 @@
 //
-//  MapzenResponseTests.swift
+//  SearchResponseTests.swift
 //  ios-sdk
 //
 //  Created by Sarah Lensing on 3/21/17.
@@ -10,14 +10,14 @@ import XCTest
 @testable import ios_sdk
 import Pelias
 
-class MapzenResponseTests: XCTestCase {
+class SearchResponseTests: XCTestCase {
   let data = Data()
   let urlResponse = URLResponse()
   let error = NSError(domain:"Test", code: 1, userInfo: nil)
-  var response: MapzenResponse?
+  var response: SearchResponse?
 
   override func setUp() {
-     response = MapzenResponse(PeliasResponse(data: data, response: urlResponse, error: error))
+     response = SearchResponse(PeliasResponse(data: data, response: urlResponse, error: error))
   }
 
   func testData() {
@@ -37,7 +37,7 @@ class MapzenResponseTests: XCTestCase {
   }
 
   func testEquals() {
-    let otherResponse = MapzenResponse(PeliasResponse(data: Data(), response: urlResponse, error: NSError(domain:"Test", code: 1, userInfo: nil)))
+    let otherResponse = SearchResponse(PeliasResponse(data: Data(), response: urlResponse, error: NSError(domain:"Test", code: 1, userInfo: nil)))
     XCTAssertEqual(response, otherResponse)
   }
 }

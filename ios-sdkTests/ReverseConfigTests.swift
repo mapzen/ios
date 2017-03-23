@@ -1,5 +1,5 @@
 //
-//  MapzenReverseConfigTests.swift
+//  ReverseConfigTests.swift
 //  ios-sdk
 //
 //  Created by Sarah Lensing on 3/21/17.
@@ -9,12 +9,12 @@
 import XCTest
 @testable import ios_sdk
 
-class MapzenReverseConfigTests: XCTestCase {
+class ReverseConfigTests: XCTestCase {
 
-  var config: MapzenReverseConfig = MapzenReverseConfig.init(point: MzGeoPoint.init(latitude: 70.0, longitude: 40.0), completionHandler: { (response) in })
+  var config: ReverseConfig = ReverseConfig.init(point: GeoPoint.init(latitude: 70.0, longitude: 40.0), completionHandler: { (response) in })
 
   func testPointIsCorrect() {
-    XCTAssertEqual(MzGeoPoint(latitude: 70.0, longitude: 40.0), config.point)
+    XCTAssertEqual(GeoPoint(latitude: 70.0, longitude: 40.0), config.point)
   }
 
   func testNumOfResults() {

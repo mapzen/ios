@@ -1,5 +1,5 @@
 //
-//  MapzenSearchConfigTests.swift
+//  SearchConfigTests.swift
 //  ios-sdk
 //
 //  Created by Sarah Lensing on 3/21/17.
@@ -9,9 +9,9 @@
 import XCTest
 @testable import ios_sdk
 
-class MapzenSearchConfigTests: XCTestCase {
+class SearchConfigTests: XCTestCase {
 
-  var config: MapzenSearchConfig = MapzenSearchConfig.init(searchText: "test", completionHandler: { (response) in })
+  var config: SearchConfig = SearchConfig.init(searchText: "test", completionHandler: { (response) in })
 
   func testSearchTextIsCorrect() {
     XCTAssertEqual("test", config.searchText)
@@ -28,19 +28,19 @@ class MapzenSearchConfigTests: XCTestCase {
   }
 
   func testBoundaryRect() {
-    let rect = MzSearchRect(minLatLong: MzGeoPoint(latitude: 70.0, longitude: 40.0), maxLatLong: MzGeoPoint(latitude: 75.0, longitude: 40.0))
+    let rect = SearchRect(minLatLong: GeoPoint(latitude: 70.0, longitude: 40.0), maxLatLong: GeoPoint(latitude: 75.0, longitude: 40.0))
     config.boundaryRect = rect
     XCTAssertEqual(rect, config.boundaryRect)
   }
 
   func testBoundaryCircle() {
-    let circle = MzSearchCircle(center: MzGeoPoint(latitude: 70.0, longitude: 40.0), radius: 10)
+    let circle = SearchCircle(center: GeoPoint(latitude: 70.0, longitude: 40.0), radius: 10)
     config.boundaryCircle = circle
     XCTAssertEqual(circle, config.boundaryCircle)
   }
 
   func testFocusPoint() {
-    let point = MzGeoPoint(latitude: 70.0, longitude: 40.0)
+    let point = GeoPoint(latitude: 70.0, longitude: 40.0)
     config.focusPoint = point
     XCTAssertEqual(point, config.focusPoint)
   }

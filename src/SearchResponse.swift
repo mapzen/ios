@@ -1,5 +1,5 @@
 //
-//  MapzenResponse.swift
+//  SearchResponse.swift
 //  ios-sdk
 //
 //  Created by Sarah Lensing on 3/21/17.
@@ -9,7 +9,7 @@
 import Foundation
 import Pelias
 
-public class MapzenResponse : NSObject {
+public class SearchResponse : NSObject {
   let peliasResponse: PeliasResponse
 
   //TODO
@@ -44,7 +44,7 @@ public class MapzenResponse : NSObject {
   }
 
   public override func isEqual(_ object: Any?) -> Bool {
-    guard let response = object as? MapzenResponse else { return false }
+    guard let response = object as? SearchResponse else { return false }
     return response.peliasResponse.data == peliasResponse.data &&
             response.peliasResponse.response == peliasResponse.response &&
             response.peliasResponse.error == peliasResponse.error

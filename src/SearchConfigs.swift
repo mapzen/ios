@@ -9,12 +9,12 @@
 import Foundation
 import Pelias
 
-public class MapzenAutocompleteConfig : NSObject {
+public class AutocompleteConfig : NSObject {
   let peliasConfig : PeliasAutocompleteConfig
 
-  public var focusPoint: MzGeoPoint {
+  public var focusPoint: GeoPoint {
     get {
-      return MapzenSearchDataConverter.wrapPoint(peliasConfig.focusPoint)
+      return SearchDataConverter.wrapPoint(peliasConfig.focusPoint)
     }
   }
 
@@ -24,40 +24,40 @@ public class MapzenAutocompleteConfig : NSObject {
     }
   }
 
-  public init(searchText: String, focusPoint: MzGeoPoint, completionHandler: @escaping (MapzenResponse) -> Void) {
-    let unwrappedPoint = MapzenSearchDataConverter.unwrapPoint(focusPoint)
+  public init(searchText: String, focusPoint: GeoPoint, completionHandler: @escaping (SearchResponse) -> Void) {
+    let unwrappedPoint = SearchDataConverter.unwrapPoint(focusPoint)
     peliasConfig = PeliasAutocompleteConfig(searchText: searchText, focusPoint: unwrappedPoint, completionHandler: { (response) in
-      let mapzenResponse = MapzenResponse.init(response)
+      let mapzenResponse = SearchResponse.init(response)
       completionHandler(mapzenResponse)
     })
   }
 }
 
-public class MapzenPlaceConfig : NSObject {
+public class PlaceConfig : NSObject {
   let peliasConfig: PeliasPlaceConfig
 
-  public var places: [MzPlaceQueryItem] {
+  public var places: [PlaceQueryItem] {
     get {
-      return MapzenSearchDataConverter.wrapQueryItems(peliasConfig.places)
+      return SearchDataConverter.wrapQueryItems(peliasConfig.places)
     }
   }
 
-  public init(places: [MzPlaceQueryItem], completionHandler: @escaping (MapzenResponse) -> Void) {
-    let unwrappedPlaces = MapzenSearchDataConverter.unwrapQueryItems(places)
+  public init(places: [PlaceQueryItem], completionHandler: @escaping (SearchResponse) -> Void) {
+    let unwrappedPlaces = SearchDataConverter.unwrapQueryItems(places)
     peliasConfig = PeliasPlaceConfig(places: unwrappedPlaces, completionHandler: { (response) in
-      let mapzenResponse = MapzenResponse.init(response)
+      let mapzenResponse = SearchResponse.init(response)
       completionHandler(mapzenResponse)
     })
   }
 }
 
-public class MapzenReverseConfig : NSObject {
+public class ReverseConfig : NSObject {
 
   var peliasConfig: PeliasReverseConfig
 
-  public var point: MzGeoPoint {
+  public var point: GeoPoint {
     get {
-      return MapzenSearchDataConverter.wrapPoint(peliasConfig.point)
+      return SearchDataConverter.wrapPoint(peliasConfig.point)
     }
   }
 
@@ -79,44 +79,44 @@ public class MapzenReverseConfig : NSObject {
     }
   }
 
-  public var dataSources: [MzSearchSource]? {
+  public var dataSources: [SearchSource]? {
     get {
       guard let sources = peliasConfig.dataSources else { return nil }
-      return MapzenSearchDataConverter.wrapSearchSources(sources)
+      return SearchDataConverter.wrapSearchSources(sources)
     }
     set {
       guard let sources = newValue else {
         peliasConfig.dataSources = nil
         return
       }
-      peliasConfig.dataSources =  MapzenSearchDataConverter.unwrapSearchSources(sources)
+      peliasConfig.dataSources =  SearchDataConverter.unwrapSearchSources(sources)
     }
   }
 
-  public var layers: [MzLayerFilter]? {
+  public var layers: [LayerFilter]? {
     get {
       guard let layers = peliasConfig.layers else { return nil }
-      return MapzenSearchDataConverter.wrapLayerFilters(layers)
+      return SearchDataConverter.wrapLayerFilters(layers)
     }
     set {
       guard let layers = newValue else {
         peliasConfig.layers = nil
         return
       }
-      peliasConfig.layers = MapzenSearchDataConverter.unwrapLayerFilters(layers)
+      peliasConfig.layers = SearchDataConverter.unwrapLayerFilters(layers)
     }
   }
 
-  public init(point: MzGeoPoint, completionHandler: @escaping (MapzenResponse) -> Void) {
-    let unwrappedPoint = MapzenSearchDataConverter.unwrapPoint(point)
+  public init(point: GeoPoint, completionHandler: @escaping (SearchResponse) -> Void) {
+    let unwrappedPoint = SearchDataConverter.unwrapPoint(point)
     peliasConfig = PeliasReverseConfig(point: unwrappedPoint, completionHandler: { (peliasResponse) -> Void in
-      let mapzenResponse = MapzenResponse.init(peliasResponse)
+      let mapzenResponse = SearchResponse.init(peliasResponse)
       completionHandler(mapzenResponse)
     })
   }
 }
 
-open class MapzenSearchConfig: NSObject {
+open class SearchConfig: NSObject {
   var peliasConfig: PeliasSearchConfig
 
   public var searchText: String {
@@ -146,10 +146,10 @@ open class MapzenSearchConfig: NSObject {
     }
   }
 
-  public var boundaryRect: MzSearchRect? {
+  public var boundaryRect: SearchRect? {
     get {
       if let rect = peliasConfig.boundaryRect{
-        return MzSearchRect(boundaryRect: rect)
+        return SearchRect(boundaryRect: rect)
       }
       return nil
     }
@@ -158,10 +158,10 @@ open class MapzenSearchConfig: NSObject {
     }
   }
 
-  public var boundaryCircle: MzSearchCircle? {
+  public var boundaryCircle: SearchCircle? {
     get {
       if let circle = peliasConfig.boundaryCircle {
-        return MzSearchCircle(boundaryCircle: circle)
+        return SearchCircle(boundaryCircle: circle)
       }
       return nil
     }
@@ -170,10 +170,10 @@ open class MapzenSearchConfig: NSObject {
     }
   }
 
-  public var focusPoint: MzGeoPoint? {
+  public var focusPoint: GeoPoint? {
     get {
       if let point = peliasConfig.focusPoint {
-        return MzGeoPoint(geoPoint: point)
+        return GeoPoint(geoPoint: point)
       }
       return nil
     }
@@ -182,37 +182,37 @@ open class MapzenSearchConfig: NSObject {
     }
   }
 
-  public var dataSources: [MzSearchSource]? {
+  public var dataSources: [SearchSource]? {
     get {
       if let sources = peliasConfig.dataSources {
-        return MapzenSearchDataConverter.wrapSearchSources(sources)
+        return SearchDataConverter.wrapSearchSources(sources)
       }
       return nil
     }
     set {
       if let sources = newValue {
-        peliasConfig.dataSources = MapzenSearchDataConverter.unwrapSearchSources(sources)
+        peliasConfig.dataSources = SearchDataConverter.unwrapSearchSources(sources)
       }
     }
   }
 
-  public var layers: [MzLayerFilter]? {
+  public var layers: [LayerFilter]? {
     get {
       if let layerArray = peliasConfig.layers {
-        return MapzenSearchDataConverter.wrapLayerFilters(layerArray)
+        return SearchDataConverter.wrapLayerFilters(layerArray)
       }
       return nil
     }
     set {
       if let layerArray = newValue {
-        peliasConfig.layers = MapzenSearchDataConverter.unwrapLayerFilters(layerArray)
+        peliasConfig.layers = SearchDataConverter.unwrapLayerFilters(layerArray)
       }
     }
   }
 
-  public init(searchText: String, completionHandler: @escaping (MapzenResponse) -> Void) {
+  public init(searchText: String, completionHandler: @escaping (SearchResponse) -> Void) {
     peliasConfig = PeliasSearchConfig(searchText: searchText, completionHandler: { (peliasResponse) -> Void in
-      let mapzenResponse = MapzenResponse.init(peliasResponse)
+      let mapzenResponse = SearchResponse.init(peliasResponse)
       completionHandler(mapzenResponse)
     })
   }
