@@ -9,6 +9,7 @@
 import Foundation
 import Pelias
 
+@objc(MZSearchRect)
 public class SearchRect: NSObject {
   let rect: SearchBoundaryRect
   public init(minLatLong: GeoPoint, maxLatLong: GeoPoint) {
@@ -25,6 +26,7 @@ public class SearchRect: NSObject {
   }
 }
 
+@objc(MZSearchCircle)
 public class SearchCircle: NSObject {
   let circle:  SearchBoundaryCircle
   public init(center: GeoPoint, radius: Double) {
@@ -41,6 +43,7 @@ public class SearchCircle: NSObject {
   }
 }
 
+@objc(MZGeoPoint)
 public class GeoPoint: NSObject {
   let point: Pelias.GeoPoint
   
@@ -58,14 +61,17 @@ public class GeoPoint: NSObject {
   }
 }
 
+@objc(MZSearchSource)
 public enum SearchSource: Int {
   case openStreetMap = 1, openAddresses, quattroshapes, geoNames
 }
 
+@objc(MZLayerFilter)
 public enum LayerFilter: Int {
   case venue = 1, address, country, region, county, locality, localadmin, neighbourhood, coarse
 }
 
+@objc(MZPlaceQueryItem)
 public class PlaceQueryItem: NSObject {
 
   let peliasItem: PeliasPlaceQueryItem

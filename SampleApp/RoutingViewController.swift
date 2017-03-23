@@ -112,7 +112,7 @@ class RoutingViewController: UIViewController, RoutingSearchDelegate {
   }
 
   private func requestRoute() {
-    guard let routingController = try? MapzenRoutingController.controller() else { return }
+    guard let routingController = try? RoutingController.controller() else { return }
     routingController.updateLocale(routingLocale)
 
     guard let currentLocation = LocationManager.sharedManager.currentLocation, let destination = destination else { return }

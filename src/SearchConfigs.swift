@@ -9,6 +9,7 @@
 import Foundation
 import Pelias
 
+@objc(MZAutocompleteConfig)
 public class AutocompleteConfig : NSObject {
   let peliasConfig : PeliasAutocompleteConfig
 
@@ -33,6 +34,7 @@ public class AutocompleteConfig : NSObject {
   }
 }
 
+@objc(MZPlaceConfig)
 public class PlaceConfig : NSObject {
   let peliasConfig: PeliasPlaceConfig
 
@@ -51,6 +53,7 @@ public class PlaceConfig : NSObject {
   }
 }
 
+@objc(MZReverseConfig)
 public class ReverseConfig : NSObject {
 
   var peliasConfig: PeliasReverseConfig
@@ -116,6 +119,7 @@ public class ReverseConfig : NSObject {
   }
 }
 
+@objc(MZSearchConfig)
 open class SearchConfig: NSObject {
   var peliasConfig: PeliasSearchConfig
 

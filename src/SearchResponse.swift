@@ -9,6 +9,7 @@
 import Foundation
 import Pelias
 
+@objc(MZSearchResponse)
 public class SearchResponse : NSObject {
   let peliasResponse: PeliasResponse
 

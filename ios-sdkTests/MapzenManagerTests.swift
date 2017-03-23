@@ -45,7 +45,7 @@ class MapzenManagerTests: XCTestCase {
     MapzenManager.sharedManager.apiKey = nil
 
     //Tests
-    XCTAssertThrowsError(try MapzenRoutingController.controller()) { (error) -> Void in
+    XCTAssertThrowsError(try RoutingController.controller()) { (error) -> Void in
       let error = error as NSError
       XCTAssertTrue(error.code == MZError.apiKeyNotSet.rawValue)
     }
@@ -57,7 +57,7 @@ class MapzenManagerTests: XCTestCase {
 
     //Tests
     do {
-      let _ = try MapzenRoutingController.controller()
+      let _ = try RoutingController.controller()
     } catch {
       XCTFail()
     }

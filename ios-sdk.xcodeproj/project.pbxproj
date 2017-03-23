@@ -38,13 +38,13 @@
 		7DC7F0981E71E138009E722B /* TestAnnotationTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC7F0971E71E138009E722B /* TestAnnotationTarget.swift */; };
 		7DC7F09A1E7204BE009E722B /* MapzenManagerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC7F0991E7204BE009E722B /* MapzenManagerExtensions.swift */; };
 		7DC7F09C1E72066B009E722B /* TestMapzenManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC7F09B1E72066B009E722B /* TestMapzenManager.swift */; };
-		7DC7F0A21E770443009E722B /* MapzenRoutingControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC7F0A11E770443009E722B /* MapzenRoutingControllerTests.swift */; };
+		7DC7F0A21E770443009E722B /* RoutingControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC7F0A11E770443009E722B /* RoutingControllerTests.swift */; };
 		7DF0AA2E1E5520ED00B0406E /* TestTGMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DF0AA2D1E5520ED00B0406E /* TestTGMapViewController.swift */; };
 		AC586709D7E7D4C22AA9474D /* Pods_ios_sdk.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 99B3EC60450343448FA4E699 /* Pods_ios_sdk.framework */; };
 		C8F52AC1BCE46BB17E1CE0A5 /* Pods_ios_sdkTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A3EA87256F2EA6D0C43260A /* Pods_ios_sdkTests.framework */; };
 		DB188EEA1E2846600054DEFD /* MapzenManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB188EE91E2846600054DEFD /* MapzenManager.swift */; };
 		DB188EEC1E28492A0054DEFD /* MapzenManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB188EEB1E28492A0054DEFD /* MapzenManagerTests.swift */; };
-		DB188EEE1E290D310054DEFD /* MapzenRoutingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB188EED1E290D310054DEFD /* MapzenRoutingController.swift */; };
+		DB188EEE1E290D310054DEFD /* RoutingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB188EED1E290D310054DEFD /* RoutingController.swift */; };
 		DB188EF01E2C44F40054DEFD /* RouteDisplayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB188EEF1E2C44F40054DEFD /* RouteDisplayViewController.swift */; };
 		DB22E59A1DA45D73004264E0 /* RoutingSearchVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB22E5991DA45D73004264E0 /* RoutingSearchVC.swift */; };
 		DB22E59C1DA46640004264E0 /* RoutingResultTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB22E59B1DA46640004264E0 /* RoutingResultTableVC.swift */; };
@@ -138,7 +138,7 @@
 		7DC7F0971E71E138009E722B /* TestAnnotationTarget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestAnnotationTarget.swift; sourceTree = "<group>"; };
 		7DC7F0991E7204BE009E722B /* MapzenManagerExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapzenManagerExtensions.swift; sourceTree = "<group>"; };
 		7DC7F09B1E72066B009E722B /* TestMapzenManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestMapzenManager.swift; sourceTree = "<group>"; };
-		7DC7F0A11E770443009E722B /* MapzenRoutingControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapzenRoutingControllerTests.swift; sourceTree = "<group>"; };
+		7DC7F0A11E770443009E722B /* RoutingControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoutingControllerTests.swift; sourceTree = "<group>"; };
 		7DF0AA2D1E5520ED00B0406E /* TestTGMapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestTGMapViewController.swift; sourceTree = "<group>"; };
 		92C35E8790FB3255237B1E77 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		99B3EC60450343448FA4E699 /* Pods_ios_sdk.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ios_sdk.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -146,7 +146,7 @@
 		B96DEBA552AA3AAEA9CDF6F4 /* Pods-ios-sdk.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ios-sdk.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ios-sdk/Pods-ios-sdk.debug.xcconfig"; sourceTree = "<group>"; };
 		DB188EE91E2846600054DEFD /* MapzenManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapzenManager.swift; sourceTree = "<group>"; };
 		DB188EEB1E28492A0054DEFD /* MapzenManagerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapzenManagerTests.swift; sourceTree = "<group>"; };
-		DB188EED1E290D310054DEFD /* MapzenRoutingController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapzenRoutingController.swift; sourceTree = "<group>"; };
+		DB188EED1E290D310054DEFD /* RoutingController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoutingController.swift; sourceTree = "<group>"; };
 		DB188EEF1E2C44F40054DEFD /* RouteDisplayViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RouteDisplayViewController.swift; sourceTree = "<group>"; };
 		DB22E5991DA45D73004264E0 /* RoutingSearchVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoutingSearchVC.swift; sourceTree = "<group>"; };
 		DB22E59B1DA46640004264E0 /* RoutingResultTableVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoutingResultTableVC.swift; sourceTree = "<group>"; };
@@ -402,7 +402,7 @@
 				7DC7F0931E70C26B009E722B /* TestLocationManager.swift */,
 				7DC7F09B1E72066B009E722B /* TestMapzenManager.swift */,
 				7DC7F0971E71E138009E722B /* TestAnnotationTarget.swift */,
-				7DC7F0A11E770443009E722B /* MapzenRoutingControllerTests.swift */,
+				7DC7F0A11E770443009E722B /* RoutingControllerTests.swift */,
 				7D7D49941E7709A1006074EB /* TestUrlSession.swift */,
 				7D7D49921E7708E5006074EB /* TestSessionDataTask.swift */,
 				7D503BCF1E78944300FDDC4F /* TestTGMarkerPickResult.swift */,
@@ -425,7 +425,7 @@
 				DB5B31501DE4A173005EB816 /* LocationManager.swift */,
 				DBFB759E1E2046D100CF6173 /* TangramExtensions.swift */,
 				DB188EE91E2846600054DEFD /* MapzenManager.swift */,
-				DB188EED1E290D310054DEFD /* MapzenRoutingController.swift */,
+				DB188EED1E290D310054DEFD /* RoutingController.swift */,
 				7D2FB7661E6103D500CB82CF /* DictionaryExtensions.swift */,
 				7D7DAE201E60EEA300FFCA6F /* ApplicationExtensions.swift */,
 				7DC7F0991E7204BE009E722B /* MapzenManagerExtensions.swift */,
@@ -662,7 +662,7 @@
 				DB22E59E1DA473CA004264E0 /* RouteDirectionCell.swift in Sources */,
 				DB5B31511DE4A173005EB816 /* LocationManager.swift in Sources */,
 				DBC869921D3663C700DDC4FE /* PeliasMapkitExtensions.swift in Sources */,
-				DB188EEE1E290D310054DEFD /* MapzenRoutingController.swift in Sources */,
+				DB188EEE1E290D310054DEFD /* RoutingController.swift in Sources */,
 				DB70FEA91DE3425800249509 /* MapViewController.swift in Sources */,
 				7D503BCC1E77457A00FDDC4F /* SampleMapViewController.swift in Sources */,
 				7DB181451E81B472001F9B49 /* SearchDataObjects.swift in Sources */,
@@ -694,7 +694,7 @@
 				DB188EEC1E28492A0054DEFD /* MapzenManagerTests.swift in Sources */,
 				7DC7F09C1E72066B009E722B /* TestMapzenManager.swift in Sources */,
 				7D7D49951E7709A1006074EB /* TestUrlSession.swift in Sources */,
-				7DC7F0A21E770443009E722B /* MapzenRoutingControllerTests.swift in Sources */,
+				7DC7F0A21E770443009E722B /* RoutingControllerTests.swift in Sources */,
 				7D503BD01E78944300FDDC4F /* TestTGMarkerPickResult.swift in Sources */,
 				7DB181531E81B73A001F9B49 /* SearchDataConverterTests.swift in Sources */,
 				DBCBC5BF1E0AE1CF0045B345 /* MapViewControllerTests.swift in Sources */,

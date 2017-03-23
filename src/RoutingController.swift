@@ -1,5 +1,5 @@
 //
-//  MapzenRoutingController.swift
+//  RoutingController.swift
 //  ios-sdk
 //
 //  Created by Matt Smollinger on 1/13/17.
@@ -10,10 +10,11 @@ import UIKit
 import OnTheRoad
 
 /**
- `MapzenRoutingController` is a subclass of On The Road's routing controller and is the main access point in the SDK for querying for routes.
+ `RoutingController` is a subclass of On The Road's routing controller and is the main access point in the SDK for querying for routes.
  - Note: The routing controller provides API key management and as such is expected to be retrieved via the `controller()` function so everything gets setup correctly.
  */
-open class MapzenRoutingController: OTRRoutingController {
+@objc(MZRoutingController)
+open class RoutingController: OTRRoutingController {
 
   private static let kApiKey = "api_key"
   private static let kLanguageKey = "language"
@@ -29,21 +30,21 @@ open class MapzenRoutingController: OTRRoutingController {
   }
 
   /// Static function that vends a properly configured routing controller.
-  open static func controller() throws -> MapzenRoutingController {
+  open static func controller() throws -> RoutingController {
     let session = URLSession.init(configuration: URLSessionConfiguration.default)
-    return try MapzenRoutingController.controller(sessionManager: session)
+    return try RoutingController.controller(sessionManager: session)
   }
 
   /** Static function that vends a properly configured routing controller given a session manager. Useful for testing
    - parameter sessionManager : URLSession object to use for requests
   */
-  static func controller(sessionManager : URLSession) throws -> MapzenRoutingController {
+  static func controller(sessionManager : URLSession) throws -> RoutingController {
     guard let apiKey = MapzenManager.sharedManager.apiKey else {
       throw NSError(domain: MapViewController.MapzenGeneralErrorDomain,
                     code: MZError.apiKeyNotSet.rawValue,
                     userInfo: nil)
     }
-    let controller = MapzenRoutingController.init(sessionManager: sessionManager)
+    let controller = RoutingController.init(sessionManager: sessionManager)
     controller.urlQueryComponents.add(URLQueryItem(name: kApiKey, value: apiKey))
     return controller
   }
@@ -62,12 +63,12 @@ open class MapzenRoutingController: OTRRoutingController {
       return super.requestRoute(withLocations: locations, costingModel: costing, costingOption: costingOptions, directionsOptions: directionsOptions, callback: callback)
     }
     guard var allDirectionsOptions = directionsOptions else {
-      let defaultDirectionsOptions = [MapzenRoutingController.kLanguageKey : localeLanguage as NSObject]
+      let defaultDirectionsOptions = [RoutingController.kLanguageKey : localeLanguage as NSObject]
       return super.requestRoute(withLocations: locations, costingModel: costing, costingOption: costingOptions, directionsOptions: defaultDirectionsOptions, callback: callback)
     }
 
-    if !allDirectionsOptions.keys.contains(MapzenRoutingController.kLanguageKey) {
-      allDirectionsOptions[MapzenRoutingController.kLanguageKey] = localeLanguage as NSObject
+    if !allDirectionsOptions.keys.contains(RoutingController.kLanguageKey) {
+      allDirectionsOptions[RoutingController.kLanguageKey] = localeLanguage as NSObject
     }
 
     return super.requestRoute(withLocations: locations, costingModel: costing, costingOption: costingOptions, directionsOptions: allDirectionsOptions, callback: callback)

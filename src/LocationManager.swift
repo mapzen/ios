@@ -35,6 +35,7 @@ import OnTheRoad
  
  - Note: The class is expected to be used as a singleton. As such, access to the class is via the `sharedManager` object.
  */
+@objc(MZLocationManager)
 open class LocationManager: NSObject, CLLocationManagerDelegate {
 
   /// The singleton access object.
