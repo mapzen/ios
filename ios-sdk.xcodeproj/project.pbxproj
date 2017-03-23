@@ -10,6 +10,7 @@
 		7D2FB7671E6103D500CB82CF /* DictionaryExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D2FB7661E6103D500CB82CF /* DictionaryExtensions.swift */; };
 		7D2FB7691E64E66B00CB82CF /* DictionaryExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D2FB7681E64E66B00CB82CF /* DictionaryExtensionsTests.swift */; };
 		7D4122721E84621A009520B7 /* SearchConfigs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D4122711E84621A009520B7 /* SearchConfigs.swift */; };
+		7D4122741E84834C009520B7 /* SearchConfigsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D4122731E84834C009520B7 /* SearchConfigsTests.swift */; };
 		7D503BCC1E77457A00FDDC4F /* SampleMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D503BCB1E77457A00FDDC4F /* SampleMapViewController.swift */; };
 		7D503BCE1E77468B00FDDC4F /* SampleTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D503BCD1E77468B00FDDC4F /* SampleTableViewController.swift */; };
 		7D503BD01E78944300FDDC4F /* TestTGMarkerPickResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D503BCF1E78944300FDDC4F /* TestTGMarkerPickResult.swift */; };
@@ -30,10 +31,6 @@
 		7DB181441E81B472001F9B49 /* SearchDataConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DB1813E1E81B472001F9B49 /* SearchDataConverter.swift */; };
 		7DB181451E81B472001F9B49 /* SearchDataObjects.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DB1813F1E81B472001F9B49 /* SearchDataObjects.swift */; };
 		7DB181491E81B681001F9B49 /* SearchResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DB181481E81B681001F9B49 /* SearchResponse.swift */; };
-		7DB1814B1E81B708001F9B49 /* AutocompleteConfigTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DB1814A1E81B708001F9B49 /* AutocompleteConfigTests.swift */; };
-		7DB1814D1E81B718001F9B49 /* PlaceConfigTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DB1814C1E81B718001F9B49 /* PlaceConfigTests.swift */; };
-		7DB1814F1E81B723001F9B49 /* ReverseConfigTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DB1814E1E81B723001F9B49 /* ReverseConfigTests.swift */; };
-		7DB181511E81B72F001F9B49 /* SearchConfigTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DB181501E81B72F001F9B49 /* SearchConfigTests.swift */; };
 		7DB181531E81B73A001F9B49 /* SearchDataConverterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DB181521E81B73A001F9B49 /* SearchDataConverterTests.swift */; };
 		7DB181551E81B745001F9B49 /* SearchDataObjectsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DB181541E81B745001F9B49 /* SearchDataObjectsTests.swift */; };
 		7DB181571E81B77B001F9B49 /* SearchResponseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DB181561E81B77B001F9B49 /* SearchResponseTests.swift */; };
@@ -106,6 +103,7 @@
 		7D2FB7661E6103D500CB82CF /* DictionaryExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DictionaryExtensions.swift; sourceTree = "<group>"; };
 		7D2FB7681E64E66B00CB82CF /* DictionaryExtensionsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DictionaryExtensionsTests.swift; sourceTree = "<group>"; };
 		7D4122711E84621A009520B7 /* SearchConfigs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchConfigs.swift; sourceTree = "<group>"; };
+		7D4122731E84834C009520B7 /* SearchConfigsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchConfigsTests.swift; sourceTree = "<group>"; };
 		7D503BCB1E77457A00FDDC4F /* SampleMapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SampleMapViewController.swift; sourceTree = "<group>"; };
 		7D503BCD1E77468B00FDDC4F /* SampleTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SampleTableViewController.swift; sourceTree = "<group>"; };
 		7D503BCF1E78944300FDDC4F /* TestTGMarkerPickResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestTGMarkerPickResult.swift; sourceTree = "<group>"; };
@@ -133,10 +131,6 @@
 		7DB1813E1E81B472001F9B49 /* SearchDataConverter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchDataConverter.swift; sourceTree = "<group>"; };
 		7DB1813F1E81B472001F9B49 /* SearchDataObjects.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchDataObjects.swift; sourceTree = "<group>"; };
 		7DB181481E81B681001F9B49 /* SearchResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchResponse.swift; sourceTree = "<group>"; };
-		7DB1814A1E81B708001F9B49 /* AutocompleteConfigTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AutocompleteConfigTests.swift; sourceTree = "<group>"; };
-		7DB1814C1E81B718001F9B49 /* PlaceConfigTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaceConfigTests.swift; sourceTree = "<group>"; };
-		7DB1814E1E81B723001F9B49 /* ReverseConfigTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReverseConfigTests.swift; sourceTree = "<group>"; };
-		7DB181501E81B72F001F9B49 /* SearchConfigTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchConfigTests.swift; sourceTree = "<group>"; };
 		7DB181521E81B73A001F9B49 /* SearchDataConverterTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchDataConverterTests.swift; sourceTree = "<group>"; };
 		7DB181541E81B745001F9B49 /* SearchDataObjectsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchDataObjectsTests.swift; sourceTree = "<group>"; };
 		7DB181561E81B77B001F9B49 /* SearchResponseTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchResponseTests.swift; sourceTree = "<group>"; };
@@ -412,13 +406,10 @@
 				7D7D49941E7709A1006074EB /* TestUrlSession.swift */,
 				7D7D49921E7708E5006074EB /* TestSessionDataTask.swift */,
 				7D503BCF1E78944300FDDC4F /* TestTGMarkerPickResult.swift */,
-				7DB1814A1E81B708001F9B49 /* AutocompleteConfigTests.swift */,
-				7DB1814C1E81B718001F9B49 /* PlaceConfigTests.swift */,
-				7DB1814E1E81B723001F9B49 /* ReverseConfigTests.swift */,
-				7DB181501E81B72F001F9B49 /* SearchConfigTests.swift */,
 				7DB181521E81B73A001F9B49 /* SearchDataConverterTests.swift */,
 				7DB181541E81B745001F9B49 /* SearchDataObjectsTests.swift */,
 				7DB181561E81B77B001F9B49 /* SearchResponseTests.swift */,
+				7D4122731E84834C009520B7 /* SearchConfigsTests.swift */,
 			);
 			path = "ios-sdkTests";
 			sourceTree = "<group>";
@@ -694,14 +685,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				7D7DAE1D1E60C5C900FFCA6F /* TestApplication.swift in Sources */,
+				7D4122741E84834C009520B7 /* SearchConfigsTests.swift in Sources */,
 				7DC7F0941E70C26B009E722B /* TestLocationManager.swift in Sources */,
-				7DB181511E81B72F001F9B49 /* SearchConfigTests.swift in Sources */,
-				7DB1814F1E81B723001F9B49 /* ReverseConfigTests.swift in Sources */,
 				7DC7F0981E71E138009E722B /* TestAnnotationTarget.swift in Sources */,
 				7DB181551E81B745001F9B49 /* SearchDataObjectsTests.swift in Sources */,
 				7DF0AA2E1E5520ED00B0406E /* TestTGMapViewController.swift in Sources */,
 				7DB181571E81B77B001F9B49 /* SearchResponseTests.swift in Sources */,
-				7DB1814D1E81B718001F9B49 /* PlaceConfigTests.swift in Sources */,
 				DB188EEC1E28492A0054DEFD /* MapzenManagerTests.swift in Sources */,
 				7DC7F09C1E72066B009E722B /* TestMapzenManager.swift in Sources */,
 				7D7D49951E7709A1006074EB /* TestUrlSession.swift in Sources */,
@@ -711,7 +700,6 @@
 				DBCBC5BF1E0AE1CF0045B345 /* MapViewControllerTests.swift in Sources */,
 				7D2FB7691E64E66B00CB82CF /* DictionaryExtensionsTests.swift in Sources */,
 				7D7D49931E7708E5006074EB /* TestSessionDataTask.swift in Sources */,
-				7DB1814B1E81B708001F9B49 /* AutocompleteConfigTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -841,6 +829,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEFINES_MODULE = NO;
 				DEVELOPMENT_TEAM = LTQC954SPQ;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -873,6 +862,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				DEFINES_MODULE = NO;
 				DEVELOPMENT_TEAM = LTQC954SPQ;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
