@@ -1,6 +1,6 @@
 //
 //  SearchDataObjects.swift
-//  Pods
+//  ios-sdk
 //
 //  Created by Sarah Lensing on 3/20/17.
 //
