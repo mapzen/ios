@@ -822,18 +822,7 @@ open class MapViewController: UIViewController, LocationManagerDelegate {
     shouldFollowCurrentLocation = button.isSelected
   }
 
-  // MARK:- ViewController Lifecycle
-
-  override open func viewDidLoad() {
-    super.viewDidLoad()
-    locationManager.delegate = self
-    setupTgControllerView()
-    setupAttribution()
-    setupFindMeButton()
-
-    tgViewController.gestureDelegate = self
-    tgViewController.mapViewDelegate = self
-  }
+  // MARK:- Memory Management handlers
 
   func reloadTGViewController() {
     guard let unwrappedSaver = stateSaver else { return }
@@ -851,7 +840,9 @@ open class MapViewController: UIViewController, LocationManagerDelegate {
     }
   }
 
+  //This function should really only be used in conjunction with reloadTGViewController, but it is safe to be used whenever.
   func recreateMap(_ state: StateReclaimer) {
+    //Annotation Replay
     let oldAnnotations = self.currentAnnotations
     self.currentAnnotations = Dictionary()
     for (annotation, marker) in oldAnnotations {
@@ -860,6 +851,8 @@ open class MapViewController: UIViewController, LocationManagerDelegate {
       newMarker.stylingString = marker.stylingString
       self.currentAnnotations[annotation] = newMarker
     }
+
+    //Routing Replay
     if let currentRoute = self.currentRoute {
       do {
         try self.display(currentRoute)
@@ -867,19 +860,44 @@ open class MapViewController: UIViewController, LocationManagerDelegate {
         //Silently catch this - we may still be able to recover from here sans route
       }
     }
+
+    //State Reset
     self.tilt = state.tilt
     self.rotation = state.rotation
     self.zoom = state.zoom
     self.position = state.position
     self.cameraType = state.cameraType
+
+    // Location Marker reset
+    if shouldShowCurrentLocation {
+      _ = self.showCurrentLocation(true)
+    }
+
+    //Button Setup
     self.setupAttribution()
+    let originalButton = findMeButton
     self.setupFindMeButton()
+    findMeButton.isHidden = originalButton.isHidden
+    findMeButton.isSelected = shouldFollowCurrentLocation
+  }
+
+  // MARK:- ViewController Lifecycle
+
+  override open func viewDidLoad() {
+    super.viewDidLoad()
+    locationManager.delegate = self
+    setupTgControllerView()
+    setupAttribution()
+    setupFindMeButton()
+
+    tgViewController.gestureDelegate = self
+    tgViewController.mapViewDelegate = self
   }
 
   override open func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
     //We only want to attempt to reload incase we reloaded due to memory issues
-    if (!tgViewController.isViewLoaded) {
+    if (stateSaver != nil) {
       print("reloading tgviewcontroller due to memory warning removal")
       reloadTGViewController()
     }

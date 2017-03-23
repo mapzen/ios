@@ -683,7 +683,10 @@ class MapViewControllerTests: XCTestCase {
     controller.cameraType = .flat
     controller.zoom = 3.0
     controller.currentStyle = .cinnabar
-    
+    _ = controller.showCurrentLocation(true)
+    controller.findMeButton.isHidden = false
+    controller.shouldFollowCurrentLocation = true
+
     // Normally the OS would call these but can't replicate that easily in tests
     controller.didReceiveMemoryWarning()
 
@@ -698,6 +701,9 @@ class MapViewControllerTests: XCTestCase {
     XCTAssertEqual(controller.cameraType, .flat)
     XCTAssertEqualWithAccuracy(controller.zoom, 3.0, accuracy: FLT_EPSILON)
     XCTAssertEqual(controller.currentStyle, .cinnabar)
+    XCTAssertTrue(controller.shouldShowCurrentLocation)
+    XCTAssertFalse(controller.findMeButton.isHidden)
+    XCTAssertTrue(controller.findMeButton.isSelected) // Determined by shouldFollowCurrentLocation
   }
 }
 
