@@ -11,7 +11,6 @@ import TangramMap
 class DemoMapViewController:  SampleMapViewController, MapMarkerSelectDelegate {
 
   private var styleLoaded = false
-  private var markerVisible = false
 
   lazy var activityIndicator : UIActivityIndicatorView = {
     let indicator = UIActivityIndicatorView.init(activityIndicatorStyle: .whiteLarge)

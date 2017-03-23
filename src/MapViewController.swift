@@ -481,6 +481,24 @@ open class MapViewController: UIViewController, LocationManagerDelegate {
     tgViewController.animate(toTilt: radians, withDuration: seconds, with: easeType)
   }
 
+  /**
+   Adds a marker to the map. A marker can only be added to one map at a time.
+   
+   - parameter marker: The marker to add to map.
+   */
+  open func addMarker(_ marker: Marker) {
+    marker.tgMarker.map = tgViewController
+  }
+
+  /**
+   Removes a marker from the map.
+
+   - parameter marker: The marker to remove from map.
+   */
+  open func removeMarker(_ marker: Marker) {
+    marker.tgMarker.map = nil
+  }
+
   /// Removes all existing markers on the map.
   open func markerRemoveAll() {
     tgViewController.markerRemoveAll()
