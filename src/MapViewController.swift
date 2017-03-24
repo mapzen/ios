@@ -193,6 +193,7 @@ public protocol MapTileLoadDelegate : class {
  
  MapViewController wraps the underlying `TGMapViewController` from Tangram-es and handles adding it to the view hierarchy. It exposes this in the `tgViewController` property and allows for additional customization there using the Tangram-es iOS framework. Documentation on that is available [here](https://mapzen.com/documentation/tangram/iOS-API/).
  */
+@objc(MZMapViewController)
 open class MapViewController: UIViewController, LocationManagerDelegate {
 
   //Error Domains for NSError Appeasement

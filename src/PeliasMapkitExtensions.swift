@@ -111,9 +111,9 @@ public extension PeliasPlaceQueryItem {
    
    - Returns: An optional place query item
    */
-  init?(annotation: PeliasMapkitAnnotation, layer: LayerFilter) {
+  init?(annotation: PeliasMapkitAnnotation, layer: Pelias.LayerFilter) {
     guard let place = annotation.data?[PeliasIDKey] as? String else { return nil }
-    guard let source = SearchSource(rawValue: annotation.data?[PeliasDataSourceKey] as? String ?? "") else { return nil }
+    guard let source = Pelias.SearchSource(rawValue: annotation.data?[PeliasDataSourceKey] as? String ?? "") else { return nil }
     self.init(placeId: place, dataSource: source, layer: layer)
   }
 }
@@ -201,12 +201,12 @@ public extension SearchBoundaryRect {
     let maxCoordinate = MKCoordinateForMapPoint(mapPointMax)
 
     //We use the origin point latitude for max, and subsequently the computed maxLat for pelias's minimum, because pelias wants lower left and upper right points of the rect.
-    self.maxLatLong = GeoPoint(latitude: minCoordinate.latitude, longitude: maxCoordinate.longitude)
-    self.minLatLong = GeoPoint(latitude: maxCoordinate.latitude, longitude: minCoordinate.longitude)
+    self.maxLatLong = Pelias.GeoPoint(latitude: minCoordinate.latitude, longitude: maxCoordinate.longitude)
+    self.minLatLong = Pelias.GeoPoint(latitude: maxCoordinate.latitude, longitude: minCoordinate.longitude)
   }
 }
 
-public extension GeoPoint {
+public extension Pelias.GeoPoint {
   /**
    Creates a GeoPoint based of CoreLocation data
    

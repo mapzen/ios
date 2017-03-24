@@ -52,15 +52,15 @@ class AutocompleteTableVC: SampleTableViewController, UISearchResultsUpdating, U
   
   func updateSearchResults(for searchController: UISearchController) {
     if let searchText = searchController.searchBar.text, searchController.searchBar.text?.isEmpty == false {
-      var geoPoint = GeoPoint(latitude: 40.7312973034393, longitude: -73.99896644276561)
+      var geoPoint = Pelias.GeoPoint(latitude: 40.7312973034393, longitude: -73.99896644276561)
       if let location = currentLocation {
-        geoPoint = GeoPoint(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
+        geoPoint = Pelias.GeoPoint(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
       }
       let config = PeliasAutocompleteConfig(searchText: searchText, focusPoint: geoPoint, completionHandler: { (autocompleteResponse) -> Void in
         self.results = autocompleteResponse.parsedMapItems()
         self.tableView.reloadData()
       })
-      PeliasSearchManager.sharedInstance.autocompleteQuery(config)
+      _ = PeliasSearchManager.sharedInstance.autocompleteQuery(config)
     }
   }
   

@@ -29,7 +29,7 @@ class SearchPinsViewController: SampleMapViewController, UITextFieldDelegate {
   }
 
   func textFieldDidEndEditing(_ textField: UITextField) {
-    let geopoint = GeoPoint(location: LocationManager.sharedManager.currentLocation)
+    let geopoint = Pelias.GeoPoint(location: LocationManager.sharedManager.currentLocation)
     var searchConfig = PeliasSearchConfig(searchText: textField.text!) { [unowned self] (response) in
       guard let newAnnotations = response.parsedMapItems(target: self, action: #selector(self.annotationClicked(annotation:))) else { return }
       do {

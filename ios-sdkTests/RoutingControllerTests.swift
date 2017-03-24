@@ -1,5 +1,5 @@
 //
-//  MapzenRoutingControllerTests.swift
+//  RoutingControllerTests.swift
 //  ios-sdk
 //
 //  Created by Sarah Lensing on 3/13/17.
@@ -10,14 +10,14 @@ import XCTest
 @testable import ios_sdk
 @testable import OnTheRoad
 
-class MapzenRoutingControllerTests : XCTestCase {
+class RoutingControllerTests : XCTestCase {
 
   let testSessionManager : TestUrlSession = TestUrlSession()
-  var router : MapzenRoutingController? = nil
+  var router : RoutingController? = nil
 
   override func setUp() {
     MapzenManager.sharedManager.apiKey = "testKey"
-    try? router = MapzenRoutingController.controller(sessionManager: testSessionManager)
+    try? router = RoutingController.controller(sessionManager: testSessionManager)
   }
 
   func testRouterSendCurrentLocaleLanguageByDefault() {
