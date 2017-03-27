@@ -141,6 +141,28 @@ class MarkerTests: XCTestCase {
     XCTAssertTrue(m.tgMarker.stylingString.isEmpty)
   }
 
+  func testTypeCurrentLocationInactive() {
+    let m = Marker.initWithMarkerType(.currentLocation)
+    m.active = false
+    // there is no inactive draw rule for curr location so its same as active state
+    XCTAssertEqual(m.tgMarker.stylingPath, "layers.mz_current_location_gem.draw.ux-location-gem-overlay")
+    XCTAssertTrue(m.tgMarker.stylingString.isEmpty)
+  }
+
+  func testTypeSearchPinInactive() {
+    let m = Marker.initWithMarkerType(.searchPin)
+    m.active = false
+    XCTAssertEqual(m.tgMarker.stylingPath, "layers.mz_search_result.inactive.draw.ux-icons-overlay")
+    XCTAssertTrue(m.tgMarker.stylingString.isEmpty)
+  }
+
+  func testTypeRouteLineInactive() {
+    let m = Marker.initWithMarkerType(.routeLine)
+    m.active = false
+    // there is no inactive draw rule for route line so its same as active state
+    XCTAssertEqual(m.tgMarker.stylingPath, "layers.mz_route_line.draw.ux-route-line-overlay")
+    XCTAssertTrue(m.tgMarker.stylingString.isEmpty)
+  }
 }
 
 class TestTGMarker : TGMarker {

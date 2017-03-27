@@ -25,9 +25,13 @@ public class Marker: NSObject {
 
   public let tgMarker: TGMarker
   private var styleType = kPointStyle
+  private var markerType: MarkerType?
+  // all marker types have an associated styling path
   private static let typeToStylingPath = [MarkerType.currentLocation : "layers.mz_current_location_gem.draw.ux-location-gem-overlay",
                                    MarkerType.searchPin : "layers.mz_search_result.draw.ux-icons-overlay",
                                    MarkerType.routeLine : "layers.mz_route_line.draw.ux-route-line-overlay"]
+  //currently only search results have an inactive state
+  private static let typeToInactiveStylingPath = [MarkerType.searchPin : "layers.mz_search_result.inactive.draw.ux-icons-overlay"]
 
   open var point: TGGeoPoint? {
     set {
@@ -113,9 +117,14 @@ public class Marker: NSObject {
     }
   }
 
+  open var active: Bool? {
+    didSet {
+      updateStylePath()
+    }
+  }
+
   public static func initWithMarkerType(_ markerType: MarkerType) -> Marker {
-    let stylingPath = Marker.typeToStylingPath[markerType]
-    let marker = Marker(stylingPath: stylingPath!)
+    let marker = Marker(markerType: markerType)
     return marker
   }
 
@@ -147,9 +156,10 @@ public class Marker: NSObject {
     interactive = Marker.kDefaultInteractive
   }
 
-  convenience init(stylingPath: String) {
+  convenience init(markerType mt: MarkerType) {
     self.init(size: Marker.kDefaultSize)
-    tgMarker.stylingPath = stylingPath
+    markerType = mt
+    tgMarker.stylingPath = Marker.typeToStylingPath[mt]! //there is always a styling string for a given MarkerType so force unwrap
   }
 
   open func setPointEased(_ coordinates: TGGeoPoint, seconds: Float, easeType ease: TGEaseType) -> Bool {
@@ -164,5 +174,21 @@ public class Marker: NSObject {
     let str = "{ style: '\(styleType)', color: '\(backgroundColor.hexValue())', size: [\(size.width)px, \(size.height)px], collide: false, interactive: \(interactive) }"
     print("str: \(str)")
     tgMarker.stylingString = str
+  }
+
+  private func updateStylePath() {
+    guard let type = markerType else { return }
+    guard let a = active else { return }
+
+    var path: String?
+    if a {
+      path = Marker.typeToStylingPath[type]
+    } else {
+      path = Marker.typeToInactiveStylingPath[type]
+    }
+
+    if let currPath = path {
+      tgMarker.stylingPath = currPath
+    }
   }
 }
