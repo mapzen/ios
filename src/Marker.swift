@@ -9,6 +9,10 @@
 import Foundation
 import TangramMap
 
+public enum MarkerType : Int {
+  case currentLocation, searchPin, routeLine
+}
+
 @objc(MZMarker)
 public class Marker: NSObject {
 
@@ -21,6 +25,9 @@ public class Marker: NSObject {
 
   public let tgMarker: TGMarker
   private var styleType = kPointStyle
+  private static let typeToStylingPath = [MarkerType.currentLocation : "layers.mz_current_location_gem.draw.ux-location-gem-overlay",
+                                   MarkerType.searchPin : "layers.mz_search_result.draw.ux-icons-overlay",
+                                   MarkerType.routeLine : "layers.mz_route_line.draw.ux-route-line-overlay"]
 
   open var point: TGGeoPoint? {
     set {
@@ -106,6 +113,12 @@ public class Marker: NSObject {
     }
   }
 
+  public static func initWithMarkerType(_ markerType: MarkerType) -> Marker {
+    let stylingPath = Marker.typeToStylingPath[markerType]
+    let marker = Marker(stylingPath: stylingPath!)
+    return marker
+  }
+
   public override convenience init() {
     self.init(size: Marker.kDefaultSize)
   }
@@ -134,12 +147,20 @@ public class Marker: NSObject {
     interactive = Marker.kDefaultInteractive
   }
 
+  convenience init(stylingPath: String) {
+    self.init(size: Marker.kDefaultSize)
+    tgMarker.stylingPath = stylingPath
+  }
+
   open func setPointEased(_ coordinates: TGGeoPoint, seconds: Float, easeType ease: TGEaseType) -> Bool {
     return tgMarker.setPointEased(coordinates, seconds: seconds, easeType: ease)
   }
 
   // MARK : private
   private func updateStyleString() {
+    if !tgMarker.stylingPath.isEmpty {
+      return
+    }
     let str = "{ style: '\(styleType)', color: '\(backgroundColor.hexValue())', size: [\(size.width)px, \(size.height)px], collide: false, interactive: \(interactive) }"
     print("str: \(str)")
     tgMarker.stylingString = str

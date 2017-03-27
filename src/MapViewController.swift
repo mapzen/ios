@@ -210,15 +210,15 @@ open class MapViewController: UIViewController, LocationManagerDelegate {
   private static let mapzenRights = "https://mapzen.com/rights/"
   private static let kGlobalPathApiKey = "global.sdk_mapzen_api_key"
   private static let kGlobalPathLanguage = "global.ux_language"
-  private let kDefaultSearchPinStyle = "{ style: sdk-point-overlay, sprite: ux-search-active, size: [24, 36px], collide: false, interactive: true }"
+
   private var isCurrentlyVisible = false // We can't rely on things like window being non-nil because page controllers have a non-nil window as they're being rendered off screen
 
   let application : ApplicationProtocol
   open var tgViewController: TGMapViewController = TGMapViewController()
-  var currentLocationGem: TGMarker?
+  var currentLocationGem: Marker?
   var lastSetPoint: TGGeoPoint?
   var shouldShowCurrentLocation = false
-  var currentRouteMarker: TGMarker?
+  var currentRouteMarker: Marker?
   var currentRoute: OTRRoutingResult?
   open var shouldFollowCurrentLocation = false
   open var findMeButton = UIButton(type: .custom)
@@ -701,10 +701,10 @@ open class MapViewController: UIViewController, LocationManagerDelegate {
     guard let marker = currentLocationGem else {
       if !shouldShowCurrentLocation { return false }
       //TODO: handle error adding to map?
-      let marker = TGMarker.init(mapView: tgViewController)
+      let marker = Marker.initWithMarkerType(.currentLocation)
+      addMarker(marker)
       currentLocationGem = marker;
       locationManager.requestWhenInUseAuthorization()
-      marker.stylingString = "{ style: ux-location-gem-overlay, sprite: ux-current-location, size: 36px, collide: false }"
       //Set visibility to false since we have to wait until we have an accurate location
       marker.visible = false
       return true
@@ -735,7 +735,8 @@ open class MapViewController: UIViewController, LocationManagerDelegate {
   open func add(_ annotations: [PeliasMapkitAnnotation]) throws {
     for annotation in annotations {
       //TODO: handle error adding to map?
-      let newMarker = TGMarker.init(mapView: tgViewController)
+      let marker = Marker.initWithMarkerType(.searchPin)
+      addMarker(marker)
 //      if newMarker == nil {
 //        //TODO: Once TG integrates better error codes, we need to integrate that here.
 //        // https://github.com/tangrams/tangram-es/issues/1219
@@ -743,9 +744,8 @@ open class MapViewController: UIViewController, LocationManagerDelegate {
 //                      code: MZError.generalError.rawValue,
 //                      userInfo: nil)
 //      }
-      newMarker.point = TGGeoPoint(coordinate: annotation.coordinate)
-      newMarker.stylingString = kDefaultSearchPinStyle
-      currentAnnotations[annotation] = newMarker
+      marker.point = TGGeoPoint(coordinate: annotation.coordinate)
+      currentAnnotations[annotation] = marker.tgMarker
     }
   }
 
@@ -798,7 +798,7 @@ open class MapViewController: UIViewController, LocationManagerDelegate {
       currentRouteMarker = nil
       currentRoute = nil
       //TODO: handle marker remove error?
-      routeMarker.map = nil
+      removeMarker(routeMarker)
     }
     let routeLeg = route.legs[0]
     let polyLine = TGGeoPolyline(size: UInt32(routeLeg.coordinateCount))
@@ -809,8 +809,8 @@ open class MapViewController: UIViewController, LocationManagerDelegate {
       print("Next Point: \(point)")
       polyLine.add(TGGeoPoint(coordinate: point!))
     }
-    let marker = TGMarker.init(mapView: tgViewController)
-    marker.stylingString = "{ style: ux-route-line-overlay, color: '#06a6d4',  width: [[0,3.5px],[5,5px],[9,7px],[10,6px],[11,6px],[13,8px],[14,9px],[15,10px],[16,11px],[17,12px],[18,10px]], order: 500 }"
+    let marker = Marker.initWithMarkerType(.routeLine)
+    addMarker(marker)
     marker.polyline = polyLine
     currentRouteMarker = marker
     currentRoute = route
@@ -829,7 +829,7 @@ open class MapViewController: UIViewController, LocationManagerDelegate {
                     userInfo: nil)
     }
 
-    currentRouteMarker.map = nil
+    removeMarker(currentRouteMarker)
     self.currentRouteMarker = nil
     currentRoute = nil
   }
@@ -864,10 +864,13 @@ open class MapViewController: UIViewController, LocationManagerDelegate {
     let oldAnnotations = self.currentAnnotations
     self.currentAnnotations = Dictionary()
     for (annotation, marker) in oldAnnotations {
-      let newMarker = TGMarker.init(mapView: self.tgViewController)
+      let newMarker = Marker.init()
+      addMarker(newMarker)
+      //TODO: also set polyline, polygon etc
       newMarker.point = marker.point
-      newMarker.stylingString = marker.stylingString
-      self.currentAnnotations[annotation] = newMarker
+      newMarker.tgMarker.stylingString = marker.stylingString
+      newMarker.tgMarker.stylingPath = marker.stylingPath
+      self.currentAnnotations[annotation] = newMarker.tgMarker
     }
 
     //Routing Replay
@@ -888,7 +891,9 @@ open class MapViewController: UIViewController, LocationManagerDelegate {
 
     // Location Marker reset
     if shouldShowCurrentLocation {
-      currentLocationGem?.map = tgViewController
+      if let locGem = currentLocationGem {
+        addMarker(locGem)
+      }
       _ = self.showCurrentLocation(true)
     }
 
@@ -943,7 +948,9 @@ open class MapViewController: UIViewController, LocationManagerDelegate {
       //Probably unnecessary, but just incase we don't want any calls coming through from older versions that the OS has yet to clean up
       tgViewController.gestureDelegate = nil
       tgViewController.mapViewDelegate = nil
-      currentLocationGem?.map = nil
+      if let locGem = currentLocationGem {
+        removeMarker(locGem)
+      }
       tgViewController = TGMapViewController()
     }
     super.didReceiveMemoryWarning()
@@ -985,7 +992,7 @@ open class MapViewController: UIViewController, LocationManagerDelegate {
     shouldShowCurrentLocation = false
     guard let marker = currentLocationGem else { return }
     //TODO: handle error?
-    marker.map = nil
+    removeMarker(marker)
     return
   }
 

@@ -16,7 +16,7 @@ class TestMapViewController: MapViewController {
   func lastSetPointValue() -> TGGeoPoint? {
     return lastSetPoint
   }
-  func currentLocationGemValue() -> TGMarker? {
+  func currentLocationGemValue() -> Marker? {
     return currentLocationGem
   }
   func shouldShowCurrentLocationValue() -> Bool {

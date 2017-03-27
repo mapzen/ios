@@ -122,6 +122,25 @@ class MarkerTests: XCTestCase {
     XCTAssertEqual(tgMarker.seconds, 4)
     XCTAssertEqual(tgMarker.ease, .linear)
   }
+
+  func testTypeCurrentLocation() {
+    let m = Marker.initWithMarkerType(.currentLocation)
+    XCTAssertEqual(m.tgMarker.stylingPath, "layers.mz_current_location_gem.draw.ux-location-gem-overlay")
+    XCTAssertTrue(m.tgMarker.stylingString.isEmpty)
+  }
+
+  func testTypeSearchPin() {
+    let m = Marker.initWithMarkerType(.searchPin)
+    XCTAssertEqual(m.tgMarker.stylingPath, "layers.mz_search_result.draw.ux-icons-overlay")
+    XCTAssertTrue(m.tgMarker.stylingString.isEmpty)
+  }
+
+  func testTypeRouteLine() {
+    let m = Marker.initWithMarkerType(.routeLine)
+    XCTAssertEqual(m.tgMarker.stylingPath, "layers.mz_route_line.draw.ux-route-line-overlay")
+    XCTAssertTrue(m.tgMarker.stylingString.isEmpty)
+  }
+
 }
 
 class TestTGMarker : TGMarker {
