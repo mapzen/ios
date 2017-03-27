@@ -13,6 +13,15 @@ import CoreLocation
 import Pelias
 import OnTheRoad
 
+struct StateReclaimer {
+  public let tilt: Float
+  public let rotation: Float
+  public let zoom: Float
+  public let position: TGGeoPoint
+  public let cameraType: TGCameraType
+  public let mapStyle: MapStyle
+}
+
 /** 
   Mapzen Error Enumeration
   - generalError: The general case for things we're not quite sure what happened.
@@ -201,6 +210,8 @@ open class MapViewController: UIViewController, LocationManagerDelegate {
   private static let mapzenRights = "https://mapzen.com/rights/"
   private static let kGlobalPathApiKey = "global.sdk_mapzen_api_key"
   private static let kGlobalPathLanguage = "global.ux_language"
+  private let kDefaultSearchPinStyle = "{ style: sdk-point-overlay, sprite: ux-search-active, size: [24, 36px], collide: false, interactive: true }"
+  private var isCurrentlyVisible = false // We can't rely on things like window being non-nil because page controllers have a non-nil window as they're being rendered off screen
 
   let application : ApplicationProtocol
   open var tgViewController: TGMapViewController = TGMapViewController()
@@ -208,16 +219,19 @@ open class MapViewController: UIViewController, LocationManagerDelegate {
   var lastSetPoint: TGGeoPoint?
   var shouldShowCurrentLocation = false
   var currentRouteMarker: TGMarker?
+  var currentRoute: OTRRoutingResult?
   open var shouldFollowCurrentLocation = false
   open var findMeButton = UIButton(type: .custom)
   var currentAnnotations: [PeliasMapkitAnnotation : TGMarker] = Dictionary()
   open var attributionBtn = UIButton()
   private var locale = Locale.current
+  var stateSaver: StateReclaimer?
+  var currentStyle: MapStyle = .bubbleWrap
 
   /// The camera type we want to use. Defaults to whatever is set in the style sheet.
   open var cameraType: TGCameraType {
     set {
-      tgViewController.cameraType = cameraType
+      tgViewController.cameraType = newValue
     }
     get {
       return tgViewController.cameraType
@@ -227,7 +241,7 @@ open class MapViewController: UIViewController, LocationManagerDelegate {
   /// The current position of the map in longitude / latitude.
   open var position: TGGeoPoint {
     set {
-      tgViewController.position = position
+      tgViewController.position = newValue
     }
     get {
       return tgViewController.position
@@ -237,7 +251,7 @@ open class MapViewController: UIViewController, LocationManagerDelegate {
   /// The current zoom level.
   open var zoom: Float {
     set {
-      tgViewController.zoom = zoom
+      tgViewController.zoom = newValue
     }
     get {
       return tgViewController.zoom
@@ -247,7 +261,7 @@ open class MapViewController: UIViewController, LocationManagerDelegate {
   /// The current rotation, in radians from north.
   open var rotation: Float {
     set {
-      tgViewController.rotation = rotation
+      tgViewController.rotation = newValue
     }
     get {
       return tgViewController.rotation
@@ -257,7 +271,7 @@ open class MapViewController: UIViewController, LocationManagerDelegate {
   /// The current tilt in radians.
   open var tilt: Float {
     set {
-      tgViewController.tilt = tilt
+      tgViewController.tilt = newValue
     }
     get {
       return tgViewController.tilt
@@ -515,6 +529,7 @@ open class MapViewController: UIViewController, LocationManagerDelegate {
   open func loadStyle(_ style: MapStyle, locale l: Locale, sceneUpdates: [TGSceneUpdate]) throws {
     locale = l
     guard let sceneFile = styles.keyForValue(value: style) else { return }
+    currentStyle = style
     try tgViewController.loadSceneFile(sceneFile, sceneUpdates: allSceneUpdates(sceneUpdates))
   }
 
@@ -552,6 +567,7 @@ open class MapViewController: UIViewController, LocationManagerDelegate {
   open func loadStyleAsync(_ style: MapStyle, sceneUpdates: [TGSceneUpdate], onStyleLoaded: OnStyleLoaded?) throws {
     onStyleLoadedClosure = onStyleLoaded
     guard let sceneFile = styles.keyForValue(value: style) else { return }
+    currentStyle = style
     try tgViewController.loadSceneFileAsync(sceneFile, sceneUpdates: allSceneUpdates(sceneUpdates))
   }
 
@@ -568,6 +584,7 @@ open class MapViewController: UIViewController, LocationManagerDelegate {
     locale = l
     onStyleLoadedClosure = onStyleLoaded
     guard let sceneFile = styles.keyForValue(value: style) else { return }
+    currentStyle = style
     try tgViewController.loadSceneFileAsync(sceneFile, sceneUpdates: allSceneUpdates(sceneUpdates))
   }
 
@@ -709,7 +726,7 @@ open class MapViewController: UIViewController, LocationManagerDelegate {
 //                      userInfo: nil)
 //      }
       newMarker.point = TGGeoPoint(coordinate: annotation.coordinate)
-      newMarker.stylingString = "{ style: sdk-point-overlay, sprite: ux-search-active, size: [24, 36px], collide: false, interactive: true }"
+      newMarker.stylingString = kDefaultSearchPinStyle
       currentAnnotations[annotation] = newMarker
     }
   }
@@ -761,6 +778,7 @@ open class MapViewController: UIViewController, LocationManagerDelegate {
     if let routeMarker = currentRouteMarker {
       //We don't throw if the remove fails here because we want to silently replace the route
       currentRouteMarker = nil
+      currentRoute = nil
       //TODO: handle marker remove error?
       routeMarker.map = nil
     }
@@ -777,6 +795,7 @@ open class MapViewController: UIViewController, LocationManagerDelegate {
     marker.stylingString = "{ style: ux-route-line-overlay, color: '#06a6d4',  width: [[0,3.5px],[5,5px],[9,7px],[10,6px],[11,6px],[13,8px],[14,9px],[15,10px],[16,11px],[17,12px],[18,10px]], order: 500 }"
     marker.polyline = polyLine
     currentRouteMarker = marker
+    currentRoute = route
   }
 
   /**
@@ -794,6 +813,7 @@ open class MapViewController: UIViewController, LocationManagerDelegate {
 
     currentRouteMarker.map = nil
     self.currentRouteMarker = nil
+    currentRoute = nil
   }
 
   @objc func defaultFindMeAction(_ button: UIButton, touchEvent: UIEvent) {
@@ -802,16 +822,113 @@ open class MapViewController: UIViewController, LocationManagerDelegate {
     shouldFollowCurrentLocation = button.isSelected
   }
 
+  // MARK:- Memory Management handlers
+
+  func reloadTGViewController() {
+    guard let unwrappedSaver = stateSaver else { return }
+    setupTgControllerView()
+    tgViewController.gestureDelegate = self
+    tgViewController.mapViewDelegate = self
+    do {
+      try loadStyleAsync(unwrappedSaver.mapStyle) { [unowned self] (styleLoaded) in
+        self.recreateMap(unwrappedSaver)
+        self.stateSaver = nil
+      }
+    } catch {
+      // In the event Tangram can't do the reload, we're pretty much dead in the water.
+      return
+    }
+  }
+
+  //This function should really only be used in conjunction with reloadTGViewController, but it is safe to be used whenever.
+  func recreateMap(_ state: StateReclaimer) {
+    //Annotation Replay
+    let oldAnnotations = self.currentAnnotations
+    self.currentAnnotations = Dictionary()
+    for (annotation, marker) in oldAnnotations {
+      let newMarker = TGMarker.init(mapView: self.tgViewController)
+      newMarker.point = marker.point
+      newMarker.stylingString = marker.stylingString
+      self.currentAnnotations[annotation] = newMarker
+    }
+
+    //Routing Replay
+    if let currentRoute = self.currentRoute {
+      do {
+        try self.display(currentRoute)
+      } catch {
+        //Silently catch this - we may still be able to recover from here sans route
+      }
+    }
+
+    //State Reset
+    self.tilt = state.tilt
+    self.rotation = state.rotation
+    self.zoom = state.zoom
+    self.position = state.position
+    self.cameraType = state.cameraType
+
+    // Location Marker reset
+    if shouldShowCurrentLocation {
+      currentLocationGem?.map = tgViewController
+      _ = self.showCurrentLocation(true)
+    }
+
+    //Button Setup
+    self.setupAttribution()
+    let originalButton = findMeButton
+    self.setupFindMeButton()
+    findMeButton.isHidden = originalButton.isHidden
+    findMeButton.isSelected = shouldFollowCurrentLocation
+    findMeButton.isEnabled = originalButton.isEnabled
+  }
+
+  // MARK:- ViewController Lifecycle
+
   override open func viewDidLoad() {
     super.viewDidLoad()
     locationManager.delegate = self
-
     setupTgControllerView()
     setupAttribution()
     setupFindMeButton()
 
     tgViewController.gestureDelegate = self
     tgViewController.mapViewDelegate = self
+  }
+
+  override open func viewWillAppear(_ animated: Bool) {
+    super.viewWillAppear(animated)
+    //We only want to attempt to reload incase we reloaded due to memory issues
+    if (stateSaver != nil) {
+      print("reloading tgviewcontroller due to memory warning removal")
+      reloadTGViewController()
+    }
+  }
+
+  override open func viewDidAppear(_ animated: Bool) {
+    super.viewDidAppear(animated)
+    isCurrentlyVisible = true
+  }
+
+  override open func viewDidDisappear(_ animated: Bool) {
+    super.viewDidDisappear(animated)
+    isCurrentlyVisible = false
+  }
+
+  override open func didReceiveMemoryWarning() {
+    if (!isCurrentlyVisible) {
+      tgViewController.willMove(toParentViewController: nil)
+      tgViewController.view.removeConstraints(tgViewController.view.constraints)
+      tgViewController.view.removeFromSuperview()
+      tgViewController.removeFromParentViewController()
+      stateSaver = StateReclaimer(tilt: tilt, rotation: rotation, zoom: zoom, position: position, cameraType: cameraType, mapStyle: currentStyle)
+      //Probably unnecessary, but just incase we don't want any calls coming through from older versions that the OS has yet to clean up
+      tgViewController.gestureDelegate = nil
+      tgViewController.mapViewDelegate = nil
+      currentLocationGem?.map = nil
+      tgViewController = TGMapViewController()
+    }
+    super.didReceiveMemoryWarning()
   }
 
   //MARK: - LocationManagerDelegate

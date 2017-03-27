@@ -9,6 +9,7 @@
 import XCTest
 @testable import ios_sdk
 import TangramMap
+import OnTheRoad
 import CoreLocation
 
 class TestMapViewController: MapViewController {
@@ -122,26 +123,31 @@ class MapViewControllerTests: XCTestCase {
   func testLoadBubbleWrap() {
     try? controller.loadStyle(.bubbleWrap)
     XCTAssertEqual(tgViewController.scenePath, "bubble-wrap-style-more-labels.yaml")
+    XCTAssertEqual(controller.currentStyle, .bubbleWrap)
   }
 
   func testLoadCinnabar() {
     try? controller.loadStyle(.cinnabar)
     XCTAssertEqual(tgViewController.scenePath, "cinnabar-style-more-labels.yaml")
+    XCTAssertEqual(controller.currentStyle, .cinnabar)
   }
 
   func testLoadRefill() {
     try? controller.loadStyle(.refill)
     XCTAssertEqual(tgViewController.scenePath, "refill-style-more-labels.yaml")
+    XCTAssertEqual(controller.currentStyle, .refill)
   }
 
   func testLoadWalkabout() {
     try? controller.loadStyle(.walkabout)
     XCTAssertEqual(tgViewController.scenePath, "walkabout-style-more-labels.yaml")
+    XCTAssertEqual(controller.currentStyle, .walkabout)
   }
 
   func testLoadZinc() {
     try? controller.loadStyle(.zinc)
     XCTAssertEqual(tgViewController.scenePath, "zinc-style-more-labels.yaml")
+    XCTAssertEqual(controller.currentStyle, .zinc)
   }
   
   func testLoadStyleWithUpdates() {
@@ -239,6 +245,33 @@ class MapViewControllerTests: XCTestCase {
     XCTAssertTrue(tgViewController.appliedSceneUpdates)
   }
 
+  func testTiltProperty() {
+    controller.tilt = 1.0
+    XCTAssertEqual(controller.tilt, 1.0)
+  }
+
+  func testRotationProperty() {
+    controller.rotation = 1.0
+    XCTAssertEqual(controller.rotation, 1.0)
+  }
+
+  func testZoomProperty() {
+    controller.zoom = 1.0
+    XCTAssertEqual(controller.zoom, 1.0)
+  }
+
+  func testCameraTypeProperty() {
+    controller.cameraType = .flat
+    XCTAssertEqual(controller.cameraType, .flat)
+  }
+
+  func testPositionProperty() {
+    let point = TGGeoPointMake(1.0, 2.0)
+    controller.position = point
+    //We don't check latitude because of an underlying precision issue with Tangram. More investigation needed.
+    XCTAssertEqualWithAccuracy(controller.position.longitude, point.longitude, accuracy: DBL_EPSILON)
+  }
+
   func testLngLatToScreenPosition() {
     let point = TGGeoPointMake(70.0, 40.0)
     let _ = controller.lngLat(toScreenPosition: point)
@@ -323,7 +356,6 @@ class MapViewControllerTests: XCTestCase {
     XCTAssertTrue(controller.currentLocationGemValue() != nil)
   }
 
-  //MARK: - LocationManagerDelegate Tests
   func testLocationUpdateSansMarkerGeneration() {
     //Setup
     controller.locationDidUpdate(mockLocation)
@@ -642,6 +674,38 @@ class MapViewControllerTests: XCTestCase {
     tabVc.setViewControllers([vc], animated: false)
     _ = vc.view
     XCTAssertTrue(vc.findMeButton.frame.origin.y + vc.findMeButton.frame.size.height < tabVc.tabBar.frame.origin.y)
+  }
+
+  func testMemoryWarning() {
+    controller.tilt = 1.0
+    controller.rotation = 2.0
+    controller.position = TGGeoPointMake(1.0, 2.0)
+    controller.cameraType = .flat
+    controller.zoom = 3.0
+    controller.currentStyle = .cinnabar
+    _ = controller.showCurrentLocation(true)
+    controller.findMeButton.isHidden = false
+    controller.findMeButton.isEnabled = true
+    controller.shouldFollowCurrentLocation = true
+
+    // Normally the OS would call these but can't replicate that easily in tests
+    controller.didReceiveMemoryWarning()
+
+    XCTAssertNotNil(controller.stateSaver)
+    controller.reloadTGViewController()
+    controller.recreateMap(controller.stateSaver!)
+
+    XCTAssertEqualWithAccuracy(controller.tilt, 1.0, accuracy: FLT_EPSILON)
+    XCTAssertEqualWithAccuracy(controller.rotation, 2.0, accuracy: FLT_EPSILON)
+    //We don't check latitude because of a weird underlying issue with Tangram rounding errors on it. Further investigation required
+    XCTAssertEqualWithAccuracy(controller.position.longitude, 1.0, accuracy: DBL_EPSILON)
+    XCTAssertEqual(controller.cameraType, .flat)
+    XCTAssertEqualWithAccuracy(controller.zoom, 3.0, accuracy: FLT_EPSILON)
+    XCTAssertEqual(controller.currentStyle, .cinnabar)
+    XCTAssertTrue(controller.shouldShowCurrentLocation)
+    XCTAssertFalse(controller.findMeButton.isHidden)
+    XCTAssertTrue(controller.findMeButton.isSelected) // Determined by shouldFollowCurrentLocation
+    XCTAssertTrue(controller.findMeButton.isEnabled)
   }
 }
 
