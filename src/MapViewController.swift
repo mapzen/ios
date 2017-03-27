@@ -870,6 +870,7 @@ open class MapViewController: UIViewController, LocationManagerDelegate {
 
     // Location Marker reset
     if shouldShowCurrentLocation {
+      currentLocationGem?.map = tgViewController
       _ = self.showCurrentLocation(true)
     }
 
@@ -879,6 +880,7 @@ open class MapViewController: UIViewController, LocationManagerDelegate {
     self.setupFindMeButton()
     findMeButton.isHidden = originalButton.isHidden
     findMeButton.isSelected = shouldFollowCurrentLocation
+    findMeButton.isEnabled = originalButton.isEnabled
   }
 
   // MARK:- ViewController Lifecycle
@@ -923,6 +925,7 @@ open class MapViewController: UIViewController, LocationManagerDelegate {
       //Probably unnecessary, but just incase we don't want any calls coming through from older versions that the OS has yet to clean up
       tgViewController.gestureDelegate = nil
       tgViewController.mapViewDelegate = nil
+      currentLocationGem?.map = nil
       tgViewController = TGMapViewController()
     }
     super.didReceiveMemoryWarning()

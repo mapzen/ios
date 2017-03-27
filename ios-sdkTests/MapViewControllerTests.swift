@@ -685,6 +685,7 @@ class MapViewControllerTests: XCTestCase {
     controller.currentStyle = .cinnabar
     _ = controller.showCurrentLocation(true)
     controller.findMeButton.isHidden = false
+    controller.findMeButton.isEnabled = true
     controller.shouldFollowCurrentLocation = true
 
     // Normally the OS would call these but can't replicate that easily in tests
@@ -704,6 +705,7 @@ class MapViewControllerTests: XCTestCase {
     XCTAssertTrue(controller.shouldShowCurrentLocation)
     XCTAssertFalse(controller.findMeButton.isHidden)
     XCTAssertTrue(controller.findMeButton.isSelected) // Determined by shouldFollowCurrentLocation
+    XCTAssertTrue(controller.findMeButton.isEnabled)
   }
 }
 
