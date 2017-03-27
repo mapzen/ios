@@ -22,7 +22,7 @@ Pod::Spec.new do |s|
     cs.dependency 'Pelias', '~> 1.0.0-beta'
     cs.dependency 'OnTheRoad', '~> 1.0.0-beta'
     cs.dependency 'Tangram-es', '~> 0.4.1'
-    cs.source_files = "src/*/*.swift"
+    cs.source_files = ['src/*.swift', 'src/*/*.swift']
     cs.resources = [ 'images/*.png', 'tangram/*' ]
   end
 end
