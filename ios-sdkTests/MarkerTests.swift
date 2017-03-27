@@ -171,6 +171,17 @@ class TestTGMarker : TGMarker {
   var seconds: Float = 0
   var ease: TGEaseType = .cubic
 
+  private var internalMap: TGMapViewController?
+
+  override public var map : TGMapViewController? {
+    set {
+      internalMap = newValue
+    }
+    get {
+      return internalMap
+    }
+  }
+
   open override func setPointEased(_ c: TGGeoPoint, seconds s: Float, easeType e: TGEaseType) -> Bool {
     coordinates = c
     seconds = s

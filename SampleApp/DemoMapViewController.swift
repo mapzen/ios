@@ -38,7 +38,7 @@ class DemoMapViewController:  SampleMapViewController, MapMarkerSelectDelegate {
   }
   
   //MARK : MapSelectDelegate  
-  func mapController(_ controller: MapViewController, didSelectMarker markerPickResult: TGMarkerPickResult, atScreenPosition position: CGPoint) {
+  func mapController(_ controller: MapViewController, didSelectMarker marker: Marker, atScreenPosition position: CGPoint) {
     let alert = UIAlertController(title: "Marker Selected", message: nil, preferredStyle: .alert)
     alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
     present(alert, animated: true, completion: nil)

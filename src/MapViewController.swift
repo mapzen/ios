@@ -180,10 +180,10 @@ public protocol MapMarkerSelectDelegate : class {
    Informs the delegate a marker of the map was just selected
 
    - parameter controller: The MapViewController that recognized the selection.
-   - parameter markerPickResult: A marker selection returned as an instance of TGMarkerPickResult.
+   - parameter markerPickResult: A marker selection returned as an instance of Marker.
    - parameter atScreenPosition: The screen coordinates of the picked marker.
    */
-  func mapController(_ controller: MapViewController, didSelectMarker markerPickResult: TGMarkerPickResult, atScreenPosition position: CGPoint)
+  func mapController(_ controller: MapViewController, didSelectMarker marker: Marker, atScreenPosition position: CGPoint)
 }
 
 /// MapTileLoadDelegate
@@ -223,6 +223,7 @@ open class MapViewController: UIViewController, LocationManagerDelegate {
   open var shouldFollowCurrentLocation = false
   open var findMeButton = UIButton(type: .custom)
   var currentAnnotations: [PeliasMapkitAnnotation : TGMarker] = Dictionary()
+  var currentMarkers: [TGMarker : Marker] = Dictionary()
   open var attributionBtn = UIButton()
   private var locale = Locale.current
   var stateSaver: StateReclaimer?
@@ -487,6 +488,7 @@ open class MapViewController: UIViewController, LocationManagerDelegate {
    - parameter marker: The marker to add to map.
    */
   open func addMarker(_ marker: Marker) {
+    currentMarkers[marker.tgMarker] = marker
     marker.tgMarker.map = tgViewController
   }
 
@@ -496,6 +498,7 @@ open class MapViewController: UIViewController, LocationManagerDelegate {
    - parameter marker: The marker to remove from map.
    */
   open func removeMarker(_ marker: Marker) {
+    currentMarkers.removeValue(forKey: marker.tgMarker)
     marker.tgMarker.map = nil
   }
 
@@ -1106,9 +1109,11 @@ extension MapViewController : TGMapViewDelegate, TGRecognizerDelegate {
   
   open func mapView(_ mapView: TGMapViewController, didSelectMarker markerPickResult: TGMarkerPickResult?, atScreenPosition position: CGPoint) {
     guard let markerPickResult = markerPickResult else { return }
-    let marker = markerPickResult.marker
-    guard let annotation = currentAnnotations.keyForValue(value: marker) else {
-      markerSelectDelegate?.mapController(self, didSelectMarker: markerPickResult, atScreenPosition: position)
+    let tgMarker = markerPickResult.marker
+    guard let annotation = currentAnnotations.keyForValue(value: tgMarker) else {
+      if let marker = currentMarkers[tgMarker] {
+        markerSelectDelegate?.mapController(self, didSelectMarker: marker, atScreenPosition: position)
+      }
       return
     }
     if let target = annotation.target, let action = annotation.selector {

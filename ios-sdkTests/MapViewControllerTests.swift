@@ -627,7 +627,10 @@ class MapViewControllerTests: XCTestCase {
   func testDidSelectMarkerCallsSelectDelegate() {
     let delegate = TestMapSelectDelegate()
     controller.markerSelectDelegate = delegate
-    controller.mapView(tgViewController, didSelectMarker: TGMarkerPickResult(), atScreenPosition: CGPoint())
+    let tgMarker = TGMarker()
+    let result = TestTGMarkerPickResult.init(marker: tgMarker)
+    controller.currentMarkers[tgMarker] = Marker()
+    controller.mapView(tgViewController, didSelectMarker: result, atScreenPosition: CGPoint())
     XCTAssertTrue(delegate.markerPicked)
   }
   
@@ -706,6 +709,23 @@ class MapViewControllerTests: XCTestCase {
     XCTAssertFalse(controller.findMeButton.isHidden)
     XCTAssertTrue(controller.findMeButton.isSelected) // Determined by shouldFollowCurrentLocation
     XCTAssertTrue(controller.findMeButton.isEnabled)
+  }
+
+  func testAddMarker() {
+    let tgMarker = TestTGMarker()
+    let marker = Marker(tgMarker: tgMarker)
+    controller.addMarker(marker)
+    XCTAssertEqual(controller.currentMarkers[marker.tgMarker], marker)
+    XCTAssertEqual(marker.tgMarker.map, controller.tgViewController)
+  }
+
+  func testRemoveMarker() {
+    let tgMarker = TestTGMarker()
+    let marker = Marker(tgMarker: tgMarker)
+    controller.addMarker(marker)
+    controller.removeMarker(marker)
+    XCTAssertNil(controller.currentMarkers[marker.tgMarker])
+    XCTAssertNil(marker.tgMarker.map)
   }
 }
 
@@ -831,7 +851,7 @@ class TestMapSelectDelegate : MapLabelSelectDelegate, MapMarkerSelectDelegate, M
     labelPicked = true
   }
   
-  func mapController(_ mapView: MapViewController, didSelectMarker markerPickResult: TGMarkerPickResult, atScreenPosition position: CGPoint) {
+  func mapController(_ mapView: MapViewController, didSelectMarker marker: Marker, atScreenPosition position: CGPoint) {
     markerPicked = true
   }
   
