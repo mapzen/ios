@@ -871,8 +871,11 @@ open class MapViewController: UIViewController, LocationManagerDelegate {
       addMarker(newMarker)
       //TODO: also set polyline, polygon etc
       newMarker.point = marker.point
-      newMarker.tgMarker.stylingString = marker.stylingString
-      newMarker.tgMarker.stylingPath = marker.stylingPath
+      if !marker.stylingPath.isEmpty {
+        newMarker.tgMarker.stylingPath = marker.stylingPath
+      } else {
+        newMarker.tgMarker.stylingString = marker.stylingString
+      }
       self.currentAnnotations[annotation] = newMarker.tgMarker
     }
 
