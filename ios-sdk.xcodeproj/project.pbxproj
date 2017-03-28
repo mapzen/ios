@@ -64,7 +64,7 @@
 		DBC869901D3662DD00DDC4FE /* AutocompleteTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBC8698F1D3662DD00DDC4FE /* AutocompleteTableVC.swift */; };
 		DBC869921D3663C700DDC4FE /* PeliasMapkitExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBC869911D3663C700DDC4FE /* PeliasMapkitExtensions.swift */; };
 		DBCBC5BF1E0AE1CF0045B345 /* MapViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBCBC5BE1E0AE1CF0045B345 /* MapViewControllerTests.swift */; };
-		DBF441AE1D351B0A007DEE95 /* TangramVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBF441AD1D351B0A007DEE95 /* TangramVC.swift */; };
+		DBF441AE1D351B0A007DEE95 /* DemoMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBF441AD1D351B0A007DEE95 /* DemoMapViewController.swift */; };
 		DBF441B01D351C90007DEE95 /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DBF441AF1D351C90007DEE95 /* GLKit.framework */; };
 		DBF5221D1DFB4752009D8F1E /* ic_find_me_pressed@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DBF5221C1DFB4752009D8F1E /* ic_find_me_pressed@2x.png */; };
 		DBFB759D1E20345500CF6173 /* SearchPinsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBFB759C1E20345500CF6173 /* SearchPinsViewController.swift */; };
@@ -170,7 +170,7 @@
 		DBC8698F1D3662DD00DDC4FE /* AutocompleteTableVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AutocompleteTableVC.swift; sourceTree = "<group>"; };
 		DBC869911D3663C700DDC4FE /* PeliasMapkitExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PeliasMapkitExtensions.swift; sourceTree = "<group>"; };
 		DBCBC5BE1E0AE1CF0045B345 /* MapViewControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewControllerTests.swift; sourceTree = "<group>"; };
-		DBF441AD1D351B0A007DEE95 /* TangramVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TangramVC.swift; sourceTree = "<group>"; };
+		DBF441AD1D351B0A007DEE95 /* DemoMapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DemoMapViewController.swift; sourceTree = "<group>"; };
 		DBF441AF1D351C90007DEE95 /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
 		DBF5221C1DFB4752009D8F1E /* ic_find_me_pressed@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ic_find_me_pressed@2x.png"; sourceTree = "<group>"; };
 		DBFB759C1E20345500CF6173 /* SearchPinsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchPinsViewController.swift; sourceTree = "<group>"; };
@@ -376,7 +376,7 @@
 				DB7A33DE1C8F8E8B009CC743 /* Assets.xcassets */,
 				DB7A33E01C8F8E8B009CC743 /* LaunchScreen.storyboard */,
 				DB7A33E31C8F8E8B009CC743 /* Info.plist */,
-				DBF441AD1D351B0A007DEE95 /* TangramVC.swift */,
+				DBF441AD1D351B0A007DEE95 /* DemoMapViewController.swift */,
 				DBC8698F1D3662DD00DDC4FE /* AutocompleteTableVC.swift */,
 				DBBF368A1D64DA6A0069D769 /* RoutingViewController.swift */,
 				DB22E5991DA45D73004264E0 /* RoutingSearchVC.swift */,
@@ -658,7 +658,7 @@
 				7D7DAE211E60EEA300FFCA6F /* ApplicationExtensions.swift in Sources */,
 				7D7847251E6775EA000D56CA /* Dimensions.swift in Sources */,
 				DB188EEA1E2846600054DEFD /* MapzenManager.swift in Sources */,
-				DBF441AE1D351B0A007DEE95 /* TangramVC.swift in Sources */,
+				DBF441AE1D351B0A007DEE95 /* DemoMapViewController.swift in Sources */,
 				DB22E59E1DA473CA004264E0 /* RouteDirectionCell.swift in Sources */,
 				DB5B31511DE4A173005EB816 /* LocationManager.swift in Sources */,
 				DBC869921D3663C700DDC4FE /* PeliasMapkitExtensions.swift in Sources */,
