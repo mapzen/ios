@@ -13,8 +13,15 @@ import Pelias
 public class SearchResponse : NSObject {
   let peliasResponse: PeliasResponse
 
-  //TODO
-  //  private lazy var internalParsedError: MapzenSearchError?
+  private lazy var internalParsedError: SearchError? = { [unowned self] in
+    guard let peliasParsedError = self.peliasResponse.parsedError else { return nil }
+    return SearchError.init(peliasParsedError)
+    }()
+
+  private lazy var internalParsedResponse: ParsedSearchResponse? =  { [unowned self] in
+    guard let peliasParsedResponse = self.peliasResponse.parsedResponse else { return nil }
+    return ParsedSearchResponse.init(peliasParsedResponse)
+  }()
 
   public var data: Data? {
     get {
@@ -34,11 +41,17 @@ public class SearchResponse : NSObject {
     }
   }
 
-  //TODO: create wrapper
-  //  public var parsedResponse: PeliasSearchResponse? {
+  public var parsedResponse: ParsedSearchResponse? {
+    get {
+      return internalParsedResponse
+    }
+  }
 
-  //TODO:
-  //  public var parsedError: MapzenSearchError? {
+  public var parsedError: SearchError? {
+    get {
+      return internalParsedError
+    }
+  }
 
   init(_ response: PeliasResponse) {
     peliasResponse = response
@@ -51,3 +64,29 @@ public class SearchResponse : NSObject {
             response.peliasResponse.error == peliasResponse.error
   }
 }
+
+@objc(MZParsedSearchResponse)
+public class ParsedSearchResponse: NSObject {
+
+  let peliasResponse: PeliasSearchResponse
+
+  public var parsedResponse: NSDictionary {
+    get {
+      return peliasResponse.parsedResponse
+    }
+  }
+
+  init(_ response: PeliasSearchResponse) {
+    peliasResponse = response
+  }
+
+  public static func encode(_ response: ParsedSearchResponse) {
+    PeliasSearchResponse.encode(response.peliasResponse)
+  }
+
+  public func decode() -> ParsedSearchResponse? {
+    guard let decoded = PeliasSearchResponse.decode() else { return nil }
+    return ParsedSearchResponse.init(decoded)
+  }
+}
+

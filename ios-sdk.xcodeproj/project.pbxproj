@@ -14,6 +14,8 @@
 		7D503BCC1E77457A00FDDC4F /* SampleMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D503BCB1E77457A00FDDC4F /* SampleMapViewController.swift */; };
 		7D503BCE1E77468B00FDDC4F /* SampleTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D503BCD1E77468B00FDDC4F /* SampleTableViewController.swift */; };
 		7D503BD01E78944300FDDC4F /* TestTGMarkerPickResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D503BCF1E78944300FDDC4F /* TestTGMarkerPickResult.swift */; };
+		7D5616D91E89C8B600D95E5D /* MapzenSearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D5616D81E89C8B600D95E5D /* MapzenSearch.swift */; };
+		7D5616DD1E8AD01100D95E5D /* MapzenSearchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D5616DC1E8AD01100D95E5D /* MapzenSearchTests.swift */; };
 		7D7847251E6775EA000D56CA /* Dimensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D7847241E6775EA000D56CA /* Dimensions.swift */; };
 		7D7D49931E7708E5006074EB /* TestSessionDataTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D7D49921E7708E5006074EB /* TestSessionDataTask.swift */; };
 		7D7D49951E7709A1006074EB /* TestUrlSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D7D49941E7709A1006074EB /* TestUrlSession.swift */; };
@@ -107,6 +109,8 @@
 		7D503BCB1E77457A00FDDC4F /* SampleMapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SampleMapViewController.swift; sourceTree = "<group>"; };
 		7D503BCD1E77468B00FDDC4F /* SampleTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SampleTableViewController.swift; sourceTree = "<group>"; };
 		7D503BCF1E78944300FDDC4F /* TestTGMarkerPickResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestTGMarkerPickResult.swift; sourceTree = "<group>"; };
+		7D5616D81E89C8B600D95E5D /* MapzenSearch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapzenSearch.swift; sourceTree = "<group>"; };
+		7D5616DC1E8AD01100D95E5D /* MapzenSearchTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapzenSearchTests.swift; sourceTree = "<group>"; };
 		7D7847241E6775EA000D56CA /* Dimensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Dimensions.swift; sourceTree = "<group>"; };
 		7D7D49921E7708E5006074EB /* TestSessionDataTask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestSessionDataTask.swift; sourceTree = "<group>"; };
 		7D7D49941E7709A1006074EB /* TestUrlSession.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestUrlSession.swift; sourceTree = "<group>"; };
@@ -410,6 +414,7 @@
 				7DB181541E81B745001F9B49 /* SearchDataObjectsTests.swift */,
 				7DB181561E81B77B001F9B49 /* SearchResponseTests.swift */,
 				7D4122731E84834C009520B7 /* SearchConfigsTests.swift */,
+				7D5616DC1E8AD01100D95E5D /* MapzenSearchTests.swift */,
 			);
 			path = "ios-sdkTests";
 			sourceTree = "<group>";
@@ -417,6 +422,7 @@
 		DBC84EA51C985B6D00EE80D8 /* src */ = {
 			isa = PBXGroup;
 			children = (
+				7D5616D81E89C8B600D95E5D /* MapzenSearch.swift */,
 				7DB1813E1E81B472001F9B49 /* SearchDataConverter.swift */,
 				7DB1813F1E81B472001F9B49 /* SearchDataObjects.swift */,
 				7D7847231E6775EA000D56CA /* dimensions */,
@@ -652,6 +658,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7D5616D91E89C8B600D95E5D /* MapzenSearch.swift in Sources */,
 				DBFB759F1E2046D100CF6173 /* TangramExtensions.swift in Sources */,
 				7DB181491E81B681001F9B49 /* SearchResponse.swift in Sources */,
 				DBFB759D1E20345500CF6173 /* SearchPinsViewController.swift in Sources */,
@@ -686,6 +693,7 @@
 			files = (
 				7D7DAE1D1E60C5C900FFCA6F /* TestApplication.swift in Sources */,
 				7D4122741E84834C009520B7 /* SearchConfigsTests.swift in Sources */,
+				7D5616DD1E8AD01100D95E5D /* MapzenSearchTests.swift in Sources */,
 				7DC7F0941E70C26B009E722B /* TestLocationManager.swift in Sources */,
 				7DC7F0981E71E138009E722B /* TestAnnotationTarget.swift in Sources */,
 				7DB181551E81B745001F9B49 /* SearchDataObjectsTests.swift in Sources */,
