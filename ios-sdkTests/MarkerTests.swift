@@ -22,6 +22,7 @@ class MarkerTests: XCTestCase {
     XCTAssertEqual(marker.tgMarker.point.latitude, point.latitude)
     XCTAssertEqual(marker.tgMarker.point.longitude, point.longitude)
     XCTAssertTrue(marker.tgMarker.stylingString.contains("style: 'points'"))
+    XCTAssertTrue(marker.tgMarker.stylingString.contains("size:"))
   }
 
   func testPolyline() {
@@ -30,6 +31,7 @@ class MarkerTests: XCTestCase {
     XCTAssertEqual(marker.polyline, polyline)
     XCTAssertEqual(marker.tgMarker.polyline, polyline)
     XCTAssertTrue(marker.tgMarker.stylingString.contains("style: 'lines'"))
+    XCTAssertFalse(marker.tgMarker.stylingString.contains("size:"))
   }
 
   func testPolygon() {
@@ -38,6 +40,7 @@ class MarkerTests: XCTestCase {
     XCTAssertEqual(marker.polygon, polygon)
     XCTAssertEqual(marker.tgMarker.polygon, polygon)
     XCTAssertTrue(marker.tgMarker.stylingString.contains("style: 'polygons'"))
+    XCTAssertFalse(marker.tgMarker.stylingString.contains("size:"))
   }
 
   //TODO: failing, fix

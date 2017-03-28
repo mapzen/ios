@@ -171,8 +171,19 @@ public class Marker: NSObject {
     if !tgMarker.stylingPath.isEmpty {
       return
     }
-    let str = "{ style: '\(styleType)', color: '\(backgroundColor.hexValue())', size: [\(size.width)px, \(size.height)px], collide: false, interactive: \(interactive) }"
-    print("str: \(str)")
+
+    var str: String
+    switch styleType {
+    case Marker.kPointStyle:
+      str = "{ style: '\(styleType)', color: '\(backgroundColor.hexValue())', size: [\(size.width)px, \(size.height)px], collide: false, interactive: \(interactive) }"
+      break;
+    case Marker.kLineStyle,
+         Marker.kPolygonStyle:
+      str = "{ style: '\(styleType)', color: '\(backgroundColor.hexValue())', collide: false, interactive: \(interactive) }"
+      break;
+    default:
+      str = "{ style: '\(styleType)', color: '\(backgroundColor.hexValue())', size: [\(size.width)px, \(size.height)px], collide: false, interactive: \(interactive) }"
+    }
     tgMarker.stylingString = str
   }
 
