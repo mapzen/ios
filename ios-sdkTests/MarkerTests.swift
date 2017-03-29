@@ -22,7 +22,7 @@ class MarkerTests: XCTestCase {
     XCTAssertEqual(marker.tgMarker.point.latitude, point.latitude)
     XCTAssertEqual(marker.tgMarker.point.longitude, point.longitude)
     XCTAssertTrue(marker.tgMarker.stylingString.contains("style: 'points'"))
-    XCTAssertTrue(marker.tgMarker.stylingString.contains("size:"))
+    XCTAssertFalse(marker.tgMarker.stylingString.contains("size:"))
   }
 
   func testPolyline() {
@@ -104,8 +104,16 @@ class MarkerTests: XCTestCase {
     XCTAssertEqual(m.size, size)
     XCTAssertEqual(m.backgroundColor, UIColor.white)
     XCTAssertTrue(m.interactive)
+    XCTAssertTrue(m.tgMarker.stylingString.contains("size: [\(size.width)px, \(size.height)px]"))
   }
 
+  func testInit() {
+    let m = Marker.init()
+    XCTAssertEqual(m.backgroundColor, UIColor.white)
+    XCTAssertTrue(m.interactive)
+    XCTAssertFalse(m.tgMarker.stylingString.contains("size:"))
+  }
+  
 //  func testInitWithIcon() {
 //    let image = UIImage(named: "ic_find_me_normal")
 //    let m = Marker.init(icon: image)

@@ -55,6 +55,7 @@ public class Marker : NSObject, GenericMarker {
   private let typeToInactiveStylingPath = [MarkerType.searchPin : "layers.mz_search_result.inactive.draw.ux-icons-overlay"]
 
   private let internalTgMarker: TGMarker
+  private var userUpdatedSize = false
 
   public var tgMarker: TGMarker {
     get {
@@ -129,6 +130,7 @@ public class Marker : NSObject, GenericMarker {
 
   public var size: CGSize {
     didSet {
+      userUpdatedSize = true
       updateStyleString()
     }
   }
@@ -161,8 +163,12 @@ public class Marker : NSObject, GenericMarker {
     return marker
   }
 
-  public convenience required override init() {
-    self.init(size: Marker.kDefaultSize)
+  public required override init() {
+    internalTgMarker = TGMarker.init()
+    size = Marker.kDefaultSize
+    backgroundColor = Marker.kDefaultBackgroundColor
+    interactive = Marker.kDefaultInteractive
+    active = Marker.kDefaultActive
   }
 
   //TODO: add back when https://github.com/tangrams/tangram-es/issues/1394 is fixed
@@ -181,6 +187,10 @@ public class Marker : NSObject, GenericMarker {
     backgroundColor = Marker.kDefaultBackgroundColor
     interactive = Marker.kDefaultInteractive
     active = Marker.kDefaultActive
+    super.init()
+    defer {
+      size = s
+    }
   }
 
   init(tgMarker tgM: TGMarker) {
@@ -206,16 +216,25 @@ public class Marker : NSObject, GenericMarker {
     var str: String
     switch styleType {
     case Marker.kPointStyle:
-      str = "{ style: '\(styleType)', color: '\(backgroundColor.hexValue())', size: [\(size.width)px, \(size.height)px], collide: false, interactive: \(interactive) }"
+      str = generateStyleStringWithSize()
       break;
     case Marker.kLineStyle,
          Marker.kPolygonStyle:
-      str = "{ style: '\(styleType)', color: '\(backgroundColor.hexValue())', collide: false, interactive: \(interactive) }"
+      str = generateBasicStyleString()
       break;
     default:
-      str = "{ style: '\(styleType)', color: '\(backgroundColor.hexValue())', size: [\(size.width)px, \(size.height)px], collide: false, interactive: \(interactive) }"
+      str = generateStyleStringWithSize()
     }
     tgMarker.stylingString = str
+  }
+
+  private func generateBasicStyleString() -> String {
+    return "{ style: '\(styleType)', color: '\(backgroundColor.hexValue())', collide: false, interactive: \(interactive) }"
+  }
+
+  private func generateStyleStringWithSize() -> String {
+    if !userUpdatedSize { return generateBasicStyleString() }
+    return "{ style: '\(styleType)', color: '\(backgroundColor.hexValue())', size: [\(size.width)px, \(size.height)px], collide: false, interactive: \(interactive) }"
   }
 
   private func updateStylePath() {
