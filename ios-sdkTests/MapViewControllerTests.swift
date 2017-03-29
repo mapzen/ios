@@ -16,7 +16,7 @@ class TestMapViewController: MapViewController {
   func lastSetPointValue() -> TGGeoPoint? {
     return lastSetPoint
   }
-  func currentLocationGemValue() -> Marker? {
+  func currentLocationGemValue() -> GenericMarker? {
     return currentLocationGem
   }
   func shouldShowCurrentLocationValue() -> Bool {
@@ -715,7 +715,8 @@ class MapViewControllerTests: XCTestCase {
     let tgMarker = TestTGMarker()
     let marker = Marker(tgMarker: tgMarker)
     controller.addMarker(marker)
-    XCTAssertEqual(controller.currentMarkers[marker.tgMarker], marker)
+    let m = controller.currentMarkers[marker.tgMarker] as! Marker
+    XCTAssertEqual(m, marker)
     XCTAssertEqual(marker.tgMarker.map, controller.tgViewController)
   }
 
@@ -851,7 +852,7 @@ class TestMapSelectDelegate : MapLabelSelectDelegate, MapMarkerSelectDelegate, M
     labelPicked = true
   }
   
-  func mapController(_ mapView: MapViewController, didSelectMarker marker: Marker, atScreenPosition position: CGPoint) {
+  func mapController(_ mapView: MapViewController, didSelectMarker marker: GenericMarker, atScreenPosition position: CGPoint) {
     markerPicked = true
   }
   

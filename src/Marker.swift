@@ -34,7 +34,7 @@ public protocol GenericMarker {
   init(size s: CGSize)
 }
 
-public class Marker : GenericMarker {
+public class Marker : NSObject, GenericMarker {
 
   private static let kPointStyle = "points"
   private static let kLineStyle = "lines"
@@ -147,7 +147,7 @@ public class Marker : GenericMarker {
 
   public var active: Bool {
     didSet {
-      updateStyleString()
+      updateStylePath()
     }
   }
 
@@ -161,7 +161,7 @@ public class Marker : GenericMarker {
     return marker
   }
 
-  public convenience required init() {
+  public convenience required override init() {
     self.init(size: Marker.kDefaultSize)
   }
 

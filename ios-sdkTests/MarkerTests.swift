@@ -17,8 +17,8 @@ class MarkerTests: XCTestCase {
   func testPoint() {
     let point = TGGeoPoint(longitude: 70.0, latitude: 40.0)
     marker.point = point
-    XCTAssertEqual(marker.point?.latitude, point.latitude)
-    XCTAssertEqual(marker.point?.longitude, point.longitude)
+    XCTAssertEqual(marker.point.latitude, point.latitude)
+    XCTAssertEqual(marker.point.longitude, point.longitude)
     XCTAssertEqual(marker.tgMarker.point.latitude, point.latitude)
     XCTAssertEqual(marker.tgMarker.point.longitude, point.longitude)
     XCTAssertTrue(marker.tgMarker.stylingString.contains("style: 'points'"))
