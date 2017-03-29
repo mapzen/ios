@@ -180,10 +180,10 @@ public protocol MapMarkerSelectDelegate : class {
    Informs the delegate a marker of the map was just selected
 
    - parameter controller: The MapViewController that recognized the selection.
-   - parameter markerPickResult: A marker selection returned as an instance of Marker.
+   - parameter markerPickResult: A marker selection returned as an instance conforming to GenericMarker.
    - parameter atScreenPosition: The screen coordinates of the picked marker.
    */
-  func mapController(_ controller: MapViewController, didSelectMarker marker: Marker, atScreenPosition position: CGPoint)
+  func mapController(_ controller: MapViewController, didSelectMarker marker: GenericMarker, atScreenPosition position: CGPoint)
 }
 
 /// MapTileLoadDelegate
@@ -215,15 +215,15 @@ open class MapViewController: UIViewController, LocationManagerDelegate {
 
   let application : ApplicationProtocol
   open var tgViewController: TGMapViewController = TGMapViewController()
-  var currentLocationGem: Marker?
+  var currentLocationGem: GenericMarker?
   var lastSetPoint: TGGeoPoint?
   var shouldShowCurrentLocation = false
-  var currentRouteMarker: Marker?
+  var currentRouteMarker: GenericMarker?
   var currentRoute: OTRRoutingResult?
   open var shouldFollowCurrentLocation = false
   open var findMeButton = UIButton(type: .custom)
   var currentAnnotations: [PeliasMapkitAnnotation : TGMarker] = Dictionary()
-  var currentMarkers: [TGMarker : Marker] = Dictionary()
+  var currentMarkers: [TGMarker : GenericMarker] = Dictionary()
   open var attributionBtn = UIButton()
   private var locale = Locale.current
   var stateSaver: StateReclaimer?
@@ -487,7 +487,7 @@ open class MapViewController: UIViewController, LocationManagerDelegate {
    
    - parameter marker: The marker to add to map.
    */
-  open func addMarker(_ marker: Marker) {
+  open func addMarker(_ marker: GenericMarker) {
     currentMarkers[marker.tgMarker] = marker
     marker.tgMarker.map = tgViewController
   }
@@ -497,7 +497,7 @@ open class MapViewController: UIViewController, LocationManagerDelegate {
 
    - parameter marker: The marker to remove from map.
    */
-  open func removeMarker(_ marker: Marker) {
+  open func removeMarker(_ marker: GenericMarker) {
     currentMarkers.removeValue(forKey: marker.tgMarker)
     marker.tgMarker.map = nil
   }

@@ -9,35 +9,63 @@
 import Foundation
 import TangramMap
 
-public enum MarkerType : Int {
+@objc public enum MarkerType : Int {
   case currentLocation, searchPin, routeLine
 }
 
-@objc(MZMarker)
-public class Marker: NSObject {
+@objc(MZGenericMarker)
+public protocol GenericMarker {
+  var tgMarker: TGMarker { get }
+  var point: TGGeoPoint { get set }
+  var polyline: TGGeoPolyline? { get set }
+  var polygon: TGGeoPolygon? { get set }
+  var icon: UIImage? { get set }
+  var visible: Bool { get set }
+  var drawOrder: Int { get set }
+  var size: CGSize { get set }
+  var backgroundColor: UIColor { get set }
+  var interactive: Bool { get set }
+  var active: Bool { get set }
 
-  private static let kPointStyle = "points"
-  private static let kLineStyle = "lines"
-  private static let kPolygonStyle = "polygons"
-  private static let kDefaultBackgroundColor = UIColor.white
-  private static let kDefaultInteractive = true
-  private static let kDefaultSize = CGSize.zero
+  func setPointEased(_ coordinates: TGGeoPoint, seconds: Float, easeType ease: TGEaseType) -> Bool
 
-  public let tgMarker: TGMarker
-  private var styleType = kPointStyle
-  private var markerType: MarkerType?
-  // all marker types have an associated styling path
-  private static let typeToStylingPath = [MarkerType.currentLocation : "layers.mz_current_location_gem.draw.ux-location-gem-overlay",
-                                   MarkerType.searchPin : "layers.mz_search_result.draw.ux-icons-overlay",
-                                   MarkerType.routeLine : "layers.mz_route_line.draw.ux-route-line-overlay"]
-  //currently only search results have an inactive state
-  private static let typeToInactiveStylingPath = [MarkerType.searchPin : "layers.mz_search_result.inactive.draw.ux-icons-overlay"]
+  static func initWithMarkerType(_ markerType: MarkerType) -> GenericMarker
+  init()
+  init(size s: CGSize)
+}
 
-  open var point: TGGeoPoint? {
+private let kPointStyle = "points"
+private let kLineStyle = "lines"
+private let kPolygonStyle = "polygons"
+private let kDefaultBackgroundColor = UIColor.white
+private let kDefaultInteractive = true
+private let kDefaultSize = CGSize.zero
+private let kDefaultActive = true
+
+var styleType = kPointStyle
+var markerType: MarkerType?
+
+// all marker types have an associated styling path
+private let typeToStylingPath = [MarkerType.currentLocation : "layers.mz_current_location_gem.draw.ux-location-gem-overlay",
+                                MarkerType.searchPin : "layers.mz_search_result.draw.ux-icons-overlay",
+                                MarkerType.routeLine : "layers.mz_route_line.draw.ux-route-line-overlay"]
+//currently only search results have an inactive state
+private let typeToInactiveStylingPath = [MarkerType.searchPin : "layers.mz_search_result.inactive.draw.ux-icons-overlay"]
+
+public class Marker : GenericMarker {
+
+  private let internalTgMarker: TGMarker
+
+  public var tgMarker: TGMarker {
+    get {
+      return internalTgMarker
+    }
+  }
+
+  public var point: TGGeoPoint {
     set {
-      guard let p = newValue else { return }
-      tgMarker.point = p
-      styleType = Marker.kPointStyle
+      tgMarker.point = newValue
+      styleType = kPointStyle
       updateStyleString()
     }
     get {
@@ -45,11 +73,11 @@ public class Marker: NSObject {
     }
   }
 
-  open var polyline: TGGeoPolyline? {
+  public var polyline: TGGeoPolyline? {
     set {
       guard let l  = newValue else { return }
       tgMarker.polyline = l
-      styleType = Marker.kLineStyle
+      styleType = kLineStyle
       updateStyleString()
     }
     get {
@@ -57,23 +85,23 @@ public class Marker: NSObject {
     }
   }
 
-  open var polygon: TGGeoPolygon? {
+  public var polygon: TGGeoPolygon? {
     set {
       guard let p = newValue else { return }
       tgMarker.polygon = p
-      styleType = Marker.kPolygonStyle
+      styleType = kPolygonStyle
       updateStyleString()
     }
     get {
       return tgMarker.polygon
     }
   }
-  open var icon: UIImage? {
+  public var icon: UIImage? {
     set {
       guard let i = newValue else { return }
       tgMarker.icon = i
       size = i.size
-      styleType = Marker.kPointStyle
+      styleType = kPointStyle
       updateStyleString()
     }
     get {
@@ -81,7 +109,7 @@ public class Marker: NSObject {
     }
   }
 
-  open var visible: Bool {
+  public var visible: Bool {
     set {
       tgMarker.visible = newValue
     }
@@ -90,7 +118,7 @@ public class Marker: NSObject {
     }
   }
 
-  open var drawOrder: Int {
+  public var drawOrder: Int {
     set {
       tgMarker.drawOrder = newValue
     }
@@ -99,71 +127,74 @@ public class Marker: NSObject {
     }
   }
 
-  open var size: CGSize {
+  public var size: CGSize {
     didSet {
       updateStyleString()
     }
   }
 
-  open var backgroundColor: UIColor {
+  public var backgroundColor: UIColor {
     didSet {
       updateStyleString()
     }
   }
 
-  open var interactive: Bool {
+  public var interactive: Bool {
     didSet {
       updateStyleString()
     }
   }
 
-  open var active: Bool? {
+  public var active: Bool {
     didSet {
-      updateStylePath()
+      updateStyleString()
     }
   }
 
-  public static func initWithMarkerType(_ markerType: MarkerType) -> Marker {
+  public func setPointEased(_ coordinates: TGGeoPoint, seconds: Float, easeType ease: TGEaseType) -> Bool {
+    return tgMarker.setPointEased(coordinates, seconds: seconds, easeType: ease)
+  }
+
+
+  public static func initWithMarkerType(_ markerType: MarkerType) -> GenericMarker {
     let marker = Marker(markerType: markerType)
     return marker
   }
 
-  public override convenience init() {
-    self.init(size: Marker.kDefaultSize)
+  public convenience required init() {
+    self.init(size: kDefaultSize)
   }
 
-//TODO: add back when https://github.com/tangrams/tangram-es/issues/1394 is fixed
-//  public convenience init(icon i: UIImage?) {
-//    if let sz = i?.size {
-//      self.init(size: sz)
-//    } else {
-//      self.init(size: Marker.kDefaultSize)
-//    }
-//    icon = i
-//  }
+  //TODO: add back when https://github.com/tangrams/tangram-es/issues/1394 is fixed
+  //  public convenience init(icon i: UIImage?) {
+  //    if let sz = i?.size {
+  //      self.init(size: sz)
+  //    } else {
+  //      self.init(size: Marker.kDefaultSize)
+  //    }
+  //    icon = i
+  //  }
 
-  public init(size s: CGSize) {
-    tgMarker = TGMarker.init()
+  public required init(size s: CGSize) {
+    internalTgMarker = TGMarker.init()
     size = s
-    backgroundColor = Marker.kDefaultBackgroundColor
-    interactive = Marker.kDefaultInteractive
+    backgroundColor = kDefaultBackgroundColor
+    interactive = kDefaultInteractive
+    active = kDefaultActive
   }
 
   init(tgMarker tgM: TGMarker) {
-    tgMarker = tgM
-    size = Marker.kDefaultSize
-    backgroundColor = Marker.kDefaultBackgroundColor
-    interactive = Marker.kDefaultInteractive
+    internalTgMarker = tgM
+    size = kDefaultSize
+    backgroundColor = kDefaultBackgroundColor
+    interactive = kDefaultInteractive
+    active = kDefaultActive
   }
 
   convenience init(markerType mt: MarkerType) {
-    self.init(size: Marker.kDefaultSize)
+    self.init(size: kDefaultSize)
     markerType = mt
-    tgMarker.stylingPath = Marker.typeToStylingPath[mt]! //there is always a styling string for a given MarkerType so force unwrap
-  }
-
-  open func setPointEased(_ coordinates: TGGeoPoint, seconds: Float, easeType ease: TGEaseType) -> Bool {
-    return tgMarker.setPointEased(coordinates, seconds: seconds, easeType: ease)
+    tgMarker.stylingPath = typeToStylingPath[mt]! //there is always a styling string for a given MarkerType so force unwrap
   }
 
   // MARK : private
@@ -174,11 +205,11 @@ public class Marker: NSObject {
 
     var str: String
     switch styleType {
-    case Marker.kPointStyle:
+    case kPointStyle:
       str = "{ style: '\(styleType)', color: '\(backgroundColor.hexValue())', size: [\(size.width)px, \(size.height)px], collide: false, interactive: \(interactive) }"
       break;
-    case Marker.kLineStyle,
-         Marker.kPolygonStyle:
+    case kLineStyle,
+         kPolygonStyle:
       str = "{ style: '\(styleType)', color: '\(backgroundColor.hexValue())', collide: false, interactive: \(interactive) }"
       break;
     default:
@@ -189,13 +220,12 @@ public class Marker: NSObject {
 
   private func updateStylePath() {
     guard let type = markerType else { return }
-    guard let a = active else { return }
 
     var path: String?
-    if a {
-      path = Marker.typeToStylingPath[type]
+    if active {
+      path = typeToStylingPath[type]
     } else {
-      path = Marker.typeToInactiveStylingPath[type]
+      path = typeToInactiveStylingPath[type]
     }
 
     if let currPath = path {
@@ -203,3 +233,34 @@ public class Marker: NSObject {
     }
   }
 }
+
+//func associatedObject<ValueType: AnyObject>(base: AnyObject, key: UnsafePointer<UInt8>, initialiser: () -> ValueType) -> ValueType {
+//  if let associated = objc_getAssociatedObject(base, key) as? ValueType {
+//    return associated
+//  }
+//  let associated = initialiser()
+//  objc_setAssociatedObject(base, key, associated, .OBJC_ASSOCIATION_RETAIN)
+//  return associated
+//}
+//
+//func associateObject<ValueType: AnyObject>(base: AnyObject, key: UnsafePointer<UInt8>, value: ValueType) {
+//  objc_setAssociatedObject(base, key, value, .OBJC_ASSOCIATION_RETAIN)
+//}
+//
+//class SizeObj {
+//
+//  let size: CGSize
+//
+//  init(_ s: CGSize) {
+//    size = s
+//  }
+//}
+//
+//class BoolObj {
+//
+//  let bool: Bool
+//
+//  init(_ b: Bool) {
+//    bool = b
+//  }
+//}
