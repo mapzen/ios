@@ -9,31 +9,59 @@
 import Foundation
 import TangramMap
 
+/// Enum for common marker types supported by all the house styles.
 @objc public enum MarkerType : Int {
   case currentLocation, searchPin, routeLine
 }
 
+/// Generic marker protocol definition.
 @objc(MZGenericMarker)
 public protocol GenericMarker {
+  /// The underlying Tangram marker object. Use this only for advanced cases where features of the Marker class aren't supported.
   var tgMarker: TGMarker { get }
+  /// The coordinates that the marker should be placed at on the map. Note that point, polyline, and polygon are mutually exclusive. Setting one will overwrite the other values
   var point: TGGeoPoint { get set }
+  /// The polyline that should be displayed on the map. Note that point, polyline, and polygon are mutually exclusive. Setting one will overwrite the other values
   var polyline: TGGeoPolyline? { get set }
+  /// The polygon that should be displayed on the map. Note that point, polyline, and polygon are mutually exclusive. Setting one will overwrite the other values
   var polygon: TGGeoPolygon? { get set }
+  /// The image that should be displayed on the marker. This cannot be used with polylines or polygons, only points.
   var icon: UIImage? { get set }
+  /// Toggles the marker visibility.
   var visible: Bool { get set }
+  /// The marker draw order relative to other markers. Note that higher values are drawn above lower ones.
   var drawOrder: Int { get set }
+  /// Sets the size of a point marker. Does nothing when a polyline or polygon is set.
   var size: CGSize { get set }
+  /// Sets the marker background color. Default value is white.
   var backgroundColor: UIColor { get set }
+  /// If the marker is interactive, it is able to be selected and delegates can receive callbacks for these events. Default value is true.
   var interactive: Bool { get set }
+  /// Should only be used when a marker is initialized with a MarkerType. Updates the visual properties to indicate active status (ie. updates search pin to be gray when inactive).
   var active: Bool { get set }
-
+  /**
+   Animates the marker from its current coordinates to the ones given.
+   
+   - parameter coordinates: Coordinates to animate the marker to
+   - parameter seconds: Duration in seconds of the animation.
+   - parameter easeType: Easing to use for animation.
+  */
   func setPointEased(_ coordinates: TGGeoPoint, seconds: Float, easeType ease: TGEaseType) -> Bool
-
+  /// Returns a marker whose visual properties have been defined by a house style. Do not try to update the background color, size or other visual aspects of this marker.
   static func initWithMarkerType(_ markerType: MarkerType) -> GenericMarker
+  /// Default initializer.
   init()
+  /**
+   Initializes a marker with a given size.
+   
+   - parameter size: The size the marker should be.
+   */
   init(size s: CGSize)
 }
 
+/**
+ Base implementation for the GenericMarker protocol
+ */
 public class Marker : NSObject, GenericMarker {
 
   private static let kPointStyle = "points"
@@ -57,12 +85,14 @@ public class Marker : NSObject, GenericMarker {
   private let internalTgMarker: TGMarker
   private var userUpdatedSize = false
 
+  /// The underlying Tangram marker object. Use this only for advanced cases where features of the Marker class aren't supported.
   public var tgMarker: TGMarker {
     get {
       return internalTgMarker
     }
   }
 
+  /// The coordinates that the marker should be placed at on the map. Note that point, polyline, and polygon are mutually exclusive. Setting one will overwrite the other values
   public var point: TGGeoPoint {
     set {
       tgMarker.point = newValue
@@ -74,6 +104,7 @@ public class Marker : NSObject, GenericMarker {
     }
   }
 
+  /// The polyline that should be displayed on the map. Note that point, polyline, and polygon are mutually exclusive. Setting one will overwrite the other values
   public var polyline: TGGeoPolyline? {
     set {
       guard let l  = newValue else { return }
@@ -86,6 +117,7 @@ public class Marker : NSObject, GenericMarker {
     }
   }
 
+  /// The polygon that should be displayed on the map. Note that point, polyline, and polygon are mutually exclusive. Setting one will overwrite the other values
   public var polygon: TGGeoPolygon? {
     set {
       guard let p = newValue else { return }
@@ -97,6 +129,8 @@ public class Marker : NSObject, GenericMarker {
       return tgMarker.polygon
     }
   }
+
+  /// The image that should be displayed on the marker. Updates the size of the marker to be the intrinsic size of the image. This cannot be used with polylines or polygons, only points.
   public var icon: UIImage? {
     set {
       guard let i = newValue else { return }
@@ -110,6 +144,7 @@ public class Marker : NSObject, GenericMarker {
     }
   }
 
+  /// Toggles the marker visibility.
   public var visible: Bool {
     set {
       tgMarker.visible = newValue
@@ -119,6 +154,7 @@ public class Marker : NSObject, GenericMarker {
     }
   }
 
+  /// The marker draw order relative to other markers. Note that higher values are drawn above lower ones.
   public var drawOrder: Int {
     set {
       tgMarker.drawOrder = newValue
@@ -128,6 +164,7 @@ public class Marker : NSObject, GenericMarker {
     }
   }
 
+  /// Sets the size of a point marker. Does nothing when a polyline or polygon is set.
   public var size: CGSize {
     didSet {
       userUpdatedSize = true
@@ -135,34 +172,45 @@ public class Marker : NSObject, GenericMarker {
     }
   }
 
+  /// Sets the marker background color. Default value is white.
   public var backgroundColor: UIColor {
     didSet {
       updateStyleString()
     }
   }
 
+  /// If the marker is interactive, it is able to be selected and delegates can receive callbacks for these events. Default value is true.
   public var interactive: Bool {
     didSet {
       updateStyleString()
     }
   }
 
+  /// Should only be used when a marker is initialized with a MarkerType. Updates the visual properties to indicate active status (ie. updates search pin to be gray when inactive).
   public var active: Bool {
     didSet {
       updateStylePath()
     }
   }
 
+  /**
+   Animates the marker from its current coordinates to the ones given.
+
+   - parameter coordinates: Coordinates to animate the marker to
+   - parameter seconds: Duration in seconds of the animation.
+   - parameter easeType: Easing to use for animation.
+   */
   public func setPointEased(_ coordinates: TGGeoPoint, seconds: Float, easeType ease: TGEaseType) -> Bool {
     return tgMarker.setPointEased(coordinates, seconds: seconds, easeType: ease)
   }
 
-
+  /// Returns a marker whose visual properties have been defined by a house style. Do not try to update the background color, size or other visual aspects of this marker.
   public static func initWithMarkerType(_ markerType: MarkerType) -> GenericMarker {
     let marker = Marker(markerType: markerType)
     return marker
   }
 
+  /// Default initializer.
   public required override init() {
     internalTgMarker = TGMarker.init()
     size = Marker.kDefaultSize
@@ -181,6 +229,11 @@ public class Marker : NSObject, GenericMarker {
   //    icon = i
   //  }
 
+  /**
+   Initializes a marker with a given size.
+
+   - parameter size: The size the marker should be.
+   */
   public required init(size s: CGSize) {
     internalTgMarker = TGMarker.init()
     size = s
