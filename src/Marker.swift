@@ -34,25 +34,25 @@ public protocol GenericMarker {
   init(size s: CGSize)
 }
 
-private let kPointStyle = "points"
-private let kLineStyle = "lines"
-private let kPolygonStyle = "polygons"
-private let kDefaultBackgroundColor = UIColor.white
-private let kDefaultInteractive = true
-private let kDefaultSize = CGSize.zero
-private let kDefaultActive = true
-
-var styleType = kPointStyle
-var markerType: MarkerType?
-
-// all marker types have an associated styling path
-private let typeToStylingPath = [MarkerType.currentLocation : "layers.mz_current_location_gem.draw.ux-location-gem-overlay",
-                                MarkerType.searchPin : "layers.mz_search_result.draw.ux-icons-overlay",
-                                MarkerType.routeLine : "layers.mz_route_line.draw.ux-route-line-overlay"]
-//currently only search results have an inactive state
-private let typeToInactiveStylingPath = [MarkerType.searchPin : "layers.mz_search_result.inactive.draw.ux-icons-overlay"]
-
 public class Marker : GenericMarker {
+
+  private static let kPointStyle = "points"
+  private static let kLineStyle = "lines"
+  private static let kPolygonStyle = "polygons"
+  private static let kDefaultBackgroundColor = UIColor.white
+  private static let kDefaultInteractive = true
+  private static let kDefaultSize = CGSize.zero
+  private static let kDefaultActive = true
+
+  var styleType = Marker.kPointStyle
+  var markerType: MarkerType?
+
+  // all marker types have an associated styling path
+  private let typeToStylingPath = [MarkerType.currentLocation : "layers.mz_current_location_gem.draw.ux-location-gem-overlay",
+                                   MarkerType.searchPin : "layers.mz_search_result.draw.ux-icons-overlay",
+                                   MarkerType.routeLine : "layers.mz_route_line.draw.ux-route-line-overlay"]
+  //currently only search results have an inactive state
+  private let typeToInactiveStylingPath = [MarkerType.searchPin : "layers.mz_search_result.inactive.draw.ux-icons-overlay"]
 
   private let internalTgMarker: TGMarker
 
@@ -65,7 +65,7 @@ public class Marker : GenericMarker {
   public var point: TGGeoPoint {
     set {
       tgMarker.point = newValue
-      styleType = kPointStyle
+      styleType = Marker.kPointStyle
       updateStyleString()
     }
     get {
@@ -77,7 +77,7 @@ public class Marker : GenericMarker {
     set {
       guard let l  = newValue else { return }
       tgMarker.polyline = l
-      styleType = kLineStyle
+      styleType = Marker.kLineStyle
       updateStyleString()
     }
     get {
@@ -89,7 +89,7 @@ public class Marker : GenericMarker {
     set {
       guard let p = newValue else { return }
       tgMarker.polygon = p
-      styleType = kPolygonStyle
+      styleType = Marker.kPolygonStyle
       updateStyleString()
     }
     get {
@@ -101,7 +101,7 @@ public class Marker : GenericMarker {
       guard let i = newValue else { return }
       tgMarker.icon = i
       size = i.size
-      styleType = kPointStyle
+      styleType = Marker.kPointStyle
       updateStyleString()
     }
     get {
@@ -162,7 +162,7 @@ public class Marker : GenericMarker {
   }
 
   public convenience required init() {
-    self.init(size: kDefaultSize)
+    self.init(size: Marker.kDefaultSize)
   }
 
   //TODO: add back when https://github.com/tangrams/tangram-es/issues/1394 is fixed
@@ -178,21 +178,21 @@ public class Marker : GenericMarker {
   public required init(size s: CGSize) {
     internalTgMarker = TGMarker.init()
     size = s
-    backgroundColor = kDefaultBackgroundColor
-    interactive = kDefaultInteractive
-    active = kDefaultActive
+    backgroundColor = Marker.kDefaultBackgroundColor
+    interactive = Marker.kDefaultInteractive
+    active = Marker.kDefaultActive
   }
 
   init(tgMarker tgM: TGMarker) {
     internalTgMarker = tgM
-    size = kDefaultSize
-    backgroundColor = kDefaultBackgroundColor
-    interactive = kDefaultInteractive
-    active = kDefaultActive
+    size = Marker.kDefaultSize
+    backgroundColor = Marker.kDefaultBackgroundColor
+    interactive = Marker.kDefaultInteractive
+    active = Marker.kDefaultActive
   }
 
   convenience init(markerType mt: MarkerType) {
-    self.init(size: kDefaultSize)
+    self.init(size: Marker.kDefaultSize)
     markerType = mt
     tgMarker.stylingPath = typeToStylingPath[mt]! //there is always a styling string for a given MarkerType so force unwrap
   }
@@ -205,11 +205,11 @@ public class Marker : GenericMarker {
 
     var str: String
     switch styleType {
-    case kPointStyle:
+    case Marker.kPointStyle:
       str = "{ style: '\(styleType)', color: '\(backgroundColor.hexValue())', size: [\(size.width)px, \(size.height)px], collide: false, interactive: \(interactive) }"
       break;
-    case kLineStyle,
-         kPolygonStyle:
+    case Marker.kLineStyle,
+         Marker.kPolygonStyle:
       str = "{ style: '\(styleType)', color: '\(backgroundColor.hexValue())', collide: false, interactive: \(interactive) }"
       break;
     default:
@@ -233,34 +233,3 @@ public class Marker : GenericMarker {
     }
   }
 }
-
-//func associatedObject<ValueType: AnyObject>(base: AnyObject, key: UnsafePointer<UInt8>, initialiser: () -> ValueType) -> ValueType {
-//  if let associated = objc_getAssociatedObject(base, key) as? ValueType {
-//    return associated
-//  }
-//  let associated = initialiser()
-//  objc_setAssociatedObject(base, key, associated, .OBJC_ASSOCIATION_RETAIN)
-//  return associated
-//}
-//
-//func associateObject<ValueType: AnyObject>(base: AnyObject, key: UnsafePointer<UInt8>, value: ValueType) {
-//  objc_setAssociatedObject(base, key, value, .OBJC_ASSOCIATION_RETAIN)
-//}
-//
-//class SizeObj {
-//
-//  let size: CGSize
-//
-//  init(_ s: CGSize) {
-//    size = s
-//  }
-//}
-//
-//class BoolObj {
-//
-//  let bool: Bool
-//
-//  init(_ b: Bool) {
-//    bool = b
-//  }
-//}
