@@ -11,7 +11,6 @@ import TangramMap
 class DemoMapViewController:  SampleMapViewController, MapMarkerSelectDelegate {
 
   private var styleLoaded = false
-  private var markerVisible = false
 
   lazy var activityIndicator : UIActivityIndicatorView = {
     let indicator = UIActivityIndicatorView.init(activityIndicatorStyle: .whiteLarge)
@@ -39,7 +38,7 @@ class DemoMapViewController:  SampleMapViewController, MapMarkerSelectDelegate {
   }
   
   //MARK : MapSelectDelegate  
-  func mapController(_ controller: MapViewController, didSelectMarker markerPickResult: TGMarkerPickResult, atScreenPosition position: CGPoint) {
+  func mapController(_ controller: MapViewController, didSelectMarker marker: GenericMarker, atScreenPosition position: CGPoint) {
     let alert = UIAlertController(title: "Marker Selected", message: nil, preferredStyle: .alert)
     alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
     present(alert, animated: true, completion: nil)

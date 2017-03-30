@@ -24,7 +24,7 @@ class AnnotationTestTarget : UIResponder, MapMarkerSelectDelegate {
     annotationClickedNoParam = true
   }
 
-  func mapController(_ controller: MapViewController, didSelectMarker markerPickResult: TGMarkerPickResult, atScreenPosition position: CGPoint) {
+  func mapController(_ controller: MapViewController, didSelectMarker marker: GenericMarker, atScreenPosition position: CGPoint) {
     markerSelected = true
   }
 }
