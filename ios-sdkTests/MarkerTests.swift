@@ -10,9 +10,9 @@ import XCTest
 @testable import ios_sdk
 import TangramMap
 
-class MarkerTests: XCTestCase {
+class PointMarkerTests: XCTestCase {
 
-  let marker = Marker()
+  let marker = PointMarker()
 
   func testPoint() {
     let point = TGGeoPoint(longitude: 70.0, latitude: 40.0)
@@ -21,26 +21,10 @@ class MarkerTests: XCTestCase {
     XCTAssertEqual(marker.point.longitude, point.longitude)
     XCTAssertEqual(marker.tgMarker.point.latitude, point.latitude)
     XCTAssertEqual(marker.tgMarker.point.longitude, point.longitude)
+    XCTAssertTrue(marker.tgMarker.stylingString.isEmpty)
+    marker.size = .zero
     XCTAssertTrue(marker.tgMarker.stylingString.contains("style: 'points'"))
-    XCTAssertFalse(marker.tgMarker.stylingString.contains("size:"))
-  }
-
-  func testPolyline() {
-    let polyline = TGGeoPolyline()
-    marker.polyline = polyline
-    XCTAssertEqual(marker.polyline, polyline)
-    XCTAssertEqual(marker.tgMarker.polyline, polyline)
-    XCTAssertTrue(marker.tgMarker.stylingString.contains("style: 'lines'"))
-    XCTAssertFalse(marker.tgMarker.stylingString.contains("size:"))
-  }
-
-  func testPolygon() {
-    let polygon = TGGeoPolygon()
-    marker.polygon = polygon
-    XCTAssertEqual(marker.polygon, polygon)
-    XCTAssertEqual(marker.tgMarker.polygon, polygon)
-    XCTAssertTrue(marker.tgMarker.stylingString.contains("style: 'polygons'"))
-    XCTAssertFalse(marker.tgMarker.stylingString.contains("size:"))
+    XCTAssertTrue(marker.tgMarker.stylingString.contains("size:"))
   }
 
   //TODO: failing, fix
@@ -100,7 +84,7 @@ class MarkerTests: XCTestCase {
 
   func testInitWithSize() {
     let size = CGSize(width: 30, height: 30)
-    let m = Marker.init(size: size)
+    let m = PointMarker.init(size: size)
     XCTAssertEqual(m.size, size)
     XCTAssertEqual(m.backgroundColor, UIColor.white)
     XCTAssertTrue(m.interactive)
@@ -108,7 +92,7 @@ class MarkerTests: XCTestCase {
   }
 
   func testInit() {
-    let m = Marker.init()
+    let m = PointMarker.init()
     XCTAssertEqual(m.backgroundColor, UIColor.white)
     XCTAssertTrue(m.interactive)
     XCTAssertFalse(m.tgMarker.stylingString.contains("size:"))
@@ -126,7 +110,149 @@ class MarkerTests: XCTestCase {
   func testSetPointEased() {
     let point = TGGeoPoint(longitude: 70.0, latitude: 40.0)
     let tgMarker = TestTGMarker()
-    let m = Marker(tgMarker: tgMarker)
+    let m = PointMarker(tgMarker: tgMarker)
+    _ = m.setPointEased(point, seconds: 4, easeType: .linear)
+    XCTAssertEqual(tgMarker.coordinates.latitude, 40.0)
+    XCTAssertEqual(tgMarker.coordinates.longitude, 70.0)
+    XCTAssertEqual(tgMarker.seconds, 4)
+    XCTAssertEqual(tgMarker.ease, .linear)
+  }
+}
+
+class PolylineMarkerTests: XCTestCase {
+
+  let marker = PolylineMarker()
+
+  func testPolyline() {
+    let polyline = TGGeoPolyline()
+    marker.polyline = polyline
+    XCTAssertEqual(marker.polyline, polyline)
+    XCTAssertEqual(marker.tgMarker.polyline, polyline)
+    XCTAssertTrue(marker.tgMarker.stylingString.contains("style: 'lines'"))
+    XCTAssertFalse(marker.tgMarker.stylingString.contains("size:"))
+  }
+
+  func testVisible() {
+    XCTAssertTrue(marker.visible)
+    XCTAssertTrue(marker.tgMarker.visible)
+    marker.visible = false
+    XCTAssertFalse(marker.visible)
+    XCTAssertFalse(marker.tgMarker.visible)
+  }
+
+  func testDrawOrder() {
+    XCTAssertEqual(marker.drawOrder, 0)
+    XCTAssertEqual(marker.tgMarker.drawOrder, 0)
+    marker.drawOrder = 8
+    XCTAssertEqual(marker.drawOrder, 8)
+    XCTAssertEqual(marker.tgMarker.drawOrder, 8)
+  }
+
+  func testInteractive() {
+    XCTAssertTrue(marker.interactive)
+    marker.interactive = false
+    XCTAssertFalse(marker.interactive)
+    XCTAssertTrue(marker.tgMarker.stylingString.contains("interactive: false"))
+  }
+
+}
+
+class PolygonMarkerTests: XCTestCase {
+
+  let marker = PolygonMarker()
+
+  func testPolygon() {
+    let polygon = TGGeoPolygon()
+    marker.polygon = polygon
+    XCTAssertEqual(marker.polygon, polygon)
+    XCTAssertEqual(marker.tgMarker.polygon, polygon)
+    XCTAssertTrue(marker.tgMarker.stylingString.contains("style: 'polygons'"))
+    XCTAssertFalse(marker.tgMarker.stylingString.contains("size:"))
+  }
+
+  func testVisible() {
+    XCTAssertTrue(marker.visible)
+    XCTAssertTrue(marker.tgMarker.visible)
+    marker.visible = false
+    XCTAssertFalse(marker.visible)
+    XCTAssertFalse(marker.tgMarker.visible)
+  }
+
+  func testDrawOrder() {
+    XCTAssertEqual(marker.drawOrder, 0)
+    XCTAssertEqual(marker.tgMarker.drawOrder, 0)
+    marker.drawOrder = 8
+    XCTAssertEqual(marker.drawOrder, 8)
+    XCTAssertEqual(marker.tgMarker.drawOrder, 8)
+  }
+
+  func testInteractive() {
+    XCTAssertTrue(marker.interactive)
+    marker.interactive = false
+    XCTAssertFalse(marker.interactive)
+    XCTAssertTrue(marker.tgMarker.stylingString.contains("interactive: false"))
+  }
+
+}
+
+class SystemPointMarkerTests: XCTestCase {
+
+  let marker = SystemPointMarker(markerType: .currentLocation)
+
+  func testTypeCurrentLocation() {
+    XCTAssertEqual(marker.tgMarker.stylingPath, "layers.mz_current_location_gem.draw.ux-location-gem-overlay")
+    XCTAssertTrue(marker.tgMarker.stylingString.isEmpty)
+  }
+
+  func testTypeSearchPin() {
+    let m = SystemPointMarker.initWithMarkerType(.searchPin)
+    XCTAssertEqual(m.tgMarker.stylingPath, "layers.mz_search_result.draw.ux-icons-overlay")
+    XCTAssertTrue(m.tgMarker.stylingString.isEmpty)
+  }
+
+  func testTypeCurrentLocationInactive() {
+    marker.active = false
+    // there is no inactive draw rule for curr location so its same as active state
+    XCTAssertEqual(marker.tgMarker.stylingPath, "layers.mz_current_location_gem.draw.ux-location-gem-overlay")
+    XCTAssertTrue(marker.tgMarker.stylingString.isEmpty)
+  }
+
+  func testTypeSearchPinInactive() {
+    let m = SystemPointMarker.initWithMarkerType(.searchPin)
+    m.active = false
+    XCTAssertEqual(m.tgMarker.stylingPath, "layers.mz_search_result.inactive.draw.ux-icons-overlay")
+    XCTAssertTrue(m.tgMarker.stylingString.isEmpty)
+  }
+
+  func testVisible() {
+    XCTAssertTrue(marker.visible)
+    XCTAssertTrue(marker.tgMarker.visible)
+    marker.visible = false
+    XCTAssertFalse(marker.visible)
+    XCTAssertFalse(marker.tgMarker.visible)
+  }
+
+  func testDrawOrder() {
+    XCTAssertEqual(marker.drawOrder, 0)
+    XCTAssertEqual(marker.tgMarker.drawOrder, 0)
+    marker.drawOrder = 8
+    XCTAssertEqual(marker.drawOrder, 8)
+    XCTAssertEqual(marker.tgMarker.drawOrder, 8)
+  }
+
+  func testPoint() {
+    let point = TGGeoPoint(longitude: 70.0, latitude: 40.0)
+    marker.point = point
+    XCTAssertEqual(marker.point.latitude, point.latitude)
+    XCTAssertEqual(marker.point.longitude, point.longitude)
+    XCTAssertEqual(marker.tgMarker.point.latitude, point.latitude)
+    XCTAssertEqual(marker.tgMarker.point.longitude, point.longitude)
+  }
+  
+  func testSetPointEased() {
+    let point = TGGeoPoint(longitude: 70.0, latitude: 40.0)
+    let tgMarker = TestTGMarker()
+    let m = PointMarker(tgMarker: tgMarker)
     _ = m.setPointEased(point, seconds: 4, easeType: .linear)
     XCTAssertEqual(tgMarker.coordinates.latitude, 40.0)
     XCTAssertEqual(tgMarker.coordinates.longitude, 70.0)
@@ -134,46 +260,33 @@ class MarkerTests: XCTestCase {
     XCTAssertEqual(tgMarker.ease, .linear)
   }
 
-  func testTypeCurrentLocation() {
-    let m = Marker.initWithMarkerType(.currentLocation)
-    XCTAssertEqual(m.tgMarker.stylingPath, "layers.mz_current_location_gem.draw.ux-location-gem-overlay")
-    XCTAssertTrue(m.tgMarker.stylingString.isEmpty)
-  }
+}
 
-  func testTypeSearchPin() {
-    let m = Marker.initWithMarkerType(.searchPin)
-    XCTAssertEqual(m.tgMarker.stylingPath, "layers.mz_search_result.draw.ux-icons-overlay")
-    XCTAssertTrue(m.tgMarker.stylingString.isEmpty)
-  }
+class SystemPolylineMarkerTests: XCTestCase {
+
+  let marker = SystemPolylineMarker()
 
   func testTypeRouteLine() {
-    let m = Marker.initWithMarkerType(.routeLine)
-    XCTAssertEqual(m.tgMarker.stylingPath, "layers.mz_route_line.draw.ux-route-line-overlay")
-    XCTAssertTrue(m.tgMarker.stylingString.isEmpty)
+    XCTAssertEqual(marker.tgMarker.stylingPath, "layers.mz_route_line.draw.ux-route-line-overlay")
+    XCTAssertTrue(marker.tgMarker.stylingString.isEmpty)
   }
 
-  func testTypeCurrentLocationInactive() {
-    let m = Marker.initWithMarkerType(.currentLocation)
-    m.active = false
-    // there is no inactive draw rule for curr location so its same as active state
-    XCTAssertEqual(m.tgMarker.stylingPath, "layers.mz_current_location_gem.draw.ux-location-gem-overlay")
-    XCTAssertTrue(m.tgMarker.stylingString.isEmpty)
+  func testVisible() {
+    XCTAssertTrue(marker.visible)
+    XCTAssertTrue(marker.tgMarker.visible)
+    marker.visible = false
+    XCTAssertFalse(marker.visible)
+    XCTAssertFalse(marker.tgMarker.visible)
   }
 
-  func testTypeSearchPinInactive() {
-    let m = Marker.initWithMarkerType(.searchPin)
-    m.active = false
-    XCTAssertEqual(m.tgMarker.stylingPath, "layers.mz_search_result.inactive.draw.ux-icons-overlay")
-    XCTAssertTrue(m.tgMarker.stylingString.isEmpty)
+  func testDrawOrder() {
+    XCTAssertEqual(marker.drawOrder, 0)
+    XCTAssertEqual(marker.tgMarker.drawOrder, 0)
+    marker.drawOrder = 8
+    XCTAssertEqual(marker.drawOrder, 8)
+    XCTAssertEqual(marker.tgMarker.drawOrder, 8)
   }
-
-  func testTypeRouteLineInactive() {
-    let m = Marker.initWithMarkerType(.routeLine)
-    m.active = false
-    // there is no inactive draw rule for route line so its same as active state
-    XCTAssertEqual(m.tgMarker.stylingPath, "layers.mz_route_line.draw.ux-route-line-overlay")
-    XCTAssertTrue(m.tgMarker.stylingString.isEmpty)
-  }
+  
 }
 
 class TestTGMarker : TGMarker {

@@ -215,7 +215,7 @@ open class MapViewController: UIViewController, LocationManagerDelegate {
 
   let application : ApplicationProtocol
   open var tgViewController: TGMapViewController = TGMapViewController()
-  var currentLocationGem: GenericMarker?
+  var currentLocationGem: GenericSystemPointMarker?
   var lastSetPoint: TGGeoPoint?
   var shouldShowCurrentLocation = false
   var currentRouteMarker: GenericMarker?
@@ -704,7 +704,7 @@ open class MapViewController: UIViewController, LocationManagerDelegate {
     guard let marker = currentLocationGem else {
       if !shouldShowCurrentLocation { return false }
       //TODO: handle error adding to map?
-      let marker = Marker.initWithMarkerType(.currentLocation)
+      let marker = SystemPointMarker.initWithMarkerType(.currentLocation)
       addMarker(marker)
       currentLocationGem = marker;
       locationManager.requestWhenInUseAuthorization()
@@ -738,7 +738,7 @@ open class MapViewController: UIViewController, LocationManagerDelegate {
   open func add(_ annotations: [PeliasMapkitAnnotation]) throws {
     for annotation in annotations {
       //TODO: handle error adding to map?
-      let marker = Marker.initWithMarkerType(.searchPin)
+      let marker = SystemPointMarker.initWithMarkerType(.searchPin)
       addMarker(marker)
 //      if newMarker == nil {
 //        //TODO: Once TG integrates better error codes, we need to integrate that here.
@@ -812,7 +812,7 @@ open class MapViewController: UIViewController, LocationManagerDelegate {
       print("Next Point: \(point)")
       polyLine.add(TGGeoPoint(coordinate: point!))
     }
-    let marker = Marker.initWithMarkerType(.routeLine)
+    let marker = SystemPolylineMarker.init()
     addMarker(marker)
     marker.polyline = polyLine
     currentRouteMarker = marker
@@ -867,7 +867,7 @@ open class MapViewController: UIViewController, LocationManagerDelegate {
     let oldAnnotations = self.currentAnnotations
     self.currentAnnotations = Dictionary()
     for (annotation, marker) in oldAnnotations {
-      let newMarker = Marker.init()
+      let newMarker = PointMarker.init()
       addMarker(newMarker)
       //TODO: also set polyline, polygon etc
       newMarker.point = marker.point
