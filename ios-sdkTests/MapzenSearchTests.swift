@@ -101,7 +101,7 @@ class SearchOperationTests : XCTestCase {
   }
 
   func testIsExecuting() {
-    operation.start()
+    operation.main()
     let peliasOperation = operation.peliasOperation as! TestPeliasOperation
     XCTAssertTrue(operation.isExecuting)
     XCTAssertEqual(operation.isExecuting, peliasOperation.isExecuting)
@@ -111,7 +111,7 @@ class SearchOperationTests : XCTestCase {
   }
 
   func testIsFinished() {
-    operation.start()
+    operation.main()
     let peliasOperation = operation.peliasOperation as! TestPeliasOperation
     XCTAssertEqual(operation.isFinished, peliasOperation.isFinished)
     operation.waitUntilFinished()
@@ -173,7 +173,7 @@ class SearchOperationTests : XCTestCase {
       blockExecuted = true
     }
     operation.completionBlock = block
-    operation.start()
+    operation.main()
     operation.waitUntilFinished()
     XCTAssertNotNil(operation.completionBlock)
     XCTAssertNotNil(peliasOperation.completionBlock)
@@ -226,6 +226,7 @@ class SearchOperationTests : XCTestCase {
 
     override func main() {
       calledMain = true
+      internalIsExecuting = true
     }
 
     override func cancel() {
