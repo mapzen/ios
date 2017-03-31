@@ -49,7 +49,7 @@ public protocol GenericPointMarker: GenericMarker {
 }
 
 @objc(MZGenericPointIconMarker)
-public protocol GenericPointIconmarker: GenericGeometricMarker, GenericPointMarker {
+public protocol GenericPointIconMarker: GenericGeometricMarker, GenericPointMarker {
   /// The image that should be displayed on the marker.
   var icon: UIImage? { get set }
   /// Sets the size of the marker.
@@ -182,7 +182,7 @@ public class GeometricMarker : Marker, GenericGeometricMarker {
  Base class for point markers.
  */
 @objc(MZPointMarker)
-public class PointMarker : GeometricMarker, GenericPointMarker {
+public class PointMarker : GeometricMarker, GenericPointIconMarker {
 
   private static let kPointStyle = "points"
   private static let kDefaultSize = CGSize.zero
