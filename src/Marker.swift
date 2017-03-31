@@ -69,6 +69,8 @@ public protocol GenericPolylineMarker: GenericGeometricMarker {
   var polyline: TGGeoPolyline? { get set }
   /// The width of the stroke to draw the polyline.
   var strokeWidth: Int { get set }
+/// The drawing order of the polyline relative to other polylines and polygons. Higher values will be drawn above lower values. Default is 1000.
+  var order: Int { get set }
 }
 
 /// Generic polygon marker protocol definition.
@@ -76,6 +78,8 @@ public protocol GenericPolylineMarker: GenericGeometricMarker {
 public protocol GenericPolygonMarker: GenericGeometricMarker {
   /// The polygon that should be displayed on the map.
   var polygon: TGGeoPolygon? { get set }
+/// The drawing order of the polygon relative to other polylines and polygons. Higher values will be drawn above lower values. Default is 1000.
+  var order: Int { get set }
 }
 
 /// Generic system point marker protocol definition.
@@ -303,7 +307,7 @@ public class PolylineMarker : GeometricMarker, GenericPolylineMarker {
     }
   }
 
-  /// The drawing order of the polyline. Higher values will be drawn above lower values. Default is 1000.
+  /// The drawing order of the polyline relative to other polylines and polygons. Higher values will be drawn above lower values. Default is 1000.
   public var order: Int {
     didSet {
       updateStyleString()
@@ -341,7 +345,7 @@ public class PolygonMarker : GeometricMarker, GenericPolygonMarker {
     }
   }
 
-  /// The drawing order of the polyline. Higher values will be drawn above lower values. Default is 1000.
+  /// The drawing order of the polygon relative to other polygons and polylines. Higher values will be drawn above lower values. Default is 1000.
   public var order: Int {
     didSet {
       updateStyleString()
