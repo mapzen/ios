@@ -155,6 +155,19 @@ class PolylineMarkerTests: XCTestCase {
     XCTAssertTrue(marker.tgMarker.stylingString.contains("interactive: false"))
   }
 
+  func testOrder() {
+    XCTAssertEqual(marker.order, 1000)
+    marker.order = 8
+    XCTAssertEqual(marker.order, 8)
+    XCTAssertTrue(marker.tgMarker.stylingString.contains("order: 8"))
+  }
+
+  func testStrokeWidth() {
+    XCTAssertEqual(marker.strokeWidth, 10)
+    marker.strokeWidth = 8
+    XCTAssertEqual(marker.strokeWidth, 8)
+    XCTAssertTrue(marker.tgMarker.stylingString.contains("width: 8"))
+  }
 }
 
 class PolygonMarkerTests: XCTestCase {
@@ -193,6 +206,12 @@ class PolygonMarkerTests: XCTestCase {
     XCTAssertTrue(marker.tgMarker.stylingString.contains("interactive: false"))
   }
 
+  func testOrder() {
+    XCTAssertEqual(marker.order, 1000)
+    marker.order = 8
+    XCTAssertEqual(marker.order, 8)
+    XCTAssertTrue(marker.tgMarker.stylingString.contains("order: 8"))
+  }
 }
 
 class SystemPointMarkerTests: XCTestCase {

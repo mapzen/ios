@@ -67,6 +67,8 @@ public protocol GenericPointIconmarker: GenericGeometricMarker, GenericPointMark
 public protocol GenericPolylineMarker: GenericGeometricMarker {
   /// The polyline that should be displayed on the map.
   var polyline: TGGeoPolyline? { get set }
+  /// The width of the stroke to draw the polyline.
+  var strokeWidth: Int { get set }
 }
 
 /// Generic polygon marker protocol definition.
@@ -170,9 +172,6 @@ public class GeometricMarker : Marker, GenericGeometricMarker {
     // override in subclass
   }
 
-  func generateGeometricStyleString(_ styleType: String) -> String {
-    return "{ style: '\(styleType)', color: '\(backgroundColor.hexValue())', collide: false, interactive: \(interactive) }"
-  }
 }
 
 /**
@@ -267,8 +266,12 @@ public class PointMarker : GeometricMarker, GenericPointMarker {
     tgMarker.stylingString = generateStyleStringWithSize()
   }
 
+  private func generateBasicStyleString() -> String {
+    return "{ style: '\(PointMarker.kPointStyle)', color: '\(backgroundColor.hexValue())', collide: false, interactive: \(interactive) }"
+  }
+
   private func generateStyleStringWithSize() -> String {
-    if !userUpdatedSize { return generateGeometricStyleString(PointMarker.kPointStyle) }
+    if !userUpdatedSize { return generateBasicStyleString() }
     return "{ style: '\(PointMarker.kPointStyle)', color: '\(backgroundColor.hexValue())', size: [\(size.width)px, \(size.height)px], collide: false, interactive: \(interactive) }"
   }
 
@@ -279,6 +282,8 @@ public class PointMarker : GeometricMarker, GenericPointMarker {
 public class PolylineMarker : GeometricMarker, GenericPolylineMarker {
 
   private static let kLineStyle = "lines"
+  private static let kDefaultPolylineWidth = 10
+  private static let kDefaultOrder = 1000
 
   /// The polyline that should be displayed on the map.
   public var polyline: TGGeoPolyline? {
@@ -291,14 +296,30 @@ public class PolylineMarker : GeometricMarker, GenericPolylineMarker {
     }
   }
 
+  /// The width of the stroke to draw the polyline.
+  public var strokeWidth: Int {
+    didSet {
+      updateStyleString()
+    }
+  }
+
+  /// The drawing order of the polyline. Higher values will be drawn above lower values. Default is 1000.
+  public var order: Int {
+    didSet {
+      updateStyleString()
+    }
+  }
+
   // Default initializer.
   public required init() {
+    strokeWidth = PolylineMarker.kDefaultPolylineWidth
+    order = PolylineMarker.kDefaultOrder
     super.init()
     updateStyleString()
   }
 
   override func updateStyleString() {
-    tgMarker.stylingString = generateGeometricStyleString(PolylineMarker.kLineStyle)
+    tgMarker.stylingString = "{ style: '\(PolylineMarker.kLineStyle)', color: '\(backgroundColor.hexValue())', collide: false, interactive: \(interactive), width: \(strokeWidth)px, order: \(order) }"
   }
 }
 
@@ -307,6 +328,7 @@ public class PolylineMarker : GeometricMarker, GenericPolylineMarker {
 public class PolygonMarker : GeometricMarker, GenericPolygonMarker {
 
   private static let kPolygonStyle = "polygons"
+  private static let kDefaultOrder = 1000
 
   /// The polygon that should be displayed on the map.
   public var polygon: TGGeoPolygon? {
@@ -319,14 +341,22 @@ public class PolygonMarker : GeometricMarker, GenericPolygonMarker {
     }
   }
 
+  /// The drawing order of the polyline. Higher values will be drawn above lower values. Default is 1000.
+  public var order: Int {
+    didSet {
+      updateStyleString()
+    }
+  }
+
   // Default initializer.
   public required init() {
+    order = PolygonMarker.kDefaultOrder
     super.init()
     updateStyleString()
   }
 
   override func updateStyleString() {
-    tgMarker.stylingString = generateGeometricStyleString(PolygonMarker.kPolygonStyle)
+    tgMarker.stylingString = "{ style: '\(PolygonMarker.kPolygonStyle)', color: '\(backgroundColor.hexValue())', collide: false, interactive: \(interactive), order: \(order) }"
   }
 }
 
