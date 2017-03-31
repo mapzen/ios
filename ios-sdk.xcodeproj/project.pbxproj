@@ -40,6 +40,7 @@
 		7DC7F0981E71E138009E722B /* TestAnnotationTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC7F0971E71E138009E722B /* TestAnnotationTarget.swift */; };
 		7DC7F09A1E7204BE009E722B /* MapzenManagerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC7F0991E7204BE009E722B /* MapzenManagerExtensions.swift */; };
 		7DC7F09C1E72066B009E722B /* TestMapzenManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC7F09B1E72066B009E722B /* TestMapzenManager.swift */; };
+		7DCA98B51E8F11C6006B7F65 /* UIColorExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCA98B41E8F11C6006B7F65 /* UIColorExtensionsTests.swift */; };
 		7DDF87551E832F38001B01A8 /* UIColorExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DDF87541E832F38001B01A8 /* UIColorExtensions.swift */; };
 		7DDF87591E8368F8001B01A8 /* MarkerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DDF87581E8368F8001B01A8 /* MarkerTests.swift */; };
 		7DF0AA2E1E5520ED00B0406E /* TestTGMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DF0AA2D1E5520ED00B0406E /* TestTGMapViewController.swift */; };
@@ -143,6 +144,7 @@
 		7DC7F0971E71E138009E722B /* TestAnnotationTarget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestAnnotationTarget.swift; sourceTree = "<group>"; };
 		7DC7F0991E7204BE009E722B /* MapzenManagerExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapzenManagerExtensions.swift; sourceTree = "<group>"; };
 		7DC7F09B1E72066B009E722B /* TestMapzenManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestMapzenManager.swift; sourceTree = "<group>"; };
+		7DCA98B41E8F11C6006B7F65 /* UIColorExtensionsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColorExtensionsTests.swift; sourceTree = "<group>"; };
 		7DDF87541E832F38001B01A8 /* UIColorExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColorExtensions.swift; sourceTree = "<group>"; };
 		7DDF87581E8368F8001B01A8 /* MarkerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarkerTests.swift; sourceTree = "<group>"; };
 		7DF0AA2D1E5520ED00B0406E /* TestTGMapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestTGMapViewController.swift; sourceTree = "<group>"; };
@@ -417,6 +419,7 @@
 				7DB181561E81B77B001F9B49 /* SearchResponseTests.swift */,
 				7D4122731E84834C009520B7 /* SearchConfigsTests.swift */,
 				7DDF87581E8368F8001B01A8 /* MarkerTests.swift */,
+				7DCA98B41E8F11C6006B7F65 /* UIColorExtensionsTests.swift */,
 			);
 			path = "ios-sdkTests";
 			sourceTree = "<group>";
@@ -700,6 +703,7 @@
 				7D5616D51E89706700D95E5D /* RoutingControllerTests.swift in Sources */,
 				7DC7F0941E70C26B009E722B /* TestLocationManager.swift in Sources */,
 				7DC7F0981E71E138009E722B /* TestAnnotationTarget.swift in Sources */,
+				7DCA98B51E8F11C6006B7F65 /* UIColorExtensionsTests.swift in Sources */,
 				7DB181551E81B745001F9B49 /* SearchDataObjectsTests.swift in Sources */,
 				7DF0AA2E1E5520ED00B0406E /* TestTGMapViewController.swift in Sources */,
 				7DB181571E81B77B001F9B49 /* SearchResponseTests.swift in Sources */,
