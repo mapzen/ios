@@ -85,10 +85,17 @@ public protocol GenericPolygonMarker: GenericGeometricMarker {
 /// Generic system point marker protocol definition.
 @objc(MZGenericSystemPointMarker)
 public protocol GenericSystemPointMarker: GenericPointMarker {
+  /// Returns a marker whose visual properties have been defined by a house style.
+  static func initWithMarkerType(_ markerType: PointMarkerType) -> GenericSystemPointMarker
+}
+
+/// Generic selectable system point marker protocol definition.
+@objc(MZGenericSelectableSystemPointMarker)
+public protocol GenericSelectableSystemPointMarker: GenericPointMarker {
   /// Updates the visual properties to indicate active status (ie. updates search pin to be gray when inactive).
   var active: Bool { get set }
   /// Returns a marker whose visual properties have been defined by a house style.
-  static func initWithMarkerType(_ markerType: PointMarkerType) -> GenericSystemPointMarker
+  static func initWithMarkerType(_ markerType: SelectablePointMarkerType) -> GenericSelectableSystemPointMarker
 }
 
 /// Generic system geometric marker protocol definition.
@@ -366,7 +373,12 @@ public class PolygonMarker : GeometricMarker, GenericPolygonMarker {
 
 /// Enum for common point marker types supported by all the house styles.
 @objc public enum PointMarkerType : Int {
-  case currentLocation, searchPin
+  case currentLocation, routeLocation, droppedPin
+}
+
+/// Enum for common selectable point marker types supported by all the house styles.
+@objc public enum SelectablePointMarkerType : Int {
+  case searchPin, routeStart, routeDestination
 }
 
 /// Base class for system point markers.
@@ -377,18 +389,8 @@ public class SystemPointMarker : Marker, GenericSystemPointMarker {
 
   // all marker types have an associated styling path
   private let typeToStylingPath = [PointMarkerType.currentLocation : "layers.mz_current_location_gem.draw.ux-location-gem-overlay",
-                                   PointMarkerType.searchPin : "layers.mz_search_result.draw.ux-icons-overlay"]
-  //currently only search results have an inactive state
-  private let typeToInactiveStylingPath = [PointMarkerType.searchPin : "layers.mz_search_result.inactive.draw.ux-icons-overlay"]
-
-  private static let kDefaultActive = true
-
-  /// Updates the visual properties to indicate active status (ie. updates search pin to be gray when inactive).
-  public var active: Bool {
-    didSet {
-      updateStylePath()
-    }
-  }
+                                   PointMarkerType.routeLocation : "layers.mz_route_location.draw.ux-location-gem-overlay",
+                                   PointMarkerType.droppedPin : "layers.mz_dropped_pin.draw.ux-icons-overlay",]
 
   /// The coordinates that the marker should be placed at on the map.
   public var point: TGGeoPoint {
@@ -417,7 +419,63 @@ public class SystemPointMarker : Marker, GenericSystemPointMarker {
   }
 
   init(markerType mt: PointMarkerType) {
-    active = SystemPointMarker.kDefaultActive
+    super.init()
+    markerType = mt
+    tgMarker.stylingPath = typeToStylingPath[mt]! //there is always a styling string for a given MarkerType so force unwrap
+  }
+
+}
+
+/// Base class for system point markers.
+@objc(MZSelectableSystemPointMarker)
+public class SelectableSystemPointMarker : Marker, GenericSelectableSystemPointMarker {
+
+  var markerType: SelectablePointMarkerType?
+
+  private let typeToStylingPath = [SelectablePointMarkerType.searchPin : "layers.mz_search_result.draw.ux-icons-overlay",
+                                   SelectablePointMarkerType.routeStart : "layers.mz_route_start.draw.ux-icons-overlay",
+                                   SelectablePointMarkerType.routeDestination : "layers.mz_route_destination.draw.ux-icons-overlay"]
+
+  //currently only search results have an inactive state
+  private let typeToInactiveStylingPath = [SelectablePointMarkerType.searchPin : "layers.mz_search_result.inactive.draw.ux-icons-overlay"]
+
+  private static let kDefaultActive = true
+
+  /// Updates the visual properties to indicate active status (ie. updates search pin to be gray when inactive).
+  public var active: Bool {
+    didSet {
+      updateStylePath()
+    }
+  }
+
+  /// The coordinates that the marker should be placed at on the map.
+  public var point: TGGeoPoint {
+    set {
+      tgMarker.point = newValue
+    }
+    get {
+      return tgMarker.point
+    }
+  }
+
+  /// Returns a marker whose visual properties have been defined by a house style.
+  public static func initWithMarkerType(_ markerType: SelectablePointMarkerType) -> GenericSelectableSystemPointMarker {
+    return SelectableSystemPointMarker(markerType: markerType)
+  }
+
+  /**
+   Animates the marker from its current coordinates to the ones given.
+
+   - parameter coordinates: Coordinates to animate the marker to
+   - parameter seconds: Duration in seconds of the animation.
+   - parameter easeType: Easing to use for animation.
+   */
+  public func setPointEased(_ coordinates: TGGeoPoint, seconds: Float, easeType ease: TGEaseType) -> Bool {
+    return tgMarker.setPointEased(coordinates, seconds: seconds, easeType: ease)
+  }
+
+  init(markerType mt: SelectablePointMarkerType) {
+    active = SelectableSystemPointMarker.kDefaultActive
     super.init()
     markerType = mt
     tgMarker.stylingPath = typeToStylingPath[mt]! //there is always a styling string for a given MarkerType so force unwrap

@@ -738,7 +738,7 @@ open class MapViewController: UIViewController, LocationManagerDelegate {
   open func add(_ annotations: [PeliasMapkitAnnotation]) throws {
     for annotation in annotations {
       //TODO: handle error adding to map?
-      let marker = SystemPointMarker.initWithMarkerType(.searchPin)
+      let marker = SelectableSystemPointMarker.initWithMarkerType(.searchPin)
       addMarker(marker)
 //      if newMarker == nil {
 //        //TODO: Once TG integrates better error codes, we need to integrate that here.
