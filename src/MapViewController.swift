@@ -341,7 +341,7 @@ open class MapViewController: UIViewController, LocationManagerDelegate {
    
    - returns: A fully formed MapViewController.
   */
-  init() {
+  public init() {
     application = UIApplication.shared
     locationManager = LocationManager.sharedManager
     mapzenManager = MapzenManager.sharedManager
