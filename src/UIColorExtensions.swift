@@ -19,6 +19,6 @@ extension UIColor {
     let green = Float(g * 255)
     let blue = Float(b * 255)
     let alpha = Float(a * 255)
-    return String.init(format: "#%02lX%02lX%02lX%02lX", lroundf(red), lroundf(green), lroundf(blue), lroundf(alpha))
+    return String.init(format: "#%02lX%02lX%02lX%02lX", lroundf(alpha), lroundf(red), lroundf(green), lroundf(blue))
   }
 }
