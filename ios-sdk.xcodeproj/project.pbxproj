@@ -16,6 +16,7 @@
 		7D503BD01E78944300FDDC4F /* TestTGMarkerPickResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D503BCF1E78944300FDDC4F /* TestTGMarkerPickResult.swift */; };
 		7D5616D91E89C8B600D95E5D /* MapzenSearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D5616D81E89C8B600D95E5D /* MapzenSearch.swift */; };
 		7D5616DD1E8AD01100D95E5D /* MapzenSearchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D5616DC1E8AD01100D95E5D /* MapzenSearchTests.swift */; };
+		7D5616D51E89706700D95E5D /* RoutingControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D5616D41E89706700D95E5D /* RoutingControllerTests.swift */; };
 		7D7847251E6775EA000D56CA /* Dimensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D7847241E6775EA000D56CA /* Dimensions.swift */; };
 		7D7D49931E7708E5006074EB /* TestSessionDataTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D7D49921E7708E5006074EB /* TestSessionDataTask.swift */; };
 		7D7D49951E7709A1006074EB /* TestUrlSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D7D49941E7709A1006074EB /* TestUrlSession.swift */; };
@@ -36,11 +37,14 @@
 		7DB181531E81B73A001F9B49 /* SearchDataConverterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DB181521E81B73A001F9B49 /* SearchDataConverterTests.swift */; };
 		7DB181551E81B745001F9B49 /* SearchDataObjectsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DB181541E81B745001F9B49 /* SearchDataObjectsTests.swift */; };
 		7DB181571E81B77B001F9B49 /* SearchResponseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DB181561E81B77B001F9B49 /* SearchResponseTests.swift */; };
+		7DB181591E831414001F9B49 /* Marker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DB181581E831414001F9B49 /* Marker.swift */; };
 		7DC7F0941E70C26B009E722B /* TestLocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC7F0931E70C26B009E722B /* TestLocationManager.swift */; };
 		7DC7F0981E71E138009E722B /* TestAnnotationTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC7F0971E71E138009E722B /* TestAnnotationTarget.swift */; };
 		7DC7F09A1E7204BE009E722B /* MapzenManagerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC7F0991E7204BE009E722B /* MapzenManagerExtensions.swift */; };
 		7DC7F09C1E72066B009E722B /* TestMapzenManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC7F09B1E72066B009E722B /* TestMapzenManager.swift */; };
-		7DC7F0A21E770443009E722B /* RoutingControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC7F0A11E770443009E722B /* RoutingControllerTests.swift */; };
+		7DCA98B51E8F11C6006B7F65 /* UIColorExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCA98B41E8F11C6006B7F65 /* UIColorExtensionsTests.swift */; };
+		7DDF87551E832F38001B01A8 /* UIColorExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DDF87541E832F38001B01A8 /* UIColorExtensions.swift */; };
+		7DDF87591E8368F8001B01A8 /* MarkerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DDF87581E8368F8001B01A8 /* MarkerTests.swift */; };
 		7DF0AA2E1E5520ED00B0406E /* TestTGMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DF0AA2D1E5520ED00B0406E /* TestTGMapViewController.swift */; };
 		AC586709D7E7D4C22AA9474D /* Pods_ios_sdk.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 99B3EC60450343448FA4E699 /* Pods_ios_sdk.framework */; };
 		C8F52AC1BCE46BB17E1CE0A5 /* Pods_ios_sdkTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A3EA87256F2EA6D0C43260A /* Pods_ios_sdkTests.framework */; };
@@ -111,6 +115,7 @@
 		7D503BCF1E78944300FDDC4F /* TestTGMarkerPickResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestTGMarkerPickResult.swift; sourceTree = "<group>"; };
 		7D5616D81E89C8B600D95E5D /* MapzenSearch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapzenSearch.swift; sourceTree = "<group>"; };
 		7D5616DC1E8AD01100D95E5D /* MapzenSearchTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapzenSearchTests.swift; sourceTree = "<group>"; };
+		7D5616D41E89706700D95E5D /* RoutingControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoutingControllerTests.swift; sourceTree = "<group>"; };
 		7D7847241E6775EA000D56CA /* Dimensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Dimensions.swift; sourceTree = "<group>"; };
 		7D7D49921E7708E5006074EB /* TestSessionDataTask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestSessionDataTask.swift; sourceTree = "<group>"; };
 		7D7D49941E7709A1006074EB /* TestUrlSession.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestUrlSession.swift; sourceTree = "<group>"; };
@@ -138,11 +143,14 @@
 		7DB181521E81B73A001F9B49 /* SearchDataConverterTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchDataConverterTests.swift; sourceTree = "<group>"; };
 		7DB181541E81B745001F9B49 /* SearchDataObjectsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchDataObjectsTests.swift; sourceTree = "<group>"; };
 		7DB181561E81B77B001F9B49 /* SearchResponseTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchResponseTests.swift; sourceTree = "<group>"; };
+		7DB181581E831414001F9B49 /* Marker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Marker.swift; sourceTree = "<group>"; };
 		7DC7F0931E70C26B009E722B /* TestLocationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestLocationManager.swift; sourceTree = "<group>"; };
 		7DC7F0971E71E138009E722B /* TestAnnotationTarget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestAnnotationTarget.swift; sourceTree = "<group>"; };
 		7DC7F0991E7204BE009E722B /* MapzenManagerExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapzenManagerExtensions.swift; sourceTree = "<group>"; };
 		7DC7F09B1E72066B009E722B /* TestMapzenManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestMapzenManager.swift; sourceTree = "<group>"; };
-		7DC7F0A11E770443009E722B /* RoutingControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoutingControllerTests.swift; sourceTree = "<group>"; };
+		7DCA98B41E8F11C6006B7F65 /* UIColorExtensionsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColorExtensionsTests.swift; sourceTree = "<group>"; };
+		7DDF87541E832F38001B01A8 /* UIColorExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColorExtensions.swift; sourceTree = "<group>"; };
+		7DDF87581E8368F8001B01A8 /* MarkerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarkerTests.swift; sourceTree = "<group>"; };
 		7DF0AA2D1E5520ED00B0406E /* TestTGMapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestTGMapViewController.swift; sourceTree = "<group>"; };
 		92C35E8790FB3255237B1E77 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		99B3EC60450343448FA4E699 /* Pods_ios_sdk.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ios_sdk.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -397,6 +405,7 @@
 		DB7A33EB1C8F8E8B009CC743 /* ios-sdkTests */ = {
 			isa = PBXGroup;
 			children = (
+				7D5616D41E89706700D95E5D /* RoutingControllerTests.swift */,
 				DB7A33EE1C8F8E8B009CC743 /* Info.plist */,
 				DBCBC5BE1E0AE1CF0045B345 /* MapViewControllerTests.swift */,
 				DB188EEB1E28492A0054DEFD /* MapzenManagerTests.swift */,
@@ -406,7 +415,6 @@
 				7DC7F0931E70C26B009E722B /* TestLocationManager.swift */,
 				7DC7F09B1E72066B009E722B /* TestMapzenManager.swift */,
 				7DC7F0971E71E138009E722B /* TestAnnotationTarget.swift */,
-				7DC7F0A11E770443009E722B /* RoutingControllerTests.swift */,
 				7D7D49941E7709A1006074EB /* TestUrlSession.swift */,
 				7D7D49921E7708E5006074EB /* TestSessionDataTask.swift */,
 				7D503BCF1E78944300FDDC4F /* TestTGMarkerPickResult.swift */,
@@ -415,6 +423,8 @@
 				7DB181561E81B77B001F9B49 /* SearchResponseTests.swift */,
 				7D4122731E84834C009520B7 /* SearchConfigsTests.swift */,
 				7D5616DC1E8AD01100D95E5D /* MapzenSearchTests.swift */,
+				7DDF87581E8368F8001B01A8 /* MarkerTests.swift */,
+				7DCA98B41E8F11C6006B7F65 /* UIColorExtensionsTests.swift */,
 			);
 			path = "ios-sdkTests";
 			sourceTree = "<group>";
@@ -437,6 +447,8 @@
 				7DC7F0991E7204BE009E722B /* MapzenManagerExtensions.swift */,
 				7DB181481E81B681001F9B49 /* SearchResponse.swift */,
 				7D4122711E84621A009520B7 /* SearchConfigs.swift */,
+				7DB181581E831414001F9B49 /* Marker.swift */,
+				7DDF87541E832F38001B01A8 /* UIColorExtensions.swift */,
 			);
 			path = src;
 			sourceTree = "<group>";
@@ -676,12 +688,14 @@
 				DB22E59A1DA45D73004264E0 /* RoutingSearchVC.swift in Sources */,
 				DBBF368B1D64DA6A0069D769 /* RoutingViewController.swift in Sources */,
 				7DC7F09A1E7204BE009E722B /* MapzenManagerExtensions.swift in Sources */,
+				7DDF87551E832F38001B01A8 /* UIColorExtensions.swift in Sources */,
 				7D2FB7671E6103D500CB82CF /* DictionaryExtensions.swift in Sources */,
 				DB188EF01E2C44F40054DEFD /* RouteDisplayViewController.swift in Sources */,
 				7D503BCE1E77468B00FDDC4F /* SampleTableViewController.swift in Sources */,
 				DB22E59C1DA46640004264E0 /* RoutingResultTableVC.swift in Sources */,
 				DBC869901D3662DD00DDC4FE /* AutocompleteTableVC.swift in Sources */,
 				7D4122721E84621A009520B7 /* SearchConfigs.swift in Sources */,
+				7DB181591E831414001F9B49 /* Marker.swift in Sources */,
 				DB7A33D81C8F8E8B009CC743 /* AppDelegate.swift in Sources */,
 				7DB181441E81B472001F9B49 /* SearchDataConverter.swift in Sources */,
 			);
@@ -694,15 +708,17 @@
 				7D7DAE1D1E60C5C900FFCA6F /* TestApplication.swift in Sources */,
 				7D4122741E84834C009520B7 /* SearchConfigsTests.swift in Sources */,
 				7D5616DD1E8AD01100D95E5D /* MapzenSearchTests.swift in Sources */,
+				7D5616D51E89706700D95E5D /* RoutingControllerTests.swift in Sources */,
 				7DC7F0941E70C26B009E722B /* TestLocationManager.swift in Sources */,
 				7DC7F0981E71E138009E722B /* TestAnnotationTarget.swift in Sources */,
+				7DCA98B51E8F11C6006B7F65 /* UIColorExtensionsTests.swift in Sources */,
 				7DB181551E81B745001F9B49 /* SearchDataObjectsTests.swift in Sources */,
 				7DF0AA2E1E5520ED00B0406E /* TestTGMapViewController.swift in Sources */,
 				7DB181571E81B77B001F9B49 /* SearchResponseTests.swift in Sources */,
+				7DDF87591E8368F8001B01A8 /* MarkerTests.swift in Sources */,
 				DB188EEC1E28492A0054DEFD /* MapzenManagerTests.swift in Sources */,
 				7DC7F09C1E72066B009E722B /* TestMapzenManager.swift in Sources */,
 				7D7D49951E7709A1006074EB /* TestUrlSession.swift in Sources */,
-				7DC7F0A21E770443009E722B /* RoutingControllerTests.swift in Sources */,
 				7D503BD01E78944300FDDC4F /* TestTGMarkerPickResult.swift in Sources */,
 				7DB181531E81B73A001F9B49 /* SearchDataConverterTests.swift in Sources */,
 				DBCBC5BF1E0AE1CF0045B345 /* MapViewControllerTests.swift in Sources */,
