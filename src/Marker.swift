@@ -182,7 +182,6 @@ public class GeometricMarker : Marker, GenericGeometricMarker {
   func updateStyleString() {
     // override in subclass
   }
-
 }
 
 /**
@@ -285,7 +284,6 @@ public class PointMarker : GeometricMarker, GenericPointIconMarker {
     if !userUpdatedSize { return generateBasicStyleString() }
     return "{ style: '\(PointMarker.kPointStyle)', color: '\(backgroundColor.hexValue())', size: [\(size.width)px, \(size.height)px], collide: false, interactive: \(interactive) }"
   }
-
 }
 
 /// Base class for polyline markers.
