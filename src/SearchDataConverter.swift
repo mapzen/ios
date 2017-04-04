@@ -9,6 +9,7 @@
 import Foundation
 import Pelias
 
+/// Handles converting internal Pelias structs to their cooresponding Mapzen Search objects.
 class SearchDataConverter {
 
   static func unwrapSearchSources(_ sources: [SearchSource]) -> [Pelias.SearchSource] {

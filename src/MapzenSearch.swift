@@ -8,12 +8,12 @@
 
 import Pelias
 
+/// Main entry point for interacting with Mapzen Search.
 public class MapzenSearch : NSObject {
-
+  /// Returns the shared 'MapzenSearch' instance.
   public static let sharedInstance = MapzenSearch()
   private let peliasSearchManager = PeliasSearchManager.sharedInstance
-
-  //In seconds
+  /// Delay in seconds that the manager should wait between keystrokes to fire a new autocomplete request
   public var autocompleteTimeDelay: Double {
     get {
       return peliasSearchManager.autocompleteTimeDelay
@@ -22,7 +22,7 @@ public class MapzenSearch : NSObject {
       peliasSearchManager.autocompleteTimeDelay = delay
     }
   }
-
+  /// Base url to execute requests against. Default value is https://search.mapzen.com.
   public var baseUrl: URL {
     get {
       return peliasSearchManager.baseUrl
@@ -31,7 +31,7 @@ public class MapzenSearch : NSObject {
       peliasSearchManager.baseUrl = url
     }
   }
-
+  /// The query items that should be applied to every request (such as an api key).
   public var urlQueryItems: [URLQueryItem]? {
     get {
       return peliasSearchManager.urlQueryItems
@@ -43,153 +43,34 @@ public class MapzenSearch : NSObject {
 
   fileprivate override init() {
   }
-
-  public func search(_ config: SearchConfig) -> SearchOperation {
-    let peliasOperation = peliasSearchManager.performSearch(config.peliasConfig);
-    return SearchOperation.init(peliasOperation)
+  /** Perform an asyncronous search request given parameters defined by the search config. Returns the queued operation.
+   - parameter config: Object holding search request parameter information.
+   */
+  public func search(_ config: SearchConfig) -> Operation {
+    return peliasSearchManager.performSearch(config.peliasConfig);
   }
-
-  public func reverseGeocode(_ config: ReverseConfig) -> SearchOperation {
-    let peliasOperation = peliasSearchManager.reverseGeocode(config.peliasConfig)
-    return SearchOperation.init(peliasOperation)
+  /** Perform an asyncronous reverse geocode request given parameters defined by the config. Returns the queued operation.
+   - parameter config: Object holding reverse geo request parameter information.
+   */
+  public func reverseGeocode(_ config: ReverseConfig) -> Operation {
+    return peliasSearchManager.reverseGeocode(config.peliasConfig)
   }
-
-  public func autocompleteQuery(_ config: AutocompleteConfig) -> SearchOperation {
-    let peliasOperation = peliasSearchManager.autocompleteQuery(config.peliasConfig)
-    return SearchOperation.init(peliasOperation)
+  /** Perform an asyncronous autocomplete request given parameters defined by the config. Returns the queued operation.
+   - parameter config: Object holding autocomplete request parameter information.
+   */
+  public func autocompleteQuery(_ config: AutocompleteConfig) -> Operation {
+    return peliasSearchManager.autocompleteQuery(config.peliasConfig)
   }
-
-  public func placeQuery(_ config: PlaceConfig) -> SearchOperation {
-    let peliasOperation = peliasSearchManager.placeQuery(config.peliasConfig)
-    return SearchOperation.init(peliasOperation)
+  /** Perform an asyncronous place request given parameters defined by the search config. Returns the queued operation.
+   - parameter config: Object holding place request parameter information.
+   */
+  public func placeQuery(_ config: PlaceConfig) -> Operation {
+    return peliasSearchManager.placeQuery(config.peliasConfig)
   }
-
+  /// Cancel all requests
   public func cancelOperations() {
     peliasSearchManager.cancelOperations()
   }
-}
-
-@objc(MZSearchOperation)
-public class SearchOperation : Operation {
-
-  let peliasOperation: PeliasOperation
-
-  init(_ op: PeliasOperation) {
-    peliasOperation = op
-  }
-
-  override public func start() {
-    peliasOperation.start()
-  }
-
-  override public func main() {
-    peliasOperation.main()
-  }
-
-
-  override public var isCancelled: Bool {
-    get {
-      return peliasOperation.isCancelled
-    }
-  }
-
-  override public func cancel() {
-    peliasOperation.cancel()
-  }
-
-  override public var isExecuting: Bool {
-    get {
-      return peliasOperation.isExecuting
-    }
-  }
-
-  override public var isFinished: Bool {
-    get {
-      return peliasOperation.isFinished
-    }
-  }
-
-  override public var isConcurrent: Bool {
-    get {
-      return peliasOperation.isConcurrent
-    }
-  }
-
-  override public var isAsynchronous: Bool {
-    get {
-      return peliasOperation.isAsynchronous
-    }
-  }
-
-  override public var isReady: Bool {
-    get {
-      return peliasOperation.isReady
-    }
-  }
-
-  override public func addDependency(_ op: Operation) {
-    peliasOperation.addDependency(op)
-  }
-
-  override public func removeDependency(_ op: Operation) {
-    peliasOperation.removeDependency(op)
-  }
-
-  override public var dependencies: [Operation] {
-    get {
-      return peliasOperation.dependencies
-    }
-  }
-
-  override public var queuePriority: Operation.QueuePriority {
-    get {
-      return peliasOperation.queuePriority
-    }
-    set {
-      peliasOperation.queuePriority = newValue
-    }
-  }
-
-  override public var completionBlock: (() -> Swift.Void)? {
-    get {
-      return peliasOperation.completionBlock
-    }
-    set {
-      peliasOperation.completionBlock = newValue
-    }
-  }
-
-  override public func waitUntilFinished() {
-    peliasOperation.waitUntilFinished()
-  }
-
-  override public var threadPriority: Double {
-    get {
-      return peliasOperation.threadPriority
-    }
-    set {
-      peliasOperation.threadPriority = newValue
-    }
-  }
-
-  override public var qualityOfService: QualityOfService {
-    get {
-      return peliasOperation.qualityOfService
-    }
-    set {
-      peliasOperation.qualityOfService = newValue
-    }
-  }
-
-  override public var name: String? {
-    get {
-      return peliasOperation.name
-    }
-    set {
-      peliasOperation.name = newValue
-    }
-  }
-
 }
 
 @objc(MZSearchError)
