@@ -11,15 +11,17 @@ MapzenManager.sharedManager.apiKey = "[YOUR_MAPZEN_API_KEY]"
 Adding a Mapzen map to your storyboard is as easy as:
 
 1. Drag a GLKitViewController onto your storyboard canvas
-2. Create a subclass file named, for example: `MapVC` and set it's super class to be `MapViewController`
-3. Back, in the storyboard, change the GLKitViewController's subclass to be `MapVC`
+2. Create a subclass file named, for example: `DemoMapViewController` and set it's super class to be `MZMapViewController`
+3. Back, in the storyboard, change the GLKitViewController's subclass to be `DemoMapViewController`
 
 ## 3. Initialize the map
-Override `viewDidLoad()` in `MapVC`'s implementation and instruct it to load a scene file like so: 
+Override `viewDidLoad()` in `DemoMapViewController`'s implementation and instruct it to load a map style like so:
 ```swift
-let _ = try? loadScene("scene.yaml")
+_ = try? loadStyleAsync(.bubbleWrap) { (style) in
+  // the map is now ready for interaction
+}
 ```
-This will load the default scene file [Bubble Wrap])(https://github.com/tangrams/bubble-wrap) that's packaged with the SDK
+This will load the house style [Bubble Wrap])(https://github.com/tangrams/bubble-wrap) that's packaged with the SDK
 
 
 Your map is now ready to use.
