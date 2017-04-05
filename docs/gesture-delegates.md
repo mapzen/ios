@@ -1,6 +1,6 @@
-# Gesture Responders
+# Gesture Delegates 
 
-The map supports taps, double taps, shoves, scales, rotations, pans, and long presses. To receive information about when these events occur, create a responder.
+The map supports taps, double taps, shoves, scales, rotations, pans, and long presses. To receive information about when these events occur, implement a delegate protocol.
 
 ```swift
 import Foundation
