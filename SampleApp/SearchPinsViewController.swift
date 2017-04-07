@@ -9,16 +9,23 @@
 import Pelias
 import TangramMap
 
-class SearchPinsViewController: SampleMapViewController, UITextFieldDelegate {
+class SearchPinsViewController: SampleMapViewController, UITextFieldDelegate, AutocompleteSearchDelegate {
 
   @IBOutlet weak var searchField: UITextField!
+
+  @IBOutlet weak var displaySearch: UIButton!
+  let searchListSegueId = "searchListSegueId"
 
   override func viewDidLoad() {
     super.viewDidLoad()
 
-    try? loadStyle(.bubbleWrap)
+    try? loadStyleAsync(.bubbleWrap) { [unowned self] (style) in
+      let _ = self.showCurrentLocation(true)
+      self.showFindMeButon(true)
+    }
     
-    self.view.bringSubview(toFront: searchField)
+    view.bringSubview(toFront: searchField)
+    view.bringSubview(toFront: displaySearch)
     searchField.delegate = self
   }
 
@@ -27,20 +34,20 @@ class SearchPinsViewController: SampleMapViewController, UITextFieldDelegate {
     return false
   }
 
-  func textFieldDidEndEditing(_ textField: UITextField) {
-    let geopoint = Pelias.GeoPoint(location: LocationManager.sharedManager.currentLocation)
-    var searchConfig = PeliasSearchConfig(searchText: textField.text!) { [unowned self] (response) in
-      guard let newAnnotations = response.parsedMapItems(target: self, action: #selector(self.annotationClicked(annotation:))) else { return }
-      do {
-        try self.removeAnnotations()
-        try self.add(newAnnotations)
-      } catch {
-        //We theoretically would handle these with an error message to the user, but this can be left as an exercise to the reader, cuz sample app.
-      }
+  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    guard let identifier = segue.identifier else {
+      return
     }
+    switch identifier {
+    case searchListSegueId:
+      if let searchVC = segue.destination as? SearchListViewController {
+        searchVC.delegate = self
+      }
+      break
 
-    searchConfig.focusPoint = geopoint
-    let _ = PeliasSearchManager.sharedInstance.performSearch(searchConfig)
+    default:
+      break
+    }
   }
 
   func annotationClicked(annotation: PeliasMapkitAnnotation) {
@@ -50,7 +57,15 @@ class SearchPinsViewController: SampleMapViewController, UITextFieldDelegate {
     present(alert, animated: true, completion: nil)
   }
 
-  // MARK:- private
+  func selected(_ location: PeliasMapkitAnnotation) {
+    print("Selected \(String(describing: location.title))")
+    searchField.text = location.title
+    location.setTarget(target: self, action: #selector(self.annotationClicked(annotation:)))
+    try? self.removeAnnotations()
+    try? self.add([location])
 
-
+    animate(toZoomLevel: 10, withDuration: 1.0)
+    animate(toPosition: TGGeoPointMake(location.coordinate.longitude, location.coordinate.latitude), withDuration: 1.0)
+    
+  }
 }

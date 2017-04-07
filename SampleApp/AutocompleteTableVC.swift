@@ -10,6 +10,10 @@ import MapKit
 import CoreLocation
 import Pelias
 
+protocol AutocompleteSearchDelegate {
+  func selected(_ location: PeliasMapkitAnnotation)
+}
+
 class AutocompleteTableVC: SampleTableViewController, UISearchResultsUpdating, UISearchBarDelegate, LocationManagerDelegate {
   
   let searchController = UISearchController(searchResultsController: nil)

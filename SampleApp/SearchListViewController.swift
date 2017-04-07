@@ -7,7 +7,7 @@
 //
 import UIKit
 
-class RoutingSearchVC: AutocompleteTableVC {
+class SearchListViewController: AutocompleteTableVC {
 
   var delegate : AutocompleteSearchDelegate?
 
@@ -18,4 +18,5 @@ class RoutingSearchVC: AutocompleteTableVC {
       let _ = self.navigationController?.popViewController(animated: true)
     }
   }
+
 }
