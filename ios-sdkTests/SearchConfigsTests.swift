@@ -25,11 +25,11 @@ class AutocompleteConfigTests: XCTestCase {
 
 class PlaceConfigTests: XCTestCase {
 
-  var config: PlaceConfig = PlaceConfig.init(places: [PlaceQueryItem.init(placeId: "123", dataSource: .openStreetMap, layer: .address)], completionHandler: { (response) in })
+  var config: PlaceConfig = PlaceConfig.init(gids: ["123"], completionHandler: { (response) in })
 
   func testPlacesAreCorrect() {
-    XCTAssertEqual(config.places.count, 1)
-    XCTAssertEqual(PlaceQueryItem.init(placeId: "123", dataSource: .openStreetMap, layer: .address), config.places.first)
+    XCTAssertEqual(config.gids.count, 1)
+    XCTAssertEqual("123", config.gids.first)
   }
 }
 

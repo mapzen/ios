@@ -72,26 +72,3 @@ public class MapzenSearch : NSObject {
     peliasSearchManager.cancelOperations()
   }
 }
-
-@objc(MZSearchError)
-public class SearchError: NSObject {
-
-  let peliasError: PeliasError
-
-  public var code: String {
-    get {
-      return peliasError.code
-    }
-  }
-
-  public var message: String {
-    get {
-      return peliasError.message
-    }
-  }
-
-  init(_ error: PeliasError) {
-    peliasError = error
-  }
-}
-

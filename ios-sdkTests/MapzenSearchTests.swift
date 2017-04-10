@@ -64,23 +64,10 @@ public class MapzenSearchTests : XCTestCase {
   }
 
   func testPlaceQuery() {
-    let config = PlaceConfig.init(places: [PlaceQueryItem.init(placeId: "", dataSource: .openAddresses, layer: .address)]) { (response) in
+    let config = PlaceConfig.init(gids: [""]) { (response) in
       //
     }
     let operation = mapzenSearch.placeQuery(config)
     XCTAssertNotNil(operation)
-  }
-}
-
-class SearchErrorTests : XCTestCase {
-
-  let error = SearchError.init(PeliasError.init(code: "code", message: "msg"))
-
-  func testCode() {
-    XCTAssertEqual(error.code, "code")
-  }
-
-  func testMessage() {
-    XCTAssertEqual(error.message, "msg")
   }
 }

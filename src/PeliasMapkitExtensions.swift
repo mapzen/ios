@@ -102,22 +102,6 @@ open class PeliasMapkitAnnotation: NSObject, MKAnnotation {
   }
 }
 
-public extension PeliasPlaceQueryItem {
-  /**
-   Convenience initializer for creation a place query item from a PeliasMapkitAnnotation
-   
-   - Parameter annotation: A PeliasMapkitAnnotation that contains some metadata for the particular place
-   - Parameter layer: The layer for the main place query filter
-   
-   - Returns: An optional place query item
-   */
-  init?(annotation: PeliasMapkitAnnotation, layer: Pelias.LayerFilter) {
-    guard let place = annotation.data?[PeliasIDKey] as? String else { return nil }
-    guard let source = Pelias.SearchSource(rawValue: annotation.data?[PeliasDataSourceKey] as? String ?? "") else { return nil }
-    self.init(placeId: place, dataSource: source, layer: layer)
-  }
-}
-
 public extension PeliasResponse {
   /**
    Produces an array of PeliasMapkitAnnotations based off the response from Pelias servers. 

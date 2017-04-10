@@ -9,6 +9,25 @@ The Mapzen iOS SDK is a thin wrapper that packages up everything you need to use
 
 We recently released our beta version of the SDK, version 0.2.0. The API at this point is fairly stable and we'd welcome feedback from the community on its usage. Feature requests are also welcome; label it appropriately as an ["Enhancement"](https://github.com/mapzen/ios/issues?q=is%3Aopen+is%3Aissue+label%3Aenhancement) and be aware we probably won't be able to implement it until after launch at this point. Feel free to also reach out to us using any of the other channels we have available on https://mapzen.com/.
 
+## Usage
+Everything you need to get going using the Mapzen SDK
+
+### Set up
+- [Installation](https://github.com/mapzen/ios/blob/master/docs/installation.md)
+- [Getting started](https://github.com/mapzen/ios/blob/master/docs/getting-started.md)
+
+### Interacting with the map
+- [Position, rotation, zoom, and tilt](https://github.com/mapzen/ios/blob/master/docs/basic-functions.md)
+- [Markers, polylines, and polygons](https://github.com/mapzen/ios/blob/master/docs/features.md)
+- [Switching styles](https://github.com/mapzen/ios/blob/master/docs/styles.md)
+- [Gesture delegates](https://github.com/mapzen/ios/blob/master/docs/gesture-delegates.md)
+- [Current location](https://github.com/mapzen/ios/blob/master/docs/location-services.md)
+
+### Search and routing
+- [Search](https://github.com/mapzen/ios/blob/master/docs/search.md)
+- [Routing](https://github.com/mapzen/ios/blob/master/docs/turn-by-turn.md)
+
+
 # What's Included
 
 Version 1.0 of our iOS SDK will be nearly at feature parity with our well established [Android SDK](https://github.com/mapzen/android).
@@ -53,7 +72,7 @@ Replace `$(MAPZEN_API_KEY)` with your key:
 </p>
 
 -- OR --
- 
+
 2. Create a new scheme and add an environment variable
 
 Duplicate the `ios-sdk` scheme and then add your environment variable here:
