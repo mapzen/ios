@@ -43,3 +43,12 @@ private func reverseGeo() {
 
 ## Place
 Get rich details about a place.
+
+```swift
+private func places() {
+  let config = PlaceConfig.init(gids: ["gid", "anotherGid"]) { (response) in
+    // display result
+  }
+  _ = MapzenSearch.sharedInstance.placeQuery(config)
+}
+```
