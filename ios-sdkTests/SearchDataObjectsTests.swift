@@ -35,13 +35,4 @@ class MapzenSearchDataObjectsTests: XCTestCase {
     XCTAssertEqual(point.point, peliasPoint)
     XCTAssertEqual(point, GeoPoint(latitude: 70.0, longitude: 40.0))
   }
-
-  func testPlaceQueryItem() {
-    let item = PlaceQueryItem(placeId: "id", dataSource: .geoNames, layer: .address)
-    let peliasItem = PeliasPlaceQueryItem(placeId: "id", dataSource: .GeoNames, layer: .address)
-    XCTAssertEqual(item.peliasItem.placeId, peliasItem.placeId)
-    XCTAssertEqual(item.peliasItem.dataSource, peliasItem.dataSource)
-    XCTAssertEqual(item.peliasItem.layer, peliasItem.layer)
-    XCTAssertEqual(item, PlaceQueryItem(placeId: "id", dataSource: .geoNames, layer: .address))
-  }
 }

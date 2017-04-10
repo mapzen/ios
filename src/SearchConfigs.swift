@@ -43,17 +43,19 @@ public class AutocompleteConfig : NSObject {
 /// Encapsulates request parameters for place requests.
 @objc(MZPlaceConfig)
 public class PlaceConfig : NSObject {
-  let peliasConfig: PeliasPlaceConfig
+  var peliasConfig: PeliasPlaceConfig
 
-  public var places: [PlaceQueryItem] {
+  public var gids: [String] {
+    set {
+      peliasConfig.gids = newValue
+    }
     get {
-      return SearchDataConverter.wrapQueryItems(peliasConfig.places)
+      return peliasConfig.gids
     }
   }
 
-  public init(places: [PlaceQueryItem], completionHandler: @escaping (SearchResponse) -> Void) {
-    let unwrappedPlaces = SearchDataConverter.unwrapQueryItems(places)
-    peliasConfig = PeliasPlaceConfig(places: unwrappedPlaces, completionHandler: { (response) in
+  public init(gids: [String], completionHandler: @escaping (SearchResponse) -> Void) {
+    peliasConfig = PeliasPlaceConfig(gids: gids, completionHandler: { (response) in
       let mapzenResponse = SearchResponse.init(response)
       completionHandler(mapzenResponse)
     })

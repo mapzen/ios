@@ -47,15 +47,6 @@ class SearchResponseTests: XCTestCase {
     XCTAssertEqual(r.parsedResponse?.parsedResponse["test"] as! String, "result")
   }
 
-  func testParsedError() {
-    let dict = ["meta":["status_code":1], "results":["error":["message":"test"]]]
-    try? data = JSONSerialization.data(withJSONObject: dict, options: .prettyPrinted)
-    let pr = PeliasResponse(data: data, response: urlResponse, error: error)
-    let r = SearchResponse(pr)
-    XCTAssertEqual(r.parsedError?.peliasError.code, "1")
-    XCTAssertEqual(r.parsedError?.peliasError.message, "test")
-  }
-
   func testEquals() {
     let otherResponse = SearchResponse(PeliasResponse(data: Data(), response: urlResponse, error: NSError(domain:"Test", code: 1, userInfo: nil)))
     XCTAssertEqual(response, otherResponse)

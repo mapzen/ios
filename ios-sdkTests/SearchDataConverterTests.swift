@@ -108,47 +108,4 @@ class SearchDataConverterTests: XCTestCase {
     let unwrapped = SearchDataConverter.unwrapPoint(point)
     XCTAssertEqual(point.point, unwrapped)
   }
-
-  func testUnwrapQueryItems() {
-    let items = [PlaceQueryItem.init(placeId: "id", dataSource: .geoNames, layer: .address),
-                 PlaceQueryItem.init(placeId: "anotherid", dataSource: .quattroshapes, layer: .region)]
-    let unwrapped = SearchDataConverter.unwrapQueryItems(items)
-    XCTAssertEqual(unwrapped[0].placeId, "id")
-    XCTAssertEqual(unwrapped[0].dataSource, .GeoNames)
-    XCTAssertEqual(unwrapped[0].layer, .address)
-    XCTAssertEqual(unwrapped[1].placeId, "anotherid")
-    XCTAssertEqual(unwrapped[1].dataSource, .Quattroshapes)
-    XCTAssertEqual(unwrapped[1].layer, .region)
-    XCTAssertEqual(unwrapped.count, 2)
-  }
-
-  func testUnwrapQueryItem() {
-    let item = PlaceQueryItem.init(placeId: "id", dataSource: .openStreetMap, layer: .venue)
-    let unwrapped = SearchDataConverter.unwrapQueryItem(item)
-    XCTAssertEqual(unwrapped.placeId, "id")
-    XCTAssertEqual(unwrapped.dataSource, .OpenStreetMap)
-    XCTAssertEqual(unwrapped.layer, .venue)
-  }
-
-  func testWrapQueryItems() {
-    let items = [PeliasPlaceQueryItem.init(placeId: "id", dataSource: .GeoNames, layer: .address),
-                 PeliasPlaceQueryItem.init(placeId: "anotherid", dataSource: .Quattroshapes, layer: .region)]
-    let wrapped = SearchDataConverter.wrapQueryItems(items)
-    XCTAssertEqual(wrapped[0].placeId, "id")
-    XCTAssertEqual(wrapped[0].dataSource, .geoNames)
-    XCTAssertEqual(wrapped[0].layer, .address)
-    XCTAssertEqual(wrapped[1].placeId, "anotherid")
-    XCTAssertEqual(wrapped[1].dataSource, .quattroshapes)
-    XCTAssertEqual(wrapped[1].layer, .region)
-    XCTAssertEqual(wrapped.count, 2)
-  }
-
-  func testWrapQueryItem() {
-    let item = PeliasPlaceQueryItem.init(placeId: "id", dataSource: .OpenStreetMap, layer: .venue)
-    let wrapped = SearchDataConverter.wrapQueryItem(item)
-    XCTAssertEqual(wrapped.placeId, "id")
-    XCTAssertEqual(wrapped.dataSource, .openStreetMap)
-    XCTAssertEqual(wrapped.layer, .venue)
-  }
-
 }

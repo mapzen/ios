@@ -14,11 +14,6 @@ import Pelias
 public class SearchResponse : NSObject {
   let peliasResponse: PeliasResponse
 
-  private lazy var internalParsedError: SearchError? = { [unowned self] in
-    guard let peliasParsedError = self.peliasResponse.parsedError else { return nil }
-    return SearchError.init(peliasParsedError)
-    }()
-
   private lazy var internalParsedResponse: ParsedSearchResponse? =  { [unowned self] in
     guard let peliasParsedResponse = self.peliasResponse.parsedResponse else { return nil }
     return ParsedSearchResponse.init(peliasParsedResponse)
@@ -45,12 +40,6 @@ public class SearchResponse : NSObject {
   public var parsedResponse: ParsedSearchResponse? {
     get {
       return internalParsedResponse
-    }
-  }
-
-  public var parsedError: SearchError? {
-    get {
-      return internalParsedError
     }
   }
 

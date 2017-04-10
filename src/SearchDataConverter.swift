@@ -124,31 +124,4 @@ class SearchDataConverter {
     return point.point
   }
 
-  static func unwrapQueryItems(_ items: [PlaceQueryItem]) -> [PeliasPlaceQueryItem] {
-    var newItems: [PeliasPlaceQueryItem] = []
-    for wrapper in items {
-      newItems.append(unwrapQueryItem(wrapper))
-    }
-    return newItems
-  }
-
-  static func unwrapQueryItem(_ item: PlaceQueryItem) -> PeliasPlaceQueryItem {
-    let unwrappedSource = unwrapSearchSource(item.dataSource)
-    let unwrappedLayer = unwrapLayerFilter(item.layer)
-    return PeliasPlaceQueryItem(placeId: item.placeId, dataSource: unwrappedSource, layer: unwrappedLayer)
-  }
-
-  static func wrapQueryItems(_ items: [PlaceAPIQueryItem]) -> [PlaceQueryItem] {
-    var newItems: [PlaceQueryItem] = []
-    for wrapper in items {
-      newItems.append(wrapQueryItem(wrapper))
-    }
-    return newItems
-  }
-
-  static func wrapQueryItem(_ item: PlaceAPIQueryItem) -> PlaceQueryItem {
-    let wrappedSource = wrapSearchSource(item.dataSource)
-    let wrappedLayer = wrapLayerFilter(item.layer)
-    return PlaceQueryItem(placeId: item.placeId, dataSource: wrappedSource, layer: wrappedLayer)
-  }
 }
