@@ -9,9 +9,15 @@
 import Foundation
 import Pelias
 
+/// Represents a search request's rectangular boundary.
 @objc(MZSearchRect)
 public class SearchRect: NSObject {
   let rect: SearchBoundaryRect
+  /**
+   Initialize a rectangle with given min and max points.
+   - parameter minLatLong: Minimum latitude value.
+   - parameter maxLatLong: Maximum latitude value.
+   */
   public init(minLatLong: GeoPoint, maxLatLong: GeoPoint) {
     rect = SearchBoundaryRect(minLatLong: minLatLong.point, maxLatLong: maxLatLong.point)
   }
@@ -26,9 +32,15 @@ public class SearchRect: NSObject {
   }
 }
 
+/// Represents a search request's circular boundary.
 @objc(MZSearchCircle)
 public class SearchCircle: NSObject {
   let circle:  SearchBoundaryCircle
+  /**
+   Initialize a circle with given center and radius.
+   - parameter center: Center point.
+   - parameter radius: Radius in kilometers.
+   */
   public init(center: GeoPoint, radius: Double) {
     circle = SearchBoundaryCircle(center: center.point, radius: radius)
   }
@@ -43,10 +55,15 @@ public class SearchCircle: NSObject {
   }
 }
 
+/// Structure used to represent a coordinate point.
 @objc(MZGeoPoint)
 public class GeoPoint: NSObject {
   let point: Pelias.GeoPoint
-  
+  /**
+   Initialize a structure with given latitude and longitude.
+   - parameter latitude: Latitude.
+   - parameter longitude: Longitude.
+   */
   public init(latitude: Double, longitude: Double) {
     point = Pelias.GeoPoint(latitude: latitude, longitude: longitude)
   }
@@ -61,11 +78,13 @@ public class GeoPoint: NSObject {
   }
 }
 
+/// Represents possible sources for search results to be returned from.
 @objc(MZSearchSource)
 public enum SearchSource: Int {
   case openStreetMap = 1, openAddresses, quattroshapes, geoNames
 }
 
+/// Represents a layer to return results for.
 @objc(MZLayerFilter)
 public enum LayerFilter: Int {
   case venue = 1, address, country, region, county, locality, localadmin, neighbourhood, coarse

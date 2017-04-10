@@ -9,6 +9,7 @@
 import Foundation
 import Pelias
 
+/// Represents a response for a request executed by 'MapzenSearch'
 @objc(MZSearchResponse)
 public class SearchResponse : NSObject {
   let peliasResponse: PeliasResponse
@@ -22,19 +23,19 @@ public class SearchResponse : NSObject {
     guard let peliasParsedResponse = self.peliasResponse.parsedResponse else { return nil }
     return ParsedSearchResponse.init(peliasParsedResponse)
   }()
-
+  /// The raw response data
   public var data: Data? {
     get {
       return peliasResponse.data
     }
   }
-
+  /// The url response if the request completed successfully.
   public var response: URLResponse? {
     get {
       return peliasResponse.response
     }
   }
-
+  /// The error if an error occured executing the operation.
   public var error: NSError? {
     get {
       return peliasResponse.error
