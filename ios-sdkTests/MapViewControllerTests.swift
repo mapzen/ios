@@ -12,7 +12,7 @@ import TangramMap
 import OnTheRoad
 import CoreLocation
 
-class TestMapViewController: MapViewController {
+class TestMapViewController: MZMapViewController {
   func lastSetPointValue() -> TGGeoPoint? {
     return lastSetPoint
   }
@@ -379,7 +379,7 @@ class MapViewControllerTests: XCTestCase {
   func testAddAnnotations(){
     let testAnno1 = PeliasMapkitAnnotation(coordinate: CLLocationCoordinate2DMake(0.0, 0.0), title: "Test1", subtitle: "SubTest1", data: nil)
     let testAnno2 = PeliasMapkitAnnotation(coordinate: CLLocationCoordinate2DMake(1.0, 1.0), title: "Test2", subtitle: "SubTest2", data: nil)
-    let controller = MapViewController() // Grab local instance cuz we don't want to use mocks for these
+    let controller = MZMapViewController() // Grab local instance cuz we don't want to use mocks for these
     let _ = try? controller.add([testAnno1, testAnno2])
 
     //Tests
@@ -391,7 +391,7 @@ class MapViewControllerTests: XCTestCase {
 
   func testRemoveSingleAnnotation(){
     let testAnno1 = PeliasMapkitAnnotation(coordinate: CLLocationCoordinate2DMake(0.0, 0.0), title: "Test1", subtitle: "SubTest1", data: nil)
-    let controller = MapViewController() // Grab local instance cuz we don't want to use mocks for these
+    let controller = MZMapViewController() // Grab local instance cuz we don't want to use mocks for these
 
     //Tests
     let _ = try? controller.remove(testAnno1)
@@ -401,7 +401,7 @@ class MapViewControllerTests: XCTestCase {
   func testRemoveAllAnnotations(){
     let testAnno1 = PeliasMapkitAnnotation(coordinate: CLLocationCoordinate2DMake(0.0, 0.0), title: "Test1", subtitle: "SubTest1", data: nil)
     let testAnno2 = PeliasMapkitAnnotation(coordinate: CLLocationCoordinate2DMake(1.0, 1.0), title: "Test2", subtitle: "SubTest2", data: nil)
-    let controller = MapViewController() // Grab local instance cuz we don't want to use mocks for these
+    let controller = MZMapViewController() // Grab local instance cuz we don't want to use mocks for these
     let _ = try? controller.add([testAnno1, testAnno2])
 
     //Tests
@@ -597,7 +597,7 @@ class MapViewControllerTests: XCTestCase {
   
   func testLoadStyleAsyncCallsLoadDelegate() {
     var loaded = false
-    let styleLoaded : MapViewController.OnStyleLoaded = { (style) in loaded = true }
+    let styleLoaded : MZMapViewController.OnStyleLoaded = { (style) in loaded = true }
     try? controller.loadStyleAsync(.bubbleWrap, onStyleLoaded: styleLoaded)
     controller.mapView(controller.tgViewController, didLoadSceneAsync: "bubble-wrap-style-more-labels.yaml")
     XCTAssertTrue(loaded)
@@ -665,7 +665,7 @@ class MapViewControllerTests: XCTestCase {
 
   func testAttributionVisible() {
     let tabVc = UITabBarController.init()
-    let vc = MapViewController.init()
+    let vc = MZMapViewController.init()
     tabVc.setViewControllers([vc], animated: false)
     _ = vc.view
     XCTAssertTrue(vc.attributionBtn.frame.origin.y + vc.attributionBtn.frame.size.height < tabVc.tabBar.frame.origin.y)
@@ -673,7 +673,7 @@ class MapViewControllerTests: XCTestCase {
 
   func testFindMeVisible() {
     let tabVc = UITabBarController.init()
-    let vc = MapViewController.init()
+    let vc = MZMapViewController.init()
     tabVc.setViewControllers([vc], animated: false)
     _ = vc.view
     XCTAssertTrue(vc.findMeButton.frame.origin.y + vc.findMeButton.frame.size.height < tabVc.tabBar.frame.origin.y)
@@ -734,7 +734,7 @@ class TestPanDelegate : MapPanGestureDelegate {
   
   var didPanMap = false
   
-  func mapController(_ view: MapViewController, didPanMap displacement: CGPoint) {
+  func mapController(_ view: MZMapViewController, didPanMap displacement: CGPoint) {
     didPanMap = true
   }
 }
@@ -743,7 +743,7 @@ class TestPinchDelegate : MapPinchGestureDelegate {
   
   var didPinchMap = false
   
-  func mapController(_ view: MapViewController, didPinchMap displacement: CGPoint) {
+  func mapController(_ view: MZMapViewController, didPinchMap displacement: CGPoint) {
     didPinchMap = true
   }
 }
@@ -752,7 +752,7 @@ class TestRotateDelegate : MapRotateGestureDelegate {
   
   var didRotateMap = false
   
-  func mapController(_ view: MapViewController, didRotateMap displacement: CGPoint) {
+  func mapController(_ view: MZMapViewController, didRotateMap displacement: CGPoint) {
     didRotateMap = true
   }
 }
@@ -761,7 +761,7 @@ class TestShoveDelegate : MapShoveGestureDelegate {
   
   var didShoveMap = false
   
-  func mapController(_ view: MapViewController, didShoveMap displacement: CGPoint) {
+  func mapController(_ view: MZMapViewController, didShoveMap displacement: CGPoint) {
     didShoveMap = true
   }
 }
@@ -772,27 +772,27 @@ class AllEnabledGestureDelegate : MapSingleTapGestureDelegate, MapDoubleTapGestu
   var doubleTapReceived = false
   var longPressTapReceived = false
   
-  func mapController(_ view: MapViewController, recognizer: UIGestureRecognizer, shouldRecognizeSingleTapGesture location: CGPoint) -> Bool {
+  func mapController(_ view: MZMapViewController, recognizer: UIGestureRecognizer, shouldRecognizeSingleTapGesture location: CGPoint) -> Bool {
     return true
   }
   
-  func mapController(_ view: MapViewController, recognizer: UIGestureRecognizer, didRecognizeSingleTapGesture location: CGPoint) {
+  func mapController(_ view: MZMapViewController, recognizer: UIGestureRecognizer, didRecognizeSingleTapGesture location: CGPoint) {
     singleTapReceived = true
   }
   
-  func mapController(_ view: MapViewController, recognizer: UIGestureRecognizer, shouldRecognizeDoubleTapGesture location: CGPoint) -> Bool {
+  func mapController(_ view: MZMapViewController, recognizer: UIGestureRecognizer, shouldRecognizeDoubleTapGesture location: CGPoint) -> Bool {
     return true
   }
   
-  func mapController(_ view: MapViewController, recognizer: UIGestureRecognizer, didRecognizeDoubleTapGesture location: CGPoint) {
+  func mapController(_ view: MZMapViewController, recognizer: UIGestureRecognizer, didRecognizeDoubleTapGesture location: CGPoint) {
     doubleTapReceived = true
   }
   
-  func mapController(_ view: MapViewController, recognizer: UIGestureRecognizer, shouldRecognizeLongPressGesture location: CGPoint) -> Bool {
+  func mapController(_ view: MZMapViewController, recognizer: UIGestureRecognizer, shouldRecognizeLongPressGesture location: CGPoint) -> Bool {
     return true
   }
   
-  func mapController(_ view: MapViewController, recognizer: UIGestureRecognizer, didRecognizeLongPressGesture location: CGPoint) {
+  func mapController(_ view: MZMapViewController, recognizer: UIGestureRecognizer, didRecognizeLongPressGesture location: CGPoint) {
     longPressTapReceived = true
   }
 }
@@ -803,27 +803,27 @@ class AllDisabledGestureDelegate : MapSingleTapGestureDelegate, MapDoubleTapGest
   var doubleTapReceived = false
   var longPressTapReceived = false
   
-  func mapController(_ view: MapViewController, recognizer: UIGestureRecognizer, shouldRecognizeSingleTapGesture location: CGPoint) -> Bool {
+  func mapController(_ view: MZMapViewController, recognizer: UIGestureRecognizer, shouldRecognizeSingleTapGesture location: CGPoint) -> Bool {
     return false
   }
   
-  func mapController(_ view: MapViewController, recognizer: UIGestureRecognizer, didRecognizeSingleTapGesture location: CGPoint) {
+  func mapController(_ view: MZMapViewController, recognizer: UIGestureRecognizer, didRecognizeSingleTapGesture location: CGPoint) {
     singleTapReceived = true
   }
   
-  func mapController(_ view: MapViewController, recognizer: UIGestureRecognizer, shouldRecognizeDoubleTapGesture location: CGPoint) -> Bool {
+  func mapController(_ view: MZMapViewController, recognizer: UIGestureRecognizer, shouldRecognizeDoubleTapGesture location: CGPoint) -> Bool {
     return false
   }
   
-  func mapController(_ view: MapViewController, recognizer: UIGestureRecognizer, didRecognizeDoubleTapGesture location: CGPoint) {
+  func mapController(_ view: MZMapViewController, recognizer: UIGestureRecognizer, didRecognizeDoubleTapGesture location: CGPoint) {
     doubleTapReceived = true
   }
   
-  func mapController(_ view: MapViewController, recognizer: UIGestureRecognizer, shouldRecognizeLongPressGesture location: CGPoint) -> Bool {
+  func mapController(_ view: MZMapViewController, recognizer: UIGestureRecognizer, shouldRecognizeLongPressGesture location: CGPoint) -> Bool {
     return false
   }
   
-  func mapController(_ view: MapViewController, recognizer: UIGestureRecognizer, didRecognizeLongPressGesture location: CGPoint) {
+  func mapController(_ view: MZMapViewController, recognizer: UIGestureRecognizer, didRecognizeLongPressGesture location: CGPoint) {
     longPressTapReceived = true
   }
 }
@@ -833,11 +833,11 @@ class TestLoadDelegate : MapTileLoadDelegate {
   var sceneLoaded = false
   var loadingComplete = false
   
-  func mapController(_ controller: MapViewController, didLoadSceneAsync scene: String) {
+  func mapController(_ controller: MZMapViewController, didLoadSceneAsync scene: String) {
     sceneLoaded = true
   }
   
-  func mapControllerDidCompleteLoading(_ mapView: MapViewController) {
+  func mapControllerDidCompleteLoading(_ mapView: MZMapViewController) {
     loadingComplete = true
   }
 }
@@ -848,15 +848,15 @@ class TestMapSelectDelegate : MapLabelSelectDelegate, MapMarkerSelectDelegate, M
   var markerPicked = false
   var featurePicked = false
   
-  func mapController(_ mapView: MapViewController, didSelectLabel labelPickResult: TGLabelPickResult, atScreenPosition position: CGPoint) {
+  func mapController(_ mapView: MZMapViewController, didSelectLabel labelPickResult: TGLabelPickResult, atScreenPosition position: CGPoint) {
     labelPicked = true
   }
   
-  func mapController(_ mapView: MapViewController, didSelectMarker marker: GenericMarker, atScreenPosition position: CGPoint) {
+  func mapController(_ mapView: MZMapViewController, didSelectMarker marker: GenericMarker, atScreenPosition position: CGPoint) {
     markerPicked = true
   }
   
-  func mapController(_ mapView: MapViewController, didSelectFeature feature: [String : String], atScreenPosition position: CGPoint) {
+  func mapController(_ mapView: MZMapViewController, didSelectFeature feature: [String : String], atScreenPosition position: CGPoint) {
     featurePicked = true
   }
 }

@@ -1,5 +1,5 @@
 //
-//  MapViewController.swift
+//  MZMapViewController.swift
 //  ios-sdk
 //
 //  Created by Matt Smollinger on 11/21/16.
@@ -42,22 +42,22 @@ public protocol MapSingleTapGestureDelegate : class {
   /**
    Asks the delegate if the map should recognize this single tap and perform default functionality (which is nothing, currently).
 
-   - parameter controller: The MapViewController that wants to recognize the tap.
+   - parameter controller: The MZMapViewController that wants to recognize the tap.
    - parameter recognizer: The recognizer that initially recognized the tap.
    - parameter location: The screen coordinates that the tap occured in relative to the bounds of the map.
    
    - returns: Return true for default functionality, or false if don't want it recognized (or plan on handling it yourself).
   */
-  func mapController(_ controller: MapViewController, recognizer: UIGestureRecognizer, shouldRecognizeSingleTapGesture location: CGPoint) -> Bool
+  func mapController(_ controller: MZMapViewController, recognizer: UIGestureRecognizer, shouldRecognizeSingleTapGesture location: CGPoint) -> Bool
 
   /**
    Informs the delegate the map recognized a single tap gesture.
 
-   - parameter controller: The MapViewController that recognized the tap.
+   - parameter controller: The MZMapViewController that recognized the tap.
    - parameter recognizer: The recognizer that recognized the tap.
    - parameter location: The screen coordinates that the tap occured in relative to the bounds of the map.
    */
-  func mapController(_ controller: MapViewController, recognizer: UIGestureRecognizer, didRecognizeSingleTapGesture location: CGPoint)
+  func mapController(_ controller: MZMapViewController, recognizer: UIGestureRecognizer, didRecognizeSingleTapGesture location: CGPoint)
 }
 
 /// Double Tap Gesture Delegate
@@ -65,22 +65,22 @@ public protocol MapDoubleTapGestureDelegate : class {
   /**
    Asks the delegate if the map should recognize this double tap and perform default functionality (which is nothing, currently).
 
-   - parameter controller: The MapViewController that wants to recognize the tap.
+   - parameter controller: The MZMapViewController that wants to recognize the tap.
    - parameter recognizer: The recognizer that initially recognized the tap.
    - parameter location: The screen coordinates that the tap occured in relative to the bounds of the map.
 
    - returns: Return true for default functionality, or false if don't want it recognized (or plan on handling it yourself).
    */
-  func mapController(_ controller: MapViewController, recognizer: UIGestureRecognizer, shouldRecognizeDoubleTapGesture location: CGPoint) -> Bool
+  func mapController(_ controller: MZMapViewController, recognizer: UIGestureRecognizer, shouldRecognizeDoubleTapGesture location: CGPoint) -> Bool
 
   /**
    Informs the delegate the map recognized a double tap gesture.
 
-   - parameter controller: The MapViewController that recognized the tap.
+   - parameter controller: The MZMapViewController that recognized the tap.
    - parameter recognizer: The recognizer that recognized the tap.
    - parameter location: The screen coordinates that the tap occured in relative to the bounds of the map.
    */
-  func mapController(_ controller: MapViewController, recognizer: UIGestureRecognizer, didRecognizeDoubleTapGesture location: CGPoint)
+  func mapController(_ controller: MZMapViewController, recognizer: UIGestureRecognizer, didRecognizeDoubleTapGesture location: CGPoint)
 }
 
 /// Long Press Gesture Delegate
@@ -88,22 +88,22 @@ public protocol MapLongPressGestureDelegate : class {
   /**
    Asks the delegate if the map should recognize this long press gesture and perform default functionality (which is nothing, currently).
 
-   - parameter controller: The MapViewController that wants to recognize the press.
+   - parameter controller: The MZMapViewController that wants to recognize the press.
    - parameter recognizer: The recognizer that initially recognized the press.
    - parameter location: The screen coordinates that the press occured in relative to the bounds of the map.
 
    - returns: Return true for default functionality, or false if don't want it recognized (or plan on handling it yourself).
    */
-  func mapController(_ controller: MapViewController, recognizer: UIGestureRecognizer, shouldRecognizeLongPressGesture location: CGPoint) -> Bool
+  func mapController(_ controller: MZMapViewController, recognizer: UIGestureRecognizer, shouldRecognizeLongPressGesture location: CGPoint) -> Bool
 
   /**
    Informs the delegate the map recognized a long press gesture.
 
-   - parameter controller: The MapViewController that recognized the press.
+   - parameter controller: The MZMapViewController that recognized the press.
    - parameter recognizer: The recognizer that recognized the press.
    - parameter location: The screen coordinates that the press occured in relative to the bounds of the map.
    */
-  func mapController(_ controller: MapViewController, recognizer: UIGestureRecognizer, didRecognizeLongPressGesture location: CGPoint)
+  func mapController(_ controller: MZMapViewController, recognizer: UIGestureRecognizer, didRecognizeLongPressGesture location: CGPoint)
 }
 
 /// Map Pan Gesture Delegate
@@ -111,10 +111,10 @@ public protocol MapPanGestureDelegate : class {
   /**
    Informs the delegate the map just panned.
 
-   - parameter controller: The MapViewController that recognized the pan.
+   - parameter controller: The MZMapViewController that recognized the pan.
    - parameter displacement: The distance in pixels that the screen was moved by the gesture.
    */
-  func mapController(_ controller: MapViewController, didPanMap displacement: CGPoint)
+  func mapController(_ controller: MZMapViewController, didPanMap displacement: CGPoint)
 }
 
 /// MapPinchGestureDelegate
@@ -122,10 +122,10 @@ public protocol MapPinchGestureDelegate : class {
   /**
    Informs the delegate the map just zoomed via a pinch gesture.
 
-   - parameter controller: The MapViewController that recognized the pinch.
+   - parameter controller: The MZMapViewController that recognized the pinch.
    - parameter location: The screen coordinate the map was pinched at.
    */
-  func mapController(_ controller: MapViewController, didPinchMap location: CGPoint)
+  func mapController(_ controller: MZMapViewController, didPinchMap location: CGPoint)
 }
 
 /// MapRotateGestureDelegate
@@ -133,10 +133,10 @@ public protocol MapRotateGestureDelegate : class {
   /**
    Informs the delegate the map just rotated.
 
-   - parameter controller: The MapViewController that recognized the rotation.
+   - parameter controller: The MZMapViewController that recognized the rotation.
    - parameter location: The screen coordinate the map was rotated at.
    */
-  func mapController(_ controller: MapViewController, didRotateMap location: CGPoint)
+  func mapController(_ controller: MZMapViewController, didRotateMap location: CGPoint)
 }
 
 /// MapShoveGestureDelegate
@@ -144,10 +144,10 @@ public protocol MapShoveGestureDelegate : class {
   /**
    Informs the delegate the map just shoved.
 
-   - parameter controller: The MapViewController that recognized the shove.
+   - parameter controller: The MZMapViewController that recognized the shove.
    - parameter displacement: The distance in pixels that the screen was moved by the gesture.
    */
-  func mapController(_ controller: MapViewController, didShoveMap displacement: CGPoint)
+  func mapController(_ controller: MZMapViewController, didShoveMap displacement: CGPoint)
 }
 
 /// MapFeatureSelectDelegate
@@ -155,11 +155,11 @@ public protocol MapFeatureSelectDelegate : class {
   /**
    Informs the delegate a feature of the map was just selected.
 
-   - parameter controller: The MapViewController that recognized the selection.
+   - parameter controller: The MZMapViewController that recognized the selection.
    - parameter feature: Feature dictionary. The keys available are determined by the provided data in the upstream data source.
    - parameter atScreenPosition: The screen coordinates of the picked feature.
    */
-  func mapController(_ controller: MapViewController, didSelectFeature feature: [String : String], atScreenPosition position: CGPoint)
+  func mapController(_ controller: MZMapViewController, didSelectFeature feature: [String : String], atScreenPosition position: CGPoint)
 }
 
 /// MapLabelSelectDelegate
@@ -167,11 +167,11 @@ public protocol MapLabelSelectDelegate : class {
   /**
    Informs the delegate a label of the map was just selected
 
-   - parameter controller: The MapViewController that recognized the selection.
+   - parameter controller: The MZMapViewController that recognized the selection.
    - parameter labelPickResult: A label returned as an instance of TGLabelPickResult.
    - parameter atScreenPosition: The screen coordinates of the picked label.
    */
-  func mapController(_ controller: MapViewController, didSelectLabel labelPickResult: TGLabelPickResult, atScreenPosition position: CGPoint)
+  func mapController(_ controller: MZMapViewController, didSelectLabel labelPickResult: TGLabelPickResult, atScreenPosition position: CGPoint)
 }
 
 /// MapMarkerSelectDelegate
@@ -179,11 +179,11 @@ public protocol MapMarkerSelectDelegate : class {
   /**
    Informs the delegate a marker of the map was just selected
 
-   - parameter controller: The MapViewController that recognized the selection.
+   - parameter controller: The MZMapViewController that recognized the selection.
    - parameter markerPickResult: A marker selection returned as an instance conforming to GenericMarker.
    - parameter atScreenPosition: The screen coordinates of the picked marker.
    */
-  func mapController(_ controller: MapViewController, didSelectMarker marker: GenericMarker, atScreenPosition position: CGPoint)
+  func mapController(_ controller: MZMapViewController, didSelectMarker marker: GenericMarker, atScreenPosition position: CGPoint)
 }
 
 /// MapTileLoadDelegate
@@ -191,19 +191,18 @@ public protocol MapTileLoadDelegate : class {
   /**
    Informs the delegate the map has completed loading tile data and is displaying the map.
 
-   - parameter controller: The MapViewController that just finished loading.
+   - parameter controller: The MZMapViewController that just finished loading.
    */
-  func mapControllerDidCompleteLoading(_ controller: MapViewController)
+  func mapControllerDidCompleteLoading(_ controller: MZMapViewController)
 }
 
 
 /**
- MapViewController is the main class utilized for displaying Mapzen maps on iOS. It aims to provide the full set of features a developer would want for mapping-related tasks, such as displaying routes, results of a search, or the device's current location (and any combination therein.)
+ MZMapViewController is the main class utilized for displaying Mapzen maps on iOS. It aims to provide the full set of features a developer would want for mapping-related tasks, such as displaying routes, results of a search, or the device's current location (and any combination therein.)
  
- MapViewController wraps the underlying `TGMapViewController` from Tangram-es and handles adding it to the view hierarchy. It exposes this in the `tgViewController` property and allows for additional customization there using the Tangram-es iOS framework. Documentation on that is available [here](https://mapzen.com/documentation/tangram/iOS-API/).
+ MZMapViewController wraps the underlying `TGMapViewController` from Tangram-es and handles adding it to the view hierarchy. It exposes this in the `tgViewController` property and allows for additional customization there using the Tangram-es iOS framework. Documentation on that is available [here](https://mapzen.com/documentation/tangram/iOS-API/).
  */
-@objc(MZMapViewController)
-open class MapViewController: UIViewController, LocationManagerDelegate {
+open class MZMapViewController: UIViewController, LocationManagerDelegate {
 
   //Error Domains for NSError Appeasement
   open static let MapzenGeneralErrorDomain = "MapzenGeneralErrorDomain"
@@ -339,7 +338,7 @@ open class MapViewController: UIViewController, LocationManagerDelegate {
   /**
    Default initializer. Sets up the find me button and initializes the TGMapViewController as part of startup.
    
-   - returns: A fully formed MapViewController.
+   - returns: A fully formed MZMapViewController.
   */
   public init() {
     application = UIApplication.shared
@@ -351,7 +350,7 @@ open class MapViewController: UIViewController, LocationManagerDelegate {
   /**
    Default required initializer for storyboard creation.
    
-   - returns: A fully formed MapViewController.
+   - returns: A fully formed MZMapViewController.
   */
   required public init?(coder aDecoder: NSCoder) {
     application = UIApplication.shared
@@ -363,7 +362,7 @@ open class MapViewController: UIViewController, LocationManagerDelegate {
   /**
    Default required initializer for nib-based creation.
 
-   - returns: A fully formed MapViewController.
+   - returns: A fully formed MZMapViewController.
    */
   public override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
     application = UIApplication.shared
@@ -378,7 +377,7 @@ open class MapViewController: UIViewController, LocationManagerDelegate {
    - parameter applicationProtocol: An object conforming to our Application Protocol.
    - parameter locationManager: An object conforming to our LocationManagerProtocol.
    - parameter mapzenManagerProtocol: An object conforming to our MapzenManagerProtocol.
-   - returns: A fully formed MapViewController.
+   - returns: A fully formed MZMapViewController.
    */
   init(applicationProtocol: ApplicationProtocol, locationManagerProtocol: LocationManagerProtocol, mapzenManagerProtocol: MapzenManagerProtocol) {
     application = applicationProtocol
@@ -743,7 +742,7 @@ open class MapViewController: UIViewController, LocationManagerDelegate {
 //      if newMarker == nil {
 //        //TODO: Once TG integrates better error codes, we need to integrate that here.
 //        // https://github.com/tangrams/tangram-es/issues/1219
-//        throw NSError(domain: MapViewController.MapzenGeneralErrorDomain,
+//        throw NSError(domain: MZMapViewController.MapzenGeneralErrorDomain,
 //                      code: MZError.generalError.rawValue,
 //                      userInfo: nil)
 //      }
@@ -763,7 +762,7 @@ open class MapViewController: UIViewController, LocationManagerDelegate {
     marker.map = nil
     //TODO: handle marker remove error?
 //    if !tgViewController.markerRemove(markerId) {
-//      throw NSError(domain: MapViewController.MapzenGeneralErrorDomain,
+//      throw NSError(domain: MZMapViewController.MapzenGeneralErrorDomain,
 //                    code: MZError.annotationDoesNotExist.rawValue,
 //                    userInfo: nil)
 //    }
@@ -780,7 +779,7 @@ open class MapViewController: UIViewController, LocationManagerDelegate {
       marker.map = nil
       //TODO: handle marker remove error?
 //      if !tgViewController.markerRemove(markerId) {
-//        throw NSError(domain: MapViewController.MapzenGeneralErrorDomain,
+//        throw NSError(domain: MZMapViewController.MapzenGeneralErrorDomain,
 //                      code: MZError.annotationDoesNotExist.rawValue,
 //                      userInfo: nil)
 //      }
@@ -827,7 +826,7 @@ open class MapViewController: UIViewController, LocationManagerDelegate {
   open func removeRoute() throws {
 
     guard let currentRouteMarker = currentRouteMarker else {
-      throw NSError(domain: MapViewController.MapzenGeneralErrorDomain,
+      throw NSError(domain: MZMapViewController.MapzenGeneralErrorDomain,
                     code: MZError.routeDoesNotExist.rawValue,
                     userInfo: nil)
     }
@@ -1038,7 +1037,7 @@ open class MapViewController: UIViewController, LocationManagerDelegate {
 
   func setupFindMeButton() {
     findMeButton = UIButton(type: UIButtonType.custom)
-    findMeButton.addTarget(self, action: #selector(MapViewController.defaultFindMeAction(_:touchEvent:)), for: .touchUpInside)
+    findMeButton.addTarget(self, action: #selector(MZMapViewController.defaultFindMeAction(_:touchEvent:)), for: .touchUpInside)
     findMeButton.isEnabled = false
     findMeButton.isHidden = true
     findMeButton.adjustsImageWhenHighlighted = false
@@ -1059,19 +1058,19 @@ open class MapViewController: UIViewController, LocationManagerDelegate {
   }
 
   @objc private func openMapzenTerms() {
-    guard let url = URL(string: MapViewController.mapzenRights) else { return }
+    guard let url = URL(string: MZMapViewController.mapzenRights) else { return }
     let _ = application.openURL(url)
   }
 
   private func allSceneUpdates(_ sceneUpdates: [TGSceneUpdate]) throws -> [TGSceneUpdate] {
     guard let apiKey = mapzenManager.apiKey else {
-      throw NSError(domain: MapViewController.MapzenGeneralErrorDomain,
+      throw NSError(domain: MZMapViewController.MapzenGeneralErrorDomain,
                     code: MZError.apiKeyNotSet.rawValue,
                     userInfo: nil)
     }
     var allSceneUpdates = [TGSceneUpdate]()
     allSceneUpdates.append(contentsOf: sceneUpdates)
-    allSceneUpdates.append(TGSceneUpdate(path: MapViewController.kGlobalPathApiKey, value: "'\(apiKey)'"))
+    allSceneUpdates.append(TGSceneUpdate(path: MZMapViewController.kGlobalPathApiKey, value: "'\(apiKey)'"))
     if let language = locale.languageCode {
       allSceneUpdates.append(createLanguageUpdate(language))
     }
@@ -1079,11 +1078,11 @@ open class MapViewController: UIViewController, LocationManagerDelegate {
   }
 
   private func createLanguageUpdate(_ language: String) -> TGSceneUpdate {
-    return TGSceneUpdate(path: MapViewController.kGlobalPathLanguage, value: language)
+    return TGSceneUpdate(path: MZMapViewController.kGlobalPathLanguage, value: language)
   }
 }
 
-extension MapViewController : TGMapViewDelegate, TGRecognizerDelegate {
+extension MZMapViewController : TGMapViewDelegate, TGRecognizerDelegate {
   
   //MARK : TGMapViewDelegate
   

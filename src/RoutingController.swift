@@ -40,7 +40,7 @@ open class RoutingController: OTRRoutingController {
   */
   static func controller(sessionManager : URLSession) throws -> RoutingController {
     guard let apiKey = MapzenManager.sharedManager.apiKey else {
-      throw NSError(domain: MapViewController.MapzenGeneralErrorDomain,
+      throw NSError(domain: MZMapViewController.MapzenGeneralErrorDomain,
                     code: MZError.apiKeyNotSet.rawValue,
                     userInfo: nil)
     }

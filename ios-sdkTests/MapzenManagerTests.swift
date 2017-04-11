@@ -19,7 +19,7 @@ class MapzenManagerTests: XCTestCase {
   func testApiKeyMapNotSet() {
     //Setup
     MapzenManager.sharedManager.apiKey = nil
-    let map = MapViewController()
+    let map = MZMapViewController()
 
     XCTAssertThrowsError(try map.loadStyle(.bubbleWrap)) { (error) -> Void in
       let error = error as NSError
@@ -30,7 +30,7 @@ class MapzenManagerTests: XCTestCase {
   func testApiKeyMapSet() {
     //Setup
     MapzenManager.sharedManager.apiKey = "1234"
-    let map = MapViewController()
+    let map = MZMapViewController()
 
     //Tests
     do {

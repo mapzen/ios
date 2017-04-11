@@ -8,7 +8,7 @@
 
 import Foundation
 
-class SampleMapViewController : MapViewController {
+class SampleMapViewController : MZMapViewController {
 
   override var prefersStatusBarHidden: Bool {
     return false

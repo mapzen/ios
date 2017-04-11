@@ -10,11 +10,7 @@ import UIKit
 import OnTheRoad
 import Pelias
 
-protocol RoutingSearchDelegate {
-  func selected(_ location: PeliasMapkitAnnotation)
-}
-
-class RoutingViewController: UIViewController, RoutingSearchDelegate {
+class RoutingViewController: UIViewController, AutocompleteSearchDelegate {
 
   @IBOutlet weak var searchBar: UITextField!
   let routeSearchSegueID = "showRouteSearchSegue"
