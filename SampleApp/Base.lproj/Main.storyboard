@@ -10,10 +10,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Search Pins View Controller-->
+        <!--Demo Search Pins View Controller-->
         <scene sceneID="hKh-1a-zkl">
             <objects>
-                <viewController id="hZm-E9-DOK" customClass="SearchPinsViewController" customModule="ios_sdk" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="hZm-E9-DOK" customClass="DemoSearchPinsViewController" customModule="ios_sdk" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="tdL-E3-MZj"/>
                         <viewControllerLayoutGuide type="bottom" id="tVe-Kt-7dZ"/>
@@ -59,10 +59,10 @@
             </objects>
             <point key="canvasLocation" x="1454" y="457"/>
         </scene>
-        <!--Search List View Controller-->
+        <!--Demo Search List View Controller-->
         <scene sceneID="Dwj-bw-vsp">
             <objects>
-                <tableViewController id="D0C-8v-wBd" customClass="SearchListViewController" customModule="ios_sdk" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="D0C-8v-wBd" customClass="DemoSearchListViewController" customModule="ios_sdk" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="PXp-gQ-yc2">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -96,10 +96,10 @@
             </objects>
             <point key="canvasLocation" x="2302" y="255"/>
         </scene>
-        <!--Autocomplete TableVC-->
+        <!--Autocomplete Table View Controller-->
         <scene sceneID="Nfe-pS-h6n">
             <objects>
-                <tableViewController id="dNF-rb-oQp" customClass="AutocompleteTableVC" customModule="ios_sdk" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="dNF-rb-oQp" customClass="AutocompleteTableViewController" customModule="ios_sdk" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="3xX-r5-EJG">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -153,131 +153,24 @@
             </objects>
             <point key="canvasLocation" x="-320" y="951"/>
         </scene>
-        <!--GLKit View Controller-->
-        <scene sceneID="2Zp-33-GhH">
+        <!--Demo Map View Controller-->
+        <scene sceneID="yZc-Qu-cYa">
             <objects>
-                <glkViewController preferredFramesPerSecond="30" id="LSW-zd-mQs" customClass="DemoMapViewController" customModule="ios_sdk" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="zcR-gw-s0M" customClass="DemoMapViewController" customModule="ios_sdk" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="jCv-N5-isU"/>
-                        <viewControllerLayoutGuide type="bottom" id="zRm-cR-PRf"/>
+                        <viewControllerLayoutGuide type="top" id="RfG-ZY-hkg"/>
+                        <viewControllerLayoutGuide type="bottom" id="T3c-z7-8MQ"/>
                     </layoutGuides>
-                    <glkView key="view" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" enableSetNeedsDisplay="NO" id="9xq-uj-iKU">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <connections>
-                            <outlet property="delegate" destination="LSW-zd-mQs" id="r8I-ur-WGk"/>
-                        </connections>
-                    </glkView>
-                    <navigationItem key="navigationItem" id="2m1-yb-cLA"/>
-                </glkViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="E9C-DL-qHx" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1424.8" y="1165.3673163418291"/>
-        </scene>
-        <!--Route-->
-        <scene sceneID="zDT-R4-I3P">
-            <objects>
-                <viewController id="CcX-wQ-heK" customClass="RoutingViewController" customModule="ios_sdk" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="HlV-N5-ODf"/>
-                        <viewControllerLayoutGuide type="bottom" id="Wqo-Ri-ARh"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="rqs-Ck-q5k">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Search..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vJT-wr-8yd">
-                                <rect key="frame" x="16" y="72" width="343" height="30"/>
-                                <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bee-Yr-DhB">
-                                <rect key="frame" x="0.0" y="118" width="375" height="500"/>
-                                <connections>
-                                    <segue destination="Y88-cs-1iJ" kind="embed" identifier="routeResultEmbedSegue" id="lzJ-gT-R0K"/>
-                                </connections>
-                            </containerView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5zL-5j-Qgk">
-                                <rect key="frame" x="0.0" y="64" width="375" height="46"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="46" id="N0a-tV-zKf"/>
-                                </constraints>
-                                <connections>
-                                    <segue destination="mHh-a7-7co" kind="show" identifier="showRouteSearchSegue" id="ZFg-Hq-SIh"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ao9-Bf-Lhy">
-                                <rect key="frame" x="271" y="580" width="88" height="30"/>
-                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <state key="normal" title="View Results"/>
-                                <connections>
-                                    <segue destination="u5O-OL-dVh" kind="show" identifier="routeListSegue" id="CUu-hl-vj3"/>
-                                </connections>
-                            </button>
-                        </subviews>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <constraints>
-                            <constraint firstItem="Ao9-Bf-Lhy" firstAttribute="leading" secondItem="bee-Yr-DhB" secondAttribute="trailing" constant="-104" id="1VT-JF-osq"/>
-                            <constraint firstItem="5zL-5j-Qgk" firstAttribute="top" secondItem="HlV-N5-ODf" secondAttribute="bottom" id="4WT-jY-Atz"/>
-                            <constraint firstItem="vJT-wr-8yd" firstAttribute="top" secondItem="HlV-N5-ODf" secondAttribute="bottom" constant="8" id="7Wu-yB-RLd"/>
-                            <constraint firstItem="5zL-5j-Qgk" firstAttribute="leading" secondItem="rqs-Ck-q5k" secondAttribute="leadingMargin" constant="-16" id="99G-Kg-ymi"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="5zL-5j-Qgk" secondAttribute="trailing" constant="-16" id="Aun-pu-mDG"/>
-                            <constraint firstItem="Ao9-Bf-Lhy" firstAttribute="top" secondItem="bee-Yr-DhB" secondAttribute="bottom" constant="-38" id="DXW-a7-00S"/>
-                            <constraint firstItem="bee-Yr-DhB" firstAttribute="top" secondItem="5zL-5j-Qgk" secondAttribute="bottom" constant="8" id="Emx-nB-2P4"/>
-                            <constraint firstAttribute="leadingMargin" secondItem="vJT-wr-8yd" secondAttribute="leading" id="NCP-6q-GRz"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="bee-Yr-DhB" secondAttribute="trailing" constant="-16" id="Uot-Z6-yGf"/>
-                            <constraint firstItem="Wqo-Ri-ARh" firstAttribute="top" secondItem="bee-Yr-DhB" secondAttribute="bottom" id="bFj-Pj-IFO"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="vJT-wr-8yd" secondAttribute="trailing" id="cEz-Xl-WIV"/>
-                            <constraint firstItem="bee-Yr-DhB" firstAttribute="leading" secondItem="rqs-Ck-q5k" secondAttribute="leadingMargin" constant="-16" id="yiI-wL-kFq"/>
-                        </constraints>
-                    </view>
-                    <tabBarItem key="tabBarItem" title="Route" id="bCS-XM-8p0"/>
-                    <navigationItem key="navigationItem" id="a4y-1l-K1K"/>
-                    <connections>
-                        <outlet property="searchBar" destination="vJT-wr-8yd" id="RKU-aX-qzG"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="nFZ-nq-VdX" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1229.5999999999999" y="2103.5982008995502"/>
-        </scene>
-        <!--Routing SearchVC-->
-        <scene sceneID="J5x-kV-sGT">
-            <objects>
-                <tableViewController id="mHh-a7-7co" customClass="RoutingSearchVC" customModule="ios_sdk" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="pzB-UW-95E">
+                    <view key="view" contentMode="scaleToFill" id="3cP-t4-mil">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="basicCellIdent" textLabel="cqS-lB-G7E" style="IBUITableViewCellStyleDefault" id="Q8c-20-0CR">
-                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Q8c-20-0CR" id="Tvs-Nl-C04">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="cqS-lB-G7E">
-                                            <rect key="frame" x="15" y="0.0" width="345" height="43.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <nil key="textColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                    </subviews>
-                                </tableViewCellContentView>
-                            </tableViewCell>
-                        </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="mHh-a7-7co" id="34u-xb-BeF"/>
-                            <outlet property="delegate" destination="mHh-a7-7co" id="zfT-VH-fLd"/>
-                        </connections>
-                    </tableView>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="iHt-Qg-omp" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="9Mh-O8-dob"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="nM1-7X-YsE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2922" y="1677"/>
+            <point key="canvasLocation" x="1358" y="1165"/>
         </scene>
         <!--Route-->
         <scene sceneID="HRj-0v-iQO">
@@ -289,43 +182,56 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="CcX-wQ-heK" kind="relationship" relationship="rootViewController" id="Bmw-xP-MgU"/>
+                        <segue destination="NU2-4m-uCc" kind="relationship" relationship="rootViewController" id="M7O-G7-nOe"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="F32-Zn-iCj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="396" y="2104"/>
         </scene>
-        <!--GLKit View Controller-->
-        <scene sceneID="ee1-th-oeJ">
+        <!--Demo Route View Controller-->
+        <scene sceneID="eHU-ci-scy">
             <objects>
-                <glkViewController preferredFramesPerSecond="30" id="Y88-cs-1iJ" customClass="RouteDisplayViewController" customModule="ios_sdk" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="NU2-4m-uCc" customClass="DemoRouteViewController" customModule="ios_sdk" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="LiY-jv-RNx"/>
-                        <viewControllerLayoutGuide type="bottom" id="ecQ-JS-Jox"/>
+                        <viewControllerLayoutGuide type="top" id="eoQ-m0-gve"/>
+                        <viewControllerLayoutGuide type="bottom" id="xpQ-rL-f7L"/>
                     </layoutGuides>
-                    <glkView key="view" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" enableSetNeedsDisplay="NO" id="Z9r-vc-1vH">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="500"/>
+                    <view key="view" contentMode="scaleToFill" id="D7X-fv-piw">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <connections>
-                            <outlet property="delegate" destination="Y88-cs-1iJ" id="hD5-P8-MR7"/>
-                        </connections>
-                    </glkView>
-                </glkViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="ZlR-tZ-geG" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lyg-bi-uUt">
+                                <rect key="frame" x="16" y="529" width="88" height="30"/>
+                                <color key="backgroundColor" red="1" green="0.99957354827368372" blue="0.98399327121241231" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <state key="normal" title="View Results"/>
+                                <connections>
+                                    <segue destination="u5O-OL-dVh" kind="show" identifier="routeListSegueId" id="Ot6-W1-XvF"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="leadingMargin" secondItem="lyg-bi-uUt" secondAttribute="leading" id="P2C-Ch-A1g"/>
+                            <constraint firstItem="xpQ-rL-f7L" firstAttribute="top" secondItem="lyg-bi-uUt" secondAttribute="bottom" constant="59" id="wxR-I0-b1y"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="sdg-XV-Ms1"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="XWz-A4-fga" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1818" y="2816"/>
+            <point key="canvasLocation" x="1150" y="2104"/>
         </scene>
-        <!--Routing Result TableVC-->
+        <!--Demo Routing Result TableVC-->
         <scene sceneID="rXB-in-08Y">
             <objects>
-                <tableViewController id="u5O-OL-dVh" customClass="RoutingResultTableVC" customModule="ios_sdk" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="u5O-OL-dVh" customClass="DemoRoutingResultTableVC" customModule="ios_sdk" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="Sse-sB-OtU">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="basicCellIdent" id="vhc-mT-svW" customClass="RouteDirectionCell" customModule="ios_sdk" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="basicCellIdent" id="vhc-mT-svW" customClass="DemoRouteDirectionCell" customModule="ios_sdk" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="vhc-mT-svW" id="wGI-Z6-idP">
@@ -372,7 +278,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4PT-xg-nH0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2145" y="2068"/>
+            <point key="canvasLocation" x="1994" y="2104"/>
         </scene>
         <!--Maps-->
         <scene sceneID="Hke-Vi-KHE">
@@ -386,7 +292,7 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="LSW-zd-mQs" kind="relationship" relationship="rootViewController" id="Csk-kR-w8M"/>
+                        <segue destination="zcR-gw-s0M" kind="relationship" relationship="rootViewController" id="FzX-93-2wi"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ht7-Uo-t7n" userLabel="First Responder" sceneMemberID="firstResponder"/>

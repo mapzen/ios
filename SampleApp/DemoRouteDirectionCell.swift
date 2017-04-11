@@ -8,7 +8,7 @@
 
 import UIKit
 
-class RouteDirectionCell: UITableViewCell {
+class DemoRouteDirectionCell: UITableViewCell {
 
   @IBOutlet weak var titleLabel: UILabel!
   @IBOutlet weak var detailLabel: UILabel!
