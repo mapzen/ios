@@ -64,7 +64,7 @@ class SearchPinsViewController: SampleMapViewController, UITextFieldDelegate, Au
     try? self.removeAnnotations()
     try? self.add([location])
 
-    animate(toZoomLevel: 10, withDuration: 1.0)
+    animate(toZoomLevel: max(10, self.zoom), withDuration: 1.0)
     animate(toPosition: TGGeoPointMake(location.coordinate.longitude, location.coordinate.latitude), withDuration: 1.0)
     
   }
