@@ -7,7 +7,7 @@
 //
 import UIKit
 
-class SearchListViewController: AutocompleteTableVC {
+class DemoSearchListViewController: SampleAutocompleteTableViewController {
 
   var delegate : AutocompleteSearchDelegate?
 

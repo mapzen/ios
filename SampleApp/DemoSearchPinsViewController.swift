@@ -9,7 +9,7 @@
 import Pelias
 import TangramMap
 
-class SearchPinsViewController: SampleMapViewController, UITextFieldDelegate, AutocompleteSearchDelegate {
+class DemoSearchPinsViewController: SampleMapViewController, UITextFieldDelegate, AutocompleteSearchDelegate {
 
   @IBOutlet weak var searchField: UITextField!
 
@@ -40,7 +40,7 @@ class SearchPinsViewController: SampleMapViewController, UITextFieldDelegate, Au
     }
     switch identifier {
     case searchListSegueId:
-      if let searchVC = segue.destination as? SearchListViewController {
+      if let searchVC = segue.destination as? DemoSearchListViewController {
         searchVC.delegate = self
       }
       break

@@ -43,3 +43,15 @@ public extension TGGeoPoint {
     self.init(coordinate: location.coordinate)
   }
 }
+
+public extension OTRGeoPoint {
+  /**
+   Creates a OTRGeoPoint from a TGGeoPoint
+
+   - parameter coordinate: The OTRGeoPoint to use.
+   - returns: A TGGeoPoint structure.
+   */
+  public init(coordinate: TGGeoPoint) {
+    self.init(latitude: coordinate.latitude, longitude: coordinate.longitude)
+  }
+}

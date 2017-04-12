@@ -808,7 +808,7 @@ open class MZMapViewController: UIViewController, LocationManagerDelegate {
     //TODO: Need to investigate more if this is a bug in OTR or if valhalla returns null island at the end of their requests?
     for index in 0...routeLeg.coordinateCount-1 {
       let point = routeLeg.coordinates?[Int(index)]
-      print("Next Point: \(point)")
+      print("Next Point: \(String(describing: point))")
       polyLine.add(TGGeoPoint(coordinate: point!))
     }
     let marker = SystemPolylineMarker.init()
@@ -1007,6 +1007,7 @@ open class MZMapViewController: UIViewController, LocationManagerDelegate {
     addChildViewController(tgViewController)
 
     self.view.addSubview(tgViewController.view)
+    self.view.sendSubview(toBack: tgViewController.view)
 
     tgViewController.view.translatesAutoresizingMaskIntoConstraints = false
 

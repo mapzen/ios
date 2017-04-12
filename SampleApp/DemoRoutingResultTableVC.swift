@@ -8,7 +8,7 @@
 
 import OnTheRoad
 
-class RoutingResultTableVC: SampleTableViewController {
+class DemoRoutingResultTableVC: SampleTableViewController {
 
   var routingResult: OTRRoutingResult?
 
@@ -34,7 +34,7 @@ class RoutingResultTableVC: SampleTableViewController {
   }
 
   override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-    let cell = tableView.dequeueReusableCell(withIdentifier: cellIdent, for: indexPath) as! RouteDirectionCell
+    let cell = tableView.dequeueReusableCell(withIdentifier: cellIdent, for: indexPath) as! DemoRouteDirectionCell
 
     guard let result = routingResult else {
       return cell

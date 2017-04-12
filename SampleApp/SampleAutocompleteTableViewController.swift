@@ -14,7 +14,7 @@ protocol AutocompleteSearchDelegate {
   func selected(_ location: PeliasMapkitAnnotation)
 }
 
-class AutocompleteTableVC: SampleTableViewController, UISearchResultsUpdating, UISearchBarDelegate, LocationManagerDelegate {
+class SampleAutocompleteTableViewController: SampleTableViewController, UISearchResultsUpdating, UISearchBarDelegate, LocationManagerDelegate {
   
   let searchController = UISearchController(searchResultsController: nil)
   var results: [PeliasMapkitAnnotation]?
