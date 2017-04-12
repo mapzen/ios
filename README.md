@@ -40,7 +40,7 @@ Major features include:
 
 And many more features than we can list here in a timely fashion.
 
-# How Do I Get The Beta?
+# How Do I Get The SDK?
 
 Step 1: Get yourself a free [Mapzen API Key](https://mapzen.com/developers/sign_up).
 
@@ -57,7 +57,6 @@ Non-cocoapods usage at this point is not recommended, but can be accomplished. F
 ## Notes
 There's a couple of things you should probably know about up front:
 * We only will be supporting Swift 3.0 moving forward. Older versions of the SDK were written in Swift 2, but it is not recommended to use that as the project has changed dramatically since then, and we're continuing to add features all the time.
-* Full Objective-C support is coming soon, see this issue https://github.com/mapzen/ios/issues/68. If you run into issues in your obj-c project, feel free to comment on that issue.
 * If you wish to install the sample app to a device (recommended due to performance issues in the simulator), you will need to update the bundle identifier and the code signing in the Xcode project and go through the general code signing process necessary for installing to a device. This will require a free Apple Developer account.
 
 ## Configure Api Key
