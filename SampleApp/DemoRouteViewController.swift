@@ -9,11 +9,13 @@
 import UIKit
 import OnTheRoad
 import TangramMap
+import CoreLocation
 
 class DemoRouteViewController: SampleMapViewController, MapSingleTapGestureDelegate {
   let routeListSegueId = "routeListSegueId"
   var currentRouteResult: OTRRoutingResult?
   var lastRoutingPoint: OTRGeoPoint?
+  var firstTimeZoomToCurrentLocation = true
 
   private var routingLocale = Locale.current {
     didSet {
@@ -34,11 +36,7 @@ class DemoRouteViewController: SampleMapViewController, MapSingleTapGestureDeleg
     })
     setupSwitchLocaleBtn()
     let alert = UIAlertController(title: "Tap to Route", message: "Tap anywhere on the map to route!", preferredStyle: .alert)
-    alert.addAction(UIAlertAction(title: "Ok!", style: UIAlertActionStyle.default, handler: { (alertAction) in
-      if LocationManager.sharedManager.currentLocation != nil {
-        _ = self.resetCameraOnCurrentLocation()
-      }
-    }))
+    alert.addAction(UIAlertAction(title: "Ok!", style: UIAlertActionStyle.default, handler: nil))
     present(alert, animated: true, completion: nil)
   }
 
@@ -92,7 +90,7 @@ class DemoRouteViewController: SampleMapViewController, MapSingleTapGestureDeleg
     guard let routingController = try? RoutingController.controller() else { return }
     routingController.updateLocale(routingLocale)
 
-    guard let currentLocation = LocationManager.sharedManager.currentLocation  else { return }
+    guard let currentLocation = locationManager.currentLocation  else { return }
     self.lastRoutingPoint = toPoint
     let startingPoint = OTRRoutingPoint(coordinate: OTRGeoPointMake(currentLocation.coordinate.latitude, currentLocation.coordinate.longitude), type: .break)
     let endingPoint = OTRRoutingPoint(coordinate: self.lastRoutingPoint!, type: .break)
@@ -121,4 +119,12 @@ class DemoRouteViewController: SampleMapViewController, MapSingleTapGestureDeleg
     requestRoute(toPoint: OTRGeoPoint(coordinate: point))
   }
 
+  //MARK:- Location Delegate Overrides
+  override func locationDidUpdate(_ location: CLLocation) {
+    super.locationDidUpdate(location)
+    if (firstTimeZoomToCurrentLocation) {
+      _ = self.resetCameraOnCurrentLocation()
+      firstTimeZoomToCurrentLocation = false
+    }
+  }
 }

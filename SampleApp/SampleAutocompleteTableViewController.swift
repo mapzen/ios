@@ -18,7 +18,7 @@ class SampleAutocompleteTableViewController: SampleTableViewController, UISearch
   
   let searchController = UISearchController(searchResultsController: nil)
   var results: [PeliasMapkitAnnotation]?
-  let manager = LocationManager.sharedManager
+  let manager = LocationManager()
   var currentLocation: CLLocation?
   
   override func viewDidLoad() {
