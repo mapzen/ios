@@ -342,7 +342,7 @@ open class MZMapViewController: UIViewController, LocationManagerDelegate {
   */
   public init() {
     application = UIApplication.shared
-    locationManager = LocationManager.sharedManager
+    locationManager = LocationManager()
     mapzenManager = MapzenManager.sharedManager
     super.init(nibName: nil, bundle: nil)
   }
@@ -354,7 +354,7 @@ open class MZMapViewController: UIViewController, LocationManagerDelegate {
   */
   required public init?(coder aDecoder: NSCoder) {
     application = UIApplication.shared
-    locationManager = LocationManager.sharedManager
+    locationManager = LocationManager()
     mapzenManager = MapzenManager.sharedManager
     super.init(coder: aDecoder)
   }
@@ -366,7 +366,7 @@ open class MZMapViewController: UIViewController, LocationManagerDelegate {
    */
   public override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
     application = UIApplication.shared
-    locationManager = LocationManager.sharedManager
+    locationManager = LocationManager()
     mapzenManager = MapzenManager.sharedManager
     super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
   }

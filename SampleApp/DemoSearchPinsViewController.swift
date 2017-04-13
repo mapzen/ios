@@ -8,6 +8,7 @@
 
 import Pelias
 import TangramMap
+import CoreLocation
 
 class DemoSearchPinsViewController: SampleMapViewController, UITextFieldDelegate, AutocompleteSearchDelegate {
 
@@ -15,6 +16,7 @@ class DemoSearchPinsViewController: SampleMapViewController, UITextFieldDelegate
 
   @IBOutlet weak var displaySearch: UIButton!
   let searchListSegueId = "searchListSegueId"
+  var firstTimeZoomToCurrentLocation = true
 
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -66,6 +68,13 @@ class DemoSearchPinsViewController: SampleMapViewController, UITextFieldDelegate
 
     animate(toZoomLevel: max(10, self.zoom), withDuration: 1.0)
     animate(toPosition: TGGeoPointMake(location.coordinate.longitude, location.coordinate.latitude), withDuration: 1.0)
-    
+  }
+
+  override func locationDidUpdate(_ location: CLLocation) {
+    super.locationDidUpdate(location)
+    if (firstTimeZoomToCurrentLocation) {
+      _ = self.resetCameraOnCurrentLocation()
+      firstTimeZoomToCurrentLocation = false
+    }
   }
 }

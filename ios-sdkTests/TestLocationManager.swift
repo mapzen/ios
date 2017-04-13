@@ -13,6 +13,8 @@ class TestLocationManager : LocationManagerProtocol {
 
   open weak var delegate: LocationManagerDelegate?
 
+  var currentLocation: CLLocation?
+
   var requestedInUse = false
 
   func requestAlwaysAuthorization() {

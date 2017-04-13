@@ -32,14 +32,9 @@ import OnTheRoad
 
 /**
  The `LocationManager` class is a wrapper around iOS's built in location subsystem. It provides a simpler interface and customization options.
- 
- - Note: The class is expected to be used as a singleton. As such, access to the class is via the `sharedManager` object.
- */
+  */
 @objc(MZLocationManager)
 open class LocationManager: NSObject, CLLocationManagerDelegate {
-
-  /// The singleton access object.
-  open static let sharedManager = LocationManager()
 
   /// The last received known good location
   open var currentLocation: CLLocation?
@@ -48,7 +43,8 @@ open class LocationManager: NSObject, CLLocationManagerDelegate {
   open weak var delegate: LocationManagerDelegate?
 
   fileprivate let coreLocationManager = CLLocationManager()
-  fileprivate override init(){
+  
+  override init(){
     super.init()
     coreLocationManager.delegate = self
   }
@@ -144,6 +140,7 @@ open class LocationManager: NSObject, CLLocationManagerDelegate {
 /// Protocol for LocationManager's api so that actual implementation can be switched out in testing contexts.
 protocol LocationManagerProtocol : class {
   weak var delegate: LocationManagerDelegate? { get set }
+  var currentLocation: CLLocation? { get set }
 
   func requestAlwaysAuthorization()
   func requestWhenInUseAuthorization()
