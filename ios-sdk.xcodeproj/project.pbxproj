@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		7D2FB7671E6103D500CB82CF /* DictionaryExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D2FB7661E6103D500CB82CF /* DictionaryExtensions.swift */; };
 		7D2FB7691E64E66B00CB82CF /* DictionaryExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D2FB7681E64E66B00CB82CF /* DictionaryExtensionsTests.swift */; };
+		7D332E621EA5295B0056C006 /* relief-shading-environment-map.jpg in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7D9EBC341E6DFBAF00303E1B /* relief-shading-environment-map.jpg */; };
+		7D332E651EA52A850056C006 /* draw-test8.jpg in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7D9EBC321E6DFBAF00303E1B /* draw-test8.jpg */; };
+		7D332E661EA52A850056C006 /* draw-test9.jpg in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7D9EBC331E6DFBAF00303E1B /* draw-test9.jpg */; };
 		7D4122721E84621A009520B7 /* SearchConfigs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D4122711E84621A009520B7 /* SearchConfigs.swift */; };
 		7D4122741E84834C009520B7 /* SearchConfigsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D4122731E84834C009520B7 /* SearchConfigsTests.swift */; };
 		7D503BCC1E77457A00FDDC4F /* SampleMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D503BCB1E77457A00FDDC4F /* SampleMapViewController.swift */; };
@@ -93,6 +96,9 @@
 			dstPath = images;
 			dstSubfolderSpec = 6;
 			files = (
+				7D332E651EA52A850056C006 /* draw-test8.jpg in CopyFiles */,
+				7D332E661EA52A850056C006 /* draw-test9.jpg in CopyFiles */,
+				7D332E621EA5295B0056C006 /* relief-shading-environment-map.jpg in CopyFiles */,
 				7D9EBCD81E6E0D9B00303E1B /* refill@2x.png in CopyFiles */,
 				7D9EBCDA1E6E0D9B00303E1B /* walkabout@2x.png in CopyFiles */,
 				7D9EBCD41E6E0CA200303E1B /* bubble-wrap@2x.png in CopyFiles */,
