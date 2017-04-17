@@ -16,6 +16,7 @@ class DemoRouteViewController: SampleMapViewController, MapSingleTapGestureDeleg
   var currentRouteResult: OTRRoutingResult?
   var lastRoutingPoint: OTRGeoPoint?
   var firstTimeZoomToCurrentLocation = true
+  var sceneDidLoad = false
 
   private var routingLocale = Locale.current {
     didSet {
@@ -31,8 +32,10 @@ class DemoRouteViewController: SampleMapViewController, MapSingleTapGestureDeleg
     super.viewDidLoad()
     try? loadStyleAsync(.bubbleWrap, onStyleLoaded: { [unowned self] (style) in
       self.singleTapGestureDelegate = self
+      self.sceneDidLoad = true
       _ = self.showCurrentLocation(true)
       self.showFindMeButon(true)
+      if self.firstTimeZoomToCurrentLocation { self.shouldZoomToCurrentLocation() }
     })
     setupSwitchLocaleBtn()
     let alert = UIAlertController(title: "Tap to Route", message: "Tap anywhere on the map to route!", preferredStyle: .alert)
@@ -109,6 +112,14 @@ class DemoRouteViewController: SampleMapViewController, MapSingleTapGestureDeleg
     }
   }
 
+  func shouldZoomToCurrentLocation() {
+    if !sceneDidLoad { return }
+    if lastSetPoint == nil { return }
+    _ = resetCameraOnCurrentLocation()
+    firstTimeZoomToCurrentLocation = false
+  }
+
+
   //MARK:- Single Tap Gesture Recognizer Delegate
   func mapController(_ controller: MZMapViewController, recognizer: UIGestureRecognizer, shouldRecognizeSingleTapGesture location: CGPoint) -> Bool {
     return true
@@ -123,8 +134,7 @@ class DemoRouteViewController: SampleMapViewController, MapSingleTapGestureDeleg
   override func locationDidUpdate(_ location: CLLocation) {
     super.locationDidUpdate(location)
     if (firstTimeZoomToCurrentLocation) {
-      _ = self.resetCameraOnCurrentLocation()
-      firstTimeZoomToCurrentLocation = false
+      shouldZoomToCurrentLocation()
     }
   }
 }
