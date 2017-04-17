@@ -1094,7 +1094,14 @@ extension MZMapViewController : TGMapViewDelegate, TGRecognizerDelegate {
   //MARK : TGMapViewDelegate
   
   open func mapView(_ mapView: TGMapViewController, didLoadSceneAsync scene: String) {
-    guard let style = styles[scene] else {
+    // if we loaded a house style scene looks something like: file:///var/containers/Bundle/Application/FAFA232A-1190-40CB-9391-7C9F44B51076/ios-sdk.app/housestyles.bundle/bubble-wrap/bubble-wrap-style-more-labels.yaml
+    guard let pathComponents = URL.init(string: scene)?.pathComponents else {
+      onStyleLoadedClosure = nil
+      return
+    }
+    // if we have path components, grab the last two (ie. bubble-wrap & bubble-wrap-style-more-labels.yaml), strip ".yaml" and check for existence in styles map
+    let sceneStyle = (pathComponents[pathComponents.count-2] + "/" + pathComponents.last!).replacingOccurrences(of: ".yaml", with: "")
+    guard let style = styles[sceneStyle] else {
       onStyleLoadedClosure = nil
       return
     }
