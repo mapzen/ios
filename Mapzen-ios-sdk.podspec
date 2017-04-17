@@ -23,6 +23,6 @@ Pod::Spec.new do |s|
     cs.dependency 'OnTheRoad', '~> 1.0.0'
     cs.dependency 'Tangram-es', '~> 0.5.1'
     cs.source_files = ['src/*.swift', 'src/*/*.swift']
-    cs.resources = [ 'images/*.png', 'styles/*' ]
+    cs.resources = [ 'images/*.png', 'housestyles.bundle' ]
   end
 end

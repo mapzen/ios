@@ -12,4 +12,11 @@ extension Bundle {
   public static func mapzenBundle() -> Bundle {
     return Bundle.init(for: MZMapViewController.self)
   }
+
+  public static func houseStylesBundle() -> Bundle? {
+    guard let styleBundleUrl = Bundle.mapzenBundle().url(forResource: "housestyles", withExtension: "bundle") else {
+      return nil
+    }
+    return Bundle.init(url: styleBundleUrl)
+  }
 }
