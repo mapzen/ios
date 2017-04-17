@@ -2,8 +2,8 @@ platform :ios, '9.3'
 use_frameworks!
 
 def shared_pods
-  pod 'Pelias', :git => 'https://github.com/pelias/pelias-ios-sdk.git', :commit => 'a48df2'
-  pod 'OnTheRoad', :git => 'https://github.com/mapzen/on-the-road_ios.git', :commit => '603fe7a'
+  pod 'Pelias', '~> 1.0.0'
+  pod 'OnTheRoad', '~> 1.0.0'
   pod 'Tangram-es', '~> 0.5.1'
 end
 
