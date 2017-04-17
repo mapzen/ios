@@ -16,8 +16,6 @@ class DemoSearchPinsViewController: SampleMapViewController, UITextFieldDelegate
 
   @IBOutlet weak var displaySearch: UIButton!
   let searchListSegueId = "searchListSegueId"
-  var firstTimeZoomToCurrentLocation = true
-  var sceneDidLoad = false
 
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -32,13 +30,6 @@ class DemoSearchPinsViewController: SampleMapViewController, UITextFieldDelegate
     view.bringSubview(toFront: searchField)
     view.bringSubview(toFront: displaySearch)
     searchField.delegate = self
-  }
-
-  func shouldZoomToCurrentLocation() {
-    if !sceneDidLoad { return }
-    if lastSetPoint == nil { return }
-    _ = resetCameraOnCurrentLocation()
-    firstTimeZoomToCurrentLocation = false
   }
 
   func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -78,12 +69,5 @@ class DemoSearchPinsViewController: SampleMapViewController, UITextFieldDelegate
 
     animate(toZoomLevel: max(10, self.zoom), withDuration: 1.0)
     animate(toPosition: TGGeoPointMake(location.coordinate.longitude, location.coordinate.latitude), withDuration: 1.0)
-  }
-
-  override func locationDidUpdate(_ location: CLLocation) {
-    super.locationDidUpdate(location)
-    if (firstTimeZoomToCurrentLocation) {
-      shouldZoomToCurrentLocation()
-    }
   }
 }
