@@ -1,15 +1,15 @@
 [submodule "styles/bubble-wrap"]
-	path = styles/bubble-wrap
+	path = housestyles.bundle/bubble-wrap
 	url = https://github.com/tangrams/bubble-wrap.git
 [submodule "styles/cinnabar"]
-	path = styles/cinnabar
+	path = housestyles.bundle/cinnabar
 	url = https://github.com/tangrams/cinnabar-style-more-labels.git
 [submodule "styles/refill"]
-	path = styles/refill
+	path = housestyles.bundle/refill
 	url = https://github.com/tangrams/refill-style-more-labels.git
 [submodule "styles/walkabout"]
-	path = styles/walkabout
+	path = housestyles.bundle/walkabout
 	url = https://github.com/tangrams/walkabout-style-more-labels.git
 [submodule "styles/zinc"]
-	path = styles/zinc
+	path = housestyles.bundle/zinc
 	url = https://github.com/tangrams/zinc-style-more-labels.git
