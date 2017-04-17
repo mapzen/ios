@@ -34,6 +34,7 @@
 		7D9EBCD51E6E0CA200303E1B /* building-grid.gif in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7D9EBBE21E6DFBAF00303E1B /* building-grid.gif */; };
 		7D9EBCD81E6E0D9B00303E1B /* refill@2x.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7D9EBC171E6DFBAF00303E1B /* refill@2x.png */; };
 		7D9EBCDA1E6E0D9B00303E1B /* walkabout@2x.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7D9EBC351E6DFBAF00303E1B /* walkabout@2x.png */; };
+		7DA1A5111EA535E600255B14 /* BundleExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA1A5101EA535E600255B14 /* BundleExtensions.swift */; };
 		7DB181441E81B472001F9B49 /* SearchDataConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DB1813E1E81B472001F9B49 /* SearchDataConverter.swift */; };
 		7DB181451E81B472001F9B49 /* SearchDataObjects.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DB1813F1E81B472001F9B49 /* SearchDataObjects.swift */; };
 		7DB181491E81B681001F9B49 /* SearchResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DB181481E81B681001F9B49 /* SearchResponse.swift */; };
@@ -142,6 +143,7 @@
 		7D9EBC421E6DFBAF00303E1B /* walkabout-style-more-labels.yaml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "walkabout-style-more-labels.yaml"; sourceTree = "<group>"; };
 		7D9EBC511E6DFBAF00303E1B /* refill@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "refill@2x.png"; sourceTree = "<group>"; };
 		7D9EBC5C1E6DFBAF00303E1B /* zinc-style-more-labels.yaml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "zinc-style-more-labels.yaml"; sourceTree = "<group>"; };
+		7DA1A5101EA535E600255B14 /* BundleExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BundleExtensions.swift; sourceTree = "<group>"; };
 		7DB1813E1E81B472001F9B49 /* SearchDataConverter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchDataConverter.swift; sourceTree = "<group>"; };
 		7DB1813F1E81B472001F9B49 /* SearchDataObjects.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchDataObjects.swift; sourceTree = "<group>"; };
 		7DB181481E81B681001F9B49 /* SearchResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchResponse.swift; sourceTree = "<group>"; };
@@ -452,6 +454,7 @@
 				7D4122711E84621A009520B7 /* SearchConfigs.swift */,
 				7DB181581E831414001F9B49 /* Marker.swift */,
 				7DDF87541E832F38001B01A8 /* UIColorExtensions.swift */,
+				7DA1A5101EA535E600255B14 /* BundleExtensions.swift */,
 			);
 			path = src;
 			sourceTree = "<group>";
@@ -688,6 +691,7 @@
 				7D503BCC1E77457A00FDDC4F /* SampleMapViewController.swift in Sources */,
 				7DB181451E81B472001F9B49 /* SearchDataObjects.swift in Sources */,
 				7DC7F09A1E7204BE009E722B /* MapzenManagerExtensions.swift in Sources */,
+				7DA1A5111EA535E600255B14 /* BundleExtensions.swift in Sources */,
 				7DDF87551E832F38001B01A8 /* UIColorExtensions.swift in Sources */,
 				7D2FB7671E6103D500CB82CF /* DictionaryExtensions.swift in Sources */,
 				DB7253361E9C1FF500304516 /* DemoRouteViewController.swift in Sources */,
@@ -855,7 +859,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEFINES_MODULE = NO;
+				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = LTQC954SPQ;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -888,7 +892,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
-				DEFINES_MODULE = NO;
+				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = LTQC954SPQ;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
