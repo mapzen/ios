@@ -10,7 +10,7 @@ Pod::Spec.new do |s|
   s.author            = { 'Mapzen' => 'ios-support@mapzen.com' }
   s.social_media_url  = 'https://twitter.com/mapzen'
   s.documentation_url = 'https://mapzen.com/documentation/ios/'
-  s.source           =  { :git => 'https://github.com/mapzen/ios.git', :tag => "v#{s.version}" }
+  s.source           =  { :git => 'https://github.com/mapzen/ios.git', :tag => "v#{s.version}", :submodules => true }
 
   s.platform              = :ios
   s.ios.deployment_target = '9.3'
