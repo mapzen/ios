@@ -326,11 +326,11 @@ open class MZMapViewController: UIViewController, LocationManagerDelegate {
   public typealias OnStyleLoaded = (MapStyle) -> ()
   fileprivate var onStyleLoadedClosure : OnStyleLoaded? = nil
 
-  fileprivate let styles = ["bubble-wrap-style-more-labels.yaml" : MapStyle.bubbleWrap,
-                            "cinnabar-style-more-labels.yaml" : MapStyle.cinnabar,
-                            "refill-style-more-labels.yaml" : MapStyle.refill,
-                            "walkabout-style-more-labels.yaml" : MapStyle.walkabout,
-                            "zinc-style-more-labels.yaml" : MapStyle.zinc]
+  fileprivate let styles = ["bubble-wrap/bubble-wrap-style-more-labels" : MapStyle.bubbleWrap,
+                            "cinnabar/cinnabar-style-more-labels" : MapStyle.cinnabar,
+                            "refill/refill-style-more-labels" : MapStyle.refill,
+                            "walkabout/walkabout-style-more-labels" : MapStyle.walkabout,
+                            "zinc/zinc-style-more-labels" : MapStyle.zinc]
 
   let locationManager : LocationManagerProtocol
   let mapzenManager : MapzenManagerProtocol
@@ -550,7 +550,10 @@ open class MZMapViewController: UIViewController, LocationManagerDelegate {
     locale = l
     guard let sceneFile = styles.keyForValue(value: style) else { return }
     currentStyle = style
-    try tgViewController.loadSceneFile(sceneFile, sceneUpdates: allSceneUpdates(sceneUpdates))
+    guard let qualifiedSceneFile = Bundle.houseStylesBundle()?.url(forResource: sceneFile, withExtension: "yaml")?.absoluteString else {
+      return
+    }
+    try tgViewController.loadSceneFile(qualifiedSceneFile, sceneUpdates: allSceneUpdates(sceneUpdates))
   }
 
   /**
@@ -588,7 +591,10 @@ open class MZMapViewController: UIViewController, LocationManagerDelegate {
     onStyleLoadedClosure = onStyleLoaded
     guard let sceneFile = styles.keyForValue(value: style) else { return }
     currentStyle = style
-    try tgViewController.loadSceneFileAsync(sceneFile, sceneUpdates: allSceneUpdates(sceneUpdates))
+    guard let qualifiedSceneFile = Bundle.houseStylesBundle()?.url(forResource: sceneFile, withExtension: "yaml")?.absoluteString else {
+      return
+    }
+    try tgViewController.loadSceneFileAsync(qualifiedSceneFile, sceneUpdates: allSceneUpdates(sceneUpdates))
   }
 
   /**
@@ -1088,7 +1094,14 @@ extension MZMapViewController : TGMapViewDelegate, TGRecognizerDelegate {
   //MARK : TGMapViewDelegate
   
   open func mapView(_ mapView: TGMapViewController, didLoadSceneAsync scene: String) {
-    guard let style = styles[scene] else {
+    // if we loaded a house style scene looks something like: file:///var/containers/Bundle/Application/FAFA232A-1190-40CB-9391-7C9F44B51076/ios-sdk.app/housestyles.bundle/bubble-wrap/bubble-wrap-style-more-labels.yaml
+    guard let pathComponents = URL.init(string: scene)?.pathComponents else {
+      onStyleLoadedClosure = nil
+      return
+    }
+    // if we have path components, grab the last two (ie. bubble-wrap & bubble-wrap-style-more-labels.yaml), strip ".yaml" and check for existence in styles map
+    let sceneStyle = (pathComponents[pathComponents.count-2] + "/" + pathComponents.last!).replacingOccurrences(of: ".yaml", with: "")
+    guard let style = styles[sceneStyle] else {
       onStyleLoadedClosure = nil
       return
     }
