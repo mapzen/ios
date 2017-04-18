@@ -58,6 +58,7 @@ Non-cocoapods usage at this point is not recommended, but can be accomplished. F
 There's a couple of things you should probably know about up front:
 * We only will be supporting Swift 3.0 moving forward. Older versions of the SDK were written in Swift 2, but it is not recommended to use that as the project has changed dramatically since then, and we're continuing to add features all the time.
 * If you wish to install the sample app to a device (recommended due to performance issues in the simulator), you will need to update the bundle identifier and the code signing in the Xcode project and go through the general code signing process necessary for installing to a device. This will require a free Apple Developer account.
+* If you decide to use Cocoapods and pull directly from master, you will need to add `:submodules => true` to your podfile line. Otherwise submodules will not load in. The full line would look like `pod "Mapzen-ios-sdk", :git => 'https://github.com/mapzen/ios.git', :branch => 'master', :submodules => true`
 
 ## Configure Api Key
 There are two ways to set your API key in the Sample App:
