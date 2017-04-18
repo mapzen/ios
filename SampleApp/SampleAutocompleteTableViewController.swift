@@ -61,8 +61,10 @@ class SampleAutocompleteTableViewController: SampleTableViewController, UISearch
         geoPoint = GeoPoint(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
       }
       let config = AutocompleteConfig(searchText: searchText, focusPoint: geoPoint, completionHandler: { (autocompleteResponse) -> Void in
-        self.results = autocompleteResponse.peliasResponse.parsedMapItems()
-        self.tableView.reloadData()
+        if autocompleteResponse.isGeoJson {
+          self.results = autocompleteResponse.peliasResponse.parsedMapItems()
+          self.tableView.reloadData()
+        }
       })
       _ = MapzenSearch.sharedInstance.autocompleteQuery(config)
     }
