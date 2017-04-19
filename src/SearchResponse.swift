@@ -20,22 +20,6 @@ public class SearchResponse : NSObject {
     return ParsedSearchResponse.init(peliasParsedResponse)
   }()
 
-  private static let validTypes: Set = ["Point", "MultiPoint", "LineString", "MultiLineString", "Polygon", "MultiPolygon", "GeometryCollection", "Feature", "FeatureCollection"]
-
-  private lazy var internalIsGeoJson: Bool = { [unowned self] in
-    guard let parsedResponse = self.internalParsedResponse else { return false }
-    let dict = parsedResponse.parsedResponse
-    guard let type = dict["type"] as? String else { return false }
-    return SearchResponse.validTypes.contains(type)
-  }()
-
-  /// Is the parsed response valid geojson
-  public var isGeoJson: Bool {
-    get {
-      return internalIsGeoJson
-    }
-  }
-
   /// The raw response data
   public var data: Data? {
     get {
