@@ -9,6 +9,7 @@ end
 
 target "ios-sdk" do
   shared_pods
+  pod "HockeySDK", :subspecs => ['CrashOnlyLib']
 end
 
 target "ios-sdkTests" do
