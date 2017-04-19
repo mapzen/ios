@@ -123,8 +123,8 @@ public extension PeliasResponse {
   public func parsedMapItems(target: UIResponder?, action: Selector?) -> [PeliasMapkitAnnotation]? {
     //TODO: This should get refactored into eventually being a real GeoJSON decoder, and split out the MapItem creation
     var mapItems = [PeliasMapkitAnnotation]()
-    if let jsonDictionary = parsedResponse?.parsedResponse {
-      guard let featuresArray = jsonDictionary.object(forKey: "features") as? [[String:AnyObject]] else {
+    if let jsonDictionary: Dictionary = parsedResponse?.parsedResponse {
+      guard let featuresArray = jsonDictionary["features"] as? [Dictionary<String, Any>] else {
         return nil
       }
       for feature in featuresArray {

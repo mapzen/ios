@@ -62,7 +62,7 @@ public class ParsedSearchResponse: NSObject {
 
   let peliasResponse: PeliasSearchResponse
 
-  public var parsedResponse: NSDictionary {
+  public var parsedResponse: Dictionary<String, Any> {
     get {
       return peliasResponse.parsedResponse
     }
