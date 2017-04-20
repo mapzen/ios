@@ -1,4 +1,5 @@
 PODS:
+  - HockeySDK/CrashOnlyLib (4.1.4)
   - OnTheRoad (1.0.0)
   - Pelias (1.0.0):
     - Pelias/Core (= 1.0.0)
@@ -6,6 +7,7 @@ PODS:
   - Tangram-es (0.5.1)
 
 DEPENDENCIES:
+  - HockeySDK/CrashOnlyLib (~> 4.1.4)
   - OnTheRoad (~> 1.0.0)
   - Pelias (from `https://github.com/pelias/pelias-ios-sdk.git`, commit `4b3d8a`)
   - Tangram-es (~> 0.5.1)
@@ -21,10 +23,11 @@ CHECKOUT OPTIONS:
     :git: https://github.com/pelias/pelias-ios-sdk.git
 
 SPEC CHECKSUMS:
+  HockeySDK: 78a3f8bb9100277b531defc56c970369a3ca267a
   OnTheRoad: 23aeab6259df1bc005457795e255730178c97fdf
   Pelias: 5701bbf3b646849ec62af184f0d54d9588ecbc36
   Tangram-es: 5c558140e072edf59d113fa9d0580c61440a530b
 
-PODFILE CHECKSUM: bddfc4cc55d534c1396ced24fc8dd6d7888156ee
+PODFILE CHECKSUM: f3ccfd4b95dddc3826ad83f3baf7f0e3258d45b9
 
 COCOAPODS: 1.2.0
