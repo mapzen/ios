@@ -6,6 +6,7 @@
 - Have ownership privileges to update the cocoapods trunk spec
 
 ## Steps
+0. Check that the Mapzen-ios-sdk.podspec and Podfile pod dependencies versions are up to date
 1. Tag current master with the version you want to release, and push to github.
 2. Update the Mapzen-ios-sdk.podspec version number property with that same tag
 3. Update the .swift file with the current version of swift the sdk is compiled against
