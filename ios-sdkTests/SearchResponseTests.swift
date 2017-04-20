@@ -39,12 +39,12 @@ class SearchResponseTests: XCTestCase {
   }
 
   func testParsedResponse() {
-    let dict = ["test":"result"]
+    let dict = ["type":"FeatureCollection"]
     try? data = JSONSerialization.data(withJSONObject: dict, options: .prettyPrinted)
     let pr = PeliasResponse(data: data, response: urlResponse, error: error)
     let r = SearchResponse(pr)
-    XCTAssertEqual(r.parsedResponse?.parsedResponse.allKeys.count, 1)
-    XCTAssertEqual(r.parsedResponse?.parsedResponse["test"] as! String, "result")
+    XCTAssertEqual(r.parsedResponse?.parsedResponse.keys.count, 1)
+    XCTAssertEqual(r.parsedResponse?.parsedResponse["type"] as! String, "FeatureCollection")
   }
 
   func testEquals() {
@@ -57,11 +57,11 @@ class ParsedSearchResponseTests: XCTestCase {
 
   func testEncodeDecode() {
     let dict = ["test":"result"]
-    let pr = PeliasSearchResponse(parsedResponse: dict as NSDictionary)
+    let pr = PeliasSearchResponse(parsedResponse: dict)
     let parsedResponse = ParsedSearchResponse.init(pr)
     ParsedSearchResponse.encode(parsedResponse)
     let decoded = parsedResponse.decode()
-    XCTAssertEqual(decoded?.peliasResponse.parsedResponse.allKeys.count, 1)
+    XCTAssertEqual(decoded?.peliasResponse.parsedResponse.keys.count, 1)
     XCTAssertEqual(decoded?.peliasResponse.parsedResponse["test"] as! String, "result")
   }
 }

@@ -12,12 +12,14 @@ import Pelias
 /// Represents a response for a request executed by 'MapzenSearch'
 @objc(MZSearchResponse)
 public class SearchResponse : NSObject {
+
   let peliasResponse: PeliasResponse
 
   private lazy var internalParsedResponse: ParsedSearchResponse? =  { [unowned self] in
     guard let peliasParsedResponse = self.peliasResponse.parsedResponse else { return nil }
     return ParsedSearchResponse.init(peliasParsedResponse)
   }()
+
   /// The raw response data
   public var data: Data? {
     get {
@@ -60,7 +62,7 @@ public class ParsedSearchResponse: NSObject {
 
   let peliasResponse: PeliasSearchResponse
 
-  public var parsedResponse: NSDictionary {
+  public var parsedResponse: Dictionary<String, Any> {
     get {
       return peliasResponse.parsedResponse
     }

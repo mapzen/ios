@@ -13,7 +13,7 @@ public class MapzenSearch : NSObject {
   /// Returns the shared 'MapzenSearch' instance.
   public static let sharedInstance = MapzenSearch()
   private let peliasSearchManager = PeliasSearchManager.sharedInstance
-  /// Delay in seconds that the manager should wait between keystrokes to fire a new autocomplete request
+  /// Delay in seconds that the manager should wait between keystrokes to fire a new autocomplete request. Default is 0.3
   public var autocompleteTimeDelay: Double {
     get {
       return peliasSearchManager.autocompleteTimeDelay
@@ -42,6 +42,8 @@ public class MapzenSearch : NSObject {
   }
 
   fileprivate override init() {
+    super.init()
+    autocompleteTimeDelay = 0.3
   }
   /** Perform an asyncronous search request given parameters defined by the search config. Returns the queued operation.
    - parameter config: Object holding search request parameter information.
