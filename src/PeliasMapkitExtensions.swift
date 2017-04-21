@@ -123,33 +123,32 @@ public extension PeliasResponse {
   public func parsedMapItems(target: UIResponder?, action: Selector?) -> [PeliasMapkitAnnotation]? {
     //TODO: This should get refactored into eventually being a real GeoJSON decoder, and split out the MapItem creation
     var mapItems = [PeliasMapkitAnnotation]()
-    if let jsonDictionary: Dictionary = parsedResponse?.parsedResponse {
-      guard let featuresArray = jsonDictionary["features"] as? [Dictionary<String, Any>] else {
-        return nil
+    guard let jsonDictionary: Dictionary = parsedResponse?.parsedResponse else { return nil }
+    guard let featuresArray = jsonDictionary["features"] as? [Dictionary<String, Any>] else {
+      return nil
+    }
+    for feature in featuresArray {
+      //Address Dictionary for Placemark Creation
+      let featureProperties = feature["properties"] as? [String:AnyObject]
+      var addressDictionary = [String:AnyObject]()
+      addressDictionary[PeliasIDKey] = featureProperties?["id"]
+      addressDictionary[PeliasDataSourceKey] = featureProperties?["source"]
+
+      //Coordinate Creation
+      let featureGeometry = feature["geometry"] as? [String:AnyObject]
+      let geometryPosition = featureGeometry?["coordinates"] as? [Double]
+      let lat = geometryPosition?[1] ?? 0.0
+      let lng = geometryPosition?[0] ?? 0.0
+      let coordinate = CLLocationCoordinate2DMake(lat, lng)
+
+      //MKPlacemark
+      let name = featureProperties?["label"] as? String
+      let mapAnnotation = PeliasMapkitAnnotation(coordinate: coordinate, title: name, subtitle: nil, data: addressDictionary)
+      if let target = target, let action = action {
+        mapAnnotation.setTarget(target: target, action: action)
       }
-      for feature in featuresArray {
-        //Address Dictionary for Placemark Creation
-        let featureProperties = feature["properties"] as? [String:AnyObject]
-        var addressDictionary = [String:AnyObject]()
-        addressDictionary[PeliasIDKey] = featureProperties?["id"]
-        addressDictionary[PeliasDataSourceKey] = featureProperties?["source"]
 
-        //Coordinate Creation
-        let featureGeometry = feature["geometry"] as? [String:AnyObject]
-        let geometryPosition = featureGeometry?["coordinates"] as? [Double]
-        let lat = geometryPosition?[1] ?? 0.0
-        let lng = geometryPosition?[0] ?? 0.0
-        let coordinate = CLLocationCoordinate2DMake(lat, lng)
-
-        //MKPlacemark
-        let name = featureProperties?["label"] as? String
-        let mapAnnotation = PeliasMapkitAnnotation(coordinate: coordinate, title: name, subtitle: nil, data: addressDictionary)
-        if let target = target, let action = action {
-          mapAnnotation.setTarget(target: target, action: action)
-        }
-
-        mapItems.append(mapAnnotation)
-      }
+      mapItems.append(mapAnnotation)
     }
     return mapItems;
   }
