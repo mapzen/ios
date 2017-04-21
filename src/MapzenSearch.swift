@@ -43,7 +43,7 @@ public class MapzenSearch : NSObject {
 
   fileprivate override init() {
     super.init()
-    autocompleteTimeDelay = 0.3
+    autocompleteTimeDelay = 1.0
   }
   /** Perform an asyncronous search request given parameters defined by the search config. Returns the queued operation.
    - parameter config: Object holding search request parameter information.
