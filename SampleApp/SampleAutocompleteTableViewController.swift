@@ -61,6 +61,7 @@ class SampleAutocompleteTableViewController: SampleTableViewController, UISearch
         geoPoint = GeoPoint(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
       }
       let config = AutocompleteConfig(searchText: searchText, focusPoint: geoPoint, completionHandler: { (autocompleteResponse) -> Void in
+        print("Error:\(String(describing: autocompleteResponse.error))")
         if let parsedItems = autocompleteResponse.peliasResponse.parsedMapItems() {
           self.results = parsedItems
           self.tableView.reloadData()
