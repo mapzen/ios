@@ -19,7 +19,7 @@ Pod::Spec.new do |s|
   s.default_subspec = 'Core'
 
   s.subspec 'Core' do |cs|
-    cs.dependency 'Pelias', '~> 1.0.0'
+    cs.dependency 'Pelias', '~> 1.0.1'
     cs.dependency 'OnTheRoad', '~> 1.0.0'
     cs.dependency 'Tangram-es', '~> 0.5.1'
     cs.source_files = ['src/*.swift', 'src/*/*.swift']
