@@ -84,6 +84,8 @@ class DemoRouteViewController: SampleMapViewController, MapSingleTapGestureDeleg
     actionSheet.addAction(UIAlertAction.init(title: "Cancel", style: .cancel, handler: { [unowned self] (action) in
       self.dismiss(animated: true, completion: nil)
     }))
+    let presentationController = actionSheet.popoverPresentationController
+    presentationController?.barButtonItem = self.navigationItem.rightBarButtonItem
     self.navigationController?.present(actionSheet, animated: true, completion: nil)
   }
 
