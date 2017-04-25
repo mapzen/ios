@@ -1048,9 +1048,13 @@ open class MZMapViewController: UIViewController, LocationManagerDelegate {
     findMeButton.isEnabled = false
     findMeButton.isHidden = true
     findMeButton.adjustsImageWhenHighlighted = false
-    findMeButton.setBackgroundImage(UIImage(named: "ic_find_me_normal"), for: UIControlState())
+    if let imgNormalName = Bundle.mapzenBundle().path(forResource: "ic_find_me_normal", ofType: "png") {
+      findMeButton.setBackgroundImage(UIImage(named: imgNormalName), for: UIControlState())
+    }
     //TODO: This should also have .Highlighted as well .Selected , but something about the @3x assets and UIButton is misbehaving; might need bug opened with Apple.
-    findMeButton.setBackgroundImage(UIImage(named: "ic_find_me_pressed"), for: [.selected])
+    if let imgPressedName = Bundle.mapzenBundle().path(forResource: "ic_find_me_pressed", ofType: "png") {
+      findMeButton.setBackgroundImage(UIImage(named: imgPressedName), for: [.selected])
+    }
     findMeButton.backgroundColor = UIColor.white
     //findMeButton.autoresizingMask = [.flexibleTopMargin, .flexibleLeftMargin]
     findMeButton.translatesAutoresizingMaskIntoConstraints = false
