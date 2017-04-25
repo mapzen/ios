@@ -75,6 +75,8 @@ class DemoMapViewController:  SampleMapViewController, MapMarkerSelectDelegate {
     actionSheet.addAction(UIAlertAction.init(title: "Cancel", style: .cancel, handler: { [unowned self] (action) in
       self.dismiss(animated: true, completion: nil)
     }))
+    let presentationController = actionSheet.popoverPresentationController
+    presentationController?.barButtonItem = self.navigationItem.rightBarButtonItem
     self.navigationController?.present(actionSheet, animated: true, completion: nil)
   }
 
@@ -86,31 +88,26 @@ class DemoMapViewController:  SampleMapViewController, MapMarkerSelectDelegate {
   }
 
   @objc private func changeMapLanguage() {
+    let languageIdByActionSheetTitle = [
+      "English": "en_US",
+      "French": "fr_FR",
+      "Japanese": "ja_JP",
+      "Hindi": "hi_IN",
+      "Spanish": "es_ES",
+      "Korean": "ko_KR",
+      "Italian": "it_IT",
+      ]
     let actionSheet = UIAlertController.init(title: "Map Language", message: "Choose a language", preferredStyle: .actionSheet)
-    actionSheet.addAction(UIAlertAction.init(title: "English", style: .default, handler: { [unowned self] (action) in
-      self.updateLocale(Locale.init(identifier: "en_US"))
-    }))
-    actionSheet.addAction(UIAlertAction.init(title: "French", style: .default, handler: { [unowned self] (action) in
-      self.updateLocale(Locale.init(identifier: "fr_FR"))
-    }))
-    actionSheet.addAction(UIAlertAction.init(title: "Japanese", style: .default, handler: { [unowned self] (action) in
-      self.updateLocale(Locale.init(identifier: "ja_JP"))
-    }))
-    actionSheet.addAction(UIAlertAction.init(title: "Hindi", style: .default, handler: { [unowned self] (action) in
-      self.updateLocale(Locale.init(identifier: "hi-IN"))
-    }))
-    actionSheet.addAction(UIAlertAction.init(title: "Spanish", style: .default, handler: { [unowned self] (action) in
-      self.updateLocale(Locale.init(identifier: "es_ES"))
-    }))
-    actionSheet.addAction(UIAlertAction.init(title: "Korean", style: .default, handler: { [unowned self] (action) in
-      self.updateLocale(Locale.init(identifier: "ko_KR"))
-    }))
-    actionSheet.addAction(UIAlertAction.init(title: "Italian", style: .default, handler: { [unowned self] (action) in
-      self.updateLocale(Locale.init(identifier: "it_IT"))
-    }))
+    for (actionTitle, languageIdentifier) in languageIdByActionSheetTitle {
+      actionSheet.addAction(UIAlertAction.init(title: actionTitle, style: .default, handler: { [unowned self] (action) in
+        self.updateLocale(Locale.init(identifier: languageIdentifier))
+      }))
+    }
     actionSheet.addAction(UIAlertAction.init(title: "Cancel", style: .cancel, handler: { [unowned self] (action) in
       self.dismiss(animated: true, completion: nil)
     }))
+    let presentationController = actionSheet.popoverPresentationController
+    presentationController?.barButtonItem = self.navigationItem.leftBarButtonItem
     self.navigationController?.present(actionSheet, animated: true, completion: nil)
 
   }
