@@ -7,7 +7,7 @@
 //
 
 import UIKit
-@testable import ios_sdk
+@testable import MapzenSDK
 
 class TestApplication: ApplicationProtocol {
 

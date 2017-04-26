@@ -7,7 +7,7 @@
 //
 
 import CoreLocation
-@testable import ios_sdk
+@testable import MapzenSDK
 
 class TestLocationManager : LocationManagerProtocol {
 

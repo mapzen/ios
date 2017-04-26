@@ -7,7 +7,7 @@
 //
 
 import Foundation
-@testable import ios_sdk
+@testable import MapzenSDK
 
 class TestUrlSession : URLSession {
   var queryParameters : [String : AnyObject]?

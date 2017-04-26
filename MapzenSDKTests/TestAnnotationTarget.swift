@@ -8,7 +8,7 @@
 
 import Foundation
 import TangramMap
-@testable import ios_sdk
+@testable import MapzenSDK
 
 class AnnotationTestTarget : UIResponder, MapMarkerSelectDelegate {
 
