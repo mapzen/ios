@@ -11,6 +11,9 @@
 		7D2FB7691E64E66B00CB82CF /* DictionaryExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D2FB7681E64E66B00CB82CF /* DictionaryExtensionsTests.swift */; };
 		7D4122721E84621A009520B7 /* SearchConfigs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D4122711E84621A009520B7 /* SearchConfigs.swift */; };
 		7D4122741E84834C009520B7 /* SearchConfigsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D4122731E84834C009520B7 /* SearchConfigsTests.swift */; };
+		7D4639F11EB115280074BEC5 /* MapzenSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D4639E81EB115280074BEC5 /* MapzenSDK.framework */; };
+		7D4639FD1EB115280074BEC5 /* MapzenSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D4639E81EB115280074BEC5 /* MapzenSDK.framework */; };
+		7D4639FE1EB115280074BEC5 /* MapzenSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7D4639E81EB115280074BEC5 /* MapzenSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		7D503BCC1E77457A00FDDC4F /* SampleMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D503BCB1E77457A00FDDC4F /* SampleMapViewController.swift */; };
 		7D503BCE1E77468B00FDDC4F /* SampleTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D503BCD1E77468B00FDDC4F /* SampleTableViewController.swift */; };
 		7D503BD01E78944300FDDC4F /* TestTGMarkerPickResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D503BCF1E78944300FDDC4F /* TestTGMarkerPickResult.swift */; };
@@ -70,6 +73,27 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		7D4639F21EB115280074BEC5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DB7A33CC1C8F8E8B009CC743 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 7D4639E71EB115270074BEC5;
+			remoteInfo = MapzenSDK;
+		};
+		7D4639F41EB115280074BEC5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DB7A33CC1C8F8E8B009CC743 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = DB7A33D31C8F8E8B009CC743;
+			remoteInfo = "ios-sdk";
+		};
+		7D4639FB1EB115280074BEC5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DB7A33CC1C8F8E8B009CC743 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 7D4639E71EB115270074BEC5;
+			remoteInfo = MapzenSDK;
+		};
 		DB7A33E91C8F8E8B009CC743 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = DB7A33CC1C8F8E8B009CC743 /* Project object */;
@@ -80,6 +104,17 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
+		7D463A041EB115280074BEC5 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				7D4639FE1EB115280074BEC5 /* MapzenSDK.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		7D9EBCD31E6E0BA500303E1B /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -98,6 +133,10 @@
 		7D2FB7681E64E66B00CB82CF /* DictionaryExtensionsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DictionaryExtensionsTests.swift; sourceTree = "<group>"; };
 		7D4122711E84621A009520B7 /* SearchConfigs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchConfigs.swift; sourceTree = "<group>"; };
 		7D4122731E84834C009520B7 /* SearchConfigsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchConfigsTests.swift; sourceTree = "<group>"; };
+		7D4639E81EB115280074BEC5 /* MapzenSDK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MapzenSDK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		7D4639EB1EB115280074BEC5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7D4639F01EB115280074BEC5 /* MapzenSDKTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MapzenSDKTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		7D4639F91EB115280074BEC5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7D503BCB1E77457A00FDDC4F /* SampleMapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SampleMapViewController.swift; sourceTree = "<group>"; };
 		7D503BCD1E77468B00FDDC4F /* SampleTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SampleTableViewController.swift; sourceTree = "<group>"; };
 		7D503BCF1E78944300FDDC4F /* TestTGMarkerPickResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestTGMarkerPickResult.swift; sourceTree = "<group>"; };
@@ -164,10 +203,26 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		7D4639E41EB115270074BEC5 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7D4639ED1EB115280074BEC5 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7D4639F11EB115280074BEC5 /* MapzenSDK.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		DB7A33D11C8F8E8B009CC743 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7D4639FD1EB115280074BEC5 /* MapzenSDK.framework in Frameworks */,
 				DBF441B01D351C90007DEE95 /* GLKit.framework in Frameworks */,
 				AC586709D7E7D4C22AA9474D /* Pods_ios_sdk.framework in Frameworks */,
 			);
@@ -184,6 +239,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7D4639E91EB115280074BEC5 /* MapzenSDK */ = {
+			isa = PBXGroup;
+			children = (
+				7D4639EB1EB115280074BEC5 /* Info.plist */,
+			);
+			path = MapzenSDK;
+			sourceTree = "<group>";
+		};
+		7D4639F61EB115280074BEC5 /* MapzenSDKTests */ = {
+			isa = PBXGroup;
+			children = (
+				7D4639F91EB115280074BEC5 /* Info.plist */,
+			);
+			path = MapzenSDKTests;
+			sourceTree = "<group>";
+		};
 		7D7847231E6775EA000D56CA /* dimensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -234,6 +305,8 @@
 				DBC84EA51C985B6D00EE80D8 /* src */,
 				DB7A33D61C8F8E8B009CC743 /* SampleApp */,
 				DB7A33EB1C8F8E8B009CC743 /* ios-sdkTests */,
+				7D4639E91EB115280074BEC5 /* MapzenSDK */,
+				7D4639F61EB115280074BEC5 /* MapzenSDKTests */,
 				DB7A33D51C8F8E8B009CC743 /* Products */,
 				7DD57FD51EA56E7F000B6397 /* housestyles.bundle */,
 				CF541C01B2D071D0FF55D939 /* Frameworks */,
@@ -246,6 +319,8 @@
 			children = (
 				DB7A33D41C8F8E8B009CC743 /* ios-sdk.app */,
 				DB7A33E81C8F8E8B009CC743 /* ios-sdkTests.xctest */,
+				7D4639E81EB115280074BEC5 /* MapzenSDK.framework */,
+				7D4639F01EB115280074BEC5 /* MapzenSDKTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -325,7 +400,54 @@
 		};
 /* End PBXGroup section */
 
+/* Begin PBXHeadersBuildPhase section */
+		7D4639E51EB115270074BEC5 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
 /* Begin PBXNativeTarget section */
+		7D4639E71EB115270074BEC5 /* MapzenSDK */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7D463A031EB115280074BEC5 /* Build configuration list for PBXNativeTarget "MapzenSDK" */;
+			buildPhases = (
+				7D4639E31EB115270074BEC5 /* Sources */,
+				7D4639E41EB115270074BEC5 /* Frameworks */,
+				7D4639E51EB115270074BEC5 /* Headers */,
+				7D4639E61EB115270074BEC5 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = MapzenSDK;
+			productName = MapzenSDK;
+			productReference = 7D4639E81EB115280074BEC5 /* MapzenSDK.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		7D4639EF1EB115280074BEC5 /* MapzenSDKTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7D463A051EB115280074BEC5 /* Build configuration list for PBXNativeTarget "MapzenSDKTests" */;
+			buildPhases = (
+				7D4639EC1EB115280074BEC5 /* Sources */,
+				7D4639ED1EB115280074BEC5 /* Frameworks */,
+				7D4639EE1EB115280074BEC5 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				7D4639F31EB115280074BEC5 /* PBXTargetDependency */,
+				7D4639F51EB115280074BEC5 /* PBXTargetDependency */,
+			);
+			name = MapzenSDKTests;
+			productName = MapzenSDKTests;
+			productReference = 7D4639F01EB115280074BEC5 /* MapzenSDKTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		DB7A33D31C8F8E8B009CC743 /* ios-sdk */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = DB7A33F11C8F8E8B009CC743 /* Build configuration list for PBXNativeTarget "ios-sdk" */;
@@ -337,10 +459,12 @@
 				191580EBEEB1CBE8776858D7 /* [CP] Embed Pods Frameworks */,
 				9ED767F151C3E563270C40FC /* [CP] Copy Pods Resources */,
 				7D9EBCD31E6E0BA500303E1B /* CopyFiles */,
+				7D463A041EB115280074BEC5 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				7D4639FC1EB115280074BEC5 /* PBXTargetDependency */,
 			);
 			name = "ios-sdk";
 			productName = "ios-sdk";
@@ -374,10 +498,20 @@
 		DB7A33CC1C8F8E8B009CC743 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0730;
+				LastSwiftUpdateCheck = 0830;
 				LastUpgradeCheck = 0820;
 				ORGANIZATIONNAME = Mapzen;
 				TargetAttributes = {
+					7D4639E71EB115270074BEC5 = {
+						CreatedOnToolsVersion = 8.3.1;
+						DevelopmentTeam = LTQC954SPQ;
+						ProvisioningStyle = Automatic;
+					};
+					7D4639EF1EB115280074BEC5 = {
+						CreatedOnToolsVersion = 8.3.1;
+						ProvisioningStyle = Automatic;
+						TestTargetID = DB7A33D31C8F8E8B009CC743;
+					};
 					DB7A33D31C8F8E8B009CC743 = {
 						CreatedOnToolsVersion = 7.2.1;
 						DevelopmentTeam = LTQC954SPQ;
@@ -407,11 +541,27 @@
 			targets = (
 				DB7A33D31C8F8E8B009CC743 /* ios-sdk */,
 				DB7A33E71C8F8E8B009CC743 /* ios-sdkTests */,
+				7D4639E71EB115270074BEC5 /* MapzenSDK */,
+				7D4639EF1EB115280074BEC5 /* MapzenSDKTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		7D4639E61EB115270074BEC5 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7D4639EE1EB115280074BEC5 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		DB7A33D21C8F8E8B009CC743 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -532,6 +682,20 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		7D4639E31EB115270074BEC5 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7D4639EC1EB115280074BEC5 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		DB7A33D01C8F8E8B009CC743 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -596,6 +760,21 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		7D4639F31EB115280074BEC5 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 7D4639E71EB115270074BEC5 /* MapzenSDK */;
+			targetProxy = 7D4639F21EB115280074BEC5 /* PBXContainerItemProxy */;
+		};
+		7D4639F51EB115280074BEC5 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = DB7A33D31C8F8E8B009CC743 /* ios-sdk */;
+			targetProxy = 7D4639F41EB115280074BEC5 /* PBXContainerItemProxy */;
+		};
+		7D4639FC1EB115280074BEC5 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 7D4639E71EB115270074BEC5 /* MapzenSDK */;
+			targetProxy = 7D4639FB1EB115280074BEC5 /* PBXContainerItemProxy */;
+		};
 		DB7A33EA1C8F8E8B009CC743 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = DB7A33D31C8F8E8B009CC743 /* ios-sdk */;
@@ -623,6 +802,96 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		7D4639FF1EB115280074BEC5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CODE_SIGN_IDENTITY = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = LTQC954SPQ;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = MapzenSDK/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.mapzen.MapzenSDK;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_VERSION = 3.0;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		7D463A001EB115280074BEC5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = LTQC954SPQ;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = MapzenSDK/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.mapzen.MapzenSDK;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		7D463A011EB115280074BEC5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				INFOPLIST_FILE = MapzenSDKTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.mapzen.MapzenSDKTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ios-sdk.app/ios-sdk";
+			};
+			name = Debug;
+		};
+		7D463A021EB115280074BEC5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				INFOPLIST_FILE = MapzenSDKTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.mapzen.MapzenSDKTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ios-sdk.app/ios-sdk";
+			};
+			name = Release;
+		};
 		DB7A33EF1C8F8E8B009CC743 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -808,6 +1077,22 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		7D463A031EB115280074BEC5 /* Build configuration list for PBXNativeTarget "MapzenSDK" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7D4639FF1EB115280074BEC5 /* Debug */,
+				7D463A001EB115280074BEC5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		7D463A051EB115280074BEC5 /* Build configuration list for PBXNativeTarget "MapzenSDKTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7D463A011EB115280074BEC5 /* Debug */,
+				7D463A021EB115280074BEC5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
 		DB7A33CF1C8F8E8B009CC743 /* Build configuration list for PBXProject "ios-sdk" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

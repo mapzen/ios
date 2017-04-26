@@ -38,6 +38,16 @@
                ReferencedContainer = "container:ios-sdk.xcodeproj">
             </BuildableReference>
          </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "7D4639EF1EB115280074BEC5"
+               BuildableName = "MapzenSDKTests.xctest"
+               BlueprintName = "MapzenSDKTests"
+               ReferencedContainer = "container:ios-sdk.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference
