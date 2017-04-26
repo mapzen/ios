@@ -30,7 +30,6 @@
 		7D463A291EB135460074BEC5 /* TangramExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D463A171EB135460074BEC5 /* TangramExtensions.swift */; };
 		7D463A2A1EB135460074BEC5 /* UIColorExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D463A181EB135460074BEC5 /* UIColorExtensions.swift */; };
 		7D463A2C1EB135610074BEC5 /* housestyles.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 7D463A2B1EB135610074BEC5 /* housestyles.bundle */; };
-		7D463A2E1EB1356B0074BEC5 /* images in Resources */ = {isa = PBXBuildFile; fileRef = 7D463A2D1EB1356B0074BEC5 /* images */; };
 		7D463A421EB1357B0074BEC5 /* DictionaryExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D463A2F1EB1357B0074BEC5 /* DictionaryExtensionsTests.swift */; };
 		7D463A431EB1357B0074BEC5 /* MapViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D463A301EB1357B0074BEC5 /* MapViewControllerTests.swift */; };
 		7D463A441EB1357B0074BEC5 /* MapzenManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D463A311EB1357B0074BEC5 /* MapzenManagerTests.swift */; };
@@ -50,6 +49,12 @@
 		7D463A521EB1357B0074BEC5 /* TestTGMarkerPickResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D463A3F1EB1357B0074BEC5 /* TestTGMarkerPickResult.swift */; };
 		7D463A531EB1357B0074BEC5 /* TestUrlSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D463A401EB1357B0074BEC5 /* TestUrlSession.swift */; };
 		7D463A541EB1357B0074BEC5 /* UIColorExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D463A411EB1357B0074BEC5 /* UIColorExtensionsTests.swift */; };
+		7D463A5C1EB143220074BEC5 /* ic_find_me_normal.png in Resources */ = {isa = PBXBuildFile; fileRef = 7D463A561EB143220074BEC5 /* ic_find_me_normal.png */; };
+		7D463A5D1EB143220074BEC5 /* ic_find_me_normal@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7D463A571EB143220074BEC5 /* ic_find_me_normal@2x.png */; };
+		7D463A5E1EB143220074BEC5 /* ic_find_me_normal@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7D463A581EB143220074BEC5 /* ic_find_me_normal@3x.png */; };
+		7D463A5F1EB143220074BEC5 /* ic_find_me_pressed.png in Resources */ = {isa = PBXBuildFile; fileRef = 7D463A591EB143220074BEC5 /* ic_find_me_pressed.png */; };
+		7D463A601EB143220074BEC5 /* ic_find_me_pressed@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7D463A5A1EB143220074BEC5 /* ic_find_me_pressed@2x.png */; };
+		7D463A611EB143220074BEC5 /* ic_find_me_pressed@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7D463A5B1EB143220074BEC5 /* ic_find_me_pressed@3x.png */; };
 		7D503BCC1E77457A00FDDC4F /* SampleMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D503BCB1E77457A00FDDC4F /* SampleMapViewController.swift */; };
 		7D503BCE1E77468B00FDDC4F /* SampleTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D503BCD1E77468B00FDDC4F /* SampleTableViewController.swift */; };
 		814B721477E03B65EF2C60E7 /* Pods_MapzenSDKTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 34105AA3EE25DC0CCB8D0111 /* Pods_MapzenSDKTests.framework */; };
@@ -151,7 +156,6 @@
 		7D463A171EB135460074BEC5 /* TangramExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TangramExtensions.swift; sourceTree = "<group>"; };
 		7D463A181EB135460074BEC5 /* UIColorExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColorExtensions.swift; sourceTree = "<group>"; };
 		7D463A2B1EB135610074BEC5 /* housestyles.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = housestyles.bundle; sourceTree = SOURCE_ROOT; };
-		7D463A2D1EB1356B0074BEC5 /* images */ = {isa = PBXFileReference; lastKnownFileType = folder; path = images; sourceTree = SOURCE_ROOT; };
 		7D463A2F1EB1357B0074BEC5 /* DictionaryExtensionsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DictionaryExtensionsTests.swift; sourceTree = "<group>"; };
 		7D463A301EB1357B0074BEC5 /* MapViewControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewControllerTests.swift; sourceTree = "<group>"; };
 		7D463A311EB1357B0074BEC5 /* MapzenManagerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapzenManagerTests.swift; sourceTree = "<group>"; };
@@ -171,6 +175,12 @@
 		7D463A3F1EB1357B0074BEC5 /* TestTGMarkerPickResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestTGMarkerPickResult.swift; sourceTree = "<group>"; };
 		7D463A401EB1357B0074BEC5 /* TestUrlSession.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestUrlSession.swift; sourceTree = "<group>"; };
 		7D463A411EB1357B0074BEC5 /* UIColorExtensionsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColorExtensionsTests.swift; sourceTree = "<group>"; };
+		7D463A561EB143220074BEC5 /* ic_find_me_normal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_find_me_normal.png; sourceTree = "<group>"; };
+		7D463A571EB143220074BEC5 /* ic_find_me_normal@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ic_find_me_normal@2x.png"; sourceTree = "<group>"; };
+		7D463A581EB143220074BEC5 /* ic_find_me_normal@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ic_find_me_normal@3x.png"; sourceTree = "<group>"; };
+		7D463A591EB143220074BEC5 /* ic_find_me_pressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_find_me_pressed.png; sourceTree = "<group>"; };
+		7D463A5A1EB143220074BEC5 /* ic_find_me_pressed@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ic_find_me_pressed@2x.png"; sourceTree = "<group>"; };
+		7D463A5B1EB143220074BEC5 /* ic_find_me_pressed@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ic_find_me_pressed@3x.png"; sourceTree = "<group>"; };
 		7D503BCB1E77457A00FDDC4F /* SampleMapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SampleMapViewController.swift; sourceTree = "<group>"; };
 		7D503BCD1E77468B00FDDC4F /* SampleTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SampleTableViewController.swift; sourceTree = "<group>"; };
 		92C35E8790FB3255237B1E77 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -237,7 +247,7 @@
 		7D4639E91EB115280074BEC5 /* MapzenSDK */ = {
 			isa = PBXGroup;
 			children = (
-				7D463A2D1EB1356B0074BEC5 /* images */,
+				7D463A551EB143220074BEC5 /* images */,
 				7D463A2B1EB135610074BEC5 /* housestyles.bundle */,
 				7D4639EB1EB115280074BEC5 /* Info.plist */,
 				7D463A061EB135460074BEC5 /* ApplicationExtensions.swift */,
@@ -296,6 +306,19 @@
 			);
 			path = dimensions;
 			sourceTree = "<group>";
+		};
+		7D463A551EB143220074BEC5 /* images */ = {
+			isa = PBXGroup;
+			children = (
+				7D463A561EB143220074BEC5 /* ic_find_me_normal.png */,
+				7D463A571EB143220074BEC5 /* ic_find_me_normal@2x.png */,
+				7D463A581EB143220074BEC5 /* ic_find_me_normal@3x.png */,
+				7D463A591EB143220074BEC5 /* ic_find_me_pressed.png */,
+				7D463A5A1EB143220074BEC5 /* ic_find_me_pressed@2x.png */,
+				7D463A5B1EB143220074BEC5 /* ic_find_me_pressed@3x.png */,
+			);
+			path = images;
+			sourceTree = SOURCE_ROOT;
 		};
 		8E4E4B43C1B764470EBBDBBA /* Pods */ = {
 			isa = PBXGroup;
@@ -525,8 +548,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7D463A2E1EB1356B0074BEC5 /* images in Resources */,
+				7D463A611EB143220074BEC5 /* ic_find_me_pressed@3x.png in Resources */,
 				7D463A2C1EB135610074BEC5 /* housestyles.bundle in Resources */,
+				7D463A5C1EB143220074BEC5 /* ic_find_me_normal.png in Resources */,
+				7D463A5F1EB143220074BEC5 /* ic_find_me_pressed.png in Resources */,
+				7D463A5D1EB143220074BEC5 /* ic_find_me_normal@2x.png in Resources */,
+				7D463A601EB143220074BEC5 /* ic_find_me_pressed@2x.png in Resources */,
+				7D463A5E1EB143220074BEC5 /* ic_find_me_normal@3x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
