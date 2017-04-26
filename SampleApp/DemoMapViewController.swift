@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import TangramMap
 import MapzenSDK
 
 class DemoMapViewController:  SampleMapViewController, MapMarkerSelectDelegate {

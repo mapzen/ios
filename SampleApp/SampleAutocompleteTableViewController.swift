@@ -6,7 +6,7 @@
 //  Copyright © 2016 Mapzen. All rights reserved.
 //
 
-import MapKit
+import UIKit
 import CoreLocation
 import MapzenSDK
 
