@@ -20,7 +20,7 @@ class SampleMapViewController : MZMapViewController {
   }
   func shouldZoomToCurrentLocation() {
     if !sceneDidLoad { return }
-    if lastSetPoint == nil { return }
+    if !receivedLocation() { return }
     _ = resetCameraOnCurrentLocation()
     firstTimeZoomToCurrentLocation = false
   }

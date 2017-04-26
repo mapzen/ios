@@ -13,7 +13,7 @@ import Pelias
 @objc(MZSearchResponse)
 public class SearchResponse : NSObject {
 
-  let peliasResponse: PeliasResponse
+  public let peliasResponse: PeliasResponse
 
   private lazy var internalParsedResponse: ParsedSearchResponse? =  { [unowned self] in
     guard let peliasParsedResponse = self.peliasResponse.parsedResponse else { return nil }
