@@ -9,6 +9,7 @@
 import Pelias
 import TangramMap
 import CoreLocation
+import MapzenSDK
 
 class DemoSearchPinsViewController: SampleMapViewController, UITextFieldDelegate, AutocompleteSearchDelegate {
 

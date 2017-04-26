@@ -9,6 +9,7 @@
 import MapKit
 import CoreLocation
 import Pelias
+import MapzenSDK
 
 protocol AutocompleteSearchDelegate {
   func selected(_ location: PeliasMapkitAnnotation)

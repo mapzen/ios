@@ -8,6 +8,7 @@
 
 import UIKit
 import HockeySDK
+import MapzenSDK
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
