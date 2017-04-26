@@ -48,7 +48,7 @@ class SearchDataConverterTests: XCTestCase {
   }
 
   func testUnwrapLayerFilters() {
-    let layers = [ios_sdk.LayerFilter.venue, LayerFilter.address, LayerFilter.country, LayerFilter.region, LayerFilter.locality, LayerFilter.localadmin, LayerFilter.neighbourhood, LayerFilter.coarse]
+    let layers = [MapzenSDK.LayerFilter.venue, LayerFilter.address, LayerFilter.country, LayerFilter.region, LayerFilter.locality, LayerFilter.localadmin, LayerFilter.neighbourhood, LayerFilter.coarse]
     let unwrapped = SearchDataConverter.unwrapLayerFilters(layers)
     XCTAssertTrue(unwrapped.contains(.venue))
     XCTAssertTrue(unwrapped.contains(.address))
@@ -104,7 +104,7 @@ class SearchDataConverterTests: XCTestCase {
   }
 
   func testUnwrapPoint() {
-    let point = ios_sdk.GeoPoint(latitude: 70.0, longitude: 40.0)
+    let point = MapzenSDK.GeoPoint(latitude: 70.0, longitude: 40.0)
     let unwrapped = SearchDataConverter.unwrapPoint(point)
     XCTAssertEqual(point.point, unwrapped)
   }

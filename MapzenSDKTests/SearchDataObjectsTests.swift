@@ -13,8 +13,8 @@ import Pelias
 class MapzenSearchDataObjectsTests: XCTestCase {
 
   func testSearchRect() {
-    let min = ios_sdk.GeoPoint(latitude: 70.0, longitude: 40.0)
-    let max = ios_sdk.GeoPoint(latitude: 80.0, longitude: 50.0)
+    let min = MapzenSDK.GeoPoint(latitude: 70.0, longitude: 40.0)
+    let max = MapzenSDK.GeoPoint(latitude: 80.0, longitude: 50.0)
     let searchRect = SearchRect(minLatLong: min, maxLatLong: max)
     let rect = SearchBoundaryRect(minLatLong: SearchDataConverter.unwrapPoint(min), maxLatLong: SearchDataConverter.unwrapPoint(max))
     XCTAssertEqual(searchRect.rect, rect)
@@ -22,7 +22,7 @@ class MapzenSearchDataObjectsTests: XCTestCase {
   }
 
   func testSearchCircle() {
-    let center = ios_sdk.GeoPoint(latitude: 70.0, longitude: 40.0)
+    let center = MapzenSDK.GeoPoint(latitude: 70.0, longitude: 40.0)
     let searchCircle = SearchCircle(center: center, radius: 8)
     let circle = SearchBoundaryCircle(center: SearchDataConverter.unwrapPoint(center), radius: 8)
     XCTAssertEqual(searchCircle.circle, circle)
@@ -30,7 +30,7 @@ class MapzenSearchDataObjectsTests: XCTestCase {
   }
 
   func testGeoPoint() {
-    let point = ios_sdk.GeoPoint(latitude: 70.0, longitude: 40.0)
+    let point = MapzenSDK.GeoPoint(latitude: 70.0, longitude: 40.0)
     let peliasPoint = Pelias.GeoPoint(latitude: 70.0, longitude: 40.0)
     XCTAssertEqual(point.point, peliasPoint)
     XCTAssertEqual(point, GeoPoint(latitude: 70.0, longitude: 40.0))
