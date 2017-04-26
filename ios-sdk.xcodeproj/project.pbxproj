@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5BB1A61A6A1B20597B8B4286 /* Pods_MapzenSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04E4AC0993E5EBFAAC2141F1 /* Pods_MapzenSDK.framework */; };
 		7D4639F11EB115280074BEC5 /* MapzenSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D4639E81EB115280074BEC5 /* MapzenSDK.framework */; };
 		7D4639FD1EB115280074BEC5 /* MapzenSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D4639E81EB115280074BEC5 /* MapzenSDK.framework */; };
 		7D4639FE1EB115280074BEC5 /* MapzenSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7D4639E81EB115280074BEC5 /* MapzenSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -51,8 +52,8 @@
 		7D463A541EB1357B0074BEC5 /* UIColorExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D463A411EB1357B0074BEC5 /* UIColorExtensionsTests.swift */; };
 		7D503BCC1E77457A00FDDC4F /* SampleMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D503BCB1E77457A00FDDC4F /* SampleMapViewController.swift */; };
 		7D503BCE1E77468B00FDDC4F /* SampleTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D503BCD1E77468B00FDDC4F /* SampleTableViewController.swift */; };
+		814B721477E03B65EF2C60E7 /* Pods_MapzenSDKTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 34105AA3EE25DC0CCB8D0111 /* Pods_MapzenSDKTests.framework */; };
 		AC586709D7E7D4C22AA9474D /* Pods_ios_sdk.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 99B3EC60450343448FA4E699 /* Pods_ios_sdk.framework */; };
-		C8F52AC1BCE46BB17E1CE0A5 /* Pods_ios_sdkTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A3EA87256F2EA6D0C43260A /* Pods_ios_sdkTests.framework */; };
 		DB1201251E96B6200085C7D8 /* DemoSearchListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB1201241E96B6200085C7D8 /* DemoSearchListViewController.swift */; };
 		DB22E59C1DA46640004264E0 /* DemoRoutingResultTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB22E59B1DA46640004264E0 /* DemoRoutingResultTableVC.swift */; };
 		DB22E59E1DA473CA004264E0 /* DemoRouteDirectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB22E59D1DA473CA004264E0 /* DemoRouteDirectionCell.swift */; };
@@ -122,7 +123,10 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		04E4AC0993E5EBFAAC2141F1 /* Pods_MapzenSDK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MapzenSDK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0A9FDCBA6C81C063BED6CDFF /* Pods-ios-sdk.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ios-sdk.release.xcconfig"; path = "Pods/Target Support Files/Pods-ios-sdk/Pods-ios-sdk.release.xcconfig"; sourceTree = "<group>"; };
+		2EDB307AF53EAA8E51162FE5 /* Pods-MapzenSDK.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MapzenSDK.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MapzenSDK/Pods-MapzenSDK.debug.xcconfig"; sourceTree = "<group>"; };
+		34105AA3EE25DC0CCB8D0111 /* Pods_MapzenSDKTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MapzenSDKTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5A3EA87256F2EA6D0C43260A /* Pods_ios_sdkTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ios_sdkTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7D4639E81EB115280074BEC5 /* MapzenSDK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MapzenSDK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7D4639EB1EB115280074BEC5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -171,8 +175,10 @@
 		7D503BCD1E77468B00FDDC4F /* SampleTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SampleTableViewController.swift; sourceTree = "<group>"; };
 		92C35E8790FB3255237B1E77 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		99B3EC60450343448FA4E699 /* Pods_ios_sdk.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ios_sdk.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		A8BB69C349D7314906580508 /* Pods-ios-sdkTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ios-sdkTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ios-sdkTests/Pods-ios-sdkTests.release.xcconfig"; sourceTree = "<group>"; };
+		AAABB1E1300FAB97736F2F7F /* Pods-MapzenSDKTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MapzenSDKTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-MapzenSDKTests/Pods-MapzenSDKTests.release.xcconfig"; sourceTree = "<group>"; };
 		B96DEBA552AA3AAEA9CDF6F4 /* Pods-ios-sdk.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ios-sdk.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ios-sdk/Pods-ios-sdk.debug.xcconfig"; sourceTree = "<group>"; };
+		C481BB48C6711F4FEE1DA601 /* Pods-MapzenSDK.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MapzenSDK.release.xcconfig"; path = "Pods/Target Support Files/Pods-MapzenSDK/Pods-MapzenSDK.release.xcconfig"; sourceTree = "<group>"; };
+		D3998FF91F67B727EE3E0C7A /* Pods-MapzenSDKTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MapzenSDKTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MapzenSDKTests/Pods-MapzenSDKTests.debug.xcconfig"; sourceTree = "<group>"; };
 		DB1201241E96B6200085C7D8 /* DemoSearchListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DemoSearchListViewController.swift; sourceTree = "<group>"; };
 		DB22E59B1DA46640004264E0 /* DemoRoutingResultTableVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DemoRoutingResultTableVC.swift; sourceTree = "<group>"; };
 		DB22E59D1DA473CA004264E0 /* DemoRouteDirectionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DemoRouteDirectionCell.swift; sourceTree = "<group>"; };
@@ -188,7 +194,6 @@
 		DBC8698F1D3662DD00DDC4FE /* SampleAutocompleteTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SampleAutocompleteTableViewController.swift; sourceTree = "<group>"; };
 		DBF441AD1D351B0A007DEE95 /* DemoMapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DemoMapViewController.swift; sourceTree = "<group>"; };
 		DBF441AF1D351C90007DEE95 /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
-		EEFF8429A821CE3BB0733D53 /* Pods-ios-sdkTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ios-sdkTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ios-sdkTests/Pods-ios-sdkTests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -196,6 +201,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5BB1A61A6A1B20597B8B4286 /* Pods_MapzenSDK.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -204,6 +210,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7D4639F11EB115280074BEC5 /* MapzenSDK.framework in Frameworks */,
+				814B721477E03B65EF2C60E7 /* Pods_MapzenSDKTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -221,7 +228,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C8F52AC1BCE46BB17E1CE0A5 /* Pods_ios_sdkTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -296,8 +302,10 @@
 			children = (
 				B96DEBA552AA3AAEA9CDF6F4 /* Pods-ios-sdk.debug.xcconfig */,
 				0A9FDCBA6C81C063BED6CDFF /* Pods-ios-sdk.release.xcconfig */,
-				EEFF8429A821CE3BB0733D53 /* Pods-ios-sdkTests.debug.xcconfig */,
-				A8BB69C349D7314906580508 /* Pods-ios-sdkTests.release.xcconfig */,
+				2EDB307AF53EAA8E51162FE5 /* Pods-MapzenSDK.debug.xcconfig */,
+				C481BB48C6711F4FEE1DA601 /* Pods-MapzenSDK.release.xcconfig */,
+				D3998FF91F67B727EE3E0C7A /* Pods-MapzenSDKTests.debug.xcconfig */,
+				AAABB1E1300FAB97736F2F7F /* Pods-MapzenSDKTests.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -309,6 +317,8 @@
 				92C35E8790FB3255237B1E77 /* Pods.framework */,
 				99B3EC60450343448FA4E699 /* Pods_ios_sdk.framework */,
 				5A3EA87256F2EA6D0C43260A /* Pods_ios_sdkTests.framework */,
+				04E4AC0993E5EBFAAC2141F1 /* Pods_MapzenSDK.framework */,
+				34105AA3EE25DC0CCB8D0111 /* Pods_MapzenSDKTests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -374,10 +384,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 7D463A031EB115280074BEC5 /* Build configuration list for PBXNativeTarget "MapzenSDK" */;
 			buildPhases = (
+				1D35CA1C039685CCA191A472 /* [CP] Check Pods Manifest.lock */,
 				7D4639E31EB115270074BEC5 /* Sources */,
 				7D4639E41EB115270074BEC5 /* Frameworks */,
 				7D4639E51EB115270074BEC5 /* Headers */,
 				7D4639E61EB115270074BEC5 /* Resources */,
+				11203BB5D6A17B51AF6C8257 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -392,9 +404,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 7D463A051EB115280074BEC5 /* Build configuration list for PBXNativeTarget "MapzenSDKTests" */;
 			buildPhases = (
+				B2DB28825FCEA74842A2D072 /* [CP] Check Pods Manifest.lock */,
 				7D4639EC1EB115280074BEC5 /* Sources */,
 				7D4639ED1EB115280074BEC5 /* Frameworks */,
 				7D4639EE1EB115280074BEC5 /* Resources */,
+				BDAD16DAF5DCF6E242A14FF9 /* [CP] Embed Pods Frameworks */,
+				64CEF2105147C672A8E18C2A /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -434,12 +449,9 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = DB7A33F41C8F8E8B009CC743 /* Build configuration list for PBXNativeTarget "ios-sdkTests" */;
 			buildPhases = (
-				5BB8F240879F6DFA4F2E061C /* [CP] Check Pods Manifest.lock */,
 				DB7A33E41C8F8E8B009CC743 /* Sources */,
 				DB7A33E51C8F8E8B009CC743 /* Frameworks */,
 				DB7A33E61C8F8E8B009CC743 /* Resources */,
-				46EC3F10C3789CA26CDF6091 /* [CP] Embed Pods Frameworks */,
-				ECB4BF4821DF7CEE3474E821 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -545,6 +557,21 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		11203BB5D6A17B51AF6C8257 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MapzenSDK/Pods-MapzenSDK-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		191580EBEEB1CBE8776858D7 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -560,22 +587,7 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ios-sdk/Pods-ios-sdk-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		46EC3F10C3789CA26CDF6091 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ios-sdkTests/Pods-ios-sdkTests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		5BB8F240879F6DFA4F2E061C /* [CP] Check Pods Manifest.lock */ = {
+		1D35CA1C039685CCA191A472 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -588,6 +600,21 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		64CEF2105147C672A8E18C2A /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MapzenSDKTests/Pods-MapzenSDKTests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		9ED767F151C3E563270C40FC /* [CP] Copy Pods Resources */ = {
@@ -620,19 +647,34 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
-		ECB4BF4821DF7CEE3474E821 /* [CP] Copy Pods Resources */ = {
+		B2DB28825FCEA74842A2D072 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "[CP] Copy Pods Resources";
+			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ios-sdkTests/Pods-ios-sdkTests-resources.sh\"\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		BDAD16DAF5DCF6E242A14FF9 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MapzenSDKTests/Pods-MapzenSDKTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -760,6 +802,7 @@
 /* Begin XCBuildConfiguration section */
 		7D4639FF1EB115280074BEC5 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2EDB307AF53EAA8E51162FE5 /* Pods-MapzenSDK.debug.xcconfig */;
 			buildSettings = {
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
@@ -789,6 +832,7 @@
 		};
 		7D463A001EB115280074BEC5 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C481BB48C6711F4FEE1DA601 /* Pods-MapzenSDK.release.xcconfig */;
 			buildSettings = {
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
@@ -817,6 +861,7 @@
 		};
 		7D463A011EB115280074BEC5 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D3998FF91F67B727EE3E0C7A /* Pods-MapzenSDKTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -837,6 +882,7 @@
 		};
 		7D463A021EB115280074BEC5 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = AAABB1E1300FAB97736F2F7F /* Pods-MapzenSDKTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -1008,7 +1054,6 @@
 		};
 		DB7A33F51C8F8E8B009CC743 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = EEFF8429A821CE3BB0733D53 /* Pods-ios-sdkTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				DEVELOPMENT_TEAM = LTQC954SPQ;
@@ -1023,7 +1068,6 @@
 		};
 		DB7A33F61C8F8E8B009CC743 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = A8BB69C349D7314906580508 /* Pods-ios-sdkTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				DEVELOPMENT_TEAM = LTQC954SPQ;
