@@ -7,7 +7,7 @@
 
 The Mapzen iOS SDK is a thin wrapper that packages up everything you need to use Mapzen services in your iOS applications.
 
-We recently released our beta version of the SDK, version 0.2.0. The API at this point is fairly stable and we'd welcome feedback from the community on its usage. Feature requests are also welcome; label it appropriately as an ["Enhancement"](https://github.com/mapzen/ios/issues?q=is%3Aopen+is%3Aissue+label%3Aenhancement) and be aware we probably won't be able to implement it until after launch at this point. Feel free to also reach out to us using any of the other channels we have available on https://mapzen.com/.
+We welcome feedback from the community on its usage. Feature requests are also welcome; label it appropriately as an ["Enhancement"](https://github.com/mapzen/ios/issues?q=is%3Aopen+is%3Aissue+label%3Aenhancement). Feel free to also reach out to us using any of the other channels we have available on https://mapzen.com/.
 
 ## Usage
 Everything you need to get going using the Mapzen SDK
