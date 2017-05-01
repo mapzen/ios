@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
 
   s.name    = 'Mapzen-ios-sdk'
-  s.version = '0.4.0'
+  s.version = '0.4.1'
 
   s.summary           = 'Mapzen iOS SDK'
   s.description       = 'The Mapzen iOS SDK is a thin wrapper that packages up everything you need to use Mapzen services in your iOS applications. It also simplifies setup, installation, API key management, and generally makes your life better.'
