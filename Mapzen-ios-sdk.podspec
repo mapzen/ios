@@ -21,7 +21,7 @@ Pod::Spec.new do |s|
   s.subspec 'Core' do |cs|
     cs.dependency 'Pelias', '~> 1.0.1'
     cs.dependency 'OnTheRoad', '~> 1.0.0'
-    cs.dependency 'Tangram-es', '~> 0.5.1'
+    cs.dependency 'Tangram-es', '~> 0.5.2'
     cs.source_files = ['src/*.swift', 'src/*/*.swift']
     cs.resources = [ 'images/*.png', 'housestyles.bundle' ]
   end
