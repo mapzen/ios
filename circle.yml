@@ -30,7 +30,7 @@ test:
       xcpretty --color --report junit --output $CIRCLE_TEST_REPORTS/xcode/results.xml
 deployment:
   alpha_distribution:
-    branch: issue-306
+    branch: master
     commands: 
       - fastlane master
       - scripts/deploy.sh
