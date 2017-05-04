@@ -1,6 +1,6 @@
 machine:
   xcode:
-    version: "8.2.1"
+    version: "8.3.2"
   environment:
     GYM_CODE_SIGNING_IDENTITY: "iPhone Distribution: Michael Cunningham (LTQC954SPQ)"
 
@@ -32,7 +32,7 @@ deployment:
   alpha_distribution:
     branch: master
     commands: 
-      - gym --use_legacy_build_api --scheme "ios-sdk" --workspace "ios-sdk.xcworkspace" --output_directory $CIRCLE_ARTIFACTS
+      - fastlane master
       - scripts/deploy.sh
       - sudo pip install 'Circle-Beacon == 2.0.0'
       - alert-circle mapzen documentation master $CIRCLE_TOKEN
