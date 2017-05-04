@@ -30,13 +30,16 @@ xcode-select --install
 
 # Available Actions
 ## iOS
-### ios beta
+### ios master
 ```
-fastlane ios beta
+fastlane ios master
 ```
-Submit a new build to Hockeyapp
-
-This will also make sure the profile is up to date
+Build master
+### ios nightly
+```
+fastlane ios nightly
+```
+Submit a new nighly build to Hockeyapp
 ### ios default_changelog
 ```
 fastlane ios default_changelog

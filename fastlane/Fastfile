@@ -15,8 +15,10 @@ fastlane_version "2.28.8"
 
 default_platform :ios
 
-ipa_path = ENV['CIRCLE_ARTIFACTS'] + "/ios-sdk.ipa"
-dsym_path = ENV['CIRCLE_ARTIFACTS'] + "/ios-sdk.app.dSYM.zip" 
+circle_artifacts_path = ENV['CIRCLE_ARTIFACTS']
+
+ipa_path = "#{circle_artifacts_path}/ios-sdk.ipa"
+dsym_path = "#{circle_artifacts_path}/ios-sdk.app.dSYM.zip" 
 
 platform :ios do
   before_all do
@@ -44,7 +46,7 @@ platform :ios do
       dsym: dsym_path,
       commit_sha: ENV['CIRCLE_SHA1'],
       build_server_url: ENV['CIRCLE_BUILD_URL'],
-      repository_url: ENV['CIRCLE_REPOSITORY_URL']
+      repository_url: ENV['CIRCLE_REPOSITORY_URL'],
       notes: default_changelog
     )
   end
