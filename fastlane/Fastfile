@@ -37,7 +37,7 @@ platform :ios do
   desc "Submit a new nighly build to Hockeyapp"
   lane :nightly do
     # Push to Hockey
-    markdown_type = 1
+    markdown_type = "1"
     hockey(
       api_token: ENV['HOCKEYAPP_TOKEN'],
       teams: ENV['NIGHTLY_SAMPLE_TEAM_ID'],
