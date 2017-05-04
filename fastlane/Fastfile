@@ -37,11 +37,12 @@ platform :ios do
   desc "Submit a new nighly build to Hockeyapp"
   lane :nightly do
     # Push to Hockey
+    textile_type = "0"
     markdown_type = "1"
     hockey(
       api_token: ENV['HOCKEYAPP_TOKEN'],
       teams: ENV['NIGHTLY_SAMPLE_TEAM_ID'],
-      notes_type: markdown_type,
+      notes_type: textile_type,
       ipa: ipa_path,
       dsym: dsym_path,
       commit_sha: ENV['CIRCLE_SHA1'],
