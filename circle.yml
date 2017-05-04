@@ -30,7 +30,7 @@ test:
       xcpretty --color --report junit --output $CIRCLE_TEST_REPORTS/xcode/results.xml
 deployment:
   alpha_distribution:
-    branch: master
+    branch: issue-306
     commands: 
       - gym --use_legacy_build_api --scheme "ios-sdk" --workspace "ios-sdk.xcworkspace" --output_directory $CIRCLE_ARTIFACTS
       - scripts/deploy.sh
