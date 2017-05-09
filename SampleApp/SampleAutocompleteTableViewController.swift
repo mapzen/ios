@@ -6,9 +6,9 @@
 //  Copyright © 2016 Mapzen. All rights reserved.
 //
 
-import MapKit
+import UIKit
 import CoreLocation
-import Pelias
+import MapzenSDK
 
 protocol AutocompleteSearchDelegate {
   func selected(_ location: PeliasMapkitAnnotation)

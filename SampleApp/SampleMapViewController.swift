@@ -6,8 +6,8 @@
 //  Copyright © 2017 Mapzen. All rights reserved.
 //
 
-import Foundation
 import CoreLocation
+import MapzenSDK
 
 class SampleMapViewController : MZMapViewController {
 
@@ -19,7 +19,7 @@ class SampleMapViewController : MZMapViewController {
   }
   func shouldZoomToCurrentLocation() {
     if !sceneDidLoad { return }
-    if lastSetPoint == nil { return }
+    if !receivedLocation() { return }
     _ = resetCameraOnCurrentLocation()
     firstTimeZoomToCurrentLocation = false
   }

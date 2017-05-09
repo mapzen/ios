@@ -7,7 +7,7 @@
 //
 
 import XCTest
-@testable import ios_sdk
+@testable import MapzenSDK
 import TangramMap
 import OnTheRoad
 import CoreLocation

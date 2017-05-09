@@ -7,7 +7,8 @@
 //
 
 import UIKit
-import TangramMap
+import MapzenSDK
+
 class DemoMapViewController:  SampleMapViewController, MapMarkerSelectDelegate {
 
   private var styleLoaded = false

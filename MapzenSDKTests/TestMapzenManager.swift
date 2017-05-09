@@ -6,7 +6,7 @@
 //  Copyright © 2017 Mapzen. All rights reserved.
 //
 
-@testable import ios_sdk
+@testable import MapzenSDK
 
 class TestMapzenManager : MapzenManagerProtocol {
 

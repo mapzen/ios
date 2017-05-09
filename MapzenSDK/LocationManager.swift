@@ -44,7 +44,7 @@ open class LocationManager: NSObject, CLLocationManagerDelegate {
 
   fileprivate let coreLocationManager = CLLocationManager()
   
-  override init(){
+  override public init(){
     super.init()
     coreLocationManager.delegate = self
   }
@@ -138,7 +138,7 @@ open class LocationManager: NSObject, CLLocationManagerDelegate {
 }
 
 /// Protocol for LocationManager's api so that actual implementation can be switched out in testing contexts.
-protocol LocationManagerProtocol : class {
+public protocol LocationManagerProtocol : class {
   weak var delegate: LocationManagerDelegate? { get set }
   var currentLocation: CLLocation? { get set }
 

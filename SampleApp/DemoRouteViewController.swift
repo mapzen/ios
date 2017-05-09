@@ -6,10 +6,8 @@
 //  Copyright © 2017 Mapzen. All rights reserved.
 //
 
-import UIKit
 import OnTheRoad
-import TangramMap
-import CoreLocation
+import MapzenSDK
 
 class DemoRouteViewController: SampleMapViewController, MapSingleTapGestureDelegate {
   let routeListSegueId = "routeListSegueId"

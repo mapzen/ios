@@ -332,7 +332,7 @@ open class MZMapViewController: UIViewController, LocationManagerDelegate {
                             "walkabout/walkabout-style-more-labels" : MapStyle.walkabout,
                             "zinc/zinc-style-more-labels" : MapStyle.zinc]
 
-  let locationManager : LocationManagerProtocol
+  public let locationManager : LocationManagerProtocol
   let mapzenManager : MapzenManagerProtocol
 
   /**
@@ -840,6 +840,10 @@ open class MZMapViewController: UIViewController, LocationManagerDelegate {
     removeMarker(currentRouteMarker)
     self.currentRouteMarker = nil
     currentRoute = nil
+  }
+
+  open func receivedLocation() -> Bool {
+    return lastSetPoint != nil
   }
 
   @objc func defaultFindMeAction(_ button: UIButton, touchEvent: UIEvent) {

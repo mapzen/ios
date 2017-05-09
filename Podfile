@@ -2,9 +2,7 @@ platform :ios, '9.3'
 use_frameworks!
 
 def shared_pods
-  pod 'Pelias', '~> 1.0.1'
-  pod 'OnTheRoad', '~> 1.0.0'
-  pod 'Tangram-es', '~> 0.5.2'
+  pod 'Mapzen-ios-sdk', :path => '.' 
 end
 
 target "ios-sdk" do
@@ -12,6 +10,10 @@ target "ios-sdk" do
   pod "HockeySDK", '~> 4.1.4', :subspecs => ['CrashOnlyLib']
 end
 
-target "ios-sdkTests" do
+target "MapzenSDK" do
+  shared_pods
+end
+
+target "MapzenSDKTests" do
   shared_pods
 end

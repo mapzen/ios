@@ -7,7 +7,7 @@
 //
 
 import XCTest
-@testable import ios_sdk
+@testable import MapzenSDK
 @testable import OnTheRoad
 
 class RoutingControllerTests : XCTestCase {
