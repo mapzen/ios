@@ -26,7 +26,9 @@ class DemoRouteViewController: SampleMapViewController, MapSingleTapGestureDeleg
   //MARK:- ViewController life cycle
   override func viewDidLoad() {
     super.viewDidLoad()
-    try? loadStyleAsync(.bubbleWrap, onStyleLoaded: { [unowned self] (style) in
+    let appDelegate = UIApplication.shared.delegate as! AppDelegate
+
+    try? loadStyleAsync(appDelegate.selectedMapStyle, onStyleLoaded: { [unowned self] (style) in
       self.singleTapGestureDelegate = self
       self.sceneDidLoad = true
       _ = self.showCurrentLocation(true)
@@ -34,6 +36,7 @@ class DemoRouteViewController: SampleMapViewController, MapSingleTapGestureDeleg
       if self.firstTimeZoomToCurrentLocation { self.shouldZoomToCurrentLocation() }
     })
     setupSwitchLocaleBtn()
+    setupStyleObservance()
     let alert = UIAlertController(title: "Tap to Route", message: "Tap anywhere on the map to route!", preferredStyle: .alert)
     alert.addAction(UIAlertAction(title: "Ok!", style: UIAlertActionStyle.default, handler: nil))
     present(alert, animated: true, completion: nil)
