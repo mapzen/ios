@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import MapzenSDK
+import Mapzen_ios_sdk
 
 class DemoMapViewController:  SampleMapViewController, MapMarkerSelectDelegate {
 

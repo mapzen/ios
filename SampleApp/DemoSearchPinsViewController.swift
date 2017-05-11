@@ -7,7 +7,7 @@
 //
 
 import TangramMap
-import MapzenSDK
+import Mapzen_ios_sdk
 
 class DemoSearchPinsViewController: SampleMapViewController, UITextFieldDelegate, AutocompleteSearchDelegate {
 
