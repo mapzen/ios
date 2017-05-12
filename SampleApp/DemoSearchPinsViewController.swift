@@ -18,8 +18,9 @@ class DemoSearchPinsViewController: SampleMapViewController, UITextFieldDelegate
 
   override func viewDidLoad() {
     super.viewDidLoad()
+    let appDelegate = UIApplication.shared.delegate as! AppDelegate
 
-    try? loadStyleAsync(.bubbleWrap) { [unowned self] (style) in
+    try? loadStyleAsync(appDelegate.selectedMapStyle) { [unowned self] (style) in
       self.sceneDidLoad = true
       let _ = self.showCurrentLocation(true)
       self.showFindMeButon(true)
@@ -29,6 +30,7 @@ class DemoSearchPinsViewController: SampleMapViewController, UITextFieldDelegate
     view.bringSubview(toFront: searchField)
     view.bringSubview(toFront: displaySearch)
     searchField.delegate = self
+    setupStyleObservance()
   }
 
   func textFieldShouldReturn(_ textField: UITextField) -> Bool {

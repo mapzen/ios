@@ -30,8 +30,10 @@ class DemoMapViewController:  SampleMapViewController, MapMarkerSelectDelegate {
     super.viewDidLoad()
     setupSwitchStyleBtn()
     setupSwitchLocaleBtn()
+    setupStyleObservance()
     markerSelectDelegate = self
-    try? loadStyleAsync(.bubbleWrap) { [unowned self] (style) in
+    let appDelegate = UIApplication.shared.delegate as! AppDelegate
+    try? loadStyleAsync(appDelegate.selectedMapStyle) { [unowned self] (style) in
       self.styleLoaded = true
       let _ = self.showCurrentLocation(true)
       self.showFindMeButon(true)
@@ -82,10 +84,8 @@ class DemoMapViewController:  SampleMapViewController, MapMarkerSelectDelegate {
   }
 
   private func indicateLoadStyle(style: MapStyle) {
-    activityIndicator.startAnimating()
-    try? loadStyleAsync(style, onStyleLoaded: { [unowned self] (style) in
-      self.activityIndicator.stopAnimating()
-    })
+    let appDelegate = UIApplication.shared.delegate as! AppDelegate
+    appDelegate.selectedMapStyle = style
   }
 
   @objc private func changeMapLanguage() {

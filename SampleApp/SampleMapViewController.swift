@@ -8,11 +8,13 @@
 
 import CoreLocation
 import MapzenSDK
+import UIKit
 
 class SampleMapViewController : MZMapViewController {
 
   var firstTimeZoomToCurrentLocation = true
   var sceneDidLoad = false
+  private var myContext = 0
 
   override var prefersStatusBarHidden: Bool {
     return false
@@ -30,5 +32,30 @@ class SampleMapViewController : MZMapViewController {
     if (firstTimeZoomToCurrentLocation) {
       shouldZoomToCurrentLocation()
     }
+  }
+
+  //KVO for MapStyle changes
+
+  func setupStyleObservance() {
+    let appDelegate = UIApplication.shared.delegate as! AppDelegate
+    appDelegate.addObserver(self, forKeyPath:
+      #keyPath(AppDelegate.selectedMapStyle), options: .new, context: &myContext)
+  }
+
+  override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+    if context == &myContext {
+      if (change?[.newKey]) != nil {
+        //TODO: We should probably actually check to see what the incoming change is here. However, since we're only observing one thing (mapstyle changes), I leave that as an exercise to the reader.
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        try? loadStyle(appDelegate.selectedMapStyle)
+      }
+    } else {
+      super.observeValue(forKeyPath: keyPath, of: object, change: change, context: context)
+    }
+  }
+
+  deinit {
+    let appDelegate = UIApplication.shared.delegate as! AppDelegate
+    appDelegate.removeObserver(self, forKeyPath: #keyPath(AppDelegate.selectedMapStyle), context: &myContext)
   }
 }
