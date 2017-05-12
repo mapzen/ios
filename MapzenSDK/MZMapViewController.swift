@@ -542,7 +542,7 @@ open class MZMapViewController: UIViewController, LocationManagerDelegate {
    Loads a map style synchronously on the main thread. Use the async methods instead of these in production apps.
 
    - parameter style: The map style to load.
-   - parameter locale: The locale to use for the map's language.
+   - parameter l: The locale to use for the map's language.
    - parameter sceneUpdates: The scene updates to make while loading the map style.
    - throws: A MZError `apiKeyNotSet` error if an API Key has not been sent on the MapzenManager class.
    */
@@ -560,7 +560,7 @@ open class MZMapViewController: UIViewController, LocationManagerDelegate {
    Loads the map style asynchronously. Recommended for production apps. If you have scene updates to apply, either use the other version of this method that allows you to pass in scene updates during load, or wait until onSceneLoaded is called to apply those updates.
    
    - parameter style: The map style to load.
-   - parameter onSceneLoaded: Closure called on scene loaded.
+   - parameter onStyleLoaded: Closure called on scene loaded.
    - throws: A MZError `apiKeyNotSet` error if an API Key has not been sent on the MapzenManager class.
   */
   open func loadStyleAsync(_ style: MapStyle, onStyleLoaded: OnStyleLoaded?) throws {
@@ -572,7 +572,7 @@ open class MZMapViewController: UIViewController, LocationManagerDelegate {
 
    - parameter style: The map style to load.
    - parameter locale: The locale to use for the map's language.
-   - parameter onSceneLoaded: Closure called on scene loaded.
+   - parameter onStyleLoaded: Closure called on scene loaded.
    - throws: A MZError `apiKeyNotSet` error if an API Key has not been sent on the MapzenManager class.
    */
   open func loadStyleAsync(_ style: MapStyle, locale: Locale, onStyleLoaded: OnStyleLoaded?) throws {
@@ -584,7 +584,7 @@ open class MZMapViewController: UIViewController, LocationManagerDelegate {
    
    - parameter style: The map style to load.
    - parameter sceneUpdates: The scene updates to make while loading the map style.
-   - parameter onSceneLoaded: Closure called on scene loaded.
+   - parameter onStyleLoaded: Closure called on scene loaded.
    - throws: A MZError `apiKeyNotSet` error if an API Key has not been sent on the MapzenManager class.
    */
   open func loadStyleAsync(_ style: MapStyle, sceneUpdates: [TGSceneUpdate], onStyleLoaded: OnStyleLoaded?) throws {
@@ -601,9 +601,9 @@ open class MZMapViewController: UIViewController, LocationManagerDelegate {
    Loads the map style asynchronously. Recommended for production apps. If you have scene updates to apply, either pass in the scene updates at the initial call, or wait until onSceneLoaded is called to apply those updates.
 
    - parameter style: The map style to load.
-   - parameter locale: The locale to use for the map's language.
+   - parameter l: The locale to use for the map's language.
    - parameter sceneUpdates: The scene updates to make while loading the map style.
-   - parameter onSceneLoaded: Closure called on scene loaded.
+   - parameter onStyleLoaded: Closure called on scene loaded.
    - throws: A MZError `apiKeyNotSet` error if an API Key has not been sent on the MapzenManager class.
    */
   open func loadStyleAsync(_ style: MapStyle, locale l: Locale, sceneUpdates: [TGSceneUpdate], onStyleLoaded: OnStyleLoaded?) throws {

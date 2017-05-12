@@ -42,7 +42,7 @@ public protocol GenericPointMarker: GenericMarker {
 
    - parameter coordinates: Coordinates to animate the marker to
    - parameter seconds: Duration in seconds of the animation.
-   - parameter easeType: Easing to use for animation.
+   - parameter ease: Easing to use for animation.
    */
   func setPointEased(_ coordinates: TGGeoPoint, seconds: Float, easeType ease: TGEaseType) -> Bool
 
@@ -57,7 +57,7 @@ public protocol GenericPointIconMarker: GenericGeometricMarker, GenericPointMark
   /**
    Initializes a marker with a given size.
 
-   - parameter size: The size the marker should be.
+   - parameter s: The size the marker should be.
    */
   init(size s: CGSize)
 }
@@ -231,7 +231,7 @@ public class PointMarker : GeometricMarker, GenericPointIconMarker {
 
    - parameter coordinates: Coordinates to animate the marker to
    - parameter seconds: Duration in seconds of the animation.
-   - parameter easeType: Easing to use for animation.
+   - parameter ease: Easing to use for animation.
    */
   public func setPointEased(_ coordinates: TGGeoPoint, seconds: Float, easeType ease: TGEaseType) -> Bool {
     return tgMarker.setPointEased(coordinates, seconds: seconds, easeType: ease)
@@ -256,7 +256,7 @@ public class PointMarker : GeometricMarker, GenericPointIconMarker {
   /**
    Initializes a marker with a given size.
 
-   - parameter size: The size the marker should be.
+   - parameter s: The size the marker should be.
    */
   public required init(size s: CGSize) {
     size = s
@@ -410,7 +410,7 @@ public class SystemPointMarker : Marker, GenericSystemPointMarker {
 
    - parameter coordinates: Coordinates to animate the marker to
    - parameter seconds: Duration in seconds of the animation.
-   - parameter easeType: Easing to use for animation.
+   - parameter ease: Easing to use for animation.
    */
   public func setPointEased(_ coordinates: TGGeoPoint, seconds: Float, easeType ease: TGEaseType) -> Bool {
     return tgMarker.setPointEased(coordinates, seconds: seconds, easeType: ease)
@@ -466,7 +466,7 @@ public class SelectableSystemPointMarker : Marker, GenericSelectableSystemPointM
 
    - parameter coordinates: Coordinates to animate the marker to
    - parameter seconds: Duration in seconds of the animation.
-   - parameter easeType: Easing to use for animation.
+   - parameter ease: Easing to use for animation.
    */
   public func setPointEased(_ coordinates: TGGeoPoint, seconds: Float, easeType ease: TGEaseType) -> Bool {
     return tgMarker.setPointEased(coordinates, seconds: seconds, easeType: ease)

@@ -93,7 +93,7 @@ open class PeliasMapkitAnnotation: NSObject, MKAnnotation {
   /**
    Sets a target for the selector which will be invoked when the annotation is clicked.
    
-   - parameter target: A target to invoke the selector on when the annotation is clicked
+   - parameter actionTarget: A target to invoke the selector on when the annotation is clicked
    - parameter action: An selector to be invoked on the target when the annotation is clicked
    */
   public func setTarget(target actionTarget: UIResponder, action: Selector) {
