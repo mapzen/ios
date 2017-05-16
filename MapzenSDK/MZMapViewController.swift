@@ -978,7 +978,7 @@ open class MZMapViewController: UIViewController, LocationManagerDelegate {
       return
     }
     lastSetPoint = TGGeoPoint(longitude: location.coordinate.longitude, latitude: location.coordinate.latitude)
-    marker.point = TGGeoPoint(longitude: location.coordinate.longitude, latitude: location.coordinate.latitude)
+    _ = marker.setPointEased(lastSetPoint!, seconds: 1.0, easeType: .linear)
     if (shouldShowCurrentLocation) {
       marker.visible = true
     }
