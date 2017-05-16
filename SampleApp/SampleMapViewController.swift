@@ -7,8 +7,8 @@
 //
 
 import CoreLocation
-import MapzenSDK
 import UIKit
+import Mapzen_ios_sdk
 
 class SampleMapViewController : MZMapViewController {
 

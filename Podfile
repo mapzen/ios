@@ -2,7 +2,7 @@ platform :ios, '9.3'
 use_frameworks!
 
 def shared_pods
-  pod 'Mapzen-ios-sdk', :path => '.' 
+  pod 'Mapzen-ios-sdk', :path => '.'
 end
 
 target "ios-sdk" do

@@ -9,13 +9,10 @@
 /* Begin PBXBuildFile section */
 		5BB1A61A6A1B20597B8B4286 /* Pods_MapzenSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04E4AC0993E5EBFAAC2141F1 /* Pods_MapzenSDK.framework */; };
 		7D4639F11EB115280074BEC5 /* MapzenSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D4639E81EB115280074BEC5 /* MapzenSDK.framework */; };
-		7D4639FD1EB115280074BEC5 /* MapzenSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D4639E81EB115280074BEC5 /* MapzenSDK.framework */; };
-		7D4639FE1EB115280074BEC5 /* MapzenSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7D4639E81EB115280074BEC5 /* MapzenSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		7D463A191EB135460074BEC5 /* ApplicationExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D463A061EB135460074BEC5 /* ApplicationExtensions.swift */; };
 		7D463A1A1EB135460074BEC5 /* BundleExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D463A071EB135460074BEC5 /* BundleExtensions.swift */; };
 		7D463A1B1EB135460074BEC5 /* DictionaryExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D463A081EB135460074BEC5 /* DictionaryExtensions.swift */; };
 		7D463A1C1EB135460074BEC5 /* Dimensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D463A0A1EB135460074BEC5 /* Dimensions.swift */; };
-		7D463A1D1EB135460074BEC5 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D463A0B1EB135460074BEC5 /* LocationManager.swift */; };
 		7D463A1E1EB135460074BEC5 /* MapzenManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D463A0C1EB135460074BEC5 /* MapzenManager.swift */; };
 		7D463A1F1EB135460074BEC5 /* MapzenManagerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D463A0D1EB135460074BEC5 /* MapzenManagerExtensions.swift */; };
 		7D463A201EB135460074BEC5 /* MapzenSearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D463A0E1EB135460074BEC5 /* MapzenSearch.swift */; };
@@ -69,6 +66,7 @@
 		DB7A33DF1C8F8E8B009CC743 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DB7A33DE1C8F8E8B009CC743 /* Assets.xcassets */; };
 		DB7A33E21C8F8E8B009CC743 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DB7A33E01C8F8E8B009CC743 /* LaunchScreen.storyboard */; };
 		DBC869901D3662DD00DDC4FE /* SampleAutocompleteTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBC8698F1D3662DD00DDC4FE /* SampleAutocompleteTableViewController.swift */; };
+		DBEF2B141EC3B99A00D19B62 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D463A0B1EB135460074BEC5 /* LocationManager.swift */; };
 		DBF441AE1D351B0A007DEE95 /* DemoMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBF441AD1D351B0A007DEE95 /* DemoMapViewController.swift */; };
 		DBF441B01D351C90007DEE95 /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DBF441AF1D351C90007DEE95 /* GLKit.framework */; };
 /* End PBXBuildFile section */
@@ -88,13 +86,6 @@
 			remoteGlobalIDString = DB7A33D31C8F8E8B009CC743;
 			remoteInfo = "ios-sdk";
 		};
-		7D4639FB1EB115280074BEC5 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = DB7A33CC1C8F8E8B009CC743 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 7D4639E71EB115270074BEC5;
-			remoteInfo = MapzenSDK;
-		};
 		DB7A33E91C8F8E8B009CC743 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = DB7A33CC1C8F8E8B009CC743 /* Project object */;
@@ -105,17 +96,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		7D463A041EB115280074BEC5 /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				7D4639FE1EB115280074BEC5 /* MapzenSDK.framework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		7D9EBCD31E6E0BA500303E1B /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -228,7 +208,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7D4639FD1EB115280074BEC5 /* MapzenSDK.framework in Frameworks */,
 				DBF441B01D351C90007DEE95 /* GLKit.framework in Frameworks */,
 				AC586709D7E7D4C22AA9474D /* Pods_ios_sdk.framework in Frameworks */,
 			);
@@ -456,12 +435,10 @@
 				191580EBEEB1CBE8776858D7 /* [CP] Embed Pods Frameworks */,
 				9ED767F151C3E563270C40FC /* [CP] Copy Pods Resources */,
 				7D9EBCD31E6E0BA500303E1B /* CopyFiles */,
-				7D463A041EB115280074BEC5 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				7D4639FC1EB115280074BEC5 /* PBXTargetDependency */,
 			);
 			name = "ios-sdk";
 			productName = "ios-sdk";
@@ -504,7 +481,7 @@
 					7D4639EF1EB115280074BEC5 = {
 						CreatedOnToolsVersion = 8.3.1;
 						LastSwiftMigration = 0830;
-						ProvisioningStyle = Automatic;
+						ProvisioningStyle = Manual;
 						TestTargetID = DB7A33D31C8F8E8B009CC743;
 					};
 					DB7A33D31C8F8E8B009CC743 = {
@@ -719,7 +696,7 @@
 				7D463A1C1EB135460074BEC5 /* Dimensions.swift in Sources */,
 				7D463A191EB135460074BEC5 /* ApplicationExtensions.swift in Sources */,
 				7D463A221EB135460074BEC5 /* MZMapViewController.swift in Sources */,
-				7D463A1D1EB135460074BEC5 /* LocationManager.swift in Sources */,
+				DBEF2B141EC3B99A00D19B62 /* LocationManager.swift in Sources */,
 				7D463A2A1EB135460074BEC5 /* UIColorExtensions.swift in Sources */,
 				7D463A1A1EB135460074BEC5 /* BundleExtensions.swift in Sources */,
 				7D463A291EB135460074BEC5 /* TangramExtensions.swift in Sources */,
@@ -794,11 +771,6 @@
 			isa = PBXTargetDependency;
 			target = DB7A33D31C8F8E8B009CC743 /* ios-sdk */;
 			targetProxy = 7D4639F41EB115280074BEC5 /* PBXContainerItemProxy */;
-		};
-		7D4639FC1EB115280074BEC5 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 7D4639E71EB115270074BEC5 /* MapzenSDK */;
-			targetProxy = 7D4639FB1EB115280074BEC5 /* PBXContainerItemProxy */;
 		};
 		DB7A33EA1C8F8E8B009CC743 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -892,15 +864,18 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = D3998FF91F67B727EE3E0C7A /* Pods-MapzenSDKTests.debug.xcconfig */;
 			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = MapzenSDKTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.mapzen.MapzenSDKTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
@@ -912,16 +887,19 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = AAABB1E1300FAB97736F2F7F /* Pods-MapzenSDKTests.release.xcconfig */;
 			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = MapzenSDKTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.mapzen.MapzenSDKTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ios-sdk.app/ios-sdk";
 			};

@@ -7,7 +7,7 @@
 //
 
 import OnTheRoad
-import MapzenSDK
+import Mapzen_ios_sdk
 
 class DemoRouteViewController: SampleMapViewController, MapSingleTapGestureDelegate {
   let routeListSegueId = "routeListSegueId"
