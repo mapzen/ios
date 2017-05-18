@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import TangramMap
 import Mapzen_ios_sdk
 
 class DemoMapViewController:  SampleMapViewController, MapMarkerSelectDelegate {
@@ -97,9 +98,18 @@ class DemoMapViewController:  SampleMapViewController, MapMarkerSelectDelegate {
       "Spanish": "es_ES",
       "Korean": "ko_KR",
       "Italian": "it_IT",
+      "OSM Default": "none",
       ]
     let actionSheet = UIAlertController.init(title: "Map Language", message: "Choose a language", preferredStyle: .actionSheet)
     for (actionTitle, languageIdentifier) in languageIdByActionSheetTitle {
+      if (languageIdentifier == "none") {
+        actionSheet.addAction(UIAlertAction.init(title: actionTitle, style: .default, handler: { [unowned self] (action) in
+          let update = TGSceneUpdate(path: "global.ux_language", value: "")
+          self.queue([update])
+          self.applySceneUpdates()
+        }))
+        continue
+      }
       actionSheet.addAction(UIAlertAction.init(title: actionTitle, style: .default, handler: { [unowned self] (action) in
         self.updateLocale(Locale.init(identifier: languageIdentifier))
       }))
