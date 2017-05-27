@@ -17,3 +17,11 @@ end
 target "MapzenSDKTests" do
   shared_pods
 end
+
+target "SampleApp-Objc" do
+  shared_pods
+end
+
+target "SampleApp-ObjcTests" do
+  shared_pods
+end
