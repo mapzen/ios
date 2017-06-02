@@ -17,8 +17,8 @@ dependencies:
     - "~/.cocoapods"
 test:
   override:
-    - if [[ "$CIRCLE_BRANCH" = "issue-232" ]] ; then scripts/build-test-objc.sh ; fi
-    - scripts/build-test-swift.sh 
+    - if [[ "$CIRCLE_BRANCH" = "issue-232" ]] ; then scripts/build_test_objc.sh ; fi
+    - scripts/build_test_swift.sh 
 deployment:
   alpha_distribution:
     branch: master
