@@ -38,6 +38,7 @@
                ReferencedContainer = "container:ios-sdk.xcodeproj">
             </BuildableReference>
          </TestableReference>
+<<<<<<< HEAD
          <TestableReference
             skipped = "YES">
             <BuildableReference
@@ -58,6 +59,8 @@
                ReferencedContainer = "container:ios-sdk.xcodeproj">
             </BuildableReference>
          </TestableReference>
+=======
+>>>>>>> Continuing to poke at the xcode project to convince it to build in Circle
       </Testables>
       <MacroExpansion>
          <BuildableReference
