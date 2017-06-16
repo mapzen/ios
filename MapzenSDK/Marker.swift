@@ -234,7 +234,14 @@ public class PointMarker : GeometricMarker, GenericPointIconMarker {
    - parameter ease: Easing to use for animation.
    */
   public func setPointEased(_ coordinates: TGGeoPoint, seconds: Float, easeType ease: TGEaseType) -> Bool {
-    return tgMarker.setPointEased(coordinates, seconds: seconds, easeType: ease)
+    tgMarker.pointEased(coordinates, seconds: seconds, easeType: ease)
+    do {
+      try tgMarker.getError()
+    } catch {
+      return false
+    }
+    return true
+
   }
 
   /// Default initializer.
@@ -413,7 +420,13 @@ public class SystemPointMarker : Marker, GenericSystemPointMarker {
    - parameter ease: Easing to use for animation.
    */
   public func setPointEased(_ coordinates: TGGeoPoint, seconds: Float, easeType ease: TGEaseType) -> Bool {
-    return tgMarker.setPointEased(coordinates, seconds: seconds, easeType: ease)
+    tgMarker.pointEased(coordinates, seconds: seconds, easeType: ease)
+    do {
+      try tgMarker.getError()
+    } catch {
+      return false
+    }
+    return true
   }
 
   init(markerType mt: PointMarkerType) {
@@ -469,7 +482,13 @@ public class SelectableSystemPointMarker : Marker, GenericSelectableSystemPointM
    - parameter ease: Easing to use for animation.
    */
   public func setPointEased(_ coordinates: TGGeoPoint, seconds: Float, easeType ease: TGEaseType) -> Bool {
-    return tgMarker.setPointEased(coordinates, seconds: seconds, easeType: ease)
+    tgMarker.pointEased(coordinates, seconds: seconds, easeType: ease)
+    do {
+      try tgMarker.getError()
+    } catch {
+      return false
+    }
+    return true
   }
 
   init(markerType mt: SelectablePointMarkerType) {

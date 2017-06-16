@@ -488,7 +488,6 @@ open class MZMapViewController: UIViewController, LocationManagerDelegate {
    */
   open func addMarker(_ marker: GenericMarker) {
     currentMarkers[marker.tgMarker] = marker
-    marker.tgMarker.map = tgViewController
   }
 
   /**
@@ -498,7 +497,6 @@ open class MZMapViewController: UIViewController, LocationManagerDelegate {
    */
   open func removeMarker(_ marker: GenericMarker) {
     currentMarkers.removeValue(forKey: marker.tgMarker)
-    marker.tgMarker.map = nil
   }
 
   /// Removes all existing markers on the map.
@@ -764,15 +762,13 @@ open class MZMapViewController: UIViewController, LocationManagerDelegate {
    - throws: A MZError `annotationDoesNotExist` error.
    */
   open func remove(_ annotation: PeliasMapkitAnnotation) throws {
-    guard let marker = currentAnnotations[annotation] else { return }
-    marker.map = nil
-    //TODO: handle marker remove error?
-//    if !tgViewController.markerRemove(markerId) {
-//      throw NSError(domain: MZMapViewController.MapzenGeneralErrorDomain,
-//                    code: MZError.annotationDoesNotExist.rawValue,
-//                    userInfo: nil)
-//    }
-    currentAnnotations.removeValue(forKey: annotation)
+    if currentAnnotations[annotation] != nil {
+      currentAnnotations.removeValue(forKey: annotation)
+      return
+    }
+      throw NSError(domain: MZMapViewController.MapzenGeneralErrorDomain,
+                    code: MZError.annotationDoesNotExist.rawValue,
+                    userInfo: nil)
   }
 
   /** 
@@ -780,15 +776,14 @@ open class MZMapViewController: UIViewController, LocationManagerDelegate {
 
    - throws: A MZError `annotationDoesNotExist` error if it encounters an annotation that no longer exists.
    */
+  @available(*, deprecated)
   open func removeAnnotations() throws {
-    for (annotation, marker) in currentAnnotations {
-      marker.map = nil
-      //TODO: handle marker remove error?
-//      if !tgViewController.markerRemove(markerId) {
-//        throw NSError(domain: MZMapViewController.MapzenGeneralErrorDomain,
-//                      code: MZError.annotationDoesNotExist.rawValue,
-//                      userInfo: nil)
-//      }
+    removeMapAnnotations()
+  }
+
+  /// Removes all currents annotations.
+  open func removeMapAnnotations() {
+    for (annotation, _) in currentAnnotations {
       currentAnnotations.removeValue(forKey: annotation)
     }
   }
