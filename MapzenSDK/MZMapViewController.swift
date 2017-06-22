@@ -487,7 +487,10 @@ open class MZMapViewController: UIViewController, LocationManagerDelegate {
    - parameter marker: The marker to add to map.
    */
   open func addMarker(_ marker: GenericMarker) {
-    currentMarkers[marker.tgMarker] = marker
+    if marker.tgMarker == nil {
+      marker.tgMarker = tgViewController.markerAdd()
+    }
+    currentMarkers[marker.tgMarker!] = marker
   }
 
   /**
@@ -496,7 +499,9 @@ open class MZMapViewController: UIViewController, LocationManagerDelegate {
    - parameter marker: The marker to remove from map.
    */
   open func removeMarker(_ marker: GenericMarker) {
-    currentMarkers.removeValue(forKey: marker.tgMarker)
+    guard let tgMarker = marker.tgMarker else { return }
+    currentMarkers.removeValue(forKey: tgMarker)
+    tgViewController.markerRemove(tgMarker)
   }
 
   /// Removes all existing markers on the map.
@@ -812,7 +817,7 @@ open class MZMapViewController: UIViewController, LocationManagerDelegate {
       print("Next Point: \(String(describing: point))")
       polyLine.add(TGGeoPoint(coordinate: point!))
     }
-    let marker = SystemPolylineMarker.init()
+    let marker = SystemPolylineMarker.init(tgMarker: nil)
     addMarker(marker)
     marker.polyline = polyLine
     currentRouteMarker = marker
@@ -876,9 +881,9 @@ open class MZMapViewController: UIViewController, LocationManagerDelegate {
       //TODO: also set polyline, polygon etc
       newMarker.point = marker.point
       if !marker.stylingPath.isEmpty {
-        newMarker.tgMarker.stylingPath = marker.stylingPath
+        newMarker.tgMarker?.stylingPath = marker.stylingPath
       } else {
-        newMarker.tgMarker.stylingString = marker.stylingString
+        newMarker.tgMarker?.stylingString = marker.stylingString
       }
       self.currentAnnotations[annotation] = newMarker.tgMarker
     }
@@ -972,8 +977,17 @@ open class MZMapViewController: UIViewController, LocationManagerDelegate {
     guard let marker = currentLocationGem else {
       return
     }
-    lastSetPoint = TGGeoPoint(longitude: location.coordinate.longitude, latitude: location.coordinate.latitude)
-    _ = marker.setPointEased(lastSetPoint!, seconds: 1.0, easeType: .linear)
+
+    let currentLocation = TGGeoPoint(longitude: location.coordinate.longitude, latitude: location.coordinate.latitude)
+    lastSetPoint = currentLocation
+
+    // If the marker isn't currently visisble, there's no need to animate.
+    if !marker.visible {
+      marker.point = currentLocation
+    } else {
+      _ = marker.setPointEased(currentLocation, seconds: 1.0, easeType: .linear)
+    }
+
     if (shouldShowCurrentLocation) {
       marker.visible = true
     }
