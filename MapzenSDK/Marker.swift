@@ -131,13 +131,13 @@ public class Marker : NSObject, GenericMarker {
 
   override init () {
     visible = true
-    drawOrder = 1
+    drawOrder = 0
     super.init()
   }
 
   init(tgMarker tgM: TGMarker?) {
     visible = true
-    drawOrder = 1
+    drawOrder = 0
     tgMarker = tgM
   }
 
