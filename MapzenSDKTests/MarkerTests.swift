@@ -12,11 +12,14 @@ import TangramMap
 
 class PointMarkerTests: XCTestCase {
 
-  let marker = PointMarker()
-  let mapVC = TestTGMapViewController()
+  var marker = PointMarker()
+  let mapVC = TestMapViewController()
 
   override func setUp() {
-    marker.tgMarker = mapVC.markerAdd()
+    super.setUp()
+    mapVC.markerRemoveAll()
+    marker = PointMarker()
+    mapVC.addMarker(marker)
   }
 
   func testPoint() {
@@ -26,7 +29,6 @@ class PointMarkerTests: XCTestCase {
     XCTAssertEqual(marker.point.longitude, point.longitude)
     XCTAssertEqual(marker.tgMarker?.point.latitude, point.latitude)
     XCTAssertEqual(marker.tgMarker?.point.longitude, point.longitude)
-    XCTAssertTrue((marker.tgMarker?.stylingString.isEmpty)!)
     marker.size = .zero
     XCTAssertTrue((marker.tgMarker?.stylingString.contains("style: 'points'"))!)
     XCTAssertTrue((marker.tgMarker?.stylingString.contains("size:"))!)
@@ -90,7 +92,7 @@ class PointMarkerTests: XCTestCase {
   func testInitWithSize() {
     let size = CGSize(width: 30, height: 30)
     let m = PointMarker.init(size: size)
-    m.tgMarker = mapVC.markerAdd()
+    mapVC.addMarker(m)
     XCTAssertEqual(m.size, size)
     XCTAssertEqual(m.backgroundColor, UIColor.white)
     XCTAssertTrue(m.interactive)
@@ -127,7 +129,15 @@ class PointMarkerTests: XCTestCase {
 
 class PolylineMarkerTests: XCTestCase {
 
-  let marker = PolylineMarker()
+  var marker = PolylineMarker()
+  let mapVC = TestMapViewController()
+
+  override func setUp() {
+    super.setUp()
+    mapVC.markerRemoveAll()
+    marker = PolylineMarker()
+    mapVC.addMarker(marker)
+  }
 
   func testPolyline() {
     let polyline = TGGeoPolyline()
@@ -178,7 +188,15 @@ class PolylineMarkerTests: XCTestCase {
 
 class PolygonMarkerTests: XCTestCase {
 
-  let marker = PolygonMarker()
+  var marker = PolygonMarker()
+  let mapVC = TestMapViewController()
+
+  override func setUp() {
+    super.setUp()
+    mapVC.markerRemoveAll()
+    marker = PolygonMarker()
+    mapVC.addMarker(marker)
+  }
 
   func testPolygon() {
     let polygon = TGGeoPolygon()
@@ -222,7 +240,15 @@ class PolygonMarkerTests: XCTestCase {
 
 class SystemPointMarkerTests: XCTestCase {
 
-  let marker = SystemPointMarker(markerType: .currentLocation)
+  var marker = SystemPointMarker(markerType: .currentLocation)
+  let mapVC = TestMapViewController()
+
+  override func setUp() {
+    super.setUp()
+    mapVC.markerRemoveAll()
+    marker = SystemPointMarker(markerType: .currentLocation)
+    mapVC.addMarker(marker)
+  }
 
   func testTypeCurrentLocation() {
     XCTAssertEqual(marker.tgMarker?.stylingPath, "layers.mz_current_location_gem.draw.ux-location-gem-overlay")
@@ -231,12 +257,14 @@ class SystemPointMarkerTests: XCTestCase {
 
   func testTypeRouteLocation() {
     let m = SystemPointMarker.initWithMarkerType(.routeLocation)
+    mapVC.addMarker(m)
     XCTAssertEqual(m.tgMarker?.stylingPath, "layers.mz_route_location.draw.ux-location-gem-overlay")
     XCTAssertTrue((m.tgMarker?.stylingString.isEmpty)!)
   }
 
   func testTypeDroppedPin() {
     let m = SystemPointMarker.initWithMarkerType(.droppedPin)
+    mapVC.addMarker(m)
     XCTAssertEqual(m.tgMarker?.stylingPath, "layers.mz_dropped_pin.draw.ux-icons-overlay")
     XCTAssertTrue((m.tgMarker?.stylingString.isEmpty)!)
   }
@@ -281,7 +309,15 @@ class SystemPointMarkerTests: XCTestCase {
 
 class SelectableSystemPointMarkerTests: XCTestCase {
 
-  let marker = SelectableSystemPointMarker(markerType: .routeStart)
+  var marker = SelectableSystemPointMarker(markerType: .routeStart)
+  let mapVC = TestMapViewController()
+
+  override func setUp() {
+    super.setUp()
+    mapVC.markerRemoveAll()
+    marker = SelectableSystemPointMarker(markerType: .routeStart)
+    mapVC.addMarker(marker)
+  }
 
   func testTypeRouteStart() {
     XCTAssertEqual(marker.tgMarker?.stylingPath, "layers.mz_route_start.draw.ux-icons-overlay")
@@ -290,12 +326,14 @@ class SelectableSystemPointMarkerTests: XCTestCase {
 
   func testTypeRouteDestination() {
     let m = SelectableSystemPointMarker.initWithMarkerType(.routeDestination)
+    mapVC.addMarker(m)
     XCTAssertEqual(m.tgMarker?.stylingPath, "layers.mz_route_destination.draw.ux-icons-overlay")
     XCTAssertTrue((m.tgMarker?.stylingString.isEmpty)!)
   }
 
   func testTypeSearchPin() {
     let m = SelectableSystemPointMarker.initWithMarkerType(.searchPin)
+    mapVC.addMarker(m)
     XCTAssertEqual(m.tgMarker?.stylingPath, "layers.mz_search_result.draw.ux-icons-overlay")
     XCTAssertTrue((m.tgMarker?.stylingString.isEmpty)!)
   }
@@ -309,6 +347,7 @@ class SelectableSystemPointMarkerTests: XCTestCase {
 
   func testTypeRouteDestinationInactive() {
     let m = SelectableSystemPointMarker.initWithMarkerType(.routeDestination)
+    mapVC.addMarker(m)
     marker.active = false
     // there is no inactive draw rule for route start so its same as active state
     XCTAssertEqual(m.tgMarker?.stylingPath, "layers.mz_route_destination.draw.ux-icons-overlay")
@@ -316,6 +355,7 @@ class SelectableSystemPointMarkerTests: XCTestCase {
   }
   func testTypeSearchPinInactive() {
     let m = SelectableSystemPointMarker.initWithMarkerType(.searchPin)
+    mapVC.addMarker(m)
     m.active = false
     XCTAssertEqual(m.tgMarker?.stylingPath, "layers.mz_search_result.inactive.draw.ux-icons-overlay")
     XCTAssertTrue((m.tgMarker?.stylingString.isEmpty)!)
@@ -361,7 +401,15 @@ class SelectableSystemPointMarkerTests: XCTestCase {
 
 class SystemPolylineMarkerTests: XCTestCase {
 
-  let marker = SystemPolylineMarker()
+  var marker = SystemPolylineMarker()
+  let mapVC = TestMapViewController()
+
+  override func setUp() {
+    super.setUp()
+    mapVC.markerRemoveAll()
+    marker = SystemPolylineMarker()
+    mapVC.addMarker(marker)
+  }
 
   func testTypeRouteLine() {
     XCTAssertEqual(marker.tgMarker?.stylingPath, "layers.mz_route_line.draw.ux-route-line-overlay")

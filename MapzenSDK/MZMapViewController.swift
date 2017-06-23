@@ -507,6 +507,7 @@ open class MZMapViewController: UIViewController, LocationManagerDelegate {
   /// Removes all existing markers on the map.
   open func markerRemoveAll() {
     tgViewController.markerRemoveAll()
+    currentMarkers = Dictionary()
   }
 
   /** 
