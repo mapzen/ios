@@ -932,6 +932,7 @@ open class MZMapViewController: UIViewController, LocationManagerDelegate {
 
     tgViewController.gestureDelegate = self
     tgViewController.mapViewDelegate = self
+    tgViewController.preferredFramesPerSecond = 60
   }
 
   override open func viewWillAppear(_ animated: Bool) {
