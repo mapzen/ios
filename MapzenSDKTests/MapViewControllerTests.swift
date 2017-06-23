@@ -715,9 +715,8 @@ class MapViewControllerTests: XCTestCase {
     let tgMarker = TestTGMarker()
     let marker = Marker(tgMarker: tgMarker)
     controller.addMarker(marker)
-    let m = controller.currentMarkers[marker.tgMarker] as! Marker
+    let m = controller.currentMarkers[marker.tgMarker!] as! Marker
     XCTAssertEqual(m, marker)
-    XCTAssertEqual(marker.tgMarker.map, controller.tgViewController)
   }
 
   func testRemoveMarker() {
@@ -725,8 +724,7 @@ class MapViewControllerTests: XCTestCase {
     let marker = Marker(tgMarker: tgMarker)
     controller.addMarker(marker)
     controller.removeMarker(marker)
-    XCTAssertNil(controller.currentMarkers[marker.tgMarker])
-    XCTAssertNil(marker.tgMarker.map)
+    XCTAssertNil(controller.currentMarkers[marker.tgMarker!])
   }
 }
 

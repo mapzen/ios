@@ -59,6 +59,7 @@
 		DB1201251E96B6200085C7D8 /* DemoSearchListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB1201241E96B6200085C7D8 /* DemoSearchListViewController.swift */; };
 		DB22E59C1DA46640004264E0 /* DemoRoutingResultTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB22E59B1DA46640004264E0 /* DemoRoutingResultTableVC.swift */; };
 		DB22E59E1DA473CA004264E0 /* DemoRouteDirectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB22E59D1DA473CA004264E0 /* DemoRouteDirectionCell.swift */; };
+		DB2752F71EFC6F2900CD31B0 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB2752F61EFC6F2900CD31B0 /* OpenGLES.framework */; };
 		DB35012A1E954A8F00FB8923 /* DemoSearchPinsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB3501291E954A8F00FB8923 /* DemoSearchPinsViewController.swift */; };
 		DB7253361E9C1FF500304516 /* DemoRouteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB7253351E9C1FF500304516 /* DemoRouteViewController.swift */; };
 		DB7A33D81C8F8E8B009CC743 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB7A33D71C8F8E8B009CC743 /* AppDelegate.swift */; };
@@ -172,6 +173,7 @@
 		DB1201241E96B6200085C7D8 /* DemoSearchListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DemoSearchListViewController.swift; sourceTree = "<group>"; };
 		DB22E59B1DA46640004264E0 /* DemoRoutingResultTableVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DemoRoutingResultTableVC.swift; sourceTree = "<group>"; };
 		DB22E59D1DA473CA004264E0 /* DemoRouteDirectionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DemoRouteDirectionCell.swift; sourceTree = "<group>"; };
+		DB2752F61EFC6F2900CD31B0 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		DB3501291E954A8F00FB8923 /* DemoSearchPinsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DemoSearchPinsViewController.swift; sourceTree = "<group>"; };
 		DB7253351E9C1FF500304516 /* DemoRouteViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DemoRouteViewController.swift; sourceTree = "<group>"; };
 		DB7A33D41C8F8E8B009CC743 /* ios-sdk.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ios-sdk.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -208,6 +210,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DB2752F71EFC6F2900CD31B0 /* OpenGLES.framework in Frameworks */,
 				DBF441B01D351C90007DEE95 /* GLKit.framework in Frameworks */,
 				AC586709D7E7D4C22AA9474D /* Pods_ios_sdk.framework in Frameworks */,
 			);
@@ -315,6 +318,7 @@
 		CF541C01B2D071D0FF55D939 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				DB2752F61EFC6F2900CD31B0 /* OpenGLES.framework */,
 				DBF441AF1D351C90007DEE95 /* GLKit.framework */,
 				92C35E8790FB3255237B1E77 /* Pods.framework */,
 				99B3EC60450343448FA4E699 /* Pods_ios_sdk.framework */,
@@ -1062,7 +1066,7 @@
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				DEVELOPMENT_TEAM = LTQC954SPQ;
-				INFOPLIST_FILE = "ios-sdkTests/Info.plist";
+				INFOPLIST_FILE = MapzenSDKTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.mapzen.ios-sdkTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1076,7 +1080,7 @@
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				DEVELOPMENT_TEAM = LTQC954SPQ;
-				INFOPLIST_FILE = "ios-sdkTests/Info.plist";
+				INFOPLIST_FILE = MapzenSDKTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.mapzen.ios-sdkTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
