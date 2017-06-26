@@ -246,11 +246,7 @@ public class PointMarker : GeometricMarker, GenericPointIconMarker {
    */
   public func setPointEased(_ coordinates: TGGeoPoint, seconds: Float, easeType ease: TGEaseType) -> Bool {
     tgMarker?.pointEased(coordinates, seconds: seconds, easeType: ease)
-    do {
-      try tgMarker?.getError()
-    } catch {
-      return false
-    }
+    //TODO: Add error management back in here once we're doing it everywhere correctly.
     return true
 
   }
@@ -462,11 +458,7 @@ public class SystemPointMarker : Marker, GenericSystemPointMarker {
   public func setPointEased(_ coordinates: TGGeoPoint, seconds: Float, easeType ease: TGEaseType) -> Bool {
     guard let marker = tgMarker else { return false }
     marker.pointEased(coordinates, seconds: seconds, easeType: ease)
-    do {
-      try marker.getError()
-    } catch {
-      return false
-    }
+    //TODO: Add error management back in here once we're doing it everywhere correctly.
     return true
   }
 
@@ -534,11 +526,7 @@ public class SelectableSystemPointMarker : Marker, GenericSelectableSystemPointM
   public func setPointEased(_ coordinates: TGGeoPoint, seconds: Float, easeType ease: TGEaseType) -> Bool {
     guard let marker = tgMarker else { return false }
     marker.pointEased(coordinates, seconds: seconds, easeType: ease)
-    do {
-      try marker.getError()
-    } catch {
-      return false
-    }
+    //TODO: Add error management back in here once we're doing it everywhere correctly.
     return true
   }
 
