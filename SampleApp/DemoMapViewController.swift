@@ -34,11 +34,10 @@ class DemoMapViewController:  SampleMapViewController, MapMarkerSelectDelegate {
     setupStyleObservance()
     markerSelectDelegate = self
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
-    try? loadStyleAsync(appDelegate.selectedMapStyle) { [weak self] (style) in
-      guard let unwrappedSelf = self else { print("Self is nil"); return }
-      unwrappedSelf.styleLoaded = true
-      let _ = unwrappedSelf.showCurrentLocation(true)
-      unwrappedSelf.showFindMeButon(true)
+    try? loadStyleAsync(appDelegate.selectedMapStyle) { [unowned self] (style) in
+      self.styleLoaded = true
+      let _ = self.showCurrentLocation(true)
+      self.showFindMeButon(true)
     }
   }
   
