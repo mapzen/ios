@@ -487,8 +487,10 @@ open class MZMapViewController: UIViewController, LocationManagerDelegate {
    - parameter marker: The marker to add to map.
    */
   open func addMarker(_ marker: GenericMarker) {
-    currentMarkers[marker.tgMarker] = marker
-    marker.tgMarker.map = tgViewController
+    if marker.tgMarker == nil {
+      marker.tgMarker = tgViewController.markerAdd()
+    }
+    currentMarkers[marker.tgMarker!] = marker
   }
 
   /**
@@ -497,13 +499,15 @@ open class MZMapViewController: UIViewController, LocationManagerDelegate {
    - parameter marker: The marker to remove from map.
    */
   open func removeMarker(_ marker: GenericMarker) {
-    currentMarkers.removeValue(forKey: marker.tgMarker)
-    marker.tgMarker.map = nil
+    guard let tgMarker = marker.tgMarker else { return }
+    currentMarkers.removeValue(forKey: tgMarker)
+    tgViewController.markerRemove(tgMarker)
   }
 
   /// Removes all existing markers on the map.
   open func markerRemoveAll() {
     tgViewController.markerRemoveAll()
+    currentMarkers = Dictionary()
   }
 
   /** 
@@ -764,15 +768,13 @@ open class MZMapViewController: UIViewController, LocationManagerDelegate {
    - throws: A MZError `annotationDoesNotExist` error.
    */
   open func remove(_ annotation: PeliasMapkitAnnotation) throws {
-    guard let marker = currentAnnotations[annotation] else { return }
-    marker.map = nil
-    //TODO: handle marker remove error?
-//    if !tgViewController.markerRemove(markerId) {
-//      throw NSError(domain: MZMapViewController.MapzenGeneralErrorDomain,
-//                    code: MZError.annotationDoesNotExist.rawValue,
-//                    userInfo: nil)
-//    }
-    currentAnnotations.removeValue(forKey: annotation)
+    if currentAnnotations[annotation] != nil {
+      currentAnnotations.removeValue(forKey: annotation)
+      return
+    }
+      throw NSError(domain: MZMapViewController.MapzenGeneralErrorDomain,
+                    code: MZError.annotationDoesNotExist.rawValue,
+                    userInfo: nil)
   }
 
   /** 
@@ -780,15 +782,14 @@ open class MZMapViewController: UIViewController, LocationManagerDelegate {
 
    - throws: A MZError `annotationDoesNotExist` error if it encounters an annotation that no longer exists.
    */
+  @available(*, deprecated)
   open func removeAnnotations() throws {
-    for (annotation, marker) in currentAnnotations {
-      marker.map = nil
-      //TODO: handle marker remove error?
-//      if !tgViewController.markerRemove(markerId) {
-//        throw NSError(domain: MZMapViewController.MapzenGeneralErrorDomain,
-//                      code: MZError.annotationDoesNotExist.rawValue,
-//                      userInfo: nil)
-//      }
+    removeMapAnnotations()
+  }
+
+  /// Removes all currents annotations.
+  open func removeMapAnnotations() {
+    for (annotation, _) in currentAnnotations {
       currentAnnotations.removeValue(forKey: annotation)
     }
   }
@@ -817,7 +818,7 @@ open class MZMapViewController: UIViewController, LocationManagerDelegate {
       print("Next Point: \(String(describing: point))")
       polyLine.add(TGGeoPoint(coordinate: point!))
     }
-    let marker = SystemPolylineMarker.init()
+    let marker = SystemPolylineMarker.init(tgMarker: nil)
     addMarker(marker)
     marker.polyline = polyLine
     currentRouteMarker = marker
@@ -881,9 +882,9 @@ open class MZMapViewController: UIViewController, LocationManagerDelegate {
       //TODO: also set polyline, polygon etc
       newMarker.point = marker.point
       if !marker.stylingPath.isEmpty {
-        newMarker.tgMarker.stylingPath = marker.stylingPath
+        newMarker.tgMarker?.stylingPath = marker.stylingPath
       } else {
-        newMarker.tgMarker.stylingString = marker.stylingString
+        newMarker.tgMarker?.stylingString = marker.stylingString
       }
       self.currentAnnotations[annotation] = newMarker.tgMarker
     }
@@ -932,6 +933,7 @@ open class MZMapViewController: UIViewController, LocationManagerDelegate {
 
     tgViewController.gestureDelegate = self
     tgViewController.mapViewDelegate = self
+    tgViewController.preferredFramesPerSecond = 60
   }
 
   override open func viewWillAppear(_ animated: Bool) {
@@ -977,8 +979,17 @@ open class MZMapViewController: UIViewController, LocationManagerDelegate {
     guard let marker = currentLocationGem else {
       return
     }
-    lastSetPoint = TGGeoPoint(longitude: location.coordinate.longitude, latitude: location.coordinate.latitude)
-    _ = marker.setPointEased(lastSetPoint!, seconds: 1.0, easeType: .linear)
+
+    let currentLocation = TGGeoPoint(longitude: location.coordinate.longitude, latitude: location.coordinate.latitude)
+    lastSetPoint = currentLocation
+
+    // If the marker isn't currently visisble, there's no need to animate.
+    if !marker.visible {
+      marker.point = currentLocation
+    } else {
+      _ = marker.setPointEased(currentLocation, seconds: 1.0, easeType: .linear)
+    }
+
     if (shouldShowCurrentLocation) {
       marker.visible = true
     }

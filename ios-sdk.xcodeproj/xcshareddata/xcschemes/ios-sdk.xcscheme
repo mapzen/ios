@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0820"
+   LastUpgradeVersion = "0830"
    version = "1.7">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -35,6 +35,16 @@
                BlueprintIdentifier = "7D4639EF1EB115280074BEC5"
                BuildableName = "MapzenSDKTests.xctest"
                BlueprintName = "MapzenSDKTests"
+               ReferencedContainer = "container:ios-sdk.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "DB7A33E71C8F8E8B009CC743"
+               BuildableName = "ios-sdkTests.xctest"
+               BlueprintName = "ios-sdkTests"
                ReferencedContainer = "container:ios-sdk.xcodeproj">
             </BuildableReference>
          </TestableReference>

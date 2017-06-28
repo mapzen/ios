@@ -12,19 +12,26 @@ import TangramMap
 
 class PointMarkerTests: XCTestCase {
 
-  let marker = PointMarker()
+  var marker = PointMarker()
+  let mapVC = TestMapViewController()
+
+  override func setUp() {
+    super.setUp()
+    mapVC.markerRemoveAll()
+    marker = PointMarker()
+    mapVC.addMarker(marker)
+  }
 
   func testPoint() {
     let point = TGGeoPoint(longitude: 70.0, latitude: 40.0)
     marker.point = point
     XCTAssertEqual(marker.point.latitude, point.latitude)
     XCTAssertEqual(marker.point.longitude, point.longitude)
-    XCTAssertEqual(marker.tgMarker.point.latitude, point.latitude)
-    XCTAssertEqual(marker.tgMarker.point.longitude, point.longitude)
-    XCTAssertTrue(marker.tgMarker.stylingString.isEmpty)
+    XCTAssertEqual(marker.tgMarker?.point.latitude, point.latitude)
+    XCTAssertEqual(marker.tgMarker?.point.longitude, point.longitude)
     marker.size = .zero
-    XCTAssertTrue(marker.tgMarker.stylingString.contains("style: 'points'"))
-    XCTAssertTrue(marker.tgMarker.stylingString.contains("size:"))
+    XCTAssertTrue((marker.tgMarker?.stylingString.contains("style: 'points'"))!)
+    XCTAssertTrue((marker.tgMarker?.stylingString.contains("size:"))!)
   }
 
   //TODO: failing, fix
@@ -44,18 +51,18 @@ class PointMarkerTests: XCTestCase {
 
   func testVisible() {
     XCTAssertTrue(marker.visible)
-    XCTAssertTrue(marker.tgMarker.visible)
+    XCTAssertTrue((marker.tgMarker?.visible)!)
     marker.visible = false
     XCTAssertFalse(marker.visible)
-    XCTAssertFalse(marker.tgMarker.visible)
+    XCTAssertFalse((marker.tgMarker?.visible)!)
   }
 
   func testDrawOrder() {
     XCTAssertEqual(marker.drawOrder, 0)
-    XCTAssertEqual(marker.tgMarker.drawOrder, 0)
+    XCTAssertEqual(marker.tgMarker?.drawOrder, 0)
     marker.drawOrder = 8
     XCTAssertEqual(marker.drawOrder, 8)
-    XCTAssertEqual(marker.tgMarker.drawOrder, 8)
+    XCTAssertEqual(marker.tgMarker?.drawOrder, 8)
   }
 
   func testSize() {
@@ -63,7 +70,7 @@ class PointMarkerTests: XCTestCase {
     let size = CGSize(width: 8, height: 8)
     marker.size = size
     XCTAssertEqual(marker.size, size)
-    XCTAssertTrue(marker.tgMarker.stylingString.contains("size: [\(size.width)px, \(size.height)px]"))
+    XCTAssertTrue((marker.tgMarker?.stylingString.contains("size: [\(size.width)px, \(size.height)px]"))!)
   }
 
   func testBackgroundColor() {
@@ -72,30 +79,31 @@ class PointMarkerTests: XCTestCase {
     marker.backgroundColor = bgColor
     let hex = bgColor.hexValue()
     XCTAssertEqual(marker.backgroundColor, bgColor)
-    XCTAssertTrue(marker.tgMarker.stylingString.contains("color: '\(hex)'"))
+    XCTAssertTrue((marker.tgMarker?.stylingString.contains("color: '\(hex)'"))!)
   }
 
   func testInteractive() {
     XCTAssertTrue(marker.interactive)
     marker.interactive = false
     XCTAssertFalse(marker.interactive)
-    XCTAssertTrue(marker.tgMarker.stylingString.contains("interactive: false"))
+    XCTAssertTrue((marker.tgMarker?.stylingString.contains("interactive: false"))!)
   }
 
   func testInitWithSize() {
     let size = CGSize(width: 30, height: 30)
     let m = PointMarker.init(size: size)
+    mapVC.addMarker(m)
     XCTAssertEqual(m.size, size)
     XCTAssertEqual(m.backgroundColor, UIColor.white)
     XCTAssertTrue(m.interactive)
-    XCTAssertTrue(m.tgMarker.stylingString.contains("size: [\(size.width)px, \(size.height)px]"))
+    XCTAssertTrue((m.tgMarker?.stylingString.contains("size: [\(size.width)px, \(size.height)px]"))!)
   }
 
   func testInit() {
     let m = PointMarker.init()
     XCTAssertEqual(m.backgroundColor, UIColor.white)
     XCTAssertTrue(m.interactive)
-    XCTAssertFalse(m.tgMarker.stylingString.contains("size:"))
+    XCTAssertFalse((m.tgMarker?.stylingString.contains("size:")) ?? false )
   }
   
 //  func testInitWithIcon() {
@@ -121,134 +129,160 @@ class PointMarkerTests: XCTestCase {
 
 class PolylineMarkerTests: XCTestCase {
 
-  let marker = PolylineMarker()
+  var marker = PolylineMarker()
+  let mapVC = TestMapViewController()
+
+  override func setUp() {
+    super.setUp()
+    mapVC.markerRemoveAll()
+    marker = PolylineMarker()
+    mapVC.addMarker(marker)
+  }
 
   func testPolyline() {
     let polyline = TGGeoPolyline()
     marker.polyline = polyline
     XCTAssertEqual(marker.polyline, polyline)
-    XCTAssertEqual(marker.tgMarker.polyline, polyline)
-    XCTAssertTrue(marker.tgMarker.stylingString.contains("style: 'lines'"))
-    XCTAssertFalse(marker.tgMarker.stylingString.contains("size:"))
+    XCTAssertEqual(marker.tgMarker?.polyline, polyline)
+    XCTAssertTrue((marker.tgMarker?.stylingString.contains("style: 'lines'"))!)
+    XCTAssertFalse((marker.tgMarker?.stylingString.contains("size:"))!)
   }
 
   func testVisible() {
     XCTAssertTrue(marker.visible)
-    XCTAssertTrue(marker.tgMarker.visible)
+    XCTAssertTrue((marker.tgMarker?.visible)!)
     marker.visible = false
     XCTAssertFalse(marker.visible)
-    XCTAssertFalse(marker.tgMarker.visible)
+    XCTAssertFalse((marker.tgMarker?.visible)!)
   }
 
   func testDrawOrder() {
     XCTAssertEqual(marker.drawOrder, 0)
-    XCTAssertEqual(marker.tgMarker.drawOrder, 0)
+    XCTAssertEqual(marker.tgMarker?.drawOrder, 0)
     marker.drawOrder = 8
     XCTAssertEqual(marker.drawOrder, 8)
-    XCTAssertEqual(marker.tgMarker.drawOrder, 8)
+    XCTAssertEqual(marker.tgMarker?.drawOrder, 8)
   }
 
   func testInteractive() {
     XCTAssertTrue(marker.interactive)
     marker.interactive = false
     XCTAssertFalse(marker.interactive)
-    XCTAssertTrue(marker.tgMarker.stylingString.contains("interactive: false"))
+    XCTAssertTrue((marker.tgMarker?.stylingString.contains("interactive: false"))!)
   }
 
   func testOrder() {
     XCTAssertEqual(marker.order, 1000)
     marker.order = 8
     XCTAssertEqual(marker.order, 8)
-    XCTAssertTrue(marker.tgMarker.stylingString.contains("order: 8"))
+    XCTAssertTrue((marker.tgMarker?.stylingString.contains("order: 8"))!)
   }
 
   func testStrokeWidth() {
     XCTAssertEqual(marker.strokeWidth, 10)
     marker.strokeWidth = 8
     XCTAssertEqual(marker.strokeWidth, 8)
-    XCTAssertTrue(marker.tgMarker.stylingString.contains("width: 8"))
+    XCTAssertTrue((marker.tgMarker?.stylingString.contains("width: 8"))!)
   }
 }
 
 class PolygonMarkerTests: XCTestCase {
 
-  let marker = PolygonMarker()
+  var marker = PolygonMarker()
+  let mapVC = TestMapViewController()
+
+  override func setUp() {
+    super.setUp()
+    mapVC.markerRemoveAll()
+    marker = PolygonMarker()
+    mapVC.addMarker(marker)
+  }
 
   func testPolygon() {
     let polygon = TGGeoPolygon()
     marker.polygon = polygon
     XCTAssertEqual(marker.polygon, polygon)
-    XCTAssertEqual(marker.tgMarker.polygon, polygon)
-    XCTAssertTrue(marker.tgMarker.stylingString.contains("style: 'polygons'"))
-    XCTAssertFalse(marker.tgMarker.stylingString.contains("size:"))
+    XCTAssertEqual(marker.tgMarker?.polygon, polygon)
+    XCTAssertTrue((marker.tgMarker?.stylingString.contains("style: 'polygons'"))!)
+    XCTAssertFalse((marker.tgMarker?.stylingString.contains("size:"))!)
   }
 
   func testVisible() {
     XCTAssertTrue(marker.visible)
-    XCTAssertTrue(marker.tgMarker.visible)
+    XCTAssertTrue((marker.tgMarker?.visible)!)
     marker.visible = false
     XCTAssertFalse(marker.visible)
-    XCTAssertFalse(marker.tgMarker.visible)
+    XCTAssertFalse((marker.tgMarker?.visible)!)
   }
 
   func testDrawOrder() {
     XCTAssertEqual(marker.drawOrder, 0)
-    XCTAssertEqual(marker.tgMarker.drawOrder, 0)
+    XCTAssertEqual(marker.tgMarker?.drawOrder, 0)
     marker.drawOrder = 8
     XCTAssertEqual(marker.drawOrder, 8)
-    XCTAssertEqual(marker.tgMarker.drawOrder, 8)
+    XCTAssertEqual(marker.tgMarker?.drawOrder, 8)
   }
 
   func testInteractive() {
     XCTAssertTrue(marker.interactive)
     marker.interactive = false
     XCTAssertFalse(marker.interactive)
-    XCTAssertTrue(marker.tgMarker.stylingString.contains("interactive: false"))
+    XCTAssertTrue((marker.tgMarker?.stylingString.contains("interactive: false"))!)
   }
 
   func testOrder() {
     XCTAssertEqual(marker.order, 1000)
     marker.order = 8
     XCTAssertEqual(marker.order, 8)
-    XCTAssertTrue(marker.tgMarker.stylingString.contains("order: 8"))
+    XCTAssertTrue((marker.tgMarker?.stylingString.contains("order: 8"))!)
   }
 }
 
 class SystemPointMarkerTests: XCTestCase {
 
-  let marker = SystemPointMarker(markerType: .currentLocation)
+  var marker = SystemPointMarker(markerType: .currentLocation)
+  let mapVC = TestMapViewController()
+
+  override func setUp() {
+    super.setUp()
+    mapVC.markerRemoveAll()
+    marker = SystemPointMarker(markerType: .currentLocation)
+    mapVC.addMarker(marker)
+  }
 
   func testTypeCurrentLocation() {
-    XCTAssertEqual(marker.tgMarker.stylingPath, "layers.mz_current_location_gem.draw.ux-location-gem-overlay")
-    XCTAssertTrue(marker.tgMarker.stylingString.isEmpty)
+    XCTAssertEqual(marker.tgMarker?.stylingPath, "layers.mz_current_location_gem.draw.ux-location-gem-overlay")
+    XCTAssertTrue((marker.tgMarker?.stylingString.isEmpty)!)
   }
 
   func testTypeRouteLocation() {
     let m = SystemPointMarker.initWithMarkerType(.routeLocation)
-    XCTAssertEqual(m.tgMarker.stylingPath, "layers.mz_route_location.draw.ux-location-gem-overlay")
-    XCTAssertTrue(m.tgMarker.stylingString.isEmpty)
+    mapVC.addMarker(m)
+    XCTAssertEqual(m.tgMarker?.stylingPath, "layers.mz_route_location.draw.ux-location-gem-overlay")
+    XCTAssertTrue((m.tgMarker?.stylingString.isEmpty)!)
   }
 
   func testTypeDroppedPin() {
     let m = SystemPointMarker.initWithMarkerType(.droppedPin)
-    XCTAssertEqual(m.tgMarker.stylingPath, "layers.mz_dropped_pin.draw.ux-icons-overlay")
-    XCTAssertTrue(m.tgMarker.stylingString.isEmpty)
+    mapVC.addMarker(m)
+    XCTAssertEqual(m.tgMarker?.stylingPath, "layers.mz_dropped_pin.draw.ux-icons-overlay")
+    XCTAssertTrue((m.tgMarker?.stylingString.isEmpty)!)
   }
   
   func testVisible() {
     XCTAssertTrue(marker.visible)
-    XCTAssertTrue(marker.tgMarker.visible)
+    XCTAssertTrue((marker.tgMarker?.visible)!)
     marker.visible = false
     XCTAssertFalse(marker.visible)
-    XCTAssertFalse(marker.tgMarker.visible)
+    XCTAssertFalse((marker.tgMarker?.visible)!)
   }
 
   func testDrawOrder() {
     XCTAssertEqual(marker.drawOrder, 0)
-    XCTAssertEqual(marker.tgMarker.drawOrder, 0)
+    XCTAssertEqual(marker.tgMarker?.drawOrder, 0)
     marker.drawOrder = 8
     XCTAssertEqual(marker.drawOrder, 8)
-    XCTAssertEqual(marker.tgMarker.drawOrder, 8)
+    XCTAssertEqual(marker.tgMarker?.drawOrder, 8)
   }
 
   func testPoint() {
@@ -256,8 +290,8 @@ class SystemPointMarkerTests: XCTestCase {
     marker.point = point
     XCTAssertEqual(marker.point.latitude, point.latitude)
     XCTAssertEqual(marker.point.longitude, point.longitude)
-    XCTAssertEqual(marker.tgMarker.point.latitude, point.latitude)
-    XCTAssertEqual(marker.tgMarker.point.longitude, point.longitude)
+    XCTAssertEqual(marker.tgMarker?.point.latitude, point.latitude)
+    XCTAssertEqual(marker.tgMarker?.point.longitude, point.longitude)
   }
   
   func testSetPointEased() {
@@ -275,60 +309,72 @@ class SystemPointMarkerTests: XCTestCase {
 
 class SelectableSystemPointMarkerTests: XCTestCase {
 
-  let marker = SelectableSystemPointMarker(markerType: .routeStart)
+  var marker = SelectableSystemPointMarker(markerType: .routeStart)
+  let mapVC = TestMapViewController()
+
+  override func setUp() {
+    super.setUp()
+    mapVC.markerRemoveAll()
+    marker = SelectableSystemPointMarker(markerType: .routeStart)
+    mapVC.addMarker(marker)
+  }
 
   func testTypeRouteStart() {
-    XCTAssertEqual(marker.tgMarker.stylingPath, "layers.mz_route_start.draw.ux-icons-overlay")
-    XCTAssertTrue(marker.tgMarker.stylingString.isEmpty)
+    XCTAssertEqual(marker.tgMarker?.stylingPath, "layers.mz_route_start.draw.ux-icons-overlay")
+    XCTAssertTrue((marker.tgMarker?.stylingString.isEmpty)!)
   }
 
   func testTypeRouteDestination() {
     let m = SelectableSystemPointMarker.initWithMarkerType(.routeDestination)
-    XCTAssertEqual(m.tgMarker.stylingPath, "layers.mz_route_destination.draw.ux-icons-overlay")
-    XCTAssertTrue(m.tgMarker.stylingString.isEmpty)
+    mapVC.addMarker(m)
+    XCTAssertEqual(m.tgMarker?.stylingPath, "layers.mz_route_destination.draw.ux-icons-overlay")
+    XCTAssertTrue((m.tgMarker?.stylingString.isEmpty)!)
   }
 
   func testTypeSearchPin() {
     let m = SelectableSystemPointMarker.initWithMarkerType(.searchPin)
-    XCTAssertEqual(m.tgMarker.stylingPath, "layers.mz_search_result.draw.ux-icons-overlay")
-    XCTAssertTrue(m.tgMarker.stylingString.isEmpty)
+    mapVC.addMarker(m)
+    XCTAssertEqual(m.tgMarker?.stylingPath, "layers.mz_search_result.draw.ux-icons-overlay")
+    XCTAssertTrue((m.tgMarker?.stylingString.isEmpty)!)
   }
 
   func testTypeRouteStartInactive() {
     marker.active = false
     // there is no inactive draw rule for route start so its same as active state
-    XCTAssertEqual(marker.tgMarker.stylingPath, "layers.mz_route_start.draw.ux-icons-overlay")
-    XCTAssertTrue(marker.tgMarker.stylingString.isEmpty)
+    XCTAssertEqual(marker.tgMarker?.stylingPath, "layers.mz_route_start.draw.ux-icons-overlay")
+    XCTAssertTrue((marker.tgMarker?.stylingString.isEmpty)!)
   }
 
   func testTypeRouteDestinationInactive() {
     let m = SelectableSystemPointMarker.initWithMarkerType(.routeDestination)
+    mapVC.addMarker(m)
     marker.active = false
     // there is no inactive draw rule for route start so its same as active state
-    XCTAssertEqual(m.tgMarker.stylingPath, "layers.mz_route_destination.draw.ux-icons-overlay")
-    XCTAssertTrue(m.tgMarker.stylingString.isEmpty)
+    XCTAssertEqual(m.tgMarker?.stylingPath, "layers.mz_route_destination.draw.ux-icons-overlay")
+    XCTAssertTrue((m.tgMarker?.stylingString.isEmpty)!)
   }
   func testTypeSearchPinInactive() {
     let m = SelectableSystemPointMarker.initWithMarkerType(.searchPin)
+    mapVC.addMarker(m)
     m.active = false
-    XCTAssertEqual(m.tgMarker.stylingPath, "layers.mz_search_result.inactive.draw.ux-icons-overlay")
-    XCTAssertTrue(m.tgMarker.stylingString.isEmpty)
+    XCTAssertEqual(m.tgMarker?.stylingPath, "layers.mz_search_result.inactive.draw.ux-icons-overlay")
+    XCTAssertTrue((m.tgMarker?.stylingString.isEmpty)!)
   }
 
   func testVisible() {
     XCTAssertTrue(marker.visible)
-    XCTAssertTrue(marker.tgMarker.visible)
+    XCTAssertTrue((marker.tgMarker?.visible)!)
     marker.visible = false
     XCTAssertFalse(marker.visible)
-    XCTAssertFalse(marker.tgMarker.visible)
+    XCTAssertFalse((marker.tgMarker?.visible)!)
   }
 
   func testDrawOrder() {
     XCTAssertEqual(marker.drawOrder, 0)
-    XCTAssertEqual(marker.tgMarker.drawOrder, 0)
+    XCTAssertEqual(marker.tgMarker?.drawOrder, 0)
     marker.drawOrder = 8
     XCTAssertEqual(marker.drawOrder, 8)
-    XCTAssertEqual(marker.tgMarker.drawOrder, 8)
+    XCTAssertEqual(marker.tgMarker?.drawOrder, 8)
   }
 
   func testPoint() {
@@ -336,8 +382,8 @@ class SelectableSystemPointMarkerTests: XCTestCase {
     marker.point = point
     XCTAssertEqual(marker.point.latitude, point.latitude)
     XCTAssertEqual(marker.point.longitude, point.longitude)
-    XCTAssertEqual(marker.tgMarker.point.latitude, point.latitude)
-    XCTAssertEqual(marker.tgMarker.point.longitude, point.longitude)
+    XCTAssertEqual(marker.tgMarker?.point.latitude, point.latitude)
+    XCTAssertEqual(marker.tgMarker?.point.longitude, point.longitude)
   }
 
   func testSetPointEased() {
@@ -355,27 +401,35 @@ class SelectableSystemPointMarkerTests: XCTestCase {
 
 class SystemPolylineMarkerTests: XCTestCase {
 
-  let marker = SystemPolylineMarker()
+  var marker = SystemPolylineMarker()
+  let mapVC = TestMapViewController()
+
+  override func setUp() {
+    super.setUp()
+    mapVC.markerRemoveAll()
+    marker = SystemPolylineMarker()
+    mapVC.addMarker(marker)
+  }
 
   func testTypeRouteLine() {
-    XCTAssertEqual(marker.tgMarker.stylingPath, "layers.mz_route_line.draw.ux-route-line-overlay")
-    XCTAssertTrue(marker.tgMarker.stylingString.isEmpty)
+    XCTAssertEqual(marker.tgMarker?.stylingPath, "layers.mz_route_line.draw.ux-route-line-overlay")
+    XCTAssertTrue((marker.tgMarker?.stylingString.isEmpty)!)
   }
 
   func testVisible() {
     XCTAssertTrue(marker.visible)
-    XCTAssertTrue(marker.tgMarker.visible)
+    XCTAssertTrue((marker.tgMarker?.visible)!)
     marker.visible = false
     XCTAssertFalse(marker.visible)
-    XCTAssertFalse(marker.tgMarker.visible)
+    XCTAssertFalse((marker.tgMarker?.visible)!)
   }
 
   func testDrawOrder() {
     XCTAssertEqual(marker.drawOrder, 0)
-    XCTAssertEqual(marker.tgMarker.drawOrder, 0)
+    XCTAssertEqual(marker.tgMarker?.drawOrder, 0)
     marker.drawOrder = 8
     XCTAssertEqual(marker.drawOrder, 8)
-    XCTAssertEqual(marker.tgMarker.drawOrder, 8)
+    XCTAssertEqual(marker.tgMarker?.drawOrder, 8)
   }
   
 }
@@ -388,19 +442,9 @@ class TestTGMarker : TGMarker {
 
   private var internalMap: TGMapViewController?
 
-  override public var map : TGMapViewController? {
-    set {
-      internalMap = newValue
-    }
-    get {
-      return internalMap
-    }
-  }
-
-  open override func setPointEased(_ c: TGGeoPoint, seconds s: Float, easeType e: TGEaseType) -> Bool {
-    coordinates = c
-    seconds = s
-    ease = e
-    return true
+  open override func pointEased(_ coordinates: TGGeoPoint, seconds: Float, easeType ease: TGEaseType) {
+    self.coordinates = coordinates
+    self.seconds = seconds
+    self.ease = ease
   }
 }

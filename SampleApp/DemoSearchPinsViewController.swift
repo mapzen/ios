@@ -65,7 +65,7 @@ class DemoSearchPinsViewController: SampleMapViewController, UITextFieldDelegate
     print("Selected \(String(describing: location.title))")
     searchField.text = location.title
     location.setTarget(target: self, action: #selector(self.annotationClicked(annotation:)))
-    try? self.removeAnnotations()
+    removeMapAnnotations()
     try? self.add([location])
 
     animate(toZoomLevel: max(10, self.zoom), withDuration: 1.0)

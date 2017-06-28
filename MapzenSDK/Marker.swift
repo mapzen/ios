@@ -13,7 +13,7 @@ import TangramMap
 @objc(MZGenericMarker)
 public protocol GenericMarker {
   /// The underlying Tangram marker object. Use this only for advanced cases where features of the Marker class aren't supported.
-  var tgMarker: TGMarker { get }
+  var tgMarker: TGMarker? { get set }
   /// Toggles the marker visibility.
   var visible: Bool { get set }
   /// The marker draw order relative to other markers. Note that higher values are drawn above lower ones.
@@ -108,41 +108,37 @@ public protocol GenericSystemPolylineMarker: GenericMarker {
 /// Base class for generic markers. Do not instantiate this class directly, use one of the more meaningful subclasses.
 public class Marker : NSObject, GenericMarker {
 
-  private let internalTgMarker: TGMarker
-
-  /// The underlying Tangram marker object. Use this only for advanced cases where features of the Marker class aren't supported.
-  public var tgMarker: TGMarker {
-    get {
-      return internalTgMarker
+  public var tgMarker: TGMarker? {
+    didSet {
+      tgMarker?.visible = visible
+      tgMarker?.drawOrder = drawOrder
     }
   }
 
   /// Toggles the marker visibility.
   public var visible: Bool {
-    set {
-      tgMarker.visible = newValue
-    }
-    get {
-      return tgMarker.visible
+    didSet {
+      tgMarker?.visible = visible
     }
   }
 
   /// The marker draw order relative to other markers. Note that higher values are drawn above lower ones.
   public var drawOrder: Int {
-    set {
-      tgMarker.drawOrder = newValue
-    }
-    get {
-      return tgMarker.drawOrder
+    didSet {
+      tgMarker?.drawOrder = drawOrder
     }
   }
 
-  public override init() {
-    internalTgMarker = TGMarker.init()
+  override init () {
+    visible = true
+    drawOrder = 0
+    super.init()
   }
 
-  init(tgMarker tgM: TGMarker) {
-    internalTgMarker = tgM
+  init(tgMarker tgM: TGMarker?) {
+    visible = true
+    drawOrder = 0
+    tgMarker = tgM
   }
 
 }
@@ -152,6 +148,16 @@ public class GeometricMarker : Marker, GenericGeometricMarker {
 
   private static let kDefaultBackgroundColor = UIColor.white
   private static let kDefaultInteractive = true
+
+  override public var tgMarker: TGMarker? {
+    set {
+      super.tgMarker = newValue
+      updateStyleString()
+    }
+    get {
+      return super.tgMarker
+    }
+  }
 
   /// Sets the marker background color. Default value is white.
   public var backgroundColor: UIColor {
@@ -173,7 +179,7 @@ public class GeometricMarker : Marker, GenericGeometricMarker {
     super.init()
   }
 
-  override init(tgMarker tgM: TGMarker) {
+  override init(tgMarker tgM: TGMarker?) {
     backgroundColor = GeometricMarker.kDefaultBackgroundColor
     interactive = GeometricMarker.kDefaultInteractive
     super.init(tgMarker: tgM)
@@ -195,26 +201,31 @@ public class PointMarker : GeometricMarker, GenericPointIconMarker {
 
   private var userUpdatedSize = false
 
-  /// The coordinates that the marker should be placed at on the map.
-  public var point: TGGeoPoint {
+  override public var tgMarker: TGMarker? {
     set {
-      tgMarker.point = newValue
+      if let i = icon { newValue?.icon = i}
+      newValue?.point = point
+      super.tgMarker = newValue
     }
     get {
-      return tgMarker.point
+      return super.tgMarker
+    }
+  }
+
+  /// The coordinates that the marker should be placed at on the map.
+  public var point: TGGeoPoint {
+    didSet {
+      tgMarker?.point = point
     }
   }
 
   /// The image that should be displayed on the marker. Updates the size of the marker to be the intrinsic size of the image.
   public var icon: UIImage? {
-    set {
-      guard let i = newValue else { return }
-      tgMarker.icon = i
+    didSet {
+      guard let i = icon else { return }
+      tgMarker?.icon = i
       size = i.size
       updateStyleString()
-    }
-    get {
-      return tgMarker.icon
     }
   }
 
@@ -234,12 +245,16 @@ public class PointMarker : GeometricMarker, GenericPointIconMarker {
    - parameter ease: Easing to use for animation.
    */
   public func setPointEased(_ coordinates: TGGeoPoint, seconds: Float, easeType ease: TGEaseType) -> Bool {
-    return tgMarker.setPointEased(coordinates, seconds: seconds, easeType: ease)
+    tgMarker?.pointEased(coordinates, seconds: seconds, easeType: ease)
+    //TODO: Add error management back in here once we're doing it everywhere correctly.
+    return true
+
   }
 
   /// Default initializer.
   public required init() {
     size = PointMarker.kDefaultSize
+    point = TGGeoPointMake(0.0, 0.0) // Null Island!
     super.init()
   }
 
@@ -260,20 +275,23 @@ public class PointMarker : GeometricMarker, GenericPointIconMarker {
    */
   public required init(size s: CGSize) {
     size = s
+    point = TGGeoPointMake(0.0, 0.0) // Null Island!
     super.init()
     defer {
       size = s
     }
   }
 
-  override init(tgMarker tgM: TGMarker) {
+  override init(tgMarker tgM: TGMarker?) {
     size = PointMarker.kDefaultSize
+    point = TGGeoPointMake(0.0, 0.0) // Null Island!
     super.init(tgMarker: tgM)
   }
 
   // MARK : private
   override func updateStyleString() {
-    tgMarker.stylingString = generateStyleStringWithSize()
+    guard let marker = tgMarker else { return }
+    marker.stylingString = generateStyleStringWithSize()
   }
 
   private func generateBasicStyleString() -> String {
@@ -294,14 +312,22 @@ public class PolylineMarker : GeometricMarker, GenericPolylineMarker {
   private static let kDefaultPolylineWidth = 10
   private static let kDefaultOrder = 1000
 
-  /// The polyline that should be displayed on the map.
-  public var polyline: TGGeoPolyline? {
+  override public var tgMarker: TGMarker? {
     set {
-      guard let l  = newValue else { return }
-      tgMarker.polyline = l
+      if let line = polyline { newValue?.polyline = line }
+      super.tgMarker = newValue
+
     }
     get {
-      return tgMarker.polyline
+      return super.tgMarker
+    }
+  }
+
+  /// The polyline that should be displayed on the map.
+  public var polyline: TGGeoPolyline? {
+    didSet {
+      guard let l  = polyline else { return }
+      tgMarker?.polyline = l
     }
   }
 
@@ -328,7 +354,8 @@ public class PolylineMarker : GeometricMarker, GenericPolylineMarker {
   }
 
   override func updateStyleString() {
-    tgMarker.stylingString = "{ style: '\(PolylineMarker.kLineStyle)', color: '\(backgroundColor.hexValue())', collide: false, interactive: \(interactive), width: \(strokeWidth)px, order: \(order) }"
+    guard let marker = tgMarker else { return }
+    marker.stylingString = "{ style: '\(PolylineMarker.kLineStyle)', color: '\(backgroundColor.hexValue())', collide: false, interactive: \(interactive), width: \(strokeWidth)px, order: \(order) }"
   }
 }
 
@@ -339,14 +366,21 @@ public class PolygonMarker : GeometricMarker, GenericPolygonMarker {
   private static let kPolygonStyle = "polygons"
   private static let kDefaultOrder = 1000
 
-  /// The polygon that should be displayed on the map.
-  public var polygon: TGGeoPolygon? {
+  override public var tgMarker: TGMarker? {
     set {
-      guard let p = newValue else { return }
-      tgMarker.polygon = p
+      if let p = polygon { newValue?.polygon = p }
+      super.tgMarker = newValue
     }
     get {
-      return tgMarker.polygon
+      return super.tgMarker
+    }
+  }
+
+  /// The polygon that should be displayed on the map.
+  public var polygon: TGGeoPolygon? {
+    didSet {
+      guard let p = polygon else { return }
+      tgMarker?.polygon = p
     }
   }
 
@@ -365,7 +399,7 @@ public class PolygonMarker : GeometricMarker, GenericPolygonMarker {
   }
 
   override func updateStyleString() {
-    tgMarker.stylingString = "{ style: '\(PolygonMarker.kPolygonStyle)', color: '\(backgroundColor.hexValue())', collide: false, interactive: \(interactive), order: \(order) }"
+    tgMarker?.stylingString = "{ style: '\(PolygonMarker.kPolygonStyle)', color: '\(backgroundColor.hexValue())', collide: false, interactive: \(interactive), order: \(order) }"
   }
 }
 
@@ -390,13 +424,21 @@ public class SystemPointMarker : Marker, GenericSystemPointMarker {
                                    PointMarkerType.routeLocation : "layers.mz_route_location.draw.ux-location-gem-overlay",
                                    PointMarkerType.droppedPin : "layers.mz_dropped_pin.draw.ux-icons-overlay",]
 
-  /// The coordinates that the marker should be placed at on the map.
-  public var point: TGGeoPoint {
+  override public var tgMarker: TGMarker? {
     set {
-      tgMarker.point = newValue
+      newValue?.point = point
+      if let mt = markerType { newValue?.stylingPath = typeToStylingPath[mt]! } //there is always a styling string for a given MarkerType so force unwrap
+      super.tgMarker = newValue
     }
     get {
-      return tgMarker.point
+      return super.tgMarker
+    }
+  }
+
+  /// The coordinates that the marker should be placed at on the map.
+  public var point: TGGeoPoint {
+    didSet {
+      tgMarker?.point = point
     }
   }
 
@@ -411,15 +453,19 @@ public class SystemPointMarker : Marker, GenericSystemPointMarker {
    - parameter coordinates: Coordinates to animate the marker to
    - parameter seconds: Duration in seconds of the animation.
    - parameter ease: Easing to use for animation.
+   - returns: True if successful, false if error or marker has not been added to the map
    */
   public func setPointEased(_ coordinates: TGGeoPoint, seconds: Float, easeType ease: TGEaseType) -> Bool {
-    return tgMarker.setPointEased(coordinates, seconds: seconds, easeType: ease)
+    guard let marker = tgMarker else { return false }
+    marker.pointEased(coordinates, seconds: seconds, easeType: ease)
+    //TODO: Add error management back in here once we're doing it everywhere correctly.
+    return true
   }
 
   init(markerType mt: PointMarkerType) {
-    super.init()
     markerType = mt
-    tgMarker.stylingPath = typeToStylingPath[mt]! //there is always a styling string for a given MarkerType so force unwrap
+    point = TGGeoPointMake(0.0, 0.0) // Null Island!
+    super.init(tgMarker: nil)
   }
 
 }
@@ -446,13 +492,21 @@ public class SelectableSystemPointMarker : Marker, GenericSelectableSystemPointM
     }
   }
 
-  /// The coordinates that the marker should be placed at on the map.
-  public var point: TGGeoPoint {
+  override public var tgMarker: TGMarker? {
     set {
-      tgMarker.point = newValue
+      newValue?.point = point
+      if let mt = markerType { newValue?.stylingPath = typeToStylingPath[mt]! } //there is always a styling string for a given MarkerType so force unwrap
+      super.tgMarker = newValue
     }
     get {
-      return tgMarker.point
+      return super.tgMarker
+    }
+  }
+
+  /// The coordinates that the marker should be placed at on the map.
+  public var point: TGGeoPoint {
+    didSet {
+      tgMarker?.point = point
     }
   }
 
@@ -467,16 +521,20 @@ public class SelectableSystemPointMarker : Marker, GenericSelectableSystemPointM
    - parameter coordinates: Coordinates to animate the marker to
    - parameter seconds: Duration in seconds of the animation.
    - parameter ease: Easing to use for animation.
+   - returns: True if successful or false if an error occured or the marker hasn't been added to a map
    */
   public func setPointEased(_ coordinates: TGGeoPoint, seconds: Float, easeType ease: TGEaseType) -> Bool {
-    return tgMarker.setPointEased(coordinates, seconds: seconds, easeType: ease)
+    guard let marker = tgMarker else { return false }
+    marker.pointEased(coordinates, seconds: seconds, easeType: ease)
+    //TODO: Add error management back in here once we're doing it everywhere correctly.
+    return true
   }
 
   init(markerType mt: SelectablePointMarkerType) {
     active = SelectableSystemPointMarker.kDefaultActive
-    super.init()
     markerType = mt
-    tgMarker.stylingPath = typeToStylingPath[mt]! //there is always a styling string for a given MarkerType so force unwrap
+    point = TGGeoPointMake(0.0, 0.0) // Null Island!
+    super.init(tgMarker: nil)
   }
 
   private func updateStylePath() {
@@ -490,7 +548,7 @@ public class SelectableSystemPointMarker : Marker, GenericSelectableSystemPointM
     }
 
     if let currPath = path {
-      tgMarker.stylingPath = currPath
+      tgMarker?.stylingPath = currPath
     }
   }
 
@@ -502,20 +560,23 @@ public class SystemPolylineMarker : Marker, GenericSystemPolylineMarker {
 
   private static let kSystemPolylineStylingPath = "layers.mz_route_line.draw.ux-route-line-overlay"
 
-  /// The polyline that should be displayed on the map.
-  public var polyline: TGGeoPolyline? {
+  override public var tgMarker: TGMarker? {
     set {
-      guard let l  = newValue else { return }
-      tgMarker.polyline = l
+      if let l = polyline { newValue?.polyline = l }
+      newValue?.stylingPath = SystemPolylineMarker.kSystemPolylineStylingPath
+      super.tgMarker = newValue
     }
     get {
-      return tgMarker.polyline
+      return super.tgMarker
     }
   }
 
-  public override init() {
-    super.init()
-    tgMarker.stylingPath = SystemPolylineMarker.kSystemPolylineStylingPath
+  /// The polyline that should be displayed on the map.
+  public var polyline: TGGeoPolyline? {
+    didSet {
+      guard let l  = polyline else { return }
+      tgMarker?.polyline = l
+    }
   }
 }
 
