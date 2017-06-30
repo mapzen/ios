@@ -638,12 +638,11 @@
 					DBA4B4B61ED75D2F0010FDDB = {
 						CreatedOnToolsVersion = 8.3.2;
 						DevelopmentTeam = LTQC954SPQ;
-						ProvisioningStyle = Automatic;
+						ProvisioningStyle = Manual;
 					};
 					DBA4B4CE1ED75D2F0010FDDB = {
 						CreatedOnToolsVersion = 8.3.2;
-						DevelopmentTeam = LTQC954SPQ;
-						ProvisioningStyle = Automatic;
+						ProvisioningStyle = Manual;
 						TestTargetID = DBA4B4B61ED75D2F0010FDDB;
 					};
 				};
@@ -1398,6 +1397,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.mapzen.SampleApp-Objc";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "c54e74cb-91b5-42b8-875b-abd75923750c";
+				PROVISIONING_PROFILE_SPECIFIER = "Mapzen Wildcard - Dev";
 			};
 			name = Debug;
 		};
@@ -1410,13 +1411,15 @@
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				DEVELOPMENT_TEAM = LTQC954SPQ;
 				INFOPLIST_FILE = "SampleApp-Objc/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.mapzen.SampleApp-Objc";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "2bb113f1-cb96-465a-8d94-66ec2db8f81e";
+				PROVISIONING_PROFILE_SPECIFIER = "Mapzen Wildcard";
 			};
 			name = Release;
 		};
@@ -1429,12 +1432,14 @@
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-				DEVELOPMENT_TEAM = LTQC954SPQ;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = "SampleApp-ObjcTests/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.mapzen.SampleApp-ObjcTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SampleApp-Objc.app/SampleApp-Objc";
 			};
 			name = Debug;
@@ -1448,13 +1453,13 @@
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = LTQC954SPQ;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = "SampleApp-ObjcTests/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.mapzen.SampleApp-ObjcTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SampleApp-Objc.app/SampleApp-Objc";
 			};
 			name = Release;
