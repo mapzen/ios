@@ -62,6 +62,7 @@
 		DB22E59E1DA473CA004264E0 /* DemoRouteDirectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB22E59D1DA473CA004264E0 /* DemoRouteDirectionCell.swift */; };
 		DB2752F71EFC6F2900CD31B0 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB2752F61EFC6F2900CD31B0 /* OpenGLES.framework */; };
 		DB35012A1E954A8F00FB8923 /* DemoSearchPinsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB3501291E954A8F00FB8923 /* DemoSearchPinsViewController.swift */; };
+		DB60B49B1F06D594002004ED /* Pods_SampleApp_Objc.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB60B49A1F06D594002004ED /* Pods_SampleApp_Objc.framework */; };
 		DB7253361E9C1FF500304516 /* DemoRouteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB7253351E9C1FF500304516 /* DemoRouteViewController.swift */; };
 		DB7A33D81C8F8E8B009CC743 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB7A33D71C8F8E8B009CC743 /* AppDelegate.swift */; };
 		DB7A33DD1C8F8E8B009CC743 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DB7A33DB1C8F8E8B009CC743 /* Main.storyboard */; };
@@ -78,7 +79,6 @@
 		DBEF2B141EC3B99A00D19B62 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D463A0B1EB135460074BEC5 /* LocationManager.swift */; };
 		DBF441AE1D351B0A007DEE95 /* DemoMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBF441AD1D351B0A007DEE95 /* DemoMapViewController.swift */; };
 		DBF441B01D351C90007DEE95 /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DBF441AF1D351C90007DEE95 /* GLKit.framework */; };
-		F22D6B60CD31C9A3FDA86E61 /* Pods_SampleApp_Objc.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 21AEB2E55668201759109460 /* Pods_SampleApp_Objc.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -196,6 +196,7 @@
 		DB22E59D1DA473CA004264E0 /* DemoRouteDirectionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DemoRouteDirectionCell.swift; sourceTree = "<group>"; };
 		DB2752F61EFC6F2900CD31B0 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		DB3501291E954A8F00FB8923 /* DemoSearchPinsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DemoSearchPinsViewController.swift; sourceTree = "<group>"; };
+		DB60B49A1F06D594002004ED /* Pods_SampleApp_Objc.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Pods_SampleApp_Objc.framework; path = "../../../Library/Developer/Xcode/DerivedData/ios-sdk-finqrujahijsxuarbhmwneexkkoc/Build/Products/Debug-iphonesimulator/Pods_SampleApp_Objc.framework"; sourceTree = "<group>"; };
 		DB7253351E9C1FF500304516 /* DemoRouteViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DemoRouteViewController.swift; sourceTree = "<group>"; };
 		DB7A33D41C8F8E8B009CC743 /* ios-sdk.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ios-sdk.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DB7A33D71C8F8E8B009CC743 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -262,7 +263,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F22D6B60CD31C9A3FDA86E61 /* Pods_SampleApp_Objc.framework in Frameworks */,
+				DB60B49B1F06D594002004ED /* Pods_SampleApp_Objc.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -373,6 +374,7 @@
 		CF541C01B2D071D0FF55D939 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				DB60B49A1F06D594002004ED /* Pods_SampleApp_Objc.framework */,
 				DB2752F61EFC6F2900CD31B0 /* OpenGLES.framework */,
 				DBF441AF1D351C90007DEE95 /* GLKit.framework */,
 				92C35E8790FB3255237B1E77 /* Pods.framework */,
@@ -1394,7 +1396,7 @@
 				DEVELOPMENT_TEAM = LTQC954SPQ;
 				INFOPLIST_FILE = "SampleApp-Objc/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks $(FRAMEWORK_SEARCH_PATHS)";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.mapzen.SampleApp-Objc";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "c54e74cb-91b5-42b8-875b-abd75923750c";
@@ -1415,7 +1417,7 @@
 				DEVELOPMENT_TEAM = LTQC954SPQ;
 				INFOPLIST_FILE = "SampleApp-Objc/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks $(FRAMEWORK_SEARCH_PATHS)";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.mapzen.SampleApp-Objc";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "2bb113f1-cb96-465a-8d94-66ec2db8f81e";
