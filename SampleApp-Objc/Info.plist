@@ -43,5 +43,7 @@
 	</array>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>Need location to make things happen!</string>
+	<key>MAPZEN_API_KEY</key>
+	<string>$(MAPZEN_API_KEY)</string>
 </dict>
 </plist>
