@@ -64,6 +64,7 @@
 		DB2752F71EFC6F2900CD31B0 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB2752F61EFC6F2900CD31B0 /* OpenGLES.framework */; };
 		DB35012A1E954A8F00FB8923 /* DemoSearchPinsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB3501291E954A8F00FB8923 /* DemoSearchPinsViewController.swift */; };
 		DB60B49B1F06D594002004ED /* Pods_SampleApp_Objc.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB60B49A1F06D594002004ED /* Pods_SampleApp_Objc.framework */; };
+		DB60B49D1F094693002004ED /* Mapzen_ios_sdk.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB60B49C1F094693002004ED /* Mapzen_ios_sdk.framework */; };
 		DB7253361E9C1FF500304516 /* DemoRouteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB7253351E9C1FF500304516 /* DemoRouteViewController.swift */; };
 		DB7A33D81C8F8E8B009CC743 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB7A33D71C8F8E8B009CC743 /* AppDelegate.swift */; };
 		DB7A33DD1C8F8E8B009CC743 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DB7A33DB1C8F8E8B009CC743 /* Main.storyboard */; };
@@ -198,6 +199,7 @@
 		DB2752F61EFC6F2900CD31B0 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		DB3501291E954A8F00FB8923 /* DemoSearchPinsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DemoSearchPinsViewController.swift; sourceTree = "<group>"; };
 		DB60B49A1F06D594002004ED /* Pods_SampleApp_Objc.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Pods_SampleApp_Objc.framework; path = "../../../Library/Developer/Xcode/DerivedData/ios-sdk-finqrujahijsxuarbhmwneexkkoc/Build/Products/Debug-iphonesimulator/Pods_SampleApp_Objc.framework"; sourceTree = "<group>"; };
+		DB60B49C1F094693002004ED /* Mapzen_ios_sdk.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Mapzen_ios_sdk.framework; path = "../../../Library/Developer/Xcode/DerivedData/ios-sdk-finqrujahijsxuarbhmwneexkkoc/Build/Products/Debug-iphonesimulator/Mapzen-ios-sdk/Mapzen_ios_sdk.framework"; sourceTree = "<group>"; };
 		DB7253351E9C1FF500304516 /* DemoRouteViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DemoRouteViewController.swift; sourceTree = "<group>"; };
 		DB7A33D41C8F8E8B009CC743 /* ios-sdk.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ios-sdk.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DB7A33D71C8F8E8B009CC743 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -264,6 +266,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DB60B49D1F094693002004ED /* Mapzen_ios_sdk.framework in Frameworks */,
 				DB60B49B1F06D594002004ED /* Pods_SampleApp_Objc.framework in Frameworks */,
 				331E8DD43716FE247D48388C /* Pods_SampleApp_Objc.framework in Frameworks */,
 			);
@@ -376,6 +379,7 @@
 		CF541C01B2D071D0FF55D939 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				DB60B49C1F094693002004ED /* Mapzen_ios_sdk.framework */,
 				DB60B49A1F06D594002004ED /* Pods_SampleApp_Objc.framework */,
 				DB2752F61EFC6F2900CD31B0 /* OpenGLES.framework */,
 				DBF441AF1D351C90007DEE95 /* GLKit.framework */,
