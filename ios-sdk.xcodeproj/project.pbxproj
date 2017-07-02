@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		22B2883B1C846D4C65BBE914 /* Pods_SampleApp_ObjcTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ABDD347D603C2CCE824849FD /* Pods_SampleApp_ObjcTests.framework */; };
+		331E8DD43716FE247D48388C /* Pods_SampleApp_Objc.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 21AEB2E55668201759109460 /* Pods_SampleApp_Objc.framework */; };
 		5BB1A61A6A1B20597B8B4286 /* Pods_MapzenSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04E4AC0993E5EBFAAC2141F1 /* Pods_MapzenSDK.framework */; };
 		7D4639F11EB115280074BEC5 /* MapzenSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D4639E81EB115280074BEC5 /* MapzenSDK.framework */; };
 		7D463A191EB135460074BEC5 /* ApplicationExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D463A061EB135460074BEC5 /* ApplicationExtensions.swift */; };
@@ -264,6 +265,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DB60B49B1F06D594002004ED /* Pods_SampleApp_Objc.framework in Frameworks */,
+				331E8DD43716FE247D48388C /* Pods_SampleApp_Objc.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -621,6 +623,7 @@
 					};
 					7D4639EF1EB115280074BEC5 = {
 						CreatedOnToolsVersion = 8.3.1;
+						DevelopmentTeam = LTQC954SPQ;
 						LastSwiftMigration = 0830;
 						ProvisioningStyle = Manual;
 						TestTargetID = DB7A33D31C8F8E8B009CC743;
@@ -644,6 +647,7 @@
 					};
 					DBA4B4CE1ED75D2F0010FDDB = {
 						CreatedOnToolsVersion = 8.3.2;
+						DevelopmentTeam = LTQC954SPQ;
 						ProvisioningStyle = Manual;
 						TestTargetID = DBA4B4B61ED75D2F0010FDDB;
 					};
@@ -1168,7 +1172,7 @@
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = LTQC954SPQ;
 				INFOPLIST_FILE = MapzenSDKTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -1191,8 +1195,7 @@
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = LTQC954SPQ;
 				INFOPLIST_FILE = MapzenSDKTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -1395,8 +1398,8 @@
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				DEVELOPMENT_TEAM = LTQC954SPQ;
 				INFOPLIST_FILE = "SampleApp-Objc/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks $(FRAMEWORK_SEARCH_PATHS)";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.mapzen.SampleApp-Objc";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "c54e74cb-91b5-42b8-875b-abd75923750c";
@@ -1416,8 +1419,8 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				DEVELOPMENT_TEAM = LTQC954SPQ;
 				INFOPLIST_FILE = "SampleApp-Objc/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks $(FRAMEWORK_SEARCH_PATHS)";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.mapzen.SampleApp-Objc";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "2bb113f1-cb96-465a-8d94-66ec2db8f81e";
@@ -1434,8 +1437,7 @@
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = LTQC954SPQ;
 				INFOPLIST_FILE = "SampleApp-ObjcTests/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -1455,7 +1457,7 @@
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = LTQC954SPQ;
 				INFOPLIST_FILE = "SampleApp-ObjcTests/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
