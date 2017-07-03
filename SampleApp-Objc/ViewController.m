@@ -9,10 +9,6 @@
 #import "ViewController.h"
 @import Mapzen_ios_sdk;
 
-@interface ViewController ()
-
-@end
-
 @implementation ViewController
 
 - (void)viewDidLoad {
@@ -30,12 +26,5 @@
     (void)[mapView showFindMeButon:YES];
   }];
 }
-
-
-- (void)didReceiveMemoryWarning {
-  [super didReceiveMemoryWarning];
-  // Dispose of any resources that can be recreated.
-}
-
 
 @end
