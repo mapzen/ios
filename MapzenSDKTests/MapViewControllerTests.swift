@@ -726,6 +726,18 @@ class MapViewControllerTests: XCTestCase {
     controller.removeMarker(marker)
     XCTAssertNil(controller.currentMarkers[marker.tgMarker!])
   }
+
+  func testBikeOverlay() {
+    controller.showBikeOverlay = true
+    XCTAssertTrue(controller.bikeOverlayIsShowing, "Bike Overlay Not Showing")
+    XCTAssertEqual(tgViewController.sceneUpdateComponentPath, GlobalStyleVars.bikeOverlay, "Bike Overlay Scene Update Path Wrong")
+    XCTAssertEqual(tgViewController.sceneUpdateValue, "true", "Bike Overlay Scene Update Value Wrong")
+  }
+
+  func testTransitOverlay() {
+    controller.showTransitOverlay = true
+    XCTAssertTrue(controller.transitOverlayIsShowing, "Transit Overlay Not Showing")
+  }
 }
 
 class TestPanDelegate : MapPanGestureDelegate {
