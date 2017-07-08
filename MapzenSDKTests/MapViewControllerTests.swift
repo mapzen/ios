@@ -183,6 +183,26 @@ class MapViewControllerTests: XCTestCase {
     XCTAssertEqual(apiKeyUpdate?.value, "'\(apiKey)'")
   }
 
+  func testLoadStyleAsyncPreservesBikeOverlay() {
+    controller.showBikeOverlay = true
+    try? controller.loadStyleAsync(.bubbleWrap, onStyleLoaded: nil)
+    tgViewController.sceneUpdates.forEach { (sceneUpdate) in
+      if sceneUpdate.path == GlobalStyleVars.bikeOverlay {
+        XCTAssertEqual(sceneUpdate.value, "true")
+      }
+    }
+  }
+
+  func testLoadStyleAsyncPreservesTransitOverlay() {
+    controller.showTransitOverlay = true
+    try? controller.loadStyleAsync(.bubbleWrap, onStyleLoaded: nil)
+    tgViewController.sceneUpdates.forEach { (sceneUpdate) in
+      if sceneUpdate.path == GlobalStyleVars.transitOverlay {
+        XCTAssertEqual(sceneUpdate.value, "true")
+      }
+    }
+  }
+
   func testCurrentLocaleIsDefault() {
     try? controller.loadStyleAsync(.bubbleWrap, onStyleLoaded: nil)
     XCTAssertEqual(tgViewController.sceneUpdates.last?.path, "global.ux_language")

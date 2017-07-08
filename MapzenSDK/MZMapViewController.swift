@@ -284,7 +284,7 @@ open class MZMapViewController: UIViewController, LocationManagerDelegate {
       return tgViewController.tilt
     }
   }
-
+  /// Show or hide the transit route overlay. Not intended for use at the same time as the bike overlay.
   open var showTransitOverlay: Bool {
     set {
       tgViewController.queueSceneUpdate(GlobalStyleVars.transitOverlay, withValue: "\(newValue)")
@@ -295,7 +295,7 @@ open class MZMapViewController: UIViewController, LocationManagerDelegate {
       return transitOverlayIsShowing
     }
   }
-
+  /// Show or hide the bike route overlay. Not intended for use at the same time as the transit overlay.
   open var showBikeOverlay: Bool {
     set {
       tgViewController.queueSceneUpdate(GlobalStyleVars.bikeOverlay, withValue: "\(newValue)")
@@ -1128,6 +1128,16 @@ open class MZMapViewController: UIViewController, LocationManagerDelegate {
     if let language = locale.languageCode {
       allSceneUpdates.append(createLanguageUpdate(language))
     }
+
+    //Handle restoring the overlay status on scene change
+    if bikeOverlayIsShowing {
+      allSceneUpdates.append(TGSceneUpdate(path: GlobalStyleVars.bikeOverlay, value: "true"))
+    }
+
+    if transitOverlayIsShowing {
+      allSceneUpdates.append(TGSceneUpdate(path: GlobalStyleVars.transitOverlay, value: "true"))
+    }
+    
     return allSceneUpdates
   }
 
