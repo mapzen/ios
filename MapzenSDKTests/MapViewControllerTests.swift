@@ -183,6 +183,26 @@ class MapViewControllerTests: XCTestCase {
     XCTAssertEqual(apiKeyUpdate?.value, "'\(apiKey)'")
   }
 
+  func testLoadStyleAsyncPreservesBikeOverlay() {
+    controller.showBikeOverlay = true
+    try? controller.loadStyleAsync(.bubbleWrap, onStyleLoaded: nil)
+    tgViewController.sceneUpdates.forEach { (sceneUpdate) in
+      if sceneUpdate.path == GlobalStyleVars.bikeOverlay {
+        XCTAssertEqual(sceneUpdate.value, "true")
+      }
+    }
+  }
+
+  func testLoadStyleAsyncPreservesTransitOverlay() {
+    controller.showTransitOverlay = true
+    try? controller.loadStyleAsync(.bubbleWrap, onStyleLoaded: nil)
+    tgViewController.sceneUpdates.forEach { (sceneUpdate) in
+      if sceneUpdate.path == GlobalStyleVars.transitOverlay {
+        XCTAssertEqual(sceneUpdate.value, "true")
+      }
+    }
+  }
+
   func testCurrentLocaleIsDefault() {
     try? controller.loadStyleAsync(.bubbleWrap, onStyleLoaded: nil)
     XCTAssertEqual(tgViewController.sceneUpdates.last?.path, "global.ux_language")
@@ -269,7 +289,7 @@ class MapViewControllerTests: XCTestCase {
     let point = TGGeoPointMake(1.0, 2.0)
     controller.position = point
     //We don't check latitude because of an underlying precision issue with Tangram. More investigation needed.
-    XCTAssertEqualWithAccuracy(controller.position.longitude, point.longitude, accuracy: DBL_EPSILON)
+    XCTAssertEqualWithAccuracy(controller.position.longitude, point.longitude, accuracy: Double.ulpOfOne)
   }
 
   func testLngLatToScreenPosition() {
@@ -405,7 +425,7 @@ class MapViewControllerTests: XCTestCase {
     let _ = try? controller.add([testAnno1, testAnno2])
 
     //Tests
-    let _ = try? controller.removeAnnotations()
+    controller.removeMapAnnotations()
     XCTAssertNil(controller.currentAnnotations[testAnno1])
     XCTAssertNil(controller.currentAnnotations[testAnno2])
   }
@@ -698,12 +718,12 @@ class MapViewControllerTests: XCTestCase {
     controller.reloadTGViewController()
     controller.recreateMap(controller.stateSaver!)
 
-    XCTAssertEqualWithAccuracy(controller.tilt, 1.0, accuracy: FLT_EPSILON)
-    XCTAssertEqualWithAccuracy(controller.rotation, 2.0, accuracy: FLT_EPSILON)
+    XCTAssertEqualWithAccuracy(controller.tilt, 1.0, accuracy: Float.ulpOfOne)
+    XCTAssertEqualWithAccuracy(controller.rotation, 2.0, accuracy: Float.ulpOfOne)
     //We don't check latitude because of a weird underlying issue with Tangram rounding errors on it. Further investigation required
-    XCTAssertEqualWithAccuracy(controller.position.longitude, 1.0, accuracy: DBL_EPSILON)
+    XCTAssertEqualWithAccuracy(controller.position.longitude, 1.0, accuracy: Double.ulpOfOne)
     XCTAssertEqual(controller.cameraType, .flat)
-    XCTAssertEqualWithAccuracy(controller.zoom, 3.0, accuracy: FLT_EPSILON)
+    XCTAssertEqualWithAccuracy(controller.zoom, 3.0, accuracy: Float.ulpOfOne)
     XCTAssertEqual(controller.currentStyle, .cinnabar)
     XCTAssertTrue(controller.shouldShowCurrentLocation)
     XCTAssertFalse(controller.findMeButton.isHidden)
@@ -725,6 +745,18 @@ class MapViewControllerTests: XCTestCase {
     controller.addMarker(marker)
     controller.removeMarker(marker)
     XCTAssertNil(controller.currentMarkers[marker.tgMarker!])
+  }
+
+  func testBikeOverlay() {
+    controller.showBikeOverlay = true
+    XCTAssertTrue(controller.bikeOverlayIsShowing, "Bike Overlay Not Showing")
+    XCTAssertEqual(tgViewController.sceneUpdateComponentPath, GlobalStyleVars.bikeOverlay, "Bike Overlay Scene Update Path Wrong")
+    XCTAssertEqual(tgViewController.sceneUpdateValue, "true", "Bike Overlay Scene Update Value Wrong")
+  }
+
+  func testTransitOverlay() {
+    controller.showTransitOverlay = true
+    XCTAssertTrue(controller.transitOverlayIsShowing, "Transit Overlay Not Showing")
   }
 }
 

@@ -13,13 +13,20 @@ import CoreLocation
 import Pelias
 import OnTheRoad
 
-struct StateReclaimer {
+public struct StateReclaimer {
   public let tilt: Float
   public let rotation: Float
   public let zoom: Float
   public let position: TGGeoPoint
   public let cameraType: TGCameraType
   public let mapStyle: MapStyle
+}
+
+public struct GlobalStyleVars {
+  public static let transitOverlay = "global.sdk_transit_overlay"
+  public static let bikeOverlay = "global.sdk_bike_overlay"
+  public static let apiKey = "global.sdk_mapzen_api_key"
+  public static let uxLanguage = "global.ux_language"
 }
 
 /** 
@@ -207,8 +214,6 @@ open class MZMapViewController: UIViewController, LocationManagerDelegate {
   //Error Domains for NSError Appeasement
   open static let MapzenGeneralErrorDomain = "MapzenGeneralErrorDomain"
   private static let mapzenRights = "https://mapzen.com/rights/"
-  private static let kGlobalPathApiKey = "global.sdk_mapzen_api_key"
-  private static let kGlobalPathLanguage = "global.ux_language"
 
   private var isCurrentlyVisible = false // We can't rely on things like window being non-nil because page controllers have a non-nil window as they're being rendered off screen
 
@@ -227,6 +232,8 @@ open class MZMapViewController: UIViewController, LocationManagerDelegate {
   private var locale = Locale.current
   var stateSaver: StateReclaimer?
   var currentStyle: MapStyle = .bubbleWrap
+  var transitOverlayIsShowing = false
+  var bikeOverlayIsShowing = false
 
   /// The camera type we want to use. Defaults to whatever is set in the style sheet.
   open var cameraType: TGCameraType {
@@ -277,7 +284,28 @@ open class MZMapViewController: UIViewController, LocationManagerDelegate {
       return tgViewController.tilt
     }
   }
-
+  /// Show or hide the transit route overlay. Not intended for use at the same time as the bike overlay.
+  open var showTransitOverlay: Bool {
+    set {
+      tgViewController.queueSceneUpdate(GlobalStyleVars.transitOverlay, withValue: "\(newValue)")
+      tgViewController.applySceneUpdates()
+      transitOverlayIsShowing = newValue
+    }
+    get {
+      return transitOverlayIsShowing
+    }
+  }
+  /// Show or hide the bike route overlay. Not intended for use at the same time as the transit overlay.
+  open var showBikeOverlay: Bool {
+    set {
+      tgViewController.queueSceneUpdate(GlobalStyleVars.bikeOverlay, withValue: "\(newValue)")
+      tgViewController.applySceneUpdates()
+      bikeOverlayIsShowing = newValue
+    }
+    get {
+      return bikeOverlayIsShowing
+    }
+  }
   /// Enables / Disables panning on the map
   open var panEnabled = true
 
@@ -1096,15 +1124,25 @@ open class MZMapViewController: UIViewController, LocationManagerDelegate {
     }
     var allSceneUpdates = [TGSceneUpdate]()
     allSceneUpdates.append(contentsOf: sceneUpdates)
-    allSceneUpdates.append(TGSceneUpdate(path: MZMapViewController.kGlobalPathApiKey, value: "'\(apiKey)'"))
+    allSceneUpdates.append(TGSceneUpdate(path: GlobalStyleVars.apiKey, value: "'\(apiKey)'"))
     if let language = locale.languageCode {
       allSceneUpdates.append(createLanguageUpdate(language))
     }
+
+    //Handle restoring the overlay status on scene change
+    if bikeOverlayIsShowing {
+      allSceneUpdates.append(TGSceneUpdate(path: GlobalStyleVars.bikeOverlay, value: "true"))
+    }
+
+    if transitOverlayIsShowing {
+      allSceneUpdates.append(TGSceneUpdate(path: GlobalStyleVars.transitOverlay, value: "true"))
+    }
+    
     return allSceneUpdates
   }
 
   private func createLanguageUpdate(_ language: String) -> TGSceneUpdate {
-    return TGSceneUpdate(path: MZMapViewController.kGlobalPathLanguage, value: language)
+    return TGSceneUpdate(path: GlobalStyleVars.uxLanguage, value: language)
   }
 }
 

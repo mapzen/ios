@@ -76,6 +76,12 @@ class DemoMapViewController:  SampleMapViewController, MapMarkerSelectDelegate {
     actionSheet.addAction(UIAlertAction.init(title: "Zinc", style: .default, handler: { [unowned self] (action) in
       self.indicateLoadStyle(style: .zinc)
     }))
+    actionSheet.addAction(UIAlertAction(title: "Show / Hide Transit Overlay", style: .default, handler: { [unowned self] (action) in
+      self.showTransitOverlay = !self.showTransitOverlay
+    }))
+    actionSheet.addAction(UIAlertAction(title: "Show / Hide Bike Overlay", style: .default, handler: { [unowned self] (action) in
+      self.showBikeOverlay = !self.showBikeOverlay
+    }))
     actionSheet.addAction(UIAlertAction.init(title: "Cancel", style: .cancel, handler: { [unowned self] (action) in
       self.dismiss(animated: true, completion: nil)
     }))
