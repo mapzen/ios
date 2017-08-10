@@ -68,7 +68,8 @@ class MapzenManagerTests: XCTestCase {
     MapzenManager.sharedManager.apiKey = "1234"
 
     //Tests
-    guard let queryParams = PeliasSearchManager.sharedInstance.urlQueryItems else {
+    //This now implicitly tests the KVO implementation used under the covers. Unsure if we should make this more explicit or not in the future.
+    guard let queryParams = MapzenSearch.sharedInstance.urlQueryItems else {
       XCTFail("urlQueryItems should be initialized by this point, but aren't")
       return
     }
