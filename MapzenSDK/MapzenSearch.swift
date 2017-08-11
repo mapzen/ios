@@ -12,7 +12,26 @@ import Pelias
 public class MapzenSearch : NSObject {
   /// Returns the shared 'MapzenSearch' instance.
   public static let sharedInstance = MapzenSearch()
+  public var apiKey: String? {
+    didSet {
+      guard let apiKey = apiKey else {
+        if let queryItems = urlQueryItems {
+          for (index, queryItem) in queryItems.enumerated() {
+            if queryItem.name == "api_key" {
+              urlQueryItems?.remove(at: index)
+            } // if queryItem
+          } // for (index, queryItem)
+        } // if let queryItems
+        return
+      }
+
+      urlQueryItems = [URLQueryItem(name: "api_key", value: apiKey)]
+    } // didSet
+  }
+
   private let peliasSearchManager = PeliasSearchManager.sharedInstance
+  private var myContext = 0
+
   /// Delay in seconds that the manager should wait between keystrokes to fire a new autocomplete request. Default is 0.3
   public var autocompleteTimeDelay: Double {
     get {
@@ -22,6 +41,7 @@ public class MapzenSearch : NSObject {
       peliasSearchManager.autocompleteTimeDelay = delay
     }
   }
+
   /// Base url to execute requests against. Default value is https://search.mapzen.com.
   public var baseUrl: URL {
     get {
@@ -31,6 +51,7 @@ public class MapzenSearch : NSObject {
       peliasSearchManager.baseUrl = url
     }
   }
+
   /// The query items that should be applied to every request (such as an api key).
   public var urlQueryItems: [URLQueryItem]? {
     get {
@@ -44,6 +65,10 @@ public class MapzenSearch : NSObject {
   fileprivate override init() {
     super.init()
     autocompleteTimeDelay = 1.0
+    defer {
+      setupAPIKeyObservance()
+      apiKey = MapzenManager.sharedManager.apiKey
+    }
   }
   /** Perform an asyncronous search request given parameters defined by the search config. Returns the queued operation.
    - parameter config: Object holding search request parameter information.
@@ -72,5 +97,25 @@ public class MapzenSearch : NSObject {
   /// Cancel all requests
   public func cancelOperations() {
     peliasSearchManager.cancelOperations()
+  }
+
+  // KVO Observance for API Keys because singletons are funky
+  func setupAPIKeyObservance() {
+    MapzenManager.sharedManager.addObserver(self, forKeyPath:
+      #keyPath(MapzenManager.apiKey), options: .new, context: &myContext)
+  }
+
+  override public func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+    if context == &myContext {
+      if (change?[.newKey]) != nil && keyPath == #keyPath(MapzenManager.apiKey){
+        apiKey = MapzenManager.sharedManager.apiKey
+      }
+    } else {
+      super.observeValue(forKeyPath: keyPath, of: object, change: change, context: context)
+    }
+  }
+
+  deinit {
+    MapzenManager.sharedManager.removeObserver(self, forKeyPath: #keyPath(MapzenManager.apiKey), context: &myContext)
   }
 }
