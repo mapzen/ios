@@ -236,6 +236,8 @@ open class MZMapViewController: UIViewController, LocationManagerDelegate {
   var transitOverlayIsShowing = false
   var bikeOverlayIsShowing = false
   var walkingOverlayIsShowing = false
+  private var sceneUpdates: [TGSceneUpdate] = []
+  fileprivate var sceneLoadCallbacks: [Int32: OnStyleLoaded] = [:]
 
   /// The camera type we want to use. Defaults to whatever is set in the style sheet.
   open var cameraType: TGCameraType {
@@ -289,8 +291,8 @@ open class MZMapViewController: UIViewController, LocationManagerDelegate {
   /// Show or hide the transit route overlay. Not intended for use at the same time as the bike overlay. Fine to use with the walking network.
   open var showTransitOverlay: Bool {
     set {
-      tgViewController.queueSceneUpdate(GlobalStyleVars.transitOverlay, withValue: "\(newValue)")
-      tgViewController.applySceneUpdates()
+      let sceneUpdate = TGSceneUpdate(path: GlobalStyleVars.transitOverlay, value: "\(newValue)")
+      tgViewController.updateSceneAsync([sceneUpdate])
       transitOverlayIsShowing = newValue
     }
     get {
@@ -300,8 +302,8 @@ open class MZMapViewController: UIViewController, LocationManagerDelegate {
   /// Show or hide the bike route overlay. Not intended for use at the same time as the transit overlay.
   open var showBikeOverlay: Bool {
     set {
-      tgViewController.queueSceneUpdate(GlobalStyleVars.bikeOverlay, withValue: "\(newValue)")
-      tgViewController.applySceneUpdates()
+      let sceneUpdate = TGSceneUpdate(path: GlobalStyleVars.bikeOverlay, value: "\(newValue)")
+      tgViewController.updateSceneAsync([sceneUpdate])
       bikeOverlayIsShowing = newValue
     }
     get {
@@ -600,10 +602,10 @@ open class MZMapViewController: UIViewController, LocationManagerDelegate {
     if style == .walkabout {
       walkingOverlayIsShowing = true
     }
-    guard let qualifiedSceneFile = Bundle.houseStylesBundle()?.url(forResource: sceneFile, withExtension: "yaml")?.absoluteString else {
+    guard let qualifiedSceneFile = Bundle.houseStylesBundle()?.url(forResource: sceneFile, withExtension: "yaml") else {
       return
     }
-    try tgViewController.loadSceneFile(qualifiedSceneFile, sceneUpdates: allSceneUpdates(sceneUpdates))
+    try tgViewController.loadScene(from: qualifiedSceneFile, with: allSceneUpdates(sceneUpdates))
   }
 
   /**
@@ -638,16 +640,15 @@ open class MZMapViewController: UIViewController, LocationManagerDelegate {
    - throws: A MZError `apiKeyNotSet` error if an API Key has not been sent on the MapzenManager class.
    */
   open func loadStyleAsync(_ style: MapStyle, sceneUpdates: [TGSceneUpdate], onStyleLoaded: OnStyleLoaded?) throws {
-    onStyleLoadedClosure = onStyleLoaded
-    guard let sceneFile = styles.keyForValue(value: style) else { return }
-    currentStyle = style
-    if style == .walkabout {
-      walkingOverlayIsShowing = true
-    }
-    guard let qualifiedSceneFile = Bundle.houseStylesBundle()?.url(forResource: sceneFile, withExtension: "yaml")?.absoluteString else {
-      return
-    }
-    try tgViewController.loadSceneFileAsync(qualifiedSceneFile, sceneUpdates: allSceneUpdates(sceneUpdates))
+//    onStyleLoadedClosure = onStyleLoaded
+//    guard let sceneFile = styles.keyForValue(value: style) else { return }
+//    currentStyle = style
+//    guard let qualifiedSceneFile = Bundle.houseStylesBundle()?.url(forResource: sceneFile, withExtension: "yaml") else {
+//      return
+//    }
+//    let sceneId = try tgViewController.loadSceneAsync(from: qualifiedSceneFile, with: allSceneUpdates(sceneUpdates))
+//    sceneLoadCallbacks[sceneId] = onStyleLoaded
+    try loadStyleAsync(style, locale: Locale.current, sceneUpdates: sceneUpdates, onStyleLoaded: onStyleLoaded)
   }
 
   /**
@@ -661,13 +662,17 @@ open class MZMapViewController: UIViewController, LocationManagerDelegate {
    */
   open func loadStyleAsync(_ style: MapStyle, locale l: Locale, sceneUpdates: [TGSceneUpdate], onStyleLoaded: OnStyleLoaded?) throws {
     locale = l
-    onStyleLoadedClosure = onStyleLoaded
+//    onStyleLoadedClosure = onStyleLoaded
     guard let sceneFile = styles.keyForValue(value: style) else { return }
     currentStyle = style
     if style == .walkabout {
       walkingOverlayIsShowing = true
     }
-    try tgViewController.loadSceneFileAsync(sceneFile, sceneUpdates: allSceneUpdates(sceneUpdates))
+    guard let qualifiedSceneFile = Bundle.houseStylesBundle()?.url(forResource: sceneFile, withExtension: "yaml") else {
+      return
+    }
+    let sceneId = try tgViewController.loadSceneAsync(from: qualifiedSceneFile, with: allSceneUpdates(sceneUpdates))
+    sceneLoadCallbacks[sceneId] = onStyleLoaded
   }
 
   /**
@@ -677,8 +682,7 @@ open class MZMapViewController: UIViewController, LocationManagerDelegate {
     locale = l
     guard let language = locale.languageCode else { return }
     let update = createLanguageUpdate(language)
-    queue([update])
-    applySceneUpdates()
+    tgViewController.updateSceneAsync([update])
   }
 
   /**
@@ -687,8 +691,10 @@ open class MZMapViewController: UIViewController, LocationManagerDelegate {
    - parameter componentPath: The yaml path to the component to change.
    - parameter value: The value to update the component to.
   */
+  @available(*, deprecated)
   open func queueSceneUpdate(_ componentPath: String, withValue value: String) {
-    tgViewController.queueSceneUpdate(componentPath, withValue: value)
+    let update = TGSceneUpdate(path: componentPath, value: value)
+    sceneUpdates.append(update)
   }
 
   /**
@@ -696,13 +702,18 @@ open class MZMapViewController: UIViewController, LocationManagerDelegate {
    
    - parameter sceneUpdates: An array of TGSceneUpdate objects to update the map.
   */
+  @available(*, deprecated)
   open func queue(_ sceneUpdates: [TGSceneUpdate]) {
-    tgViewController.queue(sceneUpdates)
+    for update in sceneUpdates {
+      self.sceneUpdates.append(update)
+    }
   }
 
   //Applies all queued scene updates.
+  @available(*, deprecated)
   open func applySceneUpdates() {
-    tgViewController.applySceneUpdates()
+    tgViewController.updateSceneAsync(sceneUpdates)
+    sceneUpdates = []
   }
 
   /**
@@ -1177,21 +1188,23 @@ open class MZMapViewController: UIViewController, LocationManagerDelegate {
 extension MZMapViewController : TGMapViewDelegate, TGRecognizerDelegate {
   
   //MARK : TGMapViewDelegate
-  
-  open func mapView(_ mapView: TGMapViewController, didLoadSceneAsync scene: String) {
+
+  open func mapView(_ mapView: TGMapViewController, didLoadScene sceneID: Int32, withError sceneError: Error?) {
+
     // if we loaded a house style scene looks something like: file:///var/containers/Bundle/Application/FAFA232A-1190-40CB-9391-7C9F44B51076/ios-sdk.app/housestyles.bundle/bubble-wrap/bubble-wrap-style-more-labels.yaml
-    guard let pathComponents = URL.init(string: scene)?.pathComponents else {
-      onStyleLoadedClosure = nil
-      return
-    }
-    // if we have path components, grab the last two (ie. bubble-wrap & bubble-wrap-style-more-labels.yaml), strip ".yaml" and check for existence in styles map
-    let sceneStyle = (pathComponents[pathComponents.count-2] + "/" + pathComponents.last!).replacingOccurrences(of: ".yaml", with: "")
-    guard let style = styles[sceneStyle] else {
-      onStyleLoadedClosure = nil
-      return
-    }
-    onStyleLoadedClosure?(style)
-    onStyleLoadedClosure = nil
+//    guard let pathComponents = URL.init(string: scene)?.pathComponents else {
+//      onStyleLoadedClosure = nil
+//      return
+//    }
+//    // if we have path components, grab the last two (ie. bubble-wrap & bubble-wrap-style-more-labels.yaml), strip ".yaml" and check for existence in styles map
+//    let sceneStyle = (pathComponents[pathComponents.count-2] + "/" + pathComponents.last!).replacingOccurrences(of: ".yaml", with: "")
+//    guard let style = styles[sceneStyle] else {
+//      onStyleLoadedClosure = nil
+//      return
+//    }
+    guard let styleClosure = sceneLoadCallbacks[sceneID] else { return }
+    styleClosure(currentStyle)
+    sceneLoadCallbacks[sceneID] = nil
   }
   
   open func mapViewDidCompleteLoading(_ mapView: TGMapViewController) {
