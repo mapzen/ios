@@ -24,7 +24,7 @@
 }
 
 - (NSString *)getEnvironmentVariableForKey:(NSString *)key {
-  if (NSBundle.mainBundle.infoDictionary[key]) {
+  if (NSBundle.mainBundle.infoDictionary[key] && (NSString*)NSBundle.mainBundle.infoDictionary[key] != [NSString stringWithFormat:@""]) {
     return NSBundle.mainBundle.infoDictionary[key];
   }
 
