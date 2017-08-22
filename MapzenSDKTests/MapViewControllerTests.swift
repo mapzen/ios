@@ -203,6 +203,16 @@ class MapViewControllerTests: XCTestCase {
     }
   }
 
+  func testLoadStyleAsyncPreservesWalkOverlay() {
+    controller.showWalkingPathOverlay = true
+    try? controller.loadStyleAsync(.bubbleWrap, onStyleLoaded: nil)
+    tgViewController.sceneUpdates.forEach { (sceneUpdate) in
+      if sceneUpdate.path == GlobalStyleVars.pathOverlay {
+        XCTAssertEqual(sceneUpdate.value, "true")
+      }
+    }
+  }
+
   func testCurrentLocaleIsDefault() {
     try? controller.loadStyleAsync(.bubbleWrap, onStyleLoaded: nil)
     XCTAssertEqual(tgViewController.sceneUpdates.last?.path, "global.ux_language")
@@ -752,6 +762,13 @@ class MapViewControllerTests: XCTestCase {
     XCTAssertTrue(controller.bikeOverlayIsShowing, "Bike Overlay Not Showing")
     XCTAssertEqual(tgViewController.sceneUpdateComponentPath, GlobalStyleVars.bikeOverlay, "Bike Overlay Scene Update Path Wrong")
     XCTAssertEqual(tgViewController.sceneUpdateValue, "true", "Bike Overlay Scene Update Value Wrong")
+  }
+
+  func testWalkingOverlay() {
+    controller.showWalkingPathOverlay = true
+    XCTAssertTrue(controller.walkingOverlayIsShowing, "Walk Overlay Not Showing")
+    XCTAssertEqual(tgViewController.sceneUpdateComponentPath, GlobalStyleVars.pathOverlay, "Walk Overlay Scene Update Path Wrong")
+    XCTAssertEqual(tgViewController.sceneUpdateValue, "true", "Walk Overlay Scene Update Value Wrong")
   }
 
   func testTransitOverlay() {
