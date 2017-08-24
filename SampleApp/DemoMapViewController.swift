@@ -81,6 +81,15 @@ class DemoMapViewController:  SampleMapViewController, MapMarkerSelectDelegate {
     }))
     actionSheet.addAction(UIAlertAction(title: "Show / Hide Bike Overlay", style: .default, handler: { [unowned self] (action) in
       self.showBikeOverlay = !self.showBikeOverlay
+      if self.showBikeOverlay == true {
+        self.showWalkingPathOverlay = false
+      }
+    }))
+    actionSheet.addAction(UIAlertAction(title: "Show / Hide Walking Overlay", style: .default, handler: { [unowned self] (action) in
+      self.showWalkingPathOverlay = !self.showWalkingPathOverlay
+      if self.showWalkingPathOverlay == true {
+        self.showBikeOverlay = false
+      }
     }))
     actionSheet.addAction(UIAlertAction.init(title: "Cancel", style: .cancel, handler: { [unowned self] (action) in
       self.dismiss(animated: true, completion: nil)

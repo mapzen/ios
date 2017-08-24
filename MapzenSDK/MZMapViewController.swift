@@ -25,6 +25,7 @@ public struct StateReclaimer {
 public struct GlobalStyleVars {
   public static let transitOverlay = "global.sdk_transit_overlay"
   public static let bikeOverlay = "global.sdk_bike_overlay"
+  public static let pathOverlay = "global.sdk_path_overlay"
   public static let apiKey = "global.sdk_mapzen_api_key"
   public static let uxLanguage = "global.ux_language"
 }
@@ -234,6 +235,7 @@ open class MZMapViewController: UIViewController, LocationManagerDelegate {
   var currentStyle: MapStyle = .bubbleWrap
   var transitOverlayIsShowing = false
   var bikeOverlayIsShowing = false
+  var walkingOverlayIsShowing = false
 
   /// The camera type we want to use. Defaults to whatever is set in the style sheet.
   open var cameraType: TGCameraType {
@@ -284,7 +286,7 @@ open class MZMapViewController: UIViewController, LocationManagerDelegate {
       return tgViewController.tilt
     }
   }
-  /// Show or hide the transit route overlay. Not intended for use at the same time as the bike overlay.
+  /// Show or hide the transit route overlay. Not intended for use at the same time as the bike overlay. Fine to use with the walking network.
   open var showTransitOverlay: Bool {
     set {
       tgViewController.queueSceneUpdate(GlobalStyleVars.transitOverlay, withValue: "\(newValue)")
@@ -306,6 +308,19 @@ open class MZMapViewController: UIViewController, LocationManagerDelegate {
       return bikeOverlayIsShowing
     }
   }
+
+  /// Show or hide the walking network. Not intended for use at the same time as the bike overlay. Fine for use with the transit overlay
+  open var showWalkingPathOverlay: Bool {
+    set {
+      tgViewController.queueSceneUpdate(GlobalStyleVars.pathOverlay, withValue: "\(newValue)")
+      tgViewController.applySceneUpdates()
+      walkingOverlayIsShowing = newValue
+    }
+    get {
+      return walkingOverlayIsShowing
+    }
+  }
+
   /// Enables / Disables panning on the map
   open var panEnabled = true
 
@@ -582,6 +597,9 @@ open class MZMapViewController: UIViewController, LocationManagerDelegate {
     locale = l
     guard let sceneFile = styles.keyForValue(value: style) else { return }
     currentStyle = style
+    if style == .walkabout {
+      walkingOverlayIsShowing = true
+    }
     guard let qualifiedSceneFile = Bundle.houseStylesBundle()?.url(forResource: sceneFile, withExtension: "yaml")?.absoluteString else {
       return
     }
@@ -623,6 +641,9 @@ open class MZMapViewController: UIViewController, LocationManagerDelegate {
     onStyleLoadedClosure = onStyleLoaded
     guard let sceneFile = styles.keyForValue(value: style) else { return }
     currentStyle = style
+    if style == .walkabout {
+      walkingOverlayIsShowing = true
+    }
     guard let qualifiedSceneFile = Bundle.houseStylesBundle()?.url(forResource: sceneFile, withExtension: "yaml")?.absoluteString else {
       return
     }
@@ -643,6 +664,9 @@ open class MZMapViewController: UIViewController, LocationManagerDelegate {
     onStyleLoadedClosure = onStyleLoaded
     guard let sceneFile = styles.keyForValue(value: style) else { return }
     currentStyle = style
+    if style == .walkabout {
+      walkingOverlayIsShowing = true
+    }
     try tgViewController.loadSceneFileAsync(sceneFile, sceneUpdates: allSceneUpdates(sceneUpdates))
   }
 
@@ -1136,6 +1160,10 @@ open class MZMapViewController: UIViewController, LocationManagerDelegate {
 
     if transitOverlayIsShowing {
       allSceneUpdates.append(TGSceneUpdate(path: GlobalStyleVars.transitOverlay, value: "true"))
+    }
+
+    if walkingOverlayIsShowing {
+      allSceneUpdates.append(TGSceneUpdate(path: GlobalStyleVars.pathOverlay, value: "true"))
     }
     
     return allSceneUpdates
