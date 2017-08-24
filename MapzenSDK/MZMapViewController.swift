@@ -237,7 +237,8 @@ open class MZMapViewController: UIViewController, LocationManagerDelegate {
   var bikeOverlayIsShowing = false
   var walkingOverlayIsShowing = false
   private var sceneUpdates: [TGSceneUpdate] = []
-  fileprivate var sceneLoadCallbacks: [Int32: OnStyleLoaded] = [:]
+  fileprivate var sceneLoadCallback: OnStyleLoaded?
+  fileprivate var latestSceneId: Int32 = 0
 
   /// The camera type we want to use. Defaults to whatever is set in the style sheet.
   open var cameraType: TGCameraType {
@@ -640,14 +641,6 @@ open class MZMapViewController: UIViewController, LocationManagerDelegate {
    - throws: A MZError `apiKeyNotSet` error if an API Key has not been sent on the MapzenManager class.
    */
   open func loadStyleAsync(_ style: MapStyle, sceneUpdates: [TGSceneUpdate], onStyleLoaded: OnStyleLoaded?) throws {
-//    onStyleLoadedClosure = onStyleLoaded
-//    guard let sceneFile = styles.keyForValue(value: style) else { return }
-//    currentStyle = style
-//    guard let qualifiedSceneFile = Bundle.houseStylesBundle()?.url(forResource: sceneFile, withExtension: "yaml") else {
-//      return
-//    }
-//    let sceneId = try tgViewController.loadSceneAsync(from: qualifiedSceneFile, with: allSceneUpdates(sceneUpdates))
-//    sceneLoadCallbacks[sceneId] = onStyleLoaded
     try loadStyleAsync(style, locale: Locale.current, sceneUpdates: sceneUpdates, onStyleLoaded: onStyleLoaded)
   }
 
@@ -662,7 +655,6 @@ open class MZMapViewController: UIViewController, LocationManagerDelegate {
    */
   open func loadStyleAsync(_ style: MapStyle, locale l: Locale, sceneUpdates: [TGSceneUpdate], onStyleLoaded: OnStyleLoaded?) throws {
     locale = l
-//    onStyleLoadedClosure = onStyleLoaded
     guard let sceneFile = styles.keyForValue(value: style) else { return }
     currentStyle = style
     if style == .walkabout {
@@ -672,7 +664,8 @@ open class MZMapViewController: UIViewController, LocationManagerDelegate {
       return
     }
     let sceneId = try tgViewController.loadSceneAsync(from: qualifiedSceneFile, with: allSceneUpdates(sceneUpdates))
-    sceneLoadCallbacks[sceneId] = onStyleLoaded
+    sceneLoadCallback = onStyleLoaded
+    latestSceneId = sceneId
   }
 
   /**
@@ -1191,20 +1184,14 @@ extension MZMapViewController : TGMapViewDelegate, TGRecognizerDelegate {
 
   open func mapView(_ mapView: TGMapViewController, didLoadScene sceneID: Int32, withError sceneError: Error?) {
 
-    // if we loaded a house style scene looks something like: file:///var/containers/Bundle/Application/FAFA232A-1190-40CB-9391-7C9F44B51076/ios-sdk.app/housestyles.bundle/bubble-wrap/bubble-wrap-style-more-labels.yaml
-//    guard let pathComponents = URL.init(string: scene)?.pathComponents else {
-//      onStyleLoadedClosure = nil
-//      return
-//    }
-//    // if we have path components, grab the last two (ie. bubble-wrap & bubble-wrap-style-more-labels.yaml), strip ".yaml" and check for existence in styles map
-//    let sceneStyle = (pathComponents[pathComponents.count-2] + "/" + pathComponents.last!).replacingOccurrences(of: ".yaml", with: "")
-//    guard let style = styles[sceneStyle] else {
-//      onStyleLoadedClosure = nil
-//      return
-//    }
-    guard let styleClosure = sceneLoadCallbacks[sceneID] else { return }
+    //We only want to call back on the latest scene load - so we gate here to make sure we only call back on the latest.
+    //TODO: For 2.0 we should pass the Error along in the callback block.
+    if sceneID != latestSceneId {
+      return
+    }
+    guard let styleClosure = sceneLoadCallback else { return }
     styleClosure(currentStyle)
-    sceneLoadCallbacks[sceneID] = nil
+    sceneLoadCallback = nil
   }
   
   open func mapViewDidCompleteLoading(_ mapView: TGMapViewController) {
