@@ -598,7 +598,7 @@ open class MZMapViewController: UIViewController, LocationManagerDelegate {
     guard let sceneFile = styles.keyForValue(value: style) else { return }
     currentStyle = style
     if style == .walkabout {
-      showWalkingPathOverlay = true
+      walkingOverlayIsShowing = true
     }
     guard let qualifiedSceneFile = Bundle.houseStylesBundle()?.url(forResource: sceneFile, withExtension: "yaml")?.absoluteString else {
       return
@@ -642,7 +642,7 @@ open class MZMapViewController: UIViewController, LocationManagerDelegate {
     guard let sceneFile = styles.keyForValue(value: style) else { return }
     currentStyle = style
     if style == .walkabout {
-      showWalkingPathOverlay = true
+      walkingOverlayIsShowing = true
     }
     guard let qualifiedSceneFile = Bundle.houseStylesBundle()?.url(forResource: sceneFile, withExtension: "yaml")?.absoluteString else {
       return
@@ -665,7 +665,7 @@ open class MZMapViewController: UIViewController, LocationManagerDelegate {
     guard let sceneFile = styles.keyForValue(value: style) else { return }
     currentStyle = style
     if style == .walkabout {
-      showWalkingPathOverlay = true
+      walkingOverlayIsShowing = true
     }
     try tgViewController.loadSceneFileAsync(sceneFile, sceneUpdates: allSceneUpdates(sceneUpdates))
   }
