@@ -216,8 +216,6 @@ open class MZMapViewController: UIViewController, LocationManagerDelegate {
   open static let MapzenGeneralErrorDomain = "MapzenGeneralErrorDomain"
   private static let mapzenRights = "https://mapzen.com/rights/"
 
-  private var isCurrentlyVisible = false // We can't rely on things like window being non-nil because page controllers have a non-nil window as they're being rendered off screen
-
   let application : ApplicationProtocol
   open var tgViewController: TGMapViewController = TGMapViewController()
   var currentLocationGem: GenericSystemPointMarker?
@@ -906,75 +904,6 @@ open class MZMapViewController: UIViewController, LocationManagerDelegate {
     shouldFollowCurrentLocation = button.isSelected
   }
 
-  // MARK:- Memory Management handlers
-
-  func reloadTGViewController() {
-    guard let unwrappedSaver = stateSaver else { return }
-    setupTgControllerView()
-    tgViewController.gestureDelegate = self
-    tgViewController.mapViewDelegate = self
-    do {
-      try loadStyleAsync(unwrappedSaver.mapStyle) { [unowned self] (styleLoaded) in
-        self.recreateMap(unwrappedSaver)
-        self.stateSaver = nil
-      }
-    } catch {
-      // In the event Tangram can't do the reload, we're pretty much dead in the water.
-      return
-    }
-  }
-
-  //This function should really only be used in conjunction with reloadTGViewController, but it is safe to be used whenever.
-  func recreateMap(_ state: StateReclaimer) {
-    //Annotation Replay
-    let oldAnnotations = self.currentAnnotations
-    self.currentAnnotations = Dictionary()
-    for (annotation, marker) in oldAnnotations {
-      let newMarker = PointMarker.init()
-      addMarker(newMarker)
-      //TODO: also set polyline, polygon etc
-      newMarker.point = marker.point
-      if !marker.stylingPath.isEmpty {
-        newMarker.tgMarker?.stylingPath = marker.stylingPath
-      } else {
-        newMarker.tgMarker?.stylingString = marker.stylingString
-      }
-      self.currentAnnotations[annotation] = newMarker.tgMarker
-    }
-
-    //Routing Replay
-    if let currentRoute = self.currentRoute {
-      do {
-        try self.display(currentRoute)
-      } catch {
-        //Silently catch this - we may still be able to recover from here sans route
-      }
-    }
-
-    //State Reset
-    self.tilt = state.tilt
-    self.rotation = state.rotation
-    self.zoom = state.zoom
-    self.position = state.position
-    self.cameraType = state.cameraType
-
-    // Location Marker reset
-    if shouldShowCurrentLocation {
-      if let locGem = currentLocationGem {
-        addMarker(locGem)
-      }
-      _ = self.showCurrentLocation(true)
-    }
-
-    //Button Setup
-    self.setupAttribution()
-    let originalButton = findMeButton
-    self.setupFindMeButton()
-    findMeButton.isHidden = originalButton.isHidden
-    findMeButton.isSelected = shouldFollowCurrentLocation
-    findMeButton.isEnabled = originalButton.isEnabled
-  }
-
   // MARK:- ViewController Lifecycle
 
   override open func viewDidLoad() {
@@ -987,43 +916,6 @@ open class MZMapViewController: UIViewController, LocationManagerDelegate {
     tgViewController.gestureDelegate = self
     tgViewController.mapViewDelegate = self
     tgViewController.preferredFramesPerSecond = 60
-  }
-
-  override open func viewWillAppear(_ animated: Bool) {
-    super.viewWillAppear(animated)
-    //We only want to attempt to reload incase we reloaded due to memory issues
-    if (stateSaver != nil) {
-      print("reloading tgviewcontroller due to memory warning removal")
-      reloadTGViewController()
-    }
-  }
-
-  override open func viewDidAppear(_ animated: Bool) {
-    super.viewDidAppear(animated)
-    isCurrentlyVisible = true
-  }
-
-  override open func viewDidDisappear(_ animated: Bool) {
-    super.viewDidDisappear(animated)
-    isCurrentlyVisible = false
-  }
-
-  override open func didReceiveMemoryWarning() {
-    if (!isCurrentlyVisible) {
-      tgViewController.willMove(toParentViewController: nil)
-      tgViewController.view.removeConstraints(tgViewController.view.constraints)
-      tgViewController.view.removeFromSuperview()
-      tgViewController.removeFromParentViewController()
-      stateSaver = StateReclaimer(tilt: tilt, rotation: rotation, zoom: zoom, position: position, cameraType: cameraType, mapStyle: currentStyle)
-      //Probably unnecessary, but just incase we don't want any calls coming through from older versions that the OS has yet to clean up
-      tgViewController.gestureDelegate = nil
-      tgViewController.mapViewDelegate = nil
-      if let locGem = currentLocationGem {
-        removeMarker(locGem)
-      }
-      tgViewController = TGMapViewController()
-    }
-    super.didReceiveMemoryWarning()
   }
 
   //MARK: - LocationManagerDelegate

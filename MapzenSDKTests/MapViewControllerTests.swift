@@ -707,38 +707,6 @@ class MapViewControllerTests: XCTestCase {
     XCTAssertTrue(vc.findMeButton.frame.origin.y + vc.findMeButton.frame.size.height < tabVc.tabBar.frame.origin.y)
   }
 
-  func testMemoryWarning() {
-    controller.tilt = 1.0
-    controller.rotation = 2.0
-    controller.position = TGGeoPointMake(1.0, 2.0)
-    controller.cameraType = .flat
-    controller.zoom = 3.0
-    controller.currentStyle = .cinnabar
-    _ = controller.showCurrentLocation(true)
-    controller.findMeButton.isHidden = false
-    controller.findMeButton.isEnabled = true
-    controller.shouldFollowCurrentLocation = true
-
-    // Normally the OS would call these but can't replicate that easily in tests
-    controller.didReceiveMemoryWarning()
-
-    XCTAssertNotNil(controller.stateSaver)
-    controller.reloadTGViewController()
-    controller.recreateMap(controller.stateSaver!)
-
-    XCTAssertEqualWithAccuracy(controller.tilt, 1.0, accuracy: Float.ulpOfOne)
-    XCTAssertEqualWithAccuracy(controller.rotation, 2.0, accuracy: Float.ulpOfOne)
-    //We don't check latitude because of a weird underlying issue with Tangram rounding errors on it. Further investigation required
-    XCTAssertEqualWithAccuracy(controller.position.longitude, 1.0, accuracy: Double.ulpOfOne)
-    XCTAssertEqual(controller.cameraType, .flat)
-    XCTAssertEqualWithAccuracy(controller.zoom, 3.0, accuracy: Float.ulpOfOne)
-    XCTAssertEqual(controller.currentStyle, .cinnabar)
-    XCTAssertTrue(controller.shouldShowCurrentLocation)
-    XCTAssertFalse(controller.findMeButton.isHidden)
-    XCTAssertTrue(controller.findMeButton.isSelected) // Determined by shouldFollowCurrentLocation
-    XCTAssertTrue(controller.findMeButton.isEnabled)
-  }
-
   func testAddMarker() {
     let tgMarker = TestTGMarker()
     let marker = Marker(tgMarker: tgMarker)
