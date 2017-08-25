@@ -236,7 +236,7 @@ open class MZMapViewController: UIViewController, LocationManagerDelegate {
   var transitOverlayIsShowing = false
   var bikeOverlayIsShowing = false
   var walkingOverlayIsShowing = false
-  private var sceneUpdates: [TGSceneUpdate] = []
+  var sceneUpdates: [TGSceneUpdate] = []
   fileprivate var sceneLoadCallback: OnStyleLoaded?
   fileprivate var latestSceneId: Int32 = 0
 
@@ -292,8 +292,7 @@ open class MZMapViewController: UIViewController, LocationManagerDelegate {
   /// Show or hide the transit route overlay. Not intended for use at the same time as the bike overlay. Fine to use with the walking network.
   open var showTransitOverlay: Bool {
     set {
-      let sceneUpdate = TGSceneUpdate(path: GlobalStyleVars.transitOverlay, value: "\(newValue)")
-      tgViewController.updateSceneAsync([sceneUpdate])
+      tgViewController.updateSceneAsync([TGSceneUpdate(path: GlobalStyleVars.transitOverlay, value: "\(newValue)")])
       transitOverlayIsShowing = newValue
     }
     get {
@@ -303,8 +302,7 @@ open class MZMapViewController: UIViewController, LocationManagerDelegate {
   /// Show or hide the bike route overlay. Not intended for use at the same time as the transit overlay.
   open var showBikeOverlay: Bool {
     set {
-      let sceneUpdate = TGSceneUpdate(path: GlobalStyleVars.bikeOverlay, value: "\(newValue)")
-      tgViewController.updateSceneAsync([sceneUpdate])
+      tgViewController.updateSceneAsync([TGSceneUpdate(path: GlobalStyleVars.bikeOverlay, value: "\(newValue)")])
       bikeOverlayIsShowing = newValue
     }
     get {
@@ -315,8 +313,7 @@ open class MZMapViewController: UIViewController, LocationManagerDelegate {
   /// Show or hide the walking network. Not intended for use at the same time as the bike overlay. Fine for use with the transit overlay
   open var showWalkingPathOverlay: Bool {
     set {
-      tgViewController.queueSceneUpdate(GlobalStyleVars.pathOverlay, withValue: "\(newValue)")
-      tgViewController.applySceneUpdates()
+      tgViewController.updateSceneAsync([TGSceneUpdate(path: GlobalStyleVars.pathOverlay, value: "\(newValue)")])
       walkingOverlayIsShowing = newValue
     }
     get {
