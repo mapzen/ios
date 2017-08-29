@@ -1,4 +1,4 @@
-//
+  //
 //  MZMapViewController.swift
 //  ios-sdk
 //
@@ -601,7 +601,9 @@ open class MZMapViewController: UIViewController, LocationManagerDelegate {
     guard let qualifiedSceneFile = Bundle.houseStylesBundle()?.url(forResource: sceneFile, withExtension: "yaml") else {
       return
     }
-    try tgViewController.loadScene(from: qualifiedSceneFile, with: allSceneUpdates(sceneUpdates))
+    latestSceneId = try tgViewController.loadScene(from: qualifiedSceneFile, with: allSceneUpdates(sceneUpdates))
+    restoreBuiltInMarkers()
+
   }
 
   /**
@@ -658,9 +660,8 @@ open class MZMapViewController: UIViewController, LocationManagerDelegate {
     guard let qualifiedSceneFile = Bundle.houseStylesBundle()?.url(forResource: sceneFile, withExtension: "yaml") else {
       return
     }
-    let sceneId = try tgViewController.loadSceneAsync(from: qualifiedSceneFile, with: allSceneUpdates(sceneUpdates))
+    latestSceneId = try tgViewController.loadSceneAsync(from: qualifiedSceneFile, with: allSceneUpdates(sceneUpdates))
     sceneLoadCallback = onStyleLoaded
-    latestSceneId = sceneId
   }
 
   /**
@@ -1078,9 +1079,21 @@ extension MZMapViewController : TGMapViewDelegate, TGRecognizerDelegate {
     if sceneID != latestSceneId {
       return
     }
+    restoreBuiltInMarkers()
     guard let styleClosure = sceneLoadCallback else { return }
     styleClosure(currentStyle)
     sceneLoadCallback = nil
+  }
+
+  func restoreBuiltInMarkers() {
+    //Handle built in marker restoration
+    if shouldShowCurrentLocation && currentLocationGem != nil {
+      let lastPosition = currentLocationGem?.point
+      currentLocationGem = nil
+      _ = showCurrentLocation(true)
+      currentLocationGem?.point = lastPosition!
+      currentLocationGem?.visible = true
+    }
   }
   
   open func mapViewDidCompleteLoading(_ mapView: TGMapViewController) {
