@@ -25,6 +25,7 @@ class TestTGMapViewController: TGMapViewController {
   var labelPickPosition = CGPoint()
   var markerPickPosition = CGPoint()
   var featurePickPosition = CGPoint()
+  var mockSceneId: Int32 = 0
   
   override func markerRemoveAll() {
     removedAllMarkers = true
@@ -32,30 +33,30 @@ class TestTGMapViewController: TGMapViewController {
 
   override func loadScene(from url: URL) -> Int32 {
     scenePath = url
-    return 0
+    return mockSceneId
   }
 
   override func loadScene(from url: URL, with updates: [TGSceneUpdate]) -> Int32 {
     scenePath = url
     sceneUpdates = updates
-    return 0
+    return mockSceneId
   }
 
   override func loadSceneAsync(from url: URL) -> Int32 {
     scenePath = url
-    return 0
+    return mockSceneId
   }
 
   override func loadSceneAsync(from url: URL, with updates: [TGSceneUpdate]) -> Int32 {
     scenePath = url
     sceneUpdates = updates
-    return 0
+    return mockSceneId
   }
 
   override func updateSceneAsync(_ updates: [TGSceneUpdate]) -> Int32 {
     sceneUpdates = updates
     appliedSceneUpdates = true
-    return 0
+    return mockSceneId
   }
   
   override func lngLat(toScreenPosition lngLat: TGGeoPoint) -> CGPoint {

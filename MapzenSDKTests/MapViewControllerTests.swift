@@ -260,6 +260,15 @@ class MapViewControllerTests: XCTestCase {
     XCTAssertEqual(tgViewController.sceneUpdates.last?.value, anotherLocale.languageCode)
   }
 
+  func testUpdateLocaleSetsSceneId() {
+    let sceneId = Int32(223)
+    tgViewController.mockSceneId = sceneId
+    let locale = Locale.init(identifier: "hi-IN")
+    controller.updateLocale(locale)
+    XCTAssertEqual(tgViewController.sceneUpdates.last?.value, locale.languageCode)
+    XCTAssertEqual(sceneId, controller.latestSceneId)
+  }
+
   func testQueueSceneUpdate() {
     controller.queueSceneUpdate("path", withValue: "value")
     let sceneUpdate = controller.sceneUpdates[0]
@@ -268,9 +277,12 @@ class MapViewControllerTests: XCTestCase {
   }
   
   func testApplySceneUpdates() {
+    let sceneId = Int32(2233)
+    tgViewController.mockSceneId = sceneId
     controller.queueSceneUpdate("path", withValue: "value")
     controller.applySceneUpdates()
     XCTAssertTrue(tgViewController.appliedSceneUpdates)
+    XCTAssertEqual(sceneId, controller.latestSceneId)
   }
 
   func testTiltProperty() {
@@ -735,6 +747,13 @@ class MapViewControllerTests: XCTestCase {
     XCTAssertEqual(sceneUpdate.value, "true", "Bike Overlay Scene Update Value Wrong")
   }
 
+  func testBikeOverlayStoresSceneId() {
+    let sceneId = Int32(111)
+    tgViewController.mockSceneId = sceneId
+    controller.showBikeOverlay = true
+    XCTAssertEqual(sceneId, controller.latestSceneId)
+  }
+
   func testWalkingOverlay() {
     controller.showWalkingPathOverlay = true
     XCTAssertTrue(controller.walkingOverlayIsShowing, "Walk Overlay Not Showing")
@@ -747,6 +766,13 @@ class MapViewControllerTests: XCTestCase {
     XCTAssertEqual(sceneUpdate.value, "true", "Walk Overlay Scene Update Value Wrong")
   }
 
+  func testWalkingOverlayStoresSceneId() {
+    let sceneId = Int32(112)
+    tgViewController.mockSceneId = sceneId
+    controller.showWalkingPathOverlay = true
+    XCTAssertEqual(sceneId, controller.latestSceneId)
+  }
+
   func testTransitOverlay() {
     controller.showTransitOverlay = true
     XCTAssertTrue(controller.transitOverlayIsShowing, "Transit Overlay Not Showing")
@@ -757,6 +783,13 @@ class MapViewControllerTests: XCTestCase {
     let sceneUpdate = tgViewController.sceneUpdates[0]
     XCTAssertEqual(sceneUpdate.path, GlobalStyleVars.transitOverlay, "Transit Overlay Scene Update Path Wrong")
     XCTAssertEqual(sceneUpdate.value, "true", "Transit Overlay Scene Update Value Wrong")
+  }
+
+  func testTransitOverlayStoresSceneId() {
+    let sceneId = Int32(1122)
+    tgViewController.mockSceneId = sceneId
+    controller.showTransitOverlay = true
+    XCTAssertEqual(sceneId, controller.latestSceneId)
   }
 }
 

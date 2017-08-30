@@ -236,7 +236,7 @@ open class MZMapViewController: UIViewController, LocationManagerDelegate {
   var walkingOverlayIsShowing = false
   var sceneUpdates: [TGSceneUpdate] = []
   fileprivate var sceneLoadCallback: OnStyleLoaded?
-  fileprivate var latestSceneId: Int32 = 0
+  fileprivate(set) var latestSceneId: Int32 = 0
 
   /// The camera type we want to use. Defaults to whatever is set in the style sheet.
   open var cameraType: TGCameraType {
@@ -290,7 +290,7 @@ open class MZMapViewController: UIViewController, LocationManagerDelegate {
   /// Show or hide the transit route overlay. Not intended for use at the same time as the bike overlay. Fine to use with the walking network.
   open var showTransitOverlay: Bool {
     set {
-      tgViewController.updateSceneAsync([TGSceneUpdate(path: GlobalStyleVars.transitOverlay, value: "\(newValue)")])
+      latestSceneId = tgViewController.updateSceneAsync([TGSceneUpdate(path: GlobalStyleVars.transitOverlay, value: "\(newValue)")])
       transitOverlayIsShowing = newValue
     }
     get {
@@ -300,7 +300,7 @@ open class MZMapViewController: UIViewController, LocationManagerDelegate {
   /// Show or hide the bike route overlay. Not intended for use at the same time as the transit overlay.
   open var showBikeOverlay: Bool {
     set {
-      tgViewController.updateSceneAsync([TGSceneUpdate(path: GlobalStyleVars.bikeOverlay, value: "\(newValue)")])
+      latestSceneId = tgViewController.updateSceneAsync([TGSceneUpdate(path: GlobalStyleVars.bikeOverlay, value: "\(newValue)")])
       bikeOverlayIsShowing = newValue
     }
     get {
@@ -311,7 +311,7 @@ open class MZMapViewController: UIViewController, LocationManagerDelegate {
   /// Show or hide the walking network. Not intended for use at the same time as the bike overlay. Fine for use with the transit overlay
   open var showWalkingPathOverlay: Bool {
     set {
-      tgViewController.updateSceneAsync([TGSceneUpdate(path: GlobalStyleVars.pathOverlay, value: "\(newValue)")])
+      latestSceneId = tgViewController.updateSceneAsync([TGSceneUpdate(path: GlobalStyleVars.pathOverlay, value: "\(newValue)")])
       walkingOverlayIsShowing = newValue
     }
     get {
@@ -671,7 +671,7 @@ open class MZMapViewController: UIViewController, LocationManagerDelegate {
     locale = l
     guard let language = locale.languageCode else { return }
     let update = createLanguageUpdate(language)
-    tgViewController.updateSceneAsync([update])
+    latestSceneId = tgViewController.updateSceneAsync([update])
   }
 
   /**
@@ -701,7 +701,7 @@ open class MZMapViewController: UIViewController, LocationManagerDelegate {
   //Applies all queued scene updates.
   @available(*, deprecated)
   open func applySceneUpdates() {
-    tgViewController.updateSceneAsync(sceneUpdates)
+    latestSceneId = tgViewController.updateSceneAsync(sceneUpdates)
     sceneUpdates = []
   }
 
