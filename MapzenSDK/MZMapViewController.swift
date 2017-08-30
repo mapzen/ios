@@ -1087,11 +1087,11 @@ extension MZMapViewController : TGMapViewDelegate, TGRecognizerDelegate {
 
   func restoreBuiltInMarkers() {
     //Handle built in marker restoration
-    if shouldShowCurrentLocation && currentLocationGem != nil {
-      let lastPosition = currentLocationGem?.point
+    if let locationGem = currentLocationGem, shouldShowCurrentLocation == true {
+      let lastPosition = locationGem.point
       currentLocationGem = nil
       _ = showCurrentLocation(true)
-      currentLocationGem?.point = lastPosition!
+      currentLocationGem?.point = lastPosition
       currentLocationGem?.visible = true
     }
   }
