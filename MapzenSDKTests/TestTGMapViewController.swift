@@ -15,7 +15,7 @@ class TestTGMapViewController: TGMapViewController {
   var coordinate = TGGeoPoint()
   var duration: Float = 0.0
   var easeType = TGEaseType.cubic
-  var scenePath = ""
+  var scenePath = URL(fileURLWithPath: "")
   var sceneUpdates: [TGSceneUpdate] = []
   var sceneUpdateComponentPath = ""
   var sceneUpdateValue = ""
@@ -25,105 +25,103 @@ class TestTGMapViewController: TGMapViewController {
   var labelPickPosition = CGPoint()
   var markerPickPosition = CGPoint()
   var featurePickPosition = CGPoint()
+  var mockSceneId: Int32 = 0
   
   override func markerRemoveAll() {
     removedAllMarkers = true
   }
-  
-  override func loadSceneFile(_ path: String) {
-    self.scenePath = path
+
+  override func loadScene(from url: URL) -> Int32 {
+    scenePath = url
+    return mockSceneId
   }
-  
-  override func loadSceneFile(_ path: String, sceneUpdates: [TGSceneUpdate]) {
-    self.scenePath = path
-    self.sceneUpdates = sceneUpdates
+
+  override func loadScene(from url: URL, with updates: [TGSceneUpdate]) -> Int32 {
+    scenePath = url
+    sceneUpdates = updates
+    return mockSceneId
   }
-  
-  override func loadSceneFileAsync(_ path: String) {
-    self.scenePath = path
+
+  override func loadSceneAsync(from url: URL) -> Int32 {
+    scenePath = url
+    return mockSceneId
   }
-  
-  override func loadSceneFileAsync(_ path: String, sceneUpdates: [TGSceneUpdate]) {
-    self.scenePath = path
-    self.sceneUpdates = sceneUpdates
+
+  override func loadSceneAsync(from url: URL, with updates: [TGSceneUpdate]) -> Int32 {
+    scenePath = url
+    sceneUpdates = updates
+    return mockSceneId
   }
-  
-  override func queueSceneUpdate(_ componentPath: String, withValue value: String) {
-    self.sceneUpdateComponentPath = componentPath
-    self.sceneUpdateValue = value
-  }
-  
-  override func queue(_ sceneUpdates: [TGSceneUpdate]) {
-    self.sceneUpdates = sceneUpdates
-  }
-  
-  override func applySceneUpdates() {
-    self.appliedSceneUpdates = true
+
+  override func updateSceneAsync(_ updates: [TGSceneUpdate]) -> Int32 {
+    sceneUpdates = updates
+    appliedSceneUpdates = true
+    return mockSceneId
   }
   
   override func lngLat(toScreenPosition lngLat: TGGeoPoint) -> CGPoint {
-    self.lngLatForScreenPosition = lngLat
+    lngLatForScreenPosition = lngLat
     return CGPoint()
   }
   
   override func screenPosition(toLngLat screenPosition: CGPoint) -> TGGeoPoint {
-    self.screenPositionForLngLat = screenPosition
+    screenPositionForLngLat = screenPosition
     return TGGeoPoint()
   }
   
   override func animate(toPosition position: TGGeoPoint, withDuration seconds: Float) {
-    self.coordinate = position
-    self.duration = seconds
+    coordinate = position
+    duration = seconds
   }
   
   override func animate(toPosition position: TGGeoPoint, withDuration seconds: Float, with easeType: TGEaseType) {
-    self.coordinate = position
-    self.duration = seconds
+    coordinate = position
+    duration = seconds
     self.easeType = easeType
   }
   
   override func animate(toZoomLevel zoomLevel: Float, withDuration seconds: Float) {
-    self.zoom = zoomLevel
-    self.duration = seconds
+    zoom = zoomLevel
+    duration = seconds
   }
   
   override func animate(toZoomLevel zoomLevel: Float, withDuration seconds: Float, with easeType: TGEaseType) {
-    self.zoom = zoomLevel
-    self.duration = seconds
+    zoom = zoomLevel
+    duration = seconds
     self.easeType = easeType
   }
   
   override func animate(toRotation radians: Float, withDuration seconds: Float) {
-    self.rotation = radians
-    self.duration = seconds
+    rotation = radians
+    duration = seconds
   }
   
   override func animate(toRotation radians: Float, withDuration seconds: Float, with easeType: TGEaseType) {
-    self.rotation = radians
-    self.duration = seconds
+    rotation = radians
+    duration = seconds
     self.easeType = easeType
   }
   
   override func animate(toTilt radians: Float, withDuration seconds: Float) {
-    self.tilt = radians
-    self.duration = seconds
+    tilt = radians
+    duration = seconds
   }
   
   override func animate(toTilt radians: Float, withDuration seconds: Float, with easeType: TGEaseType) {
-    self.tilt = radians
-    self.duration = seconds
+    tilt = radians
+    duration = seconds
     self.easeType = easeType
   }
 
   override func pickLabel(at screenPosition: CGPoint) {
-    self.labelPickPosition = screenPosition
+    labelPickPosition = screenPosition
   }
   
   override func pickMarker(at screenPosition: CGPoint) {
-    self.markerPickPosition = screenPosition
+    markerPickPosition = screenPosition
   }
   
   override func pickFeature(at screenPosition: CGPoint) {
-    self.featurePickPosition = screenPosition
+    featurePickPosition = screenPosition
   }
 }

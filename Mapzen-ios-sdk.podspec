@@ -21,7 +21,7 @@ Pod::Spec.new do |s|
   s.subspec 'Core' do |cs|
     cs.dependency 'Pelias', '~> 1.0.1'
     cs.dependency 'OnTheRoad', '~> 1.0.0'
-    cs.dependency 'Tangram-es', '~> 0.7.1'
+    cs.dependency 'Tangram-es', '~> 0.8.0'
     cs.source_files = ['MapzenSDK/*.swift', 'MapzenSDK/*/*.swift']
     cs.resources = [ 'images/*.png', 'housestyles.bundle' ]
   end

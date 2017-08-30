@@ -120,8 +120,7 @@ class DemoMapViewController:  SampleMapViewController, MapMarkerSelectDelegate {
       if (languageIdentifier == "none") {
         actionSheet.addAction(UIAlertAction.init(title: actionTitle, style: .default, handler: { [unowned self] (action) in
           let update = TGSceneUpdate(path: "global.ux_language", value: "")
-          self.queue([update])
-          self.applySceneUpdates()
+          self.tgViewController.updateSceneAsync([update])
         }))
         continue
       }

@@ -1,16 +1,16 @@
 PODS:
-  - HockeySDK/CrashOnlyLib (4.1.5)
+  - HockeySDK/CrashOnlyLib (4.1.6)
   - Mapzen-ios-sdk (1.1.0-rc1):
     - Mapzen-ios-sdk/Core (= 1.1.0-rc1)
   - Mapzen-ios-sdk/Core (1.1.0-rc1):
     - OnTheRoad (~> 1.0.0)
     - Pelias (~> 1.0.1)
-    - Tangram-es (~> 0.7.1)
+    - Tangram-es (~> 0.8.0)
   - OnTheRoad (1.0.0)
   - Pelias (1.0.1):
     - Pelias/Core (= 1.0.1)
   - Pelias/Core (1.0.1)
-  - Tangram-es (0.7.1)
+  - Tangram-es (0.8.0)
 
 DEPENDENCIES:
   - HockeySDK/CrashOnlyLib (~> 4.1.4)
@@ -21,12 +21,12 @@ EXTERNAL SOURCES:
     :path: .
 
 SPEC CHECKSUMS:
-  HockeySDK: 606b537bbfbe454ee440e92cc93bc634b3c77151
-  Mapzen-ios-sdk: 8b8ed815abc7d0d17bf908012f59b887702f5558
+  HockeySDK: 95db557d54489a570dcdefae0d02f98eecc279a3
+  Mapzen-ios-sdk: de3a1a5daabebcd2fa63c04fbd6e24f8549929a6
   OnTheRoad: 23aeab6259df1bc005457795e255730178c97fdf
   Pelias: e32abfaf0c0de756d60bf4283d17c3e8e047d87d
-  Tangram-es: 781ed33fd1b023db74182bf6113814b08c9a65f4
+  Tangram-es: 7060f4b66e9716348ebdf4f79dd567ce1ec61b96
 
 PODFILE CHECKSUM: cb8163d99be0602b23d29016872a6211a1841360
 
-COCOAPODS: 1.2.1
+COCOAPODS: 1.3.1

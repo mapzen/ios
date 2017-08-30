@@ -12,6 +12,9 @@ import TangramMap
 import OnTheRoad
 import CoreLocation
 
+var sceneUpdateComponentPath = ""
+var sceneUpdateValue = ""
+
 class TestMapViewController: MZMapViewController {
   func lastSetPointValue() -> TGGeoPoint? {
     return lastSetPoint
@@ -122,31 +125,31 @@ class MapViewControllerTests: XCTestCase {
 
   func testLoadBubbleWrap() {
     try? controller.loadStyle(.bubbleWrap)
-    XCTAssertTrue(tgViewController.scenePath.contains("bubble-wrap/bubble-wrap-style-more-labels.yaml"))
+    XCTAssertTrue(tgViewController.scenePath.absoluteString.contains("bubble-wrap/bubble-wrap-style-more-labels.yaml"))
     XCTAssertEqual(controller.currentStyle, .bubbleWrap)
   }
 
   func testLoadCinnabar() {
     try? controller.loadStyle(.cinnabar)
-    XCTAssertTrue(tgViewController.scenePath.contains("cinnabar/cinnabar-style-more-labels.yaml"))
+    XCTAssertTrue(tgViewController.scenePath.absoluteString.contains("cinnabar/cinnabar-style-more-labels.yaml"))
     XCTAssertEqual(controller.currentStyle, .cinnabar)
   }
 
   func testLoadRefill() {
     try? controller.loadStyle(.refill)
-    XCTAssertTrue(tgViewController.scenePath.contains("refill/refill-style-more-labels.yaml"))
+    XCTAssertTrue(tgViewController.scenePath.absoluteString.contains("refill/refill-style-more-labels.yaml"))
     XCTAssertEqual(controller.currentStyle, .refill)
   }
 
   func testLoadWalkabout() {
     try? controller.loadStyle(.walkabout)
-    XCTAssertTrue(tgViewController.scenePath.contains("walkabout/walkabout-style-more-labels.yaml"))
+    XCTAssertTrue(tgViewController.scenePath.absoluteString.contains("walkabout/walkabout-style-more-labels.yaml"))
     XCTAssertEqual(controller.currentStyle, .walkabout)
   }
 
   func testLoadZinc() {
     try? controller.loadStyle(.zinc)
-    XCTAssertTrue(tgViewController.scenePath.contains("zinc/zinc-style-more-labels.yaml"))
+    XCTAssertTrue(tgViewController.scenePath.absoluteString.contains("zinc/zinc-style-more-labels.yaml"))
     XCTAssertEqual(controller.currentStyle, .zinc)
   }
   
@@ -155,7 +158,7 @@ class MapViewControllerTests: XCTestCase {
     var updates = [TGSceneUpdate]()
     updates.append(update)
     try? controller.loadStyle(.bubbleWrap, sceneUpdates: updates)
-    XCTAssertTrue(tgViewController.scenePath.contains("bubble-wrap/bubble-wrap-style-more-labels.yaml"))
+    XCTAssertTrue(tgViewController.scenePath.absoluteString.contains("bubble-wrap/bubble-wrap-style-more-labels.yaml"))
     XCTAssertEqual(tgViewController.sceneUpdates.count, 3)
     XCTAssertTrue(tgViewController.sceneUpdates.contains(update))
     let apiKeyUpdate = tgViewController.sceneUpdates.filter { (update) -> Bool in
@@ -166,7 +169,7 @@ class MapViewControllerTests: XCTestCase {
   
   func testLoadStyleAsync() {
     try? controller.loadStyleAsync(.bubbleWrap, onStyleLoaded: nil)
-    XCTAssertTrue(tgViewController.scenePath.contains("bubble-wrap-style-more-labels.yaml"))
+    XCTAssertTrue(tgViewController.scenePath.absoluteString.contains("bubble-wrap-style-more-labels.yaml"))
   }
 
   func testLoadStyleAsyncWithUpdates() {
@@ -174,7 +177,7 @@ class MapViewControllerTests: XCTestCase {
     var updates = [TGSceneUpdate]()
     updates.append(update)
     try? controller.loadStyleAsync(.bubbleWrap, sceneUpdates: updates, onStyleLoaded: nil)
-    XCTAssertTrue(tgViewController.scenePath.contains("bubble-wrap/bubble-wrap-style-more-labels.yaml"))
+    XCTAssertTrue(tgViewController.scenePath.absoluteString.contains("bubble-wrap/bubble-wrap-style-more-labels.yaml"))
     XCTAssertEqual(tgViewController.sceneUpdates.count, 3)
     XCTAssertTrue(tgViewController.sceneUpdates.contains(update))
     let apiKeyUpdate = tgViewController.sceneUpdates.filter { (update) -> Bool in
@@ -257,22 +260,29 @@ class MapViewControllerTests: XCTestCase {
     XCTAssertEqual(tgViewController.sceneUpdates.last?.value, anotherLocale.languageCode)
   }
 
-  func testQueueSceneUpdate() {
-    controller.queueSceneUpdate("path", withValue: "value")
-    XCTAssertEqual(tgViewController.sceneUpdateComponentPath, "path")
-    XCTAssertEqual(tgViewController.sceneUpdateValue, "value")
+  func testUpdateLocaleSetsSceneId() {
+    let sceneId = Int32(223)
+    tgViewController.mockSceneId = sceneId
+    let locale = Locale.init(identifier: "hi-IN")
+    controller.updateLocale(locale)
+    XCTAssertEqual(tgViewController.sceneUpdates.last?.value, locale.languageCode)
+    XCTAssertEqual(sceneId, controller.latestSceneId)
   }
 
-  func testQueueSceneUpdates() {
-    let updates = [TGSceneUpdate]()
-    controller.queue(updates)
-    XCTAssertEqual(tgViewController.sceneUpdates, updates)
-    
+  func testQueueSceneUpdate() {
+    controller.queueSceneUpdate("path", withValue: "value")
+    let sceneUpdate = controller.sceneUpdates[0]
+    XCTAssertEqual(sceneUpdate.path, "path")
+    XCTAssertEqual(sceneUpdate.value, "value")
   }
   
   func testApplySceneUpdates() {
+    let sceneId = Int32(2233)
+    tgViewController.mockSceneId = sceneId
+    controller.queueSceneUpdate("path", withValue: "value")
     controller.applySceneUpdates()
     XCTAssertTrue(tgViewController.appliedSceneUpdates)
+    XCTAssertEqual(sceneId, controller.latestSceneId)
   }
 
   func testTiltProperty() {
@@ -629,7 +639,7 @@ class MapViewControllerTests: XCTestCase {
     var loaded = false
     let styleLoaded : MZMapViewController.OnStyleLoaded = { (style) in loaded = true }
     try? controller.loadStyleAsync(.bubbleWrap, onStyleLoaded: styleLoaded)
-    controller.mapView(controller.tgViewController, didLoadSceneAsync: "/test/container/bubble-wrap/bubble-wrap-style-more-labels.yaml")
+    controller.mapView(controller.tgViewController, didLoadScene: 0, withError: nil)
     XCTAssertTrue(loaded)
   }
   
@@ -709,38 +719,6 @@ class MapViewControllerTests: XCTestCase {
     XCTAssertTrue(vc.findMeButton.frame.origin.y + vc.findMeButton.frame.size.height < tabVc.tabBar.frame.origin.y)
   }
 
-  func testMemoryWarning() {
-    controller.tilt = 1.0
-    controller.rotation = 2.0
-    controller.position = TGGeoPointMake(1.0, 2.0)
-    controller.cameraType = .flat
-    controller.zoom = 3.0
-    controller.currentStyle = .cinnabar
-    _ = controller.showCurrentLocation(true)
-    controller.findMeButton.isHidden = false
-    controller.findMeButton.isEnabled = true
-    controller.shouldFollowCurrentLocation = true
-
-    // Normally the OS would call these but can't replicate that easily in tests
-    controller.didReceiveMemoryWarning()
-
-    XCTAssertNotNil(controller.stateSaver)
-    controller.reloadTGViewController()
-    controller.recreateMap(controller.stateSaver!)
-
-    XCTAssertEqualWithAccuracy(controller.tilt, 1.0, accuracy: Float.ulpOfOne)
-    XCTAssertEqualWithAccuracy(controller.rotation, 2.0, accuracy: Float.ulpOfOne)
-    //We don't check latitude because of a weird underlying issue with Tangram rounding errors on it. Further investigation required
-    XCTAssertEqualWithAccuracy(controller.position.longitude, 1.0, accuracy: Double.ulpOfOne)
-    XCTAssertEqual(controller.cameraType, .flat)
-    XCTAssertEqualWithAccuracy(controller.zoom, 3.0, accuracy: Float.ulpOfOne)
-    XCTAssertEqual(controller.currentStyle, .cinnabar)
-    XCTAssertTrue(controller.shouldShowCurrentLocation)
-    XCTAssertFalse(controller.findMeButton.isHidden)
-    XCTAssertTrue(controller.findMeButton.isSelected) // Determined by shouldFollowCurrentLocation
-    XCTAssertTrue(controller.findMeButton.isEnabled)
-  }
-
   func testAddMarker() {
     let tgMarker = TestTGMarker()
     let marker = Marker(tgMarker: tgMarker)
@@ -760,20 +738,58 @@ class MapViewControllerTests: XCTestCase {
   func testBikeOverlay() {
     controller.showBikeOverlay = true
     XCTAssertTrue(controller.bikeOverlayIsShowing, "Bike Overlay Not Showing")
-    XCTAssertEqual(tgViewController.sceneUpdateComponentPath, GlobalStyleVars.bikeOverlay, "Bike Overlay Scene Update Path Wrong")
-    XCTAssertEqual(tgViewController.sceneUpdateValue, "true", "Bike Overlay Scene Update Value Wrong")
+    if tgViewController.sceneUpdates.count < 1 {
+      XCTFail("Bike overlay scene update not added")
+      return
+    }
+    let sceneUpdate = tgViewController.sceneUpdates[0]
+    XCTAssertEqual(sceneUpdate.path, GlobalStyleVars.bikeOverlay, "Bike Overlay Scene Update Path Wrong")
+    XCTAssertEqual(sceneUpdate.value, "true", "Bike Overlay Scene Update Value Wrong")
+  }
+
+  func testBikeOverlayStoresSceneId() {
+    let sceneId = Int32(111)
+    tgViewController.mockSceneId = sceneId
+    controller.showBikeOverlay = true
+    XCTAssertEqual(sceneId, controller.latestSceneId)
   }
 
   func testWalkingOverlay() {
     controller.showWalkingPathOverlay = true
     XCTAssertTrue(controller.walkingOverlayIsShowing, "Walk Overlay Not Showing")
-    XCTAssertEqual(tgViewController.sceneUpdateComponentPath, GlobalStyleVars.pathOverlay, "Walk Overlay Scene Update Path Wrong")
-    XCTAssertEqual(tgViewController.sceneUpdateValue, "true", "Walk Overlay Scene Update Value Wrong")
+    if tgViewController.sceneUpdates.count < 1 {
+      XCTFail("Walking overlay scene update not added")
+      return
+    }
+    let sceneUpdate = tgViewController.sceneUpdates[0]
+    XCTAssertEqual(sceneUpdate.path, GlobalStyleVars.pathOverlay, "Walk Overlay Scene Update Path Wrong")
+    XCTAssertEqual(sceneUpdate.value, "true", "Walk Overlay Scene Update Value Wrong")
+  }
+
+  func testWalkingOverlayStoresSceneId() {
+    let sceneId = Int32(112)
+    tgViewController.mockSceneId = sceneId
+    controller.showWalkingPathOverlay = true
+    XCTAssertEqual(sceneId, controller.latestSceneId)
   }
 
   func testTransitOverlay() {
     controller.showTransitOverlay = true
     XCTAssertTrue(controller.transitOverlayIsShowing, "Transit Overlay Not Showing")
+    if tgViewController.sceneUpdates.count < 1 {
+      XCTFail("Transit overlay scene update not added")
+      return
+    }
+    let sceneUpdate = tgViewController.sceneUpdates[0]
+    XCTAssertEqual(sceneUpdate.path, GlobalStyleVars.transitOverlay, "Transit Overlay Scene Update Path Wrong")
+    XCTAssertEqual(sceneUpdate.value, "true", "Transit Overlay Scene Update Value Wrong")
+  }
+
+  func testTransitOverlayStoresSceneId() {
+    let sceneId = Int32(1122)
+    tgViewController.mockSceneId = sceneId
+    controller.showTransitOverlay = true
+    XCTAssertEqual(sceneId, controller.latestSceneId)
   }
 }
 
