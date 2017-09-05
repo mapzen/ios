@@ -1,4 +1,4 @@
-  //
+//
 //  MZMapViewController.swift
 //  ios-sdk
 //
@@ -601,8 +601,9 @@ open class MZMapViewController: UIViewController, LocationManagerDelegate {
     guard let qualifiedSceneFile = Bundle.houseStylesBundle()?.url(forResource: sceneFile, withExtension: "yaml") else {
       return
     }
+
     latestSceneId = try tgViewController.loadScene(from: qualifiedSceneFile, with: allSceneUpdates(sceneUpdates))
-    restoreBuiltInMarkers()
+    restoreMarkers()
 
   }
 
@@ -1068,24 +1069,14 @@ open class MZMapViewController: UIViewController, LocationManagerDelegate {
   }
 }
 
-extension MZMapViewController : TGMapViewDelegate, TGRecognizerDelegate {
-  
-  //MARK : TGMapViewDelegate
-
-  open func mapView(_ mapView: TGMapViewController, didLoadScene sceneID: Int32, withError sceneError: Error?) {
-
-    //We only want to call back on the latest scene load - so we gate here to make sure we only call back on the latest.
-    //TODO: For 2.0 we should pass the Error along in the callback block.
-    if sceneID != latestSceneId {
-      return
-    }
+//MARK: - Marker Restoration
+extension MZMapViewController {
+  func restoreMarkers() {
     restoreBuiltInMarkers()
-    guard let styleClosure = sceneLoadCallback else { return }
-    styleClosure(currentStyle)
-    sceneLoadCallback = nil
+    restoreUserMarkers()
   }
 
-  func restoreBuiltInMarkers() {
+  fileprivate func restoreBuiltInMarkers() {
     //Handle built in marker restoration
     if let locationGem = currentLocationGem, shouldShowCurrentLocation == true {
       let lastPosition = locationGem.point
@@ -1094,6 +1085,35 @@ extension MZMapViewController : TGMapViewDelegate, TGRecognizerDelegate {
       currentLocationGem?.point = lastPosition
       currentLocationGem?.visible = true
     }
+  }
+
+  fileprivate func restoreUserMarkers() {
+    //Since we're re-initializing markers, we need to redo the linkage we're using between them
+    var newMarkerStore = [TGMarker : GenericMarker]()
+    for (_, genericMarker) in currentMarkers {
+      genericMarker.tgMarker = nil
+      let newMarker = tgViewController.markerAdd()
+      genericMarker.tgMarker = newMarker
+      newMarkerStore[newMarker] = genericMarker
+    }
+    //By setting this we drop all our references to the original marker set without having to explicitly nil each one out
+    currentMarkers = newMarkerStore
+  }
+}
+
+//MARK: - TGMapViewDelegate
+extension MZMapViewController : TGMapViewDelegate {
+  open func mapView(_ mapView: TGMapViewController, didLoadScene sceneID: Int32, withError sceneError: Error?) {
+
+    //We only want to call back on the latest scene load - so we gate here to make sure we only call back on the latest.
+    //TODO: For 2.0 we should pass the Error along in the callback block.
+    if sceneID != latestSceneId {
+      return
+    }
+    restoreMarkers()
+    guard let styleClosure = sceneLoadCallback else { return }
+    styleClosure(currentStyle)
+    sceneLoadCallback = nil
   }
   
   open func mapViewDidCompleteLoading(_ mapView: TGMapViewController) {
@@ -1127,9 +1147,10 @@ extension MZMapViewController : TGMapViewDelegate, TGRecognizerDelegate {
       }
     }
   }
-  
-  //MARK : TGRecognizerDelegate
-  
+}
+
+//MARK: - TGRecognizerDelegate
+extension MZMapViewController: TGRecognizerDelegate {
   open func mapView(_ view: TGMapViewController, recognizer: UIGestureRecognizer, shouldRecognizeSingleTapGesture location: CGPoint) -> Bool {
     tgViewController.pickLabel(at: location)
     tgViewController.pickMarker(at: location)

@@ -44,6 +44,14 @@ public extension TGGeoPoint {
   }
 }
 
+extension TGGeoPoint: Equatable {
+  public static func == (lhs: TGGeoPoint, rhs: TGGeoPoint) -> Bool {
+    return
+      lhs.latitude == rhs.latitude &&
+        lhs.longitude == rhs.longitude
+  }
+}
+
 public extension OTRGeoPoint {
   /**
    Creates a OTRGeoPoint from a TGGeoPoint
