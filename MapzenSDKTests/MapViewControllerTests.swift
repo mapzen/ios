@@ -19,7 +19,7 @@ class TestMapViewController: MZMapViewController {
   func lastSetPointValue() -> TGGeoPoint? {
     return lastSetPoint
   }
-  func currentLocationGemValue() -> GenericMarker? {
+  func currentLocationGemValue() -> GenericSystemPointMarker? {
     return currentLocationGem
   }
   func shouldShowCurrentLocationValue() -> Bool {
@@ -790,6 +790,24 @@ class MapViewControllerTests: XCTestCase {
     tgViewController.mockSceneId = sceneId
     controller.showTransitOverlay = true
     XCTAssertEqual(sceneId, controller.latestSceneId)
+  }
+
+  func testCurrentLocationGemRestoration() {
+    _ = controller.showCurrentLocation(true)
+    let marker = controller.currentLocationGemValue()
+    let geoPoint = TGGeoPoint(longitude: 5.0, latitude: 4.0)
+    marker?.point = geoPoint
+    try? controller.loadStyle(.bubbleWrap)
+    XCTAssertEqual(geoPoint, marker!.tgMarker!.point)
+  }
+
+  func testUserMarkersRestoration() {
+    let testMarker = SystemPointMarker(markerType: .droppedPin)
+    let geoPoint = TGGeoPoint(longitude: 5.0, latitude: 4.0)
+    testMarker.point = geoPoint
+    controller.addMarker(testMarker)
+    try? controller.loadStyle(.walkabout)
+    XCTAssertEqual(geoPoint, testMarker.point)
   }
 }
 
