@@ -18,7 +18,7 @@ Pod::Spec.new do |s|
   s.requires_arc = true
   s.default_subspec = 'Core'
 
-  s.prepare_command = "ruby create_version_plist.rb #{s.version}"
+  s.prepare_command = "swift MapzenSDK/setup_version.swift #{s.version}"
 
   s.subspec 'Core' do |cs|
     cs.dependency 'Pelias', '~> 1.0.2'
