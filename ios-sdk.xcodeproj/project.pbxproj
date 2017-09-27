@@ -225,7 +225,7 @@
 		DBA4B4D31ED75D2F0010FDDB /* SampleApp_ObjcTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SampleApp_ObjcTests.m; sourceTree = "<group>"; };
 		DBA4B4D51ED75D2F0010FDDB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DBC8698F1D3662DD00DDC4FE /* SampleAutocompleteTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SampleAutocompleteTableViewController.swift; sourceTree = "<group>"; };
-		DBE42A461F7BDF0D00B0B863 /* setup_version.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = setup_version.swift; sourceTree = "<group>"; };
+		DBE42A461F7BDF0D00B0B863 /* setup_version.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = setup_version.swift; path = ../scripts/setup_version.swift; sourceTree = "<group>"; };
 		DBF441AD1D351B0A007DEE95 /* DemoMapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DemoMapViewController.swift; sourceTree = "<group>"; };
 		DBF441AF1D351C90007DEE95 /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
 		DBF761161F7D82B800D2626A /* Themes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Themes.swift; sourceTree = "<group>"; };
