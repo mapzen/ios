@@ -79,7 +79,6 @@
 		DBA4B4C91ED75D2F0010FDDB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DBA4B4C71ED75D2F0010FDDB /* LaunchScreen.storyboard */; };
 		DBA4B4D41ED75D2F0010FDDB /* SampleApp_ObjcTests.m in Sources */ = {isa = PBXBuildFile; fileRef = DBA4B4D31ED75D2F0010FDDB /* SampleApp_ObjcTests.m */; };
 		DBC869901D3662DD00DDC4FE /* SampleAutocompleteTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBC8698F1D3662DD00DDC4FE /* SampleAutocompleteTableViewController.swift */; };
-		DBE42A471F7BDF2300B0B863 /* setup_version.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBE42A461F7BDF0D00B0B863 /* setup_version.swift */; };
 		DBEF2B141EC3B99A00D19B62 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D463A0B1EB135460074BEC5 /* LocationManager.swift */; };
 		DBF441AE1D351B0A007DEE95 /* DemoMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBF441AD1D351B0A007DEE95 /* DemoMapViewController.swift */; };
 		DBF441B01D351C90007DEE95 /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DBF441AF1D351C90007DEE95 /* GLKit.framework */; };
@@ -1024,7 +1023,6 @@
 				7D463A241EB135460074BEC5 /* RoutingController.swift in Sources */,
 				DBF761171F7D82B800D2626A /* Themes.swift in Sources */,
 				7D463A281EB135460074BEC5 /* SearchResponse.swift in Sources */,
-				DBE42A471F7BDF2300B0B863 /* setup_version.swift in Sources */,
 				7D463A1C1EB135460074BEC5 /* Dimensions.swift in Sources */,
 				7D463A191EB135460074BEC5 /* ApplicationExtensions.swift in Sources */,
 				7D463A221EB135460074BEC5 /* MZMapViewController.swift in Sources */,
