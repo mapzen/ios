@@ -68,6 +68,7 @@ public class MapzenSearch : NSObject {
     defer {
       setupAPIKeyObservance()
       apiKey = MapzenManager.sharedManager.apiKey
+      peliasSearchManager.additionalHttpHeaders = MapzenManager.sharedManager.httpHeaders()
     }
   }
   /** Perform an asyncronous search request given parameters defined by the search config. Returns the queued operation.

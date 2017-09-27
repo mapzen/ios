@@ -18,11 +18,13 @@ Pod::Spec.new do |s|
   s.requires_arc = true
   s.default_subspec = 'Core'
 
+  s.prepare_command = "ruby create_version_plist.rb #{s.version}"
+
   s.subspec 'Core' do |cs|
-    cs.dependency 'Pelias', '~> 1.0.1'
+    cs.dependency 'Pelias', '~> 1.0.2'
     cs.dependency 'OnTheRoad', '~> 1.0.0'
     cs.dependency 'Tangram-es', '~> 0.8.1'
     cs.source_files = ['MapzenSDK/*.swift', 'MapzenSDK/*/*.swift']
-    cs.resources = [ 'images/*.png', 'housestyles.bundle' ]
+    cs.resources = [ 'images/*.png', 'housestyles.bundle', 'version.plist' ]
   end
 end

@@ -31,7 +31,9 @@ open class RoutingController: OTRRoutingController {
 
   /// Static function that vends a properly configured routing controller.
   open static func controller() throws -> RoutingController {
-    let session = URLSession.init(configuration: URLSessionConfiguration.default)
+    let configuration = URLSessionConfiguration.default
+    configuration.httpAdditionalHeaders = MapzenManager.sharedManager.httpHeaders()
+    let session = URLSession.init(configuration: configuration)
     return try RoutingController.controller(sessionManager: session)
   }
 

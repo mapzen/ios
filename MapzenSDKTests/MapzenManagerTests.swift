@@ -84,4 +84,13 @@ class MapzenManagerTests: XCTestCase {
     }
     XCTAssertTrue(params.count == 0)
   }
+
+  func testHttpHeaders() {
+    let headers = MapzenManager.sharedManager.httpHeaders()
+    guard let userAgentString = headers["User-Agent"] else {
+      XCTFail("User-Agent header is nil")
+      return
+    }
+    XCTAssertTrue(userAgentString.contains("ios-sdk"))
+  }
 }
