@@ -971,7 +971,9 @@ open class MZMapViewController: UIViewController, LocationManagerDelegate {
 
   override open func viewDidLoad() {
     super.viewDidLoad()
-    tgViewController.httpHandler.httpAdditionalHeaders.addEntries(from: MapzenManager.sharedManager.httpHeaders())
+    let httpHandler = TGHttpHandler()
+    httpHandler.httpAdditionalHeaders = MapzenManager.sharedManager.httpHeaders() as! NSMutableDictionary
+    tgViewController.httpHandler = httpHandler
     locationManager.delegate = self
     setupTgControllerView()
     setupAttribution()
@@ -980,7 +982,6 @@ open class MZMapViewController: UIViewController, LocationManagerDelegate {
     tgViewController.gestureDelegate = self
     tgViewController.mapViewDelegate = self
     tgViewController.preferredFramesPerSecond = 60
-    tgViewController.httpHandler.httpAdditionalHeaders.addEntries(from: MapzenManager.sharedManager.httpHeaders())
   }
 
   //MARK: - LocationManagerDelegate
