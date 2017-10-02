@@ -131,7 +131,7 @@ open class RefillTheme: NSObject, Theme {
 
   open var labelLevel: Int = 5
 
-  open var detailLevel: Int = 5
+  open var detailLevel: Int = 10
 
   open var yamlString: String {
     get {
