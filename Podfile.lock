@@ -5,12 +5,12 @@ PODS:
   - Mapzen-ios-sdk/Core (1.1.0-rc1):
     - OnTheRoad (~> 1.0.0)
     - Pelias (~> 1.0.1)
-    - Tangram-es (~> 0.8.0)
+    - Tangram-es (~> 0.8.1)
   - OnTheRoad (1.0.0)
   - Pelias (1.0.1):
     - Pelias/Core (= 1.0.1)
   - Pelias/Core (1.0.1)
-  - Tangram-es (0.8.0)
+  - Tangram-es (0.8.1)
 
 DEPENDENCIES:
   - HockeySDK/CrashOnlyLib (~> 4.1.4)
@@ -22,10 +22,10 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   HockeySDK: 95db557d54489a570dcdefae0d02f98eecc279a3
-  Mapzen-ios-sdk: de3a1a5daabebcd2fa63c04fbd6e24f8549929a6
+  Mapzen-ios-sdk: 19034c32ccf8154822c6734b137a129e6149864d
   OnTheRoad: 23aeab6259df1bc005457795e255730178c97fdf
   Pelias: e32abfaf0c0de756d60bf4283d17c3e8e047d87d
-  Tangram-es: 7060f4b66e9716348ebdf4f79dd567ce1ec61b96
+  Tangram-es: 4d6d08e8d25900899073133756b35b4cfe2e97f7
 
 PODFILE CHECKSUM: cb8163d99be0602b23d29016872a6211a1841360
 
