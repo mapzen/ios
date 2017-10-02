@@ -125,31 +125,32 @@ class MapViewControllerTests: XCTestCase {
 
   func testLoadBubbleWrap() {
     try? controller.loadStyle(.bubbleWrap)
-    XCTAssertTrue(tgViewController.scenePath.absoluteString.contains("bubble-wrap/bubble-wrap-style-more-labels.yaml"))
+    XCTAssertTrue(tgViewController.yamlString.contains("bubble-wrap/bubble-wrap-style.yaml"))
     XCTAssertEqual(controller.currentStyle, .bubbleWrap)
   }
 
   func testLoadCinnabar() {
     try? controller.loadStyle(.cinnabar)
-    XCTAssertTrue(tgViewController.scenePath.absoluteString.contains("cinnabar/cinnabar-style-more-labels.yaml"))
+    XCTAssertTrue(tgViewController.yamlString.contains("cinnabar/cinnabar-style.yaml"))
     XCTAssertEqual(controller.currentStyle, .cinnabar)
   }
 
   func testLoadRefill() {
     try? controller.loadStyle(.refill)
-    XCTAssertTrue(tgViewController.scenePath.absoluteString.contains("refill/refill-style-more-labels.yaml"))
+    XCTAssertTrue(tgViewController.yamlString.contains("refill/refill-style.yaml"))
     XCTAssertEqual(controller.currentStyle, .refill)
   }
 
   func testLoadWalkabout() {
     try? controller.loadStyle(.walkabout)
-    XCTAssertTrue(tgViewController.scenePath.absoluteString.contains("walkabout/walkabout-style-more-labels.yaml"))
+    XCTAssertTrue(tgViewController.yamlString.contains("walkabout/walkabout-style.yaml"))
     XCTAssertEqual(controller.currentStyle, .walkabout)
   }
 
   func testLoadZinc() {
     try? controller.loadStyle(.zinc)
-    XCTAssertTrue(tgViewController.scenePath.absoluteString.contains("zinc/zinc-style-more-labels.yaml"))
+    XCTAssertTrue(tgViewController.yamlString.contains("refill/refill-style.yaml"))
+    XCTAssertTrue(tgViewController.yamlString.contains("color-zinc.yaml"))
     XCTAssertEqual(controller.currentStyle, .zinc)
   }
   
@@ -158,7 +159,7 @@ class MapViewControllerTests: XCTestCase {
     var updates = [TGSceneUpdate]()
     updates.append(update)
     try? controller.loadStyle(.bubbleWrap, sceneUpdates: updates)
-    XCTAssertTrue(tgViewController.scenePath.absoluteString.contains("bubble-wrap/bubble-wrap-style-more-labels.yaml"))
+    XCTAssertTrue(tgViewController.yamlString.contains("bubble-wrap/bubble-wrap-style.yaml"))
     XCTAssertEqual(tgViewController.sceneUpdates.count, 3)
     XCTAssertTrue(tgViewController.sceneUpdates.contains(update))
     let apiKeyUpdate = tgViewController.sceneUpdates.filter { (update) -> Bool in
@@ -169,7 +170,7 @@ class MapViewControllerTests: XCTestCase {
   
   func testLoadStyleAsync() {
     try? controller.loadStyleAsync(.bubbleWrap, onStyleLoaded: nil)
-    XCTAssertTrue(tgViewController.scenePath.absoluteString.contains("bubble-wrap-style-more-labels.yaml"))
+    XCTAssertTrue(tgViewController.yamlString.contains("bubble-wrap-style.yaml"))
   }
 
   func testLoadStyleAsyncWithUpdates() {
@@ -177,7 +178,7 @@ class MapViewControllerTests: XCTestCase {
     var updates = [TGSceneUpdate]()
     updates.append(update)
     try? controller.loadStyleAsync(.bubbleWrap, sceneUpdates: updates, onStyleLoaded: nil)
-    XCTAssertTrue(tgViewController.scenePath.absoluteString.contains("bubble-wrap/bubble-wrap-style-more-labels.yaml"))
+    XCTAssertTrue(tgViewController.yamlString.contains("bubble-wrap/bubble-wrap-style.yaml"))
     XCTAssertEqual(tgViewController.sceneUpdates.count, 3)
     XCTAssertTrue(tgViewController.sceneUpdates.contains(update))
     let apiKeyUpdate = tgViewController.sceneUpdates.filter { (update) -> Bool in
