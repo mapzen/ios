@@ -367,11 +367,16 @@ open class MZMapViewController: UIViewController, LocationManagerDelegate {
   public typealias OnStyleLoaded = (MapStyle) -> ()
   fileprivate var onStyleLoadedClosure : OnStyleLoaded? = nil
 
-  fileprivate let styles = ["bubble-wrap/bubble-wrap-style-more-labels" : MapStyle.bubbleWrap,
-                            "cinnabar/cinnabar-style-more-labels" : MapStyle.cinnabar,
-                            "refill/refill-style-more-labels" : MapStyle.refill,
-                            "walkabout/walkabout-style-more-labels" : MapStyle.walkabout,
-                            "zinc/zinc-style-more-labels" : MapStyle.zinc]
+//  fileprivate let styles = ["bubble-wrap/bubble-wrap-style" : MapStyle.bubbleWrap,
+//                            "cinnabar/cinnabar-style-more-labels" : MapStyle.cinnabar,
+//                            "refill/refill-style-more-labels" : MapStyle.refill,
+//                            "walkabout/walkabout-style-more-labels" : MapStyle.walkabout,
+//                            "zinc/zinc-style-more-labels" : MapStyle.zinc]
+  fileprivate let styles = [MapStyle.bubbleWrap : BubbleWrapStyle()]
+//                            "cinnabar/cinnabar-style-more-labels" : MapStyle.cinnabar,
+//                            "refill/refill-style-more-labels" : MapStyle.refill,
+//                            "walkabout/walkabout-style-more-labels" : MapStyle.walkabout,
+//                            "zinc/zinc-style-more-labels" : MapStyle.zinc]
 
   public let locationManager : LocationManagerProtocol
   let mapzenManager : MapzenManagerProtocol
@@ -593,14 +598,13 @@ open class MZMapViewController: UIViewController, LocationManagerDelegate {
    */
   open func loadStyle(_ style: MapStyle, locale l: Locale, sceneUpdates: [TGSceneUpdate]) throws {
     locale = l
-    guard let sceneFile = styles.keyForValue(value: style) else { return }
+//    guard let sceneFile = styles.keyForValue(value: style) else { return }
+    let scene = styles[style]
     currentStyle = style
     if style == .walkabout {
       walkingOverlayIsShowing = true
     }
-    guard let qualifiedSceneFile = Bundle.houseStylesBundle()?.url(forResource: sceneFile, withExtension: "yaml") else {
-      return
-    }
+    guard let qualifiedSceneFile = scene?.fileLocation else { return }
 
     latestSceneId = try tgViewController.loadScene(from: qualifiedSceneFile, with: allSceneUpdates(sceneUpdates))
     restoreMarkers()
@@ -653,14 +657,12 @@ open class MZMapViewController: UIViewController, LocationManagerDelegate {
    */
   open func loadStyleAsync(_ style: MapStyle, locale l: Locale, sceneUpdates: [TGSceneUpdate], onStyleLoaded: OnStyleLoaded?) throws {
     locale = l
-    guard let sceneFile = styles.keyForValue(value: style) else { return }
+    let scene = styles[style]
     currentStyle = style
     if style == .walkabout {
       walkingOverlayIsShowing = true
     }
-    guard let qualifiedSceneFile = Bundle.houseStylesBundle()?.url(forResource: sceneFile, withExtension: "yaml") else {
-      return
-    }
+    guard let qualifiedSceneFile = scene?.fileLocation else { return }
     latestSceneId = try tgViewController.loadSceneAsync(from: qualifiedSceneFile, with: allSceneUpdates(sceneUpdates))
     sceneLoadCallback = onStyleLoaded
   }

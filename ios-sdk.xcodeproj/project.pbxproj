@@ -81,6 +81,7 @@
 		DBEF2B141EC3B99A00D19B62 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D463A0B1EB135460074BEC5 /* LocationManager.swift */; };
 		DBF441AE1D351B0A007DEE95 /* DemoMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBF441AD1D351B0A007DEE95 /* DemoMapViewController.swift */; };
 		DBF441B01D351C90007DEE95 /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DBF441AF1D351C90007DEE95 /* GLKit.framework */; };
+		DBF761171F7D82B800D2626A /* Themes.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBF761161F7D82B800D2626A /* Themes.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -224,6 +225,7 @@
 		DBC8698F1D3662DD00DDC4FE /* SampleAutocompleteTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SampleAutocompleteTableViewController.swift; sourceTree = "<group>"; };
 		DBF441AD1D351B0A007DEE95 /* DemoMapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DemoMapViewController.swift; sourceTree = "<group>"; };
 		DBF441AF1D351C90007DEE95 /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
+		DBF761161F7D82B800D2626A /* Themes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Themes.swift; sourceTree = "<group>"; };
 		FE8434036BF110F8E126135B /* Pods-SampleApp-Objc.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SampleApp-Objc.release.xcconfig"; path = "Pods/Target Support Files/Pods-SampleApp-Objc/Pods-SampleApp-Objc.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -307,6 +309,7 @@
 				7D463A161EB135460074BEC5 /* SearchResponse.swift */,
 				7D463A171EB135460074BEC5 /* TangramExtensions.swift */,
 				7D463A181EB135460074BEC5 /* UIColorExtensions.swift */,
+				DBF761161F7D82B800D2626A /* Themes.swift */,
 			);
 			path = MapzenSDK;
 			sourceTree = "<group>";
@@ -857,7 +860,7 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-ios-sdk/Pods-ios-sdk-resources.sh",
-				"$PODS_CONFIGURATION_BUILD_DIR/HockeySDK/HockeySDKResources.bundle",
+				$PODS_CONFIGURATION_BUILD_DIR/HockeySDK/HockeySDKResources.bundle,
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
@@ -1014,6 +1017,7 @@
 				7D463A251EB135460074BEC5 /* SearchConfigs.swift in Sources */,
 				7D463A1E1EB135460074BEC5 /* MapzenManager.swift in Sources */,
 				7D463A241EB135460074BEC5 /* RoutingController.swift in Sources */,
+				DBF761171F7D82B800D2626A /* Themes.swift in Sources */,
 				7D463A281EB135460074BEC5 /* SearchResponse.swift in Sources */,
 				7D463A1C1EB135460074BEC5 /* Dimensions.swift in Sources */,
 				7D463A191EB135460074BEC5 /* ApplicationExtensions.swift in Sources */,
