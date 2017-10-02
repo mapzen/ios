@@ -8,37 +8,44 @@
 
 import Foundation
 
-protocol StyleSheet {
+public protocol StyleSheet : class {
 
   var fileLocation: URL? { get }
-  var stylesheetRoot: String { get }
+  static var stylesheetRoot: String { get }
   var appliedTheme: Theme { get }
   var houseStylesRoot: String { get }
-  var styleSheetFileName: String { get }
+  static var styleSheetFileName: String { get }
   var importString: String { get }
+  var relativePath: String { get }
 }
 
 extension StyleSheet {
-  var fileLocation: URL? {
+  public var fileLocation: URL? {
     get {
-      return Bundle.houseStylesBundle()?.url(forResource: styleSheetFileName, withExtension: "yaml")
+      return Bundle.houseStylesBundle()?.url(forResource: relativePath, withExtension: "yaml")
     }
   }
 
-  var houseStylesRoot: String {
+  public var houseStylesRoot: String {
     get {
       return "housestyles.bundle/"
     }
   }
 
-  var importString: String {
+  public var importString: String {
     get {
-      return "{ import: [ \(styleSheetFileName).yaml, \(appliedTheme.yamlString) ] }"
+      return "{ import: [ \(relativePath).yaml, \(appliedTheme.yamlString) ] }"
+    }
+  }
+
+  public var relativePath: String {
+    get {
+      return "\(Self.stylesheetRoot)\(Self.styleSheetFileName)"
     }
   }
 }
 
-protocol Theme {
+public protocol Theme : class {
 
   var yamlString: String { get }
   var detailLevel: Int { get set }
@@ -51,51 +58,121 @@ protocol Theme {
 
 }
 
-
-
-//class CinnabarStyle: NSObject, StyleSheet {
-//  var appliedTheme: Theme?
-//  let fileLocation = URL(fileURLWithPath: "/test")
-//  let stylesheetRoot = "cinnabar/"
-//}
-//
-//class RefillStyle: NSObject, StyleSheet {
-//  var appliedTheme: Theme?
-//  let fileLocation = URL(fileURLWithPath: "/test")
-//  let stylesheetRoot = "refill/"
-//}
-//
-//class WalkaboutStyle: NSObject, StyleSheet {
-//  var appliedTheme: Theme?
-//  let fileLocation = URL(fileURLWithPath: "/test")
-//  let stylesheetRoot = "walkabout/"
-//}
-
 //MARK:- Bubble Wrap
-class BubbleWrapStyle: NSObject, StyleSheet {
-  var appliedTheme: Theme = BubbleWrapTheme()
-  var styleSheetFileName = "bubble-wrap-style"
-  let fileLocation = URL(fileURLWithPath: "/test")
-  let stylesheetRoot = "bubble-wrap/"
+open class BubbleWrapStyle: NSObject, StyleSheet {
+  open var appliedTheme: Theme = BubbleWrapTheme()
+  open static let styleSheetFileName = "bubble-wrap-style"
+  open static let stylesheetRoot = "bubble-wrap/"
 
 }
 
-class BubbleWrapTheme: NSObject, Theme {
-  var availableLabelLevels: Int = 12
+open class BubbleWrapTheme: NSObject, Theme {
+  open var availableLabelLevels: Int = 12
 
-  var availableDetailLevel: Int = 0 // Not used for Bubble Wrap
+  open var availableDetailLevel: Int = 0 // Not used for Bubble Wrap
 
-  var availableColors: [String] = [] // Not used for Bubble Wrap
+  open var availableColors: [String] = [] // Not used for Bubble Wrap
 
-  var currentColor: String = "" // Not used for Bubble Wrap
+  open var currentColor: String = "" // Not used for Bubble Wrap
 
-  var labelLevel: Int = 5
+  open var labelLevel: Int = 5
 
-  var detailLevel: Int = 0 // Not used for Bubble Wrap
+  open var detailLevel: Int = 0 // Not used for Bubble Wrap
 
-  var yamlString: String {
+  open var yamlString: String {
     get {
-      return "themes/label-\(labelLevel).yaml"
+      return "\(BubbleWrapStyle.stylesheetRoot)themes/label-\(labelLevel).yaml"
+    }
+  }
+}
+
+//MARK:- Cinnnabar
+open class CinnabarStyle: NSObject, StyleSheet {
+  open var appliedTheme: Theme = CinnabarTheme()
+  open static let styleSheetFileName = "cinnabar-style"
+  open static let stylesheetRoot = "cinnabar/"
+}
+
+open class CinnabarTheme: NSObject, Theme {
+  open var availableLabelLevels: Int = 12
+
+  open var availableDetailLevel: Int = 0 // Not used for Cinnabar
+
+  open var availableColors: [String] = [] // Not used for Cinnabar
+
+  open var currentColor: String = "" // Not used for Cinnabar
+
+  open var labelLevel: Int = 5
+
+  open var detailLevel: Int = 0 // Not used for Cinnabar
+
+  open var yamlString: String {
+    get {
+      return "\(CinnabarStyle.stylesheetRoot)themes/label-\(labelLevel).yaml"
+    }
+  }
+}
+
+//MARK:- Refill
+open class RefillStyle: NSObject, StyleSheet {
+  open var appliedTheme: Theme = RefillTheme()
+  open static let styleSheetFileName = "refill-style"
+  open static let stylesheetRoot = "refill/"
+}
+
+open class RefillTheme: NSObject, Theme {
+  open var availableLabelLevels: Int = 12
+
+  open var availableDetailLevel: Int = 12
+
+  open var availableColors: [String] = ["black", "blue-gray", "blue", "brown-orange", "gray-gold", "gray", "high-contrast", "inverted", "pink-yellow", "pink", "purple-green", "sepia", "zinc"]
+
+  open var currentColor: String = "black"
+
+  open var labelLevel: Int = 5
+
+  open var detailLevel: Int = 5
+
+  open var yamlString: String {
+    get {
+      return "\(RefillStyle.stylesheetRoot)themes/label-\(labelLevel).yaml, \(RefillStyle.stylesheetRoot)themes/detail-\(detailLevel).yaml, \(RefillStyle.stylesheetRoot)themes/color-\(currentColor).yaml"
+    }
+  }
+}
+
+//MARK:- Zinc
+open class ZincStyle: RefillStyle {
+  override init() {
+    super.init()
+    defer {
+      self.appliedTheme.currentColor = "zinc"
+    }
+  }
+}
+
+//MARK:- Walkabout
+open class WalkaboutStyle: NSObject, StyleSheet {
+  open var appliedTheme: Theme = WalkaboutTheme()
+  open static let styleSheetFileName = "walkabout-style"
+  open static let stylesheetRoot = "walkabout/"
+}
+
+open class WalkaboutTheme: NSObject, Theme {
+  open var availableLabelLevels: Int = 12
+
+  open var availableDetailLevel: Int = 0 // Not used for Walkabout
+
+  open var availableColors: [String] = [] // Not used for Walkabout
+
+  open var currentColor: String = "" // Not used for Walkabout
+
+  open var labelLevel: Int = 5
+
+  open var detailLevel: Int = 0 // Not used for Walkabout
+
+  open var yamlString: String {
+    get {
+      return "\(WalkaboutStyle.stylesheetRoot)themes/label-\(labelLevel).yaml"
     }
   }
 }

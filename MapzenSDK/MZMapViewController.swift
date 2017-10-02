@@ -372,11 +372,11 @@ open class MZMapViewController: UIViewController, LocationManagerDelegate {
 //                            "refill/refill-style-more-labels" : MapStyle.refill,
 //                            "walkabout/walkabout-style-more-labels" : MapStyle.walkabout,
 //                            "zinc/zinc-style-more-labels" : MapStyle.zinc]
-  fileprivate let styles = [MapStyle.bubbleWrap : BubbleWrapStyle()]
-//                            "cinnabar/cinnabar-style-more-labels" : MapStyle.cinnabar,
-//                            "refill/refill-style-more-labels" : MapStyle.refill,
-//                            "walkabout/walkabout-style-more-labels" : MapStyle.walkabout,
-//                            "zinc/zinc-style-more-labels" : MapStyle.zinc]
+  fileprivate let styles: [MapStyle:StyleSheet] = [MapStyle.bubbleWrap : BubbleWrapStyle(),
+                            MapStyle.cinnabar : CinnabarStyle(),
+                            MapStyle.refill : RefillStyle(),
+                            MapStyle.walkabout : WalkaboutStyle(),
+                            MapStyle.zinc : ZincStyle()]
 
   public let locationManager : LocationManagerProtocol
   let mapzenManager : MapzenManagerProtocol
@@ -604,9 +604,8 @@ open class MZMapViewController: UIViewController, LocationManagerDelegate {
     if style == .walkabout {
       walkingOverlayIsShowing = true
     }
-    guard let qualifiedSceneFile = scene?.fileLocation else { return }
-
-    latestSceneId = try tgViewController.loadScene(from: qualifiedSceneFile, with: allSceneUpdates(sceneUpdates))
+    guard let qualifiedScene = scene else { return }
+    latestSceneId = try tgViewController.loadScene(fromYAML: qualifiedScene.importString, relativeTo: Bundle.houseStylesBundle()!.bundleURL, with: allSceneUpdates(sceneUpdates))
     restoreMarkers()
 
   }
@@ -662,8 +661,8 @@ open class MZMapViewController: UIViewController, LocationManagerDelegate {
     if style == .walkabout {
       walkingOverlayIsShowing = true
     }
-    guard let qualifiedSceneFile = scene?.fileLocation else { return }
-    latestSceneId = try tgViewController.loadSceneAsync(from: qualifiedSceneFile, with: allSceneUpdates(sceneUpdates))
+    guard let qualifiedScene = scene else { return }
+    latestSceneId = try tgViewController.loadSceneAsync(fromYAML: qualifiedScene.importString, relativeTo: Bundle.houseStylesBundle()!.bundleURL, with: allSceneUpdates(sceneUpdates))
     sceneLoadCallback = onStyleLoaded
   }
 
