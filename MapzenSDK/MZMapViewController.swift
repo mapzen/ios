@@ -367,11 +367,7 @@ open class MZMapViewController: UIViewController, LocationManagerDelegate {
   public typealias OnStyleLoaded = (MapStyle) -> ()
   fileprivate var onStyleLoadedClosure : OnStyleLoaded? = nil
 
-//  fileprivate let styles = ["bubble-wrap/bubble-wrap-style" : MapStyle.bubbleWrap,
-//                            "cinnabar/cinnabar-style-more-labels" : MapStyle.cinnabar,
-//                            "refill/refill-style-more-labels" : MapStyle.refill,
-//                            "walkabout/walkabout-style-more-labels" : MapStyle.walkabout,
-//                            "zinc/zinc-style-more-labels" : MapStyle.zinc]
+  //TODO: Remove this when removing other load style methods
   fileprivate let styles: [MapStyle:StyleSheet] = [MapStyle.bubbleWrap : BubbleWrapStyle(),
                             MapStyle.cinnabar : CinnabarStyle(),
                             MapStyle.refill : RefillStyle(),
@@ -598,7 +594,6 @@ open class MZMapViewController: UIViewController, LocationManagerDelegate {
    */
   open func loadStyle(_ style: MapStyle, locale l: Locale, sceneUpdates: [TGSceneUpdate]) throws {
     locale = l
-//    guard let sceneFile = styles.keyForValue(value: style) else { return }
     let scene = styles[style]
     currentStyle = style
     if style == .walkabout {
@@ -607,7 +602,6 @@ open class MZMapViewController: UIViewController, LocationManagerDelegate {
     guard let qualifiedScene = scene else { return }
     latestSceneId = try tgViewController.loadScene(fromYAML: qualifiedScene.importString, relativeTo: Bundle.houseStylesBundle()!.bundleURL, with: allSceneUpdates(sceneUpdates))
     restoreMarkers()
-
   }
 
   /**
@@ -665,6 +659,63 @@ open class MZMapViewController: UIViewController, LocationManagerDelegate {
     latestSceneId = try tgViewController.loadSceneAsync(fromYAML: qualifiedScene.importString, relativeTo: Bundle.houseStylesBundle()!.bundleURL, with: allSceneUpdates(sceneUpdates))
     sceneLoadCallback = onStyleLoaded
   }
+
+//MARK:- Stylesheet load calls
+
+  /**
+   Loads a map style synchronously on the main thread. Use the async methods instead of these in production apps.
+
+   - parameter styleSheet: The map style to load.
+   - throws: A MZError `apiKeyNotSet` error if an API Key has not been sent on the MapzenManager class.
+   */
+  open func loadStyleSheet(_ styleSheet: StyleSheet) throws {
+    try loadStyleSheet(styleSheet, locale: Locale.current)
+  }
+
+  /**
+   Loads a map style synchronously on the main thread. Use the async methods instead of these in production apps.
+
+   - parameter styleSheet: The map style to load.
+   - parameter locale: The locale to use for the map's language.
+   - throws: A MZError `apiKeyNotSet` error if an API Key has not been sent on the MapzenManager class.
+   */
+  open func loadStyleSheet(_ styleSheet: StyleSheet, locale: Locale ) throws {
+    self.locale = locale
+    if let mapStyle = styleSheet.mapStyle { currentStyle = mapStyle }
+    if currentStyle == .walkabout {
+      walkingOverlayIsShowing = true
+    }
+    latestSceneId = try tgViewController.loadScene(fromYAML: styleSheet.importString, relativeTo: Bundle.houseStylesBundle()!.bundleURL, with: allSceneUpdates(sceneUpdates))
+    restoreMarkers()
+  }
+
+  /**
+   Loads the map style asynchronously. Recommended for production apps. Uses the system's current locale.
+   - parameter styleSheet: The map style / theme combination to load.
+   - parameter onStyleLoaded: Closure called on scene loaded.
+   - throws: A MZError `apiKeyNotSet` error if an API Key has not been sent on the MapzenManager class.
+   */
+  open func loadStyleSheetAsync(_ styleSheet: StyleSheet, onStyleLoaded: OnStyleLoaded?) throws {
+    try loadStyleSheetAsync(styleSheet, locale: Locale.current, onStyleLoaded: onStyleLoaded)
+  }
+
+  /**
+   Loads the map style asynchronously. Recommended for production apps.
+   - parameter styleSheet: The map style / theme combination to load.
+   - parameter locale: The locale to use for the map's language.
+   - parameter onStyleLoaded: Closure called on scene loaded.
+   - throws: A MZError `apiKeyNotSet` error if an API Key has not been sent on the MapzenManager class.
+   */
+  open func loadStyleSheetAsync(_ styleSheet: StyleSheet, locale: Locale, onStyleLoaded: OnStyleLoaded?) throws {
+    self.locale = locale
+    if let mapStyle = styleSheet.mapStyle { currentStyle = mapStyle }
+    if currentStyle == .walkabout {
+      walkingOverlayIsShowing = true
+    }
+    latestSceneId = try tgViewController.loadSceneAsync(fromYAML: styleSheet.importString, relativeTo: Bundle.houseStylesBundle()!.bundleURL, with: allSceneUpdates(sceneUpdates))
+    sceneLoadCallback = onStyleLoaded
+  }
+
 
   /**
    Sets the locale used to determine the map's language.

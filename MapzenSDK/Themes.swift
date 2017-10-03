@@ -8,6 +8,13 @@
 
 import Foundation
 
+/**
+ This is the foundational code for custom stylesheet and theme support. This area will likely be the focus of updates & changes over the next several releases, so we would recommend avoiding implementing your own custom stylesheet classes until we have further vetted this implementation. Documentation will be written once we've solidified on the protocol requirements and implementation details.
+ 
+ We do however welcome suggestions / improvements to this API on our github at https://github.com/mapzen/ios
+ */
+
+
 public protocol StyleSheet : class {
 
   var fileLocation: URL? { get }
@@ -17,6 +24,7 @@ public protocol StyleSheet : class {
   static var styleSheetFileName: String { get }
   var importString: String { get }
   var relativePath: String { get }
+  var mapStyle: MapStyle? { get set }
 }
 
 extension StyleSheet {
@@ -46,7 +54,6 @@ extension StyleSheet {
 }
 
 public protocol Theme : class {
-
   var yamlString: String { get }
   var detailLevel: Int { get set }
   var labelLevel: Int { get set }
@@ -61,6 +68,7 @@ public protocol Theme : class {
 //MARK:- Bubble Wrap
 open class BubbleWrapStyle: NSObject, StyleSheet {
   open var appliedTheme: Theme = BubbleWrapTheme()
+  open var mapStyle: MapStyle? = .bubbleWrap
   open static let styleSheetFileName = "bubble-wrap-style"
   open static let stylesheetRoot = "bubble-wrap/"
 
@@ -89,6 +97,7 @@ open class BubbleWrapTheme: NSObject, Theme {
 //MARK:- Cinnnabar
 open class CinnabarStyle: NSObject, StyleSheet {
   open var appliedTheme: Theme = CinnabarTheme()
+  open var mapStyle: MapStyle? = .cinnabar
   open static let styleSheetFileName = "cinnabar-style"
   open static let stylesheetRoot = "cinnabar/"
 }
@@ -116,6 +125,7 @@ open class CinnabarTheme: NSObject, Theme {
 //MARK:- Refill
 open class RefillStyle: NSObject, StyleSheet {
   open var appliedTheme: Theme = RefillTheme()
+  open var mapStyle: MapStyle? = .refill
   open static let styleSheetFileName = "refill-style"
   open static let stylesheetRoot = "refill/"
 }
@@ -145,6 +155,7 @@ open class ZincStyle: RefillStyle {
   override init() {
     super.init()
     defer {
+      mapStyle = .zinc
       self.appliedTheme.currentColor = "zinc"
     }
   }
@@ -153,6 +164,7 @@ open class ZincStyle: RefillStyle {
 //MARK:- Walkabout
 open class WalkaboutStyle: NSObject, StyleSheet {
   open var appliedTheme: Theme = WalkaboutTheme()
+  open var mapStyle: MapStyle? = .walkabout
   open static let styleSheetFileName = "walkabout-style"
   open static let stylesheetRoot = "walkabout/"
 }
