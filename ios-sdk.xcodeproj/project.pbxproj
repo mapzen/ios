@@ -70,6 +70,7 @@
 		DB7A33DD1C8F8E8B009CC743 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DB7A33DB1C8F8E8B009CC743 /* Main.storyboard */; };
 		DB7A33DF1C8F8E8B009CC743 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DB7A33DE1C8F8E8B009CC743 /* Assets.xcassets */; };
 		DB7A33E21C8F8E8B009CC743 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DB7A33E01C8F8E8B009CC743 /* LaunchScreen.storyboard */; };
+		DB8EA08B1F8357BE0050850A /* TestStylesAndThemes.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB8EA08A1F8357BE0050850A /* TestStylesAndThemes.swift */; };
 		DBA4B4BB1ED75D2F0010FDDB /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = DBA4B4BA1ED75D2F0010FDDB /* main.m */; };
 		DBA4B4BE1ED75D2F0010FDDB /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DBA4B4BD1ED75D2F0010FDDB /* AppDelegate.m */; };
 		DBA4B4C11ED75D2F0010FDDB /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DBA4B4C01ED75D2F0010FDDB /* ViewController.m */; };
@@ -209,6 +210,7 @@
 		DB7A33E11C8F8E8B009CC743 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		DB7A33E31C8F8E8B009CC743 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DB7A33E81C8F8E8B009CC743 /* ios-sdkTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "ios-sdkTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		DB8EA08A1F8357BE0050850A /* TestStylesAndThemes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestStylesAndThemes.swift; sourceTree = "<group>"; };
 		DBA4B4B71ED75D2F0010FDDB /* SampleApp-Objc.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "SampleApp-Objc.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DBA4B4BA1ED75D2F0010FDDB /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		DBA4B4BC1ED75D2F0010FDDB /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -337,6 +339,7 @@
 				7D463A3F1EB1357B0074BEC5 /* TestTGMarkerPickResult.swift */,
 				7D463A401EB1357B0074BEC5 /* TestUrlSession.swift */,
 				7D463A411EB1357B0074BEC5 /* UIColorExtensionsTests.swift */,
+				DB8EA08A1F8357BE0050850A /* TestStylesAndThemes.swift */,
 			);
 			path = MapzenSDKTests;
 			sourceTree = "<group>";
@@ -1048,6 +1051,7 @@
 				7D463A4F1EB1357B0074BEC5 /* TestMapzenManager.swift in Sources */,
 				7D463A441EB1357B0074BEC5 /* MapzenManagerTests.swift in Sources */,
 				7D463A4D1EB1357B0074BEC5 /* TestApplication.swift in Sources */,
+				DB8EA08B1F8357BE0050850A /* TestStylesAndThemes.swift in Sources */,
 				7D463A421EB1357B0074BEC5 /* DictionaryExtensionsTests.swift in Sources */,
 				7D463A531EB1357B0074BEC5 /* TestUrlSession.swift in Sources */,
 				7D463A4B1EB1357B0074BEC5 /* SearchResponseTests.swift in Sources */,

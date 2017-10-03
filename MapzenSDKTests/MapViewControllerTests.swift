@@ -153,6 +153,19 @@ class MapViewControllerTests: XCTestCase {
     XCTAssertTrue(tgViewController.yamlString.contains("color-zinc.yaml"))
     XCTAssertEqual(controller.currentStyle, .zinc)
   }
+
+  func testLoadStylesheet() {
+    try? controller.loadStyleSheet(BubbleWrapStyle())
+    XCTAssertTrue(tgViewController.yamlString.contains("bubble-wrap/bubble-wrap-style.yaml"))
+    XCTAssertEqual(controller.currentStyle, .bubbleWrap)
+  }
+
+  func testLoadStylesheetAsync() {
+    try? controller.loadStyleSheetAsync(BubbleWrapStyle(), onStyleLoaded: { [unowned self] (style) in
+      XCTAssertTrue(self.tgViewController.yamlString.contains("bubble-wrap/bubble-wrap-style.yaml"))
+      XCTAssertEqual(style, .bubbleWrap)
+    })
+  }
   
   func testLoadStyleWithUpdates() {
     let update = TGSceneUpdate(path: "path", value: "value")
