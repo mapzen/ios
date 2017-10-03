@@ -15,7 +15,7 @@ import Foundation
  */
 
 
-public protocol StyleSheet : class {
+public protocol StyleSheet : class, NSObjectProtocol {
 
   var fileLocation: URL? { get }
   static var stylesheetRoot: String { get }
@@ -152,7 +152,7 @@ open class RefillTheme: NSObject, Theme {
 
 //MARK:- Zinc
 open class ZincStyle: RefillStyle {
-  override init() {
+  public override init() {
     super.init()
     defer {
       mapStyle = .zinc

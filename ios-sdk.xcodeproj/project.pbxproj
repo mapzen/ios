@@ -71,6 +71,7 @@
 		DB7A33DF1C8F8E8B009CC743 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DB7A33DE1C8F8E8B009CC743 /* Assets.xcassets */; };
 		DB7A33E21C8F8E8B009CC743 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DB7A33E01C8F8E8B009CC743 /* LaunchScreen.storyboard */; };
 		DB8EA08B1F8357BE0050850A /* TestStylesAndThemes.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB8EA08A1F8357BE0050850A /* TestStylesAndThemes.swift */; };
+		DB8EA08D1F83E82C0050850A /* StylePickerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB8EA08C1F83E82C0050850A /* StylePickerVC.swift */; };
 		DBA4B4BB1ED75D2F0010FDDB /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = DBA4B4BA1ED75D2F0010FDDB /* main.m */; };
 		DBA4B4BE1ED75D2F0010FDDB /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DBA4B4BD1ED75D2F0010FDDB /* AppDelegate.m */; };
 		DBA4B4C11ED75D2F0010FDDB /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DBA4B4C01ED75D2F0010FDDB /* ViewController.m */; };
@@ -211,6 +212,7 @@
 		DB7A33E31C8F8E8B009CC743 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DB7A33E81C8F8E8B009CC743 /* ios-sdkTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "ios-sdkTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DB8EA08A1F8357BE0050850A /* TestStylesAndThemes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestStylesAndThemes.swift; sourceTree = "<group>"; };
+		DB8EA08C1F83E82C0050850A /* StylePickerVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StylePickerVC.swift; sourceTree = "<group>"; };
 		DBA4B4B71ED75D2F0010FDDB /* SampleApp-Objc.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "SampleApp-Objc.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DBA4B4BA1ED75D2F0010FDDB /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		DBA4B4BC1ED75D2F0010FDDB /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -444,6 +446,7 @@
 				DBC8698F1D3662DD00DDC4FE /* SampleAutocompleteTableViewController.swift */,
 				7D503BCB1E77457A00FDDC4F /* SampleMapViewController.swift */,
 				7D503BCD1E77468B00FDDC4F /* SampleTableViewController.swift */,
+				DB8EA08C1F83E82C0050850A /* StylePickerVC.swift */,
 			);
 			path = SampleApp;
 			sourceTree = "<group>";
@@ -863,7 +866,7 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-ios-sdk/Pods-ios-sdk-resources.sh",
-				$PODS_CONFIGURATION_BUILD_DIR/HockeySDK/HockeySDKResources.bundle,
+				"$PODS_CONFIGURATION_BUILD_DIR/HockeySDK/HockeySDKResources.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
@@ -1069,6 +1072,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DB8EA08D1F83E82C0050850A /* StylePickerVC.swift in Sources */,
 				DBF441AE1D351B0A007DEE95 /* DemoMapViewController.swift in Sources */,
 				DB22E59E1DA473CA004264E0 /* DemoRouteDirectionCell.swift in Sources */,
 				7D503BCC1E77457A00FDDC4F /* SampleMapViewController.swift in Sources */,
