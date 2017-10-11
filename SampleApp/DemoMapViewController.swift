@@ -43,8 +43,9 @@ class DemoMapViewController:  SampleMapViewController, MapMarkerSelectDelegate {
 
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     if segue.identifier == "displayStyleSelector" {
-      let destVC = segue.destination as! StylePickerVC
-      destVC.mapController = self
+      let destVC = segue.destination as! UINavigationController
+      let styleVC = destVC.viewControllers[0] as! StylePickerVC
+      styleVC.mapController = self
     }
   }
   

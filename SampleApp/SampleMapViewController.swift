@@ -14,20 +14,14 @@ class SampleMapViewController : MZMapViewController {
 
   var firstTimeZoomToCurrentLocation = true
   var sceneDidLoad = false
-  var selectedMapStyle : StyleSheet = BubbleWrapStyle() {
-    didSet {
-      do {
-        try loadStyleSheetAsync(selectedMapStyle, onStyleLoaded: nil)
-      } catch {
-        print(error.localizedDescription)
-      }
-    }
-  }
+//  var selectedMapStyle : StyleSheet = BubbleWrapStyle()
   private var myContext = 0
 
   override var prefersStatusBarHidden: Bool {
     return false
   }
+
+
   func shouldZoomToCurrentLocation() {
     if !sceneDidLoad { return }
     if !receivedLocation() { return }

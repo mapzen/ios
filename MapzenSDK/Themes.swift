@@ -15,9 +15,10 @@ import Foundation
  */
 
 
-public protocol StyleSheet : class, NSObjectProtocol {
+public protocol StyleSheet : class {
 
   var fileLocation: URL? { get }
+  var remoteFileLocation: URL? { get }
   static var stylesheetRoot: String { get }
   var appliedTheme: Theme { get }
   var houseStylesRoot: String { get }
@@ -31,6 +32,12 @@ extension StyleSheet {
   public var fileLocation: URL? {
     get {
       return Bundle.houseStylesBundle()?.url(forResource: relativePath, withExtension: "yaml")
+    }
+  }
+
+  public var remoteFileLocation: URL? {
+    get {
+      return nil
     }
   }
 
