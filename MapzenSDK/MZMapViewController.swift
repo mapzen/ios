@@ -293,8 +293,6 @@ open class MZMapViewController: UIViewController, LocationManagerDelegate {
     set {
       let sceneUpdate = TGSceneUpdate(path: GlobalStyleVars.transitOverlay.rawValue, value: "\(newValue)")
       updateOrQueue(sceneUpdate)
-//      latestSceneId = tgViewController.updateSceneAsync([TGSceneUpdate(path: GlobalStyleVars.transitOverlay, value: "\(newValue)")])
-//      transitOverlayIsShowing = newValue
     }
     get {
       return transitOverlayIsShowing
@@ -305,8 +303,6 @@ open class MZMapViewController: UIViewController, LocationManagerDelegate {
     set {
       let sceneUpdate = TGSceneUpdate(path: GlobalStyleVars.bikeOverlay.rawValue, value: "\(newValue)")
       updateOrQueue(sceneUpdate)
-//      latestSceneId = tgViewController.updateSceneAsync([TGSceneUpdate(path: GlobalStyleVars.bikeOverlay, value: "\(newValue)")])
-//      bikeOverlayIsShowing = newValue
     }
     get {
       return bikeOverlayIsShowing
@@ -316,10 +312,8 @@ open class MZMapViewController: UIViewController, LocationManagerDelegate {
   /// Show or hide the walking network. Not intended for use at the same time as the bike overlay. Fine for use with the transit overlay
   open var showWalkingPathOverlay: Bool {
     set {
-//      latestSceneId = tgViewController.updateSceneAsync([TGSceneUpdate(path: GlobalStyleVars.pathOverlay, value: "\(newValue)")])
       let sceneUpdate = TGSceneUpdate(path: GlobalStyleVars.pathOverlay.rawValue, value: "\(newValue)")
       updateOrQueue(sceneUpdate)
-//      walkingOverlayIsShowing = newValue
     }
     get {
       return walkingOverlayIsShowing
@@ -731,7 +725,6 @@ open class MZMapViewController: UIViewController, LocationManagerDelegate {
     latestSceneId = try tgViewController.loadSceneAsync(fromYAML: styleSheet.importString, relativeTo: Bundle.houseStylesBundle()!.bundleURL, with: allSceneUpdates(sceneUpdates))
     sceneLoadCallback = onStyleLoaded
   }
-
 
   /**
    Sets the locale used to determine the map's language.
