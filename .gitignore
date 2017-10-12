@@ -20,3 +20,5 @@ DerivedData
 Pods
 #XCUserData
 xcuserdata/
+#For when we generate the version.plist file locally
+version.plist

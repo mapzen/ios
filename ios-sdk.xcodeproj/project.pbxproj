@@ -16,7 +16,6 @@
 		7D463A1B1EB135460074BEC5 /* DictionaryExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D463A081EB135460074BEC5 /* DictionaryExtensions.swift */; };
 		7D463A1C1EB135460074BEC5 /* Dimensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D463A0A1EB135460074BEC5 /* Dimensions.swift */; };
 		7D463A1E1EB135460074BEC5 /* MapzenManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D463A0C1EB135460074BEC5 /* MapzenManager.swift */; };
-		7D463A1F1EB135460074BEC5 /* MapzenManagerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D463A0D1EB135460074BEC5 /* MapzenManagerExtensions.swift */; };
 		7D463A201EB135460074BEC5 /* MapzenSearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D463A0E1EB135460074BEC5 /* MapzenSearch.swift */; };
 		7D463A211EB135460074BEC5 /* Marker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D463A0F1EB135460074BEC5 /* Marker.swift */; };
 		7D463A221EB135460074BEC5 /* MZMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D463A101EB135460074BEC5 /* MZMapViewController.swift */; };
@@ -148,7 +147,6 @@
 		7D463A0A1EB135460074BEC5 /* Dimensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Dimensions.swift; sourceTree = "<group>"; };
 		7D463A0B1EB135460074BEC5 /* LocationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		7D463A0C1EB135460074BEC5 /* MapzenManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapzenManager.swift; sourceTree = "<group>"; };
-		7D463A0D1EB135460074BEC5 /* MapzenManagerExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapzenManagerExtensions.swift; sourceTree = "<group>"; };
 		7D463A0E1EB135460074BEC5 /* MapzenSearch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapzenSearch.swift; sourceTree = "<group>"; };
 		7D463A0F1EB135460074BEC5 /* Marker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Marker.swift; sourceTree = "<group>"; };
 		7D463A101EB135460074BEC5 /* MZMapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MZMapViewController.swift; sourceTree = "<group>"; };
@@ -227,6 +225,7 @@
 		DBA4B4D31ED75D2F0010FDDB /* SampleApp_ObjcTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SampleApp_ObjcTests.m; sourceTree = "<group>"; };
 		DBA4B4D51ED75D2F0010FDDB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DBC8698F1D3662DD00DDC4FE /* SampleAutocompleteTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SampleAutocompleteTableViewController.swift; sourceTree = "<group>"; };
+		DBE42A461F7BDF0D00B0B863 /* setup_version.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = setup_version.swift; path = ../scripts/setup_version.swift; sourceTree = "<group>"; };
 		DBF441AD1D351B0A007DEE95 /* DemoMapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DemoMapViewController.swift; sourceTree = "<group>"; };
 		DBF441AF1D351C90007DEE95 /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
 		DBF761161F7D82B800D2626A /* Themes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Themes.swift; sourceTree = "<group>"; };
@@ -301,7 +300,6 @@
 				7D463A091EB135460074BEC5 /* dimensions */,
 				7D463A0B1EB135460074BEC5 /* LocationManager.swift */,
 				7D463A0C1EB135460074BEC5 /* MapzenManager.swift */,
-				7D463A0D1EB135460074BEC5 /* MapzenManagerExtensions.swift */,
 				7D463A0E1EB135460074BEC5 /* MapzenSearch.swift */,
 				7D463A0F1EB135460074BEC5 /* Marker.swift */,
 				7D463A101EB135460074BEC5 /* MZMapViewController.swift */,
@@ -314,6 +312,7 @@
 				7D463A171EB135460074BEC5 /* TangramExtensions.swift */,
 				7D463A181EB135460074BEC5 /* UIColorExtensions.swift */,
 				DBF761161F7D82B800D2626A /* Themes.swift */,
+				DBE42A461F7BDF0D00B0B863 /* setup_version.swift */,
 			);
 			path = MapzenSDK;
 			sourceTree = "<group>";
@@ -866,7 +865,7 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-ios-sdk/Pods-ios-sdk-resources.sh",
-				"$PODS_CONFIGURATION_BUILD_DIR/HockeySDK/HockeySDKResources.bundle",
+				$PODS_CONFIGURATION_BUILD_DIR/HockeySDK/HockeySDKResources.bundle,
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
@@ -1019,7 +1018,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7D463A1F1EB135460074BEC5 /* MapzenManagerExtensions.swift in Sources */,
 				7D463A251EB135460074BEC5 /* SearchConfigs.swift in Sources */,
 				7D463A1E1EB135460074BEC5 /* MapzenManager.swift in Sources */,
 				7D463A241EB135460074BEC5 /* RoutingController.swift in Sources */,

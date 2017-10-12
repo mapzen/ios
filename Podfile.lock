@@ -4,7 +4,7 @@ PODS:
     - Mapzen-ios-sdk/Core (= 1.1.0-rc1)
   - Mapzen-ios-sdk/Core (1.1.0-rc1):
     - OnTheRoad (~> 1.0.0)
-    - Pelias (~> 1.0.1)
+    - Pelias (~> 1.0.2)
     - Tangram-es (~> 0.8.1)
   - OnTheRoad (1.0.0)
   - Pelias (1.0.2):
