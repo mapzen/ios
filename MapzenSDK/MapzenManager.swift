@@ -19,18 +19,18 @@ protocol MapzenManagerProtocol {
  */
 open class MapzenManager: NSObject, MapzenManagerProtocol {
   /// The single object to be used for all access
-  open static let sharedManager = MapzenManager()
-  static let SDK_VERSION_KEY = "sdk_version"
+  @objc open static let sharedManager = MapzenManager()
+  @objc static let SDK_VERSION_KEY = "sdk_version"
 
   /// The Mapzen API key. If this is not set, exceptions will get raised by the various objects in use.
-  dynamic open var apiKey: String?
+  @objc dynamic open var apiKey: String?
 
   fileprivate override init(){
     super.init()
   }
 
   //MARK: - Http Headers
-  func httpHeaders() -> [String:String] {
+  @objc func httpHeaders() -> [String:String] {
     var headers = [String:String]()
     headers["User-Agent"] = buildUserAgent()
     return headers

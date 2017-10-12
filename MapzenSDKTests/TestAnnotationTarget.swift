@@ -12,19 +12,19 @@ import TangramMap
 
 class AnnotationTestTarget : UIResponder, MapMarkerSelectDelegate {
 
-  var annotationClicked = false
-  var annotationClickedNoParam = false
-  var markerSelected = false
+  @objc var annotationClicked = false
+  @objc var annotationClickedNoParam = false
+  @objc var markerSelected = false
 
-  func annotationClicked(annotation : PeliasMapkitAnnotation) {
+  @objc func annotationClicked(annotation : PeliasMapkitAnnotation) {
     annotationClicked = true
   }
 
-  func annotationClickedNoParams() {
+  @objc func annotationClickedNoParams() {
     annotationClickedNoParam = true
   }
 
-  func mapController(_ controller: MZMapViewController, didSelectMarker marker: GenericMarker, atScreenPosition position: CGPoint) {
+  @objc func mapController(_ controller: MZMapViewController, didSelectMarker marker: GenericMarker, atScreenPosition position: CGPoint) {
     markerSelected = true
   }
 }

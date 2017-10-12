@@ -9,7 +9,7 @@ import UIKit
 import CoreGraphics
 
 extension UIColor {
-  func hexValue() -> String {
+  @objc func hexValue() -> String {
     var r: CGFloat = 1
     var g: CGFloat = 1
     var b: CGFloat = 1

@@ -436,9 +436,9 @@ class SystemPolylineMarkerTests: XCTestCase {
 
 class TestTGMarker : TGMarker {
 
-  var coordinates: TGGeoPoint = TGGeoPoint()
-  var seconds: Float = 0
-  var ease: TGEaseType = .cubic
+  @objc var coordinates: TGGeoPoint = TGGeoPoint()
+  @objc var seconds: Float = 0
+  @objc var ease: TGEaseType = .cubic
 
   private var internalMap: TGMapViewController?
 

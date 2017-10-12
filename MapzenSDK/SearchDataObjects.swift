@@ -18,7 +18,7 @@ public class SearchRect: NSObject {
    - parameter minLatLong: Minimum latitude value.
    - parameter maxLatLong: Maximum latitude value.
    */
-  public init(minLatLong: GeoPoint, maxLatLong: GeoPoint) {
+  @objc public init(minLatLong: GeoPoint, maxLatLong: GeoPoint) {
     rect = SearchBoundaryRect(minLatLong: minLatLong.point, maxLatLong: maxLatLong.point)
   }
 
@@ -41,7 +41,7 @@ public class SearchCircle: NSObject {
    - parameter center: Center point.
    - parameter radius: Radius in kilometers.
    */
-  public init(center: GeoPoint, radius: Double) {
+  @objc public init(center: GeoPoint, radius: Double) {
     circle = SearchBoundaryCircle(center: center.point, radius: radius)
   }
 
@@ -64,7 +64,7 @@ public class GeoPoint: NSObject {
    - parameter latitude: Latitude.
    - parameter longitude: Longitude.
    */
-  public init(latitude: Double, longitude: Double) {
+  @objc public init(latitude: Double, longitude: Double) {
     point = Pelias.GeoPoint(latitude: latitude, longitude: longitude)
   }
 

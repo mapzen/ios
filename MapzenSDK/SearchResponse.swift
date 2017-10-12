@@ -21,25 +21,25 @@ public class SearchResponse : NSObject {
   }()
 
   /// The raw response data
-  public var data: Data? {
+  @objc public var data: Data? {
     get {
       return peliasResponse.data
     }
   }
   /// The url response if the request completed successfully.
-  public var response: URLResponse? {
+  @objc public var response: URLResponse? {
     get {
       return peliasResponse.response
     }
   }
   /// The error if an error occured executing the operation.
-  public var error: NSError? {
+  @objc public var error: NSError? {
     get {
       return peliasResponse.error
     }
   }
 
-  public var parsedResponse: ParsedSearchResponse? {
+  @objc public var parsedResponse: ParsedSearchResponse? {
     get {
       return internalParsedResponse
     }
@@ -62,7 +62,7 @@ public class ParsedSearchResponse: NSObject {
 
   let peliasResponse: PeliasSearchResponse
 
-  public var parsedResponse: Dictionary<String, Any> {
+  @objc public var parsedResponse: Dictionary<String, Any> {
     get {
       return peliasResponse.parsedResponse
     }
@@ -72,11 +72,11 @@ public class ParsedSearchResponse: NSObject {
     peliasResponse = response
   }
 
-  public static func encode(_ response: ParsedSearchResponse) {
+  @objc public static func encode(_ response: ParsedSearchResponse) {
     PeliasSearchResponse.encode(response.peliasResponse)
   }
 
-  public func decode() -> ParsedSearchResponse? {
+  @objc public func decode() -> ParsedSearchResponse? {
     guard let decoded = PeliasSearchResponse.decode() else { return nil }
     return ParsedSearchResponse.init(decoded)
   }

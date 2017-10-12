@@ -14,7 +14,7 @@ class DemoSearchPinsViewController: SampleMapViewController, UITextFieldDelegate
   @IBOutlet weak var searchField: UITextField!
 
   @IBOutlet weak var displaySearch: UIButton!
-  let searchListSegueId = "searchListSegueId"
+  @objc let searchListSegueId = "searchListSegueId"
 
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -53,14 +53,14 @@ class DemoSearchPinsViewController: SampleMapViewController, UITextFieldDelegate
     }
   }
 
-  func annotationClicked(annotation: PeliasMapkitAnnotation) {
+  @objc func annotationClicked(annotation: PeliasMapkitAnnotation) {
     let coordinates = "lat: \(annotation.coordinate.latitude), lon:\(annotation.coordinate.longitude)"
     let alert = UIAlertController(title: annotation.title, message: coordinates, preferredStyle: .alert)
     alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
     present(alert, animated: true, completion: nil)
   }
 
-  func selected(_ location: PeliasMapkitAnnotation) {
+  @objc func selected(_ location: PeliasMapkitAnnotation) {
     print("Selected \(String(describing: location.title))")
     searchField.text = location.title
     location.setTarget(target: self, action: #selector(self.annotationClicked(annotation:)))

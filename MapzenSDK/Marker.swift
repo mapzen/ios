@@ -135,7 +135,7 @@ public class Marker : NSObject, GenericMarker {
     super.init()
   }
 
-  init(tgMarker tgM: TGMarker?) {
+  @objc init(tgMarker tgM: TGMarker?) {
     visible = true
     drawOrder = 0
     tgMarker = tgM
@@ -185,7 +185,7 @@ public class GeometricMarker : Marker, GenericGeometricMarker {
     super.init(tgMarker: tgM)
   }
 
-  func updateStyleString() {
+  @objc func updateStyleString() {
     // override in subclass
   }
 }
@@ -462,7 +462,7 @@ public class SystemPointMarker : Marker, GenericSystemPointMarker {
     return true
   }
 
-  init(markerType mt: PointMarkerType) {
+  @objc init(markerType mt: PointMarkerType) {
     markerType = mt
     point = TGGeoPointMake(0.0, 0.0) // Null Island!
     super.init(tgMarker: nil)
@@ -530,7 +530,7 @@ public class SelectableSystemPointMarker : Marker, GenericSelectableSystemPointM
     return true
   }
 
-  init(markerType mt: SelectablePointMarkerType) {
+  @objc init(markerType mt: SelectablePointMarkerType) {
     active = SelectableSystemPointMarker.kDefaultActive
     markerType = mt
     point = TGGeoPointMake(0.0, 0.0) // Null Island!

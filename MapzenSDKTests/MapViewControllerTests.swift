@@ -19,10 +19,10 @@ class TestMapViewController: MZMapViewController {
   func lastSetPointValue() -> TGGeoPoint? {
     return lastSetPoint
   }
-  func currentLocationGemValue() -> GenericSystemPointMarker? {
+  @objc func currentLocationGemValue() -> GenericSystemPointMarker? {
     return currentLocationGem
   }
-  func shouldShowCurrentLocationValue() -> Bool {
+  @objc func shouldShowCurrentLocationValue() -> Bool {
     return shouldShowCurrentLocation
   }
 }

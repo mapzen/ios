@@ -69,9 +69,9 @@ open class PeliasMapkitAnnotation: NSObject, MKAnnotation {
   open let coordinate: CLLocationCoordinate2D
   open let title: String?
   open let subtitle: String?
-  open let data: [String: AnyObject]?
-  open weak var target: UIResponder?
-  open var selector: Selector?
+  @objc open let data: [String: AnyObject]?
+  @objc open weak var target: UIResponder?
+  @objc open var selector: Selector?
 
   /**
    Create a fully formed `PeliasMapkitAnnotation`
@@ -83,7 +83,7 @@ open class PeliasMapkitAnnotation: NSObject, MKAnnotation {
 
    - returns: A fully formed `PeliasMapkitAnnotation`
    */
-  public init(coordinate: CLLocationCoordinate2D, title: String?, subtitle: String?, data: [String:AnyObject]?) {
+  @objc public init(coordinate: CLLocationCoordinate2D, title: String?, subtitle: String?, data: [String:AnyObject]?) {
     self.coordinate = coordinate
     self.title = title
     self.subtitle = subtitle
@@ -96,7 +96,7 @@ open class PeliasMapkitAnnotation: NSObject, MKAnnotation {
    - parameter actionTarget: A target to invoke the selector on when the annotation is clicked
    - parameter action: An selector to be invoked on the target when the annotation is clicked
    */
-  public func setTarget(target actionTarget: UIResponder, action: Selector) {
+  @objc public func setTarget(target actionTarget: UIResponder, action: Selector) {
     target = actionTarget
     selector = action
   }

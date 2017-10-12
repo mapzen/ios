@@ -10,7 +10,7 @@ import Foundation
 @testable import MapzenSDK
 
 class TestUrlSession : URLSession {
-  var queryParameters : [String : AnyObject]?
+  @objc var queryParameters : [String : AnyObject]?
 
   override func dataTask(with url: URL, completionHandler: @escaping (_ data: Data?, _ response: URLResponse?, _ error: Error?) -> Void) -> URLSessionDataTask {
     let urlComponents = URLComponents.init(string: url.absoluteString)

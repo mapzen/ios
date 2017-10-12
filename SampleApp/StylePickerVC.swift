@@ -22,9 +22,9 @@ class StylePickerVC: UITableViewController, UIPickerViewDataSource, UIPickerView
   @IBOutlet var bikeOverlaySwitch: UISwitch!
   @IBOutlet var walkingOverlaySwitch: UISwitch!
 
-  weak var mapController : SampleMapViewController?
+  @objc weak var mapController : SampleMapViewController?
   var currentSelectedStyle: StyleSheet = BubbleWrapStyle()
-  var currentColor: String = ""
+  @objc var currentColor: String = ""
 
   var availableStyles : [ String : StyleSheet ] = ["Bubble Wrap" : BubbleWrapStyle(),
                          "Cinnabar" : CinnabarStyle(),
@@ -35,17 +35,17 @@ class StylePickerVC: UITableViewController, UIPickerViewDataSource, UIPickerView
   //MARK:- Internal Funcs
 
 
-  func transitOverlaySwitchChanged(switchState: UISwitch) {
+  @objc func transitOverlaySwitchChanged(switchState: UISwitch) {
     mapController?.showTransitOverlay = switchState.isOn
   }
-  func bikeOverlaySwitchChanged(switchState: UISwitch) {
+  @objc func bikeOverlaySwitchChanged(switchState: UISwitch) {
     if switchState.isOn {
       walkingOverlaySwitch.setOn(false, animated: true)
       mapController?.showWalkingPathOverlay = false
     }
     mapController?.showBikeOverlay = switchState.isOn
   }
-  func walkingOverlaySwitchChanged(switchState: UISwitch) {
+  @objc func walkingOverlaySwitchChanged(switchState: UISwitch) {
     if switchState.isOn {
       bikeOverlaySwitch.setOn(false, animated: true)
       mapController?.showBikeOverlay = false
