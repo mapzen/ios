@@ -213,34 +213,34 @@ public protocol MapTileLoadDelegate : class {
 open class MZMapViewController: UIViewController, LocationManagerDelegate {
 
   //Error Domains for NSError Appeasement
-  open static let MapzenGeneralErrorDomain = "MapzenGeneralErrorDomain"
+  @objc open static let MapzenGeneralErrorDomain = "MapzenGeneralErrorDomain"
   private static let mapzenRights = "https://mapzen.com/rights/"
 
   let application : ApplicationProtocol
-  open var tgViewController: TGMapViewController = TGMapViewController()
-  var currentLocationGem: GenericSystemPointMarker?
+  @objc open var tgViewController: TGMapViewController = TGMapViewController()
+  @objc var currentLocationGem: GenericSystemPointMarker?
   var lastSetPoint: TGGeoPoint?
-  var shouldShowCurrentLocation = false
-  var currentRouteMarker: GenericMarker?
-  var currentRoute: OTRRoutingResult?
-  open var shouldFollowCurrentLocation = false
-  open var findMeButton = UIButton(type: .custom)
-  var currentAnnotations: [PeliasMapkitAnnotation : TGMarker] = Dictionary()
-  var currentMarkers: [TGMarker : GenericMarker] = Dictionary()
-  open var attributionBtn = UIButton()
+  @objc var shouldShowCurrentLocation = false
+  @objc var currentRouteMarker: GenericMarker?
+  @objc var currentRoute: OTRRoutingResult?
+  @objc open var shouldFollowCurrentLocation = false
+  @objc open var findMeButton = UIButton(type: .custom)
+  @objc var currentAnnotations: [PeliasMapkitAnnotation : TGMarker] = Dictionary()
+  @objc var currentMarkers: [TGMarker : GenericMarker] = Dictionary()
+  @objc open var attributionBtn = UIButton()
   private var locale = Locale.current
   var stateSaver: StateReclaimer?
-  var currentStyle: MapStyle = .bubbleWrap
-  var transitOverlayIsShowing = false
-  var bikeOverlayIsShowing = false
-  var walkingOverlayIsShowing = false
-  var sceneUpdates: [TGSceneUpdate] = []
-  var globalSceneUpdates: [TGSceneUpdate] = []
+  @objc var currentStyle: MapStyle = .bubbleWrap
+  @objc var transitOverlayIsShowing = false
+  @objc var bikeOverlayIsShowing = false
+  @objc var walkingOverlayIsShowing = false
+  @objc var sceneUpdates: [TGSceneUpdate] = []
+  @objc var globalSceneUpdates: [TGSceneUpdate] = []
   fileprivate var sceneLoadCallback: OnStyleLoaded?
-  fileprivate(set) var latestSceneId: Int32 = 0
+  @objc fileprivate(set) var latestSceneId: Int32 = 0
 
   /// The camera type we want to use. Defaults to whatever is set in the style sheet.
-  open var cameraType: TGCameraType {
+  @objc open var cameraType: TGCameraType {
     set {
       tgViewController.cameraType = newValue
     }
@@ -250,7 +250,7 @@ open class MZMapViewController: UIViewController, LocationManagerDelegate {
   }
 
   /// The current position of the map in longitude / latitude.
-  open var position: TGGeoPoint {
+  @objc open var position: TGGeoPoint {
     set {
       tgViewController.position = newValue
     }
@@ -260,7 +260,7 @@ open class MZMapViewController: UIViewController, LocationManagerDelegate {
   }
 
   /// The current zoom level.
-  open var zoom: Float {
+  @objc open var zoom: Float {
     set {
       tgViewController.zoom = newValue
     }
@@ -270,7 +270,7 @@ open class MZMapViewController: UIViewController, LocationManagerDelegate {
   }
 
   /// The current rotation, in radians from north.
-  open var rotation: Float {
+  @objc open var rotation: Float {
     set {
       tgViewController.rotation = newValue
     }
@@ -280,7 +280,7 @@ open class MZMapViewController: UIViewController, LocationManagerDelegate {
   }
 
   /// The current tilt in radians.
-  open var tilt: Float {
+  @objc open var tilt: Float {
     set {
       tgViewController.tilt = newValue
     }
@@ -289,7 +289,7 @@ open class MZMapViewController: UIViewController, LocationManagerDelegate {
     }
   }
   /// Show or hide the transit route overlay. Not intended for use at the same time as the bike overlay. Fine to use with the walking network.
-  open var showTransitOverlay: Bool {
+  @objc open var showTransitOverlay: Bool {
     set {
       let sceneUpdate = TGSceneUpdate(path: GlobalStyleVars.transitOverlay.rawValue, value: "\(newValue)")
       updateOrQueue(sceneUpdate)
@@ -299,7 +299,7 @@ open class MZMapViewController: UIViewController, LocationManagerDelegate {
     }
   }
   /// Show or hide the bike route overlay. Not intended for use at the same time as the transit overlay.
-  open var showBikeOverlay: Bool {
+  @objc open var showBikeOverlay: Bool {
     set {
       let sceneUpdate = TGSceneUpdate(path: GlobalStyleVars.bikeOverlay.rawValue, value: "\(newValue)")
       updateOrQueue(sceneUpdate)
@@ -310,7 +310,7 @@ open class MZMapViewController: UIViewController, LocationManagerDelegate {
   }
 
   /// Show or hide the walking network. Not intended for use at the same time as the bike overlay. Fine for use with the transit overlay
-  open var showWalkingPathOverlay: Bool {
+  @objc open var showWalkingPathOverlay: Bool {
     set {
       let sceneUpdate = TGSceneUpdate(path: GlobalStyleVars.pathOverlay.rawValue, value: "\(newValue)")
       updateOrQueue(sceneUpdate)
@@ -330,16 +330,16 @@ open class MZMapViewController: UIViewController, LocationManagerDelegate {
   }
 
   /// Enables / Disables panning on the map
-  open var panEnabled = true
+  @objc open var panEnabled = true
 
   /// Enables / Disables pinching on the map
-  open var pinchEnabled = true
+  @objc open var pinchEnabled = true
 
   /// Enables / Disables rotation on the map
-  open var rotateEnabled = true
+  @objc open var rotateEnabled = true
 
   /// Enables / Disables shove gestures on the map.
-  open var shoveEnabled = true
+  @objc open var shoveEnabled = true
 
   /// Receiver for single tap callbacks
   weak open var singleTapGestureDelegate: MapSingleTapGestureDelegate?
@@ -439,12 +439,12 @@ open class MZMapViewController: UIViewController, LocationManagerDelegate {
   }
 
   /// Direct access to the underlying TGMapViewController's view.
-  open var mapView : GLKView {
+  @objc open var mapView : GLKView {
     return tgViewController.view as! GLKView
   }
 
   /// The height of our enclosing tab bar controller's tab bar if it is translucent.
-  open var tabBarOffset : CGFloat {
+  @objc open var tabBarOffset : CGFloat {
     guard let tabBar = self.tabBarController?.tabBar else { return 0 }
     return tabBar.isTranslucent ? tabBar.frame.height : 0
   }
@@ -455,7 +455,7 @@ open class MZMapViewController: UIViewController, LocationManagerDelegate {
    - parameter position: The position to animate to.
    - parameter seconds: How long the animation should last.
   */
-  open func animate(toPosition position: TGGeoPoint, withDuration seconds: Float) {
+  @objc open func animate(toPosition position: TGGeoPoint, withDuration seconds: Float) {
     tgViewController.animate(toPosition: position, withDuration: seconds)
   }
 
@@ -466,7 +466,7 @@ open class MZMapViewController: UIViewController, LocationManagerDelegate {
    - parameter seconds: How long the animation should last.
    - parameter easeType: The animation easing style to use.
    */
-  open func animate(toPosition position: TGGeoPoint, withDuration seconds: Float, with easeType: TGEaseType) {
+  @objc open func animate(toPosition position: TGGeoPoint, withDuration seconds: Float, with easeType: TGEaseType) {
     tgViewController.animate(toPosition: position, withDuration: seconds, with: easeType)
   }
 
@@ -476,7 +476,7 @@ open class MZMapViewController: UIViewController, LocationManagerDelegate {
    - parameter zoomLevel: The zoom level to animate to.
    - parameter seconds: How long the animation should last.
    */
-  open func animate(toZoomLevel zoomLevel: Float, withDuration seconds: Float) {
+  @objc open func animate(toZoomLevel zoomLevel: Float, withDuration seconds: Float) {
     tgViewController.animate(toZoomLevel: zoomLevel, withDuration: seconds)
   }
 
@@ -487,7 +487,7 @@ open class MZMapViewController: UIViewController, LocationManagerDelegate {
    - parameter seconds: How long the animation should last.
    - parameter easeType: The animation easing style to use.
    */
-  open func animate(toZoomLevel zoomLevel: Float, withDuration seconds: Float, with easeType: TGEaseType) {
+  @objc open func animate(toZoomLevel zoomLevel: Float, withDuration seconds: Float, with easeType: TGEaseType) {
     tgViewController.animate(toZoomLevel: zoomLevel, withDuration: seconds, with: easeType)
   }
 
@@ -497,7 +497,7 @@ open class MZMapViewController: UIViewController, LocationManagerDelegate {
    - parameter radians: How far the map should rotate in radians.
    - parameter seconds: How long the animation should last.
    */
-  open func animate(toRotation radians: Float, withDuration seconds: Float) {
+  @objc open func animate(toRotation radians: Float, withDuration seconds: Float) {
     tgViewController.animate(toRotation: radians, withDuration: seconds)
   }
 
@@ -508,7 +508,7 @@ open class MZMapViewController: UIViewController, LocationManagerDelegate {
    - parameter seconds: How long the animation should last.
    - parameter easeType: The animation easing style to use.
    */
-  open func animate(toRotation radians: Float, withDuration seconds: Float, with easeType: TGEaseType) {
+  @objc open func animate(toRotation radians: Float, withDuration seconds: Float, with easeType: TGEaseType) {
     tgViewController.animate(toRotation: radians, withDuration: seconds, with: easeType)
   }
   
@@ -518,7 +518,7 @@ open class MZMapViewController: UIViewController, LocationManagerDelegate {
    - parameter radians: How far the map should tilt in radians.
    - parameter seconds: How long the animation should last.
    */
-  open func animate(toTilt radians: Float, withDuration seconds: Float) {
+  @objc open func animate(toTilt radians: Float, withDuration seconds: Float) {
     tgViewController.animate(toTilt: radians, withDuration: seconds)
   }
 
@@ -529,7 +529,7 @@ open class MZMapViewController: UIViewController, LocationManagerDelegate {
    - parameter seconds: How long the animation should last.
    - parameter easeType: The animation easing style to use.
    */
-  open func animate(toTilt radians: Float, withDuration seconds: Float, with easeType: TGEaseType) {
+  @objc open func animate(toTilt radians: Float, withDuration seconds: Float, with easeType: TGEaseType) {
     tgViewController.animate(toTilt: radians, withDuration: seconds, with: easeType)
   }
 
@@ -538,7 +538,7 @@ open class MZMapViewController: UIViewController, LocationManagerDelegate {
    
    - parameter marker: The marker to add to map.
    */
-  open func addMarker(_ marker: GenericMarker) {
+  @objc open func addMarker(_ marker: GenericMarker) {
     if marker.tgMarker == nil {
       marker.tgMarker = tgViewController.markerAdd()
     }
@@ -550,14 +550,14 @@ open class MZMapViewController: UIViewController, LocationManagerDelegate {
 
    - parameter marker: The marker to remove from map.
    */
-  open func removeMarker(_ marker: GenericMarker) {
+  @objc open func removeMarker(_ marker: GenericMarker) {
     guard let tgMarker = marker.tgMarker else { return }
     currentMarkers.removeValue(forKey: tgMarker)
     tgViewController.markerRemove(tgMarker)
   }
 
   /// Removes all existing markers on the map.
-  open func markerRemoveAll() {
+  @objc open func markerRemoveAll() {
     tgViewController.markerRemoveAll()
     currentMarkers = Dictionary()
   }
@@ -568,7 +568,7 @@ open class MZMapViewController: UIViewController, LocationManagerDelegate {
    - parameter style: The map style to load.
    - throws: A MZError `apiKeyNotSet` error if an API Key has not been sent on the MapzenManager class.
  */
-  open func loadStyle(_ style: MapStyle) throws {
+  @objc open func loadStyle(_ style: MapStyle) throws {
     try loadStyle(style, sceneUpdates: [TGSceneUpdate]())
   }
 
@@ -579,7 +579,7 @@ open class MZMapViewController: UIViewController, LocationManagerDelegate {
    - parameter locale: The locale to use for the map's language.
    - throws: A MZError `apiKeyNotSet` error if an API Key has not been sent on the MapzenManager class.
    */
-  open func loadStyle(_ style: MapStyle, locale: Locale) throws {
+  @objc open func loadStyle(_ style: MapStyle, locale: Locale) throws {
     try loadStyle(style, locale: locale, sceneUpdates: [TGSceneUpdate]())
   }
 
@@ -590,7 +590,7 @@ open class MZMapViewController: UIViewController, LocationManagerDelegate {
    - parameter sceneUpdates: The scene updates to make while loading the map style.
    - throws: A MZError `apiKeyNotSet` error if an API Key has not been sent on the MapzenManager class.
   */
-  open func loadStyle(_ style: MapStyle, sceneUpdates: [TGSceneUpdate]) throws {
+  @objc open func loadStyle(_ style: MapStyle, sceneUpdates: [TGSceneUpdate]) throws {
     try loadStyle(style, locale: Locale.current, sceneUpdates: sceneUpdates)
   }
 
@@ -602,7 +602,7 @@ open class MZMapViewController: UIViewController, LocationManagerDelegate {
    - parameter sceneUpdates: The scene updates to make while loading the map style.
    - throws: A MZError `apiKeyNotSet` error if an API Key has not been sent on the MapzenManager class.
    */
-  open func loadStyle(_ style: MapStyle, locale l: Locale, sceneUpdates: [TGSceneUpdate]) throws {
+  @objc open func loadStyle(_ style: MapStyle, locale l: Locale, sceneUpdates: [TGSceneUpdate]) throws {
     locale = l
     let scene = styles[style]
     currentStyle = style
@@ -621,7 +621,7 @@ open class MZMapViewController: UIViewController, LocationManagerDelegate {
    - parameter onStyleLoaded: Closure called on scene loaded.
    - throws: A MZError `apiKeyNotSet` error if an API Key has not been sent on the MapzenManager class.
   */
-  open func loadStyleAsync(_ style: MapStyle, onStyleLoaded: OnStyleLoaded?) throws {
+  @objc open func loadStyleAsync(_ style: MapStyle, onStyleLoaded: OnStyleLoaded?) throws {
     try loadStyleAsync(style, sceneUpdates: [TGSceneUpdate](), onStyleLoaded: onStyleLoaded)
   }
 
@@ -633,7 +633,7 @@ open class MZMapViewController: UIViewController, LocationManagerDelegate {
    - parameter onStyleLoaded: Closure called on scene loaded.
    - throws: A MZError `apiKeyNotSet` error if an API Key has not been sent on the MapzenManager class.
    */
-  open func loadStyleAsync(_ style: MapStyle, locale: Locale, onStyleLoaded: OnStyleLoaded?) throws {
+  @objc open func loadStyleAsync(_ style: MapStyle, locale: Locale, onStyleLoaded: OnStyleLoaded?) throws {
     try loadStyleAsync(style, locale: locale, sceneUpdates: [], onStyleLoaded: onStyleLoaded)
   }
 
@@ -645,7 +645,7 @@ open class MZMapViewController: UIViewController, LocationManagerDelegate {
    - parameter onStyleLoaded: Closure called on scene loaded.
    - throws: A MZError `apiKeyNotSet` error if an API Key has not been sent on the MapzenManager class.
    */
-  open func loadStyleAsync(_ style: MapStyle, sceneUpdates: [TGSceneUpdate], onStyleLoaded: OnStyleLoaded?) throws {
+  @objc open func loadStyleAsync(_ style: MapStyle, sceneUpdates: [TGSceneUpdate], onStyleLoaded: OnStyleLoaded?) throws {
     try loadStyleAsync(style, locale: Locale.current, sceneUpdates: sceneUpdates, onStyleLoaded: onStyleLoaded)
   }
 
@@ -658,7 +658,7 @@ open class MZMapViewController: UIViewController, LocationManagerDelegate {
    - parameter onStyleLoaded: Closure called on scene loaded.
    - throws: A MZError `apiKeyNotSet` error if an API Key has not been sent on the MapzenManager class.
    */
-  open func loadStyleAsync(_ style: MapStyle, locale l: Locale, sceneUpdates: [TGSceneUpdate], onStyleLoaded: OnStyleLoaded?) throws {
+  @objc open func loadStyleAsync(_ style: MapStyle, locale l: Locale, sceneUpdates: [TGSceneUpdate], onStyleLoaded: OnStyleLoaded?) throws {
     locale = l
     let scene = styles[style]
     currentStyle = style
@@ -729,7 +729,7 @@ open class MZMapViewController: UIViewController, LocationManagerDelegate {
   /**
    Sets the locale used to determine the map's language.
    */
-  open func updateLocale(_ l: Locale) {
+  @objc open func updateLocale(_ l: Locale) {
     locale = l
     guard let language = locale.languageCode else { return }
     let update = createLanguageUpdate(language)
@@ -742,7 +742,7 @@ open class MZMapViewController: UIViewController, LocationManagerDelegate {
    - parameter componentPath: The yaml path to the component to change.
    - parameter value: The value to update the component to.
   */
-  @available(*, deprecated)
+  @objc @available(*, deprecated)
   open func queueSceneUpdate(_ componentPath: String, withValue value: String) {
     let update = TGSceneUpdate(path: componentPath, value: value)
     sceneUpdates.append(update)
@@ -753,7 +753,7 @@ open class MZMapViewController: UIViewController, LocationManagerDelegate {
    
    - parameter sceneUpdates: An array of TGSceneUpdate objects to update the map.
   */
-  @available(*, deprecated)
+  @objc @available(*, deprecated)
   open func queue(_ sceneUpdates: [TGSceneUpdate]) {
     for update in sceneUpdates {
       self.sceneUpdates.append(update)
@@ -761,7 +761,7 @@ open class MZMapViewController: UIViewController, LocationManagerDelegate {
   }
 
   //Applies all queued scene updates.
-  @available(*, deprecated)
+  @objc @available(*, deprecated)
   open func applySceneUpdates() {
     latestSceneId = tgViewController.updateSceneAsync(sceneUpdates)
     sceneUpdates = []
@@ -773,7 +773,7 @@ open class MZMapViewController: UIViewController, LocationManagerDelegate {
    - parameter lngLat: TGGeoPoint to convert
    - returns: The CGPoint in screen space.
   */
-  open func lngLat(toScreenPosition lngLat: TGGeoPoint) -> CGPoint {
+  @objc open func lngLat(toScreenPosition lngLat: TGGeoPoint) -> CGPoint {
     return tgViewController.lngLat(toScreenPosition: lngLat)
   }
 
@@ -783,7 +783,7 @@ open class MZMapViewController: UIViewController, LocationManagerDelegate {
    - parameter screenPosition: The screen coordinate to convert.
    - returns: A TGGeoPoint in lat/long for the screen coordinate.
   */
-  open func screenPosition(toLngLat screenPosition: CGPoint) -> TGGeoPoint {
+  @objc open func screenPosition(toLngLat screenPosition: CGPoint) -> TGGeoPoint {
     return tgViewController.screenPosition(toLngLat: screenPosition)
   }
   
@@ -795,7 +795,7 @@ open class MZMapViewController: UIViewController, LocationManagerDelegate {
    - parameter animationDuration: The length to animate the reset to. Passing in 0 makes the change happen immediately.
    - returns: Whether or not the map was centered on the device's current location
    */
-  open func resetCameraOnCurrentLocation(_ tilt: Float = 0.0, zoomLevel: Float = 16.0, animationDuration: Float = 1.0) -> Bool {
+  @objc open func resetCameraOnCurrentLocation(_ tilt: Float = 0.0, zoomLevel: Float = 16.0, animationDuration: Float = 1.0) -> Bool {
     guard currentLocationGem != nil else { return false }
     guard let point = lastSetPoint else { return false }
     //TODO: handle error?
@@ -811,7 +811,7 @@ open class MZMapViewController: UIViewController, LocationManagerDelegate {
    
    - parameter shouldShow: Shows or hides the button
    */
-  open func showFindMeButon(_ shouldShow: Bool) {
+  @objc open func showFindMeButon(_ shouldShow: Bool) {
     findMeButton.isHidden = !shouldShow
     findMeButton.isEnabled = shouldShow
   }
@@ -822,7 +822,7 @@ open class MZMapViewController: UIViewController, LocationManagerDelegate {
    - parameter shouldShow: Whether or not we should show the current location.
    - returns: Whether or not current location was shown
    */
-  open func showCurrentLocation(_ shouldShow: Bool) -> Bool {
+  @objc open func showCurrentLocation(_ shouldShow: Bool) -> Bool {
     shouldShowCurrentLocation = shouldShow
     guard let marker = currentLocationGem else {
       if !shouldShowCurrentLocation { return false }
@@ -844,7 +844,7 @@ open class MZMapViewController: UIViewController, LocationManagerDelegate {
     
    - parameter enabled: True if we should enable the location layer. False disables it.
    */
-  open func enableLocationLayer(_ enabled: Bool) {
+  @objc open func enableLocationLayer(_ enabled: Bool) {
     let _ = showCurrentLocation(enabled)
     showFindMeButon(enabled)
     enabled ? locationManager.startUpdatingLocation() : locationManager.stopUpdatingLocation()
@@ -858,7 +858,7 @@ open class MZMapViewController: UIViewController, LocationManagerDelegate {
    - parameter annotations: An array of annotations to add.
    - throws: A MZError `generalError` if the underlying map fails to add any of the annotations.
    */
-  open func add(_ annotations: [PeliasMapkitAnnotation]) throws {
+  @objc open func add(_ annotations: [PeliasMapkitAnnotation]) throws {
     for annotation in annotations {
       //TODO: handle error adding to map?
       let marker = SelectableSystemPointMarker.initWithMarkerType(.searchPin)
@@ -881,7 +881,7 @@ open class MZMapViewController: UIViewController, LocationManagerDelegate {
    - parameter annotation: The annotation to remove
    - throws: A MZError `annotationDoesNotExist` error.
    */
-  open func remove(_ annotation: PeliasMapkitAnnotation) throws {
+  @objc open func remove(_ annotation: PeliasMapkitAnnotation) throws {
     if currentAnnotations[annotation] != nil {
       currentAnnotations.removeValue(forKey: annotation)
       return
@@ -896,13 +896,13 @@ open class MZMapViewController: UIViewController, LocationManagerDelegate {
 
    - throws: A MZError `annotationDoesNotExist` error if it encounters an annotation that no longer exists.
    */
-  @available(*, deprecated)
+  @objc @available(*, deprecated)
   open func removeAnnotations() throws {
     removeMapAnnotations()
   }
 
   /// Removes all currents annotations.
-  open func removeMapAnnotations() {
+  @objc open func removeMapAnnotations() {
     for (annotation, _) in currentAnnotations {
       currentAnnotations.removeValue(forKey: annotation)
     }
@@ -914,7 +914,7 @@ open class MZMapViewController: UIViewController, LocationManagerDelegate {
    - parameter route: The route to display.
    - throws: A MZError `generalError` if the map can't add the route.
    */
-  open func display(_ route: OTRRoutingResult) throws {
+  @objc open func display(_ route: OTRRoutingResult) throws {
     //TODO: We eventually should support N number of routes.
     if let routeMarker = currentRouteMarker {
       //We don't throw if the remove fails here because we want to silently replace the route
@@ -944,7 +944,7 @@ open class MZMapViewController: UIViewController, LocationManagerDelegate {
    
    - throws: A MZError `routeDoesNotExist` error if there isn't a current route or the map can't find one to remove.
    */
-  open func removeRoute() throws {
+  @objc open func removeRoute() throws {
 
     guard let currentRouteMarker = currentRouteMarker else {
       throw NSError(domain: MZMapViewController.MapzenGeneralErrorDomain,
@@ -957,7 +957,7 @@ open class MZMapViewController: UIViewController, LocationManagerDelegate {
     currentRoute = nil
   }
 
-  open func receivedLocation() -> Bool {
+  @objc open func receivedLocation() -> Bool {
     return lastSetPoint != nil
   }
 
@@ -1025,7 +1025,7 @@ open class MZMapViewController: UIViewController, LocationManagerDelegate {
     failedLocationAuthorization()
   }
 
-  func failedLocationAuthorization() {
+  @objc func failedLocationAuthorization() {
     shouldShowCurrentLocation = false
     guard let marker = currentLocationGem else { return }
     //TODO: handle error?
@@ -1068,7 +1068,7 @@ open class MZMapViewController: UIViewController, LocationManagerDelegate {
     NSLayoutConstraint.activate([horizontalConstraint, verticalConstraint])
   }
 
-  func setupFindMeButton() {
+  @objc func setupFindMeButton() {
     findMeButton = UIButton(type: UIButtonType.custom)
     findMeButton.addTarget(self, action: #selector(MZMapViewController.defaultFindMeAction(_:touchEvent:)), for: .touchUpInside)
     findMeButton.isEnabled = false
@@ -1146,7 +1146,7 @@ open class MZMapViewController: UIViewController, LocationManagerDelegate {
 
 //MARK: - Marker Restoration
 extension MZMapViewController {
-  func restoreMarkers() {
+  @objc func restoreMarkers() {
     restoreBuiltInMarkers()
     restoreUserMarkers()
   }

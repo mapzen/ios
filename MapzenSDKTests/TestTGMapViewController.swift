@@ -11,22 +11,22 @@ import TangramMap
 
 class TestTGMapViewController: TGMapViewController {
   
-  var removedAllMarkers = false
-  var coordinate = TGGeoPoint()
-  var duration: Float = 0.0
-  var easeType = TGEaseType.cubic
-  var scenePath = URL(fileURLWithPath: "")
-  var sceneUpdates: [TGSceneUpdate] = []
-  var sceneUpdateComponentPath = ""
-  var sceneUpdateValue = ""
-  var appliedSceneUpdates = false
-  var lngLatForScreenPosition = TGGeoPoint()
-  var screenPositionForLngLat = CGPoint()
-  var labelPickPosition = CGPoint()
-  var markerPickPosition = CGPoint()
-  var featurePickPosition = CGPoint()
-  var mockSceneId: Int32 = 0
-  var yamlString = ""
+  @objc var removedAllMarkers = false
+  @objc var coordinate = TGGeoPoint()
+  @objc var duration: Float = 0.0
+  @objc var easeType = TGEaseType.cubic
+  @objc var scenePath = URL(fileURLWithPath: "")
+  @objc var sceneUpdates: [TGSceneUpdate] = []
+  @objc var sceneUpdateComponentPath = ""
+  @objc var sceneUpdateValue = ""
+  @objc var appliedSceneUpdates = false
+  @objc var lngLatForScreenPosition = TGGeoPoint()
+  @objc var screenPositionForLngLat = CGPoint()
+  @objc var labelPickPosition = CGPoint()
+  @objc var markerPickPosition = CGPoint()
+  @objc var featurePickPosition = CGPoint()
+  @objc var mockSceneId: Int32 = 0
+  @objc var yamlString = ""
   
   override func markerRemoveAll() {
     removedAllMarkers = true

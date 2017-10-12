@@ -18,7 +18,7 @@ class TestTGMarkerPickResult : TGMarkerPickResult {
     }
   }
 
-  init(marker: TGMarker) {
+  @objc init(marker: TGMarker) {
     internalMarker = marker
   }
 

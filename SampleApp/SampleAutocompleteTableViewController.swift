@@ -16,10 +16,10 @@ protocol AutocompleteSearchDelegate {
 
 class SampleAutocompleteTableViewController: SampleTableViewController, UISearchResultsUpdating, UISearchBarDelegate, LocationManagerDelegate {
   
-  let searchController = UISearchController(searchResultsController: nil)
-  var results: [PeliasMapkitAnnotation]?
-  let manager = LocationManager()
-  var currentLocation: CLLocation?
+  @objc let searchController = UISearchController(searchResultsController: nil)
+  @objc var results: [PeliasMapkitAnnotation]?
+  @objc let manager = LocationManager()
+  @objc var currentLocation: CLLocation?
   
   override func viewDidLoad() {
     super.viewDidLoad()

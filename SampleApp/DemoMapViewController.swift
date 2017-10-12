@@ -14,7 +14,7 @@ class DemoMapViewController:  SampleMapViewController, MapMarkerSelectDelegate {
 
   private var styleLoaded = false
 
-  lazy var activityIndicator : UIActivityIndicatorView = {
+  @objc lazy var activityIndicator : UIActivityIndicatorView = {
     let indicator = UIActivityIndicatorView.init(activityIndicatorStyle: .whiteLarge)
     indicator.color = .black
     indicator.translatesAutoresizingMaskIntoConstraints = false
@@ -50,7 +50,7 @@ class DemoMapViewController:  SampleMapViewController, MapMarkerSelectDelegate {
   }
   
   //MARK : MapSelectDelegate  
-  func mapController(_ controller: MZMapViewController, didSelectMarker marker: GenericMarker, atScreenPosition position: CGPoint) {
+  @objc func mapController(_ controller: MZMapViewController, didSelectMarker marker: GenericMarker, atScreenPosition position: CGPoint) {
     let alert = UIAlertController(title: "Marker Selected", message: nil, preferredStyle: .alert)
     alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
     present(alert, animated: true, completion: nil)

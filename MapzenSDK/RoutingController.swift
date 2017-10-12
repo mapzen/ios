@@ -30,7 +30,7 @@ open class RoutingController: OTRRoutingController {
   }
 
   /// Static function that vends a properly configured routing controller.
-  open static func controller() throws -> RoutingController {
+  @objc open static func controller() throws -> RoutingController {
     let configuration = URLSessionConfiguration.default
     configuration.httpAdditionalHeaders = MapzenManager.sharedManager.httpHeaders()
     let session = URLSession.init(configuration: configuration)
@@ -40,7 +40,7 @@ open class RoutingController: OTRRoutingController {
   /** Static function that vends a properly configured routing controller given a session manager. Useful for testing
    - parameter sessionManager : URLSession object to use for requests
   */
-  static func controller(sessionManager : URLSession) throws -> RoutingController {
+  @objc static func controller(sessionManager : URLSession) throws -> RoutingController {
     guard let apiKey = MapzenManager.sharedManager.apiKey else {
       throw NSError(domain: MZMapViewController.MapzenGeneralErrorDomain,
                     code: MZError.apiKeyNotSet.rawValue,
@@ -56,7 +56,7 @@ open class RoutingController: OTRRoutingController {
    
    To see a list of supported languages, check the documentation: https://mapzen.com/documentation/mobility/turn-by-turn/api-reference/#directions-options
    */
-  open func updateLocale(_ l: Locale) {
+  @objc open func updateLocale(_ l: Locale) {
     locale = l
   }
 

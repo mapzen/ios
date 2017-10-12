@@ -76,25 +76,25 @@ public protocol Theme : class {
 open class BubbleWrapStyle: NSObject, StyleSheet {
   open var appliedTheme: Theme = BubbleWrapTheme()
   open var mapStyle: MapStyle? = .bubbleWrap
-  open static let styleSheetFileName = "bubble-wrap-style"
-  open static let stylesheetRoot = "bubble-wrap/"
+  @objc open static let styleSheetFileName = "bubble-wrap-style"
+  @objc open static let stylesheetRoot = "bubble-wrap/"
 
 }
 
 open class BubbleWrapTheme: NSObject, Theme {
-  open var availableLabelLevels: Int = 12
+  @objc open var availableLabelLevels: Int = 12
 
-  open var availableDetailLevel: Int = 0 // Not used for Bubble Wrap
+  @objc open var availableDetailLevel: Int = 0 // Not used for Bubble Wrap
 
-  open var availableColors: [String] = [] // Not used for Bubble Wrap
+  @objc open var availableColors: [String] = [] // Not used for Bubble Wrap
 
-  open var currentColor: String = "" // Not used for Bubble Wrap
+  @objc open var currentColor: String = "" // Not used for Bubble Wrap
 
-  open var labelLevel: Int = 5
+  @objc open var labelLevel: Int = 5
 
-  open var detailLevel: Int = 0 // Not used for Bubble Wrap
+  @objc open var detailLevel: Int = 0 // Not used for Bubble Wrap
 
-  open var yamlString: String {
+  @objc open var yamlString: String {
     get {
       return "\(BubbleWrapStyle.stylesheetRoot)themes/label-\(labelLevel).yaml"
     }
@@ -105,24 +105,24 @@ open class BubbleWrapTheme: NSObject, Theme {
 open class CinnabarStyle: NSObject, StyleSheet {
   open var appliedTheme: Theme = CinnabarTheme()
   open var mapStyle: MapStyle? = .cinnabar
-  open static let styleSheetFileName = "cinnabar-style"
-  open static let stylesheetRoot = "cinnabar/"
+  @objc open static let styleSheetFileName = "cinnabar-style"
+  @objc open static let stylesheetRoot = "cinnabar/"
 }
 
 open class CinnabarTheme: NSObject, Theme {
-  open var availableLabelLevels: Int = 12
+  @objc open var availableLabelLevels: Int = 12
 
-  open var availableDetailLevel: Int = 0 // Not used for Cinnabar
+  @objc open var availableDetailLevel: Int = 0 // Not used for Cinnabar
 
-  open var availableColors: [String] = [] // Not used for Cinnabar
+  @objc open var availableColors: [String] = [] // Not used for Cinnabar
 
-  open var currentColor: String = "" // Not used for Cinnabar
+  @objc open var currentColor: String = "" // Not used for Cinnabar
 
-  open var labelLevel: Int = 5
+  @objc open var labelLevel: Int = 5
 
-  open var detailLevel: Int = 0 // Not used for Cinnabar
+  @objc open var detailLevel: Int = 0 // Not used for Cinnabar
 
-  open var yamlString: String {
+  @objc open var yamlString: String {
     get {
       return "\(CinnabarStyle.stylesheetRoot)themes/label-\(labelLevel).yaml"
     }
@@ -133,24 +133,24 @@ open class CinnabarTheme: NSObject, Theme {
 open class RefillStyle: NSObject, StyleSheet {
   open var appliedTheme: Theme = RefillTheme()
   open var mapStyle: MapStyle? = .refill
-  open static let styleSheetFileName = "refill-style"
-  open static let stylesheetRoot = "refill/"
+  @objc open static let styleSheetFileName = "refill-style"
+  @objc open static let stylesheetRoot = "refill/"
 }
 
 open class RefillTheme: NSObject, Theme {
-  open var availableLabelLevels: Int = 12
+  @objc open var availableLabelLevels: Int = 12
 
-  open var availableDetailLevel: Int = 12
+  @objc open var availableDetailLevel: Int = 12
 
-  open var availableColors: [String] = ["black", "blue-gray", "blue", "brown-orange", "gray-gold", "gray", "high-contrast", "inverted", "pink-yellow", "pink", "purple-green", "sepia", "zinc"]
+  @objc open var availableColors: [String] = ["black", "blue-gray", "blue", "brown-orange", "gray-gold", "gray", "high-contrast", "inverted", "pink-yellow", "pink", "purple-green", "sepia", "zinc"]
 
-  open var currentColor: String = "black"
+  @objc open var currentColor: String = "black"
 
-  open var labelLevel: Int = 5
+  @objc open var labelLevel: Int = 5
 
-  open var detailLevel: Int = 10
+  @objc open var detailLevel: Int = 10
 
-  open var yamlString: String {
+  @objc open var yamlString: String {
     get {
       return "\(RefillStyle.stylesheetRoot)themes/label-\(labelLevel).yaml, \(RefillStyle.stylesheetRoot)themes/detail-\(detailLevel).yaml, \(RefillStyle.stylesheetRoot)themes/color-\(currentColor).yaml"
     }
@@ -172,24 +172,24 @@ open class ZincStyle: RefillStyle {
 open class WalkaboutStyle: NSObject, StyleSheet {
   open var appliedTheme: Theme = WalkaboutTheme()
   open var mapStyle: MapStyle? = .walkabout
-  open static let styleSheetFileName = "walkabout-style"
-  open static let stylesheetRoot = "walkabout/"
+  @objc open static let styleSheetFileName = "walkabout-style"
+  @objc open static let stylesheetRoot = "walkabout/"
 }
 
 open class WalkaboutTheme: NSObject, Theme {
-  open var availableLabelLevels: Int = 12
+  @objc open var availableLabelLevels: Int = 12
 
-  open var availableDetailLevel: Int = 0 // Not used for Walkabout
+  @objc open var availableDetailLevel: Int = 0 // Not used for Walkabout
 
-  open var availableColors: [String] = [] // Not used for Walkabout
+  @objc open var availableColors: [String] = [] // Not used for Walkabout
 
-  open var currentColor: String = "" // Not used for Walkabout
+  @objc open var currentColor: String = "" // Not used for Walkabout
 
-  open var labelLevel: Int = 5
+  @objc open var labelLevel: Int = 5
 
-  open var detailLevel: Int = 0 // Not used for Walkabout
+  @objc open var detailLevel: Int = 0 // Not used for Walkabout
 
-  open var yamlString: String {
+  @objc open var yamlString: String {
     get {
       return "\(WalkaboutStyle.stylesheetRoot)themes/label-\(labelLevel).yaml"
     }

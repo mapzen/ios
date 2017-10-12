@@ -15,7 +15,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
   var window: UIWindow?
 
-  static let MapUpdateNotification = NSNotification.Name(rawValue: "MapUpdateNotification")
+  @objc static let MapUpdateNotification = NSNotification.Name(rawValue: "MapUpdateNotification")
 
   var selectedMapStyle: StyleSheet = BubbleWrapStyle() {
     didSet {

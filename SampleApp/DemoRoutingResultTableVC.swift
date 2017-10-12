@@ -10,9 +10,9 @@ import OnTheRoad
 
 class DemoRoutingResultTableVC: SampleTableViewController {
 
-  var routingResult: OTRRoutingResult?
+  @objc var routingResult: OTRRoutingResult?
 
-  let cellIdent = "basicCellIdent"
+  @objc let cellIdent = "basicCellIdent"
 
   // MARK: - Table view data source
 
@@ -28,7 +28,7 @@ class DemoRoutingResultTableVC: SampleTableViewController {
     return result.legs[0].maneuvers.count
   }
 
-  func display(_ route : OTRRoutingResult){
+  @objc func display(_ route : OTRRoutingResult){
     routingResult = route
     tableView.reloadData()
   }

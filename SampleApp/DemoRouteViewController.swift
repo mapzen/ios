@@ -10,8 +10,8 @@ import OnTheRoad
 import Mapzen_ios_sdk
 
 class DemoRouteViewController: SampleMapViewController, MapSingleTapGestureDelegate {
-  let routeListSegueId = "routeListSegueId"
-  var currentRouteResult: OTRRoutingResult?
+  @objc let routeListSegueId = "routeListSegueId"
+  @objc var currentRouteResult: OTRRoutingResult?
   var lastRoutingPoint: OTRGeoPoint?
 
   private var routingLocale = Locale.current {
@@ -113,11 +113,11 @@ class DemoRouteViewController: SampleMapViewController, MapSingleTapGestureDeleg
   }
 
   //MARK:- Single Tap Gesture Recognizer Delegate
-  func mapController(_ controller: MZMapViewController, recognizer: UIGestureRecognizer, shouldRecognizeSingleTapGesture location: CGPoint) -> Bool {
+  @objc func mapController(_ controller: MZMapViewController, recognizer: UIGestureRecognizer, shouldRecognizeSingleTapGesture location: CGPoint) -> Bool {
     return true
   }
 
-  func mapController(_ controller: MZMapViewController, recognizer: UIGestureRecognizer, didRecognizeSingleTapGesture location: CGPoint) {
+  @objc func mapController(_ controller: MZMapViewController, recognizer: UIGestureRecognizer, didRecognizeSingleTapGesture location: CGPoint) {
     let point = tgViewController.screenPosition(toLngLat: location)
     requestRoute(toPoint: OTRGeoPoint(coordinate: point))
   }

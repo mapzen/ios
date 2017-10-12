@@ -12,15 +12,15 @@ import Mapzen_ios_sdk
 
 class SampleMapViewController : MZMapViewController {
 
-  var firstTimeZoomToCurrentLocation = true
-  var sceneDidLoad = false
+  @objc var firstTimeZoomToCurrentLocation = true
+  @objc var sceneDidLoad = false
   private var myContext = 0
 
   override var prefersStatusBarHidden: Bool {
     return false
   }
 
-  func shouldZoomToCurrentLocation() {
+  @objc func shouldZoomToCurrentLocation() {
     if !sceneDidLoad { return }
     if !receivedLocation() { return }
     _ = resetCameraOnCurrentLocation()
@@ -36,7 +36,7 @@ class SampleMapViewController : MZMapViewController {
   }
 
   //Notification for MapStyle changes
-  func setupStyleNotification() {
+  @objc func setupStyleNotification() {
     NotificationCenter.default.addObserver(self, selector: #selector(reloadMap), name: AppDelegate.MapUpdateNotification, object: nil)
   }
 

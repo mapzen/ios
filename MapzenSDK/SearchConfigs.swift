@@ -14,13 +14,13 @@ import Pelias
 public class AutocompleteConfig : NSObject {
   let peliasConfig : PeliasAutocompleteConfig
   /// Text to search for within components of the location. This value is required to execute an autocomplete request.
-  public var searchText: String {
+  @objc public var searchText: String {
     get {
       return peliasConfig.searchText
     }
   }
   /// Optional point to order results by where results closer to this value are returned higher in the list.
-  public var focusPoint: GeoPoint {
+  @objc public var focusPoint: GeoPoint {
     get {
       return SearchDataConverter.wrapPoint(peliasConfig.focusPoint)
     }
@@ -32,7 +32,7 @@ public class AutocompleteConfig : NSObject {
    - parameter focusPoint:  The point to order results around where results closer to this value are returned higher in the list.
    - parameter completionHandler: The closure to execute when the request suceeds or fails.
    */
-  public init(searchText: String, focusPoint: GeoPoint, completionHandler: @escaping (SearchResponse) -> Void) {
+  @objc public init(searchText: String, focusPoint: GeoPoint, completionHandler: @escaping (SearchResponse) -> Void) {
     let unwrappedPoint = SearchDataConverter.unwrapPoint(focusPoint)
     peliasConfig = PeliasAutocompleteConfig(searchText: searchText, focusPoint: unwrappedPoint, completionHandler: { (response) in
       let mapzenResponse = SearchResponse.init(response)
@@ -45,7 +45,7 @@ public class AutocompleteConfig : NSObject {
 public class PlaceConfig : NSObject {
   var peliasConfig: PeliasPlaceConfig
   /// The place gids to fetch info for.
-  public var gids: [String] {
+  @objc public var gids: [String] {
     set {
       peliasConfig.gids = newValue
     }
@@ -60,7 +60,7 @@ public class PlaceConfig : NSObject {
    - parameter gids: The place gids to request info for.
    - parameter completionHandler: The closure to execute when the request suceeds or fails.
    */
-  public init(gids: [String], completionHandler: @escaping (SearchResponse) -> Void) {
+  @objc public init(gids: [String], completionHandler: @escaping (SearchResponse) -> Void) {
     peliasConfig = PeliasPlaceConfig(gids: gids, completionHandler: { (response) in
       let mapzenResponse = SearchResponse.init(response)
       completionHandler(mapzenResponse)
@@ -73,7 +73,7 @@ public class ReverseConfig : NSObject {
 
   var peliasConfig: PeliasReverseConfig
   /// The point to reverse geocode. This value is required.
-  public var point: GeoPoint {
+  @objc public var point: GeoPoint {
     get {
       return SearchDataConverter.wrapPoint(peliasConfig.point)
     }
@@ -88,7 +88,7 @@ public class ReverseConfig : NSObject {
     }
   }
   /// The boundary country (in ISO-3166 alpha-2 or alpha-3 format) to limit results by. This value is optional and defaults to not restricting results to any country.
-  public var boundaryCountry: String? {
+  @objc public var boundaryCountry: String? {
     get {
       return peliasConfig.boundaryCountry
     }
@@ -130,7 +130,7 @@ public class ReverseConfig : NSObject {
    - parameter point: The point to reverse geocode.
    - parameter completionHandler: The closure to execute when the request suceeds or fails.
    */
-  public init(point: GeoPoint, completionHandler: @escaping (SearchResponse) -> Void) {
+  @objc public init(point: GeoPoint, completionHandler: @escaping (SearchResponse) -> Void) {
     let unwrappedPoint = SearchDataConverter.unwrapPoint(point)
     peliasConfig = PeliasReverseConfig(point: unwrappedPoint, completionHandler: { (peliasResponse) -> Void in
       let mapzenResponse = SearchResponse.init(peliasResponse)
@@ -143,7 +143,7 @@ public class ReverseConfig : NSObject {
 open class SearchConfig: NSObject {
   var peliasConfig: PeliasSearchConfig
   /// Text to search for within components of the location. This value is required.
-  public var searchText: String {
+  @objc public var searchText: String {
     get {
       return peliasConfig.searchText;
     }
@@ -161,7 +161,7 @@ open class SearchConfig: NSObject {
     }
   }
   /// The boundary country (in ISO-3166 alpha-2 or alpha-3 format) to limit results by. This value is optional and defaults to not restricting results to any country.
-  public var boundaryCountry: String? {
+  @objc public var boundaryCountry: String? {
     get {
       return peliasConfig.boundaryCountry
     }
@@ -170,7 +170,7 @@ open class SearchConfig: NSObject {
     }
   }
   /// The rectangular boundary to limit results to. This value is optional and defaults to none.
-  public var boundaryRect: SearchRect? {
+  @objc public var boundaryRect: SearchRect? {
     get {
       if let rect = peliasConfig.boundaryRect{
         return SearchRect(boundaryRect: rect)
@@ -182,7 +182,7 @@ open class SearchConfig: NSObject {
     }
   }
   /// The circular boundary to limit results to. This value is optional and defaults to none.
-  public var boundaryCircle: SearchCircle? {
+  @objc public var boundaryCircle: SearchCircle? {
     get {
       if let circle = peliasConfig.boundaryCircle {
         return SearchCircle(boundaryCircle: circle)
@@ -194,7 +194,7 @@ open class SearchConfig: NSObject {
     }
   }
   /// The point to order results by where results closer to this value are returned higher in the list. This value is optional and defaults to none.
-  public var focusPoint: GeoPoint? {
+  @objc public var focusPoint: GeoPoint? {
     get {
       if let point = peliasConfig.focusPoint {
         return GeoPoint(geoPoint: point)
@@ -239,7 +239,7 @@ open class SearchConfig: NSObject {
    - parameter searchText: Text to search for within components of the location.
    - parameter completionHandler: The closure to execute when the request suceeds or fails.
    */
-  public init(searchText: String, completionHandler: @escaping (SearchResponse) -> Void) {
+  @objc public init(searchText: String, completionHandler: @escaping (SearchResponse) -> Void) {
     peliasConfig = PeliasSearchConfig(searchText: searchText, completionHandler: { (peliasResponse) -> Void in
       let mapzenResponse = SearchResponse.init(peliasResponse)
       completionHandler(mapzenResponse)

@@ -11,8 +11,8 @@ import Pelias
 /// Main entry point for interacting with Mapzen Search.
 public class MapzenSearch : NSObject {
   /// Returns the shared 'MapzenSearch' instance.
-  public static let sharedInstance = MapzenSearch()
-  public var apiKey: String? {
+  @objc public static let sharedInstance = MapzenSearch()
+  @objc public var apiKey: String? {
     didSet {
       guard let apiKey = apiKey else {
         if let queryItems = urlQueryItems {
@@ -33,7 +33,7 @@ public class MapzenSearch : NSObject {
   private var myContext = 0
 
   /// Delay in seconds that the manager should wait between keystrokes to fire a new autocomplete request. Default is 0.3
-  public var autocompleteTimeDelay: Double {
+  @objc public var autocompleteTimeDelay: Double {
     get {
       return peliasSearchManager.autocompleteTimeDelay
     }
@@ -43,7 +43,7 @@ public class MapzenSearch : NSObject {
   }
 
   /// Base url to execute requests against. Default value is https://search.mapzen.com.
-  public var baseUrl: URL {
+  @objc public var baseUrl: URL {
     get {
       return peliasSearchManager.baseUrl
     }
@@ -53,7 +53,7 @@ public class MapzenSearch : NSObject {
   }
 
   /// The query items that should be applied to every request (such as an api key).
-  public var urlQueryItems: [URLQueryItem]? {
+  @objc public var urlQueryItems: [URLQueryItem]? {
     get {
       return peliasSearchManager.urlQueryItems
     }
@@ -74,34 +74,34 @@ public class MapzenSearch : NSObject {
   /** Perform an asyncronous search request given parameters defined by the search config. Returns the queued operation.
    - parameter config: Object holding search request parameter information.
    */
-  public func search(_ config: SearchConfig) -> Operation {
+  @objc public func search(_ config: SearchConfig) -> Operation {
     return peliasSearchManager.performSearch(config.peliasConfig);
   }
   /** Perform an asyncronous reverse geocode request given parameters defined by the config. Returns the queued operation.
    - parameter config: Object holding reverse geo request parameter information.
    */
-  public func reverseGeocode(_ config: ReverseConfig) -> Operation {
+  @objc public func reverseGeocode(_ config: ReverseConfig) -> Operation {
     return peliasSearchManager.reverseGeocode(config.peliasConfig)
   }
   /** Perform an asyncronous autocomplete request given parameters defined by the config. Returns the queued operation.
    - parameter config: Object holding autocomplete request parameter information.
    */
-  public func autocompleteQuery(_ config: AutocompleteConfig) -> Operation {
+  @objc public func autocompleteQuery(_ config: AutocompleteConfig) -> Operation {
     return peliasSearchManager.autocompleteQuery(config.peliasConfig)
   }
   /** Perform an asyncronous place request given parameters defined by the search config. Returns the queued operation.
    - parameter config: Object holding place request parameter information.
    */
-  public func placeQuery(_ config: PlaceConfig) -> Operation {
+  @objc public func placeQuery(_ config: PlaceConfig) -> Operation {
     return peliasSearchManager.placeQuery(config.peliasConfig)
   }
   /// Cancel all requests
-  public func cancelOperations() {
+  @objc public func cancelOperations() {
     peliasSearchManager.cancelOperations()
   }
 
   // KVO Observance for API Keys because singletons are funky
-  func setupAPIKeyObservance() {
+  @objc func setupAPIKeyObservance() {
     MapzenManager.sharedManager.addObserver(self, forKeyPath:
       #keyPath(MapzenManager.apiKey), options: .new, context: &myContext)
   }
