@@ -1,5 +1,5 @@
 //
-//  TangramVC.swift
+//  DemoMapViewController.swift
 //  ios-sdk
 //
 //  Created by Matt Smollinger on 7/12/16.
@@ -31,13 +31,21 @@ class DemoMapViewController:  SampleMapViewController, MapMarkerSelectDelegate {
     super.viewDidLoad()
     setupSwitchStyleBtn()
     setupSwitchLocaleBtn()
-    setupStyleObservance()
+    setupStyleNotification()
     markerSelectDelegate = self
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
-    try? loadStyleAsync(appDelegate.selectedMapStyle) { [unowned self] (style) in
+    try? loadStyleSheetAsync(appDelegate.selectedMapStyle) { (style) in
       self.styleLoaded = true
       let _ = self.showCurrentLocation(true)
       self.showFindMeButon(true)
+    }
+  }
+
+  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    if segue.identifier == "displayStyleSelector" {
+      let destVC = segue.destination as! UINavigationController
+      let styleVC = destVC.viewControllers[0] as! StylePickerVC
+      styleVC.mapController = self
     }
   }
   
@@ -60,49 +68,9 @@ class DemoMapViewController:  SampleMapViewController, MapMarkerSelectDelegate {
   }
 
   @objc private func openSettings() {
-    let actionSheet = UIAlertController.init(title: "Map Style", message: "Choose a map style", preferredStyle: .actionSheet)
-    actionSheet.addAction(UIAlertAction.init(title: "Bubble Wrap", style: .default, handler: { [unowned self] (action) in
-      self.indicateLoadStyle(style: .bubbleWrap)
-    }))
-    actionSheet.addAction(UIAlertAction.init(title: "Cinnabar", style: .default, handler: { [unowned self] (action) in
-      self.indicateLoadStyle(style: .cinnabar)
-    }))
-    actionSheet.addAction(UIAlertAction.init(title: "Refill", style: .default, handler: { [unowned self] (action) in
-      self.indicateLoadStyle(style: .refill)
-    }))
-    actionSheet.addAction(UIAlertAction.init(title: "Walkabout", style: .default, handler: { [unowned self] (action) in
-      self.indicateLoadStyle(style: .walkabout)
-    }))
-    actionSheet.addAction(UIAlertAction.init(title: "Zinc", style: .default, handler: { [unowned self] (action) in
-      self.indicateLoadStyle(style: .zinc)
-    }))
-    actionSheet.addAction(UIAlertAction(title: "Show / Hide Transit Overlay", style: .default, handler: { [unowned self] (action) in
-      self.showTransitOverlay = !self.showTransitOverlay
-    }))
-    actionSheet.addAction(UIAlertAction(title: "Show / Hide Bike Overlay", style: .default, handler: { [unowned self] (action) in
-      self.showBikeOverlay = !self.showBikeOverlay
-      if self.showBikeOverlay == true {
-        self.showWalkingPathOverlay = false
-      }
-    }))
-    actionSheet.addAction(UIAlertAction(title: "Show / Hide Walking Overlay", style: .default, handler: { [unowned self] (action) in
-      self.showWalkingPathOverlay = !self.showWalkingPathOverlay
-      if self.showWalkingPathOverlay == true {
-        self.showBikeOverlay = false
-      }
-    }))
-    actionSheet.addAction(UIAlertAction.init(title: "Cancel", style: .cancel, handler: { [unowned self] (action) in
-      self.dismiss(animated: true, completion: nil)
-    }))
-    let presentationController = actionSheet.popoverPresentationController
-    presentationController?.barButtonItem = self.navigationItem.rightBarButtonItem
-    self.navigationController?.present(actionSheet, animated: true, completion: nil)
+    performSegue(withIdentifier: "displayStyleSelector", sender: self)
   }
 
-  private func indicateLoadStyle(style: MapStyle) {
-    let appDelegate = UIApplication.shared.delegate as! AppDelegate
-    appDelegate.selectedMapStyle = style
-  }
 
   @objc private func changeMapLanguage() {
     let languageIdByActionSheetTitle = [

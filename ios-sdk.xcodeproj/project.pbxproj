@@ -70,6 +70,8 @@
 		DB7A33DD1C8F8E8B009CC743 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DB7A33DB1C8F8E8B009CC743 /* Main.storyboard */; };
 		DB7A33DF1C8F8E8B009CC743 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DB7A33DE1C8F8E8B009CC743 /* Assets.xcassets */; };
 		DB7A33E21C8F8E8B009CC743 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DB7A33E01C8F8E8B009CC743 /* LaunchScreen.storyboard */; };
+		DB8EA08B1F8357BE0050850A /* TestStylesAndThemes.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB8EA08A1F8357BE0050850A /* TestStylesAndThemes.swift */; };
+		DB8EA08D1F83E82C0050850A /* StylePickerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB8EA08C1F83E82C0050850A /* StylePickerVC.swift */; };
 		DBA4B4BB1ED75D2F0010FDDB /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = DBA4B4BA1ED75D2F0010FDDB /* main.m */; };
 		DBA4B4BE1ED75D2F0010FDDB /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DBA4B4BD1ED75D2F0010FDDB /* AppDelegate.m */; };
 		DBA4B4C11ED75D2F0010FDDB /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DBA4B4C01ED75D2F0010FDDB /* ViewController.m */; };
@@ -81,6 +83,7 @@
 		DBEF2B141EC3B99A00D19B62 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D463A0B1EB135460074BEC5 /* LocationManager.swift */; };
 		DBF441AE1D351B0A007DEE95 /* DemoMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBF441AD1D351B0A007DEE95 /* DemoMapViewController.swift */; };
 		DBF441B01D351C90007DEE95 /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DBF441AF1D351C90007DEE95 /* GLKit.framework */; };
+		DBF761171F7D82B800D2626A /* Themes.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBF761161F7D82B800D2626A /* Themes.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -208,6 +211,8 @@
 		DB7A33E11C8F8E8B009CC743 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		DB7A33E31C8F8E8B009CC743 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DB7A33E81C8F8E8B009CC743 /* ios-sdkTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "ios-sdkTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		DB8EA08A1F8357BE0050850A /* TestStylesAndThemes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestStylesAndThemes.swift; sourceTree = "<group>"; };
+		DB8EA08C1F83E82C0050850A /* StylePickerVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StylePickerVC.swift; sourceTree = "<group>"; };
 		DBA4B4B71ED75D2F0010FDDB /* SampleApp-Objc.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "SampleApp-Objc.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DBA4B4BA1ED75D2F0010FDDB /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		DBA4B4BC1ED75D2F0010FDDB /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -224,6 +229,7 @@
 		DBC8698F1D3662DD00DDC4FE /* SampleAutocompleteTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SampleAutocompleteTableViewController.swift; sourceTree = "<group>"; };
 		DBF441AD1D351B0A007DEE95 /* DemoMapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DemoMapViewController.swift; sourceTree = "<group>"; };
 		DBF441AF1D351C90007DEE95 /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
+		DBF761161F7D82B800D2626A /* Themes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Themes.swift; sourceTree = "<group>"; };
 		FE8434036BF110F8E126135B /* Pods-SampleApp-Objc.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SampleApp-Objc.release.xcconfig"; path = "Pods/Target Support Files/Pods-SampleApp-Objc/Pods-SampleApp-Objc.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -307,6 +313,7 @@
 				7D463A161EB135460074BEC5 /* SearchResponse.swift */,
 				7D463A171EB135460074BEC5 /* TangramExtensions.swift */,
 				7D463A181EB135460074BEC5 /* UIColorExtensions.swift */,
+				DBF761161F7D82B800D2626A /* Themes.swift */,
 			);
 			path = MapzenSDK;
 			sourceTree = "<group>";
@@ -334,6 +341,7 @@
 				7D463A3F1EB1357B0074BEC5 /* TestTGMarkerPickResult.swift */,
 				7D463A401EB1357B0074BEC5 /* TestUrlSession.swift */,
 				7D463A411EB1357B0074BEC5 /* UIColorExtensionsTests.swift */,
+				DB8EA08A1F8357BE0050850A /* TestStylesAndThemes.swift */,
 			);
 			path = MapzenSDKTests;
 			sourceTree = "<group>";
@@ -438,6 +446,7 @@
 				DBC8698F1D3662DD00DDC4FE /* SampleAutocompleteTableViewController.swift */,
 				7D503BCB1E77457A00FDDC4F /* SampleMapViewController.swift */,
 				7D503BCD1E77468B00FDDC4F /* SampleTableViewController.swift */,
+				DB8EA08C1F83E82C0050850A /* StylePickerVC.swift */,
 			);
 			path = SampleApp;
 			sourceTree = "<group>";
@@ -1014,6 +1023,7 @@
 				7D463A251EB135460074BEC5 /* SearchConfigs.swift in Sources */,
 				7D463A1E1EB135460074BEC5 /* MapzenManager.swift in Sources */,
 				7D463A241EB135460074BEC5 /* RoutingController.swift in Sources */,
+				DBF761171F7D82B800D2626A /* Themes.swift in Sources */,
 				7D463A281EB135460074BEC5 /* SearchResponse.swift in Sources */,
 				7D463A1C1EB135460074BEC5 /* Dimensions.swift in Sources */,
 				7D463A191EB135460074BEC5 /* ApplicationExtensions.swift in Sources */,
@@ -1044,6 +1054,7 @@
 				7D463A4F1EB1357B0074BEC5 /* TestMapzenManager.swift in Sources */,
 				7D463A441EB1357B0074BEC5 /* MapzenManagerTests.swift in Sources */,
 				7D463A4D1EB1357B0074BEC5 /* TestApplication.swift in Sources */,
+				DB8EA08B1F8357BE0050850A /* TestStylesAndThemes.swift in Sources */,
 				7D463A421EB1357B0074BEC5 /* DictionaryExtensionsTests.swift in Sources */,
 				7D463A531EB1357B0074BEC5 /* TestUrlSession.swift in Sources */,
 				7D463A4B1EB1357B0074BEC5 /* SearchResponseTests.swift in Sources */,
@@ -1061,6 +1072,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DB8EA08D1F83E82C0050850A /* StylePickerVC.swift in Sources */,
 				DBF441AE1D351B0A007DEE95 /* DemoMapViewController.swift in Sources */,
 				DB22E59E1DA473CA004264E0 /* DemoRouteDirectionCell.swift in Sources */,
 				7D503BCC1E77457A00FDDC4F /* SampleMapViewController.swift in Sources */,

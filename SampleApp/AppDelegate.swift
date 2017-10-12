@@ -15,7 +15,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
   var window: UIWindow?
 
-  dynamic var selectedMapStyle: MapStyle = .bubbleWrap
+  static let MapUpdateNotification = NSNotification.Name(rawValue: "MapUpdateNotification")
+
+  var selectedMapStyle: StyleSheet = BubbleWrapStyle() {
+    didSet {
+      NotificationCenter.default.post(name: AppDelegate.MapUpdateNotification, object: nil)
+    }
+  }
 
 
   func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {

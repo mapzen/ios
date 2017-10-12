@@ -22,12 +22,12 @@ public struct StateReclaimer {
   public let mapStyle: MapStyle
 }
 
-public struct GlobalStyleVars {
-  public static let transitOverlay = "global.sdk_transit_overlay"
-  public static let bikeOverlay = "global.sdk_bike_overlay"
-  public static let pathOverlay = "global.sdk_path_overlay"
-  public static let apiKey = "global.sdk_mapzen_api_key"
-  public static let uxLanguage = "global.ux_language"
+public enum GlobalStyleVars : String {
+  case transitOverlay = "global.sdk_transit_overlay"
+  case bikeOverlay = "global.sdk_bike_overlay"
+  case pathOverlay = "global.sdk_path_overlay"
+  case apiKey = "global.sdk_mapzen_api_key"
+  case uxLanguage = "global.ux_language"
 }
 
 /** 
@@ -235,6 +235,7 @@ open class MZMapViewController: UIViewController, LocationManagerDelegate {
   var bikeOverlayIsShowing = false
   var walkingOverlayIsShowing = false
   var sceneUpdates: [TGSceneUpdate] = []
+  var globalSceneUpdates: [TGSceneUpdate] = []
   fileprivate var sceneLoadCallback: OnStyleLoaded?
   fileprivate(set) var latestSceneId: Int32 = 0
 
@@ -290,8 +291,8 @@ open class MZMapViewController: UIViewController, LocationManagerDelegate {
   /// Show or hide the transit route overlay. Not intended for use at the same time as the bike overlay. Fine to use with the walking network.
   open var showTransitOverlay: Bool {
     set {
-      latestSceneId = tgViewController.updateSceneAsync([TGSceneUpdate(path: GlobalStyleVars.transitOverlay, value: "\(newValue)")])
-      transitOverlayIsShowing = newValue
+      let sceneUpdate = TGSceneUpdate(path: GlobalStyleVars.transitOverlay.rawValue, value: "\(newValue)")
+      updateOrQueue(sceneUpdate)
     }
     get {
       return transitOverlayIsShowing
@@ -300,8 +301,8 @@ open class MZMapViewController: UIViewController, LocationManagerDelegate {
   /// Show or hide the bike route overlay. Not intended for use at the same time as the transit overlay.
   open var showBikeOverlay: Bool {
     set {
-      latestSceneId = tgViewController.updateSceneAsync([TGSceneUpdate(path: GlobalStyleVars.bikeOverlay, value: "\(newValue)")])
-      bikeOverlayIsShowing = newValue
+      let sceneUpdate = TGSceneUpdate(path: GlobalStyleVars.bikeOverlay.rawValue, value: "\(newValue)")
+      updateOrQueue(sceneUpdate)
     }
     get {
       return bikeOverlayIsShowing
@@ -311,11 +312,20 @@ open class MZMapViewController: UIViewController, LocationManagerDelegate {
   /// Show or hide the walking network. Not intended for use at the same time as the bike overlay. Fine for use with the transit overlay
   open var showWalkingPathOverlay: Bool {
     set {
-      latestSceneId = tgViewController.updateSceneAsync([TGSceneUpdate(path: GlobalStyleVars.pathOverlay, value: "\(newValue)")])
-      walkingOverlayIsShowing = newValue
+      let sceneUpdate = TGSceneUpdate(path: GlobalStyleVars.pathOverlay.rawValue, value: "\(newValue)")
+      updateOrQueue(sceneUpdate)
     }
     get {
       return walkingOverlayIsShowing
+    }
+  }
+
+  fileprivate func updateOrQueue(_ sceneUpdate: TGSceneUpdate) {
+    if globalSceneUpdates.isEmpty {
+      globalSceneUpdates.append(sceneUpdate)
+      latestSceneId = tgViewController.updateSceneAsync([sceneUpdate])
+    } else {
+      globalSceneUpdates.append(sceneUpdate)
     }
   }
 
@@ -367,11 +377,12 @@ open class MZMapViewController: UIViewController, LocationManagerDelegate {
   public typealias OnStyleLoaded = (MapStyle) -> ()
   fileprivate var onStyleLoadedClosure : OnStyleLoaded? = nil
 
-  fileprivate let styles = ["bubble-wrap/bubble-wrap-style-more-labels" : MapStyle.bubbleWrap,
-                            "cinnabar/cinnabar-style-more-labels" : MapStyle.cinnabar,
-                            "refill/refill-style-more-labels" : MapStyle.refill,
-                            "walkabout/walkabout-style-more-labels" : MapStyle.walkabout,
-                            "zinc/zinc-style-more-labels" : MapStyle.zinc]
+  //TODO: Remove this when removing other load style methods
+  fileprivate let styles: [MapStyle:StyleSheet] = [MapStyle.bubbleWrap : BubbleWrapStyle(),
+                            MapStyle.cinnabar : CinnabarStyle(),
+                            MapStyle.refill : RefillStyle(),
+                            MapStyle.walkabout : WalkaboutStyle(),
+                            MapStyle.zinc : ZincStyle()]
 
   public let locationManager : LocationManagerProtocol
   let mapzenManager : MapzenManagerProtocol
@@ -593,18 +604,14 @@ open class MZMapViewController: UIViewController, LocationManagerDelegate {
    */
   open func loadStyle(_ style: MapStyle, locale l: Locale, sceneUpdates: [TGSceneUpdate]) throws {
     locale = l
-    guard let sceneFile = styles.keyForValue(value: style) else { return }
+    let scene = styles[style]
     currentStyle = style
     if style == .walkabout {
       walkingOverlayIsShowing = true
     }
-    guard let qualifiedSceneFile = Bundle.houseStylesBundle()?.url(forResource: sceneFile, withExtension: "yaml") else {
-      return
-    }
-
-    latestSceneId = try tgViewController.loadScene(from: qualifiedSceneFile, with: allSceneUpdates(sceneUpdates))
+    guard let qualifiedScene = scene else { return }
+    latestSceneId = try tgViewController.loadScene(fromYAML: qualifiedScene.importString, relativeTo: Bundle.houseStylesBundle()!.bundleURL, with: allSceneUpdates(sceneUpdates))
     restoreMarkers()
-
   }
 
   /**
@@ -653,15 +660,69 @@ open class MZMapViewController: UIViewController, LocationManagerDelegate {
    */
   open func loadStyleAsync(_ style: MapStyle, locale l: Locale, sceneUpdates: [TGSceneUpdate], onStyleLoaded: OnStyleLoaded?) throws {
     locale = l
-    guard let sceneFile = styles.keyForValue(value: style) else { return }
+    let scene = styles[style]
     currentStyle = style
     if style == .walkabout {
       walkingOverlayIsShowing = true
     }
-    guard let qualifiedSceneFile = Bundle.houseStylesBundle()?.url(forResource: sceneFile, withExtension: "yaml") else {
-      return
+    guard let qualifiedScene = scene else { return }
+    latestSceneId = try tgViewController.loadSceneAsync(fromYAML: qualifiedScene.importString, relativeTo: Bundle.houseStylesBundle()!.bundleURL, with: allSceneUpdates(sceneUpdates))
+    sceneLoadCallback = onStyleLoaded
+  }
+
+//MARK:- Stylesheet load calls
+
+  /**
+   Loads a map style synchronously on the main thread. Use the async methods instead of these in production apps.
+
+   - parameter styleSheet: The map style to load.
+   - throws: A MZError `apiKeyNotSet` error if an API Key has not been sent on the MapzenManager class.
+   */
+  open func loadStyleSheet(_ styleSheet: StyleSheet) throws {
+    try loadStyleSheet(styleSheet, locale: Locale.current)
+  }
+
+  /**
+   Loads a map style synchronously on the main thread. Use the async methods instead of these in production apps.
+
+   - parameter styleSheet: The map style to load.
+   - parameter locale: The locale to use for the map's language.
+   - throws: A MZError `apiKeyNotSet` error if an API Key has not been sent on the MapzenManager class.
+   */
+  open func loadStyleSheet(_ styleSheet: StyleSheet, locale: Locale ) throws {
+    self.locale = locale
+    if let mapStyle = styleSheet.mapStyle { currentStyle = mapStyle }
+    if currentStyle == .walkabout {
+      walkingOverlayIsShowing = true
     }
-    latestSceneId = try tgViewController.loadSceneAsync(from: qualifiedSceneFile, with: allSceneUpdates(sceneUpdates))
+    latestSceneId = try tgViewController.loadScene(fromYAML: styleSheet.importString, relativeTo: Bundle.houseStylesBundle()!.bundleURL, with: allSceneUpdates(sceneUpdates))
+    restoreMarkers()
+  }
+
+  /**
+   Loads the map style asynchronously. Recommended for production apps. Uses the system's current locale.
+   - parameter styleSheet: The map style / theme combination to load.
+   - parameter onStyleLoaded: Closure called on scene loaded.
+   - throws: A MZError `apiKeyNotSet` error if an API Key has not been sent on the MapzenManager class.
+   */
+  open func loadStyleSheetAsync(_ styleSheet: StyleSheet, onStyleLoaded: OnStyleLoaded?) throws {
+    try loadStyleSheetAsync(styleSheet, locale: Locale.current, onStyleLoaded: onStyleLoaded)
+  }
+
+  /**
+   Loads the map style asynchronously. Recommended for production apps.
+   - parameter styleSheet: The map style / theme combination to load.
+   - parameter locale: The locale to use for the map's language.
+   - parameter onStyleLoaded: Closure called on scene loaded.
+   - throws: A MZError `apiKeyNotSet` error if an API Key has not been sent on the MapzenManager class.
+   */
+  open func loadStyleSheetAsync(_ styleSheet: StyleSheet, locale: Locale, onStyleLoaded: OnStyleLoaded?) throws {
+    self.locale = locale
+    if let mapStyle = styleSheet.mapStyle { currentStyle = mapStyle }
+    if currentStyle == .walkabout {
+      walkingOverlayIsShowing = true
+    }
+    latestSceneId = try tgViewController.loadSceneAsync(fromYAML: styleSheet.importString, relativeTo: Bundle.houseStylesBundle()!.bundleURL, with: allSceneUpdates(sceneUpdates))
     sceneLoadCallback = onStyleLoaded
   }
 
@@ -1043,29 +1104,40 @@ open class MZMapViewController: UIViewController, LocationManagerDelegate {
     }
     var allSceneUpdates = [TGSceneUpdate]()
     allSceneUpdates.append(contentsOf: sceneUpdates)
-    allSceneUpdates.append(TGSceneUpdate(path: GlobalStyleVars.apiKey, value: "'\(apiKey)'"))
+    allSceneUpdates.append(TGSceneUpdate(path: GlobalStyleVars.apiKey.rawValue, value: "'\(apiKey)'"))
     if let language = locale.languageCode {
       allSceneUpdates.append(createLanguageUpdate(language))
     }
 
+    //Check to see if we have any outstanding updates we're waiting on, and if so, clear them and sync up the backing variables
+    if globalSceneUpdates.count > 0 {
+      let globalUpdates = globalSceneUpdates
+      globalSceneUpdates = []
+      for update in globalUpdates {
+        if let styleVar = GlobalStyleVars(rawValue: update.path), let styleValue = Bool(update.value) {
+          setBackingVariableForGlobalStyleVar(variable: styleVar, to: styleValue)
+        }
+      }
+    }
+
     //Handle restoring the overlay status on scene change
     if bikeOverlayIsShowing {
-      allSceneUpdates.append(TGSceneUpdate(path: GlobalStyleVars.bikeOverlay, value: "true"))
+      allSceneUpdates.append(TGSceneUpdate(path: GlobalStyleVars.bikeOverlay.rawValue, value: "true"))
     }
 
     if transitOverlayIsShowing {
-      allSceneUpdates.append(TGSceneUpdate(path: GlobalStyleVars.transitOverlay, value: "true"))
+      allSceneUpdates.append(TGSceneUpdate(path: GlobalStyleVars.transitOverlay.rawValue, value: "true"))
     }
 
     if walkingOverlayIsShowing {
-      allSceneUpdates.append(TGSceneUpdate(path: GlobalStyleVars.pathOverlay, value: "true"))
+      allSceneUpdates.append(TGSceneUpdate(path: GlobalStyleVars.pathOverlay.rawValue, value: "true"))
     }
     
     return allSceneUpdates
   }
 
   private func createLanguageUpdate(_ language: String) -> TGSceneUpdate {
-    return TGSceneUpdate(path: GlobalStyleVars.uxLanguage, value: language)
+    return TGSceneUpdate(path: GlobalStyleVars.uxLanguage.rawValue, value: language)
   }
 }
 
@@ -1099,6 +1171,18 @@ extension MZMapViewController {
     //By setting this we drop all our references to the original marker set without having to explicitly nil each one out
     currentMarkers = newMarkerStore
   }
+
+  fileprivate func setBackingVariableForGlobalStyleVar(variable: GlobalStyleVars, to value: Bool) {
+    switch variable {
+    case GlobalStyleVars.transitOverlay:
+      transitOverlayIsShowing = value
+    case GlobalStyleVars.bikeOverlay:
+      bikeOverlayIsShowing = value
+    case GlobalStyleVars.pathOverlay:
+      walkingOverlayIsShowing = value
+    default: break
+    }
+  }
 }
 
 //MARK: - TGMapViewDelegate
@@ -1110,12 +1194,25 @@ extension MZMapViewController : TGMapViewDelegate {
     if sceneID != latestSceneId {
       return
     }
+    if let update = globalSceneUpdates.first {
+      //update backing variable if one exists for it
+      if let updateValue = Bool(update.value), let updatePath = GlobalStyleVars(rawValue: update.path) {
+        setBackingVariableForGlobalStyleVar(variable: updatePath, to: updateValue)
+      }
+      globalSceneUpdates.remove(at: 0)
+      if !globalSceneUpdates.isEmpty {
+        let nextUpdate = globalSceneUpdates[0]
+        latestSceneId = tgViewController.updateSceneAsync([nextUpdate])
+        // In the event we have more to process, stop processing here.
+        return
+      }
+    }
     restoreMarkers()
     guard let styleClosure = sceneLoadCallback else { return }
     styleClosure(currentStyle)
     sceneLoadCallback = nil
   }
-  
+
   open func mapViewDidCompleteLoading(_ mapView: TGMapViewController) {
     tileLoadDelegate?.mapControllerDidCompleteLoading(self)
   }
