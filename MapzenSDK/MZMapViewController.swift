@@ -972,7 +972,7 @@ open class MZMapViewController: UIViewController, LocationManagerDelegate {
   override open func viewDidLoad() {
     super.viewDidLoad()
     let httpHandler = TGHttpHandler()
-    httpHandler.httpAdditionalHeaders = MapzenManager.sharedManager.httpHeaders() as! NSMutableDictionary
+    httpHandler.httpAdditionalHeaders = NSMutableDictionary(dictionary: MapzenManager.sharedManager.httpHeaders())
     tgViewController.httpHandler = httpHandler
     locationManager.delegate = self
     setupTgControllerView()
