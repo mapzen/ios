@@ -24,7 +24,7 @@ import Foundation
   @objc var styleSheetFileName: String { get }
   @objc var importString: String { get }
   @objc var relativePath: String { get }
-  @objc var mapStyle: MapStyle { get set }
+  @objc var mapStyle: MapStyle { get }
   @objc var yamlString: String { get }
   @objc var detailLevel: Int { get set }
   @objc var labelLevel: Int { get set }
@@ -37,10 +37,15 @@ import Foundation
 
 open class BaseStyle: NSObject, StyleSheet {
 
-  @objc open var mapStyle: MapStyle = .none
   @objc open var detailLevel: Int = 0
   @objc open var labelLevel: Int = 0
   @objc open var currentColor: String = ""
+
+  @objc open var mapStyle: MapStyle {
+    get {
+      return .none
+    }
+  }
 
   @objc open var styleSheetFileName: String {
     get {
@@ -114,10 +119,15 @@ open class BubbleWrapStyle: BaseStyle {
   public override init() {
     super.init()
     defer {
-      mapStyle = .bubbleWrap
       currentColor = "" // Not used for Bubble Wrap
       labelLevel = 5
       detailLevel = 0 // Not used for Bubble Wrap
+    }
+  }
+
+  @objc open override var mapStyle: MapStyle {
+    get {
+      return .bubbleWrap
     }
   }
 
@@ -151,10 +161,15 @@ open class CinnabarStyle: BaseStyle {
   public override init() {
     super.init()
     defer {
-      mapStyle = .cinnabar
       currentColor = "" // Not used for Cinnabar
       labelLevel = 5
       detailLevel = 0 // Not used for Cinnabar
+    }
+  }
+
+  @objc open override var mapStyle: MapStyle {
+    get {
+      return .cinnabar
     }
   }
 
@@ -188,10 +203,15 @@ open class RefillStyle: BaseStyle {
   public override init() {
     super.init()
     defer {
-      mapStyle = .refill
       currentColor = "black"
       labelLevel = 5
       detailLevel = 10
+    }
+  }
+
+  @objc open override var mapStyle: MapStyle {
+    get {
+      return .refill
     }
   }
 
@@ -237,8 +257,13 @@ open class ZincStyle: RefillStyle {
   public override init() {
     super.init()
     defer {
-      mapStyle = .zinc
       currentColor = "zinc"
+    }
+  }
+
+  @objc open override var mapStyle: MapStyle {
+    get {
+      return .zinc
     }
   }
 }
@@ -248,10 +273,15 @@ open class WalkaboutStyle: BaseStyle {
   public override init() {
     super.init()
     defer {
-      mapStyle = .walkabout
       currentColor = "" // Not used for Walkabout
       labelLevel = 5
       detailLevel = 0 // Not used for Walkabout
+    }
+  }
+
+  @objc open override var mapStyle: MapStyle {
+    get {
+      return .walkabout
     }
   }
 
