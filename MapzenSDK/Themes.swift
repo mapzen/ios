@@ -10,149 +10,224 @@ import Foundation
 
 /**
  This is the foundational code for custom stylesheet and theme support. This area will likely be the focus of updates & changes over the next several releases, so we would recommend avoiding implementing your own custom stylesheet classes until we have further vetted this implementation. Documentation will be written once we've solidified on the protocol requirements and implementation details.
- 
+
  We do however welcome suggestions / improvements to this API on our github at https://github.com/mapzen/ios
  */
 
 
-public protocol StyleSheet : class {
+@objc public protocol StyleSheet : class {
 
-  var fileLocation: URL? { get }
-  var remoteFileLocation: URL? { get }
-  static var stylesheetRoot: String { get }
-  var appliedTheme: Theme { get }
-  var houseStylesRoot: String { get }
-  static var styleSheetFileName: String { get }
-  var importString: String { get }
-  var relativePath: String { get }
-  var mapStyle: MapStyle? { get set }
+  @objc var fileLocation: URL? { get }
+  @objc var remoteFileLocation: URL? { get }
+  @objc var styleSheetRoot: String { get }
+  @objc var houseStylesRoot: String { get }
+  @objc var styleSheetFileName: String { get }
+  @objc var importString: String { get }
+  @objc var relativePath: String { get }
+  @objc var mapStyle: MapStyle { get set }
+  @objc var yamlString: String { get }
+  @objc var detailLevel: Int { get set }
+  @objc var labelLevel: Int { get set }
+  @objc var currentColor: String { get set }
+
+  @objc var availableColors: [ String ] { get }
+  @objc var availableDetailLevels: Int { get }
+  @objc var availableLabelLevels: Int { get }
 }
 
-extension StyleSheet {
-  public var fileLocation: URL? {
+open class BaseStyle: NSObject, StyleSheet {
+
+  @objc open var mapStyle: MapStyle = .none
+  @objc open var detailLevel: Int = 0
+  @objc open var labelLevel: Int = 0
+  @objc open var currentColor: String = ""
+
+  @objc open var styleSheetFileName: String {
+    get {
+      return ""
+    }
+  }
+
+  @objc open var styleSheetRoot: String {
+    get {
+      return ""
+    }
+  }
+
+  @objc open var fileLocation: URL? {
     get {
       return Bundle.houseStylesBundle()?.url(forResource: relativePath, withExtension: "yaml")
     }
   }
 
-  public var remoteFileLocation: URL? {
+  @objc open var remoteFileLocation: URL? {
     get {
       return nil
     }
   }
 
-  public var houseStylesRoot: String {
+  @objc open var houseStylesRoot: String {
     get {
       return "housestyles.bundle/"
     }
   }
 
-  public var importString: String {
+  @objc open var importString: String {
     get {
-      return "{ import: [ \(relativePath).yaml, \(appliedTheme.yamlString) ] }"
+      return "{ import: [ \(relativePath).yaml, \(yamlString) ] }"
     }
   }
 
-  public var relativePath: String {
+  @objc open var relativePath: String {
     get {
-      return "\(Self.stylesheetRoot)\(Self.styleSheetFileName)"
+      return "\(styleSheetRoot)\(styleSheetFileName)"
     }
   }
-}
 
-public protocol Theme : class {
-  var yamlString: String { get }
-  var detailLevel: Int { get set }
-  var labelLevel: Int { get set }
-  var currentColor: String { get set }
+  @objc open var yamlString: String {
+    get {
+      return ""
+    }
+  }
 
-  var availableColors: [ String ] { get }
-  var availableDetailLevel: Int { get }
-  var availableLabelLevels: Int { get }
+  @objc open var availableColors: [String] {
+    get {
+      return []
+    }
+  }
 
+  @objc open var availableDetailLevels: Int {
+    get {
+      return 0
+    }
+  }
+
+  @objc open var availableLabelLevels: Int {
+    get {
+      return 0
+    }
+  }
 }
 
 //MARK:- Bubble Wrap
-open class BubbleWrapStyle: NSObject, StyleSheet {
-  open var appliedTheme: Theme = BubbleWrapTheme()
-  open var mapStyle: MapStyle? = .bubbleWrap
-  open static let styleSheetFileName = "bubble-wrap-style"
-  open static let stylesheetRoot = "bubble-wrap/"
+open class BubbleWrapStyle: BaseStyle {
+  public override init() {
+    super.init()
+    defer {
+      mapStyle = .bubbleWrap
+      currentColor = "" // Not used for Bubble Wrap
+      labelLevel = 5
+      detailLevel = 0 // Not used for Bubble Wrap
+    }
+  }
 
-}
-
-open class BubbleWrapTheme: NSObject, Theme {
-  open var availableLabelLevels: Int = 12
-
-  open var availableDetailLevel: Int = 0 // Not used for Bubble Wrap
-
-  open var availableColors: [String] = [] // Not used for Bubble Wrap
-
-  open var currentColor: String = "" // Not used for Bubble Wrap
-
-  open var labelLevel: Int = 5
-
-  open var detailLevel: Int = 0 // Not used for Bubble Wrap
-
-  open var yamlString: String {
+  @objc open override var styleSheetFileName: String {
     get {
-      return "\(BubbleWrapStyle.stylesheetRoot)themes/label-\(labelLevel).yaml"
+      return "bubble-wrap-style"
+    }
+  }
+
+  @objc open override var styleSheetRoot: String {
+    get {
+      return "bubble-wrap/"
+    }
+  }
+
+  @objc override open var availableLabelLevels: Int {
+    get {
+      return 12
+    }
+  }
+
+  @objc override open var yamlString: String {
+    get {
+      return "\(styleSheetRoot)themes/label-\(labelLevel).yaml"
     }
   }
 }
 
 //MARK:- Cinnnabar
-open class CinnabarStyle: NSObject, StyleSheet {
-  open var appliedTheme: Theme = CinnabarTheme()
-  open var mapStyle: MapStyle? = .cinnabar
-  open static let styleSheetFileName = "cinnabar-style"
-  open static let stylesheetRoot = "cinnabar/"
-}
+open class CinnabarStyle: BaseStyle {
+  public override init() {
+    super.init()
+    defer {
+      mapStyle = .cinnabar
+      currentColor = "" // Not used for Cinnabar
+      labelLevel = 5
+      detailLevel = 0 // Not used for Cinnabar
+    }
+  }
 
-open class CinnabarTheme: NSObject, Theme {
-  open var availableLabelLevels: Int = 12
-
-  open var availableDetailLevel: Int = 0 // Not used for Cinnabar
-
-  open var availableColors: [String] = [] // Not used for Cinnabar
-
-  open var currentColor: String = "" // Not used for Cinnabar
-
-  open var labelLevel: Int = 5
-
-  open var detailLevel: Int = 0 // Not used for Cinnabar
-
-  open var yamlString: String {
+  @objc override open var styleSheetFileName: String {
     get {
-      return "\(CinnabarStyle.stylesheetRoot)themes/label-\(labelLevel).yaml"
+      return "cinnabar-style"
+    }
+  }
+
+  @objc override open var styleSheetRoot: String {
+    get {
+      return "cinnabar/"
+    }
+  }
+
+  @objc override open var availableLabelLevels: Int {
+    get {
+      return 12
+    }
+  }
+
+  @objc override open var yamlString: String {
+    get {
+      return "\(styleSheetRoot)themes/label-\(labelLevel).yaml"
     }
   }
 }
 
 //MARK:- Refill
-open class RefillStyle: NSObject, StyleSheet {
-  open var appliedTheme: Theme = RefillTheme()
-  open var mapStyle: MapStyle? = .refill
-  open static let styleSheetFileName = "refill-style"
-  open static let stylesheetRoot = "refill/"
-}
+open class RefillStyle: BaseStyle {
+  public override init() {
+    super.init()
+    defer {
+      mapStyle = .refill
+      currentColor = "black"
+      labelLevel = 5
+      detailLevel = 10
+    }
+  }
 
-open class RefillTheme: NSObject, Theme {
-  open var availableLabelLevels: Int = 12
-
-  open var availableDetailLevel: Int = 12
-
-  open var availableColors: [String] = ["black", "blue-gray", "blue", "brown-orange", "gray-gold", "gray", "high-contrast", "inverted", "pink-yellow", "pink", "purple-green", "sepia", "zinc"]
-
-  open var currentColor: String = "black"
-
-  open var labelLevel: Int = 5
-
-  open var detailLevel: Int = 10
-
-  open var yamlString: String {
+  @objc override open var styleSheetFileName: String {
     get {
-      return "\(RefillStyle.stylesheetRoot)themes/label-\(labelLevel).yaml, \(RefillStyle.stylesheetRoot)themes/detail-\(detailLevel).yaml, \(RefillStyle.stylesheetRoot)themes/color-\(currentColor).yaml"
+      return "refill-style"
+    }
+  }
+
+  @objc override open var styleSheetRoot: String {
+    get {
+      return "refill/"
+    }
+  }
+
+  @objc override open var availableLabelLevels: Int {
+    get {
+      return 12
+    }
+  }
+
+  @objc override open var availableDetailLevels: Int {
+    get {
+      return 12
+    }
+  }
+
+  @objc override open var availableColors: [String] {
+    get {
+      return ["black", "blue-gray", "blue", "brown-orange", "gray-gold", "gray", "high-contrast", "inverted", "pink-yellow", "pink", "purple-green", "sepia", "zinc"]
+    }
+  }
+
+  @objc override open var yamlString: String {
+    get {
+      return "\(styleSheetRoot)themes/label-\(labelLevel).yaml, \(styleSheetRoot)themes/detail-\(detailLevel).yaml, \(styleSheetRoot)themes/color-\(currentColor).yaml"
     }
   }
 }
@@ -163,35 +238,44 @@ open class ZincStyle: RefillStyle {
     super.init()
     defer {
       mapStyle = .zinc
-      self.appliedTheme.currentColor = "zinc"
+      currentColor = "zinc"
     }
   }
 }
 
 //MARK:- Walkabout
-open class WalkaboutStyle: NSObject, StyleSheet {
-  open var appliedTheme: Theme = WalkaboutTheme()
-  open var mapStyle: MapStyle? = .walkabout
-  open static let styleSheetFileName = "walkabout-style"
-  open static let stylesheetRoot = "walkabout/"
-}
+open class WalkaboutStyle: BaseStyle {
+  public override init() {
+    super.init()
+    defer {
+      mapStyle = .walkabout
+      currentColor = "" // Not used for Walkabout
+      labelLevel = 5
+      detailLevel = 0 // Not used for Walkabout
+    }
+  }
 
-open class WalkaboutTheme: NSObject, Theme {
-  open var availableLabelLevels: Int = 12
-
-  open var availableDetailLevel: Int = 0 // Not used for Walkabout
-
-  open var availableColors: [String] = [] // Not used for Walkabout
-
-  open var currentColor: String = "" // Not used for Walkabout
-
-  open var labelLevel: Int = 5
-
-  open var detailLevel: Int = 0 // Not used for Walkabout
-
-  open var yamlString: String {
+  @objc override open var styleSheetFileName: String{
     get {
-      return "\(WalkaboutStyle.stylesheetRoot)themes/label-\(labelLevel).yaml"
+      return "walkabout-style"
+    }
+  }
+
+  @objc override open var styleSheetRoot: String {
+    get {
+      return "walkabout/"
+    }
+  }
+
+  @objc override open var availableLabelLevels: Int {
+    get {
+      return 12
+    }
+  }
+
+  @objc override open var yamlString: String {
+    get {
+      return "\(styleSheetRoot)themes/label-\(labelLevel).yaml"
     }
   }
 }

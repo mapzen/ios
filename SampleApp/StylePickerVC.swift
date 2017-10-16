@@ -55,16 +55,16 @@ class StylePickerVC: UITableViewController, UIPickerViewDataSource, UIPickerView
 
   func setUIStateForStyle(styleSheet: StyleSheet) {
     colorPicker.reloadAllComponents()
-    if styleSheet.appliedTheme.availableDetailLevel > 0 {
-      levelOfDetailText.text = String(styleSheet.appliedTheme.detailLevel)
+    if styleSheet.availableDetailLevels > 0 {
+      levelOfDetailText.text = String(styleSheet.detailLevel)
       levelOfDetailText.isEnabled = true
     } else {
       levelOfDetailText.text = "N/A"
       levelOfDetailText.isEnabled = false
     }
 
-    if styleSheet.appliedTheme.availableLabelLevels > 0 {
-      labelDensityText.text = String(styleSheet.appliedTheme.labelLevel)
+    if styleSheet.availableLabelLevels > 0 {
+      labelDensityText.text = String(styleSheet.labelLevel)
       labelDensityText.isEnabled = true
     } else {
       labelDensityText.text = "N/A"
@@ -86,7 +86,7 @@ class StylePickerVC: UITableViewController, UIPickerViewDataSource, UIPickerView
     walkingOverlaySwitch.addTarget(self, action: #selector(walkingOverlaySwitchChanged(switchState:)), for: .valueChanged)
 
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
-    currentColor = currentSelectedStyle.appliedTheme.currentColor
+    currentColor = currentSelectedStyle.currentColor
     currentSelectedStyle = appDelegate.selectedMapStyle
 
     setUIStateForStyle(styleSheet: currentSelectedStyle)
@@ -106,10 +106,9 @@ class StylePickerVC: UITableViewController, UIPickerViewDataSource, UIPickerView
     }
 
     //Set the color picker to the correct current color (assuming we have one)
-    if currentSelectedStyle.appliedTheme.availableColors.count > 0 &&
-      !currentSelectedStyle.appliedTheme.currentColor.isEmpty {
-      let appliedTheme = currentSelectedStyle.appliedTheme
-      if let colorIndex = appliedTheme.availableColors.index(of: appliedTheme.currentColor) {
+    if currentSelectedStyle.availableColors.count > 0 &&
+      !currentSelectedStyle.currentColor.isEmpty {
+      if let colorIndex = currentSelectedStyle.availableColors.index(of: currentSelectedStyle.currentColor) {
         colorPicker.selectRow(colorIndex, inComponent: 0, animated: false)
       }
     }
@@ -119,7 +118,7 @@ class StylePickerVC: UITableViewController, UIPickerViewDataSource, UIPickerView
   @IBAction func savePressed(_ sender: Any) {
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     if appDelegate.selectedMapStyle.mapStyle != currentSelectedStyle.mapStyle ||
-      currentColor != currentSelectedStyle.appliedTheme.currentColor {
+      currentColor != currentSelectedStyle.currentColor {
       appDelegate.selectedMapStyle = currentSelectedStyle
     }
     self.dismiss(animated: true, completion: nil)
@@ -139,10 +138,10 @@ class StylePickerVC: UITableViewController, UIPickerViewDataSource, UIPickerView
     }
     if pickerView == colorPicker {
       let styleKeys = Array(availableStyles.keys)
-      if currentSelectedStyle.appliedTheme.availableColors.count > 0 &&
+      if currentSelectedStyle.availableColors.count > 0 &&
         styleKeys[styleSheetPicker.selectedRow(inComponent: 0)] != "Zinc"{
         // We want to return 1 in the event we have no colors to show "No Colors" so just need this
-        return currentSelectedStyle.appliedTheme.availableColors.count
+        return currentSelectedStyle.availableColors.count
       }
     }
     return 1
@@ -154,11 +153,11 @@ class StylePickerVC: UITableViewController, UIPickerViewDataSource, UIPickerView
       return styleKeys[row]
     }
     if pickerView == colorPicker {
-      if currentSelectedStyle.appliedTheme.availableColors.count == 0 ||
+      if currentSelectedStyle.availableColors.count == 0 ||
         styleKeys[styleSheetPicker.selectedRow(inComponent: 0)] == "Zinc" {
         return "N/A"
       }
-      return currentSelectedStyle.appliedTheme.availableColors[row]
+      return currentSelectedStyle.availableColors[row]
     }
 
     return "???"
@@ -174,8 +173,8 @@ class StylePickerVC: UITableViewController, UIPickerViewDataSource, UIPickerView
       setUIStateForStyle(styleSheet: unwrappedStyle)
     }
     if pickerView == colorPicker {
-      if currentSelectedStyle.appliedTheme.availableColors.count == 0 { return }
-      currentSelectedStyle.appliedTheme.currentColor = currentSelectedStyle.appliedTheme.availableColors[row]
+      if currentSelectedStyle.availableColors.count == 0 { return }
+      currentSelectedStyle.currentColor = currentSelectedStyle.availableColors[row]
     }
   }
 }

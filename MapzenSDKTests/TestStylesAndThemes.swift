@@ -11,22 +11,11 @@ import XCTest
 
 class TestStylesAndThemes: XCTestCase {
 
-  override func setUp() {
-    super.setUp()
-    // Put setup code here. This method is called before the invocation of each test method in the class.
-  }
-
-  override func tearDown() {
-    // Put teardown code here. This method is called after the invocation of each test method in the class.
-    super.tearDown()
-  }
-
   func testBubbleWrapStyleDefaults() {
     let style = BubbleWrapStyle()
-    XCTAssertTrue(style.appliedTheme is BubbleWrapTheme)
     XCTAssertTrue(style.mapStyle == .bubbleWrap)
-    XCTAssertTrue(BubbleWrapStyle.stylesheetRoot == "bubble-wrap/")
-    XCTAssertTrue(BubbleWrapStyle.styleSheetFileName == "bubble-wrap-style")
+    XCTAssertTrue(style.styleSheetRoot == "bubble-wrap/")
+    XCTAssertTrue(style.styleSheetFileName == "bubble-wrap-style")
   }
 
   func testBubbleWrapImportString() {
@@ -35,22 +24,21 @@ class TestStylesAndThemes: XCTestCase {
   }
 
   func testBubbleWrapThemeDefaults() {
-    let theme = BubbleWrapTheme()
-    XCTAssertTrue(theme.availableLabelLevels == 12)
-    XCTAssertTrue(theme.availableDetailLevel == 0)
-    XCTAssertTrue(theme.availableColors == [])
-    XCTAssertTrue(theme.currentColor == "")
-    XCTAssertTrue(theme.labelLevel == 5)
-    XCTAssertTrue(theme.detailLevel == 0)
-    XCTAssertTrue(theme.yamlString == "bubble-wrap/themes/label-5.yaml")
+    let style = BubbleWrapStyle()
+    XCTAssertTrue(style.availableLabelLevels == 12)
+    XCTAssertTrue(style.availableDetailLevels == 0)
+    XCTAssertTrue(style.availableColors == [])
+    XCTAssertTrue(style.currentColor == "")
+    XCTAssertTrue(style.labelLevel == 5)
+    XCTAssertTrue(style.detailLevel == 0)
+    XCTAssertTrue(style.yamlString == "bubble-wrap/themes/label-5.yaml")
   }
 
   func testCinnabarStyleDefaults() {
     let style = CinnabarStyle()
-    XCTAssertTrue(style.appliedTheme is CinnabarTheme)
     XCTAssertTrue(style.mapStyle == .cinnabar)
-    XCTAssertTrue(CinnabarStyle.stylesheetRoot == "cinnabar/")
-    XCTAssertTrue(CinnabarStyle.styleSheetFileName == "cinnabar-style")
+    XCTAssertTrue(style.styleSheetRoot == "cinnabar/")
+    XCTAssertTrue(style.styleSheetFileName == "cinnabar-style")
   }
 
   func testCinnabarImportString() {
@@ -59,22 +47,21 @@ class TestStylesAndThemes: XCTestCase {
   }
 
   func testCinnabarThemeDefaults() {
-    let theme = CinnabarTheme()
-    XCTAssertTrue(theme.availableLabelLevels == 12)
-    XCTAssertTrue(theme.availableDetailLevel == 0)
-    XCTAssertTrue(theme.availableColors == [])
-    XCTAssertTrue(theme.currentColor == "")
-    XCTAssertTrue(theme.labelLevel == 5)
-    XCTAssertTrue(theme.detailLevel == 0)
-    XCTAssertTrue(theme.yamlString == "cinnabar/themes/label-5.yaml")
+    let style = CinnabarStyle()
+    XCTAssertTrue(style.availableLabelLevels == 12)
+    XCTAssertTrue(style.availableDetailLevels == 0)
+    XCTAssertTrue(style.availableColors == [])
+    XCTAssertTrue(style.currentColor == "")
+    XCTAssertTrue(style.labelLevel == 5)
+    XCTAssertTrue(style.detailLevel == 0)
+    XCTAssertTrue(style.yamlString == "cinnabar/themes/label-5.yaml")
   }
 
   func testRefillStyleDefaults() {
     let style = RefillStyle()
-    XCTAssertTrue(style.appliedTheme is RefillTheme)
     XCTAssertTrue(style.mapStyle == .refill)
-    XCTAssertTrue(RefillStyle.stylesheetRoot == "refill/")
-    XCTAssertTrue(RefillStyle.styleSheetFileName == "refill-style")
+    XCTAssertTrue(style.styleSheetRoot == "refill/")
+    XCTAssertTrue(style.styleSheetFileName == "refill-style")
   }
 
   func testRefillImportString() {
@@ -83,28 +70,28 @@ class TestStylesAndThemes: XCTestCase {
   }
 
   func testRefillThemeDefaults() {
-    let theme = RefillTheme()
-    XCTAssertTrue(theme.availableLabelLevels == 12)
-    XCTAssertTrue(theme.availableDetailLevel == 12)
-    XCTAssertTrue(theme.availableColors == ["black", "blue-gray", "blue", "brown-orange", "gray-gold", "gray", "high-contrast", "inverted", "pink-yellow", "pink", "purple-green", "sepia", "zinc"])
-    XCTAssertTrue(theme.currentColor == "black")
-    XCTAssertTrue(theme.labelLevel == 5)
-    XCTAssertTrue(theme.detailLevel == 10)
-    XCTAssertTrue(theme.yamlString == "refill/themes/label-5.yaml, refill/themes/detail-10.yaml, refill/themes/color-black.yaml")
+    let style = RefillStyle()
+    XCTAssertTrue(style.availableLabelLevels == 12)
+    XCTAssertTrue(style.availableDetailLevels == 12)
+    XCTAssertTrue(style.availableColors == ["black", "blue-gray", "blue", "brown-orange", "gray-gold", "gray", "high-contrast", "inverted", "pink-yellow", "pink", "purple-green", "sepia", "zinc"])
+    XCTAssertTrue(style.currentColor == "black")
+    XCTAssertTrue(style.labelLevel == 5)
+    XCTAssertTrue(style.detailLevel == 10)
+    XCTAssertTrue(style.yamlString == "refill/themes/label-5.yaml, refill/themes/detail-10.yaml, refill/themes/color-black.yaml")
   }
 
   func testZincDefaults() {
     let style = ZincStyle()
     XCTAssertTrue(style.mapStyle == .zinc)
-    XCTAssertTrue(style.appliedTheme.currentColor == "zinc")
+    XCTAssertTrue(style.currentColor == "zinc")
+    XCTAssertTrue(style.yamlString == "refill/themes/label-5.yaml, refill/themes/detail-10.yaml, refill/themes/color-zinc.yaml")
   }
 
   func testWalkaboutStyleDefaults() {
     let style = WalkaboutStyle()
-    XCTAssertTrue(style.appliedTheme is WalkaboutTheme)
     XCTAssertTrue(style.mapStyle == .walkabout)
-    XCTAssertTrue(WalkaboutStyle.stylesheetRoot == "walkabout/")
-    XCTAssertTrue(WalkaboutStyle.styleSheetFileName == "walkabout-style")
+    XCTAssertTrue(style.styleSheetRoot == "walkabout/")
+    XCTAssertTrue(style.styleSheetFileName == "walkabout-style")
   }
 
   func testWalkaboutImportString() {
@@ -113,13 +100,13 @@ class TestStylesAndThemes: XCTestCase {
   }
 
   func testWalkaboutThemeDefaults() {
-    let theme = WalkaboutTheme()
-    XCTAssertTrue(theme.availableLabelLevels == 12)
-    XCTAssertTrue(theme.availableDetailLevel == 0)
-    XCTAssertTrue(theme.availableColors == [])
-    XCTAssertTrue(theme.currentColor == "")
-    XCTAssertTrue(theme.labelLevel == 5)
-    XCTAssertTrue(theme.detailLevel == 0)
-    XCTAssertTrue(theme.yamlString == "walkabout/themes/label-5.yaml")
+    let style = WalkaboutStyle()
+    XCTAssertTrue(style.availableLabelLevels == 12)
+    XCTAssertTrue(style.availableDetailLevels == 0)
+    XCTAssertTrue(style.availableColors == [])
+    XCTAssertTrue(style.currentColor == "")
+    XCTAssertTrue(style.labelLevel == 5)
+    XCTAssertTrue(style.detailLevel == 0)
+    XCTAssertTrue(style.yamlString == "walkabout/themes/label-5.yaml")
   }
 }
