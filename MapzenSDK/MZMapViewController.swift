@@ -42,7 +42,7 @@ public enum GlobalStyleVars : String {
 }
 
 @objc public enum MapStyle: Int {
-  case bubbleWrap, cinnabar, refill, walkabout, zinc
+  case bubbleWrap, cinnabar, refill, walkabout, zinc, none
 }
 
 /// Single Tap Gesture Delegate
@@ -691,7 +691,7 @@ open class MZMapViewController: UIViewController, LocationManagerDelegate {
    */
   open func loadStyleSheet(_ styleSheet: StyleSheet, locale: Locale ) throws {
     self.locale = locale
-    if let mapStyle = styleSheet.mapStyle { currentStyle = mapStyle }
+    currentStyle = styleSheet.mapStyle
     if currentStyle == .walkabout {
       walkingOverlayIsShowing = true
     }
@@ -718,7 +718,7 @@ open class MZMapViewController: UIViewController, LocationManagerDelegate {
    */
   open func loadStyleSheetAsync(_ styleSheet: StyleSheet, locale: Locale, onStyleLoaded: OnStyleLoaded?) throws {
     self.locale = locale
-    if let mapStyle = styleSheet.mapStyle { currentStyle = mapStyle }
+    currentStyle = styleSheet.mapStyle
     if currentStyle == .walkabout {
       walkingOverlayIsShowing = true
     }
