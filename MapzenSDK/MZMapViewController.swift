@@ -696,6 +696,7 @@ open class MZMapViewController: UIViewController, LocationManagerDelegate {
       walkingOverlayIsShowing = true
     }
     latestSceneId = try tgViewController.loadScene(fromYAML: styleSheet.importString, relativeTo: Bundle.houseStylesBundle()!.bundleURL, with: allSceneUpdates(sceneUpdates))
+    print("Restoring markers from loadStyleSheet")
     restoreMarkers()
   }
 
@@ -1210,6 +1211,7 @@ extension MZMapViewController : TGMapViewDelegate {
         return
       }
     }
+    print("Restoring markers from didLoadScene")
     restoreMarkers()
     guard let styleClosure = sceneLoadCallback else { return }
     styleClosure(currentStyle)
