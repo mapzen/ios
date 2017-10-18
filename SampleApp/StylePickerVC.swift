@@ -25,6 +25,8 @@ class StylePickerVC: UITableViewController, UIPickerViewDataSource, UIPickerView
   weak var mapController : SampleMapViewController?
   var currentSelectedStyle: StyleSheet = BubbleWrapStyle()
   var currentColor: String = ""
+  var currentLabelLevel: Int = 0
+  var currentDetailLevel: Int = 0
 
   var availableStyles : [ String : StyleSheet ] = ["Bubble Wrap" : BubbleWrapStyle(),
                          "Cinnabar" : CinnabarStyle(),
@@ -86,8 +88,10 @@ class StylePickerVC: UITableViewController, UIPickerViewDataSource, UIPickerView
     walkingOverlaySwitch.addTarget(self, action: #selector(walkingOverlaySwitchChanged(switchState:)), for: .valueChanged)
 
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
-    currentColor = currentSelectedStyle.currentColor
     currentSelectedStyle = appDelegate.selectedMapStyle
+    currentColor = currentSelectedStyle.currentColor
+    currentDetailLevel = currentSelectedStyle.detailLevel
+    currentLabelLevel = currentSelectedStyle.labelLevel
 
     setUIStateForStyle(styleSheet: currentSelectedStyle)
   }
@@ -113,14 +117,27 @@ class StylePickerVC: UITableViewController, UIPickerViewDataSource, UIPickerView
       }
     }
   }
+  func saveTextField(_ textField: UITextField) {
+    guard let text = textField.text, var level = Int(text) else { return }
+
+    if level > currentSelectedStyle.availableLabelLevels { level = currentSelectedStyle.availableLabelLevels }
+    if level < 0 { level = 0 }
+
+    if textField == levelOfDetailText {
+      currentSelectedStyle.detailLevel = level
+    }
+
+    if textField == labelDensityText {
+      currentSelectedStyle.labelLevel = level
+    }
+  }
 
   //MARK:- Interface Builder
   @IBAction func savePressed(_ sender: Any) {
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
-    if appDelegate.selectedMapStyle.mapStyle != currentSelectedStyle.mapStyle ||
-      currentColor != currentSelectedStyle.currentColor {
-      appDelegate.selectedMapStyle = currentSelectedStyle
-    }
+    saveTextField(labelDensityText)
+    saveTextField(levelOfDetailText)
+    appDelegate.selectedMapStyle = currentSelectedStyle
     self.dismiss(animated: true, completion: nil)
   }
   @IBAction func cancelPressed(_ sender: Any) {
@@ -177,4 +194,8 @@ class StylePickerVC: UITableViewController, UIPickerViewDataSource, UIPickerView
       currentSelectedStyle.currentColor = currentSelectedStyle.availableColors[row]
     }
   }
+
+  //MARK:- TextField Delegate
+
+
 }
