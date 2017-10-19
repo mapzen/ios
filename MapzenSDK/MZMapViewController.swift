@@ -611,7 +611,6 @@ open class MZMapViewController: UIViewController, LocationManagerDelegate {
     }
     guard let qualifiedScene = scene else { return }
     latestSceneId = try tgViewController.loadScene(fromYAML: qualifiedScene.importString, relativeTo: Bundle.houseStylesBundle()!.bundleURL, with: allSceneUpdates(sceneUpdates))
-    restoreMarkers()
   }
 
   /**
@@ -696,7 +695,6 @@ open class MZMapViewController: UIViewController, LocationManagerDelegate {
       walkingOverlayIsShowing = true
     }
     latestSceneId = try tgViewController.loadScene(fromYAML: styleSheet.importString, relativeTo: Bundle.houseStylesBundle()!.bundleURL, with: allSceneUpdates(sceneUpdates))
-    restoreMarkers()
   }
 
   /**
