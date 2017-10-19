@@ -194,8 +194,4 @@ class StylePickerVC: UITableViewController, UIPickerViewDataSource, UIPickerView
       currentSelectedStyle.currentColor = currentSelectedStyle.availableColors[row]
     }
   }
-
-  //MARK:- TextField Delegate
-
-
 }
