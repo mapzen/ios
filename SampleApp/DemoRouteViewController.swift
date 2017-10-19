@@ -13,6 +13,7 @@ class DemoRouteViewController: SampleMapViewController, MapSingleTapGestureDeleg
   let routeListSegueId = "routeListSegueId"
   var currentRouteResult: OTRRoutingResult?
   var lastRoutingPoint: OTRGeoPoint?
+  var costingModel: OTRRoutingCostingModel = .auto
 
   private var routingLocale = Locale.current {
     didSet {
@@ -36,6 +37,7 @@ class DemoRouteViewController: SampleMapViewController, MapSingleTapGestureDeleg
     }
     setupSwitchLocaleBtn()
     setupStyleNotification()
+    setupSwitchRoutingButton()
     let alert = UIAlertController(title: "Tap to Route", message: "Tap anywhere on the map to route!", preferredStyle: .alert)
     alert.addAction(UIAlertAction(title: "Ok!", style: UIAlertActionStyle.default, handler: nil))
     present(alert, animated: true, completion: nil)
@@ -57,9 +59,40 @@ class DemoRouteViewController: SampleMapViewController, MapSingleTapGestureDeleg
   }
 
   //MARK:- Private
+
+  private func setupSwitchRoutingButton() {
+    let button = UIBarButtonItem.init(title: "Route Type", style: .plain, target: self, action: #selector(changeRouterCostingModel))
+    navigationItem.leftBarButtonItem = button
+  }
+
+  @objc private func changeRouterCostingModel() {
+    let costingModels:[String : OTRRoutingCostingModel] = [
+      "Auto" : .auto,
+      "Shorter Distance Auto" : .autoShorter,
+      "Bicycle" : .bicycle,
+      "Bus" : .bus,
+      "Multimodal" : .multimodal,
+      "Walking" : .pedestrian
+    ]
+
+    let actionSheet = UIAlertController.init(title: "Route Type", message: "Choose a route type", preferredStyle: .actionSheet)
+    for (actionTitle, costModel) in costingModels {
+      actionSheet.addAction(UIAlertAction.init(title: actionTitle, style: .default, handler: { [unowned self] (action) in
+        self.costingModel = costModel
+        if let point = self.lastRoutingPoint {
+          self.requestRoute(toPoint: point)
+        }
+      }))
+    }
+
+    let presentationController = actionSheet.popoverPresentationController
+    presentationController?.barButtonItem = navigationItem.leftBarButtonItem
+    navigationController?.present(actionSheet, animated: true, completion: nil)
+  }
+
   private func setupSwitchLocaleBtn() {
-    let btn = UIBarButtonItem.init(title: "Change Router Language", style: .plain, target: self, action: #selector(changeRouterLanguage))
-    self.navigationItem.rightBarButtonItem = btn
+    let btn = UIBarButtonItem.init(title: "Router Language", style: .plain, target: self, action: #selector(changeRouterLanguage))
+    navigationItem.rightBarButtonItem = btn
   }
 
   @objc private func changeRouterLanguage() {
@@ -85,8 +118,8 @@ class DemoRouteViewController: SampleMapViewController, MapSingleTapGestureDeleg
       self.dismiss(animated: true, completion: nil)
     }))
     let presentationController = actionSheet.popoverPresentationController
-    presentationController?.barButtonItem = self.navigationItem.rightBarButtonItem
-    self.navigationController?.present(actionSheet, animated: true, completion: nil)
+    presentationController?.barButtonItem = navigationItem.rightBarButtonItem
+    navigationController?.present(actionSheet, animated: true, completion: nil)
   }
 
   private func requestRoute(toPoint: OTRGeoPoint) {
@@ -94,12 +127,12 @@ class DemoRouteViewController: SampleMapViewController, MapSingleTapGestureDeleg
     routingController.updateLocale(routingLocale)
 
     guard let currentLocation = locationManager.currentLocation  else { return }
-    self.lastRoutingPoint = toPoint
+    lastRoutingPoint = toPoint
     let startingPoint = OTRRoutingPoint(coordinate: OTRGeoPointMake(currentLocation.coordinate.latitude, currentLocation.coordinate.longitude), type: .break)
-    let endingPoint = OTRRoutingPoint(coordinate: self.lastRoutingPoint!, type: .break)
+    let endingPoint = OTRRoutingPoint(coordinate: lastRoutingPoint!, type: .break)
 
     _ = routingController.requestRoute(withLocations: [startingPoint, endingPoint],
-                                       costingModel: .auto,
+                                       costingModel: costingModel,
                                        costingOption: nil,
                                        directionsOptions: ["units" : "miles" as NSObject]) { (routingResult, token, error) in
                                         print("Error:\(String(describing: error))")
