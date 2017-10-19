@@ -1,560 +1,868 @@
 {
   "warnings": [
     {
-      "file": "/Users/Smollinger/coding/git_projects/ios-sdk/src/DictionaryExtensions.swift",
+      "file": "/Users/Smollinger/coding/git_projects/ios-sdk/MapzenSDK/BundleExtensions.swift",
+      "line": 12,
+      "symbol": "Bundle.mapzenBundle()",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Smollinger/coding/git_projects/ios-sdk/MapzenSDK/BundleExtensions.swift",
+      "line": 16,
+      "symbol": "Bundle.houseStylesBundle()",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Smollinger/coding/git_projects/ios-sdk/MapzenSDK/DictionaryExtensions.swift",
       "line": 14,
       "symbol": "Dictionary.keysForValue(value:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/Smollinger/coding/git_projects/ios-sdk/src/DictionaryExtensions.swift",
+      "file": "/Users/Smollinger/coding/git_projects/ios-sdk/MapzenSDK/DictionaryExtensions.swift",
       "line": 21,
       "symbol": "Dictionary.keyForValue(value:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/Smollinger/coding/git_projects/ios-sdk/src/LocationManager.swift",
+      "file": "/Users/Smollinger/coding/git_projects/ios-sdk/MapzenSDK/LocationManager.swift",
+      "line": 47,
+      "symbol": "LocationManager.init()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Smollinger/coding/git_projects/ios-sdk/MapzenSDK/LocationManager.swift",
       "line": 111,
       "symbol": "LocationManager.locationManager(_:didChangeAuthorization:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/Smollinger/coding/git_projects/ios-sdk/src/LocationManager.swift",
+      "file": "/Users/Smollinger/coding/git_projects/ios-sdk/MapzenSDK/LocationManager.swift",
       "line": 127,
       "symbol": "LocationManager.locationManager(_:didUpdateLocations:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/Smollinger/coding/git_projects/ios-sdk/src/LocationManager.swift",
+      "file": "/Users/Smollinger/coding/git_projects/ios-sdk/MapzenSDK/LocationManager.swift",
       "line": 134,
       "symbol": "LocationManager.locationManager(_:didFailWithError:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/Smollinger/coding/git_projects/ios-sdk/src/MZMapViewController.swift",
-      "line": 33,
+      "file": "/Users/Smollinger/coding/git_projects/ios-sdk/MapzenSDK/LocationManager.swift",
+      "line": 142,
+      "symbol": "LocationManagerProtocol.delegate",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Smollinger/coding/git_projects/ios-sdk/MapzenSDK/LocationManager.swift",
+      "line": 143,
+      "symbol": "LocationManagerProtocol.currentLocation",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Smollinger/coding/git_projects/ios-sdk/MapzenSDK/LocationManager.swift",
+      "line": 145,
+      "symbol": "LocationManagerProtocol.requestAlwaysAuthorization()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Smollinger/coding/git_projects/ios-sdk/MapzenSDK/LocationManager.swift",
+      "line": 146,
+      "symbol": "LocationManagerProtocol.requestWhenInUseAuthorization()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Smollinger/coding/git_projects/ios-sdk/MapzenSDK/LocationManager.swift",
+      "line": 147,
+      "symbol": "LocationManagerProtocol.isInUseAuthorized()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Smollinger/coding/git_projects/ios-sdk/MapzenSDK/LocationManager.swift",
+      "line": 148,
+      "symbol": "LocationManagerProtocol.isAlwaysAuthorized()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Smollinger/coding/git_projects/ios-sdk/MapzenSDK/LocationManager.swift",
+      "line": 149,
+      "symbol": "LocationManagerProtocol.refreshCurrentLocation()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Smollinger/coding/git_projects/ios-sdk/MapzenSDK/LocationManager.swift",
+      "line": 150,
+      "symbol": "LocationManagerProtocol.requestLocation()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Smollinger/coding/git_projects/ios-sdk/MapzenSDK/LocationManager.swift",
+      "line": 151,
+      "symbol": "LocationManagerProtocol.startUpdatingLocation()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Smollinger/coding/git_projects/ios-sdk/MapzenSDK/LocationManager.swift",
+      "line": 152,
+      "symbol": "LocationManagerProtocol.stopUpdatingLocation()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Smollinger/coding/git_projects/ios-sdk/MapzenSDK/MZMapViewController.swift",
+      "line": 16,
+      "symbol": "StateReclaimer",
+      "symbol_kind": "source.lang.swift.decl.struct",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Smollinger/coding/git_projects/ios-sdk/MapzenSDK/MZMapViewController.swift",
+      "line": 25,
+      "symbol": "GlobalStyleVars",
+      "symbol_kind": "source.lang.swift.decl.enum",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Smollinger/coding/git_projects/ios-sdk/MapzenSDK/MZMapViewController.swift",
+      "line": 41,
       "symbol": "MZError.annotationDoesNotExist",
       "symbol_kind": "source.lang.swift.decl.enumelement",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/Smollinger/coding/git_projects/ios-sdk/src/MZMapViewController.swift",
-      "line": 33,
+      "file": "/Users/Smollinger/coding/git_projects/ios-sdk/MapzenSDK/MZMapViewController.swift",
+      "line": 41,
       "symbol": "MZError.apiKeyNotSet",
       "symbol_kind": "source.lang.swift.decl.enumelement",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/Smollinger/coding/git_projects/ios-sdk/src/MZMapViewController.swift",
-      "line": 33,
+      "file": "/Users/Smollinger/coding/git_projects/ios-sdk/MapzenSDK/MZMapViewController.swift",
+      "line": 41,
       "symbol": "MZError.generalError",
       "symbol_kind": "source.lang.swift.decl.enumelement",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/Smollinger/coding/git_projects/ios-sdk/src/MZMapViewController.swift",
-      "line": 33,
+      "file": "/Users/Smollinger/coding/git_projects/ios-sdk/MapzenSDK/MZMapViewController.swift",
+      "line": 41,
       "symbol": "MZError.routeDoesNotExist",
       "symbol_kind": "source.lang.swift.decl.enumelement",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/Smollinger/coding/git_projects/ios-sdk/src/MZMapViewController.swift",
-      "line": 36,
+      "file": "/Users/Smollinger/coding/git_projects/ios-sdk/MapzenSDK/MZMapViewController.swift",
+      "line": 44,
       "symbol": "MapStyle",
       "symbol_kind": "source.lang.swift.decl.enum",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/Smollinger/coding/git_projects/ios-sdk/src/MZMapViewController.swift",
-      "line": 208,
+      "file": "/Users/Smollinger/coding/git_projects/ios-sdk/MapzenSDK/MZMapViewController.swift",
+      "line": 216,
       "symbol": "MZMapViewController.MapzenGeneralErrorDomain",
       "symbol_kind": "source.lang.swift.decl.var.static",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/Smollinger/coding/git_projects/ios-sdk/src/MZMapViewController.swift",
-      "line": 216,
+      "file": "/Users/Smollinger/coding/git_projects/ios-sdk/MapzenSDK/MZMapViewController.swift",
+      "line": 220,
       "symbol": "MZMapViewController.tgViewController",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/Smollinger/coding/git_projects/ios-sdk/src/MZMapViewController.swift",
-      "line": 222,
+      "file": "/Users/Smollinger/coding/git_projects/ios-sdk/MapzenSDK/MZMapViewController.swift",
+      "line": 226,
       "symbol": "MZMapViewController.shouldFollowCurrentLocation",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/Smollinger/coding/git_projects/ios-sdk/src/MZMapViewController.swift",
-      "line": 223,
+      "file": "/Users/Smollinger/coding/git_projects/ios-sdk/MapzenSDK/MZMapViewController.swift",
+      "line": 227,
       "symbol": "MZMapViewController.findMeButton",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/Smollinger/coding/git_projects/ios-sdk/src/MZMapViewController.swift",
-      "line": 226,
+      "file": "/Users/Smollinger/coding/git_projects/ios-sdk/MapzenSDK/MZMapViewController.swift",
+      "line": 230,
       "symbol": "MZMapViewController.attributionBtn",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/Smollinger/coding/git_projects/ios-sdk/src/MZMapViewController.swift",
-      "line": 648,
+      "file": "/Users/Smollinger/coding/git_projects/ios-sdk/MapzenSDK/MZMapViewController.swift",
+      "line": 387,
+      "symbol": "MZMapViewController.locationManager",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Smollinger/coding/git_projects/ios-sdk/MapzenSDK/MZMapViewController.swift",
+      "line": 763,
       "symbol": "MZMapViewController.applySceneUpdates()",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/Smollinger/coding/git_projects/ios-sdk/src/MZMapViewController.swift",
-      "line": 922,
+      "file": "/Users/Smollinger/coding/git_projects/ios-sdk/MapzenSDK/MZMapViewController.swift",
+      "line": 958,
+      "symbol": "MZMapViewController.receivedLocation()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Smollinger/coding/git_projects/ios-sdk/MapzenSDK/MZMapViewController.swift",
+      "line": 970,
       "symbol": "MZMapViewController.viewDidLoad()",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/Smollinger/coding/git_projects/ios-sdk/src/MZMapViewController.swift",
-      "line": 933,
-      "symbol": "MZMapViewController.viewWillAppear(_:)",
+      "file": "/Users/Smollinger/coding/git_projects/ios-sdk/MapzenSDK/MZMapViewController.swift",
+      "line": 1191,
+      "symbol": "MZMapViewController.mapView(_:didLoadScene:withError:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/Smollinger/coding/git_projects/ios-sdk/src/MZMapViewController.swift",
-      "line": 942,
-      "symbol": "MZMapViewController.viewDidAppear(_:)",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/Smollinger/coding/git_projects/ios-sdk/src/MZMapViewController.swift",
-      "line": 947,
-      "symbol": "MZMapViewController.viewDidDisappear(_:)",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/Smollinger/coding/git_projects/ios-sdk/src/MZMapViewController.swift",
-      "line": 952,
-      "symbol": "MZMapViewController.didReceiveMemoryWarning()",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/Smollinger/coding/git_projects/ios-sdk/src/MZMapViewController.swift",
-      "line": 1100,
-      "symbol": "MZMapViewController.mapView(_:didLoadSceneAsync:)",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/Smollinger/coding/git_projects/ios-sdk/src/MZMapViewController.swift",
-      "line": 1116,
+      "file": "/Users/Smollinger/coding/git_projects/ios-sdk/MapzenSDK/MZMapViewController.swift",
+      "line": 1217,
       "symbol": "MZMapViewController.mapViewDidCompleteLoading(_:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/Smollinger/coding/git_projects/ios-sdk/src/MZMapViewController.swift",
-      "line": 1120,
+      "file": "/Users/Smollinger/coding/git_projects/ios-sdk/MapzenSDK/MZMapViewController.swift",
+      "line": 1221,
       "symbol": "MZMapViewController.mapView(_:didSelectFeature:atScreenPosition:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/Smollinger/coding/git_projects/ios-sdk/src/MZMapViewController.swift",
-      "line": 1125,
+      "file": "/Users/Smollinger/coding/git_projects/ios-sdk/MapzenSDK/MZMapViewController.swift",
+      "line": 1226,
       "symbol": "MZMapViewController.mapView(_:didSelectLabel:atScreenPosition:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/Smollinger/coding/git_projects/ios-sdk/src/MZMapViewController.swift",
-      "line": 1130,
+      "file": "/Users/Smollinger/coding/git_projects/ios-sdk/MapzenSDK/MZMapViewController.swift",
+      "line": 1231,
       "symbol": "MZMapViewController.mapView(_:didSelectMarker:atScreenPosition:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/Smollinger/coding/git_projects/ios-sdk/src/MZMapViewController.swift",
-      "line": 1150,
+      "file": "/Users/Smollinger/coding/git_projects/ios-sdk/MapzenSDK/MZMapViewController.swift",
+      "line": 1252,
       "symbol": "MZMapViewController.mapView(_:recognizer:shouldRecognizeSingleTapGesture:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/Smollinger/coding/git_projects/ios-sdk/src/MZMapViewController.swift",
-      "line": 1158,
+      "file": "/Users/Smollinger/coding/git_projects/ios-sdk/MapzenSDK/MZMapViewController.swift",
+      "line": 1260,
       "symbol": "MZMapViewController.mapView(_:recognizer:didRecognizeSingleTapGesture:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/Smollinger/coding/git_projects/ios-sdk/src/MZMapViewController.swift",
-      "line": 1162,
+      "file": "/Users/Smollinger/coding/git_projects/ios-sdk/MapzenSDK/MZMapViewController.swift",
+      "line": 1264,
       "symbol": "MZMapViewController.mapView(_:recognizer:shouldRecognizeDoubleTapGesture:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/Smollinger/coding/git_projects/ios-sdk/src/MZMapViewController.swift",
-      "line": 1167,
+      "file": "/Users/Smollinger/coding/git_projects/ios-sdk/MapzenSDK/MZMapViewController.swift",
+      "line": 1269,
       "symbol": "MZMapViewController.mapView(_:recognizer:didRecognizeDoubleTapGesture:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/Smollinger/coding/git_projects/ios-sdk/src/MZMapViewController.swift",
-      "line": 1171,
+      "file": "/Users/Smollinger/coding/git_projects/ios-sdk/MapzenSDK/MZMapViewController.swift",
+      "line": 1273,
       "symbol": "MZMapViewController.mapView(_:recognizer:shouldRecognizeLongPressGesture:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/Smollinger/coding/git_projects/ios-sdk/src/MZMapViewController.swift",
-      "line": 1176,
+      "file": "/Users/Smollinger/coding/git_projects/ios-sdk/MapzenSDK/MZMapViewController.swift",
+      "line": 1278,
       "symbol": "MZMapViewController.mapView(_:recognizer:didRecognizeLongPressGesture:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/Smollinger/coding/git_projects/ios-sdk/src/MZMapViewController.swift",
-      "line": 1180,
+      "file": "/Users/Smollinger/coding/git_projects/ios-sdk/MapzenSDK/MZMapViewController.swift",
+      "line": 1282,
       "symbol": "MZMapViewController.mapView(_:recognizer:shouldRecognizePanGesture:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/Smollinger/coding/git_projects/ios-sdk/src/MZMapViewController.swift",
-      "line": 1188,
+      "file": "/Users/Smollinger/coding/git_projects/ios-sdk/MapzenSDK/MZMapViewController.swift",
+      "line": 1290,
       "symbol": "MZMapViewController.mapView(_:recognizer:didRecognizePanGesture:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/Smollinger/coding/git_projects/ios-sdk/src/MZMapViewController.swift",
-      "line": 1194,
+      "file": "/Users/Smollinger/coding/git_projects/ios-sdk/MapzenSDK/MZMapViewController.swift",
+      "line": 1296,
       "symbol": "MZMapViewController.mapView(_:recognizer:shouldRecognizePinchGesture:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/Smollinger/coding/git_projects/ios-sdk/src/MZMapViewController.swift",
-      "line": 1198,
+      "file": "/Users/Smollinger/coding/git_projects/ios-sdk/MapzenSDK/MZMapViewController.swift",
+      "line": 1300,
       "symbol": "MZMapViewController.mapView(_:recognizer:didRecognizePinchGesture:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/Smollinger/coding/git_projects/ios-sdk/src/MZMapViewController.swift",
-      "line": 1202,
+      "file": "/Users/Smollinger/coding/git_projects/ios-sdk/MapzenSDK/MZMapViewController.swift",
+      "line": 1304,
       "symbol": "MZMapViewController.mapView(_:recognizer:shouldRecognizeRotationGesture:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/Smollinger/coding/git_projects/ios-sdk/src/MZMapViewController.swift",
-      "line": 1206,
+      "file": "/Users/Smollinger/coding/git_projects/ios-sdk/MapzenSDK/MZMapViewController.swift",
+      "line": 1308,
       "symbol": "MZMapViewController.mapView(_:recognizer:didRecognizeRotationGesture:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/Smollinger/coding/git_projects/ios-sdk/src/MZMapViewController.swift",
-      "line": 1210,
+      "file": "/Users/Smollinger/coding/git_projects/ios-sdk/MapzenSDK/MZMapViewController.swift",
+      "line": 1312,
       "symbol": "MZMapViewController.mapView(_:recognizer:shouldRecognizeShoveGesture:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/Smollinger/coding/git_projects/ios-sdk/src/MZMapViewController.swift",
-      "line": 1214,
+      "file": "/Users/Smollinger/coding/git_projects/ios-sdk/MapzenSDK/MZMapViewController.swift",
+      "line": 1316,
       "symbol": "MZMapViewController.mapView(_:recognizer:didRecognizeShoveGesture:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/Smollinger/coding/git_projects/ios-sdk/src/Marker.swift",
+      "file": "/Users/Smollinger/coding/git_projects/ios-sdk/MapzenSDK/MapzenSearch.swift",
+      "line": 15,
+      "symbol": "MapzenSearch.apiKey",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Smollinger/coding/git_projects/ios-sdk/MapzenSDK/MapzenSearch.swift",
+      "line": 109,
+      "symbol": "MapzenSearch.observeValue(forKeyPath:of:change:context:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Smollinger/coding/git_projects/ios-sdk/MapzenSDK/Marker.swift",
       "line": 52,
       "symbol": "GenericPointIconMarker",
       "symbol_kind": "source.lang.swift.decl.protocol",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/Smollinger/coding/git_projects/ios-sdk/src/Marker.swift",
-      "line": 140,
-      "symbol": "Marker.init()",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "file": "/Users/Smollinger/coding/git_projects/ios-sdk/MapzenSDK/Marker.swift",
+      "line": 152,
+      "symbol": "GeometricMarker.tgMarker",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/Smollinger/coding/git_projects/ios-sdk/src/Marker.swift",
-      "line": 323,
+      "file": "/Users/Smollinger/coding/git_projects/ios-sdk/MapzenSDK/Marker.swift",
+      "line": 204,
+      "symbol": "PointMarker.tgMarker",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Smollinger/coding/git_projects/ios-sdk/MapzenSDK/Marker.swift",
+      "line": 315,
+      "symbol": "PolylineMarker.tgMarker",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Smollinger/coding/git_projects/ios-sdk/MapzenSDK/Marker.swift",
+      "line": 349,
       "symbol": "PolylineMarker.init()",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/Smollinger/coding/git_projects/ios-sdk/src/Marker.swift",
-      "line": 361,
+      "file": "/Users/Smollinger/coding/git_projects/ios-sdk/MapzenSDK/Marker.swift",
+      "line": 369,
+      "symbol": "PolygonMarker.tgMarker",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Smollinger/coding/git_projects/ios-sdk/MapzenSDK/Marker.swift",
+      "line": 395,
       "symbol": "PolygonMarker.init()",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/Smollinger/coding/git_projects/ios-sdk/src/Marker.swift",
-      "line": 374,
+      "file": "/Users/Smollinger/coding/git_projects/ios-sdk/MapzenSDK/Marker.swift",
+      "line": 408,
       "symbol": "PointMarkerType.currentLocation",
       "symbol_kind": "source.lang.swift.decl.enumelement",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/Smollinger/coding/git_projects/ios-sdk/src/Marker.swift",
-      "line": 374,
+      "file": "/Users/Smollinger/coding/git_projects/ios-sdk/MapzenSDK/Marker.swift",
+      "line": 408,
       "symbol": "PointMarkerType.droppedPin",
       "symbol_kind": "source.lang.swift.decl.enumelement",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/Smollinger/coding/git_projects/ios-sdk/src/Marker.swift",
-      "line": 374,
+      "file": "/Users/Smollinger/coding/git_projects/ios-sdk/MapzenSDK/Marker.swift",
+      "line": 408,
       "symbol": "PointMarkerType.routeLocation",
       "symbol_kind": "source.lang.swift.decl.enumelement",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/Smollinger/coding/git_projects/ios-sdk/src/Marker.swift",
-      "line": 379,
+      "file": "/Users/Smollinger/coding/git_projects/ios-sdk/MapzenSDK/Marker.swift",
+      "line": 413,
       "symbol": "SelectablePointMarkerType.routeDestination",
       "symbol_kind": "source.lang.swift.decl.enumelement",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/Smollinger/coding/git_projects/ios-sdk/src/Marker.swift",
-      "line": 379,
+      "file": "/Users/Smollinger/coding/git_projects/ios-sdk/MapzenSDK/Marker.swift",
+      "line": 413,
       "symbol": "SelectablePointMarkerType.routeStart",
       "symbol_kind": "source.lang.swift.decl.enumelement",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/Smollinger/coding/git_projects/ios-sdk/src/Marker.swift",
-      "line": 379,
+      "file": "/Users/Smollinger/coding/git_projects/ios-sdk/MapzenSDK/Marker.swift",
+      "line": 413,
       "symbol": "SelectablePointMarkerType.searchPin",
       "symbol_kind": "source.lang.swift.decl.enumelement",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/Smollinger/coding/git_projects/ios-sdk/src/Marker.swift",
-      "line": 516,
-      "symbol": "SystemPolylineMarker.init()",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "file": "/Users/Smollinger/coding/git_projects/ios-sdk/MapzenSDK/Marker.swift",
+      "line": 427,
+      "symbol": "SystemPointMarker.tgMarker",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/Smollinger/coding/git_projects/ios-sdk/src/PeliasMapkitExtensions.swift",
+      "file": "/Users/Smollinger/coding/git_projects/ios-sdk/MapzenSDK/Marker.swift",
+      "line": 495,
+      "symbol": "SelectableSystemPointMarker.tgMarker",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Smollinger/coding/git_projects/ios-sdk/MapzenSDK/Marker.swift",
+      "line": 563,
+      "symbol": "SystemPolylineMarker.tgMarker",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Smollinger/coding/git_projects/ios-sdk/MapzenSDK/PeliasMapkitExtensions.swift",
       "line": 61,
       "symbol": "PeliasIDKey",
       "symbol_kind": "source.lang.swift.decl.var.global",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/Smollinger/coding/git_projects/ios-sdk/src/PeliasMapkitExtensions.swift",
+      "file": "/Users/Smollinger/coding/git_projects/ios-sdk/MapzenSDK/PeliasMapkitExtensions.swift",
       "line": 62,
       "symbol": "PeliasDataSourceKey",
       "symbol_kind": "source.lang.swift.decl.var.global",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/Smollinger/coding/git_projects/ios-sdk/src/PeliasMapkitExtensions.swift",
+      "file": "/Users/Smollinger/coding/git_projects/ios-sdk/MapzenSDK/PeliasMapkitExtensions.swift",
       "line": 69,
       "symbol": "PeliasMapkitAnnotation.coordinate",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/Smollinger/coding/git_projects/ios-sdk/src/PeliasMapkitExtensions.swift",
+      "file": "/Users/Smollinger/coding/git_projects/ios-sdk/MapzenSDK/PeliasMapkitExtensions.swift",
       "line": 70,
       "symbol": "PeliasMapkitAnnotation.title",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/Smollinger/coding/git_projects/ios-sdk/src/PeliasMapkitExtensions.swift",
+      "file": "/Users/Smollinger/coding/git_projects/ios-sdk/MapzenSDK/PeliasMapkitExtensions.swift",
       "line": 71,
       "symbol": "PeliasMapkitAnnotation.subtitle",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/Smollinger/coding/git_projects/ios-sdk/src/PeliasMapkitExtensions.swift",
+      "file": "/Users/Smollinger/coding/git_projects/ios-sdk/MapzenSDK/PeliasMapkitExtensions.swift",
       "line": 72,
       "symbol": "PeliasMapkitAnnotation.data",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/Smollinger/coding/git_projects/ios-sdk/src/PeliasMapkitExtensions.swift",
+      "file": "/Users/Smollinger/coding/git_projects/ios-sdk/MapzenSDK/PeliasMapkitExtensions.swift",
       "line": 73,
       "symbol": "PeliasMapkitAnnotation.target",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/Smollinger/coding/git_projects/ios-sdk/src/PeliasMapkitExtensions.swift",
+      "file": "/Users/Smollinger/coding/git_projects/ios-sdk/MapzenSDK/PeliasMapkitExtensions.swift",
       "line": 74,
       "symbol": "PeliasMapkitAnnotation.selector",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/Smollinger/coding/git_projects/ios-sdk/src/RoutingController.swift",
-      "line": 61,
+      "file": "/Users/Smollinger/coding/git_projects/ios-sdk/MapzenSDK/PeliasMapkitExtensions.swift",
+      "line": 158,
+      "symbol": "MKMapItem.coordinate",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Smollinger/coding/git_projects/ios-sdk/MapzenSDK/PeliasMapkitExtensions.swift",
+      "line": 164,
+      "symbol": "MKMapItem.title",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Smollinger/coding/git_projects/ios-sdk/MapzenSDK/RoutingController.swift",
+      "line": 63,
       "symbol": "RoutingController.requestRoute(withLocations:costingModel:costingOption:directionsOptions:callback:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/Smollinger/coding/git_projects/ios-sdk/src/SearchDataObjects.swift",
+      "file": "/Users/Smollinger/coding/git_projects/ios-sdk/MapzenSDK/SearchDataObjects.swift",
       "line": 29,
       "symbol": "SearchRect.isEqual(_:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/Smollinger/coding/git_projects/ios-sdk/src/SearchDataObjects.swift",
+      "file": "/Users/Smollinger/coding/git_projects/ios-sdk/MapzenSDK/SearchDataObjects.swift",
       "line": 52,
       "symbol": "SearchCircle.isEqual(_:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/Smollinger/coding/git_projects/ios-sdk/src/SearchDataObjects.swift",
+      "file": "/Users/Smollinger/coding/git_projects/ios-sdk/MapzenSDK/SearchDataObjects.swift",
       "line": 75,
       "symbol": "GeoPoint.isEqual(_:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/Smollinger/coding/git_projects/ios-sdk/src/SearchDataObjects.swift",
+      "file": "/Users/Smollinger/coding/git_projects/ios-sdk/MapzenSDK/SearchDataObjects.swift",
       "line": 84,
       "symbol": "SearchSource.geoNames",
       "symbol_kind": "source.lang.swift.decl.enumelement",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/Smollinger/coding/git_projects/ios-sdk/src/SearchDataObjects.swift",
+      "file": "/Users/Smollinger/coding/git_projects/ios-sdk/MapzenSDK/SearchDataObjects.swift",
       "line": 84,
       "symbol": "SearchSource.openAddresses",
       "symbol_kind": "source.lang.swift.decl.enumelement",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/Smollinger/coding/git_projects/ios-sdk/src/SearchDataObjects.swift",
+      "file": "/Users/Smollinger/coding/git_projects/ios-sdk/MapzenSDK/SearchDataObjects.swift",
       "line": 84,
       "symbol": "SearchSource.openStreetMap",
       "symbol_kind": "source.lang.swift.decl.enumelement",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/Smollinger/coding/git_projects/ios-sdk/src/SearchDataObjects.swift",
+      "file": "/Users/Smollinger/coding/git_projects/ios-sdk/MapzenSDK/SearchDataObjects.swift",
       "line": 84,
       "symbol": "SearchSource.quattroshapes",
       "symbol_kind": "source.lang.swift.decl.enumelement",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/Smollinger/coding/git_projects/ios-sdk/src/SearchDataObjects.swift",
+      "file": "/Users/Smollinger/coding/git_projects/ios-sdk/MapzenSDK/SearchDataObjects.swift",
       "line": 90,
       "symbol": "LayerFilter.address",
       "symbol_kind": "source.lang.swift.decl.enumelement",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/Smollinger/coding/git_projects/ios-sdk/src/SearchDataObjects.swift",
+      "file": "/Users/Smollinger/coding/git_projects/ios-sdk/MapzenSDK/SearchDataObjects.swift",
       "line": 90,
       "symbol": "LayerFilter.coarse",
       "symbol_kind": "source.lang.swift.decl.enumelement",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/Smollinger/coding/git_projects/ios-sdk/src/SearchDataObjects.swift",
+      "file": "/Users/Smollinger/coding/git_projects/ios-sdk/MapzenSDK/SearchDataObjects.swift",
       "line": 90,
       "symbol": "LayerFilter.country",
       "symbol_kind": "source.lang.swift.decl.enumelement",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/Smollinger/coding/git_projects/ios-sdk/src/SearchDataObjects.swift",
+      "file": "/Users/Smollinger/coding/git_projects/ios-sdk/MapzenSDK/SearchDataObjects.swift",
       "line": 90,
       "symbol": "LayerFilter.county",
       "symbol_kind": "source.lang.swift.decl.enumelement",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/Smollinger/coding/git_projects/ios-sdk/src/SearchDataObjects.swift",
+      "file": "/Users/Smollinger/coding/git_projects/ios-sdk/MapzenSDK/SearchDataObjects.swift",
       "line": 90,
       "symbol": "LayerFilter.localadmin",
       "symbol_kind": "source.lang.swift.decl.enumelement",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/Smollinger/coding/git_projects/ios-sdk/src/SearchDataObjects.swift",
+      "file": "/Users/Smollinger/coding/git_projects/ios-sdk/MapzenSDK/SearchDataObjects.swift",
       "line": 90,
       "symbol": "LayerFilter.locality",
       "symbol_kind": "source.lang.swift.decl.enumelement",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/Smollinger/coding/git_projects/ios-sdk/src/SearchDataObjects.swift",
+      "file": "/Users/Smollinger/coding/git_projects/ios-sdk/MapzenSDK/SearchDataObjects.swift",
       "line": 90,
       "symbol": "LayerFilter.neighbourhood",
       "symbol_kind": "source.lang.swift.decl.enumelement",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/Smollinger/coding/git_projects/ios-sdk/src/SearchDataObjects.swift",
+      "file": "/Users/Smollinger/coding/git_projects/ios-sdk/MapzenSDK/SearchDataObjects.swift",
       "line": 90,
       "symbol": "LayerFilter.region",
       "symbol_kind": "source.lang.swift.decl.enumelement",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/Smollinger/coding/git_projects/ios-sdk/src/SearchDataObjects.swift",
+      "file": "/Users/Smollinger/coding/git_projects/ios-sdk/MapzenSDK/SearchDataObjects.swift",
       "line": 90,
       "symbol": "LayerFilter.venue",
       "symbol_kind": "source.lang.swift.decl.enumelement",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/Smollinger/coding/git_projects/ios-sdk/src/SearchResponse.swift",
+      "file": "/Users/Smollinger/coding/git_projects/ios-sdk/MapzenSDK/SearchResponse.swift",
+      "line": 16,
+      "symbol": "SearchResponse.peliasResponse",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Smollinger/coding/git_projects/ios-sdk/MapzenSDK/SearchResponse.swift",
       "line": 42,
       "symbol": "SearchResponse.parsedResponse",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/Smollinger/coding/git_projects/ios-sdk/src/SearchResponse.swift",
+      "file": "/Users/Smollinger/coding/git_projects/ios-sdk/MapzenSDK/SearchResponse.swift",
       "line": 52,
       "symbol": "SearchResponse.isEqual(_:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/Smollinger/coding/git_projects/ios-sdk/src/SearchResponse.swift",
+      "file": "/Users/Smollinger/coding/git_projects/ios-sdk/MapzenSDK/SearchResponse.swift",
       "line": 61,
       "symbol": "ParsedSearchResponse",
       "symbol_kind": "source.lang.swift.decl.class",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/Smollinger/coding/git_projects/ios-sdk/src/dimensions/Dimensions.swift",
+      "file": "/Users/Smollinger/coding/git_projects/ios-sdk/MapzenSDK/Themes.swift",
+      "line": 20,
+      "symbol": "StyleSheet.fileLocation",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Smollinger/coding/git_projects/ios-sdk/MapzenSDK/Themes.swift",
+      "line": 21,
+      "symbol": "StyleSheet.remoteFileLocation",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Smollinger/coding/git_projects/ios-sdk/MapzenSDK/Themes.swift",
+      "line": 22,
+      "symbol": "StyleSheet.styleSheetRoot",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Smollinger/coding/git_projects/ios-sdk/MapzenSDK/Themes.swift",
+      "line": 23,
+      "symbol": "StyleSheet.houseStylesRoot",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Smollinger/coding/git_projects/ios-sdk/MapzenSDK/Themes.swift",
+      "line": 24,
+      "symbol": "StyleSheet.styleSheetFileName",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Smollinger/coding/git_projects/ios-sdk/MapzenSDK/Themes.swift",
+      "line": 25,
+      "symbol": "StyleSheet.importString",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Smollinger/coding/git_projects/ios-sdk/MapzenSDK/Themes.swift",
+      "line": 26,
+      "symbol": "StyleSheet.relativePath",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Smollinger/coding/git_projects/ios-sdk/MapzenSDK/Themes.swift",
+      "line": 27,
+      "symbol": "StyleSheet.mapStyle",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Smollinger/coding/git_projects/ios-sdk/MapzenSDK/Themes.swift",
+      "line": 28,
+      "symbol": "StyleSheet.yamlString",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Smollinger/coding/git_projects/ios-sdk/MapzenSDK/Themes.swift",
+      "line": 29,
+      "symbol": "StyleSheet.detailLevel",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Smollinger/coding/git_projects/ios-sdk/MapzenSDK/Themes.swift",
+      "line": 30,
+      "symbol": "StyleSheet.labelLevel",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Smollinger/coding/git_projects/ios-sdk/MapzenSDK/Themes.swift",
+      "line": 31,
+      "symbol": "StyleSheet.currentColor",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Smollinger/coding/git_projects/ios-sdk/MapzenSDK/Themes.swift",
+      "line": 33,
+      "symbol": "StyleSheet.availableColors",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Smollinger/coding/git_projects/ios-sdk/MapzenSDK/Themes.swift",
+      "line": 34,
+      "symbol": "StyleSheet.availableDetailLevels",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Smollinger/coding/git_projects/ios-sdk/MapzenSDK/Themes.swift",
+      "line": 35,
+      "symbol": "StyleSheet.availableLabelLevels",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Smollinger/coding/git_projects/ios-sdk/MapzenSDK/Themes.swift",
+      "line": 38,
+      "symbol": "BaseStyle",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Smollinger/coding/git_projects/ios-sdk/MapzenSDK/Themes.swift",
+      "line": 118,
+      "symbol": "BubbleWrapStyle",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Smollinger/coding/git_projects/ios-sdk/MapzenSDK/Themes.swift",
+      "line": 160,
+      "symbol": "CinnabarStyle",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Smollinger/coding/git_projects/ios-sdk/MapzenSDK/Themes.swift",
+      "line": 202,
+      "symbol": "RefillStyle",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Smollinger/coding/git_projects/ios-sdk/MapzenSDK/Themes.swift",
+      "line": 256,
+      "symbol": "ZincStyle",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Smollinger/coding/git_projects/ios-sdk/MapzenSDK/Themes.swift",
+      "line": 272,
+      "symbol": "WalkaboutStyle",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/Smollinger/coding/git_projects/ios-sdk/MapzenSDK/dimensions/Dimensions.swift",
       "line": 12,
       "symbol": "Dimensions",
       "symbol_kind": "source.lang.swift.decl.class",
