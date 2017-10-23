@@ -1,4 +1,4 @@
-module: ios_sdk
+module: MapzenSDK
 author: Mapzen
 author_url: https://www.mapzen.com/
 output: ./build/ios-docs/
@@ -6,6 +6,6 @@ github_url: https://github.com/mapzen/ios
 copyright: '© 2017 [Mapzen](https://www.mapzen.com/).'
 head: |
     <link rel='shortcut icon' href='https://mapzen.com/common/styleguide/images/favicon.ico' type='image/x-icon' />
-xcodebuild_arguments: [-workspace,ios-sdk.xcworkspace,-scheme,ios-sdk]
+xcodebuild_arguments: [-workspace,ios-sdk.xcworkspace,-scheme,MapzenSDK]
 skip_undocumented: Yes
 clean: true
