@@ -89,7 +89,7 @@ open class LocationManager: NSObject, CLLocationManagerDelegate, LocationManager
   }
 
   /**
-   Enables background location updates to be received.
+   Enables background location updates to be received. This requires additional parameters in your apps Info.plist be set, which is different depending on the version of iOS you are linking against. Please consult Apple's most current documentation on the matter, or reference our sample application for an example.
 
    - parameter activityType: The core location activity type that we're requesting background location updates for.
    - parameter desiredAccuracy: Controls what systems (GPS, Wi-Fi, Cellular, iBeacon, etc.) are involved with updating locations.
@@ -106,6 +106,8 @@ open class LocationManager: NSObject, CLLocationManagerDelegate, LocationManager
     coreLocationManager.startUpdatingHeading()
     return true
   }
+
+  /// Disables background location updates. If you want to continue receiving foreground location updates, you must call startUpdatingLocation() again.
   open func disableBackgroundLocationUpdates() {
     coreLocationManager.allowsBackgroundLocationUpdates = false
     coreLocationManager.stopUpdatingHeading()
