@@ -34,7 +34,7 @@ import OnTheRoad
  The `LocationManager` class is a wrapper around iOS's built in location subsystem. It provides a simpler interface and customization options.
   */
 @objc(MZLocationManager)
-open class LocationManager: NSObject, CLLocationManagerDelegate {
+open class LocationManager: NSObject, CLLocationManagerDelegate, LocationManagerProtocol {
 
   /// The last received known good location
   open var currentLocation: CLLocation?
@@ -42,7 +42,7 @@ open class LocationManager: NSObject, CLLocationManagerDelegate {
   /// The delegate to receive the location authorization and status callbacks
   open weak var delegate: LocationManagerDelegate?
 
-  fileprivate let coreLocationManager = CLLocationManager()
+  internal let coreLocationManager = CLLocationManager()
   
   override public init(){
     super.init()
@@ -74,7 +74,42 @@ open class LocationManager: NSObject, CLLocationManagerDelegate {
    - returns: Whether or not the application is authorized.
    */
   open func isAlwaysAuthorized() -> Bool {
-        return CLLocationManager.authorizationStatus() == .authorizedAlways
+    return CLLocationManager.authorizationStatus() == .authorizedAlways
+  }
+
+  /**
+   Asks the location subsystem if we're able to receive background location updates. This should be checked every startup because the user can disable it externally in settings.
+
+   - returns: Whether or not the application is able to receive background location updates.
+   */
+  open func canEnableBackgroundLocationUpdates() -> Bool {
+    if UIApplication.shared.backgroundRefreshStatus != .available { return false }
+    if !isAlwaysAuthorized() { return false }
+    return true
+  }
+
+  /**
+   Enables background location updates to be received.
+
+   - parameter activityType: The core location activity type that we're requesting background location updates for.
+   - parameter desiredAccuracy: Controls what systems (GPS, Wi-Fi, Cellular, iBeacon, etc.) are involved with updating locations.
+   - parameter pausesAutomatically: Whether or not certain activity types will pause sending updates dynamically. Examples include navigation activities will not send updates when the user has not moved significantly.
+   - returns: True if enabled, or false if we can't enable due to system restrictions
+   */
+  open func enableBackgroundLocationUpdates(forType activityType: CLActivityType, desiredAccuracy: CLLocationAccuracy, pausesLocationAutomatically: Bool) -> Bool {
+    if !canEnableBackgroundLocationUpdates() { return false }
+    coreLocationManager.activityType = activityType
+    coreLocationManager.desiredAccuracy = desiredAccuracy
+    coreLocationManager.pausesLocationUpdatesAutomatically = pausesLocationAutomatically
+    coreLocationManager.allowsBackgroundLocationUpdates = true
+    coreLocationManager.startUpdatingLocation()
+    coreLocationManager.startUpdatingHeading()
+    return true
+  }
+  open func disableBackgroundLocationUpdates() {
+    coreLocationManager.allowsBackgroundLocationUpdates = false
+    coreLocationManager.stopUpdatingHeading()
+    coreLocationManager.stopUpdatingLocation()
   }
 
   /** 
@@ -104,6 +139,16 @@ open class LocationManager: NSObject, CLLocationManagerDelegate {
   /// Stops the location manager callbacks
   open func stopUpdatingLocation() {
     coreLocationManager.stopUpdatingLocation()
+  }
+
+  /// Begin tracking heading
+  open func startUpdatingHeading() {
+    coreLocationManager.startUpdatingHeading()
+  }
+
+  // Stop tracking heading
+  open func stopUpdatingHeading() {
+    coreLocationManager.stopUpdatingHeading()
   }
 
   //MARK: - CLLocationManagerDelegate
@@ -150,8 +195,9 @@ public protocol LocationManagerProtocol : class {
   func requestLocation()
   func startUpdatingLocation()
   func stopUpdatingLocation()
+  func startUpdatingHeading()
+  func stopUpdatingHeading()
+  func canEnableBackgroundLocationUpdates() -> Bool
+  func enableBackgroundLocationUpdates(forType activityType: CLActivityType, desiredAccuracy: CLLocationAccuracy, pausesLocationAutomatically: Bool) -> Bool
 }
-
-/// Make the LocationManager class conform to the LocationManagerProtocol
-extension LocationManager: LocationManagerProtocol {}
 

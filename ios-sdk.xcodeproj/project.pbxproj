@@ -645,6 +645,11 @@
 						DevelopmentTeam = LTQC954SPQ;
 						LastSwiftMigration = 0820;
 						ProvisioningStyle = Manual;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+						};
 					};
 					DB7A33E71C8F8E8B009CC743 = {
 						CreatedOnToolsVersion = 7.2.1;
