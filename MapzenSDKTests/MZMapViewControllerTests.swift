@@ -429,6 +429,47 @@ class MapViewControllerTests: XCTestCase {
     XCTAssertTrue(controller.lastSetPointValue()?.latitude == mockLocation.coordinate.latitude)
     XCTAssertTrue(controller.lastSetPointValue()?.longitude == mockLocation.coordinate.longitude)
   }
+//MARK:- Background Location Tests - These tests will fail if methods are called on the mocked TGMapViewController that should not be called while in background mode.
+  func testBackgroundLocationCameraReset(){
+    //Setup
+    controller.tgViewController = FailingTGMapViewController()
+    _ = controller.showCurrentLocation(true)
+    controller.lastSetPoint = TGGeoPointMake(0.0, 0.0)
+
+    //Important
+    controller.isInBackground = true
+
+    //Will call failing methods
+    _ = controller.resetCameraOnCurrentLocation()
+  }
+
+  func testBackgroundLocationAnimation(){
+    //Setup
+    controller.tgViewController = FailingTGMapViewController()
+
+    //Important
+    controller.isInBackground = true
+
+    //Will call failing methods
+    _ = controller.animate(toTilt: 1.0, withDuration: 1.0)
+    _ = controller.animate(toPosition: TGGeoPointMake(0.0, 0.0), withDuration: 1.0)
+    _ = controller.animate(toRotation: 1.0, withDuration: 1.0)
+    _ = controller.animate(toZoomLevel: 1.0, withDuration: 1.0)
+    _ = controller.animate(toTilt: 1.0, withDuration: 1.0, with: .linear)
+    _ = controller.animate(toPosition: TGGeoPointMake(0.0, 0.0), withDuration: 1.0, with: .linear)
+    _ = controller.animate(toRotation: 1.0, withDuration: 1.0, with: .linear)
+    _ = controller.animate(toZoomLevel: 1.0, withDuration: 1.0, with: .linear)
+  }
+
+  func testNotifcationCenterObserversForBackgroundMethods() {
+    let testCenter = TestNotificationCenter()
+    controller.observeLifecycleNotifications(notificationCenter: testCenter)
+    XCTAssertTrue(testCenter.observer as! TestMapViewController == controller, "Notification Center not observing correct observer")
+    XCTAssertTrue(testCenter.notificationObserverArray[NSNotification.Name.UIApplicationWillResignActive] != nil, "Not observing UIApplicationWillResignActive")
+    XCTAssertTrue(testCenter.notificationObserverArray[NSNotification.Name.UIApplicationWillEnterForeground] != nil, "Not observing UIApplicationWillResignActive")
+  }
+
+//MARK:- Annotation Testing
 
   func testAddAnnotations(){
     let testAnno1 = PeliasMapkitAnnotation(coordinate: CLLocationCoordinate2DMake(0.0, 0.0), title: "Test1", subtitle: "SubTest1", data: nil)

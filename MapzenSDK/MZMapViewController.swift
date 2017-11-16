@@ -995,10 +995,14 @@ open class MZMapViewController: UIViewController, LocationManagerDelegate {
     tgViewController.resumeOnDidBecomeActive = true
   }
 
+  deinit {
+    NotificationCenter.default.removeObserver(self)
+  }
+
   //MARK: - Application Lifecycle Observance
-  func observeLifecycleNotifications() {
-    NotificationCenter.default.addObserver(self, selector: #selector(applicationWillResignActive), name: .UIApplicationWillResignActive, object: nil)
-    NotificationCenter.default.addObserver(self, selector: #selector(applicationWillEnterForeground), name: .UIApplicationWillEnterForeground, object: nil)
+  func observeLifecycleNotifications(notificationCenter: NotificationCenterProtocol = NotificationCenter.default) {
+    notificationCenter.addObserver(self, selector: #selector(applicationWillResignActive), name: .UIApplicationWillResignActive, object: nil)
+    notificationCenter.addObserver(self, selector: #selector(applicationWillEnterForeground), name: .UIApplicationWillEnterForeground, object: nil)
   }
 
   func applicationWillResignActive() {
@@ -1007,7 +1011,6 @@ open class MZMapViewController: UIViewController, LocationManagerDelegate {
 
   func applicationWillEnterForeground() {
     isInBackground = false
-
   }
 
   //MARK: - LocationManagerDelegate

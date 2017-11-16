@@ -56,6 +56,7 @@
 		814B721477E03B65EF2C60E7 /* Pods_MapzenSDKTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 34105AA3EE25DC0CCB8D0111 /* Pods_MapzenSDKTests.framework */; };
 		AC586709D7E7D4C22AA9474D /* Pods_ios_sdk.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 99B3EC60450343448FA4E699 /* Pods_ios_sdk.framework */; };
 		DB1201251E96B6200085C7D8 /* DemoSearchListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB1201241E96B6200085C7D8 /* DemoSearchListViewController.swift */; };
+		DB1E1F4A1FBE10950061F770 /* TestNotificationCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB1E1F491FBE10950061F770 /* TestNotificationCenter.swift */; };
 		DB22E59C1DA46640004264E0 /* DemoRoutingResultTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB22E59B1DA46640004264E0 /* DemoRoutingResultTableVC.swift */; };
 		DB22E59E1DA473CA004264E0 /* DemoRouteDirectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB22E59D1DA473CA004264E0 /* DemoRouteDirectionCell.swift */; };
 		DB2752F71EFC6F2900CD31B0 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB2752F61EFC6F2900CD31B0 /* OpenGLES.framework */; };
@@ -193,6 +194,7 @@
 		C481BB48C6711F4FEE1DA601 /* Pods-MapzenSDK.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MapzenSDK.release.xcconfig"; path = "Pods/Target Support Files/Pods-MapzenSDK/Pods-MapzenSDK.release.xcconfig"; sourceTree = "<group>"; };
 		D3998FF91F67B727EE3E0C7A /* Pods-MapzenSDKTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MapzenSDKTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MapzenSDKTests/Pods-MapzenSDKTests.debug.xcconfig"; sourceTree = "<group>"; };
 		DB1201241E96B6200085C7D8 /* DemoSearchListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DemoSearchListViewController.swift; sourceTree = "<group>"; };
+		DB1E1F491FBE10950061F770 /* TestNotificationCenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestNotificationCenter.swift; sourceTree = "<group>"; };
 		DB22E59B1DA46640004264E0 /* DemoRoutingResultTableVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DemoRoutingResultTableVC.swift; sourceTree = "<group>"; };
 		DB22E59D1DA473CA004264E0 /* DemoRouteDirectionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DemoRouteDirectionCell.swift; sourceTree = "<group>"; };
 		DB2752F61EFC6F2900CD31B0 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
@@ -333,6 +335,7 @@
 				7D463A381EB1357B0074BEC5 /* SearchResponseTests.swift */,
 				7D463A391EB1357B0074BEC5 /* TestAnnotationTarget.swift */,
 				7D463A3A1EB1357B0074BEC5 /* TestApplication.swift */,
+				DB1E1F491FBE10950061F770 /* TestNotificationCenter.swift */,
 				7D463A3B1EB1357B0074BEC5 /* TestLocationManager.swift */,
 				7D463A3C1EB1357B0074BEC5 /* TestMapzenManager.swift */,
 				7D463A3D1EB1357B0074BEC5 /* TestSessionDataTask.swift */,
@@ -1053,6 +1056,7 @@
 				7D463A461EB1357B0074BEC5 /* MarkerTests.swift in Sources */,
 				7D463A4A1EB1357B0074BEC5 /* SearchDataObjectsTests.swift in Sources */,
 				DBB4B3281FAB856600EC86C9 /* TGMapViewControllerMocks.swift in Sources */,
+				DB1E1F4A1FBE10950061F770 /* TestNotificationCenter.swift in Sources */,
 				7D463A501EB1357B0074BEC5 /* TestSessionDataTask.swift in Sources */,
 				7D463A4F1EB1357B0074BEC5 /* TestMapzenManager.swift in Sources */,
 				7D463A441EB1357B0074BEC5 /* MapzenManagerTests.swift in Sources */,
