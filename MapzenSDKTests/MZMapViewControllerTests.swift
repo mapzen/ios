@@ -469,6 +469,14 @@ class MapViewControllerTests: XCTestCase {
     XCTAssertTrue(testCenter.notificationObserverArray[NSNotification.Name.UIApplicationWillEnterForeground] != nil, "Not observing UIApplicationWillResignActive")
   }
 
+  func testNotificationCenterObservanceMethods() {
+    XCTAssertFalse(controller.isInBackground, "isInBackground set to true when should be false")
+    controller.applicationWillResignActive()
+    XCTAssertTrue(controller.isInBackground, "isInBackground set to false when should be true")
+    controller.applicationWillEnterForeground()
+    XCTAssertFalse(controller.isInBackground, "isInBackground set to true when should be false")
+  }
+
 //MARK:- Annotation Testing
 
   func testAddAnnotations(){
