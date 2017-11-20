@@ -451,7 +451,7 @@ open class MZMapViewController: UIViewController, LocationManagerDelegate {
   }
 
   /**
-   Animates the map to a particular position using the default easing type (Cubic).
+   Animates the map to a particular position using the default easing type (Cubic). Note this function is a no-op when an app is operating in the background.
    
    - parameter position: The position to animate to.
    - parameter seconds: How long the animation should last.
@@ -462,7 +462,7 @@ open class MZMapViewController: UIViewController, LocationManagerDelegate {
   }
 
   /**
-   Animates the map to a particular position using the provided easing type.
+   Animates the map to a particular position using the provided easing type. Note this function is a no-op when an app is operating in the background.
    
    - parameter position: The position to animate to.
    - parameter seconds: How long the animation should last.
@@ -474,7 +474,7 @@ open class MZMapViewController: UIViewController, LocationManagerDelegate {
   }
 
   /**
-   Animates the map to a particular zoom level using the default easing type (Cubic).
+   Animates the map to a particular zoom level using the default easing type (Cubic). Note this function is a no-op when an app is operating in the background.
    
    - parameter zoomLevel: The zoom level to animate to.
    - parameter seconds: How long the animation should last.
@@ -485,7 +485,7 @@ open class MZMapViewController: UIViewController, LocationManagerDelegate {
   }
 
   /**
-   Animates the map to a particular zoom level using the provided easing type.
+   Animates the map to a particular zoom level using the provided easing type. Note this function is a no-op when an app is operating in the background.
    
    - parameter zoomLevel: The zoom level to animate to.
    - parameter seconds: How long the animation should last.
@@ -497,7 +497,7 @@ open class MZMapViewController: UIViewController, LocationManagerDelegate {
   }
 
   /**
-   Animates the map to rotate using the default easing type (Cubic).
+   Animates the map to rotate using the default easing type (Cubic). Note this function is a no-op when an app is operating in the background.
    
    - parameter radians: How far the map should rotate in radians.
    - parameter seconds: How long the animation should last.
@@ -508,7 +508,7 @@ open class MZMapViewController: UIViewController, LocationManagerDelegate {
   }
 
   /**
-   Animates the map to rotate using the provided easing type.
+   Animates the map to rotate using the provided easing type. Note this function is a no-op when an app is operating in the background.
    
    - parameter radians: How far the map should rotate in radians.
    - parameter seconds: How long the animation should last.
@@ -520,7 +520,7 @@ open class MZMapViewController: UIViewController, LocationManagerDelegate {
   }
   
   /**
-   Animates the map to tilt using the default easing type (Cubic).
+   Animates the map to tilt using the default easing type (Cubic). Note this function is a no-op when an app is operating in the background.
    
    - parameter radians: How far the map should tilt in radians.
    - parameter seconds: How long the animation should last.
@@ -531,7 +531,7 @@ open class MZMapViewController: UIViewController, LocationManagerDelegate {
   }
 
   /**
-   Animates the map to tile using the provided easing type.
+   Animates the map to tile using the provided easing type. Note this function is a no-op when an app is operating in the background.
    
    - parameter radians: How far the map should tilt in radians.
    - parameter seconds: How long the animation should last.
@@ -795,12 +795,12 @@ open class MZMapViewController: UIViewController, LocationManagerDelegate {
   }
   
   /**
-   Resets the camera on the current location, as well as the zoom and tilt. Can return false if the app is currently backgrounded
+   Resets the camera on the current location, as well as the zoom and tilt.
    
    - parameter tilt: The tilt to reset to. Defaults to 0.
    - parameter zoomLevel: The zoom to reset to. Defaults to 0.
    - parameter animationDuration: The length to animate the reset to. Passing in 0 makes the change happen immediately.
-   - returns: Whether or not the map was centered on the device's current location
+   - returns: Whether or not the map was centered on the device's current location. Can also return false if the app is currently backgrounded as we won't attempt animations while backgrounded.
    */
   open func resetCameraOnCurrentLocation(_ tilt: Float = 0.0, zoomLevel: Float = 16.0, animationDuration: Float = 1.0) -> Bool {
     guard currentLocationGem != nil else { return false }
@@ -1002,14 +1002,14 @@ open class MZMapViewController: UIViewController, LocationManagerDelegate {
   //MARK: - Application Lifecycle Observance
   func observeLifecycleNotifications(notificationCenter: NotificationCenterProtocol = NotificationCenter.default) {
     notificationCenter.addObserver(self, selector: #selector(applicationWillResignActive), name: .UIApplicationWillResignActive, object: nil)
-    notificationCenter.addObserver(self, selector: #selector(applicationWillEnterForeground), name: .UIApplicationWillEnterForeground, object: nil)
+    notificationCenter.addObserver(self, selector: #selector(applicationDidBecomeActive), name: .UIApplicationDidBecomeActive, object: nil)
   }
 
   func applicationWillResignActive() {
     isInBackground = true
   }
 
-  func applicationWillEnterForeground() {
+  func applicationDidBecomeActive() {
     isInBackground = false
   }
 

@@ -466,14 +466,14 @@ class MapViewControllerTests: XCTestCase {
     controller.observeLifecycleNotifications(notificationCenter: testCenter)
     XCTAssertTrue(testCenter.observer as! TestMapViewController == controller, "Notification Center not observing correct observer")
     XCTAssertTrue(testCenter.notificationObserverArray[NSNotification.Name.UIApplicationWillResignActive] != nil, "Not observing UIApplicationWillResignActive")
-    XCTAssertTrue(testCenter.notificationObserverArray[NSNotification.Name.UIApplicationWillEnterForeground] != nil, "Not observing UIApplicationWillResignActive")
+    XCTAssertTrue(testCenter.notificationObserverArray[NSNotification.Name.UIApplicationDidBecomeActive] != nil, "Not observing UIApplicationDidBecomeActive")
   }
 
   func testNotificationCenterObservanceMethods() {
     XCTAssertFalse(controller.isInBackground, "isInBackground set to true when should be false")
     controller.applicationWillResignActive()
     XCTAssertTrue(controller.isInBackground, "isInBackground set to false when should be true")
-    controller.applicationWillEnterForeground()
+    controller.applicationDidBecomeActive()
     XCTAssertFalse(controller.isInBackground, "isInBackground set to true when should be false")
   }
 

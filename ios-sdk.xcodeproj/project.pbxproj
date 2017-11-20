@@ -11,7 +11,7 @@
 		331E8DD43716FE247D48388C /* Pods_SampleApp_Objc.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 21AEB2E55668201759109460 /* Pods_SampleApp_Objc.framework */; };
 		5BB1A61A6A1B20597B8B4286 /* Pods_MapzenSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04E4AC0993E5EBFAAC2141F1 /* Pods_MapzenSDK.framework */; };
 		7D4639F11EB115280074BEC5 /* MapzenSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D4639E81EB115280074BEC5 /* MapzenSDK.framework */; };
-		7D463A191EB135460074BEC5 /* ApplicationExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D463A061EB135460074BEC5 /* ApplicationExtensions.swift */; };
+		7D463A191EB135460074BEC5 /* APPLFrameworkExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D463A061EB135460074BEC5 /* APPLFrameworkExtensions.swift */; };
 		7D463A1A1EB135460074BEC5 /* BundleExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D463A071EB135460074BEC5 /* BundleExtensions.swift */; };
 		7D463A1B1EB135460074BEC5 /* DictionaryExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D463A081EB135460074BEC5 /* DictionaryExtensions.swift */; };
 		7D463A1C1EB135460074BEC5 /* Dimensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D463A0A1EB135460074BEC5 /* Dimensions.swift */; };
@@ -142,7 +142,7 @@
 		7D4639EB1EB115280074BEC5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7D4639F01EB115280074BEC5 /* MapzenSDKTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MapzenSDKTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		7D4639F91EB115280074BEC5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		7D463A061EB135460074BEC5 /* ApplicationExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApplicationExtensions.swift; sourceTree = "<group>"; };
+		7D463A061EB135460074BEC5 /* APPLFrameworkExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APPLFrameworkExtensions.swift; sourceTree = "<group>"; };
 		7D463A071EB135460074BEC5 /* BundleExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BundleExtensions.swift; sourceTree = "<group>"; };
 		7D463A081EB135460074BEC5 /* DictionaryExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DictionaryExtensions.swift; sourceTree = "<group>"; };
 		7D463A0A1EB135460074BEC5 /* Dimensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Dimensions.swift; sourceTree = "<group>"; };
@@ -296,7 +296,7 @@
 				7D463A551EB143220074BEC5 /* images */,
 				7D463A2B1EB135610074BEC5 /* housestyles.bundle */,
 				7D4639EB1EB115280074BEC5 /* Info.plist */,
-				7D463A061EB135460074BEC5 /* ApplicationExtensions.swift */,
+				7D463A061EB135460074BEC5 /* APPLFrameworkExtensions.swift */,
 				7D463A071EB135460074BEC5 /* BundleExtensions.swift */,
 				7D463A081EB135460074BEC5 /* DictionaryExtensions.swift */,
 				7D463A091EB135460074BEC5 /* dimensions */,
@@ -1032,7 +1032,7 @@
 				DBF761171F7D82B800D2626A /* Themes.swift in Sources */,
 				7D463A281EB135460074BEC5 /* SearchResponse.swift in Sources */,
 				7D463A1C1EB135460074BEC5 /* Dimensions.swift in Sources */,
-				7D463A191EB135460074BEC5 /* ApplicationExtensions.swift in Sources */,
+				7D463A191EB135460074BEC5 /* APPLFrameworkExtensions.swift in Sources */,
 				7D463A221EB135460074BEC5 /* MZMapViewController.swift in Sources */,
 				DBEF2B141EC3B99A00D19B62 /* LocationManager.swift in Sources */,
 				7D463A2A1EB135460074BEC5 /* UIColorExtensions.swift in Sources */,

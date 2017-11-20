@@ -84,8 +84,7 @@ open class LocationManager: NSObject, CLLocationManagerDelegate, LocationManager
    */
   open func canEnableBackgroundLocationUpdates() -> Bool {
     if UIApplication.shared.backgroundRefreshStatus != .available { return false }
-    if !isAlwaysAuthorized() { return false }
-    return true
+    return isAlwaysAuthorized()
   }
 
   /**
