@@ -7,7 +7,7 @@ There are three different marker classes: `PointMarker`, `SystemPointMarker`, an
 
 ```swift
 import Foundation
-import TangramMap
+import Mapzen-ios-sdk
 
 class FeatureExampleViewController:  MZMapViewController {
 
@@ -21,17 +21,17 @@ class FeatureExampleViewController:  MZMapViewController {
   }
 
   fileprivate func addMarkers() {
-    let pointMarker = PointMarker.init(size: CGSize(width: 30, height: 30))
+    let pointMarker = PointMarker(size: CGSize(width: 30, height: 30))
     pointMarker.icon = UIImage.init(named: "logo")
     pointMarker.backgroundColor = UIColor.purple
     pointMarker.point = TGGeoPointMake(-73.9903, 40.74433)
     self.addMarker(pointMarker);
 
-    let systemMarker = SystemPointMarker.init(markerType: .currentLocation)
+    let systemMarker = SystemPointMarker(markerType: .currentLocation)
     systemMarker.point = TGGeoPointMake(-73.984770, 40.734807)
     self.addMarker(systemMarker);
 
-    let selectableSystemMarker = SelectableSystemPointMarker.init(markerType: .searchPin)
+    let selectableSystemMarker = SelectableSystemPointMarker(markerType: .searchPin)
     selectableSystemMarker.point = TGGeoPointMake(-73.998674, 40.732172)
     self.addMarker(selectableSystemMarker);
   }
@@ -43,7 +43,7 @@ To add a polygon to the map, create a `TGGeoPolygon` and add points to it. Then 
 
 ```swift
 import Foundation
-import TangramMap
+import Mapzen-ios-sdk
 
 class FeatureExampleViewController:  MZMapViewController {
 
@@ -62,7 +62,7 @@ class FeatureExampleViewController:  MZMapViewController {
     polygon.add(TGGeoPointMake(-73.984770, 40.734807))
     polygon.add(TGGeoPointMake(-73.998674, 40.732172))
     polygon.add(TGGeoPointMake(-73.996142, 40.741050))
-    let marker = PolygonMarker.init()
+    let marker = PolygonMarker()
     marker.polygon = polygon
     marker.backgroundColor = UIColor.green
     self.addMarker(marker)
@@ -76,7 +76,7 @@ To add a polyline to the map, create a `TGGeoPolyline` and add points to it. The
 
 ```swift
 import Foundation
-import TangramMap
+import Mapzen-ios-sdk
 
 class FeatureExampleViewController:  MZMapViewController {
 
@@ -95,7 +95,7 @@ class FeatureExampleViewController:  MZMapViewController {
    polyline.add(TGGeoPointMake(-73.984770, 40.734807))
    polyline.add(TGGeoPointMake(-73.998674, 40.732172))
    polyline.add(TGGeoPointMake(-73.996142, 40.741050))
-   let marker = PolylineMarker.init()
+   let marker = PolylineMarker()
    marker.polyline = polyline
    marker.backgroundColor = UIColor.blue
    self.addMarker(marker)

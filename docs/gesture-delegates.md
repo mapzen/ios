@@ -3,8 +3,8 @@
 The map supports taps, double taps, shoves, scales, rotations, pans, and long presses. To receive information about when these events occur, implement a delegate protocol.
 
 ```swift
-import Foundation
 import UIKit
+import Mapzen-ios-sdk
 
 class GestureExampleViewController:  MZMapViewController, MapSingleTapGestureDelegate, MapDoubleTapGestureDelegate, MapLongPressGestureDelegate, MapPanGestureDelegate, MapPinchGestureDelegate, MapRotateGestureDelegate, MapShoveGestureDelegate {
 
