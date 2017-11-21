@@ -9,6 +9,7 @@
 import UIKit
 import TangramMap
 import Mapzen_ios_sdk
+import CoreLocation
 
 class DemoMapViewController:  SampleMapViewController, MapMarkerSelectDelegate {
 
@@ -33,11 +34,16 @@ class DemoMapViewController:  SampleMapViewController, MapMarkerSelectDelegate {
     setupSwitchLocaleBtn()
     setupStyleNotification()
     markerSelectDelegate = self
+    locationManager.requestAlwaysAuthorization()
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     try? loadStyleSheetAsync(appDelegate.selectedMapStyle) { (style) in
       self.styleLoaded = true
       let _ = self.showCurrentLocation(true)
       self.showFindMeButon(true)
+//Uncomment this to enable background location updates. However be aware that they are never cancelled so the sample app will just chew through your battery! 
+//      if self.locationManager.canEnableBackgroundLocationUpdates() {
+//        _ = self.locationManager.enableBackgroundLocationUpdates(forType: .other, desiredAccuracy: kCLLocationAccuracyBest, pausesLocationAutomatically: false)
+//      }
     }
   }
 
@@ -47,6 +53,11 @@ class DemoMapViewController:  SampleMapViewController, MapMarkerSelectDelegate {
       let styleVC = destVC.viewControllers[0] as! StylePickerVC
       styleVC.mapController = self
     }
+  }
+
+  override func locationDidUpdate(_ location: CLLocation) {
+    super.locationDidUpdate(location)
+    print("Location update received!")
   }
   
   //MARK : MapSelectDelegate  

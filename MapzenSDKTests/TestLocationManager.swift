@@ -10,6 +10,19 @@ import CoreLocation
 @testable import MapzenSDK
 
 class TestLocationManager : LocationManagerProtocol {
+  func startUpdatingHeading() {
+  }
+
+  func stopUpdatingHeading() {
+  }
+
+  func canEnableBackgroundLocationUpdates() -> Bool {
+    return true
+  }
+
+  func enableBackgroundLocationUpdates(forType activityType: CLActivityType, desiredAccuracy: CLLocationAccuracy, pausesLocationAutomatically: Bool) -> Bool {
+    return true
+  }
 
   open weak var delegate: LocationManagerDelegate?
 

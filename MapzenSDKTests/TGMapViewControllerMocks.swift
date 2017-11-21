@@ -8,6 +8,40 @@
 
 import Foundation
 import TangramMap
+import XCTest
+
+class FailingTGMapViewController: TestTGMapViewController {
+  override func animate(toPosition position: TGGeoPoint, withDuration seconds: Float) {
+    XCTFail()
+  }
+
+  override func animate(toPosition position: TGGeoPoint, withDuration seconds: Float, with easeType: TGEaseType) {
+    XCTFail()
+  }
+
+  override func animate(toZoomLevel zoomLevel: Float, withDuration seconds: Float) {
+    XCTFail()
+  }
+
+  override func animate(toZoomLevel zoomLevel: Float, withDuration seconds: Float, with easeType: TGEaseType) {
+    XCTFail()
+  }
+
+  override func animate(toRotation radians: Float, withDuration seconds: Float) {
+    XCTFail()
+  }
+
+  override func animate(toRotation radians: Float, withDuration seconds: Float, with easeType: TGEaseType) {
+    XCTFail()
+  }
+  override func animate(toTilt radians: Float, withDuration seconds: Float) {
+    XCTFail()
+  }
+
+  override func animate(toTilt radians: Float, withDuration seconds: Float, with easeType: TGEaseType) {
+    XCTFail()
+  }
+}
 
 class TestTGMapViewController: TGMapViewController {
   

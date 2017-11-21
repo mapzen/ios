@@ -238,6 +238,7 @@ open class MZMapViewController: UIViewController, LocationManagerDelegate {
   var globalSceneUpdates: [TGSceneUpdate] = []
   fileprivate var sceneLoadCallback: OnStyleLoaded?
   fileprivate(set) var latestSceneId: Int32 = 0
+  var isInBackground = false
 
   /// The camera type we want to use. Defaults to whatever is set in the style sheet.
   open var cameraType: TGCameraType {
@@ -450,86 +451,94 @@ open class MZMapViewController: UIViewController, LocationManagerDelegate {
   }
 
   /**
-   Animates the map to a particular position using the default easing type (Cubic).
+   Animates the map to a particular position using the default easing type (Cubic). Note this function is a no-op when an app is operating in the background.
    
    - parameter position: The position to animate to.
    - parameter seconds: How long the animation should last.
   */
   open func animate(toPosition position: TGGeoPoint, withDuration seconds: Float) {
+    if isInBackground { return }
     tgViewController.animate(toPosition: position, withDuration: seconds)
   }
 
   /**
-   Animates the map to a particular position using the provided easing type.
+   Animates the map to a particular position using the provided easing type. Note this function is a no-op when an app is operating in the background.
    
    - parameter position: The position to animate to.
    - parameter seconds: How long the animation should last.
    - parameter easeType: The animation easing style to use.
    */
   open func animate(toPosition position: TGGeoPoint, withDuration seconds: Float, with easeType: TGEaseType) {
+    if isInBackground { return }
     tgViewController.animate(toPosition: position, withDuration: seconds, with: easeType)
   }
 
   /**
-   Animates the map to a particular zoom level using the default easing type (Cubic).
+   Animates the map to a particular zoom level using the default easing type (Cubic). Note this function is a no-op when an app is operating in the background.
    
    - parameter zoomLevel: The zoom level to animate to.
    - parameter seconds: How long the animation should last.
    */
   open func animate(toZoomLevel zoomLevel: Float, withDuration seconds: Float) {
+    if isInBackground { return }
     tgViewController.animate(toZoomLevel: zoomLevel, withDuration: seconds)
   }
 
   /**
-   Animates the map to a particular zoom level using the provided easing type.
+   Animates the map to a particular zoom level using the provided easing type. Note this function is a no-op when an app is operating in the background.
    
    - parameter zoomLevel: The zoom level to animate to.
    - parameter seconds: How long the animation should last.
    - parameter easeType: The animation easing style to use.
    */
   open func animate(toZoomLevel zoomLevel: Float, withDuration seconds: Float, with easeType: TGEaseType) {
+    if isInBackground { return }
     tgViewController.animate(toZoomLevel: zoomLevel, withDuration: seconds, with: easeType)
   }
 
   /**
-   Animates the map to rotate using the default easing type (Cubic).
+   Animates the map to rotate using the default easing type (Cubic). Note this function is a no-op when an app is operating in the background.
    
    - parameter radians: How far the map should rotate in radians.
    - parameter seconds: How long the animation should last.
    */
   open func animate(toRotation radians: Float, withDuration seconds: Float) {
+    if isInBackground { return }
     tgViewController.animate(toRotation: radians, withDuration: seconds)
   }
 
   /**
-   Animates the map to rotate using the provided easing type.
+   Animates the map to rotate using the provided easing type. Note this function is a no-op when an app is operating in the background.
    
    - parameter radians: How far the map should rotate in radians.
    - parameter seconds: How long the animation should last.
    - parameter easeType: The animation easing style to use.
    */
   open func animate(toRotation radians: Float, withDuration seconds: Float, with easeType: TGEaseType) {
+    if isInBackground { return }
     tgViewController.animate(toRotation: radians, withDuration: seconds, with: easeType)
   }
   
   /**
-   Animates the map to tilt using the default easing type (Cubic).
+   Animates the map to tilt using the default easing type (Cubic). Note this function is a no-op when an app is operating in the background.
    
    - parameter radians: How far the map should tilt in radians.
    - parameter seconds: How long the animation should last.
    */
   open func animate(toTilt radians: Float, withDuration seconds: Float) {
+    if isInBackground { return }
     tgViewController.animate(toTilt: radians, withDuration: seconds)
   }
 
   /**
-   Animates the map to tile using the provided easing type.
+   Animates the map to tile using the provided easing type. Note this function is a no-op when an app is operating in the background.
    
    - parameter radians: How far the map should tilt in radians.
    - parameter seconds: How long the animation should last.
    - parameter easeType: The animation easing style to use.
    */
   open func animate(toTilt radians: Float, withDuration seconds: Float, with easeType: TGEaseType) {
+    if isInBackground { return }
     tgViewController.animate(toTilt: radians, withDuration: seconds, with: easeType)
   }
 
@@ -791,13 +800,14 @@ open class MZMapViewController: UIViewController, LocationManagerDelegate {
    - parameter tilt: The tilt to reset to. Defaults to 0.
    - parameter zoomLevel: The zoom to reset to. Defaults to 0.
    - parameter animationDuration: The length to animate the reset to. Passing in 0 makes the change happen immediately.
-   - returns: Whether or not the map was centered on the device's current location
+   - returns: Whether or not the map was centered on the device's current location. Can also return false if the app is currently backgrounded as we won't attempt animations while backgrounded.
    */
   open func resetCameraOnCurrentLocation(_ tilt: Float = 0.0, zoomLevel: Float = 16.0, animationDuration: Float = 1.0) -> Bool {
     guard currentLocationGem != nil else { return false }
     guard let point = lastSetPoint else { return false }
     //TODO: handle error?
 //    if marker == 0 { return false } // Invalid Marker
+    if isInBackground { return false }
     tgViewController.animate(toZoomLevel: zoomLevel, withDuration: animationDuration)
     tgViewController.animate(toPosition: point, withDuration: animationDuration)
     tgViewController.animate(toTilt: tilt, withDuration: animationDuration)
@@ -976,10 +986,31 @@ open class MZMapViewController: UIViewController, LocationManagerDelegate {
     setupTgControllerView()
     setupAttribution()
     setupFindMeButton()
+    observeLifecycleNotifications()
 
     tgViewController.gestureDelegate = self
     tgViewController.mapViewDelegate = self
     tgViewController.preferredFramesPerSecond = 60
+    tgViewController.pauseOnWillResignActive = true
+    tgViewController.resumeOnDidBecomeActive = true
+  }
+
+  deinit {
+    NotificationCenter.default.removeObserver(self)
+  }
+
+  //MARK: - Application Lifecycle Observance
+  func observeLifecycleNotifications(notificationCenter: NotificationCenterProtocol = NotificationCenter.default) {
+    notificationCenter.addObserver(self, selector: #selector(applicationWillResignActive), name: .UIApplicationWillResignActive, object: nil)
+    notificationCenter.addObserver(self, selector: #selector(applicationDidBecomeActive), name: .UIApplicationDidBecomeActive, object: nil)
+  }
+
+  func applicationWillResignActive() {
+    isInBackground = true
+  }
+
+  func applicationDidBecomeActive() {
+    isInBackground = false
   }
 
   //MARK: - LocationManagerDelegate
@@ -991,6 +1022,9 @@ open class MZMapViewController: UIViewController, LocationManagerDelegate {
 
     let currentLocation = TGGeoPoint(longitude: location.coordinate.longitude, latitude: location.coordinate.latitude)
     lastSetPoint = currentLocation
+
+    //If we're in the background, we should not process the rest of this function
+    if isInBackground { return }
 
     // If the marker isn't currently visisble, there's no need to animate.
     if !marker.visible {
