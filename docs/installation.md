@@ -1,6 +1,6 @@
 # Installation
 
-The Mapzen iOS SDK can be included in any iOS app via Cocoapods (Carthage support coming soon!) It includes everything you need to get started, and includes a sample app you can also give a spin.
+The Mapzen iOS SDK can be included in any iOS app via Cocoapods. It includes everything you need to get started, and includes a sample app you can also give a spin.
 
 ## Cocoapods
 

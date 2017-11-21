@@ -4,7 +4,7 @@ When the map style finishes loading, your `OnStyleLoaded` closure will be execut
 
 ```swift
 import Foundation
-import TangramMap
+import Mapzen-ios-sdk
 
 class PositionExampleViewController:  MZMapViewController {
 

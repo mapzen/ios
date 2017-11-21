@@ -3,7 +3,7 @@ The map’s style can be configured with `MZMapViewController#loadStyleAsync`. W
 
 ```swift
 import UIKit
-import TangramMap
+import Mapzen-ios-sdk
 class StyleExampleViewController:  MZMapViewController {
 
   private var styleLoaded = false
