@@ -10,8 +10,9 @@ import UIKit
 import CoreLocation
 import OnTheRoad
 
-/// LocationManagerDelegate Protocol
-@objc public protocol LocationManagerDelegate {
+/// LocationManagerDelegate Protoco
+@objc(MZLocationManagerDelegate)
+public protocol LocationManagerDelegate {
 
   /// The user authorized the application to receive location updates
   @objc optional func authorizationDidSucceed()
@@ -184,6 +185,7 @@ open class LocationManager: NSObject, CLLocationManagerDelegate, LocationManager
 }
 
 /// Protocol for LocationManager's api so that actual implementation can be switched out in testing contexts.
+@objc(MZLocationManagerProtocol)
 public protocol LocationManagerProtocol : class {
   weak var delegate: LocationManagerDelegate? { get set }
   var currentLocation: CLLocation? { get set }
