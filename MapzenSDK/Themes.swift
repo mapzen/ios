@@ -14,8 +14,8 @@ import Foundation
  We do however welcome suggestions / improvements to this API on our github at https://github.com/mapzen/ios
  */
 
-
-@objc public protocol StyleSheet : class {
+@objc(MZStyleSheet)
+public protocol StyleSheet : class {
 
   @objc var fileLocation: URL? { get }
   @objc var remoteFileLocation: URL? { get }
@@ -35,6 +35,7 @@ import Foundation
   @objc var availableLabelLevels: Int { get }
 }
 
+@objc(MZBaseStyle)
 open class BaseStyle: NSObject, StyleSheet {
 
   @objc open var detailLevel: Int = 0
@@ -115,6 +116,7 @@ open class BaseStyle: NSObject, StyleSheet {
 }
 
 //MARK:- Bubble Wrap
+@objc(MZBubbleWrapStyle)
 open class BubbleWrapStyle: BaseStyle {
   public override init() {
     super.init()
@@ -157,6 +159,7 @@ open class BubbleWrapStyle: BaseStyle {
 }
 
 //MARK:- Cinnnabar
+@objc(MZCinnabarStyle)
 open class CinnabarStyle: BaseStyle {
   public override init() {
     super.init()
@@ -199,6 +202,7 @@ open class CinnabarStyle: BaseStyle {
 }
 
 //MARK:- Refill
+@objc(MZRefillStyle)
 open class RefillStyle: BaseStyle {
   public override init() {
     super.init()
@@ -253,6 +257,7 @@ open class RefillStyle: BaseStyle {
 }
 
 //MARK:- Zinc
+@objc(MZZincStyle)
 open class ZincStyle: RefillStyle {
   public override init() {
     super.init()
@@ -269,6 +274,7 @@ open class ZincStyle: RefillStyle {
 }
 
 //MARK:- Walkabout
+@objc(MZWalkaboutStyle)
 open class WalkaboutStyle: BaseStyle {
   public override init() {
     super.init()

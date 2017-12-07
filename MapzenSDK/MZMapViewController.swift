@@ -46,6 +46,7 @@ public enum GlobalStyleVars : String {
 }
 
 /// Single Tap Gesture Delegate
+@objc(MZMapSingleTapGestureDelegate)
 public protocol MapSingleTapGestureDelegate : class {
   /**
    Asks the delegate if the map should recognize this single tap and perform default functionality (which is nothing, currently).
@@ -69,6 +70,7 @@ public protocol MapSingleTapGestureDelegate : class {
 }
 
 /// Double Tap Gesture Delegate
+@objc(MZMapDoubleTapGestureDelegate)
 public protocol MapDoubleTapGestureDelegate : class {
   /**
    Asks the delegate if the map should recognize this double tap and perform default functionality (which is nothing, currently).
@@ -92,6 +94,7 @@ public protocol MapDoubleTapGestureDelegate : class {
 }
 
 /// Long Press Gesture Delegate
+@objc(MZMapLongPressGestureDelegate)
 public protocol MapLongPressGestureDelegate : class {
   /**
    Asks the delegate if the map should recognize this long press gesture and perform default functionality (which is nothing, currently).
@@ -115,6 +118,7 @@ public protocol MapLongPressGestureDelegate : class {
 }
 
 /// Map Pan Gesture Delegate
+@objc(MZMapPanGestureDelegate)
 public protocol MapPanGestureDelegate : class {
   /**
    Informs the delegate the map just panned.
@@ -126,6 +130,7 @@ public protocol MapPanGestureDelegate : class {
 }
 
 /// MapPinchGestureDelegate
+@objc(MZMapPinchGestureDelegate)
 public protocol MapPinchGestureDelegate : class {
   /**
    Informs the delegate the map just zoomed via a pinch gesture.
@@ -137,6 +142,7 @@ public protocol MapPinchGestureDelegate : class {
 }
 
 /// MapRotateGestureDelegate
+@objc(MZMapRotateGestureDelegate)
 public protocol MapRotateGestureDelegate : class {
   /**
    Informs the delegate the map just rotated.
@@ -148,6 +154,7 @@ public protocol MapRotateGestureDelegate : class {
 }
 
 /// MapShoveGestureDelegate
+@objc(MZMapShoveGestureDelegate)
 public protocol MapShoveGestureDelegate : class {
   /**
    Informs the delegate the map just shoved.
@@ -159,6 +166,7 @@ public protocol MapShoveGestureDelegate : class {
 }
 
 /// MapFeatureSelectDelegate
+@objc(MZMapFeatureSelectDelegate)
 public protocol MapFeatureSelectDelegate : class {
   /**
    Informs the delegate a feature of the map was just selected.
@@ -171,6 +179,7 @@ public protocol MapFeatureSelectDelegate : class {
 }
 
 /// MapLabelSelectDelegate
+@objc(MZMapLabelSelectDelegate)
 public protocol MapLabelSelectDelegate : class {
   /**
    Informs the delegate a label of the map was just selected
@@ -183,6 +192,7 @@ public protocol MapLabelSelectDelegate : class {
 }
 
 /// MapMarkerSelectDelegate
+@objc(MZMapMarkerSelectDelegate)
 public protocol MapMarkerSelectDelegate : class {
   /**
    Informs the delegate a marker of the map was just selected
@@ -195,6 +205,7 @@ public protocol MapMarkerSelectDelegate : class {
 }
 
 /// MapTileLoadDelegate
+@objc(MZMapTileLoadDelegate)
 public protocol MapTileLoadDelegate : class {
   /**
    Informs the delegate the map has completed loading tile data and is displaying the map.
