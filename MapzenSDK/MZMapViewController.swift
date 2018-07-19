@@ -26,7 +26,7 @@ public enum GlobalStyleVars : String {
   case transitOverlay = "global.sdk_transit_overlay"
   case bikeOverlay = "global.sdk_bike_overlay"
   case pathOverlay = "global.sdk_path_overlay"
-  case apiKey = "global.sdk_mapzen_api_key"
+  case apiKey = "global.sdk_api_key"
   case uxLanguage = "global.ux_language"
 }
 
