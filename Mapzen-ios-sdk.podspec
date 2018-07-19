@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
 
   s.name    = 'Mapzen-ios-sdk'
-  s.version = '1.1.1'
+  s.version = '1.2.0'
 
   s.summary           = 'Mapzen iOS SDK'
   s.description       = 'The Mapzen iOS SDK is a thin wrapper that packages up everything you need to use Mapzen services in your iOS applications. It also simplifies setup, installation, API key management, and generally makes your life better.'
@@ -23,7 +23,7 @@ Pod::Spec.new do |s|
   s.subspec 'Core' do |cs|
     cs.dependency 'Pelias', '~> 1.0.2'
     cs.dependency 'OnTheRoad', '~> 1.0.1'
-    cs.dependency 'Tangram-es', '~> 0.8.1'
+    cs.dependency 'Tangram-es', '~> 0.9.6'
     cs.source_files = ['MapzenSDK/*.swift', 'MapzenSDK/*/*.swift']
     cs.resources = [ 'images/*.png', 'housestyles.bundle', 'version.plist' ]
   end
