@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import HockeySDK
 import Mapzen_ios_sdk
 
 @UIApplicationMain
@@ -25,18 +24,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
   func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-    startCrashReporter()
     let apiKey = getEnvironmentVariable(key: "MAPZEN_API_KEY")
     assert(apiKey.contains("mapzen-"), "Set your Mapzen API key in the scheme by adding a MAPZEN_API_KEY environment variable.")
     MapzenManager.sharedManager.apiKey = apiKey
     return true
-  }
-
-  private func startCrashReporter() {
-    let manager = BITHockeyManager.shared()
-    manager.configure(withIdentifier: getEnvironmentVariable(key: "HOCKEY_APP_ID"))
-    manager.crashManager.crashManagerStatus = .autoSend
-    manager.start()
   }
 
   private func getEnvironmentVariable(key: String) -> String {
